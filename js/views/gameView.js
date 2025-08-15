@@ -11,10 +11,30 @@ class gameView {
 
   initGameView() {
     this._gameConfiguration = new GameConfig("default");
-    this.createMap("playerOneMap", this._playerOneMap, GEOGRAPHICAL_CENTER);
+    this.createMap(
+      "playerOneMap",
+      this._playerOneMap,
+      "player-one-selected-countries-container",
+      "player-one-countries-number",
+      GEOGRAPHICAL_CENTER
+    );
+    this.createMap(
+      "playerTwoMap",
+      this._playerTwoMap,
+      "player-two-selected-countries-container",
+      "player-two-countries-number",
+      GEOGRAPHICAL_CENTER
+    );
   }
 
-  createMap(mapId, playerMap, latLon, defaultZoomLevel = 2.35) {
+  createMap(
+    mapId,
+    playerMap,
+    playerSelectedCountriesContainerId,
+    playerSelectedCountriesNumber,
+    latLon,
+    defaultZoomLevel = 2.35
+  ) {
     if (playerMap && playerMap.remove) {
       playerMap.remove();
     }
@@ -90,12 +110,12 @@ class gameView {
       .fitWorld()
       .setView(latLon, defaultZoomLevel);
     L.control.layers(baseMaps).setPosition("topleft").addTo(playerMap);
-    L.Control.UserSelectedCountriesField = L.Control.extend({
+    L.Control.SelectedCountriesField = L.Control.extend({
       countriesNumber: this._gameConfiguration.countryUnions.length,
       gameConfiguration: this._gameConfiguration,
       onAdd: function (map) {
         const container = L.DomUtil.create("div");
-        container.id = "user-selected-countries-container";
+        container.id = playerSelectedCountriesContainerId;
         container.classList.add("text-center");
         container.style.width = "50px";
         container.style.backgroundColor = "white";
@@ -109,7 +129,7 @@ class gameView {
         );
         const userCountriesNumber = L.DomUtil.create("span");
         userCountriesNumber.style.marginLeft = "5px";
-        userCountriesNumber.id = "user-countries-number";
+        userCountriesNumber.id = playerSelectedCountriesNumber;
         userCountriesNumber.style.fontWeight = "bolder";
         userCountriesNumber.textContent = "0";
         container.appendChild(userIconContainer);
@@ -130,12 +150,10 @@ class gameView {
       },
       onRemove: function (map) {},
     });
-    L.control.userSelectedCountriesField = function (opts) {
-      return new L.Control.UserSelectedCountriesField(opts);
+    L.control.selectedCountriesField = function (opts) {
+      return new L.Control.SelectedCountriesField(opts);
     };
-    L.control
-      .userSelectedCountriesField({ position: "topleft" })
-      .addTo(playerMap);
+    L.control.selectedCountriesField({ position: "topleft" }).addTo(playerMap);
     // L.Control.MapField = L.Control.extend({
     //   onAdd: function (map) {
     //     const mapFiled = L.DomUtil.create("div");
