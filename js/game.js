@@ -1,4 +1,4 @@
-import { localization } from "../localization/ua.js";
+import { localization } from "./localization/ua.js";
 export class Game {
   id;
   constructor(playerOne, playerTwo) {
@@ -8,4 +8,8 @@ export class Game {
   initGame() {
     this.id = crypto.randomUUID();
   }
+
+  finishGame() {}
+
+  startGame() {}
 }

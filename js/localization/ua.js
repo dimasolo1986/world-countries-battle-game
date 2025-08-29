@@ -509,6 +509,35 @@ export const localization = {
     "Support Project": "Підтримати Проект",
     "If you like this project, you can share it with your friends or support it financially. Thank you!":
       "Якщо Вам подобається цей проект, Ви можете поділитись ним з друзями або підтримати фінансово. Дякую Вам!",
+    "World Countries Battle Game": "Гра Битва Країн Світу",
+    "Countries Battle Game": "Гра Битва Країн",
+    "Game Configuration": "Конфігурація Гри",
+    "Choose one alliance from four countries":
+      "Виберіть один альянс з чотирьох країн",
+    "Choose the first alliance from three countries":
+      "Виберіть перший альянс з трьох країн",
+    "Choose the second alliance from three countries":
+      "Виберіть другий альянс з трьох країн",
+    "Choose the first alliance from two countries":
+      "Виберіть перший яльянс з двох країн",
+    "Choose the second alliance from two countries":
+      "Виберіть другий яльянс з двох країн",
+    "Choose the third alliance from two countries":
+      "Виберіть третій яльянс з двох країн",
+    "Choose the first alliance from one country":
+      "Виберіть перший яльянс з однієї країни",
+    "Choose the second alliance from one country":
+      "Виберіть другий яльянс з однієї країни",
+    "Choose the third alliance from one country":
+      "Виберіть третій яльянс з однієї країни",
+    "Choose the fourth alliance from one country":
+      "Виберіть четвертий яльянс з однієї країни",
+    "Choose the first trap country": "Виберіть першу країну-пастку",
+    "Choose the second trap country": "Виберіть другу країну-пастку",
+    "Choose the third trap country": "Виберіть третю країну-пастку",
+    BACK: "НАЗАД",
+    "Selected Alliance Country": "Вибрана Країна Альянсу",
+    "Selected Trap Country": "Вибрана Країна-Пастка",
     "Make Donate": "Зробити Донат",
     "QR Code": "QR Код",
     "Guess Flag": "Вгадай Прапор:",
@@ -1264,6 +1293,35 @@ export const localization = {
     "If you like this project, you can share it with your friends or support it financially. Thank you!":
       "If you like this project, you can share it with your friends or support it financially. Thank you!",
     "Make Donate": "Make Donate",
+    "World Countries Battle Game": "World Countries Battle Game",
+    "Countries Battle Game": "Countries Battle Game",
+    "Game Configuration": "Game Configuration",
+    "Choose one alliance from four countries":
+      "Choose one alliance from four countries",
+    "Choose the first alliance from three countries":
+      "Choose the first alliance from three countries",
+    "Choose the second alliance from three countries":
+      "Choose the second alliance from three countries",
+    "Choose the first alliance from two countries":
+      "Choose the first alliance from two countries",
+    "Choose the second alliance from two countries":
+      "Choose the second alliance from two countries",
+    "Choose the third alliance from two countries":
+      "Choose the third alliance from two countries",
+    "Choose the first alliance from one country":
+      "Choose the first alliance from one country",
+    "Choose the second alliance from one country":
+      "Choose the second alliance from one country",
+    "Choose the third alliance from one country":
+      "Choose the third alliance from one country",
+    "Choose the fourth alliance from one country":
+      "Choose the fourth alliance from one country",
+    "Choose the first trap country": "Choose the first trap country",
+    "Choose the second trap country": "Choose the second trap country",
+    "Choose the third trap country": "Choose the third trap country",
+    BACK: "BACK",
+    "Selected Alliance Country": "Selected Alliance Country",
+    "Selected Trap Country": "Selected Trap Country",
     "QR Code": "QR Code",
     "CORRECT ANSWERS:": "CORRECT ANSWERS:",
     "Correct Answers:": "Correct Answers:",
@@ -2015,6 +2073,35 @@ export const localization = {
       "Wenn Ihnen dieses Projekt gefällt, können Sie es mit Ihren Freunden teilen oder finanziell unterstützen. Danke schön!",
     "Make Donate": "Jetzt Spenden",
     "QR Code": "QR Code",
+    "World Countries Battle Game": "Weltländer-Kampfspiel",
+    "Countries Battle Game": "Länder-Kampfspiel",
+    "Game Configuration": "Spielkonfiguration",
+    "Choose one alliance from four countries":
+      "Wählen Sie eine Allianz aus vier Ländern",
+    "Choose the first alliance from three countries":
+      "Wähle die erste Allianz aus drei Ländern",
+    "Choose the second alliance from three countries":
+      "Wähle die zweite Allianz aus drei Ländern",
+    "Choose the first alliance from two countries":
+      "Wähle die erste Allianz aus zwei Ländern",
+    "Choose the second alliance from two countries":
+      "Wähle die zweite Allianz aus zwei Ländern",
+    "Choose the third alliance from two countries":
+      "Wähle die dritte Allianz aus zwei Ländern",
+    "Choose the first alliance from one country":
+      "Wähle die erste Allianz aus einem Land",
+    "Choose the second alliance from one country":
+      "Wähle die zweite Allianz aus einem Land",
+    "Choose the third alliance from one country":
+      "Wähle die dritte Allianz aus einem Land",
+    "Choose the fourth alliance from one country":
+      "Wähle die vierte Allianz aus einem Land",
+    "Choose the first trap country": "Wählen Sie das erste Fallenland",
+    "Choose the second trap country": "Wählen Sie das zweite Fallenland",
+    "Choose the third trap country": "Wählen Sie das dritte Fallenland",
+    BACK: "ZURÜCK",
+    "Selected Alliance Country": "Ausgewähltes Allianzland",
+    "Selected Trap Country": "Ausgewähltes Fallenland",
     Time: "Zeit:",
     Share: "Teilen",
     Score: "Punktestand:",
@@ -2769,6 +2856,35 @@ export const localization = {
     "If you like this project, you can share it with your friends or support it financially. Thank you!":
       "Si vous aimez ce projet, vous pouvez le partager avec vos amis ou le soutenir financièrement. Merci!",
     "Make Donate": "Faire un Don",
+    "World Countries Battle Game": "Jeu de Bataille des Pays du Monde",
+    "Countries Battle Game": "Jeu de Bataille des Pays",
+    "Game Configuration": "Configuration du Jeu",
+    "Choose one alliance from four countries":
+      "Choisissez une alliance parmi quatre pays",
+    "Choose the first alliance from three countries":
+      "Choisissez la première alliance parmi trois pays",
+    "Choose the second alliance from three countries":
+      "Choisissez la deuxième alliance parmi trois pays",
+    "Choose the first alliance from two countries":
+      "Choisissez la première alliance parmi deux pays",
+    "Choose the second alliance from two countries":
+      "Choisissez la deuxième alliance parmi deux pays",
+    "Choose the third alliance from two countries":
+      "Choisissez la troisième alliance parmi deux pays",
+    "Choose the first alliance from one country":
+      "Choisissez la première alliance une pays",
+    "Choose the second alliance from one country":
+      "Choisissez la deuxième alliance une pays",
+    "Choose the third alliance from one country":
+      "Choisissez la troisième alliance une pays",
+    "Choose the fourth alliance from one country":
+      "Choisissez la quatrième alliance une pays",
+    "Choose the first trap country": "Choisissez le premier pays piège",
+    "Choose the second trap country": "Choisissez le deuxième pays piège",
+    "Choose the third trap country": "Choisissez le troisième pays piège",
+    BACK: "RETOUR",
+    "Selected Alliance Country": "Pays d'alliance sélectionné",
+    "Selected Trap Country": "Pays de piège sélectionné",
     "QR Code": "QR Code",
     Time: "Temps:",
     Score: "Score:",
@@ -3522,6 +3638,35 @@ export const localization = {
     Points: "Puntos",
     SCORE: "PUNTUACIÓN:",
     "Support Project": "Apoyar el Proyecto",
+    "World Countries Battle Game": "Juego de Batalla de Países del Mundo",
+    "Countries Battle Game": "Juego de Batalla de Países",
+    "Game Configuration": "Configuración del Juego",
+    "Choose one alliance from four countries":
+      "Elige una alianza entre cuatro países",
+    "Choose the first alliance from three countries":
+      "Elige la primera alianza entre tres países",
+    "Choose the second alliance from three countries":
+      "Elige la segunda alianza entre tres países",
+    "Choose the first alliance from two countries":
+      "Elige la primera alianza entre dos países",
+    "Choose the second alliance from two countries":
+      "Elige la segunda alianza entre dos países",
+    "Choose the third alliance from two countries":
+      "Elige la tercera alianza entre dos países",
+    "Choose the first alliance from one country":
+      "Elige la primera alianza de un país",
+    "Choose the second alliance from one country":
+      "Elige la segunda alianza de un país",
+    "Choose the third alliance from one country":
+      "Elige la tercera alianza de un país",
+    "Choose the fourth alliance from one country":
+      "Elige la cuarta alianza de un país",
+    "Choose the first trap country": "Elige el primer país trampa",
+    "Choose the second trap country": "Elige el segundo país trampa",
+    "Choose the third trap country": "Elige el tercer país trampa",
+    BACK: "VOLVER",
+    "Selected Alliance Country": "País de alianza seleccionado",
+    "Selected Trap Country": "País de trampa seleccionado",
     "If you like this project, you can share it with your friends or support it financially. Thank you!":
       "Si te gusta este proyecto, puedes compartirlo con tus amigos o apoyarlo económicamente. Gracias!",
     "Make Donate": "Hacer una Donación",
@@ -4285,6 +4430,35 @@ export const localization = {
       "Se ti piace questo progetto, puoi condividerlo con i tuoi amici o sostenerlo economicamente. Grazie!",
     "Make Donate": "Fai una Donazione",
     "QR Code": "Codice QR",
+    "World Countries Battle Game": "Gioco di Battaglie tra Paesi del Mondo",
+    "Countries Battle Game": "Gioco di Battaglie tra Paesi",
+    "Game Configuration": "Configurazione del Gioco",
+    "Choose one alliance from four countries":
+      "Scegli un'alleanza tra quattro paesi",
+    "Choose the first alliance from three countries":
+      "Scegli la prima alleanza tra tre paesi",
+    "Choose the second alliance from three countries":
+      "Scegli la seconda alleanza tra tre paesi",
+    "Choose the first alliance from two countries":
+      "Scegli la prima alleanza tra due paesi",
+    "Choose the second alliance from two countries":
+      "Scegli la seconda alleanza tra due paesi",
+    "Choose the third alliance from two countries":
+      "Scegli la terza alleanza tra due paesi",
+    "Choose the first alliance from one country":
+      "Scegli la prima alleanza da un paese",
+    "Choose the second alliance from one country":
+      "Scegli la seconda alleanza da un paese",
+    "Choose the third alliance from one country":
+      "Scegli la terza alleanza da un paese",
+    "Choose the fourth alliance from one country":
+      "Scegli la quarta alleanza da un paese",
+    "Choose the first trap country": "Scegli il primo paese trappola",
+    "Choose the second trap country": "Scegli il secondo paese trappola",
+    "Choose the third trap country": "Scegli il terzo paese trappola",
+    BACK: "TORNA",
+    "Selected Alliance Country": "Paese Alleanza Selezionato",
+    "Selected Trap Country": "Paese Trappola Selezionato",
     Time: "Tempo:",
     Score: "Punteggio:",
     Share: "Condividi",

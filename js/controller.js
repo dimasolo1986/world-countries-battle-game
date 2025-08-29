@@ -4,13 +4,52 @@ import aboutView from "./views/aboutView.js";
 import mainView from "./views/mainView.js";
 import { localization } from "./localization/ua.js";
 import gameView from "./views/gameView.js";
+import donateAuthorView from "./views/donateAuthorView.js";
+import gameRulesView from "./views/gameRulesView.js";
 const init = function () {
   languageSelectView.init();
   translateAllElements();
   languageSelectView.addHandlerSelect(languageSelectHandler);
-  aboutView.addReturnToMainHandlerClick(mainView);
-  mainView.addAboutHandlerClick(aboutView, gameView);
-  mainView.addStartGameHandlerClick(aboutView, gameView);
+  aboutView.addReturnToMainHandlerClick(
+    mainView,
+    donateAuthorView,
+    gameRulesView
+  );
+  donateAuthorView.addReturnBackHandlerClick(
+    mainView,
+    aboutView,
+    gameRulesView
+  );
+  donateAuthorView.addShareWebSiteHandlerClick();
+  gameRulesView.addReturnToMainHandlerClick(
+    mainView,
+    donateAuthorView,
+    aboutView
+  );
+  mainView.addAboutHandlerClick(
+    aboutView,
+    gameView,
+    donateAuthorView,
+    gameRulesView
+  );
+  mainView.addStartGameHandlerClick(
+    aboutView,
+    gameView,
+    donateAuthorView,
+    gameRulesView
+  );
+  mainView.addSupportProjectHandlerClick(
+    aboutView,
+    gameView,
+    donateAuthorView,
+    gameRulesView
+  );
+  mainView.addGameRulesHandlerClick(
+    aboutView,
+    gameView,
+    donateAuthorView,
+    gameRulesView
+  );
   saveCurrentLanguageHandler();
   loadWindow();
   // document.addEventListener("DOMContentLoaded", function () {
@@ -90,6 +129,12 @@ const loadWindow = function () {
       case "about-project":
         loadAboutProject();
         break;
+      case "donate-author":
+        loadDonateAuthor();
+        break;
+      case "game-rules":
+        loadGameRules();
+        break;
       default:
         loadMain(savedWindow);
         break;
@@ -102,15 +147,42 @@ const loadWindow = function () {
 const loadMain = function () {
   aboutView.hideAboutProject();
   mainView.showMain();
+  gameView.hideGame();
+  sessionStorage.setItem("currentWindow", "main");
+  donateAuthorView.hideDonateProject();
 };
 
 const loadAboutProject = function () {
   mainView.hideMain();
+  gameView.hideGame();
   aboutView.showAboutProjectInfo();
+  sessionStorage.setItem("currentWindow", "about-project");
+  donateAuthorView.hideDonateProject();
 };
 
 const translateAllElements = function () {
   aboutView.translateElements();
+  mainView.translateElements();
+  donateAuthorView.translateElements();
+  gameRulesView.translateElements();
+};
+
+const loadGameRules = function () {
+  mainView.hideMain();
+  aboutView.hideAboutProject();
+  gameView.hideGame();
+  donateAuthorView.hideDonateProject();
+  gameRulesView.showGameRulesProject();
+  sessionStorage.setItem("currentWindow", "game-rules");
+};
+
+const loadDonateAuthor = function () {
+  mainView.hideMain();
+  gameView.hideGame();
+  gameRulesView.hideGameRulesProject();
+  aboutView.hideAboutProject();
+  donateAuthorView.showDonateProject();
+  sessionStorage.setItem("currentWindow", "donate-author");
 };
 
 const languageSelectHandler = function (language) {

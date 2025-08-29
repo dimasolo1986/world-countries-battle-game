@@ -6,17 +6,19 @@ class aboutView {
 
   _returnToMainListenerAdded = false;
 
-  returnToMain(mainView) {
+  returnToMain(mainView, donateAuthorView, gameRulesView) {
     this.hideAboutProject();
+    donateAuthorView.hideDonateProject();
+    gameRulesView.hideGameRulesProject();
     mainView.showMain();
     sessionStorage.setItem("currentWindow", "main");
   }
 
-  addReturnToMainHandlerClick(mainView) {
+  addReturnToMainHandlerClick(mainView, donateAuthorView, gameRulesView) {
     if (!this._returnToMainListenerAdded) {
       this._aboutReturnToMain.addEventListener(
         "click",
-        this.returnToMain.bind(this, mainView)
+        this.returnToMain.bind(this, mainView, donateAuthorView, gameRulesView)
       );
       this._returnToMainListenerAdded = true;
     }
@@ -36,7 +38,7 @@ class aboutView {
 
   translateElements() {
     this._aboutReturnToMain.textContent = `${
-      localization[model.worldCountries.language]["RETURN TO WORLD MAP"]
+      localization[model.worldCountries.language]["BACK"]
     }`;
   }
 }
