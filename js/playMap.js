@@ -7,6 +7,7 @@ export class PlayMap {
   game;
   playerOne;
   playerTwo;
+  countriesNumber;
   constructor(
     mapId,
     gameConfiguration,
@@ -19,6 +20,13 @@ export class PlayMap {
     defaultZoomLevel = 2.35
   ) {
     this.gameConfiguration = gameConfiguration;
+    if (this.gameConfiguration.onlyIndependentCountries) {
+      this.countriesNumber = model.worldCountries.countries.filter(
+        (country) => country.independent
+      ).length;
+    } else {
+      this.countriesNumber = model.worldCountries.countries.length;
+    }
     this.createMap(
       mapId,
       playerOneSelectedCountriesContainerId,
@@ -184,7 +192,33 @@ export class PlayMap {
     L.control.mapfield = function (opts) {
       return new L.Control.MapField(opts);
     };
-    L.control.mapfield({ position: "topright" }).addTo(this.map);
+    L.control.mapfield({ position: "topcenter" }).addTo(this.map);
+    L.Control.CountriesField = L.Control.extend({
+      onAdd: function (map) {
+        const countriesField = L.DomUtil.create("div");
+        countriesField.id = "countries-field";
+        countriesField.style.backgroundColor = "white";
+        countriesField.style.boxShadow =
+          "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
+        countriesField.style.marginTop = "10px";
+        countriesField.style.paddingRight = "3px";
+        countriesField.style.paddingLeft = "3px";
+        countriesField.style.opacity = "0.7";
+        countriesField.style.borderRadius = "2px";
+        countriesField.style.fontWeight = "bolder";
+        countriesField.textContent =
+          localization[model.worldCountries.language]["Countries"] + ": ";
+        const countriesNumberField = L.DomUtil.create("span");
+        countriesNumberField.id = "countries-number-field";
+        countriesField.appendChild(countriesNumberField);
+        return countriesField;
+      },
+      onRemove: function (map) {},
+    });
+    L.control.countriesfield = function (opts) {
+      return new L.Control.CountriesField(opts);
+    };
+    L.control.countriesfield({ position: "topright" }).addTo(this.map);
     L.Control.PlayButton = L.Control.extend({
       playFunction: this.playGameHandler.bind(this),
       onAdd: function (map) {
@@ -328,7 +362,40 @@ export class PlayMap {
     L.control.availablecountriespanel = function (opts) {
       return new L.Control.AvailableCountriesPanel(opts);
     };
-    L.control.availablecountriespanel({ position: "topright" }).addTo(this.map);
+    L.control
+      .availablecountriespanel({ position: "bottomcenter" })
+      .addTo(this.map);
+    L.Control.HintsPanel = L.Control.extend({
+      onAdd: function (map) {
+        const hintsPanel = L.DomUtil.create("div");
+        hintsPanel.id = "hints-panel";
+        hintsPanel.classList.add("not-displayed");
+        hintsPanel.style.backgroundColor = "white";
+        hintsPanel.style.opacity = "0.7";
+        hintsPanel.style.width = "fit-content";
+        hintsPanel.style.borderRadius = "2px";
+        hintsPanel.style.boxShadow =
+          "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
+        hintsPanel.style.marginTop = "5px";
+        hintsPanel.style.padding = "3px";
+        hintsPanel.style.overflow = "hidden";
+        hintsPanel.style.fontSize = "0.6rem;";
+        const hintsPanelsHeader = `<div><span style="font-size:0.6rem;font-weight:bold;">${
+          localization[model.worldCountries.language]["Hints:"]
+        }</span></div>`;
+        hintsPanel.insertAdjacentHTML("beforeend", hintsPanelsHeader);
+        const hintsPanelContent = L.DomUtil.create("div");
+        hintsPanelContent.id = "hints-panel-content";
+        hintsPanel.appendChild(hintsPanelContent);
+
+        return hintsPanel;
+      },
+      onRemove: function (map) {},
+    });
+    L.control.hintspanel = function (opts) {
+      return new L.Control.HintsPanel(opts);
+    };
+    L.control.hintspanel({ position: "topcenter" }).addTo(this.map);
     L.Control.PlayerTwoCountriesField = L.Control.extend({
       gameConfiguration: this.gameConfiguration,
       onAdd: function (map) {
@@ -381,6 +448,21 @@ export class PlayMap {
     this.playerTwo = playerTwoInstance;
   }
 
+  cleanMap() {
+    this.map.eachLayer(
+      function (layer) {
+        if (
+          layer instanceof L.Marker ||
+          layer instanceof L.Polyline ||
+          layer instanceof L.Polygon ||
+          layer instanceof L.GeoJSON
+        ) {
+          this.map.removeLayer(layer);
+        }
+      }.bind(this)
+    );
+  }
+
   cleanSelection() {
     this.playerOne.cleanSelection();
   }
@@ -400,7 +482,42 @@ export class PlayMap {
     }
   }
 
+  setMapFiledLabel(label) {
+    document.getElementById("map-field").textContent =
+      localization[model.worldCountries.language][label];
+  }
+
+  initSelectionCountriesMapView() {
+    document.getElementById("countries-number-field").textContent =
+      this.countriesNumber;
+    document.getElementById("hints-panel").classList.add("not-displayed");
+    document
+      .getElementById("available-countries-panel")
+      .classList.add("not-displayed");
+    document
+      .getElementById("selected-countries-panel")
+      .classList.remove("not-displayed");
+    document
+      .getElementById("guessed-not-guessed-panel")
+      .classList.add("not-displayed");
+  }
+
+  initStartPlayMapView() {
+    document.getElementById("countries-number-field").textContent =
+      this.countriesNumber;
+    document.getElementById("hints-panel").classList.add("not-displayed");
+    document
+      .getElementById("available-countries-panel")
+      .classList.add("not-displayed");
+    document
+      .getElementById("selected-countries-panel")
+      .classList.add("not-displayed");
+    document
+      .getElementById("guessed-not-guessed-panel")
+      .classList.remove("not-displayed");
+  }
+
   playGameHandler() {
-    this.playerTwo.showSelectedCountries();
+    this.game.startGame();
   }
 }

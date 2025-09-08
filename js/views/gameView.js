@@ -27,13 +27,13 @@ class gameView {
       GEOGRAPHICAL_CENTER
     );
     this._playerOne = new Player(
-      this._playMap.map,
+      this._playMap,
       "player-one-selected-countries-container",
       "player-one-countries-number",
       this._gameConfiguration
     );
     this._playerTwo = new Player(
-      this._playMap.map,
+      this._playMap,
       "player-two-selected-countries-container",
       "player-two-countries-number",
       this._gameConfiguration,
@@ -41,7 +41,7 @@ class gameView {
     );
     this._playerOne.setOpponentPlayer(this._playerTwo);
     this._playerTwo.setOpponentPlayer(this._playerOne);
-    this._game = new Game(this._playerOne, this._playerTwo);
+    this._game = new Game(this._playerOne, this._playerTwo, this._playMap);
     this._playMap.setGame(this._game);
     this._playMap.setPlayerOne(this._playerOne);
     this._playMap.setPlayerTwo(this._playerTwo);
