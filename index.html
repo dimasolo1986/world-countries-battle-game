@@ -64,6 +64,74 @@
     </script>
   </head>
   <body>
+    <!-- Modal Game Guess Countries Result -->
+    <div
+      class="modal fade"
+      id="gameResultModal"
+      tabindex="-1"
+      aria-labelledby="gameModalResultLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div
+          class="modal-content"
+          style="
+            background-color: #f7fafd;
+            font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+            font-size: 0.9rem;
+          "
+        >
+          <div class="modal-header" style="padding: 0.5rem">
+            <h1
+              class="modal-title fs-5"
+              id="gameModalResultLabel"
+              style="font-weight: bold; color: cornflowerblue"
+            >
+              Game Result
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body" style="padding: 0.5rem">
+            <div
+              id="gameResultHeading"
+              style="font-size: 1.2rem; font-weight: bolder"
+            ></div>
+            <div id="gameResultHeadingGuesedCountries"></div>
+            <div id="gameResultGuessing" style="overflow: auto"></div>
+          </div>
+          <div class="modal-footer" style="padding: 0.5rem">
+            <button
+              id="gameResultCloseButton"
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+              style="
+                box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f;
+                font-size: 0.9rem;
+              "
+            >
+              Close
+            </button>
+            <button
+              id="shareGameResults"
+              type="button"
+              class="btn btn-warning"
+              style="
+                box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f;
+                font-size: 0.9rem;
+              "
+            >
+              Share
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Header -->
     <header class="bg-dark py-2 sticky-top">
       <img
@@ -379,7 +447,7 @@
           <button
             id="start-button"
             style="
-              margin-top: 20px;
+              margin-top: 10px;
               width: 200px;
               font-weight: bold;
               box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5),
@@ -401,27 +469,9 @@
       class="not-displayed"
     >
       <div
-        id="countriesBattleGameHeader"
-        style="width: 100vw; height: 25px; background: ghostwhite"
-      >
-        <div
-          class="countries-battle-game-message text-center"
-          style="
-            margin-top: 5px;
-            padding-left: 5px;
-            width: 100%;
-            font-size: 0.9rem;
-            font-weight: bolder;
-            overflow: auto;
-            background: ghostwhite;
-          "
-        ></div>
-      </div>
-      <div
         id="playMap"
         style="
           background-color: #99d9f2;
-          border-top: 1px solid #000;
           width: 100vw;
           height: 100vh;
           position: fixed;

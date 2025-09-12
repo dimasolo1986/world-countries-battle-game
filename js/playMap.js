@@ -19,6 +19,7 @@ export class PlayMap {
     latLon,
     defaultZoomLevel = 2.35
   ) {
+    this.mapId = mapId;
     this.gameConfiguration = gameConfiguration;
     if (this.gameConfiguration.onlyIndependentCountries) {
       this.countriesNumber = model.worldCountries.countries.filter(
@@ -49,9 +50,15 @@ export class PlayMap {
     latLon,
     defaultZoomLevel = 2.35
   ) {
-    if (this.map && this.map.remove) {
-      this.map.remove();
-    }
+    document.getElementById(this.mapId).innerHTML = `<div
+        id="map"
+        style="
+          background-color: #99d9f2;
+          width: 100vw;
+          height: 100vh;
+          position: fixed;
+        "
+      ></div>`;
     function centerMap(e) {
       this.map.panTo(e.latlng);
     }
@@ -75,7 +82,7 @@ export class PlayMap {
       WorldStreetMap: streetLayer,
       NatGeoWorldMap: natGeoWorldMap,
     };
-    this.map = L.map(mapId, {
+    this.map = L.map("map", {
       contextmenu: true,
       layers: [streetLayer],
       contextmenuItems: [
@@ -151,6 +158,7 @@ export class PlayMap {
         container.appendChild(userCountriesNumber);
         const clean = L.DomUtil.create("div");
         clean.style.cursor = "pointer";
+        clean.id = "clean-user-countries-selection";
         clean.style.borderTop = "1px dotted black";
         clean.insertAdjacentHTML(
           "afterbegin",
@@ -170,6 +178,36 @@ export class PlayMap {
       return new L.Control.PlayerOneCountriesField(opts);
     };
     L.control.playerOneCountriesField({ position: "topleft" }).addTo(this.map);
+    L.Control.MessageField = L.Control.extend({
+      onAdd: function (map) {
+        const messageField = L.DomUtil.create("div");
+        messageField.id = "countries-battle-game-message";
+        messageField.classList.add("text-center");
+        messageField.style.backgroundColor = "white";
+        messageField.style.border = "rgba(0, 0, 0, 0.2) 0px solid";
+        messageField.style.paddingRight = "3px";
+        messageField.style.paddingLeft = "3px";
+        messageField.style.opacity = "0.9";
+        messageField.style.fontWeight = "bolder";
+        messageField.style.fontSize = "0.85rem";
+        messageField.style.width = "100%";
+        messageField.style.marginTop = "0px";
+        messageField.style.overflow = "auto";
+        messageField.style.boxShadow =
+          "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
+        messageField.textContent =
+          localization[model.worldCountries.language][
+            "Choose one alliance from four countries"
+          ];
+        return messageField;
+      },
+
+      onRemove: function (map) {},
+    });
+    L.control.messagefield = function (opts) {
+      return new L.Control.MessageField(opts);
+    };
+    L.control.messagefield({ position: "topcenter" }).addTo(this.map);
     L.Control.MapField = L.Control.extend({
       onAdd: function (map) {
         const mapFiled = L.DomUtil.create("div");
@@ -177,12 +215,13 @@ export class PlayMap {
         mapFiled.style.backgroundColor = "white";
         mapFiled.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
-        mapFiled.style.marginTop = "10px";
         mapFiled.style.paddingRight = "3px";
         mapFiled.style.paddingLeft = "3px";
+        mapFiled.style.fontSize = "0.8rem";
         mapFiled.style.opacity = "0.7";
         mapFiled.style.borderRadius = "2px";
         mapFiled.style.fontWeight = "bolder";
+        mapFiled.style.marginTop = "10px";
         mapFiled.textContent =
           localization[model.worldCountries.language][playerMapLabel];
         return mapFiled;
@@ -200,14 +239,16 @@ export class PlayMap {
         countriesField.style.backgroundColor = "white";
         countriesField.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
-        countriesField.style.marginTop = "10px";
         countriesField.style.paddingRight = "3px";
         countriesField.style.paddingLeft = "3px";
         countriesField.style.opacity = "0.7";
         countriesField.style.borderRadius = "2px";
         countriesField.style.fontWeight = "bolder";
+        countriesField.style.fontSize = "0.5rem";
+        countriesField.style.marginTop = "30px";
         countriesField.textContent =
-          localization[model.worldCountries.language]["Countries"] + ": ";
+          localization[model.worldCountries.language]["Available Countries:"] +
+          " ";
         const countriesNumberField = L.DomUtil.create("span");
         countriesNumberField.id = "countries-number-field";
         countriesField.appendChild(countriesNumberField);
@@ -231,6 +272,7 @@ export class PlayMap {
         playButton.style.marginBottom = "5px";
         playButton.style.paddinTop = "0.35rem";
         playButton.style.paddinBottom = "0.35rem";
+        playButton.style.fontSize = "0.8rem";
         playButton.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
         playButton.disabled = true;
@@ -255,6 +297,7 @@ export class PlayMap {
         finishButton.classList.add("btn-primary");
         finishButton.classList.add("guess-country-game-finish");
         finishButton.style.marginTop = "5px";
+        finishButton.style.fontSize = "0.8rem";
         finishButton.style.marginBottom = "5px";
         finishButton.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
@@ -281,7 +324,6 @@ export class PlayMap {
         guessedNotGuessedPanel.style.borderRadius = "2px";
         guessedNotGuessedPanel.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
-        guessedNotGuessedPanel.style.marginTop = "5px";
         guessedNotGuessedPanel.style.padding = "3px";
         const guessedHtml = `<div><span style="width:7px; height:7px; border-radius:50%; border:1px solid black; margin-right:5px;background-color:red; display:inline-block;"></span><span style="font-size:0.6rem;">${
           localization[model.worldCountries.language]["Guessed Country"]
@@ -309,7 +351,6 @@ export class PlayMap {
         selectedCountriesPanel.style.borderRadius = "2px";
         selectedCountriesPanel.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
-        selectedCountriesPanel.style.marginTop = "5px";
         selectedCountriesPanel.style.padding = "3px";
         const selectedHtml = `<div><span style="width:7px; height:7px; border-radius:50%; border:1px solid black; margin-right:5px;background-color:green; display:inline-block;"></span><span style="font-size:0.6rem;">${
           localization[model.worldCountries.language][
@@ -342,9 +383,9 @@ export class PlayMap {
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
         availableCountriesPanel.style.marginTop = "5px";
         availableCountriesPanel.style.padding = "3px";
-        availableCountriesPanel.style.width = "105px";
+        availableCountriesPanel.style.width = "fit-content";
         availableCountriesPanel.style.overflow = "hidden";
-        const availableCountriesHeader = `<div><span style="font-size:0.6rem;">${
+        const availableCountriesHeader = `<div class="text-center"><span style="font-size:0.6rem; font-weight:bold;">${
           localization[model.worldCountries.language]["Available Countries:"]
         }</span></div>`;
         availableCountriesPanel.insertAdjacentHTML(
@@ -380,7 +421,7 @@ export class PlayMap {
         hintsPanel.style.padding = "3px";
         hintsPanel.style.overflow = "hidden";
         hintsPanel.style.fontSize = "0.6rem;";
-        const hintsPanelsHeader = `<div><span style="font-size:0.6rem;font-weight:bold;">${
+        const hintsPanelsHeader = `<div class="text-center"><span style="font-size:0.6rem;font-weight:bold;">${
           localization[model.worldCountries.language]["Hints:"]
         }</span></div>`;
         hintsPanel.insertAdjacentHTML("beforeend", hintsPanelsHeader);
@@ -403,6 +444,7 @@ export class PlayMap {
         container.id = playerTwoSelectedCountriesContainerId;
         container.classList.add("text-center");
         container.style.width = "50px";
+        container.style.marginTop = "10px";
         container.style.backgroundColor = "white";
         container.style.opacity = "0.7";
         container.style.borderRadius = "2px";
@@ -487,7 +529,20 @@ export class PlayMap {
       localization[model.worldCountries.language][label];
   }
 
+  showMapElement(elementId) {
+    document.getElementById(elementId).classList.remove("not-displayed");
+  }
+
+  hideMapElement(elementId) {
+    document.getElementById(elementId).classList.add("not-displayed");
+  }
+
   initSelectionCountriesMapView() {
+    const cleanSection = document.getElementById(
+      "clean-user-countries-selection"
+    );
+    cleanSection.style.cursor = "pointer";
+    cleanSection.style.pointerEvents = "auto";
     document.getElementById("countries-number-field").textContent =
       this.countriesNumber;
     document.getElementById("hints-panel").classList.add("not-displayed");
@@ -503,6 +558,11 @@ export class PlayMap {
   }
 
   initStartPlayMapView() {
+    const cleanSection = document.getElementById(
+      "clean-user-countries-selection"
+    );
+    cleanSection.style.cursor = "none";
+    cleanSection.style.pointerEvents = "none";
     document.getElementById("countries-number-field").textContent =
       this.countriesNumber;
     document.getElementById("hints-panel").classList.add("not-displayed");

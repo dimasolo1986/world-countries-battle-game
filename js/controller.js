@@ -144,7 +144,7 @@ const loadWindow = function () {
   }
 };
 
-const loadMain = function () {
+export const loadMain = function () {
   aboutView.hideAboutProject();
   mainView.showMain();
   gameView.hideGame();

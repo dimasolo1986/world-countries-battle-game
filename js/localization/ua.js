@@ -541,6 +541,7 @@ export const localization = {
     "The opponent gets a hint": "Суперник отримує підказку",
     "Hints:": "Підказки:",
     "Country Alliance": "Альянс Країн",
+    "You have already chosen this country!": "Ви вже обрали цю країну!",
     BACK: "НАЗАД",
     "Selected Alliance Country": "Вибрана Країна Альянсу",
     "Selected Trap Country": "Вибрана Країна-Пастка",
@@ -1331,6 +1332,8 @@ export const localization = {
       "Computer has fallen into a trap-country",
     "Hints:": "Hints:",
     "The opponent gets a hint": "The opponent gets a hint",
+    "You have already chosen this country!":
+      "You have already chosen this country!",
     "Country Alliance": "Country Alliance",
     BACK: "BACK",
     "Selected Alliance Country": "Selected Alliance Country",
@@ -2168,6 +2171,8 @@ export const localization = {
     "You guessed all the opponent's countries:":
       "Sie haben alle Länder des Gegners erraten:",
     "Sorry! You lost the game!": "Entschuldigung! Du hast das Spiel verloren!",
+    "You have already chosen this country!":
+      "Sie haben dieses Land bereits ausgewählt!",
     "Computer guessed all your countries:":
       "Der Computer hat alle Ihre Länder erraten:",
     "Game Result": "Spielergebnis",
@@ -2960,6 +2965,8 @@ export const localization = {
     "Sorry! You lost the game!": "Désolé! Vous avez perdu la partie!",
     "Computer guessed all your countries:":
       "L'ordinateur a deviné tous vos pays:",
+    "You have already chosen this country!":
+      "Vous avez déjà sélectionné ce pays!",
     "Game Result": "Résultat du Match",
     "Are you sure you want to leave this game?":
       "Êtes-vous sûr de vouloir quitter ce jeu?",
@@ -3730,6 +3737,7 @@ export const localization = {
     "Computer failed to guess your country!":
       "¡La computadora no pudo adivinar tu país!",
     "Your Map": "Tu mapa",
+    "You have already chosen this country!": "¡Ya has seleccionado este país!",
     "Computer Map": "Mapa de la computadora",
     "Countries to select: 5": "Países a seleccionar: 5",
     "Countries to select: 10": "Países a seleccionar: 10",
@@ -4515,6 +4523,8 @@ export const localization = {
     Play: "Gioca",
     "Already tried this country. Try another one!":
       "Hai già provato questo paese. Prova con un altro!",
+    "You have already chosen this country!":
+      "Hai già selezionato questo Paese!",
     "Already guessed this country. Try another one!":
       "Hai già indovinato questo paese. Prova con un altro!",
     "Computer is guessing your country...":

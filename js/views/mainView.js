@@ -145,6 +145,7 @@ class mainView {
     this._parentElement.classList.add("d-flex");
     this._header.classList.remove("not-displayed");
     this._footer.classList.remove("not-displayed");
+    this._startButton.disabled = false;
   }
 
   hideMain() {

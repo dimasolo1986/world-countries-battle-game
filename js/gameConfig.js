@@ -152,21 +152,8 @@ export class GameConfig {
             </table></div>
             </div></div>
             `;
-      this.countryUnions = [
-        new Array(4),
-        new Array(3),
-        new Array(3),
-        new Array(2),
-        new Array(2),
-        new Array(2),
-        new Array(1),
-        new Array(1),
-        new Array(1),
-        new Array(1),
-        new Array(1),
-        new Array(1),
-        new Array(1),
-      ];
+      this.countriesTrapNumber = 3;
+      this.countriesNumber = 20;
       this.maxCountriesNumberInUnion = 4;
       this.onlyIndependentCountries = document.querySelector(
         "#only-independent-countries-checkbox"

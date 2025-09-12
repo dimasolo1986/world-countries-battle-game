@@ -79,14 +79,6 @@ export const getRandomInt = function (
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-export const showQuizResultWindow = function () {
-  const quizResult = new bootstrap.Modal(
-    document.getElementById("quizResultModal"),
-    {}
-  );
-  quizResult.show();
-};
-
 export const showGameResultWindow = function () {
   const gameResult = new bootstrap.Modal(
     document.getElementById("gameResultModal"),
