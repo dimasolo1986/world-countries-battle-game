@@ -87,6 +87,14 @@ export const showGameResultWindow = function () {
   gameResult.show();
 };
 
+export const showGameRulesWindow = function () {
+  const gameRules = new bootstrap.Modal(
+    document.getElementById("gameRulesModal"),
+    {}
+  );
+  gameRules.show();
+};
+
 export const getCountryGeo = function (countryCode) {
   const countryGeo = {};
   countryGeo.type = COUNTRIES_GEO.type;

@@ -1,5 +1,5 @@
 import { localization } from "./localization/ua.js";
-import { WORLD_MAP_BOUNDS, GEOGRAPHICAL_CENTER } from "./config.js";
+import { WORLD_MAP_BOUNDS } from "./config.js";
 import * as model from "./model.js";
 export class PlayMap {
   map;
@@ -48,7 +48,7 @@ export class PlayMap {
     playerTwoSelectedCountriesNumber,
     playerMapLabel,
     latLon,
-    defaultZoomLevel = 2.35
+    defaultZoomLevel = 2.4
   ) {
     document.getElementById(this.mapId).innerHTML = `<div
         id="map"
@@ -83,6 +83,7 @@ export class PlayMap {
       NatGeoWorldMap: natGeoWorldMap,
     };
     this.map = L.map("map", {
+      attributionControl: false,
       contextmenu: true,
       layers: [streetLayer],
       contextmenuItems: [
@@ -222,6 +223,7 @@ export class PlayMap {
         mapFiled.style.borderRadius = "2px";
         mapFiled.style.fontWeight = "bolder";
         mapFiled.style.marginTop = "10px";
+        mapFiled.style.color = "darkblue";
         mapFiled.textContent =
           localization[model.worldCountries.language][playerMapLabel];
         return mapFiled;
@@ -269,7 +271,7 @@ export class PlayMap {
         playButton.classList.add("btn-danger");
         playButton.classList.add("guess-country-game-play");
         playButton.style.marginTop = "10px";
-        playButton.style.marginBottom = "5px";
+        playButton.style.marginBottom = "10px";
         playButton.style.paddinTop = "0.35rem";
         playButton.style.paddinBottom = "0.35rem";
         playButton.style.fontSize = "0.8rem";
@@ -298,7 +300,7 @@ export class PlayMap {
         finishButton.classList.add("guess-country-game-finish");
         finishButton.style.marginTop = "5px";
         finishButton.style.fontSize = "0.8rem";
-        finishButton.style.marginBottom = "5px";
+        finishButton.style.marginBottom = "10px";
         finishButton.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
         finishButton.style.paddinTop = "0.35rem";
@@ -314,63 +316,32 @@ export class PlayMap {
       return new L.Control.FinishButton(opts);
     };
     L.control.finishbutton({ position: "topright" }).addTo(this.map);
-    L.Control.GuessedNotGuessedPanel = L.Control.extend({
+    L.Control.GameRulesButton = L.Control.extend({
+      gameRulesFunction: this.gameRulesFunction.bind(this),
       onAdd: function (map) {
-        const guessedNotGuessedPanel = L.DomUtil.create("div");
-        guessedNotGuessedPanel.id = "guessed-not-guessed-panel";
-        guessedNotGuessedPanel.classList.add("not-displayed");
-        guessedNotGuessedPanel.style.backgroundColor = "white";
-        guessedNotGuessedPanel.style.opacity = "0.7";
-        guessedNotGuessedPanel.style.borderRadius = "2px";
-        guessedNotGuessedPanel.style.boxShadow =
+        const gameRulesButton = L.DomUtil.create("button");
+        gameRulesButton.classList.add("btn");
+        gameRulesButton.classList.add("btn-sm");
+        gameRulesButton.classList.add("btn-info");
+        gameRulesButton.classList.add("guess-country-game-rules");
+        gameRulesButton.style.marginTop = "5px";
+        gameRulesButton.style.fontSize = "0.8rem";
+        gameRulesButton.style.marginBottom = "10px";
+        gameRulesButton.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
-        guessedNotGuessedPanel.style.padding = "3px";
-        const guessedHtml = `<div><span style="width:7px; height:7px; border-radius:50%; border:1px solid black; margin-right:5px;background-color:red; display:inline-block;"></span><span style="font-size:0.6rem;">${
-          localization[model.worldCountries.language]["Guessed Country"]
-        }</span></div>`;
-        const notGuessedHtml = `<div><span style="width:7px; height:7px; border-radius:50%; border:1px solid black; margin-right:5px;background-color:grey; display:inline-block;"></span><span style="font-size:0.6rem;">${
-          localization[model.worldCountries.language]["Not Guessed Country"]
-        }</span></div>`;
-        guessedNotGuessedPanel.insertAdjacentHTML("beforeend", guessedHtml);
-        guessedNotGuessedPanel.insertAdjacentHTML("beforeend", notGuessedHtml);
-
-        return guessedNotGuessedPanel;
+        gameRulesButton.style.paddinTop = "0.35rem";
+        gameRulesButton.style.paddinBottom = "0.35rem";
+        gameRulesButton.textContent =
+          localization[model.worldCountries.language]["Game Rules"];
+        gameRulesButton.addEventListener("click", this.gameRulesFunction);
+        return gameRulesButton;
       },
       onRemove: function (map) {},
     });
-    L.control.guessednotguessedpanel = function (opts) {
-      return new L.Control.GuessedNotGuessedPanel(opts);
+    L.control.gamerulesbutton = function (opts) {
+      return new L.Control.GameRulesButton(opts);
     };
-    L.control.guessednotguessedpanel({ position: "topright" }).addTo(this.map);
-    L.Control.SelectedCountriesPanel = L.Control.extend({
-      onAdd: function (map) {
-        const selectedCountriesPanel = L.DomUtil.create("div");
-        selectedCountriesPanel.id = "selected-countries-panel";
-        selectedCountriesPanel.style.backgroundColor = "white";
-        selectedCountriesPanel.style.opacity = "0.7";
-        selectedCountriesPanel.style.borderRadius = "2px";
-        selectedCountriesPanel.style.boxShadow =
-          "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
-        selectedCountriesPanel.style.padding = "3px";
-        const selectedHtml = `<div><span style="width:7px; height:7px; border-radius:50%; border:1px solid black; margin-right:5px;background-color:green; display:inline-block;"></span><span style="font-size:0.6rem;">${
-          localization[model.worldCountries.language][
-            "Selected Alliance Country"
-          ]
-        }</span></div>`;
-        const trapHtml = `<div><span style="width:7px; height:7px; border-radius:50%; border:1px solid black; margin-right:5px;background-color:orange; display:inline-block;"></span><span style="font-size:0.6rem;">${
-          localization[model.worldCountries.language]["Selected Trap Country"]
-        }</span></div>`;
-        selectedCountriesPanel.insertAdjacentHTML("beforeend", selectedHtml);
-        selectedCountriesPanel.insertAdjacentHTML("beforeend", trapHtml);
-
-        return selectedCountriesPanel;
-      },
-      onRemove: function (map) {},
-    });
-    L.control.selectedcountriespanel = function (opts) {
-      return new L.Control.SelectedCountriesPanel(opts);
-    };
-    L.control.selectedcountriespanel({ position: "topright" }).addTo(this.map);
+    L.control.gamerulesbutton({ position: "topright" }).addTo(this.map);
     L.Control.AvailableCountriesPanel = L.Control.extend({
       onAdd: function (map) {
         const availableCountriesPanel = L.DomUtil.create("div");
@@ -385,7 +356,7 @@ export class PlayMap {
         availableCountriesPanel.style.padding = "3px";
         availableCountriesPanel.style.width = "fit-content";
         availableCountriesPanel.style.overflow = "hidden";
-        const availableCountriesHeader = `<div class="text-center"><span style="font-size:0.6rem; font-weight:bold;">${
+        const availableCountriesHeader = `<div class="text-center"><span style="font-size:0.7rem; font-weight:bold;">${
           localization[model.worldCountries.language]["Available Countries:"]
         }</span></div>`;
         availableCountriesPanel.insertAdjacentHTML(
@@ -417,11 +388,11 @@ export class PlayMap {
         hintsPanel.style.borderRadius = "2px";
         hintsPanel.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
-        hintsPanel.style.marginTop = "5px";
+        hintsPanel.style.marginTop = "10px";
         hintsPanel.style.padding = "3px";
         hintsPanel.style.overflow = "hidden";
-        hintsPanel.style.fontSize = "0.6rem;";
-        const hintsPanelsHeader = `<div class="text-center"><span style="font-size:0.6rem;font-weight:bold;">${
+        hintsPanel.style.fontSize = "0.7rem;";
+        const hintsPanelsHeader = `<div class="text-center"><span style="font-size:0.7rem;font-weight:bold;">${
           localization[model.worldCountries.language]["Hints:"]
         }</span></div>`;
         hintsPanel.insertAdjacentHTML("beforeend", hintsPanelsHeader);
@@ -437,6 +408,46 @@ export class PlayMap {
       return new L.Control.HintsPanel(opts);
     };
     L.control.hintspanel({ position: "topcenter" }).addTo(this.map);
+    L.Control.GuessedCountryAlliancePanel = L.Control.extend({
+      onAdd: function (map) {
+        const guessedCountryAlliancePanel = L.DomUtil.create("div");
+        guessedCountryAlliancePanel.id = "guessed-country-alliance-panel";
+        guessedCountryAlliancePanel.classList.add("not-displayed");
+        guessedCountryAlliancePanel.style.backgroundColor = "white";
+        guessedCountryAlliancePanel.style.opacity = "0.9";
+        guessedCountryAlliancePanel.style.width = "fit-content";
+        guessedCountryAlliancePanel.style.borderRadius = "2px";
+        guessedCountryAlliancePanel.style.boxShadow =
+          "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
+        guessedCountryAlliancePanel.style.marginTop = "10px";
+        guessedCountryAlliancePanel.style.padding = "5px";
+        guessedCountryAlliancePanel.style.overflow = "hidden";
+        guessedCountryAlliancePanel.style.fontSize = "0.7rem;";
+        const guessedCountryAlliancePanelHeader = `<div class="text-center"><span style="font-size:0.75rem;font-weight:bold;color:green;">${
+          localization[model.worldCountries.language]["Congratulations!"]
+        }</span></div>`;
+        guessedCountryAlliancePanel.insertAdjacentHTML(
+          "beforeend",
+          guessedCountryAlliancePanelHeader
+        );
+        const guessedCountryAlliancePanelContent = L.DomUtil.create("div");
+        guessedCountryAlliancePanelContent.classList.add("text-center");
+        guessedCountryAlliancePanelContent.id =
+          "guessed-country-alliance-panel-content";
+        guessedCountryAlliancePanel.appendChild(
+          guessedCountryAlliancePanelContent
+        );
+
+        return guessedCountryAlliancePanel;
+      },
+      onRemove: function (map) {},
+    });
+    L.control.guessedcountryalliancepanel = function (opts) {
+      return new L.Control.GuessedCountryAlliancePanel(opts);
+    };
+    L.control
+      .guessedcountryalliancepanel({ position: "topcenter" })
+      .addTo(this.map);
     L.Control.PlayerTwoCountriesField = L.Control.extend({
       gameConfiguration: this.gameConfiguration,
       onAdd: function (map) {
@@ -444,7 +455,7 @@ export class PlayMap {
         container.id = playerTwoSelectedCountriesContainerId;
         container.classList.add("text-center");
         container.style.width = "50px";
-        container.style.marginTop = "10px";
+        container.style.marginTop = "5px";
         container.style.backgroundColor = "white";
         container.style.opacity = "0.7";
         container.style.borderRadius = "2px";
@@ -509,6 +520,10 @@ export class PlayMap {
     this.playerOne.cleanSelection();
   }
 
+  gameRulesFunction() {
+    this.game.showGameRules();
+  }
+
   finishGameHandler(useConfirm) {
     if (useConfirm) {
       const confirmExit = confirm(
@@ -538,6 +553,7 @@ export class PlayMap {
   }
 
   initSelectionCountriesMapView() {
+    document.querySelector(".guess-country-game-play").disabled = true;
     const cleanSection = document.getElementById(
       "clean-user-countries-selection"
     );
@@ -549,15 +565,10 @@ export class PlayMap {
     document
       .getElementById("available-countries-panel")
       .classList.add("not-displayed");
-    document
-      .getElementById("selected-countries-panel")
-      .classList.remove("not-displayed");
-    document
-      .getElementById("guessed-not-guessed-panel")
-      .classList.add("not-displayed");
   }
 
   initStartPlayMapView() {
+    document.querySelector(".guess-country-game-play").disabled = true;
     const cleanSection = document.getElementById(
       "clean-user-countries-selection"
     );
@@ -569,12 +580,6 @@ export class PlayMap {
     document
       .getElementById("available-countries-panel")
       .classList.add("not-displayed");
-    document
-      .getElementById("selected-countries-panel")
-      .classList.add("not-displayed");
-    document
-      .getElementById("guessed-not-guessed-panel")
-      .classList.remove("not-displayed");
   }
 
   playGameHandler() {

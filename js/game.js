@@ -1,11 +1,13 @@
 import { localization } from "./localization/ua.js";
 import { loadMain } from "./controller.js";
-import { showGameResultWindow } from "./helpers.js";
+import { showGameResultWindow, showGameRulesWindow } from "./helpers.js";
 import * as model from "./model.js";
 export class Game {
   id;
   finished = false;
   gameModalResultLabel = document.getElementById("gameModalResultLabel");
+  gameModalRulesLabel = document.getElementById("gameModalRulesLabel");
+  gameModalRulesContent = document.getElementById("gameRulesContent");
   guessCountriesMessageField;
   gameModalHeading = document.getElementById("gameResultHeading");
   gameModalHeadingGuessed = document.getElementById(
@@ -23,6 +25,15 @@ export class Game {
   }
   initGame() {
     this.id = crypto.randomUUID();
+  }
+
+  showGameRules() {
+    this.gameModalRulesLabel.textContent =
+      localization[model.worldCountries.language]["Game Rules"];
+    this.gameModalRulesContent.innerHTML = document.getElementById(
+      "game-rules-project-container"
+    ).innerHTML;
+    showGameRulesWindow();
   }
 
   showGameResult(playerOneWon) {
