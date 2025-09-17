@@ -390,13 +390,6 @@ export class Player {
     }
   }
 
-  showGuesseNotGuessedPanel() {
-    const guessedNotGuessedPanel = document.getElementById(
-      "guessed-not-guessed-panel"
-    );
-    guessedNotGuessedPanel.classList.remove("not-displayed");
-  }
-
   hideGuesseNotGuessedPanel() {
     const guessedNotGuessedPanel = document.getElementById(
       "guessed-not-guessed-panel"
@@ -497,7 +490,6 @@ export class Player {
         localization[model.worldCountries.language][
           "Computer is guessing your country..."
         ];
-      this.showGuesseNotGuessedPanel();
       await this.sleep(1000);
       let countryIndex = undefined;
       let countryCode = undefined;
