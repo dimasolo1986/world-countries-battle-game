@@ -332,7 +332,7 @@ export class PlayMap {
         gameRulesButton.style.paddinTop = "0.35rem";
         gameRulesButton.style.paddinBottom = "0.35rem";
         gameRulesButton.textContent =
-          localization[model.worldCountries.language]["Game Rules"];
+          localization[model.worldCountries.language]["Rules"];
         gameRulesButton.addEventListener("click", this.gameRulesFunction);
         return gameRulesButton;
       },

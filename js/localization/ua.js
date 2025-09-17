@@ -615,6 +615,7 @@ export const localization = {
     "The game 'Guess Countries' helps to learn the location of countries in the world. Choose a given number of countries on the map. The computer will also choose the appropriate number of countries. Attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an additional attempt. The winner is the one who first guesses all the opponent's countries. Follow the messages at the top of the screen after the game starts.":
       "Гра 'Вгадай Країни' допомагає вивчати розташування країн у світі. Оберіть задану кількість країн на мапі. Комп'ютер також обере відповідну кількість країн. Спроби відгадати країни відбуваються по черзі. Той, хто вгадав країну суперника отримує додаткову спробу. Виграє той, хто перший відгадає всі країни суперника. Слідкуйте за повідомленнями у верхній частині екрану після початку гри.",
     "Game Rules": "Правила Гри",
+    Rules: "Правила",
     "Games:": "Ігри:",
     "You can't select a war aggressor country!":
       "Не можна вибрати країну-агресора!",
@@ -1427,6 +1428,7 @@ export const localization = {
     "The game 'Guess Countries' helps to learn the location of countries in the world. Choose a given number of countries on the map. The computer will also choose the appropriate number of countries. Attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an additional attempt. The winner is the one who first guesses all the opponent's countries. Follow the messages at the top of the screen after the game starts.":
       "The game 'Guess Countries' helps to learn the location of countries in the world. Choose a given number of countries on the map. The computer will also choose the appropriate number of countries. Attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an additional attempt. The winner is the one who first guesses all the opponent's countries. Follow the messages at the top of the screen after the game starts.",
     "Game Rules": "Game Rules",
+    Rules: "Rules",
     "Games:": "Games:",
     "You can't select a war aggressor country!":
       "You can't select a war aggressor country!",
@@ -2237,6 +2239,7 @@ export const localization = {
     "The game 'Guess Countries' helps to learn the location of countries in the world. Choose a given number of countries on the map. The computer will also choose the appropriate number of countries. Attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an additional attempt. The winner is the one who first guesses all the opponent's countries. Follow the messages at the top of the screen after the game starts.":
       "Mit dem Spiel 'Rate das Land' erfährst du die Lage der Länder auf der Weltkarte. Wähle dazu eine bestimmte Anzahl Länder auf der Karte aus. Der Computer wählt automatisch die entsprechende Anzahl aus. Abwechselnd raten die Spieler die Länder. Wer das Land des Gegners errät, darf einen weiteren Versuch starten. Gewonnen hat, wer zuerst alle Länder des Gegners errät. Folge nach Spielbeginn den Hinweisen am oberen Bildschirmrand.",
     "Game Rules": "Spielregeln",
+    Rules: "Regeln",
     "Games:": "Spiele:",
     "You can't select a war aggressor country!":
       "Sie können kein Kriegsaggressorland auswählen!",
@@ -3047,6 +3050,7 @@ export const localization = {
     "The game 'Guess Countries' helps to learn the location of countries in the world. Choose a given number of countries on the map. The computer will also choose the appropriate number of countries. Attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an additional attempt. The winner is the one who first guesses all the opponent's countries. Follow the messages at the top of the screen after the game starts.":
       "Le jeu 'Devinez les pays' vous permet de localiser les pays du monde. Sélectionnez un nombre donné de pays sur la carte. L'ordinateur sélectionnera également le nombre approprié. Les joueurs tentent de deviner les pays à tour de rôle. Le joueur qui devine le pays de son adversaire a droit à un essai supplémentaire. Le gagnant est le premier à deviner tous les pays de son adversaire. Suivez les instructions en haut de l'écran après le début de la partie.",
     "Game Rules": "Règles du jeu",
+    Rules: "Règles",
     "Games:": "Jeux:",
     "You can't select a war aggressor country!":
       "Vous ne pouvez pas sélectionner un pays agresseur de guerre!",
@@ -3856,6 +3860,7 @@ export const localization = {
     "The game 'Guess Countries' helps to learn the location of countries in the world. Choose a given number of countries on the map. The computer will also choose the appropriate number of countries. Attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an additional attempt. The winner is the one who first guesses all the opponent's countries. Follow the messages at the top of the screen after the game starts.":
       "El juego 'Adivina los Países' te ayuda a descubrir la ubicación de los países del mundo. Elige un número determinado de países en el mapa. La computadora también elegirá el número correcto. Los intentos para adivinar los países se realizan por turnos. Quien adivine el país del oponente tiene un intento extra. El ganador es el primero en adivinar todos los países del oponente. Sigue las instrucciones en la parte superior de la pantalla después de que comience el juego.",
     "Game Rules": "Reglas del juego",
+    Rules: "Reglas",
     "Games:": "Juegos:",
     "You can't select a war aggressor country!":
       "¡No puedes seleccionar un país agresor de guerra!",
@@ -4671,6 +4676,7 @@ export const localization = {
     "The game 'Guess Countries' helps to learn the location of countries in the world. Choose a given number of countries on the map. The computer will also choose the appropriate number of countries. Attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an additional attempt. The winner is the one who first guesses all the opponent's countries. Follow the messages at the top of the screen after the game starts.":
       "Il gioco 'Indovina i Paesi' ti aiuta a scoprire la posizione dei paesi in tutto il mondo. Seleziona un certo numero di paesi sulla mappa. Il computer selezionerà anche il numero appropriato di paesi. I tentativi di indovinare i paesi si svolgono a turno. Chi indovina il paese dell'avversario ha un ulteriore tentativo. Il vincitore è il primo a indovinare tutti i paesi dell'avversario. Segui le istruzioni nella parte superiore dello schermo dopo l'inizio del gioco.",
     "Game Rules": "Regole del gioco",
+    Rules: "Regole",
     "Games:": "Giochi:",
     "You can't select a war aggressor country!":
       "Non puoi scegliere un paese aggressore in guerra!",
