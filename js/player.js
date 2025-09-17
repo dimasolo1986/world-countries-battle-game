@@ -390,13 +390,6 @@ export class Player {
     }
   }
 
-  hideGuesseNotGuessedPanel() {
-    const guessedNotGuessedPanel = document.getElementById(
-      "guessed-not-guessed-panel"
-    );
-    guessedNotGuessedPanel.classList.add("not-displayed");
-  }
-
   isCountriesContainHint(hint) {
     return this.countryCodes.some((countryCode) => {
       const country = this.countries[countryCode];
