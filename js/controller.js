@@ -15,6 +15,7 @@ const init = function () {
     donateAuthorView,
     gameRulesView
   );
+  aboutView.addGameRulesHandlerClick();
   donateAuthorView.addReturnBackHandlerClick(
     mainView,
     aboutView,
@@ -52,71 +53,62 @@ const init = function () {
   );
   saveCurrentLanguageHandler();
   loadWindow();
-  // document.addEventListener("DOMContentLoaded", function () {
-  //   document.addEventListener("hide.bs.modal", function () {
-  //     if (document.activeElement) {
-  //       document.activeElement.blur();
-  //     }
-  //   });
-  //   const quizResultsShareButton = document.getElementById("shareQuizResults");
-  //   if (quizResultsShareButton) {
-  //     quizResultsShareButton.addEventListener("click", () => {
-  //       shareQuizResults();
-  //     });
-  //   }
-  //   const shareWebSiteContent = {
-  //     title: `${
-  //       localization[model.worldCountries.language][
-  //         "World Countries And Quizzes"
-  //       ]
-  //     }`,
-  //     text: `${
-  //       localization[model.worldCountries.language][
-  //         "World Countries And Quizzes"
-  //       ]
-  //     } - ${
-  //       document.querySelector(".about-project-description").textContent +
-  //       " " +
-  //       document.querySelector(".about-info").textContent
-  //     }`,
-  //     url: "https://www.worldcountriesquiz.com",
-  //   };
-  //   const shareWebSiteButton = document.getElementById("shareWebSite");
-  //   if (shareWebSiteButton) {
-  //     shareWebSiteButton.addEventListener("click", function () {
-  //       if (navigator.share) {
-  //         navigator
-  //           .share(shareWebSiteContent)
-  //           .then(function () {})
-  //           .catch(function () {});
-  //       }
-  //     });
-  //   }
-  //   const shareWebSiteCountryInfo = document.getElementById(
-  //     "shareCountryInfoModal"
-  //   );
-  //   if (shareWebSiteCountryInfo) {
-  //     shareWebSiteCountryInfo.addEventListener("click", function () {
-  //       if (navigator.share) {
-  //         navigator
-  //           .share(shareWebSiteContent)
-  //           .then(function () {})
-  //           .catch(function () {});
-  //       }
-  //     });
-  //   }
-  //   const shareWebSiteGame = document.getElementById("shareGameResults");
-  //   if (shareWebSiteGame) {
-  //     shareWebSiteGame.addEventListener("click", function () {
-  //       if (navigator.share) {
-  //         navigator
-  //           .share(shareWebSiteContent)
-  //           .then(function () {})
-  //           .catch(function () {});
-  //       }
-  //     });
-  //   }
-  // });
+  document.addEventListener("DOMContentLoaded", function () {
+    const gameLogo = document.getElementById("game-logo");
+    gameLogo.addEventListener("click", function () {
+      sessionStorage.setItem("currentWindow", "main");
+      loadWindow();
+    });
+    document.addEventListener("hide.bs.modal", function () {
+      if (document.activeElement) {
+        document.activeElement.blur();
+      }
+    });
+    const shareWebSiteContent = {
+      title: `${
+        localization[model.worldCountries.language][
+          "World Countries Battle Game"
+        ]
+      }`,
+      text: `${
+        localization[model.worldCountries.language]["Countries Battle Game"]
+      } - ${document.querySelector(".about-project-description").textContent}`,
+      url: "https://www.countriesbattlegame.com",
+    };
+    const shareWebSiteButton = document.getElementById("shareWebSite");
+    if (shareWebSiteButton) {
+      shareWebSiteButton.addEventListener("click", function () {
+        if (navigator.share) {
+          navigator
+            .share(shareWebSiteContent)
+            .then(function () {})
+            .catch(function () {});
+        }
+      });
+    }
+    const shareWebSiteDonate = document.querySelector(".share-donate");
+    if (shareWebSiteDonate) {
+      shareWebSiteDonate.addEventListener("click", function () {
+        if (navigator.share) {
+          navigator
+            .share(shareWebSiteContent)
+            .then(function () {})
+            .catch(function () {});
+        }
+      });
+    }
+    const shareGameResults = document.querySelector("#shareGameResults");
+    if (shareGameResults) {
+      shareGameResults.addEventListener("click", function () {
+        if (navigator.share) {
+          navigator
+            .share(shareWebSiteContent)
+            .then(function () {})
+            .catch(function () {});
+        }
+      });
+    }
+  });
 };
 
 const loadWindow = function () {
@@ -150,6 +142,7 @@ export const loadMain = function () {
   gameView.hideGame();
   sessionStorage.setItem("currentWindow", "main");
   donateAuthorView.hideDonateProject();
+  gameRulesView.hideGameRulesProject();
 };
 
 const loadAboutProject = function () {
@@ -158,6 +151,7 @@ const loadAboutProject = function () {
   aboutView.showAboutProjectInfo();
   sessionStorage.setItem("currentWindow", "about-project");
   donateAuthorView.hideDonateProject();
+  gameRulesView.hideGameRulesProject();
 };
 
 const translateAllElements = function () {
@@ -187,13 +181,10 @@ const loadDonateAuthor = function () {
 
 const languageSelectHandler = function (language) {
   saveLanguage(language);
-  location.reload();
   model.worldCountries.language = language;
   model.loadAllCountries();
-  renderAll();
+  location.reload();
 };
-
-const renderAll = function () {};
 
 const saveLanguage = function (language) {
   localStorage.setItem("language", language);

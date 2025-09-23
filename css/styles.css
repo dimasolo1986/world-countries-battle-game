@@ -5,6 +5,9 @@ body {
   margin: 0;
   position: relative;
 }
+p {
+  margin-bottom: 0.8rem;
+}
 body::before {
   content: "";
   position: fixed;

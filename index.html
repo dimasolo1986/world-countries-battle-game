@@ -11,18 +11,15 @@
     <meta
       name="keywords"
       content="world countries game, world countries battle, world countries battle game, geography game,
-      world countries"
+      world countries, guess countries"
     />
     <meta
       name="description"
-      content="World Countries Battle Game - project which is developed for learning geography and world countries."
+      content="World Countries Battle Game - project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as well as three trap-countries for your opponent. The computer will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts."
     />
     <meta name="author" content="Dmytro Solovei, Дмитро Соловей" />
     <title>World Countries Battle Game</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+    <link href="css/bootstrap.css" rel="stylesheet" />
     <link
       rel="icon"
       type="image/png"
@@ -100,7 +97,7 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body" style="padding: 0.5rem">
+          <div class="modal-body" style="padding: 0.5rem; text-align: justify">
             <div
               id="gameRulesContent"
               style="overflow: auto; scrollbar-width: thin"
@@ -192,12 +189,13 @@
       </div>
     </div>
     <!-- Header -->
-    <header class="bg-dark py-2 sticky-top">
+    <header class="bg-dark py-1 sticky-top">
       <img
+        id="game-logo"
         class="logo"
         src="icons/icon-192.png"
         alt="Globe Logo"
-        style="height: 30px; width: 30px; margin-left: 10px"
+        style="height: 25px; width: 25px; margin-left: 10px; cursor: pointer"
       />
       <h1
         style="
@@ -520,6 +518,17 @@
           >
             START
           </button>
+          <a
+            target="_blank"
+            href="https://stand-with-ukraine.pp.ua"
+            style="cursor: pointer; display: block; margin-bottom: 5px"
+          >
+            <img
+              src="https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg"
+              alt="Help Ukraine"
+              loading="lazy"
+            />
+          </a>
         </div>
       </div>
     </main>
@@ -931,9 +940,9 @@
         <span class="game-rules-important-description"
           >Countries in the same alliance of countries must be united by
           borders. Alliances of countries must be separated from each other by
-          at least one country's borders. A trap country can have borders with
-          another trap country, but not with an alliance of countries.</span
-        >
+          at least one country's borders. An island country can only be used as
+          an alliance with one country or as a trap country.
+        </span>
       </div>
     </div>
 
@@ -949,6 +958,7 @@
         font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
         box-shadow: rgba(50, 50, 93, 0.381) 0px 30px 60px -12px inset,
           rgba(0, 0, 0, 0.381) 0px 18px 36px -18px inset;
+        font-size: 1rem;
       "
     >
       <button
@@ -962,18 +972,137 @@
       >
         BACK
       </button>
-      <p class="about-heading" style="margin-top: 10px">
+      <div class="text-center" style="width: 100%">
+        <p
+          id="stand-with-ukraine"
+          style="margin-top: 10px; margin-bottom: 0.3rem"
+        >
+          <a
+            href="https://vshymanskyy.github.io/StandWithUkraine"
+            title="Stand With Ukraine"
+            target="_blank"
+            rel="external"
+            ><img
+              style="
+                box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f;
+              "
+              width="100%"
+              src="https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct-single.svg"
+          /></a>
+        </p>
+      </div>
+      <p class="about-ukraine-help-description" style="display: inline">
+        You can support Ukraine in the fight against Russia's military
+        aggression:
+      </p>
+      <a
+        class="about-ukraine-help-link"
+        href="https://savelife.in.ua/en/"
+        target="_blank"
+        rel="external"
+        >Come Back Alive</a
+      >
+      <p class="about-heading" style="margin-bottom: 0.3rem">
         <span
           class="about-project-name"
-          style="font-weight: bold; font-size: 1.2rem"
+          style="font-weight: bold; font-size: 1.1rem"
           >World Countries Battle Game</span
         >
         -
         <span class="about-project-description"
-          >game which is developed for learning Geography and World
-          Countries.</span
+          >project that helps to study the geography of the countries of the
+          world, neighboring countries, flags and parts of the world in a game
+          format. Choose ten different alliances of countries on the map, as
+          well as three trap-countries for your opponent. The computer will also
+          choose the appropriate number of alliances of countries and
+          trap-countries. The attempts to guess the countries take place in
+          turn. The one who guesses the opponent's country gets an extra try.
+          The one who guesses all the alliances of the opponent's countries
+          first wins. Follow the messages at the top of the screen after the
+          game starts.</span
         >
+        <a
+          type="button"
+          class="about-game-rules"
+          href="#"
+          style="text-decoration: none"
+        >
+          Game Rules
+        </a>
       </p>
+      <img
+        src="assets/img/Dmytro_Solovei.jpg"
+        loading="lazy"
+        alt="Dmytro_Solovei"
+        style="
+          height: 5rem;
+          width: 5rem;
+          float: right;
+          margin-left: 15px;
+          border: 2px solid;
+          border-radius: 5px;
+          border-color: rgb(136, 138, 139);
+          box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f;
+        "
+      />
+      <p class="about-developer" style="display: inline">
+        Project was created by Software Developer from Ukraine -
+      </p>
+      <a
+        class="about-developer-link"
+        style="text-decoration: none"
+        href="https://www.facebook.com/DimaSolovei1986"
+        target="_blank"
+        rel="external"
+        >Dmytro Solovei</a
+      >
+      <img
+        style="width: 100px; margin-left: 5px"
+        src="https://img.shields.io/badge/made_in-Ukraine-ffd700.svg?labelColor=0057b7"
+      />
+      <br />
+      <p class="about-developer-email-description" style="display: inline">
+        You can reach me by e-mail:
+      </p>
+      <a
+        class="about-developer-email-link"
+        href="mailto:solovei.dmytro@gmail.com"
+        >solovei.dmytro@gmail.com</a
+      >
+      <br />
+      <p
+        class="about-developer-donate-author-description"
+        style="display: inline"
+      >
+        Support Project
+      </p>
+      <span>:</span>
+      <a
+        class="about-developer-donate-author-link"
+        href="https://donatello.to/DmytroSolovei"
+        target="_blank"
+        >Donatello</a
+      >
+      <br />
+      <p class="about-world-countries-quiz" style="display: inline">
+        Do you like Geography and Countries of the World? Visit
+      </p>
+      <a
+        class="about-world-countries-quiz-link"
+        href="https://www.worldcountriesquiz.com/"
+        target="_blank"
+        rel="external"
+        >World Countries And Quizzes</a
+      >
+      <br />
+      <p class="about-map-library" style="display: inline">Used Map Library:</p>
+      <a
+        class="about-map-library-link"
+        href="https://leafletjs.com/"
+        target="_blank"
+        rel="external"
+        >Leaflet</a
+      >
     </div>
 
     <!-- Footer -->
@@ -1008,7 +1137,7 @@
       >
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="js/bootstrap.bundle.min.js"></script>
     <script type="module" src="js/Control.FullScreen.js"></script>
     <script type="module" src="js/controller.js"></script>
     <script type="module" src="js/leaflet-control-topcenter.js"></script>

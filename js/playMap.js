@@ -17,7 +17,7 @@ export class PlayMap {
     playerTwoSelectedCountriesNumber,
     playerMapLabel,
     latLon,
-    defaultZoomLevel = 2.35
+    defaultZoomLevel = 2.4
   ) {
     this.mapId = mapId;
     this.gameConfiguration = gameConfiguration;
@@ -186,8 +186,6 @@ export class PlayMap {
         messageField.classList.add("text-center");
         messageField.style.backgroundColor = "white";
         messageField.style.border = "rgba(0, 0, 0, 0.2) 0px solid";
-        messageField.style.paddingRight = "3px";
-        messageField.style.paddingLeft = "3px";
         messageField.style.opacity = "0.9";
         messageField.style.fontWeight = "bolder";
         messageField.style.fontSize = "0.85rem";
@@ -322,7 +320,7 @@ export class PlayMap {
         const gameRulesButton = L.DomUtil.create("button");
         gameRulesButton.classList.add("btn");
         gameRulesButton.classList.add("btn-sm");
-        gameRulesButton.classList.add("btn-info");
+        gameRulesButton.classList.add("btn-secondary");
         gameRulesButton.classList.add("guess-country-game-rules");
         gameRulesButton.style.marginTop = "5px";
         gameRulesButton.style.fontSize = "0.8rem";
@@ -532,9 +530,15 @@ export class PlayMap {
         ]
       );
       if (confirmExit) {
+        document.getElementById(
+          "only-independent-countries-checkbox"
+        ).checked = true;
         this.game.finishGame();
       }
     } else {
+      document.getElementById(
+        "only-independent-countries-checkbox"
+      ).checked = true;
       this.game.finishGame();
     }
   }

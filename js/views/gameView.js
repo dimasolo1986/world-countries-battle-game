@@ -1,6 +1,4 @@
-import { localization } from "../localization/ua.js";
-import { WORLD_MAP_BOUNDS, GEOGRAPHICAL_CENTER } from "../config.js";
-import * as model from "../model.js";
+import { GEOGRAPHICAL_CENTER } from "../config.js";
 import { GameConfig } from "../gameConfig.js";
 import { Game } from "../game.js";
 import { Player } from "../player.js";
@@ -56,8 +54,6 @@ class gameView {
   hideGame() {
     this._parentElement.classList.add("not-displayed");
   }
-
-  translateElements() {}
 }
 
 export default new gameView();

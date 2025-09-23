@@ -1,8 +1,3 @@
-/*
- * leaflet.fullscreen
- * (c) Bruno B.; MIT License
- * Uses fragments from the package 'screenfull'
- */
 (function (root, factory) {
   if (typeof define === "function" && define.amd) {
     // define an AMD module that requires 'leaflet'

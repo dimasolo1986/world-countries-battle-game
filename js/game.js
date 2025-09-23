@@ -8,6 +8,7 @@ export class Game {
   gameModalResultLabel = document.getElementById("gameModalResultLabel");
   gameModalRulesLabel = document.getElementById("gameModalRulesLabel");
   gameModalRulesContent = document.getElementById("gameRulesContent");
+  gameModalRulesCloseButton = document.getElementById("gameRulesCloseButton");
   guessCountriesMessageField;
   gameModalHeading = document.getElementById("gameResultHeading");
   gameModalHeadingGuessed = document.getElementById(
@@ -15,6 +16,8 @@ export class Game {
   );
   gameModalResultGuessedCountries =
     document.getElementById("gameResultGuessing");
+  gameModalResultCloseButton = document.getElementById("gameResultCloseButton");
+  gameModalResultShareButton = document.getElementById("shareGameResults");
   constructor(playerOne, playerTwo, playMap) {
     this.guessCountriesMessageField = document.querySelector(
       "#countries-battle-game-message"
@@ -30,6 +33,8 @@ export class Game {
   showGameRules() {
     this.gameModalRulesLabel.textContent =
       localization[model.worldCountries.language]["Game Rules"];
+    this.gameModalRulesCloseButton.textContent =
+      localization[model.worldCountries.language]["Close"];
     this.gameModalRulesContent.innerHTML = document.getElementById(
       "game-rules-project-container"
     ).innerHTML;
@@ -40,6 +45,10 @@ export class Game {
     this.playerOne.enableMapInteraction();
     this.gameModalResultLabel.textContent =
       localization[model.worldCountries.language]["Game Result"];
+    this.gameModalResultCloseButton.textContent =
+      localization[model.worldCountries.language]["Close"];
+    this.gameModalResultShareButton.textContent =
+      localization[model.worldCountries.language]["Share"];
     if (playerOneWon) {
       this.guessCountriesMessageField.textContent =
         localization[model.worldCountries.language][
@@ -289,6 +298,5 @@ export class Game {
   startGame() {
     this.playMap.initStartPlayMapView();
     this.playerOne.playerHit();
-    // this.playerTwo.showSelectedCountries();
   }
 }

@@ -132,7 +132,28 @@ export class Player {
     model.worldCountries.countries.forEach((country) => {
       const countryGeo = getCountryGeo(country.cca2);
       const countryTooltip = this.createCountryTooltip(country);
-      const countryMarker = this.createCountryMarker(country, countryTooltip);
+      const countryMarker = this.createCountryMarker(
+        country,
+        countryTooltip,
+        12,
+        12
+      );
+      const countrySmallMarkerIcon = this.createCountryMarkerIcon(
+        country,
+        12,
+        12
+      );
+      const countryBigMarkerIcon = this.createCountryMarkerIcon(
+        country,
+        20,
+        20
+      );
+      countryMarker.on("mouseover", function () {
+        this.setIcon(countryBigMarkerIcon);
+      });
+      countryMarker.on("mouseout", function () {
+        this.setIcon(countrySmallMarkerIcon);
+      });
       const countryBoundary = this.createCountryBoundary(
         countryGeo,
         country.cca2,
@@ -581,6 +602,43 @@ export class Player {
           opacity: 0.6,
           className: countryCode,
         });
+        const countryBorderCodes = country.countryBorders
+          .map((countryBorder) => {
+            return this.opponentPlayer.countriesCodeMapping[countryBorder];
+          })
+          .filter(
+            (countryCode) =>
+              countryCode !== undefined &&
+              this.opponentPlayer.countryCodes.includes(countryCode)
+          );
+        countryBorderCodes.forEach((countryBorderCode) => {
+          if (
+            !this.opponentPlayer.selectedCountryTrapCodes.has(countryBorderCode)
+          ) {
+            const countryBoundary =
+              this.opponentPlayer.countryBoundaries[countryBorderCode];
+            const countryMarker =
+              this.opponentPlayer.countryMarkers[countryBorderCode];
+            countryMarker.off();
+            countryBoundary.off();
+            countryMarker.options.opacity = 0;
+            this.opponentPlayer.playerMap.removeLayer(countryMarker);
+            this.opponentPlayer.setElementStyle(countryBoundary, {
+              weight: 1,
+              color: "grey",
+              fillColor: "grey",
+              fillOpacity: 0.3,
+              opacity: 0.6,
+              className: countryCode,
+            });
+            const countryIndexToDelete =
+              this.opponentPlayer.countryCodes.indexOf(countryBorderCode);
+            if (countryIndexToDelete >= 0)
+              this.opponentPlayer.countryCodes.splice(countryIndexToDelete, 1);
+            this.countriesNumberField.textContent =
+              this.opponentPlayer.countryCodes.length;
+          }
+        });
         this.opponentPlayer.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
           animate: false,
         });
@@ -847,6 +905,38 @@ export class Player {
         opacity: 0.8,
         className: countryCode,
       });
+      const countryBorderCodes = country.countryBorders
+        .map((countryBorder) => {
+          return this.countriesCodeMapping[countryBorder];
+        })
+        .filter(
+          (countryCode) =>
+            countryCode !== undefined && this.countryCodes.includes(countryCode)
+        );
+      countryBorderCodes.forEach((countryBorderCode) => {
+        if (!this.selectedCountryTrapCodes.has(countryBorderCode)) {
+          const countryBoundary = this.countryBoundaries[countryBorderCode];
+          const countryMarker = this.countryMarkers[countryBorderCode];
+          countryMarker.off();
+          countryBoundary.off();
+          countryMarker.options.opacity = 0;
+          this.playerMap.removeLayer(countryMarker);
+          this.setElementStyle(countryBoundary, {
+            weight: 1,
+            color: "grey",
+            fillColor: "grey",
+            fillOpacity: 0.3,
+            opacity: 0.6,
+            className: countryCode,
+          });
+          const countryIndexToDelete =
+            this.countryCodes.indexOf(countryBorderCode);
+          if (countryIndexToDelete >= 0) {
+            this.countryCodes.splice(countryIndexToDelete, 1);
+          }
+          this.countriesNumberField.textContent = this.countryCodes.length;
+        }
+      });
       this.playerAttemptToGuess = true;
       this.opponentPlayer.playerAttemptToGuess = false;
       await this.sleep(1500);
@@ -1050,7 +1140,9 @@ export class Player {
         visited.has(country) ||
         visited.size >= numberOfCountries ||
         selectedCountryCodes.has(country) ||
-        selectedCountryNeighboursCodes.has(country)
+        selectedCountryNeighboursCodes.has(country) ||
+        (country === "UA" && visited.has("RU")) ||
+        (country === "RU" && visited.has("UA"))
       )
         return;
       visited.add(country);
@@ -1074,8 +1166,6 @@ export class Player {
     }
     dfs(countryCode);
     const result = countryUnionCountries.slice(0, numberOfCountries);
-    while (result.includes("UA") && result.includes("RU"))
-      this.selectRandomCountryUnion(countriesCodeList, numberOfCountries);
     return result;
   }
 
@@ -1088,31 +1178,30 @@ export class Player {
       if (!this.selectedCountryCodes.has(country) && !trapCountry) {
         this.selectedCountryCodes.add(country);
       }
+      if (trapCountry) {
+        this.selectedCountryTrapCodes.add(country);
+      }
       const countryIndexToDelete = countriesCodeList.indexOf(country);
       if (countryIndexToDelete >= 0) {
         countriesCodeList.splice(countryIndexToDelete, 1);
       }
-      if (!trapCountry) {
-        const countryBordersCodes = this.countries[country].countryBorders
-          .map((countryBorder) => {
-            return this.countriesCodeMapping[countryBorder];
-          })
-          .filter((countryBorder) => countryBorder !== undefined);
-        countryBordersCodes.forEach((countryBorder) => {
-          if (
-            !this.selectedCountryNeighboursCodes.has(countryBorder) &&
-            !this.selectedCountryCodes.has(countryBorder)
-          ) {
-            this.selectedCountryNeighboursCodes.add(countryBorder);
-          }
-          const countryBorderIndex = countriesCodeList.indexOf(countryBorder);
-          if (countryBorderIndex >= 0) {
-            countriesCodeList.splice(countryBorderIndex, 1);
-          }
-        });
-      } else {
-        this.selectedCountryTrapCodes.add(country);
-      }
+      const countryBordersCodes = this.countries[country].countryBorders
+        .map((countryBorder) => {
+          return this.countriesCodeMapping[countryBorder];
+        })
+        .filter((countryBorder) => countryBorder !== undefined);
+      countryBordersCodes.forEach((countryBorder) => {
+        if (
+          !this.selectedCountryNeighboursCodes.has(countryBorder) &&
+          !this.selectedCountryCodes.has(countryBorder)
+        ) {
+          this.selectedCountryNeighboursCodes.add(countryBorder);
+        }
+        const countryBorderIndex = countriesCodeList.indexOf(countryBorder);
+        if (countryBorderIndex >= 0) {
+          countriesCodeList.splice(countryBorderIndex, 1);
+        }
+      });
     });
   }
 
@@ -1761,7 +1850,9 @@ export class Player {
           countryBoundary,
           "orange"
         );
+        this.addNeighbourCountriesByCountryCode(countryCode);
         if (this.selectedCountryCodes.size === 21) {
+          this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
           this.gameMessageField.textContent = `${
             localization[model.worldCountries.language][
@@ -1777,7 +1868,9 @@ export class Player {
           countryBoundary,
           "orange"
         );
+        this.addNeighbourCountriesByCountryCode(countryCode);
         if (this.selectedCountryCodes.size === 22) {
+          this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
           this.gameMessageField.textContent = `${
             localization[model.worldCountries.language][
@@ -1793,7 +1886,9 @@ export class Player {
           countryBoundary,
           "orange"
         );
+        this.addNeighbourCountriesByCountryCode(countryCode);
         if (this.selectedCountryCodes.size === 23) {
+          this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
           this.gameMessageField.textContent = `${
             localization[model.worldCountries.language][
@@ -1881,14 +1976,18 @@ export class Player {
     );
   }
 
-  createCountryMarker(country, countryTooltip) {
+  createCountryMarkerIcon(country, width, height) {
+    return L.icon({
+      iconUrl: `${country.flags.png}`,
+      iconSize: [width, height],
+    });
+  }
+
+  createCountryMarker(country, countryTooltip, width, height) {
     const marker = L.marker(
       country.latlng ? country.latlng : country.capitalInfo.latlng,
       {
-        icon: L.icon({
-          iconUrl: `${country.flags.png}`,
-          iconSize: [12, 12],
-        }),
+        icon: this.createCountryMarkerIcon(country, width, height),
         riseOnHover: true,
         opacity: 0.95,
         alt: localization[model.worldCountries.language]["countries"][

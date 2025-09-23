@@ -113,7 +113,7 @@ class gameRulesView {
     }`;
     this._gameRulesImportantDescription.textContent = `${
       localization[model.worldCountries.language][
-        "Countries in the same alliance of countries must be united by borders. Alliances of countries must be separated from each other by at least one country's borders. A trap country can have borders with another trap country, but not with an alliance of countries."
+        "Countries in the same alliance of countries must be united by borders. Alliances of countries must be separated from each other by at least one country's borders. An island country can only be used as an alliance with one country or as a trap country."
       ]
     }`;
   }
