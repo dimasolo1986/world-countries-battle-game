@@ -416,7 +416,8 @@ export class Player {
         (country.countryCapital === hint ||
           country.countryRegion === hint ||
           country.countrySubregion === hint) &&
-        !this.alreadyGuessedCountryCodes.includes(country.cca2)
+        !this.alreadyGuessedCountryCodes.includes(country.cca2) &&
+        this.countryCodes.includes(country.cca2)
       );
     });
     if (countries.length === 1) {
