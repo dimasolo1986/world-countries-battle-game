@@ -138,22 +138,6 @@ export class Player {
         12,
         12
       );
-      const countrySmallMarkerIcon = this.createCountryMarkerIcon(
-        country,
-        12,
-        12
-      );
-      const countryBigMarkerIcon = this.createCountryMarkerIcon(
-        country,
-        20,
-        20
-      );
-      countryMarker.on("mouseover", function () {
-        this.setIcon(countryBigMarkerIcon);
-      });
-      countryMarker.on("mouseout", function () {
-        this.setIcon(countrySmallMarkerIcon);
-      });
       const countryBoundary = this.createCountryBoundary(
         countryGeo,
         country.cca2,
@@ -348,6 +332,10 @@ export class Player {
     const countryPopup = this.countryPopups[countryCode];
     if (countryPopup) {
       countryPopup.close();
+      this.playerMap.removeLayer(countryPopup);
+      this.playerMap.removeLayer(this.countryTooltips[countryCode]);
+      delete this.countryPopups[countryCode];
+      delete this.countryTooltips[countryCode];
     }
   }
 
@@ -552,15 +540,19 @@ export class Player {
       const countryBoundary =
         this.opponentPlayer.countryBoundaries[countryCode];
       const countryMarker = this.opponentPlayer.countryMarkers[countryCode];
+      countryMarker.unbindTooltip();
+      countryBoundary.unbindTooltip();
       countryMarker.off();
       countryBoundary.off();
-      countryMarker.options.opacity = 0;
       this.opponentPlayer.playerMap.removeLayer(countryMarker);
+      delete this.opponentPlayer.countryMarkers[countryCode];
       this.opponentPlayer.openCountryPopup(countryCode);
       const countryCoordinates = country.latlng
         ? country.latlng
         : country.capitalLatLng;
-      this.opponentPlayer.playerMap.setView(countryCoordinates, 4.5);
+      this.opponentPlayer.playerMap.setView(countryCoordinates, 4.5, {
+        animate: false,
+      });
       if (this.opponentPlayer.selectedCountryTrapCodes.has(countryCode)) {
         this.setMessageInnerHtmlField(
           `<span>${
@@ -594,14 +586,8 @@ export class Player {
         this.opponentPlayer.playerAttemptToGuess = true;
         await this.sleep(1500);
         this.opponentPlayer.closeCountryPopup(countryCode);
-        this.opponentPlayer.setElementStyle(countryBoundary, {
-          weight: 1,
-          color: "grey",
-          fillColor: "grey",
-          fillOpacity: 0.3,
-          opacity: 0.6,
-          className: countryCode,
-        });
+        this.opponentPlayer.playerMap.removeLayer(countryBoundary);
+        delete this.opponentPlayer.countryBoundaries[countryCode];
         const countryBorderCodes = country.countryBorders
           .map((countryBorder) => {
             return this.opponentPlayer.countriesCodeMapping[countryBorder];
@@ -619,18 +605,16 @@ export class Player {
               this.opponentPlayer.countryBoundaries[countryBorderCode];
             const countryMarker =
               this.opponentPlayer.countryMarkers[countryBorderCode];
+            countryMarker.unbindTooltip();
+            countryBoundary.unbindTooltip();
             countryMarker.off();
             countryBoundary.off();
-            countryMarker.options.opacity = 0;
             this.opponentPlayer.playerMap.removeLayer(countryMarker);
-            this.opponentPlayer.setElementStyle(countryBoundary, {
-              weight: 1,
-              color: "grey",
-              fillColor: "grey",
-              fillOpacity: 0.3,
-              opacity: 0.6,
-              className: countryCode,
-            });
+            this.opponentPlayer.playerMap.removeLayer(countryBoundary);
+            delete this.opponentPlayer.countryMarkers[countryBorderCode];
+            delete this.opponentPlayer.countryPopups[countryBorderCode];
+            delete this.opponentPlayer.countryTooltips[countryBorderCode];
+            delete this.opponentPlayer.countryBoundaries[countryBorderCode];
             const countryIndexToDelete =
               this.opponentPlayer.countryCodes.indexOf(countryBorderCode);
             if (countryIndexToDelete >= 0)
@@ -695,18 +679,16 @@ export class Player {
                   this.opponentPlayer.countryBoundaries[countryBorderCode];
                 const countryMarker =
                   this.opponentPlayer.countryMarkers[countryBorderCode];
+                countryMarker.unbindTooltip();
+                countryBoundary.unbindTooltip();
                 countryMarker.off();
                 countryBoundary.off();
-                countryMarker.options.opacity = 0;
                 this.opponentPlayer.playerMap.removeLayer(countryMarker);
-                this.opponentPlayer.setElementStyle(countryBoundary, {
-                  weight: 1,
-                  color: "grey",
-                  fillColor: "grey",
-                  fillOpacity: 0.3,
-                  opacity: 0.6,
-                  className: countryCode,
-                });
+                this.opponentPlayer.playerMap.removeLayer(countryBoundary);
+                delete this.opponentPlayer.countryMarkers[countryBorderCode];
+                delete this.opponentPlayer.countryPopups[countryBorderCode];
+                delete this.opponentPlayer.countryTooltips[countryBorderCode];
+                delete this.opponentPlayer.countryBoundaries[countryBorderCode];
                 const countryIndexToDelete =
                   this.opponentPlayer.countryCodes.indexOf(countryBorderCode);
                 if (countryIndexToDelete >= 0)
@@ -732,6 +714,11 @@ export class Player {
               localization[model.worldCountries.language]["Country Alliance"]
             }</span>`
           );
+          await this.sleep(1500);
+          this.opponentPlayer.closeCountryPopup(countryCode);
+          this.opponentPlayer.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
+            animate: false,
+          });
         } else {
           const countriesToGuessNext = country.countryBorders
             .map((countryBorder) => {
@@ -760,12 +747,9 @@ export class Player {
               ]
             }</span>`
           );
+          await this.sleep(1500);
+          this.opponentPlayer.closeCountryPopup(countryCode);
         }
-        await this.sleep(1500);
-        this.opponentPlayer.closeCountryPopup(countryCode);
-        this.opponentPlayer.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
-          animate: false,
-        });
       } else {
         this.opponentPlayer.setElementStyle(countryBoundary, {
           weight: 1,
@@ -786,6 +770,8 @@ export class Player {
         this.opponentPlayer.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
           animate: false,
         });
+        this.opponentPlayer.playerMap.removeLayer(countryBoundary);
+        delete this.opponentPlayer.countryBoundaries[countryCode];
         this.opponentPlayer.enableMapInteraction();
       }
 
@@ -815,7 +801,8 @@ export class Player {
     const setViewCountry = function (country) {
       this.playerMap.setView(
         country.latlng ? country.latlng : country.capitalLatLng,
-        4.5
+        4.5,
+        { animate: false }
       );
     };
     const availableCountriesPanel = document.getElementById(
@@ -871,10 +858,12 @@ export class Player {
     const countryIndexToDelete = this.countryCodes.indexOf(countryCode);
     this.countryCodes.splice(countryIndexToDelete, 1);
     if (this.countryCodes.length <= 5) this.addAvailableCountriesPanel();
+    countryMarker.unbindTooltip();
+    countryBoundary.unbindTooltip();
     countryMarker.off();
     countryBoundary.off();
-    countryMarker.options.opacity = 0;
     this.playerMap.removeLayer(countryMarker);
+    delete this.countryMarkers[countryCode];
     this.countriesNumberField.textContent = this.countryCodes.length;
     this.openCountryPopup(countryCode);
     if (this.selectedCountryTrapCodes.has(countryCode)) {
@@ -917,18 +906,14 @@ export class Player {
         if (!this.selectedCountryTrapCodes.has(countryBorderCode)) {
           const countryBoundary = this.countryBoundaries[countryBorderCode];
           const countryMarker = this.countryMarkers[countryBorderCode];
+          countryMarker.unbindTooltip();
+          countryBoundary.unbindTooltip();
           countryMarker.off();
           countryBoundary.off();
-          countryMarker.options.opacity = 0;
+          this.playerMap.removeLayer(countryBoundary);
           this.playerMap.removeLayer(countryMarker);
-          this.setElementStyle(countryBoundary, {
-            weight: 1,
-            color: "grey",
-            fillColor: "grey",
-            fillOpacity: 0.3,
-            opacity: 0.6,
-            className: countryCode,
-          });
+          delete this.countryMarkers[countryBorderCode];
+          delete this.countryBoundaries[countryBorderCode];
           const countryIndexToDelete =
             this.countryCodes.indexOf(countryBorderCode);
           if (countryIndexToDelete >= 0) {
@@ -986,18 +971,14 @@ export class Player {
             if (!this.selectedCountryCodes.has(countryBorderCode)) {
               const countryBoundary = this.countryBoundaries[countryBorderCode];
               const countryMarker = this.countryMarkers[countryBorderCode];
+              countryMarker.unbindTooltip();
+              countryBoundary.unbindTooltip();
               countryMarker.off();
               countryBoundary.off();
-              countryMarker.options.opacity = 0;
+              this.playerMap.removeLayer(countryBoundary);
               this.playerMap.removeLayer(countryMarker);
-              this.setElementStyle(countryBoundary, {
-                weight: 1,
-                color: "grey",
-                fillColor: "grey",
-                fillOpacity: 0.3,
-                opacity: 0.6,
-                className: countryCode,
-              });
+              delete this.countryMarkers[countryBorderCode];
+              delete this.countryBoundaries[countryBorderCode];
               const countryIndexToDelete =
                 this.countryCodes.indexOf(countryBorderCode);
               if (countryIndexToDelete >= 0) {
@@ -1071,6 +1052,8 @@ export class Player {
       this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
         animate: false,
       });
+      this.playerMap.removeLayer(countryBoundary);
+      delete this.countryBoundaries[countryCode];
     }
     if (+this.playerCountriesNumberField.textContent === 0) {
       this.opponentPlayer.playerWonGame = true;
@@ -1370,7 +1353,9 @@ export class Player {
       ([countryCode, countryBoundary]) => {
         const countryMarker = this.countryMarkers[countryCode];
         this.playerMap.removeLayer(countryBoundary);
+        delete this.countryBoundaries[countryCode];
         this.playerMap.removeLayer(countryMarker);
+        delete this.countryMarkers[countryCode];
       }
     );
     this.initData();
@@ -2069,6 +2054,7 @@ export class Player {
     Object.entries(this.countryBoundaries).forEach(
       ([countryCode, countryBoundary]) => {
         this.playerMap.removeLayer(countryBoundary);
+        delete this.countryBoundaries[countryCode];
       }
     );
   }
@@ -2077,6 +2063,7 @@ export class Player {
     Object.entries(this.countryMarkers).forEach(
       ([countryCode, countryMarker]) => {
         this.playerMap.removeLayer(countryMarker);
+        delete this.countryMarkers[countryCode];
       }
     );
   }
