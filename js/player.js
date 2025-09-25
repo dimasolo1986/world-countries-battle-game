@@ -493,7 +493,7 @@ export class Player {
         localization[model.worldCountries.language][
           "Computer is guessing your country..."
         ];
-      await this.sleep(1000);
+      await this.sleep(700);
       let countryIndex = undefined;
       let countryCode = undefined;
       if (this.countriesToGuessNext.length !== 0) {
@@ -585,7 +585,7 @@ export class Player {
         });
         this.playerAttemptToGuess = false;
         this.opponentPlayer.playerAttemptToGuess = true;
-        await this.sleep(1500);
+        await this.sleep(1200);
         this.opponentPlayer.closeCountryPopup(countryCode);
         this.opponentPlayer.playerMap.removeLayer(countryBoundary);
         delete this.opponentPlayer.countryBoundaries[countryCode];
@@ -748,7 +748,7 @@ export class Player {
               ]
             }</span>`
           );
-          await this.sleep(1500);
+          await this.sleep(1000);
           this.opponentPlayer.closeCountryPopup(countryCode);
         }
       } else {
@@ -766,7 +766,7 @@ export class Player {
           ];
         this.playerAttemptToGuess = false;
         this.opponentPlayer.playerAttemptToGuess = true;
-        await this.sleep(1500);
+        await this.sleep(1000);
         this.opponentPlayer.closeCountryPopup(countryCode);
         this.opponentPlayer.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
           animate: false,
@@ -925,7 +925,7 @@ export class Player {
       });
       this.playerAttemptToGuess = true;
       this.opponentPlayer.playerAttemptToGuess = false;
-      await this.sleep(1500);
+      await this.sleep(1200);
       this.closeCountryPopup(countryCode);
       this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
         animate: false,
@@ -938,8 +938,8 @@ export class Player {
       }
       this.setElementStyle(countryBoundary, {
         weight: 1,
-        color: "red",
-        fillColor: "red",
+        color: "green",
+        fillColor: "green",
         fillOpacity: 0.5,
         opacity: 0.8,
         className: countryCode,
@@ -953,6 +953,14 @@ export class Player {
         const countryUnion = this.countryUnions[countryUnionIndex];
         countryUnion.forEach((countryObject) => {
           const countryCode = Object.keys(countryObject)[0];
+          this.setElementStyle(this.countryBoundaries[countryCode], {
+            weight: 1,
+            color: "red",
+            fillColor: "red",
+            fillOpacity: 0.5,
+            opacity: 0.8,
+            className: countryCode,
+          });
           this.addSelectedCountryToCountryPanel(
             this.playerSelectedCountriesContainerId,
             countryCode,
@@ -1011,7 +1019,7 @@ export class Player {
           "guessed-country-alliance-panel"
         );
         guessedCountryAlliance.classList.remove("not-displayed");
-        await this.sleep(2000);
+        await this.sleep(1500);
         guessedCountryAlliance.classList.add("not-displayed");
         this.closeCountryPopup(countryCode);
         this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
@@ -1029,7 +1037,7 @@ export class Player {
             ]
           }</span>`
         );
-        await this.sleep(1500);
+        await this.sleep(1000);
         this.closeCountryPopup(countryCode);
       }
       this.opponentPlayer.enableMapInteraction();
@@ -1048,7 +1056,7 @@ export class Player {
         ];
       this.playerAttemptToGuess = true;
       this.opponentPlayer.playerAttemptToGuess = false;
-      await this.sleep(1500);
+      await this.sleep(1000);
       this.closeCountryPopup(countryCode);
       this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
         animate: false,
@@ -2008,19 +2016,21 @@ export class Player {
         `<img src="${
           country.flags.png
         }" style="width:20px; height:15px; box-shadow: 0 2px 5px #00000080,
-                                inset 0 2px 10px #0000001f; border-radius: 2px; vertical-align: sub;"><span style="font-weight:bold; margin-left:5px;">${
+                                inset 0 2px 10px #0000001f; border-radius: 2px; vertical-align: sub;"><span style="font-weight:bold; margin-left:5px;color:${
                                   country.name.common !== "Russia"
-                                    ? localization[
-                                        model.worldCountries.language
-                                      ]["countries"][country.name.common]
-                                    : localization[
-                                        model.worldCountries.language
-                                      ]["countries"][country.name.common] +
-                                      " - " +
-                                      localization[
-                                        model.worldCountries.language
-                                      ]["War Aggressor"]
-                                }</span>`
+                                    ? "darkblue"
+                                    : "red"
+                                }">${
+          country.name.common !== "Russia"
+            ? localization[model.worldCountries.language]["countries"][
+                country.name.common
+              ]
+            : localization[model.worldCountries.language]["countries"][
+                country.name.common
+              ] +
+              " - " +
+              localization[model.worldCountries.language]["War Aggressor"]
+        }</span>`
       );
     return countryPopup;
   }
@@ -2029,15 +2039,24 @@ export class Player {
     const countryTooltip = L.tooltip(
       country.latlng ? country.latlng : country.capitalInfo.latlng
     ).setContent(
-      country.name.common !== "Russia"
-        ? localization[model.worldCountries.language]["countries"][
-            country.name.common
-          ]
-        : localization[model.worldCountries.language]["countries"][
-            country.name.common
-          ] +
+      `<img src="${
+        country.flags.png
+      }" style="width:20px; height:15px; box-shadow: 0 2px 5px #00000080,
+                                inset 0 2px 10px #0000001f; border-radius: 2px; vertical-align: sub;"><span style="font-weight:bold; margin-left:5px;color:${
+                                  country.name.common !== "Russia"
+                                    ? "darkblue"
+                                    : "red"
+                                }">${
+        country.name.common !== "Russia"
+          ? localization[model.worldCountries.language]["countries"][
+              country.name.common
+            ]
+          : localization[model.worldCountries.language]["countries"][
+              country.name.common
+            ] +
             " - " +
             localization[model.worldCountries.language]["War Aggressor"]
+      }</span>`
     );
     countryTooltip.options.sticky = true;
     return countryTooltip;

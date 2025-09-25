@@ -189,6 +189,7 @@ export class PlayMap {
         messageField.style.opacity = "0.9";
         messageField.style.fontWeight = "bolder";
         messageField.style.fontSize = "0.85rem";
+        messageField.style.padding = "3px";
         messageField.style.width = "100%";
         messageField.style.marginTop = "0px";
         messageField.style.overflow = "auto";
@@ -245,7 +246,7 @@ export class PlayMap {
         countriesField.style.borderRadius = "2px";
         countriesField.style.fontWeight = "bolder";
         countriesField.style.fontSize = "0.5rem";
-        countriesField.style.marginTop = "30px";
+        countriesField.style.marginTop = "35px";
         countriesField.textContent =
           localization[model.worldCountries.language]["Available Countries:"] +
           " ";
@@ -561,8 +562,7 @@ export class PlayMap {
     const cleanSection = document.getElementById(
       "clean-user-countries-selection"
     );
-    cleanSection.style.cursor = "pointer";
-    cleanSection.style.pointerEvents = "auto";
+    cleanSection.classList.remove("not-displayed");
     document.getElementById("countries-number-field").textContent =
       this.countriesNumber;
     document.getElementById("hints-panel").classList.add("not-displayed");
@@ -576,8 +576,7 @@ export class PlayMap {
     const cleanSection = document.getElementById(
       "clean-user-countries-selection"
     );
-    cleanSection.style.cursor = "none";
-    cleanSection.style.pointerEvents = "none";
+    cleanSection.classList.add("not-displayed");
     document.getElementById("countries-number-field").textContent =
       this.countriesNumber;
     document.getElementById("hints-panel").classList.add("not-displayed");

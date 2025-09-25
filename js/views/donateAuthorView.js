@@ -39,12 +39,9 @@ class donateAuthorView {
                   "World Countries Battle Game"
                 ]
               } - ${
-                document.querySelector(".about-project-description")
-                  .textContent +
-                " " +
-                document.querySelector(".about-info").textContent
+                document.querySelector(".about-project-description").textContent
               }`,
-              url: "https://www.worldcountriesquiz.com",
+              url: "https://www.countriesbattlegame.com",
             })
             .then(function () {})
             .catch(function () {});
