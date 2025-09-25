@@ -1949,7 +1949,7 @@ export class Player {
   }
 
   addMouseOverStyleEventToCountryBoundary(countryBoundary, styleObject) {
-    countryBoundary.on("mouseover", function (event) {
+    countryBoundary.on("mousemove", function (event) {
       L.DomEvent.stopPropagation(event);
       countryBoundary.setStyle(styleObject);
       countryBoundary.bringToFront();
