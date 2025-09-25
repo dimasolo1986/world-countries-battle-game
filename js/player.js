@@ -1095,7 +1095,7 @@ export class Player {
           countryMarker.on(
             "click",
             function (ev) {
-              // L.DomEvent.stopPropagation(ev);
+              L.DomEvent.stopPropagation(ev);
               this.addUserClickCountriesPlay(
                 countryCode,
                 countryBoundary,
@@ -1106,7 +1106,7 @@ export class Player {
           countryBoundary.on(
             "click",
             function (ev) {
-              // L.DomEvent.stopPropagation(ev);
+              L.DomEvent.stopPropagation(ev);
               this.addUserClickCountriesPlay(
                 countryCode,
                 countryBoundary,
@@ -1423,7 +1423,7 @@ export class Player {
     if (this.playerType === "userPlayer") {
       countryBoundary.off("click");
       countryBoundary.on("click", (ev) => {
-        // L.DomEvent.stopPropagation(ev);
+        L.DomEvent.stopPropagation(ev);
         this.addUserPlayerInitialCountrySelectionHandler(
           countryCode,
           countryBoundary,
@@ -1432,7 +1432,7 @@ export class Player {
       });
       countryMarker.off("click");
       countryMarker.on("click", (ev) => {
-        // L.DomEvent.stopPropagation(ev);
+        L.DomEvent.stopPropagation(ev);
         this.addUserPlayerInitialCountrySelectionHandler(
           countryCode,
           countryBoundary,
@@ -1949,25 +1949,19 @@ export class Player {
   }
 
   addMouseOverStyleEventToCountryBoundary(countryBoundary, styleObject) {
-    countryBoundary.on(
-      "mouseover",
-      function (event) {
-        // L.DomEvent.stopPropagation(event);
-        countryBoundary.setStyle(styleObject);
-        countryBoundary.bringToFront();
-      }.bind(this)
-    );
+    countryBoundary.on("mouseover", function (event) {
+      L.DomEvent.stopPropagation(event);
+      countryBoundary.setStyle(styleObject);
+      countryBoundary.bringToFront();
+    });
   }
 
   addMouseOutStyleEventToCountryBoundary(countryBoundary, styleObject) {
-    countryBoundary.on(
-      "mouseout",
-      function (event) {
-        // L.DomEvent.stopPropagation(event);
-        countryBoundary.setStyle(styleObject);
-        countryBoundary.bringToBack();
-      }.bind(this)
-    );
+    countryBoundary.on("mouseout", function (event) {
+      L.DomEvent.stopPropagation(event);
+      countryBoundary.setStyle(styleObject);
+      countryBoundary.bringToBack();
+    });
   }
 
   createCountryMarkerIcon(country, width, height) {
