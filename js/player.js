@@ -1952,6 +1952,7 @@ export class Player {
     countryBoundary.on("mouseover", function (event) {
       if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
         countryBoundary.fire("click");
+        countryBoundary.openTooltip();
       } else {
         L.DomEvent.stopPropagation(event);
         countryBoundary.setStyle(styleObject);
@@ -1991,6 +1992,13 @@ export class Player {
       }
     ).bindTooltip(countryTooltip);
     marker.dataId = country.cca2;
+    marker.on("mouseover", function (event) {
+      L.DomEvent.stopPropagation(event);
+      if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
+        marker.fire("click");
+        marker.openTooltip();
+      }
+    });
     return marker;
   }
 
