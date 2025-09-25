@@ -143,18 +143,18 @@ export class Player {
         country.cca2,
         countryTooltip
       );
-      // this.addMouseOverStyleEventToCountryBoundary(countryBoundary, {
-      //   weight: 1,
-      //   fillOpacity: 0.5,
-      //   opacity: 1,
-      //   className: country.cca2,
-      // });
-      // this.addMouseOutStyleEventToCountryBoundary(countryBoundary, {
-      //   weight: 0,
-      //   fillOpacity: 0.1,
-      //   opacity: 0,
-      //   className: country.cca2,
-      // });
+      this.addMouseOverStyleEventToCountryBoundary(countryBoundary, {
+        weight: 1,
+        fillOpacity: 0.5,
+        opacity: 1,
+        className: country.cca2,
+      });
+      this.addMouseOutStyleEventToCountryBoundary(countryBoundary, {
+        weight: 0,
+        fillOpacity: 0.1,
+        opacity: 0,
+        className: country.cca2,
+      });
       const countryPopup = this.createCountryPopup(country);
       if (
         this.gameConfiguration.onlyIndependentCountries &&
@@ -1998,28 +1998,6 @@ export class Player {
         fillColor: "#3388ff",
         className: countryCode,
         opacity: 0.5,
-      },
-      onEachFeature: function (feature, countryBoundary) {
-        countryBoundary.on("mouseover", function (ev) {
-          L.DomEvent.stopPropagation(ev);
-          countryBoundary.setStyle({
-            weight: 1,
-            fillOpacity: 0.5,
-            opacity: 1,
-            className: countryCode,
-          });
-          countryBoundary.bringToFront();
-        });
-        countryBoundary.on("mouseout", function (ev) {
-          L.DomEvent.stopPropagation(ev);
-          countryBoundary.setStyle({
-            weight: 0,
-            fillOpacity: 0.1,
-            opacity: 0,
-            className: countryCode,
-          });
-          countryBoundary.bringToBack();
-        });
       },
     }).bindTooltip(countryTooltip);
     return countryBoundary;
