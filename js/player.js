@@ -1949,23 +1949,19 @@ export class Player {
   }
 
   addMouseOverStyleEventToCountryBoundary(countryBoundary, styleObject) {
-    if (!L.Browser.mobile) {
-      countryBoundary.on("mouseover", function (event) {
-        L.DomEvent.stopPropagation(event);
-        countryBoundary.setStyle(styleObject);
-        countryBoundary.bringToFront();
-      });
-    }
+    countryBoundary.on("mouseover", function (event) {
+      L.DomEvent.stopPropagation(event);
+      countryBoundary.setStyle(styleObject);
+      countryBoundary.bringToFront();
+    });
   }
 
   addMouseOutStyleEventToCountryBoundary(countryBoundary, styleObject) {
-    if (!L.Browser.mobile) {
-      countryBoundary.on("mouseout", function (event) {
-        L.DomEvent.stopPropagation(event);
-        countryBoundary.setStyle(styleObject);
-        countryBoundary.bringToBack();
-      });
-    }
+    countryBoundary.on("mouseout", function (event) {
+      L.DomEvent.stopPropagation(event);
+      countryBoundary.setStyle(styleObject);
+      countryBoundary.bringToBack();
+    });
   }
 
   createCountryMarkerIcon(country, width, height) {
