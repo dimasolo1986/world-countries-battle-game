@@ -1949,13 +1949,15 @@ export class Player {
   }
 
   addMouseOverStyleEventToCountryBoundary(countryBoundary, styleObject) {
-    if (!("ontouchstart" in window || navigator.maxTouchPoints > 0)) {
-      countryBoundary.on("mouseover", function (event) {
+    countryBoundary.on("mouseover", function (event) {
+      if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
+        countryBoundary.fire("click");
+      } else {
         L.DomEvent.stopPropagation(event);
         countryBoundary.setStyle(styleObject);
         countryBoundary.bringToFront();
-      });
-    }
+      }
+    });
   }
 
   addMouseOutStyleEventToCountryBoundary(countryBoundary, styleObject) {
