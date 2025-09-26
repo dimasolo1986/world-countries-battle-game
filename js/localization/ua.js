@@ -518,6 +518,7 @@ export const localization = {
       "Подобається Географія і Країни Світу? Відвідайте",
     "Countries Battle Game": "Гра Битва Країн",
     "Game Configuration": "Конфігурація Гри",
+    "You selected": "Ви вибрали",
     "Choose one alliance from four countries":
       "Виберіть один альянс з чотирьох країн",
     "Choose one alliance of countries that includes four countries on the world map.":
@@ -1190,6 +1191,7 @@ export const localization = {
       "Do you like Geography and Countries of the World? Visit",
     "Countries Battle Game": "Countries Battle Game",
     "Game Configuration": "Game Configuration",
+    "You selected": "You selected",
     "Choose one alliance from four countries":
       "Choose one alliance from four countries",
     "Choose one alliance of countries that includes four countries on the world map.":
@@ -1870,6 +1872,7 @@ export const localization = {
       "Interessieren Sie sich für Geographie und die Länder der Welt? Besuchen Sie",
     "Countries Battle Game": "Länder-Kampfspiel",
     "Game Configuration": "Spielkonfiguration",
+    "You selected": "Sie haben ausgewählt",
     "Choose one alliance from four countries":
       "Wählen Sie eine Allianz aus vier Ländern",
     "Choose one alliance of countries that includes four countries on the world map.":
@@ -2546,6 +2549,7 @@ export const localization = {
       "Vous aimez la géographie et les pays du monde ? Visitez",
     "Countries Battle Game": "Jeu de Bataille des Pays",
     "Game Configuration": "Configuration du Jeu",
+    "You selected": "Vous avez sélectionné",
     "Choose one alliance from four countries":
       "Choisissez une alliance parmi quatre pays",
     "Choose one alliance of countries that includes four countries on the world map.":
@@ -3219,6 +3223,7 @@ export const localization = {
       "¿Te gusta la geografía y los países del mundo? Visita",
     "Countries Battle Game": "Juego de Batalla de Países",
     "Game Configuration": "Configuración del Juego",
+    "You selected": "Usted seleccionó",
     "Choose one alliance from four countries":
       "Elige una alianza entre cuatro países",
     "Choose one alliance of countries that includes four countries on the world map.":
@@ -3898,6 +3903,7 @@ export const localization = {
     "Do you like Geography and Countries of the World? Visit":
       "Ti piace la geografia e i paesi del mondo? Visita",
     "Game Configuration": "Configurazione del Gioco",
+    "You selected": "Hai selezionato",
     "Choose one alliance from four countries":
       "Scegli un'alleanza tra quattro paesi",
     "Choose one alliance of countries that includes four countries on the world map.":

@@ -233,6 +233,34 @@ export class PlayMap {
       return new L.Control.MapField(opts);
     };
     L.control.mapfield({ position: "topcenter" }).addTo(this.map);
+    L.Control.SelectedCountryField = L.Control.extend({
+      onAdd: function (map) {
+        const selectedCountryField = L.DomUtil.create("div");
+        selectedCountryField.id = "selected-country-field";
+        selectedCountryField.style.backgroundColor = "white";
+        selectedCountryField.style.boxShadow =
+          "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
+        selectedCountryField.style.paddingRight = "3px";
+        selectedCountryField.style.paddingLeft = "3px";
+        selectedCountryField.style.paddingTop = "2px";
+        selectedCountryField.style.paddingBottom = "2px";
+        selectedCountryField.style.fontSize = "0.6rem";
+        selectedCountryField.style.opacity = "0.7";
+        selectedCountryField.style.borderRadius = "2px";
+        selectedCountryField.style.fontWeight = "bolder";
+        selectedCountryField.style.marginTop = "20px";
+        selectedCountryField.style.color = "darkblue";
+        selectedCountryField.innerHTML = "";
+        return selectedCountryField;
+      },
+      onRemove: function (map) {},
+    });
+    L.control.selectedcountryfield = function (opts) {
+      return new L.Control.SelectedCountryField(opts);
+    };
+    L.control
+      .selectedcountryfield({ position: "bottomcenter" })
+      .addTo(this.map);
     L.Control.CountriesField = L.Control.extend({
       onAdd: function (map) {
         const countriesField = L.DomUtil.create("div");
@@ -544,6 +572,14 @@ export class PlayMap {
     }
   }
 
+  setSelectedCountryFiledHtml(content) {
+    const selectedCountryField = document.getElementById(
+      "selected-country-field"
+    );
+    selectedCountryField.innerHTML = "";
+    selectedCountryField.innerHTML = content;
+  }
+
   setMapFiledLabel(label) {
     document.getElementById("map-field").textContent =
       localization[model.worldCountries.language][label];
@@ -567,6 +603,9 @@ export class PlayMap {
       this.countriesNumber;
     document.getElementById("hints-panel").classList.add("not-displayed");
     document
+      .getElementById("selected-country-field")
+      .classList.remove("not-displayed");
+    document
       .getElementById("available-countries-panel")
       .classList.add("not-displayed");
   }
@@ -582,6 +621,9 @@ export class PlayMap {
     document.getElementById("hints-panel").classList.add("not-displayed");
     document
       .getElementById("available-countries-panel")
+      .classList.add("not-displayed");
+    document
+      .getElementById("selected-country-field")
       .classList.add("not-displayed");
   }
 

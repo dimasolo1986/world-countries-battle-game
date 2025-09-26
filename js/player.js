@@ -16,7 +16,6 @@ export class Player {
   playerCountriesNumberField;
   playerSelectedCountriesContainer;
   playerSelectedCountriesContainerId;
-  tooltipCountryCode = null;
   lastGuessedCountryNames = [];
   usedHintsCount = 0;
   trapCountryHitted = 0;
@@ -83,7 +82,6 @@ export class Player {
     this.selectedCountryTrapCodes = null;
     this.selectedCountryNeighboursCodes = null;
     this.countries = null;
-    this.tooltipCountryCode = null;
     this.lastGuessedCountryNames = [];
     this.countriesCodeMapping = null;
     this.countryBoundaries = null;
@@ -119,7 +117,6 @@ export class Player {
     this.playerAttemptToGuess = false;
     this.playerConfigured = false;
     this.playerWonGame = false;
-    this.tooltipCountryCode = null;
     this.lastGuessedCountryNames = [];
     this.countryUnions = [
       new Array(4),
@@ -1408,6 +1405,7 @@ export class Player {
         "Choose one alliance from four countries"
       ]
     }`;
+    this.playMap.setSelectedCountryFiledHtml("");
   }
 
   isEnoughCountryNeighbours(countryCode, minNeighboursNumber) {
@@ -1584,6 +1582,7 @@ export class Player {
 
   addUserPlayerInitialCountrySelectionHandler(countryCode, countryBoundary) {
     const countryMarker = this.countryMarkers[countryCode];
+    const country = this.countries[countryCode];
     countryMarker.off("click");
     countryBoundary.off("click");
     if (this.playerConfigured) {
@@ -1600,6 +1599,17 @@ export class Player {
         this.selectedCountryCodes.size >= 1 &&
         this.selectedCountryCodes.size <= 4
       ) {
+        this.playMap.setSelectedCountryFiledHtml(
+          `<span>${
+            localization[model.worldCountries.language]["You selected"]
+          }</span> <img src="${
+            country.countryFlag
+          }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;">${
+            localization[model.worldCountries.language]["countries"][
+              country.countryName
+            ]
+          }</span>`
+        );
         this.addUserPlayerInitialCountrySelection(
           countryCode,
           countryBoundary,
@@ -1628,6 +1638,17 @@ export class Player {
         this.selectedCountryCodes.size >= 5 &&
         this.selectedCountryCodes.size <= 7
       ) {
+        this.playMap.setSelectedCountryFiledHtml(
+          `<span>${
+            localization[model.worldCountries.language]["You selected"]
+          }</span> <img src="${
+            country.countryFlag
+          }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;">${
+            localization[model.worldCountries.language]["countries"][
+              country.countryName
+            ]
+          }</span>`
+        );
         const countryUnion = this.countryUnions[1];
         this.addCountryToCountryUnion(
           countryUnion,
@@ -1656,6 +1677,17 @@ export class Player {
         this.selectedCountryCodes.size >= 8 &&
         this.selectedCountryCodes.size <= 10
       ) {
+        this.playMap.setSelectedCountryFiledHtml(
+          `<span>${
+            localization[model.worldCountries.language]["You selected"]
+          }</span> <img src="${
+            country.countryFlag
+          }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;">${
+            localization[model.worldCountries.language]["countries"][
+              country.countryName
+            ]
+          }</span>`
+        );
         const countryUnion = this.countryUnions[2];
         this.addCountryToCountryUnion(
           countryUnion,
@@ -1684,6 +1716,17 @@ export class Player {
         this.selectedCountryCodes.size >= 11 &&
         this.selectedCountryCodes.size <= 12
       ) {
+        this.playMap.setSelectedCountryFiledHtml(
+          `<span>${
+            localization[model.worldCountries.language]["You selected"]
+          }</span> <img src="${
+            country.countryFlag
+          }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;">${
+            localization[model.worldCountries.language]["countries"][
+              country.countryName
+            ]
+          }</span>`
+        );
         const countryUnion = this.countryUnions[3];
         this.addCountryToCountryUnion(
           countryUnion,
@@ -1712,6 +1755,17 @@ export class Player {
         this.selectedCountryCodes.size >= 13 &&
         this.selectedCountryCodes.size <= 14
       ) {
+        this.playMap.setSelectedCountryFiledHtml(
+          `<span>${
+            localization[model.worldCountries.language]["You selected"]
+          }</span> <img src="${
+            country.countryFlag
+          }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;">${
+            localization[model.worldCountries.language]["countries"][
+              country.countryName
+            ]
+          }</span>`
+        );
         const countryUnion = this.countryUnions[4];
         this.addCountryToCountryUnion(
           countryUnion,
@@ -1740,6 +1794,17 @@ export class Player {
         this.selectedCountryCodes.size >= 15 &&
         this.selectedCountryCodes.size <= 16
       ) {
+        this.playMap.setSelectedCountryFiledHtml(
+          `<span>${
+            localization[model.worldCountries.language]["You selected"]
+          }</span> <img src="${
+            country.countryFlag
+          }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;">${
+            localization[model.worldCountries.language]["countries"][
+              country.countryName
+            ]
+          }</span>`
+        );
         const countryUnion = this.countryUnions[5];
         this.addCountryToCountryUnion(
           countryUnion,
@@ -1765,6 +1830,17 @@ export class Player {
         }
       }
       if (this.selectedCountryCodes.size === 17) {
+        this.playMap.setSelectedCountryFiledHtml(
+          `<span>${
+            localization[model.worldCountries.language]["You selected"]
+          }</span> <img src="${
+            country.countryFlag
+          }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;">${
+            localization[model.worldCountries.language]["countries"][
+              country.countryName
+            ]
+          }</span>`
+        );
         const countryUnion = this.countryUnions[6];
         this.addCountryToCountryUnion(
           countryUnion,
@@ -1790,6 +1866,17 @@ export class Player {
         }
       }
       if (this.selectedCountryCodes.size === 18) {
+        this.playMap.setSelectedCountryFiledHtml(
+          `<span>${
+            localization[model.worldCountries.language]["You selected"]
+          }</span> <img src="${
+            country.countryFlag
+          }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;">${
+            localization[model.worldCountries.language]["countries"][
+              country.countryName
+            ]
+          }</span>`
+        );
         const countryUnion = this.countryUnions[7];
         this.addCountryToCountryUnion(
           countryUnion,
@@ -1815,6 +1902,17 @@ export class Player {
         }
       }
       if (this.selectedCountryCodes.size === 19) {
+        this.playMap.setSelectedCountryFiledHtml(
+          `<span>${
+            localization[model.worldCountries.language]["You selected"]
+          }</span> <img src="${
+            country.countryFlag
+          }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;">${
+            localization[model.worldCountries.language]["countries"][
+              country.countryName
+            ]
+          }</span>`
+        );
         const countryUnion = this.countryUnions[8];
         this.addCountryToCountryUnion(
           countryUnion,
@@ -1840,6 +1938,17 @@ export class Player {
         }
       }
       if (this.selectedCountryCodes.size === 20) {
+        this.playMap.setSelectedCountryFiledHtml(
+          `<span>${
+            localization[model.worldCountries.language]["You selected"]
+          }</span> <img src="${
+            country.countryFlag
+          }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;">${
+            localization[model.worldCountries.language]["countries"][
+              country.countryName
+            ]
+          }</span>`
+        );
         const countryUnion = this.countryUnions[9];
         this.addCountryToCountryUnion(
           countryUnion,
@@ -1865,6 +1974,17 @@ export class Player {
         }
       }
       if (this.selectedCountryCodes.size === 21) {
+        this.playMap.setSelectedCountryFiledHtml(
+          `<span>${
+            localization[model.worldCountries.language]["You selected"]
+          }</span> <img src="${
+            country.countryFlag
+          }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;">${
+            localization[model.worldCountries.language]["countries"][
+              country.countryName
+            ]
+          }</span>`
+        );
         this.selectedCountryTrapCodes.add(countryCode);
         this.addUserPlayerInitialCountrySelection(
           countryCode,
@@ -1883,6 +2003,17 @@ export class Player {
         }
       }
       if (this.selectedCountryCodes.size === 22) {
+        this.playMap.setSelectedCountryFiledHtml(
+          `<span>${
+            localization[model.worldCountries.language]["You selected"]
+          }</span> <img src="${
+            country.countryFlag
+          }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;">${
+            localization[model.worldCountries.language]["countries"][
+              country.countryName
+            ]
+          }</span>`
+        );
         this.selectedCountryTrapCodes.add(countryCode);
         this.addUserPlayerInitialCountrySelection(
           countryCode,
@@ -1901,6 +2032,17 @@ export class Player {
         }
       }
       if (this.selectedCountryCodes.size === 23) {
+        this.playMap.setSelectedCountryFiledHtml(
+          `<span>${
+            localization[model.worldCountries.language]["You selected"]
+          }</span> <img src="${
+            country.countryFlag
+          }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;">${
+            localization[model.worldCountries.language]["countries"][
+              country.countryName
+            ]
+          }</span>`
+        );
         this.selectedCountryTrapCodes.add(countryCode);
         this.addUserPlayerInitialCountrySelection(
           countryCode,
@@ -1976,24 +2118,15 @@ export class Player {
   }
 
   addMouseOverStyleEventToCountryBoundary(countryBoundary, styleObject) {
-    countryBoundary.on(
-      "mouseover",
-      function (event) {
-        if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
-          countryBoundary.fire("click");
-          if (this.tooltipCountryCode) {
-            const tooltip = this.countryTooltips[this.tooltipCountryCode];
-            if (tooltip) this.playerMap.closeTooltip(tooltip);
-          }
-          this.tooltipCountryCode = countryBoundary.options.style.className;
-          countryBoundary.openTooltip();
-        } else {
-          L.DomEvent.stopPropagation(event);
-          countryBoundary.setStyle(styleObject);
-          countryBoundary.bringToFront();
-        }
-      }.bind(this)
-    );
+    countryBoundary.on("mouseover", function (event) {
+      if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
+        countryBoundary.fire("click");
+      } else {
+        L.DomEvent.stopPropagation(event);
+        countryBoundary.setStyle(styleObject);
+        countryBoundary.bringToFront();
+      }
+    });
   }
 
   addMouseOutStyleEventToCountryBoundary(countryBoundary, styleObject) {
@@ -2027,21 +2160,12 @@ export class Player {
       }
     ).bindTooltip(countryTooltip);
     marker.dataId = country.cca2;
-    marker.on(
-      "mouseover",
-      function (event) {
-        L.DomEvent.stopPropagation(event);
-        if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
-          marker.fire("click");
-          if (this.tooltipCountryCode) {
-            const tooltip = this.countryTooltips[this.tooltipCountryCode];
-            if (tooltip) this.playerMap.closeTooltip(tooltip);
-          }
-          this.tooltipCountryCode = country.cca2;
-          marker.openTooltip();
-        }
-      }.bind(this)
-    );
+    marker.on("mouseover", function (event) {
+      L.DomEvent.stopPropagation(event);
+      if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
+        marker.fire("click");
+      }
+    });
     return marker;
   }
 
