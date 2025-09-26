@@ -1959,7 +1959,7 @@ export class Player {
           countryBoundary.fire("click");
           if (this.tooltipCountryCode) {
             const tooltip = this.countryTooltips[this.tooltipCountryCode];
-            if (tooltip) tooltip.close();
+            if (tooltip) tooltip.closeTooltip();
           }
           this.tooltipCountryCode = countryBoundary.options.className;
           countryBoundary.openTooltip();
@@ -2011,7 +2011,7 @@ export class Player {
           marker.fire("click");
           if (this.tooltipCountryCode) {
             const tooltip = this.countryTooltips[this.tooltipCountryCode];
-            if (tooltip) tooltip.close();
+            if (tooltip) tooltip.closeTooltip();
           }
           this.tooltipCountryCode = country.cca2;
           marker.openTooltip();
