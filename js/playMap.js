@@ -158,6 +158,10 @@ export class PlayMap {
         container.appendChild(userIconContainer);
         container.appendChild(userCountriesNumber);
         const clean = L.DomUtil.create("div");
+        clean.style.height = "25px";
+        clean.style.display = "flex";
+        clean.style.justifyContent = "center";
+        clean.style.alignItems = "center";
         clean.style.cursor = "pointer";
         clean.id = "clean-user-countries-selection";
         clean.style.borderTop = "1px dotted black";
@@ -598,7 +602,7 @@ export class PlayMap {
     const cleanSection = document.getElementById(
       "clean-user-countries-selection"
     );
-    cleanSection.classList.remove("not-displayed");
+    cleanSection.style.display = "flex";
     document.getElementById("countries-number-field").textContent =
       this.countriesNumber;
     document.getElementById("hints-panel").classList.add("not-displayed");
@@ -615,7 +619,7 @@ export class PlayMap {
     const cleanSection = document.getElementById(
       "clean-user-countries-selection"
     );
-    cleanSection.classList.add("not-displayed");
+    cleanSection.style.display = "none";
     document.getElementById("countries-number-field").textContent =
       this.countriesNumber;
     document.getElementById("hints-panel").classList.add("not-displayed");
