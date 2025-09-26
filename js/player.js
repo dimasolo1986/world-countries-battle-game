@@ -1961,7 +1961,7 @@ export class Player {
             const tooltip = this.countryTooltips[this.tooltipCountryCode];
             if (tooltip) tooltip.closeTooltip();
           }
-          this.tooltipCountryCode = countryBoundary.options.className;
+          this.tooltipCountryCode = countryBoundary.options.style.className;
           countryBoundary.openTooltip();
         } else {
           L.DomEvent.stopPropagation(event);
