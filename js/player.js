@@ -15,6 +15,7 @@ export class Player {
   playerCountriesNumberField;
   playerSelectedCountriesContainer;
   playerSelectedCountriesContainerId;
+  tooltipCountryCode = null;
   usedHintsCount = 0;
   trapCountryHitted = 0;
   playerAttemptToGuess = false;
@@ -80,6 +81,7 @@ export class Player {
     this.selectedCountryTrapCodes = null;
     this.selectedCountryNeighboursCodes = null;
     this.countries = null;
+    this.tooltipCountryCode = null;
     this.countriesCodeMapping = null;
     this.countryBoundaries = null;
     this.countryTooltips = null;
@@ -114,6 +116,7 @@ export class Player {
     this.playerAttemptToGuess = false;
     this.playerConfigured = false;
     this.playerWonGame = false;
+    this.tooltipCountryCode = null;
     this.countryUnions = [
       new Array(4),
       new Array(3),
@@ -1949,16 +1952,24 @@ export class Player {
   }
 
   addMouseOverStyleEventToCountryBoundary(countryBoundary, styleObject) {
-    countryBoundary.on("mouseover", function (event) {
-      if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
-        countryBoundary.fire("click");
-        countryBoundary.openTooltip();
-      } else {
-        L.DomEvent.stopPropagation(event);
-        countryBoundary.setStyle(styleObject);
-        countryBoundary.bringToFront();
-      }
-    });
+    countryBoundary.on(
+      "mouseover",
+      function (event) {
+        if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
+          countryBoundary.fire("click");
+          if (this.tooltipCountryCode) {
+            const tooltip = this.countryTooltips[this.tooltipCountryCode];
+            if (tooltip) tooltip.close();
+          }
+          this.tooltipCountryCode = countryBoundary.options.className;
+          countryBoundary.openTooltip();
+        } else {
+          L.DomEvent.stopPropagation(event);
+          countryBoundary.setStyle(styleObject);
+          countryBoundary.bringToFront();
+        }
+      }.bind(this)
+    );
   }
 
   addMouseOutStyleEventToCountryBoundary(countryBoundary, styleObject) {
@@ -1992,13 +2003,20 @@ export class Player {
       }
     ).bindTooltip(countryTooltip);
     marker.dataId = country.cca2;
-    marker.on("mouseover", function (event) {
-      L.DomEvent.stopPropagation(event);
-      if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
-        marker.fire("click");
-        marker.openTooltip();
-      }
-    });
+    marker
+      .on("mouseover", function (event) {
+        L.DomEvent.stopPropagation(event);
+        if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
+          marker.fire("click");
+          if (this.tooltipCountryCode) {
+            const tooltip = this.countryTooltips[this.tooltipCountryCode];
+            if (tooltip) tooltip.close();
+          }
+          this.tooltipCountryCode = country.cca2;
+          marker.openTooltip();
+        }
+      })
+      .bind(this);
     return marker;
   }
 
