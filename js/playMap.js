@@ -84,7 +84,7 @@ export class PlayMap {
     };
     this.map = L.map("map", {
       attributionControl: false,
-      contextmenu: false,
+      contextmenu: true,
       layers: [streetLayer],
       contextmenuItems: [
         {
