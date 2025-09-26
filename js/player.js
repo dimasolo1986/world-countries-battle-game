@@ -2003,8 +2003,9 @@ export class Player {
       }
     ).bindTooltip(countryTooltip);
     marker.dataId = country.cca2;
-    marker
-      .on("mouseover", function (event) {
+    marker.on(
+      "mouseover",
+      function (event) {
         L.DomEvent.stopPropagation(event);
         if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
           marker.fire("click");
@@ -2015,8 +2016,8 @@ export class Player {
           this.tooltipCountryCode = country.cca2;
           marker.openTooltip();
         }
-      })
-      .bind(this);
+      }.bind(this)
+    );
     return marker;
   }
 
