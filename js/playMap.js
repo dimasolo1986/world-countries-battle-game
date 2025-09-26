@@ -221,7 +221,7 @@ export class PlayMap {
         mapFiled.style.opacity = "0.7";
         mapFiled.style.borderRadius = "2px";
         mapFiled.style.fontWeight = "bolder";
-        mapFiled.style.marginTop = "10px";
+        mapFiled.style.marginTop = "20px";
         mapFiled.style.color = "darkblue";
         mapFiled.textContent =
           localization[model.worldCountries.language][playerMapLabel];
@@ -246,7 +246,7 @@ export class PlayMap {
         countriesField.style.borderRadius = "2px";
         countriesField.style.fontWeight = "bolder";
         countriesField.style.fontSize = "0.5rem";
-        countriesField.style.marginTop = "35px";
+        countriesField.style.marginTop = "50px";
         countriesField.textContent =
           localization[model.worldCountries.language]["Available Countries:"] +
           " ";

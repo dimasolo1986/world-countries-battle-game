@@ -1,5 +1,6 @@
 import { localization } from "./localization/ua.js";
 import { WORLD_MAP_BOUNDS } from "./config.js";
+import { COUNTRY_BOUNDS } from "./data/countriesBounds.js";
 import { getCountryGeo, getRandomInt } from "./helpers.js";
 import * as model from "./model.js";
 export class Player {
@@ -16,6 +17,7 @@ export class Player {
   playerSelectedCountriesContainer;
   playerSelectedCountriesContainerId;
   tooltipCountryCode = null;
+  lastGuessedCountryNames = [];
   usedHintsCount = 0;
   trapCountryHitted = 0;
   playerAttemptToGuess = false;
@@ -82,6 +84,7 @@ export class Player {
     this.selectedCountryNeighboursCodes = null;
     this.countries = null;
     this.tooltipCountryCode = null;
+    this.lastGuessedCountryNames = [];
     this.countriesCodeMapping = null;
     this.countryBoundaries = null;
     this.countryTooltips = null;
@@ -117,6 +120,7 @@ export class Player {
     this.playerConfigured = false;
     this.playerWonGame = false;
     this.tooltipCountryCode = null;
+    this.lastGuessedCountryNames = [];
     this.countryUnions = [
       new Array(4),
       new Array(3),
@@ -346,6 +350,7 @@ export class Player {
     const countryUnion = this.countryUnions[countryUnionIndex];
     const countryUnionTable = document.createElement("table");
     const countryUnionRow = document.createElement("tr");
+    countryUnionRow.style.marginBottom = "0px";
     countryUnionTable.appendChild(countryUnionRow);
     countryUnion.forEach((countryObject) => {
       const countryCode = Object.keys(countryObject)[0];
@@ -588,7 +593,7 @@ export class Player {
         });
         this.playerAttemptToGuess = false;
         this.opponentPlayer.playerAttemptToGuess = true;
-        await this.sleep(1200);
+        await this.sleep(1500);
         this.opponentPlayer.closeCountryPopup(countryCode);
         this.opponentPlayer.playerMap.removeLayer(countryBoundary);
         delete this.opponentPlayer.countryBoundaries[countryCode];
@@ -796,6 +801,19 @@ export class Player {
         localization[model.worldCountries.language][
           "Your attempt to guess opponent's country"
         ];
+      if (this.opponentPlayer.lastGuessedCountryNames.length !== 0) {
+        const countryBounds = [];
+        this.opponentPlayer.lastGuessedCountryNames.forEach((countryName) => {
+          const countryBound = COUNTRY_BOUNDS.find(
+            (bound) => countryName === bound.name
+          );
+          if (countryBound) countryBounds.push(...countryBound.bounds);
+        });
+        if (countryBounds.length !== 0)
+          this.opponentPlayer.playerMap.fitBounds(countryBounds, {
+            animate: false,
+          });
+      }
       return;
     }
     this.game.playHit();
@@ -928,7 +946,7 @@ export class Player {
       });
       this.playerAttemptToGuess = true;
       this.opponentPlayer.playerAttemptToGuess = false;
-      await this.sleep(1200);
+      await this.sleep(1500);
       this.closeCountryPopup(countryCode);
       this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
         animate: false,
@@ -970,6 +988,11 @@ export class Player {
             Array.from(this.selectedCountryCodes).indexOf(countryCode) + 1
           );
           const country = this.countries[countryCode];
+          const countryGuessedIndex = this.lastGuessedCountryNames.indexOf(
+            country.countryName
+          );
+          if (countryGuessedIndex >= 0)
+            this.lastGuessedCountryNames.splice(countryGuessedIndex, 1);
           const countryBorderCodes = country.countryBorders
             .map((countryBorder) => {
               return this.countriesCodeMapping[countryBorder];
@@ -1040,6 +1063,7 @@ export class Player {
             ]
           }</span>`
         );
+        this.lastGuessedCountryNames.push(country.countryName);
         await this.sleep(1000);
         this.closeCountryPopup(countryCode);
       }

@@ -153,7 +153,7 @@
       }
 
       container.style.marginLeft = "17px";
-      container.style.marginTop = "35px";
+      container.style.marginTop = "50px";
 
       if (this.options.content) {
         content = this.options.content;
