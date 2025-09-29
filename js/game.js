@@ -42,6 +42,7 @@ export class Game {
   }
 
   showGameResult(playerOneWon) {
+    this.gameModalResultGuessedCountries.innerHTML = "";
     this.playerOne.enableMapInteraction();
     this.gameModalResultLabel.textContent =
       localization[model.worldCountries.language]["Game Result"];

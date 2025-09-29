@@ -60,6 +60,10 @@ tr {
   margin-bottom: 5px;
 }
 
+.main-container {
+  min-height: 100dvh;
+}
+
 td {
   border: solid 1.5px darkgrey;
   border-style: none solid solid none;
