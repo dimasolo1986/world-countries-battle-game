@@ -252,7 +252,7 @@ export class PlayMap {
         selectedCountryField.style.opacity = "0.7";
         selectedCountryField.style.borderRadius = "2px";
         selectedCountryField.style.fontWeight = "bolder";
-        selectedCountryField.style.marginTop = "20px";
+        selectedCountryField.style.marginBottom = "50px";
         selectedCountryField.style.color = "darkblue";
         selectedCountryField.innerHTML = "";
         return selectedCountryField;
