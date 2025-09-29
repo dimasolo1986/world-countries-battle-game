@@ -61,7 +61,7 @@ tr {
 }
 
 .main-container {
-  min-height: 100dvh;
+  height: 100dvh;
 }
 
 td {
