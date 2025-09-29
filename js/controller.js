@@ -75,7 +75,7 @@ const init = function () {
           "World Country Alliances Guesser Game"
         ]
       } - ${document.querySelector(".about-project-description").textContent}`,
-      url: "https://www.countryallianceguesser.com",
+      url: "https://www.countriesguesser.com",
     };
     const shareWebSiteButton = document.getElementById("shareWebSite");
     if (shareWebSiteButton) {

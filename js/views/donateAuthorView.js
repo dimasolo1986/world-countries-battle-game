@@ -41,7 +41,7 @@ class donateAuthorView {
               } - ${
                 document.querySelector(".about-project-description").textContent
               }`,
-              url: "https://www.countryallianceguesser.com",
+              url: "https://www.countriesguesser.com",
             })
             .then(function () {})
             .catch(function () {});
