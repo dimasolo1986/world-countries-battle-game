@@ -248,11 +248,11 @@ export class PlayMap {
         selectedCountryField.style.paddingLeft = "3px";
         selectedCountryField.style.paddingTop = "2px";
         selectedCountryField.style.paddingBottom = "2px";
-        selectedCountryField.style.fontSize = "0.6rem";
+        selectedCountryField.style.fontSize = "0.5rem";
         selectedCountryField.style.opacity = "0.7";
         selectedCountryField.style.borderRadius = "2px";
         selectedCountryField.style.fontWeight = "bolder";
-        selectedCountryField.style.marginBottom = "50px";
+        selectedCountryField.style.marginTop = "10px";
         selectedCountryField.style.color = "darkblue";
         selectedCountryField.innerHTML = "";
         return selectedCountryField;
@@ -262,9 +262,7 @@ export class PlayMap {
     L.control.selectedcountryfield = function (opts) {
       return new L.Control.SelectedCountryField(opts);
     };
-    L.control
-      .selectedcountryfield({ position: "bottomcenter" })
-      .addTo(this.map);
+    L.control.selectedcountryfield({ position: "topcenter" }).addTo(this.map);
     L.Control.CountriesField = L.Control.extend({
       onAdd: function (map) {
         const countriesField = L.DomUtil.create("div");
