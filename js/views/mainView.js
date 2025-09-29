@@ -142,7 +142,7 @@ class mainView {
 
   showMain() {
     this._parentElement.classList.remove("not-displayed");
-    this._parentElement.classList.add("d-flex");
+    this._parentElement.classList.add("d-grid");
     this._header.classList.remove("not-displayed");
     this._footer.classList.remove("not-displayed");
     this._startButton.disabled = false;
@@ -150,7 +150,7 @@ class mainView {
 
   hideMain() {
     this._parentElement.classList.add("not-displayed");
-    this._parentElement.classList.remove("d-flex");
+    this._parentElement.classList.remove("d-grid");
   }
 
   translateElements() {
