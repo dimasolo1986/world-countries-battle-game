@@ -67,13 +67,15 @@ const init = function () {
     const shareWebSiteContent = {
       title: `${
         localization[model.worldCountries.language][
-          "World Countries Battle Game"
+          "Country Alliance Guesser Game"
         ]
       }`,
       text: `${
-        localization[model.worldCountries.language]["Countries Battle Game"]
+        localization[model.worldCountries.language][
+          "World Country Alliances Guesser Game"
+        ]
       } - ${document.querySelector(".about-project-description").textContent}`,
-      url: "https://www.countriesbattlegame.com",
+      url: "https://www.countryallianceguesser.com",
     };
     const shareWebSiteButton = document.getElementById("shareWebSite");
     if (shareWebSiteButton) {

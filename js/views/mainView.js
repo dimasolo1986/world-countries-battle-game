@@ -155,7 +155,9 @@ class mainView {
 
   translateElements() {
     this._gameCardHeader.textContent = `${
-      localization[model.worldCountries.language]["Countries Battle Game"]
+      localization[model.worldCountries.language][
+        "Country Alliance Guesser Game"
+      ]
     }`;
     this._gameConfigurationHeader.textContent = `${
       localization[model.worldCountries.language]["Game Configuration"]

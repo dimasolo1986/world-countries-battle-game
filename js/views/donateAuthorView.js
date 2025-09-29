@@ -31,17 +31,17 @@ class donateAuthorView {
             .share({
               title: `${
                 localization[model.worldCountries.language][
-                  "World Countries Battle Game"
+                  "Country Alliance Guesser Game"
                 ]
               }`,
               text: `${
                 localization[model.worldCountries.language][
-                  "World Countries Battle Game"
+                  "World Country Alliances Guesser Game"
                 ]
               } - ${
                 document.querySelector(".about-project-description").textContent
               }`,
-              url: "https://www.countriesbattlegame.com",
+              url: "https://www.countryallianceguesser.com",
             })
             .then(function () {})
             .catch(function () {});
@@ -84,7 +84,7 @@ class donateAuthorView {
     }`;
     this._donateText.textContent = `${
       localization[model.worldCountries.language][
-        "If you like this project, you can share it with your friends or support it financially. Thank you!"
+        "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!"
       ]
     }`;
     this._donateQrCodeText.textContent = `${

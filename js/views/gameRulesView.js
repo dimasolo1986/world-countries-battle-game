@@ -68,7 +68,9 @@ class gameRulesView {
       localization[model.worldCountries.language]["BACK"]
     }`;
     this._gameRulesHeading.textContent = `${
-      localization[model.worldCountries.language]["World Countries Battle Game"]
+      localization[model.worldCountries.language][
+        "World Country Alliances Guesser Game"
+      ]
     }`;
     this._gameRulesProjectDescription.textContent = `${
       localization[model.worldCountries.language][

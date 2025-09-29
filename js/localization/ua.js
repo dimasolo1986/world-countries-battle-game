@@ -504,9 +504,9 @@ export const localization = {
     },
     Share: "Поділитися",
     "Support Project": "Підтримати Проект",
-    "If you like this project, you can share it with your friends or support it financially. Thank you!":
-      "Якщо Вам подобається цей проект, Ви можете поділитись ним з друзями або підтримати фінансово. Дякую Вам!",
-    "World Countries Battle Game": "Гра Битва Країн Світу",
+    "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!":
+      "Якщо Вам подобається цей проект, Ви можете поділитись ним з друзями або підтримати фінансово (гроші витрачаються на розвиток освітніх проектів та підтримку права України існувати на мапі світу). Дякую Вам!",
+    "World Country Alliances Guesser Game": "Гра Вгадай Союзи Країн Світу",
     "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
       "проект, який допомагає вивчати географію країн світу, сусідніх країн, прапорів та частин світу в ігровому форматі. Виберіть десять різних союзів країн на карті, а також три країни-пастки для вашого суперника. Комп'ютер також вибере відповідну кількість союзів країн та країн-пасток. Спроби вгадати країни відбуваються по черзі. Той, хто вгадає країну суперника, отримує додаткову спробу. Перемагає той, хто першим вгадає всі союзи країн суперника. Слідкуйте за повідомленнями у верхній частині екрана після початку гри.",
     "When entering an opponent's trap country, he receives one of three clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located.":
@@ -516,7 +516,7 @@ export const localization = {
       "Країни в одному альянсі країн повинні бути об'єднані кордонами. Альянси країн повинні бути відділені один від одного хоча б кордонами однієї країни. Острівна країна може використовуватись тільки в якості альянса з однієї країни або як країна-пастка.",
     "Do you like Geography and Countries of the World? Visit":
       "Подобається Географія і Країни Світу? Відвідайте",
-    "Countries Battle Game": "Гра Битва Країн",
+    "Country Alliance Guesser Game": "Гра Вгадай Альянси Країн",
     "Game Configuration": "Конфігурація Гри",
     "You selected": "Ви вибрали",
     "Choose one alliance from four countries":
@@ -1176,10 +1176,11 @@ export const localization = {
     },
     Share: "Share",
     "Support Project": "Support Project",
-    "If you like this project, you can share it with your friends or support it financially. Thank you!":
-      "If you like this project, you can share it with your friends or support it financially. Thank you!",
+    "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!":
+      "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!",
     "Make Donate": "Make Donate",
-    "World Countries Battle Game": "World Countries Battle Game",
+    "World Country Alliances Guesser Game":
+      "World Country Alliances Guesser Game",
     "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
       "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.",
     "When entering an opponent's trap country, he receives one of three clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located.":
@@ -1189,7 +1190,7 @@ export const localization = {
       "Countries in the same alliance of countries must be united by borders. Alliances of countries must be separated from each other by at least one country's borders. An island country can only be used as an alliance with one country or as a trap country.",
     "Do you like Geography and Countries of the World? Visit":
       "Do you like Geography and Countries of the World? Visit",
-    "Countries Battle Game": "Countries Battle Game",
+    "Country Alliance Guesser Game": "Country Alliance Guesser Game",
     "Game Configuration": "Game Configuration",
     "You selected": "You selected",
     "Choose one alliance from four countries":
@@ -1856,11 +1857,11 @@ export const localization = {
       Tokyo: "Tokio",
     },
     "Support Project": "Projekt Unterstützen",
-    "If you like this project, you can share it with your friends or support it financially. Thank you!":
-      "Wenn Ihnen dieses Projekt gefällt, können Sie es mit Ihren Freunden teilen oder finanziell unterstützen. Danke schön!",
+    "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!":
+      "Wenn Ihnen dieses Projekt gefällt, können Sie es mit Ihren Freunden teilen oder finanziell unterstützen (Das Geld wird für die Entwicklung von Bildungsprojekten und die Unterstützung des Existenzrechts der Ukraine auf der Weltkarte ausgegeben). Danke schön!",
     "Make Donate": "Jetzt Spenden",
     "QR Code": "QR Code",
-    "World Countries Battle Game": "Weltländer-Kampfspiel",
+    "World Country Alliances Guesser Game": "Spiel der Weltländerallianzen",
     "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
       "projekt, das hilft, die Geographie der Länder der Welt, Nachbarländer, Flaggen und Teile der Welt in einem Spielformat zu studieren. Wählen Sie zehn verschiedene Länderbündnisse auf der Karte sowie drei Fallenländer für Ihren Gegner. Der Computer wählt auch die entsprechende Anzahl von Länderbündnissen und Fallenländern aus. Die Versuche, die Länder zu erraten, finden reihum statt. Wer das Land des Gegners errät, erhält einen zusätzlichen Versuch. Wer zuerst alle Allianzen der gegnerischen Länder errät, hat gewonnen. Folgen Sie den Nachrichten oben auf dem Bildschirm, nachdem das Spiel begonnen hat.",
     "When entering an opponent's trap country, he receives one of three clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located.":
@@ -1870,7 +1871,7 @@ export const localization = {
       "Länder innerhalb eines Länderbündnisses müssen durch Grenzen verbunden sein. Länderbündnisse müssen durch mindestens eine Landesgrenze voneinander getrennt sein. Ein Inselstaat kann nur als Bündnis mit einem Land oder als Fallenstaat verwendet werden.",
     "Do you like Geography and Countries of the World? Visit":
       "Interessieren Sie sich für Geographie und die Länder der Welt? Besuchen Sie",
-    "Countries Battle Game": "Länder-Kampfspiel",
+    "Country Alliance Guesser Game": "Spiel der Länderallianzen",
     "Game Configuration": "Spielkonfiguration",
     "You selected": "Sie haben ausgewählt",
     "Choose one alliance from four countries":
@@ -2534,10 +2535,11 @@ export const localization = {
       Tokyo: "Tokyo",
     },
     "Support Project": "Soutenir le Projet",
-    "If you like this project, you can share it with your friends or support it financially. Thank you!":
-      "Si vous aimez ce projet, vous pouvez le partager avec vos amis ou le soutenir financièrement. Merci!",
+    "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!":
+      "Si vous aimez ce projet, vous pouvez le partager avec vos amis ou le soutenir financièrement (l'argent est dépensé pour le développement de projets éducatifs et pour soutenir le droit de l'Ukraine à exister sur la carte du monde). Merci!",
     "Make Donate": "Faire un Don",
-    "World Countries Battle Game": "Jeu de Bataille des Pays du Monde",
+    "World Country Alliances Guesser Game":
+      "Jeu des Alliances des Pays du Monde",
     "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
       "projet permettant d'étudier la géographie des pays du monde, de leurs voisins, de leurs drapeaux et de certaines régions du monde sous forme de jeu. Choisissez dix alliances de pays différentes sur la carte, ainsi que trois pays pièges pour votre adversaire. L'ordinateur choisira également le nombre approprié d'alliances de pays et de pays pièges. Les tentatives pour deviner les pays se déroulent à tour de rôle. Celui qui devine le pays de l'adversaire obtient un essai supplémentaire. Le premier à deviner toutes les alliances des pays adverses gagne. Suivez les messages en haut de l'écran après le début de la partie.",
     "When entering an opponent's trap country, he receives one of three clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located.":
@@ -2547,7 +2549,7 @@ export const localization = {
       "Les pays d'une même alliance doivent être unis par des frontières. Les alliances doivent être séparées par au moins une frontière. Un pays insulaire ne peut être utilisé que comme alliance avec un seul pays ou comme pays piège.",
     "Do you like Geography and Countries of the World? Visit":
       "Vous aimez la géographie et les pays du monde ? Visitez",
-    "Countries Battle Game": "Jeu de Bataille des Pays",
+    "Country Alliance Guesser Game": "Jeu des Alliances de Pays",
     "Game Configuration": "Configuration du Jeu",
     "You selected": "Vous avez sélectionné",
     "Choose one alliance from four countries":
@@ -3211,7 +3213,8 @@ export const localization = {
       Tokyo: "Tokio",
     },
     "Support Project": "Apoyar el Proyecto",
-    "World Countries Battle Game": "Juego de Batalla de Países del Mundo",
+    "World Country Alliances Guesser Game":
+      "Juego de Alianzas de los Países del Mundo",
     "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
       "un proyecto que te ayuda a estudiar la geografía de los países del mundo, sus vecinos, sus banderas y partes del mundo en formato de juego. Elige diez alianzas diferentes de países en el mapa, además de tres países trampa para tu oponente. La computadora también elegirá el número adecuado de alianzas y países trampa. Los intentos para adivinar los países se realizan por turnos. Quien adivine el país del oponente tiene un intento extra. Quien primero adivine todas las alianzas de países del oponente gana. Sigue los mensajes en la parte superior de la pantalla después de que comience el juego.",
     "When entering an opponent's trap country, he receives one of three clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located.":
@@ -3221,7 +3224,7 @@ export const localization = {
       "Los países de una misma alianza deben estar unidos por fronteras. Las alianzas deben estar separadas entre sí por al menos la frontera de un país. Un país insular sólo puede utilizarse como alianza con un solo país o como país trampa.",
     "Do you like Geography and Countries of the World? Visit":
       "¿Te gusta la geografía y los países del mundo? Visita",
-    "Countries Battle Game": "Juego de Batalla de Países",
+    "Country Alliance Guesser Game": "Juego de Alianzas de Países",
     "Game Configuration": "Configuración del Juego",
     "You selected": "Usted seleccionó",
     "Choose one alliance from four countries":
@@ -3266,8 +3269,8 @@ export const localization = {
     BACK: "VOLVER",
     "Selected Alliance Country": "País de alianza seleccionado",
     "Selected Trap Country": "País de trampa seleccionado",
-    "If you like this project, you can share it with your friends or support it financially. Thank you!":
-      "Si te gusta este proyecto, puedes compartirlo con tus amigos o apoyarlo económicamente. Gracias!",
+    "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!":
+      "Si te gusta este proyecto, puedes compartirlo con tus amigos o apoyarlo económicamente (El dinero se gasta en desarrollar proyectos educativos y apoyar el derecho de Ucrania a existir en el mapa mundial). Gracias!",
     "Make Donate": "Hacer una Donación",
     "QR Code": "Código QR",
     Share: "Compartir",
@@ -3887,11 +3890,12 @@ export const localization = {
       Tokyo: "Tokyo",
     },
     "Support Project": "Sostieni il Progetto",
-    "If you like this project, you can share it with your friends or support it financially. Thank you!":
-      "Se ti piace questo progetto, puoi condividerlo con i tuoi amici o sostenerlo economicamente. Grazie!",
+    "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!":
+      "Se ti piace questo progetto, puoi condividerlo con i tuoi amici o sostenerlo economicamente (Il denaro viene speso per lo sviluppo di progetti educativi e per sostenere il diritto dell'Ucraina a essere presente sulla mappa del mondo). Grazie!",
     "Make Donate": "Fai una Donazione",
     "QR Code": "Codice QR",
-    "World Countries Battle Game": "Gioco di Battaglie tra Paesi del Mondo",
+    "World Country Alliances Guesser Game":
+      "Gioco delle Alleanze tra i Paesi del Mondo",
     "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
       "progetto che aiuta a studiare la geografia dei paesi del mondo, dei paesi confinanti, delle bandiere e di altre parti del mondo in un formato di gioco. Scegli dieci diverse alleanze di paesi sulla mappa, oltre a tre paesi-trappola per il tuo avversario. Il computer sceglierà anche il numero appropriato di alleanze di paesi e paesi-trappola. I tentativi di indovinare i paesi avvengono a turno. Chi indovina il paese dell'avversario ha un tentativo extra. Vince chi indovina per primo tutte le alleanze dei paesi dell'avversario. Segui i messaggi nella parte superiore dello schermo dopo l'inizio del gioco.",
     "When entering an opponent's trap country, he receives one of three clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located.":
@@ -3899,7 +3903,7 @@ export const localization = {
     "Important!": "Importante!",
     "Countries in the same alliance of countries must be united by borders. Alliances of countries must be separated from each other by at least one country's borders. An island country can only be used as an alliance with one country or as a trap country.":
       "I paesi appartenenti alla stessa alleanza di paesi devono essere uniti dai confini. Le alleanze di paesi devono essere separate l'una dall'altra dai confini di almeno uno dei paesi. Uno stato insulare può essere utilizzato solo come alleanza con un singolo stato o come stato trappola.",
-    "Countries Battle Game": "Gioco di Battaglie tra Paesi",
+    "Country Alliance Guesser Game": "Gioco delle Alleanze tra Paesi",
     "Do you like Geography and Countries of the World? Visit":
       "Ti piace la geografia e i paesi del mondo? Visita",
     "Game Configuration": "Configurazione del Gioco",

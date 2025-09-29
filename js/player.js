@@ -1580,6 +1580,28 @@ export class Player {
     countryUnionArray[countryIndex] = countryObject;
   }
 
+  setSelectedCountryFiledHtml(country) {
+    this.playMap.setSelectedCountryFiledHtml(
+      `<span>${
+        localization[model.worldCountries.language]["You selected"]
+      }</span> <img src="${
+        country.countryFlag
+      }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;color:${
+        country.countryName !== "Russia" ? "darkblue" : "red"
+      }">${
+        country.countryName !== "Russia"
+          ? localization[model.worldCountries.language]["countries"][
+              country.countryName
+            ]
+          : localization[model.worldCountries.language]["countries"][
+              country.countryName
+            ] +
+            " - " +
+            localization[model.worldCountries.language]["War Aggressor"]
+      }</span>`
+    );
+  }
+
   addUserPlayerInitialCountrySelectionHandler(countryCode, countryBoundary) {
     const countryMarker = this.countryMarkers[countryCode];
     const country = this.countries[countryCode];
@@ -1599,17 +1621,7 @@ export class Player {
         this.selectedCountryCodes.size >= 1 &&
         this.selectedCountryCodes.size <= 4
       ) {
-        this.playMap.setSelectedCountryFiledHtml(
-          `<span>${
-            localization[model.worldCountries.language]["You selected"]
-          }</span> <img src="${
-            country.countryFlag
-          }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;">${
-            localization[model.worldCountries.language]["countries"][
-              country.countryName
-            ]
-          }</span>`
-        );
+        this.setSelectedCountryFiledHtml(country);
         this.addUserPlayerInitialCountrySelection(
           countryCode,
           countryBoundary,
@@ -1638,17 +1650,7 @@ export class Player {
         this.selectedCountryCodes.size >= 5 &&
         this.selectedCountryCodes.size <= 7
       ) {
-        this.playMap.setSelectedCountryFiledHtml(
-          `<span>${
-            localization[model.worldCountries.language]["You selected"]
-          }</span> <img src="${
-            country.countryFlag
-          }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;">${
-            localization[model.worldCountries.language]["countries"][
-              country.countryName
-            ]
-          }</span>`
-        );
+        this.setSelectedCountryFiledHtml(country);
         const countryUnion = this.countryUnions[1];
         this.addCountryToCountryUnion(
           countryUnion,
@@ -1677,17 +1679,7 @@ export class Player {
         this.selectedCountryCodes.size >= 8 &&
         this.selectedCountryCodes.size <= 10
       ) {
-        this.playMap.setSelectedCountryFiledHtml(
-          `<span>${
-            localization[model.worldCountries.language]["You selected"]
-          }</span> <img src="${
-            country.countryFlag
-          }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;">${
-            localization[model.worldCountries.language]["countries"][
-              country.countryName
-            ]
-          }</span>`
-        );
+        this.setSelectedCountryFiledHtml(country);
         const countryUnion = this.countryUnions[2];
         this.addCountryToCountryUnion(
           countryUnion,
@@ -1716,17 +1708,7 @@ export class Player {
         this.selectedCountryCodes.size >= 11 &&
         this.selectedCountryCodes.size <= 12
       ) {
-        this.playMap.setSelectedCountryFiledHtml(
-          `<span>${
-            localization[model.worldCountries.language]["You selected"]
-          }</span> <img src="${
-            country.countryFlag
-          }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;">${
-            localization[model.worldCountries.language]["countries"][
-              country.countryName
-            ]
-          }</span>`
-        );
+        this.setSelectedCountryFiledHtml(country);
         const countryUnion = this.countryUnions[3];
         this.addCountryToCountryUnion(
           countryUnion,
@@ -1755,17 +1737,7 @@ export class Player {
         this.selectedCountryCodes.size >= 13 &&
         this.selectedCountryCodes.size <= 14
       ) {
-        this.playMap.setSelectedCountryFiledHtml(
-          `<span>${
-            localization[model.worldCountries.language]["You selected"]
-          }</span> <img src="${
-            country.countryFlag
-          }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;">${
-            localization[model.worldCountries.language]["countries"][
-              country.countryName
-            ]
-          }</span>`
-        );
+        this.setSelectedCountryFiledHtml(country);
         const countryUnion = this.countryUnions[4];
         this.addCountryToCountryUnion(
           countryUnion,
@@ -1794,17 +1766,7 @@ export class Player {
         this.selectedCountryCodes.size >= 15 &&
         this.selectedCountryCodes.size <= 16
       ) {
-        this.playMap.setSelectedCountryFiledHtml(
-          `<span>${
-            localization[model.worldCountries.language]["You selected"]
-          }</span> <img src="${
-            country.countryFlag
-          }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;">${
-            localization[model.worldCountries.language]["countries"][
-              country.countryName
-            ]
-          }</span>`
-        );
+        this.setSelectedCountryFiledHtml(country);
         const countryUnion = this.countryUnions[5];
         this.addCountryToCountryUnion(
           countryUnion,
@@ -1830,17 +1792,7 @@ export class Player {
         }
       }
       if (this.selectedCountryCodes.size === 17) {
-        this.playMap.setSelectedCountryFiledHtml(
-          `<span>${
-            localization[model.worldCountries.language]["You selected"]
-          }</span> <img src="${
-            country.countryFlag
-          }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;">${
-            localization[model.worldCountries.language]["countries"][
-              country.countryName
-            ]
-          }</span>`
-        );
+        this.setSelectedCountryFiledHtml(country);
         const countryUnion = this.countryUnions[6];
         this.addCountryToCountryUnion(
           countryUnion,
@@ -1866,17 +1818,7 @@ export class Player {
         }
       }
       if (this.selectedCountryCodes.size === 18) {
-        this.playMap.setSelectedCountryFiledHtml(
-          `<span>${
-            localization[model.worldCountries.language]["You selected"]
-          }</span> <img src="${
-            country.countryFlag
-          }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;">${
-            localization[model.worldCountries.language]["countries"][
-              country.countryName
-            ]
-          }</span>`
-        );
+        this.setSelectedCountryFiledHtml(country);
         const countryUnion = this.countryUnions[7];
         this.addCountryToCountryUnion(
           countryUnion,
@@ -1902,17 +1844,7 @@ export class Player {
         }
       }
       if (this.selectedCountryCodes.size === 19) {
-        this.playMap.setSelectedCountryFiledHtml(
-          `<span>${
-            localization[model.worldCountries.language]["You selected"]
-          }</span> <img src="${
-            country.countryFlag
-          }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;">${
-            localization[model.worldCountries.language]["countries"][
-              country.countryName
-            ]
-          }</span>`
-        );
+        this.setSelectedCountryFiledHtml(country);
         const countryUnion = this.countryUnions[8];
         this.addCountryToCountryUnion(
           countryUnion,
@@ -1938,17 +1870,7 @@ export class Player {
         }
       }
       if (this.selectedCountryCodes.size === 20) {
-        this.playMap.setSelectedCountryFiledHtml(
-          `<span>${
-            localization[model.worldCountries.language]["You selected"]
-          }</span> <img src="${
-            country.countryFlag
-          }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;">${
-            localization[model.worldCountries.language]["countries"][
-              country.countryName
-            ]
-          }</span>`
-        );
+        this.setSelectedCountryFiledHtml(country);
         const countryUnion = this.countryUnions[9];
         this.addCountryToCountryUnion(
           countryUnion,
@@ -1974,17 +1896,7 @@ export class Player {
         }
       }
       if (this.selectedCountryCodes.size === 21) {
-        this.playMap.setSelectedCountryFiledHtml(
-          `<span>${
-            localization[model.worldCountries.language]["You selected"]
-          }</span> <img src="${
-            country.countryFlag
-          }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;">${
-            localization[model.worldCountries.language]["countries"][
-              country.countryName
-            ]
-          }</span>`
-        );
+        this.setSelectedCountryFiledHtml(country);
         this.selectedCountryTrapCodes.add(countryCode);
         this.addUserPlayerInitialCountrySelection(
           countryCode,
@@ -2003,17 +1915,7 @@ export class Player {
         }
       }
       if (this.selectedCountryCodes.size === 22) {
-        this.playMap.setSelectedCountryFiledHtml(
-          `<span>${
-            localization[model.worldCountries.language]["You selected"]
-          }</span> <img src="${
-            country.countryFlag
-          }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;">${
-            localization[model.worldCountries.language]["countries"][
-              country.countryName
-            ]
-          }</span>`
-        );
+        this.setSelectedCountryFiledHtml(country);
         this.selectedCountryTrapCodes.add(countryCode);
         this.addUserPlayerInitialCountrySelection(
           countryCode,
@@ -2032,17 +1934,7 @@ export class Player {
         }
       }
       if (this.selectedCountryCodes.size === 23) {
-        this.playMap.setSelectedCountryFiledHtml(
-          `<span>${
-            localization[model.worldCountries.language]["You selected"]
-          }</span> <img src="${
-            country.countryFlag
-          }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;">${
-            localization[model.worldCountries.language]["countries"][
-              country.countryName
-            ]
-          }</span>`
-        );
+        this.setSelectedCountryFiledHtml(country);
         this.selectedCountryTrapCodes.add(countryCode);
         this.addUserPlayerInitialCountrySelection(
           countryCode,

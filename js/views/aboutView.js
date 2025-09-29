@@ -99,7 +99,9 @@ class aboutView {
       localization[model.worldCountries.language]["Come Back Alive"]
     }`;
     this._aboutProjectName.textContent = `${
-      localization[model.worldCountries.language]["World Countries Battle Game"]
+      localization[model.worldCountries.language][
+        "World Country Alliances Guesser Game"
+      ]
     }`;
     this._aboutProjectDescription.textContent = `${
       localization[model.worldCountries.language][
