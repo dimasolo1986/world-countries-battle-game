@@ -1,6 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "Country Alliance Guesser",
+        "alternateName": "CountriesGuesser.com",
+        "url": "https://www.countriesguesser.com",
+        "image": [
+          "https://www.countriesguesser.com/assets/img/country-alliance-guesser-game.png",
+          "https://www.countriesguesser.com/assets/img/country-alliance-guesser-game-play.png",
+          "https://www.countriesguesser.com/assets/img/country-alliance-guesser-game-start.png",
+          "https://www.countriesguesser.com/assets/img/country-alliance-guesser-game-finish.png",
+          "https://www.countriesguesser.com/assets/img/game-configuration-img.png"
+        ],
+        "inLanguage": ["en", "uk", "de", "fr", "es", "it"],
+        "description": "Country Alliance Guesser is an educational strategy game that helps you learn geography, countries, neighbors, and flags. Choose ten alliances of countries and three trap-countries, then take turns guessing with computer. Correct guesses grant extra attempts, and the winner is the one who first finds all opponent's alliances.",
+        "applicationCategory": "EducationalGame",
+        "operatingSystem": "Web",
+        "genre": ["Strategy", "Quiz", "Educational"],
+        "author": {
+          "@type": "Person",
+          "name": "Dmytro Solovei",
+          "sameAs": [
+            "https://dimasolo.pythonanywhere.com",
+            "https://www.facebook.com/DimaSolovei1986"
+          ]
+        },
+        "gamePlatform": ["Web browser", "Mobile browser"],
+        "educationalUse": "Geography learning",
+        "learningResourceType": "Game",
+        "mainEntity": [
+          {
+            "@type": "Quiz",
+            "name": "Guess Alliances of Countries",
+            "description": "Choose ten alliances of countries on the world map. Computer also selects alliances. Guessing happens in turns, correct guesses give extra attempts.",
+            "inLanguage": ["en", "uk", "de", "fr", "es", "it"],
+            "educationalAlignment": {
+              "@type": "AlignmentObject",
+              "alignmentType": "educationalSubject",
+              "targetName": "World Geography"
+            }
+          },
+          {
+            "@type": "Quiz",
+            "name": "Trap Countries Challenge",
+            "description": "Each player also picks 3 trap-countries. Guessing them leads to a penalty (clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located). Strategy and attention are needed to win.",
+            "inLanguage": ["en", "uk", "de", "fr", "es", "it"]
+          }
+        ]
+      }
+    </script>
+
     <!-- Google tag (gtag.js) -->
     <script
       async
@@ -238,8 +290,8 @@
         </div>
         <a
           id="about-button"
-          href="#"
           role="button"
+          tabindex="0"
           style="
             font-size: 0.85rem;
             color: #85c1e9;
@@ -1037,7 +1089,8 @@
         <a
           type="button"
           class="about-game-rules"
-          href="#"
+          role="button"
+          tabindex="0"
           style="text-decoration: none"
         >
           Game Rules
