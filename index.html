@@ -88,6 +88,8 @@
       content="World Country Alliances Guesser Game - project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as well as three trap-countries for your opponent. The computer will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts."
     />
     <meta name="author" content="Dmytro Solovei, Дмитро Соловей" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#2b5797" />
     <title>Country Alliance Guesser</title>
     <link href="css/bootstrap.css" rel="stylesheet" />
     <link
@@ -1208,5 +1210,13 @@
     <script type="module" src="js/controller.js"></script>
     <script type="module" src="js/leaflet-control-topcenter.js"></script>
     <script type="module" src="js/leaflet.contextmenu.js"></script>
+    <script type="module">
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register(new URL("/service-worker.js", import.meta.url))
+          .then(() => {})
+          .catch(() => {});
+      }
+    </script>
   </body>
 </html>
