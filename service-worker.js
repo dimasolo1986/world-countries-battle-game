@@ -8,7 +8,7 @@ const FILES_TO_CACHE = [
   "/assets/img/logo.png",
   "/assets/img/zoom-to-start.png",
   "/assets/img/background-image.png",
-  "/assets/img/game-configuration-img.png",
+  "/assets/img/game-configuration-img-700-310.png",
   "/css/styles.css",
   "/css/leaflet.contextmenu.css",
   "/css/leaflet-control-topcenter.css",
