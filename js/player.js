@@ -552,13 +552,22 @@ export class Player {
       countryBoundary.off();
       this.opponentPlayer.playerMap.removeLayer(countryMarker);
       delete this.opponentPlayer.countryMarkers[countryCode];
+      const countryBound = COUNTRY_BOUNDS.find(
+        (bound) => country.countryName === bound.name
+      );
       this.opponentPlayer.openCountryPopup(countryCode);
       const countryCoordinates = country.latlng
         ? country.latlng
         : country.capitalLatLng;
-      this.opponentPlayer.playerMap.setView(countryCoordinates, 4.5, {
-        animate: false,
-      });
+      if (countryBound) {
+        this.opponentPlayer.playerMap.fitBounds(countryBound.bounds, {
+          animate: false,
+        });
+      } else {
+        this.opponentPlayer.playerMap.setView(countryCoordinates, 4.5, {
+          animate: false,
+        });
+      }
       if (this.opponentPlayer.selectedCountryTrapCodes.has(countryCode)) {
         this.setMessageInnerHtmlField(
           `<span>${
@@ -818,11 +827,20 @@ export class Player {
 
   addAvailableCountriesPanel() {
     const setViewCountry = function (country) {
-      this.playerMap.setView(
-        country.latlng ? country.latlng : country.capitalLatLng,
-        4.5,
-        { animate: false }
+      const countryBound = COUNTRY_BOUNDS.find(
+        (bound) => country.countryName === bound.name
       );
+      if (countryBound) {
+        this.playerMap.fitBounds(countryBound.bounds, {
+          animate: false,
+        });
+      } else {
+        this.playerMap.setView(
+          country.latlng ? country.latlng : country.capitalLatLng,
+          4.5,
+          { animate: false }
+        );
+      }
     };
     const availableCountriesPanel = document.getElementById(
       "available-countries-panel"
