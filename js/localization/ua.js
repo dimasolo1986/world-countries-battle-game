@@ -503,6 +503,8 @@ export const localization = {
       Tokyo: "Токіо",
     },
     Share: "Поділитися",
+    Clean: "Очистити",
+    "Random Countries Selection": "Випадковий Вибір Країн",
     "Support Project": "Підтримати Проект",
     "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!":
       "Якщо Вам подобається цей проект, Ви можете поділитись ним з друзями або підтримати фінансово (гроші витрачаються на розвиток освітніх проектів та підтримку права України існувати на мапі світу). Дякую Вам!",
@@ -1175,6 +1177,8 @@ export const localization = {
       Tokyo: "Tokyo",
     },
     Share: "Share",
+    Clean: "Clean",
+    "Random Countries Selection": "Random Countries Selection",
     "Support Project": "Support Project",
     "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!":
       "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!",
@@ -1857,6 +1861,8 @@ export const localization = {
       Tokyo: "Tokio",
     },
     "Support Project": "Projekt Unterstützen",
+    Clean: "Saubere",
+    "Random Countries Selection": "Zufällige Länderauswahl",
     "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!":
       "Wenn Ihnen dieses Projekt gefällt, können Sie es mit Ihren Freunden teilen oder finanziell unterstützen (Das Geld wird für die Entwicklung von Bildungsprojekten und die Unterstützung des Existenzrechts der Ukraine auf der Weltkarte ausgegeben). Danke schön!",
     "Make Donate": "Jetzt Spenden",
@@ -2596,6 +2602,8 @@ export const localization = {
     "Selected Trap Country": "Pays de piège sélectionné",
     "QR Code": "QR Code",
     Share: "Partager",
+    Clean: "Propre",
+    "Random Countries Selection": "Sélection aléatoire de pays",
     Collapse: "Réduire",
     "Press 'Play' to start game!": "Appuie sur 'Jouer' pour démarrer le jeu!",
     "Failed attempt to guess country!":
@@ -3280,6 +3288,8 @@ export const localization = {
     "You guessed": "Lo adivinaste",
     "Computer guessed": "La computadora lo adivinó",
     Play: "Jugar",
+    Clean: "Limpia",
+    "Random Countries Selection": "Selección aleatoria de países",
     "Already tried this country. Try another one!":
       "Ya se ha intentado con este país.¡Prueba con otro!",
     "Already guessed this country. Try another one!":
@@ -3894,6 +3904,8 @@ export const localization = {
       "Se ti piace questo progetto, puoi condividerlo con i tuoi amici o sostenerlo economicamente (Il denaro viene speso per lo sviluppo di progetti educativi e per sostenere il diritto dell'Ucraina a essere presente sulla mappa del mondo). Grazie!",
     "Make Donate": "Fai una Donazione",
     "QR Code": "Codice QR",
+    Clean: "Pulita",
+    "Random Countries Selection": "Selezione casuale dei paesi",
     "World Country Alliances Guesser Game":
       "Gioco delle Alleanze tra i Paesi del Mondo",
     "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":

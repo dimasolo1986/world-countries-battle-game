@@ -1239,6 +1239,30 @@ export class Player {
     });
   }
 
+  randomCountrySelection() {
+    this.cleanSelection();
+    this.selectRandomCountries();
+    Array.from(this.selectedCountryCodes).forEach((countryCode, index) => {
+      this.addSelectedCountryToCountryPanel(
+        this.playerSelectedCountriesContainerId,
+        countryCode,
+        index + 1
+      );
+    });
+    Array.from(this.selectedCountryTrapCodes).forEach((countryCode, index) => {
+      this.addSelectedCountryToCountryPanel(
+        this.playerSelectedCountriesContainerId,
+        countryCode,
+        index + 21
+      );
+    });
+    this.showSelectedCountries();
+    this.gameMessageField.textContent = `${
+      localization[model.worldCountries.language]["Press 'Play' to start game!"]
+    }`;
+    this.playButton.disabled = false;
+  }
+
   selectRandomCountries() {
     const countriesCodeList = Object.values(this.countriesCodeMapping);
     if (this.gameConfiguration.type === "default") {
@@ -2159,7 +2183,6 @@ export class Player {
     Object.entries(this.countryBoundaries).forEach(
       ([countryCode, countryBoundary]) => {
         this.playerMap.removeLayer(countryBoundary);
-        delete this.countryBoundaries[countryCode];
       }
     );
   }
@@ -2168,7 +2191,6 @@ export class Player {
     Object.entries(this.countryMarkers).forEach(
       ([countryCode, countryMarker]) => {
         this.playerMap.removeLayer(countryMarker);
-        delete this.countryMarkers[countryCode];
       }
     );
   }
@@ -2190,8 +2212,8 @@ export class Player {
   }
 
   showSelectedCountries() {
-    this.opponentPlayer.removeAllCountryMarkers();
-    this.opponentPlayer.removeAllCountryBoundaries();
+    this.removeAllCountryMarkers();
+    this.removeAllCountryBoundaries();
     Object.entries(this.countryMarkers).forEach(
       ([countryCode, countryMarker]) => {
         countryMarker.off();
@@ -2212,19 +2234,6 @@ export class Player {
         fillColor: "green",
         fillOpacity: 0.5,
         opacity: 0.8,
-        className: countryCode,
-      });
-      this.playerMap.addLayer(countryBoundary);
-    });
-    this.selectedCountryNeighboursCodes.forEach((countryCode) => {
-      const countryBoundary = this.countryBoundaries[countryCode];
-      countryBoundary.off();
-      this.setElementStyle(countryBoundary, {
-        weight: 1,
-        color: "grey",
-        fillColor: "grey",
-        fillOpacity: 0.3,
-        opacity: 0.6,
         className: countryCode,
       });
       this.playerMap.addLayer(countryBoundary);

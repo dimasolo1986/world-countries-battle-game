@@ -135,6 +135,7 @@ export class PlayMap {
     L.Control.PlayerOneCountriesField = L.Control.extend({
       gameConfiguration: this.gameConfiguration,
       cleanFunction: this.cleanSelection.bind(this),
+      randomFunction: this.reandomCountriesSelection.bind(this),
       onAdd: function (map) {
         const container = L.DomUtil.create("div");
         container.id = playerOneSelectedCountriesContainerId;
@@ -157,12 +158,30 @@ export class PlayMap {
         userCountriesNumber.textContent = "0";
         container.appendChild(userIconContainer);
         container.appendChild(userCountriesNumber);
+        const random = L.DomUtil.create("div");
+        random.style.height = "25px";
+        random.style.display = "flex";
+        random.style.justifyContent = "center";
+        random.style.alignItems = "center";
+        random.style.cursor = "pointer";
+        random.title =
+          localization[model.worldCountries.language][
+            "Random Countries Selection"
+          ];
+        random.id = "random-user-countries-selection";
+        random.style.borderTop = "1px dotted black";
+        random.insertAdjacentHTML(
+          "afterbegin",
+          '<i class="fa-solid fa-shuffle"></i>'
+        );
+        random.addEventListener("click", this.randomFunction);
         const clean = L.DomUtil.create("div");
         clean.style.height = "25px";
         clean.style.display = "flex";
         clean.style.justifyContent = "center";
         clean.style.alignItems = "center";
         clean.style.cursor = "pointer";
+        clean.title = localization[model.worldCountries.language]["Clean"];
         clean.id = "clean-user-countries-selection";
         clean.style.borderTop = "1px dotted black";
         clean.insertAdjacentHTML(
@@ -174,6 +193,7 @@ export class PlayMap {
           "beforeend",
           this.gameConfiguration.countriesUnionsHtml
         );
+        container.appendChild(random);
         container.appendChild(clean);
         return container;
       },
@@ -549,6 +569,10 @@ export class PlayMap {
     this.playerOne.cleanSelection();
   }
 
+  reandomCountriesSelection() {
+    this.playerOne.randomCountrySelection();
+  }
+
   gameRulesFunction() {
     this.game.showGameRules();
   }
@@ -601,6 +625,10 @@ export class PlayMap {
       "clean-user-countries-selection"
     );
     cleanSection.style.display = "flex";
+    const randomSection = document.getElementById(
+      "random-user-countries-selection"
+    );
+    randomSection.style.display = "flex";
     document.getElementById("countries-number-field").textContent =
       this.countriesNumber;
     document.getElementById("hints-panel").classList.add("not-displayed");
@@ -618,6 +646,10 @@ export class PlayMap {
       "clean-user-countries-selection"
     );
     cleanSection.style.display = "none";
+    const randomSection = document.getElementById(
+      "random-user-countries-selection"
+    );
+    randomSection.style.display = "none";
     document.getElementById("countries-number-field").textContent =
       this.countriesNumber;
     document.getElementById("hints-panel").classList.add("not-displayed");
