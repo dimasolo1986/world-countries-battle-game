@@ -172,7 +172,7 @@ export class PlayMap {
         random.style.borderTop = "1px dotted black";
         random.insertAdjacentHTML(
           "afterbegin",
-          '<i class="fa-solid fa-shuffle"></i>'
+          '<i class="fa-solid fa-dice"></i>'
         );
         random.addEventListener("click", this.randomFunction);
         const clean = L.DomUtil.create("div");
