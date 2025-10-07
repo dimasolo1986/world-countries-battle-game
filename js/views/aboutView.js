@@ -27,6 +27,9 @@ class aboutView {
   _aboutWorldCountriesQuizLink = document.querySelector(
     ".about-world-countries-quiz-link"
   );
+  _facebookPage = document.querySelector(
+    ".about-countries-guesser-facebook-page"
+  );
   _gameModalRulesLabel = document.getElementById("gameModalRulesLabel");
   _gameModalRulesContent = document.getElementById("gameRulesContent");
   _gameModalRulesCloseButton = document.getElementById("gameRulesCloseButton");
@@ -121,6 +124,9 @@ class aboutView {
     }`;
     this._aboutDeveloperDonateDescription.textContent = `${
       localization[model.worldCountries.language]["Support Project"]
+    }`;
+    this._facebookPage.textContent = `${
+      localization[model.worldCountries.language]["Facebook Page"]
     }`;
     this._aboutMapLibrary.textContent = `${
       localization[model.worldCountries.language]["Used Map Library:"]
