@@ -506,6 +506,11 @@ export const localization = {
     Clean: "Очистити",
     "Random Countries Selection": "Випадковий Вибір Країн",
     "Facebook Page": "Фейсбук Сторінка",
+    "Country Alliances Selection — Video Tutorial":
+      "Вибір Альянсів Країн — Відеоінструкція",
+    "VIDEOS:": "ВІДЕО:",
+    "Country Alliance Guesser Gameplay":
+      "Ігровий Процес Гри Вгадай Альянси Країн",
     "Support Project": "Підтримати Проект",
     "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!":
       "Якщо Вам подобається цей проект, Ви можете поділитись ним з друзями або підтримати фінансово (гроші витрачаються на розвиток освітніх проектів та підтримку права України існувати на мапі світу). Дякую Вам!",
@@ -1181,6 +1186,10 @@ export const localization = {
     Clean: "Clean",
     "Random Countries Selection": "Random Countries Selection",
     "Facebook Page": "Facebook Page",
+    "Country Alliances Selection — Video Tutorial":
+      "Country Alliances Selection — Video Tutorial",
+    "Country Alliance Guesser Gameplay": "Country Alliance Guesser Gameplay",
+    "VIDEOS:": "VIDEOS:",
     "Support Project": "Support Project",
     "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!":
       "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!",
@@ -1866,6 +1875,11 @@ export const localization = {
     Clean: "Saubere",
     "Random Countries Selection": "Zufällige Länderauswahl",
     "Facebook Page": "Facebook-Seite",
+    "Country Alliances Selection — Video Tutorial":
+      "Auswahl der Länderallianzen – Video-Tutorial",
+    "Country Alliance Guesser Gameplay":
+      "Spiel der Länderallianzen Spielablauf",
+    "VIDEOS:": "VIDEOS:",
     "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!":
       "Wenn Ihnen dieses Projekt gefällt, können Sie es mit Ihren Freunden teilen oder finanziell unterstützen (Das Geld wird für die Entwicklung von Bildungsprojekten und die Unterstützung des Existenzrechts der Ukraine auf der Weltkarte ausgegeben). Danke schön!",
     "Make Donate": "Jetzt Spenden",
@@ -2608,6 +2622,10 @@ export const localization = {
     Clean: "Propre",
     "Random Countries Selection": "Sélection aléatoire de pays",
     "Facebook Page": "Page Facebook",
+    "Country Alliances Selection — Video Tutorial":
+      "Sélection des alliances de pays — Tutoriel vidéo",
+    "Country Alliance Guesser Gameplay": "Jeu des Alliances de Pays Gameplay",
+    "VIDEOS:": "VIDÉOS:",
     Collapse: "Réduire",
     "Press 'Play' to start game!": "Appuie sur 'Jouer' pour démarrer le jeu!",
     "Failed attempt to guess country!":
@@ -3295,6 +3313,11 @@ export const localization = {
     Clean: "Limpia",
     "Random Countries Selection": "Selección aleatoria de países",
     "Facebook Page": "Página de Facebook",
+    "Country Alliances Selection — Video Tutorial":
+      "Selección de alianzas entre países — Videotutorial",
+    "Country Alliance Guesser Gameplay":
+      "Juego de Alianzas de los Países Jugabilidad",
+    "VIDEOS:": "VIDEOS:",
     "Already tried this country. Try another one!":
       "Ya se ha intentado con este país.¡Prueba con otro!",
     "Already guessed this country. Try another one!":
@@ -3912,6 +3935,11 @@ export const localization = {
     Clean: "Pulita",
     "Random Countries Selection": "Selezione casuale dei paesi",
     "Facebook Page": "Pagina Facebook",
+    "Country Alliances Selection — Video Tutorial":
+      "Selezione delle alleanze nazionali — Video tutorial",
+    "Country Alliance Guesser Gameplay":
+      "Gameplay di indovinare l'alleanza del paese",
+    "VIDEOS:": "VIDEO:",
     "World Country Alliances Guesser Game":
       "Gioco delle Alleanze tra i Paesi del Mondo",
     "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":

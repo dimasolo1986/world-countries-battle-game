@@ -35,6 +35,14 @@ class aboutView {
   _gameModalRulesCloseButton = document.getElementById("gameRulesCloseButton");
   _aboutGameRulesLink = document.querySelector(".about-game-rules");
 
+  _aboutVideos = document.querySelector(".about-game-videos");
+  _aboutCountryAllianceSelectionVideoTitle = document.querySelector(
+    ".about-country-alliance-selection-video-tutorial"
+  );
+  _aboutCountryAllianceGameplayVideoTitle = document.querySelector(
+    ".about-country-alliance-gameplay-video-tutorial"
+  );
+
   _returnToMainListenerAdded = false;
   _gameRulesListenerAdded = false;
 
@@ -141,6 +149,19 @@ class aboutView {
     }`;
     this._aboutGameRulesLink.textContent = `${
       localization[model.worldCountries.language]["Game Rules"]
+    }`;
+    this._aboutVideos.textContent = `${
+      localization[model.worldCountries.language]["VIDEOS:"]
+    }`;
+    this._aboutCountryAllianceSelectionVideoTitle.textContent = `${
+      localization[model.worldCountries.language][
+        "Country Alliances Selection — Video Tutorial"
+      ]
+    }`;
+    this._aboutCountryAllianceGameplayVideoTitle.textContent = `${
+      localization[model.worldCountries.language][
+        "Country Alliance Guesser Gameplay"
+      ]
     }`;
   }
 }

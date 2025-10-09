@@ -30,6 +30,13 @@ class gameRulesView {
   _gameRulesImportantDescription = document.querySelector(
     ".game-rules-important-description"
   );
+  _gameVideos = document.querySelector(".game-rules-videos");
+  _gameRulesCountryAllianceSelectionVideoTitle = document.querySelector(
+    ".game-rules-country-alliance-selection-video-tutorial"
+  );
+  _gameRulesCountryAllianceGameplayVideoTitle = document.querySelector(
+    ".game-rules-country-alliance-gameplay-video-tutorial"
+  );
 
   _returnToMainListenerAdded = false;
 
@@ -116,6 +123,19 @@ class gameRulesView {
     this._gameRulesImportantDescription.textContent = `${
       localization[model.worldCountries.language][
         "Countries in the same alliance of countries must be united by borders. Alliances of countries must be separated from each other by at least one country's borders. An island country can only be used as an alliance with one country or as a trap country."
+      ]
+    }`;
+    this._gameVideos.textContent = `${
+      localization[model.worldCountries.language]["VIDEOS:"]
+    }`;
+    this._gameRulesCountryAllianceSelectionVideoTitle.textContent = `${
+      localization[model.worldCountries.language][
+        "Country Alliances Selection — Video Tutorial"
+      ]
+    }`;
+    this._gameRulesCountryAllianceGameplayVideoTitle.textContent = `${
+      localization[model.worldCountries.language][
+        "Country Alliance Guesser Gameplay"
       ]
     }`;
   }
