@@ -3,7 +3,7 @@ import {
   _registerComponent as t,
   _getProvider,
   getApp as n,
-} from "./firebase-app";
+} from "./firebase-app.js";
 var r;
 !(function (e) {
   (e[(e.DEBUG = 0)] = "DEBUG"),
