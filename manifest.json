@@ -3,7 +3,7 @@
   "short_name": "Countries Guesser",
   "description": "Country Alliance Guesser is an educational strategy game that helps you learn geography, countries, neighbors, and flags. Choose ten alliances of countries and three trap-countries, then take turns guessing with computer. Correct guesses grant extra attempts, and the winner is the one who first finds all opponent's alliances",
   "start_url": "/?source=pwa",
-  "id": "https://www.countriesguesser.com/?source=pwa",
+  "id": "/",
   "display": "standalone",
   "background_color": "#99d9f2",
   "theme_color": "#2b5797",
