@@ -400,6 +400,7 @@ export class PlayMap {
           chatMessageToOpponent.maxLength = 300;
           chatMessageToOpponent.style.overflowX = "hidden";
           const chatMessageToOpponentButton = L.DomUtil.create("input");
+          chatMessageToOpponentButton.style.height = "100%";
           chatMessageToOpponentButton.type = "button";
           chatMessageToOpponentButton.id = "chat-message-to-opponent-button";
           chatMessageToOpponentButton.value = `📩`;
