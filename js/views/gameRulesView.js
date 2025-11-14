@@ -30,6 +30,12 @@ class gameRulesView {
   _gameRulesImportantDescription = document.querySelector(
     ".game-rules-important-description"
   );
+  _gameRulesRandomCountriesSelectionDescription = document.querySelector(
+    ".game-rules-random-country-selection-description"
+  );
+  _gameRulesClearCountriesSelectionDescription = document.querySelector(
+    ".game-rules-clear-country-selection-description"
+  );
   _gameVideos = document.querySelector(".game-rules-videos");
   _gameRulesCountryAllianceSelectionVideoTitle = document.querySelector(
     ".game-rules-country-alliance-selection-video-tutorial"
@@ -37,22 +43,44 @@ class gameRulesView {
   _gameRulesCountryAllianceGameplayVideoTitle = document.querySelector(
     ".game-rules-country-alliance-gameplay-video-tutorial"
   );
+  _gameRulesWithFriendHeader = document.querySelector(
+    ".game-rules-with-friend-heading"
+  );
+  _gameRulesWithFriendDescription = document.querySelector(
+    ".game-rules-with-friend-description"
+  );
+  _gameRulesScoreHeading = document.querySelector(".game-rules-score-heading");
+  _gameRulesScoreDescription = document.querySelector(
+    ".game-rules-score-description"
+  );
 
   _returnToMainListenerAdded = false;
 
-  returnToMain(mainView, donateAuthorView, aboutView) {
+  returnToMain(mainView, donateAuthorView, aboutView, gameRoomView) {
     this.hideGameRulesProject();
     donateAuthorView.hideDonateProject();
     aboutView.hideAboutProject();
+    gameRoomView.hideGameRoomProject();
     mainView.showMain();
     sessionStorage.setItem("currentWindow", "main");
   }
 
-  addReturnToMainHandlerClick(mainView, donateAuthorView, aboutView) {
+  addReturnToMainHandlerClick(
+    mainView,
+    donateAuthorView,
+    aboutView,
+    gameRoomView
+  ) {
     if (!this._returnToMainListenerAdded) {
       this._gameRulesReturnBack.addEventListener(
         "click",
-        this.returnToMain.bind(this, mainView, donateAuthorView, aboutView)
+        this.returnToMain.bind(
+          this,
+          mainView,
+          donateAuthorView,
+          aboutView,
+          gameRoomView
+        )
       );
       this._returnToMainListenerAdded = true;
     }
@@ -81,7 +109,17 @@ class gameRulesView {
     }`;
     this._gameRulesProjectDescription.textContent = `${
       localization[model.worldCountries.language][
-        "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts."
+        "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts."
+      ]
+    }`;
+    this._gameRulesRandomCountriesSelectionDescription.textContent = `${
+      localization[model.worldCountries.language][
+        "To select alliances of countries randomly, click"
+      ]
+    }`;
+    this._gameRulesClearCountriesSelectionDescription.textContent = `${
+      localization[model.worldCountries.language][
+        "To clear selected country alliances, click"
       ]
     }`;
     this._gameRulesNameHeading.textContent = `${
@@ -123,6 +161,22 @@ class gameRulesView {
     this._gameRulesImportantDescription.textContent = `${
       localization[model.worldCountries.language][
         "Countries in the same alliance of countries must be united by borders. Alliances of countries must be separated from each other by at least one country's borders. An island country can only be used as an alliance with one country or as a trap country."
+      ]
+    }`;
+    this._gameRulesWithFriendHeader.textContent = `${
+      localization[model.worldCountries.language]["Play With A Friend Mode"]
+    }`;
+    this._gameRulesWithFriendDescription.textContent = `${
+      localization[model.worldCountries.language][
+        "To play with your friend, you need to select the game mode with a friend on the main page, create a game room and a link to the game for your friend and send it to him. Follow the connection status of your friend at the top of the screen after starting the game. There is also the possibility of communicating with your friend via chat at the bottom of the screen: you can greet him, wish him a good game or give yourself hints about your countries and alliances of countries."
+      ]
+    }`;
+    this._gameRulesScoreHeading.textContent = `${
+      localization[model.worldCountries.language]["Score"]
+    }`;
+    this._gameRulesScoreDescription.textContent = `${
+      localization[model.worldCountries.language][
+        "If a player guesses an alliance of countries that contains four countries, he gets 15 points, three countries - 25 points, two countries - 35 points, one country - 50 points. When falling into an opponent's trap country, the player loses 10 points the first time, 20 points the second time, and 30 points the third time. At the end of the game, the player gets an additional 10 points for each alliance of countries that was not guessed by the opponent."
       ]
     }`;
     this._gameVideos.textContent = `${

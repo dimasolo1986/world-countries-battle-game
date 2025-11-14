@@ -7,7 +7,6 @@ class donateAuthorView {
   _donateText = document.querySelector(".donate-text");
   _donateShareWebSite = document.querySelector(".share-donate");
   _donateQrCodeText = document.querySelector("#donate-qr-code-text");
-  _donateCardText = document.querySelector("#donate-card-number");
 
   _donateReturnBack = document.querySelector(".return-donate");
 
@@ -15,10 +14,11 @@ class donateAuthorView {
   _shareWebSiteListenerAdded = false;
   _makeDonateListenerAdded = false;
 
-  returnBack(mainView, aboutView, gameRulesView) {
+  returnBack(mainView, aboutView, gameRulesView, gameRoomView) {
     this.hideDonateProject();
     mainView.showMain();
     aboutView.hideAboutProject();
+    gameRoomView.hideGameRoomProject();
     gameRulesView.hideGameRulesProject();
     sessionStorage.setItem("currentWindow", "main");
   }
@@ -50,11 +50,17 @@ class donateAuthorView {
     }
   }
 
-  addReturnBackHandlerClick(mainView, aboutView, gameRulesView) {
+  addReturnBackHandlerClick(mainView, aboutView, gameRulesView, gameRoomView) {
     if (!this._returnBackListenerAdded) {
       this._donateReturnBack.addEventListener(
         "click",
-        this.returnBack.bind(this, mainView, aboutView, gameRulesView)
+        this.returnBack.bind(
+          this,
+          mainView,
+          aboutView,
+          gameRulesView,
+          gameRoomView
+        )
       );
       this._returnBackListenerAdded = true;
     }
@@ -89,9 +95,6 @@ class donateAuthorView {
     }`;
     this._donateQrCodeText.textContent = `${
       localization[model.worldCountries.language]["QR Code"]
-    }`;
-    this._donateCardText.textContent = `${
-      localization[model.worldCountries.language]["Card number (UAH):"]
     }`;
   }
 }

@@ -46,10 +46,11 @@ class aboutView {
   _returnToMainListenerAdded = false;
   _gameRulesListenerAdded = false;
 
-  returnToMain(mainView, donateAuthorView, gameRulesView) {
+  returnToMain(mainView, donateAuthorView, gameRulesView, gameRoomView) {
     this.hideAboutProject();
     donateAuthorView.hideDonateProject();
     gameRulesView.hideGameRulesProject();
+    gameRoomView.hideGameRoomProject();
     mainView.showMain();
     sessionStorage.setItem("currentWindow", "main");
   }
@@ -75,11 +76,22 @@ class aboutView {
     }
   }
 
-  addReturnToMainHandlerClick(mainView, donateAuthorView, gameRulesView) {
+  addReturnToMainHandlerClick(
+    mainView,
+    donateAuthorView,
+    gameRulesView,
+    gameRoomView
+  ) {
     if (!this._returnToMainListenerAdded) {
       this._aboutReturnToMain.addEventListener(
         "click",
-        this.returnToMain.bind(this, mainView, donateAuthorView, gameRulesView)
+        this.returnToMain.bind(
+          this,
+          mainView,
+          donateAuthorView,
+          gameRulesView,
+          gameRoomView
+        )
       );
       this._returnToMainListenerAdded = true;
     }
@@ -116,7 +128,7 @@ class aboutView {
     }`;
     this._aboutProjectDescription.textContent = `${
       localization[model.worldCountries.language][
-        "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts."
+        "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts."
       ]
     }`;
     this._aboutDeveloper.textContent = `${

@@ -6,6 +6,7 @@ import { localization } from "./localization/ua.js";
 import gameView from "./views/gameView.js";
 import donateAuthorView from "./views/donateAuthorView.js";
 import gameRulesView from "./views/gameRulesView.js";
+import gameRoomView from "./views/gameRoomView.js";
 const init = function () {
   languageSelectView.init();
   translateAllElements();
@@ -13,47 +14,110 @@ const init = function () {
   aboutView.addReturnToMainHandlerClick(
     mainView,
     donateAuthorView,
-    gameRulesView
+    gameRulesView,
+    gameRoomView
   );
   aboutView.addGameRulesHandlerClick();
   donateAuthorView.addReturnBackHandlerClick(
     mainView,
     aboutView,
-    gameRulesView
+    gameRulesView,
+    gameRoomView
   );
+  gameRoomView.addReturnBackHandlerClick(
+    mainView,
+    aboutView,
+    gameRulesView,
+    donateAuthorView
+  );
+  gameRoomView.addGameRoomCreateListenerHandlerClick();
+  gameRoomView.addGameRoomDeleteListenerHandlerClick();
+  gameRoomView.addGameRoomCopyLinkHandlerClick();
+  gameRoomView.addShareLinkHandlerClick();
+  gameRoomView.addOnlyIndependentCountriesListener();
   donateAuthorView.addShareWebSiteHandlerClick();
   gameRulesView.addReturnToMainHandlerClick(
     mainView,
     donateAuthorView,
-    aboutView
+    aboutView,
+    gameRoomView
   );
   mainView.addAboutHandlerClick(
     aboutView,
     gameView,
     donateAuthorView,
-    gameRulesView
+    gameRulesView,
+    gameRoomView
   );
   mainView.addStartGameHandlerClick(
     aboutView,
     gameView,
     donateAuthorView,
-    gameRulesView
+    gameRulesView,
+    gameRoomView
+  );
+  mainView.addGameModeChangeHandler(gameRoomView);
+  mainView.addOnlyIndependentCountriesListener();
+  mainView.addGameRoomListenerHandler(
+    aboutView,
+    gameView,
+    donateAuthorView,
+    gameRulesView,
+    gameRoomView
   );
   mainView.addSupportProjectHandlerClick(
     aboutView,
     gameView,
     donateAuthorView,
-    gameRulesView
+    gameRulesView,
+    gameRoomView
   );
   mainView.addGameRulesHandlerClick(
     aboutView,
     gameView,
     donateAuthorView,
-    gameRulesView
+    gameRulesView,
+    gameRoomView
   );
   saveCurrentLanguageHandler();
   loadWindow();
+
+  window.addEventListener("beforeunload", function (e) {
+    e.preventDefault();
+    e.returnValue = "";
+  });
+  window.addEventListener("unload", function (e) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const roomId = urlParams.get("gameRoom");
+    if (!roomId) {
+      cleanFirebase(true);
+    }
+    const firebase = gameRoomView.getFirebase();
+    if (firebase && firebase.app && gameView._game) {
+      firebase.sendMessage(
+        JSON.stringify({
+          type: "finish",
+        })
+      );
+    }
+  });
   document.addEventListener("DOMContentLoaded", function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const roomId = urlParams.get("gameRoom");
+    const gameMode = sessionStorage.getItem("game-mode");
+    const gameModeCheckSlider = document.getElementById("gameMode");
+    const gameRoomContainer = document.getElementById(
+      "create-game-room-container"
+    );
+    if (gameMode && gameMode === "1" && !roomId) {
+      gameModeCheckSlider.value = gameMode;
+      gameRoomContainer.classList.remove("not-displayed");
+    } else if (roomId) {
+      gameModeCheckSlider.value = "1";
+    } else {
+      gameModeCheckSlider.value = "0";
+      gameRoomContainer.classList.add("not-displayed");
+    }
     const gameLogo = document.getElementById("game-logo");
     gameLogo.addEventListener("click", function () {
       sessionStorage.setItem("currentWindow", "main");
@@ -129,6 +193,9 @@ const loadWindow = function () {
       case "game-rules":
         loadGameRules();
         break;
+      case "game-room":
+        loadGameRoom();
+        break;
       default:
         loadMain(savedWindow);
         break;
@@ -145,6 +212,7 @@ export const loadMain = function () {
   sessionStorage.setItem("currentWindow", "main");
   donateAuthorView.hideDonateProject();
   gameRulesView.hideGameRulesProject();
+  gameRoomView.hideGameRoomProject();
 };
 
 const loadAboutProject = function () {
@@ -154,6 +222,7 @@ const loadAboutProject = function () {
   sessionStorage.setItem("currentWindow", "about-project");
   donateAuthorView.hideDonateProject();
   gameRulesView.hideGameRulesProject();
+  gameRoomView.hideGameRoomProject();
 };
 
 const translateAllElements = function () {
@@ -161,6 +230,17 @@ const translateAllElements = function () {
   mainView.translateElements();
   donateAuthorView.translateElements();
   gameRulesView.translateElements();
+  gameRoomView.translateElements();
+};
+
+const loadGameRoom = function () {
+  mainView.hideMain();
+  aboutView.hideAboutProject();
+  gameView.hideGame();
+  donateAuthorView.hideDonateProject();
+  gameRulesView.hideGameRulesProject();
+  gameRoomView.showGameRoomProject();
+  sessionStorage.setItem("currentWindow", "game-room");
 };
 
 const loadGameRules = function () {
@@ -169,6 +249,7 @@ const loadGameRules = function () {
   gameView.hideGame();
   donateAuthorView.hideDonateProject();
   gameRulesView.showGameRulesProject();
+  gameRoomView.hideGameRoomProject();
   sessionStorage.setItem("currentWindow", "game-rules");
 };
 
@@ -177,6 +258,7 @@ const loadDonateAuthor = function () {
   gameView.hideGame();
   gameRulesView.hideGameRulesProject();
   aboutView.hideAboutProject();
+  gameRoomView.hideGameRoomProject();
   donateAuthorView.showDonateProject();
   sessionStorage.setItem("currentWindow", "donate-author");
 };
@@ -185,11 +267,15 @@ const languageSelectHandler = function (language) {
   saveLanguage(language);
   model.worldCountries.language = language;
   model.loadAllCountries();
-  location.reload();
+  translateAllElements();
 };
 
 const saveLanguage = function (language) {
   localStorage.setItem("language", language);
+};
+
+const cleanFirebase = function (closeChannel = false) {
+  gameRoomView.cleanFirebase(closeChannel);
 };
 
 const saveCurrentLanguageHandler = function () {

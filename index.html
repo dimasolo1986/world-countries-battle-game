@@ -5,7 +5,7 @@
       {
         "@context": "https://schema.org",
         "@type": "VideoGame",
-        "name": "Country Alliance Guesser",
+        "name": "Countries Guesser Game",
         "alternateName": "CountriesGuesser.com",
         "url": "https://www.countriesguesser.com",
         "image": [
@@ -16,8 +16,9 @@
           "https://www.countriesguesser.com/assets/img/game-configuration-img.png"
         ],
         "inLanguage": ["en", "uk", "de", "fr", "es", "it"],
-        "description": "Country Alliance Guesser is an educational strategy game that helps you learn geography, countries, neighbors, and flags. Choose ten alliances of countries and three trap-countries, then take turns guessing with computer. Correct guesses grant extra attempts, and the winner is the one who first finds all opponent's alliances.",
+        "description": "Countries Guesser Game is an online strategy game that helps you learn geography, countries, neighbors, and flags. Choose ten alliances of countries and three trap-countries, then take turns guessing with computer or your friend. Correct guesses grant extra attempts, and the winner is the one who first finds all opponent's alliances.",
         "applicationCategory": "EducationalGame",
+        "additionalType": "Game",
         "operatingSystem": "Web",
         "genre": ["Strategy", "Quiz", "Educational"],
         "author": {
@@ -34,8 +35,8 @@
         "mainEntity": [
           {
             "@type": "Quiz",
-            "name": "Guess Alliances of Countries",
-            "description": "Choose ten alliances of countries on the world map. Computer also selects alliances. Guessing happens in turns, correct guesses give extra attempts.",
+            "name": "Countries Guesser Game",
+            "description": "Choose ten alliances of countries on the world map. Сomputer or your friend (depends on the selected game mode) also selects alliances. Guessing happens in turns, correct guesses give extra attempts.",
             "inLanguage": ["en", "uk", "de", "fr", "es", "it"],
             "educationalAlignment": {
               "@type": "AlignmentObject",
@@ -53,7 +54,7 @@
         "video": [
           {
             "@type": "VideoObject",
-            "name": "Country Alliance Guesser – Tutorial",
+            "name": "Countries Guesser Game – Tutorial",
             "description": "Step-by-step tutorial showing how to start the game, select alliances and traps",
             "thumbnailUrl": "https://www.countriesguesser.com/assets/img/country-alliance-guesser-game-start-320-138.png",
             "uploadDate": "2025-10-09T10:00:00+03:00",
@@ -63,7 +64,7 @@
           },
           {
             "@type": "VideoObject",
-            "name": "Country Alliance Guesser – Gameplay",
+            "name": "Countries Guesser Game – Gameplay",
             "description": "Gameplay recording demonstrating strategies, traps, and alliances in action.",
             "thumbnailUrl": "https://www.countriesguesser.com/assets/img/country-alliance-guesser-game-play-320-137.png",
             "uploadDate": "2025-10-09T10:00:00+03:00",
@@ -102,17 +103,17 @@
     />
     <meta
       name="keywords"
-      content="world countries game, world countries guesser, world countries guesser game, geography game,
+      content="world countries game, world countries guesser, world countries guesser game, geography game, online game, online geography game,
       world countries, guess countries, country alliance guesser, country guesser, alliance guesser"
     />
     <meta
       name="description"
-      content="Country Alliances Guesser Game - project that helps to learn geography of the world countries, neighboring countries, flags and parts of the world in a game format."
+      content="Countries Guesser Online Game - project that helps to learn geography of the world countries, neighboring countries, flags and parts of the world in a game format."
     />
     <meta property="og:type" content="website" />
     <meta
       property="og:title"
-      content="Country Alliance Guesser – Fun Geography Game About World Countries And
+      content="Countries Guesser Game – Fun Geography Online Game About World Countries And
       Country Alliances"
     />
     <meta
@@ -127,7 +128,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="Country Alliance Guesser – Fun Geography Game About World Countries And
+      content="Countries Guesser Game – Fun Geography Online Game About World Countries And
       Country Alliances"
     />
     <meta
@@ -139,10 +140,9 @@
       content="https://www.countriesguesser.com/assets/img/country-alliance-guesser-game.png"
     />
     <meta name="author" content="Dmytro Solovei, Дмитро Соловей" />
-    <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" content="#2b5797" />
     <title>
-      Country Alliance Guesser – Fun Geography Game About World Countries And
+      Countries Guesser Game – Fun Geography Online Game About World Countries And
       Country Alliances
     </title>
     <link href="css/bootstrap.css" rel="stylesheet" />
@@ -184,6 +184,24 @@
         } else {
           languageSelectElement.value = "en";
         }
+         const urlParams = new URLSearchParams(window.location.search);
+    const roomId = urlParams.get("gameRoom");
+    const allCountries = urlParams.get("allCountries");
+    if(roomId) {
+      const gameRoomInputContainer = document.querySelector(".game-room-input-container");
+      if(gameRoomInputContainer) gameRoomInputContainer.classList.add("not-displayed");
+      const createGameRoomContainer = document.querySelector("#create-game-room-container");
+      if (createGameRoomContainer) createGameRoomContainer.classList.add("not-displayed");
+    }
+    if(allCountries) {
+      const onlyIndependentCountriesCheckbox = document.getElementById("only-independent-countries-checkbox");
+      onlyIndependentCountriesCheckbox.disabled = true;
+      if (allCountries === "true") {
+        onlyIndependentCountriesCheckbox.checked = false;
+      } else {
+        onlyIndependentCountriesCheckbox.checked = true;
+      }
+    }
       });
     </script>
   </head>
@@ -196,13 +214,13 @@
       aria-labelledby="gameModalRulesLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" id="modal-dialog-content">
         <div
           class="modal-content"
           style="
             background-color: #f7fafd;
             font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
-            font-size: 0.7rem;
+            font-size: 0.8rem;
           "
         >
           <div class="modal-header" style="padding: 0.4rem">
@@ -227,14 +245,16 @@
           <div class="modal-body" style="padding: 0.5rem; text-align: justify">
             <div
               id="gameRulesContent"
-              style="overflow: auto; scrollbar-width: thin"
             ></div>
+                <div id="game-rules-friend-link" class="not-displayed" style="font-size: 0.5rem;"><span id="game-rules-friend-link-label" style="font-weight: bold;">Game Link For Friend</span>
+            <input id="game-rules-friend-link-input" readonly aria-readonly="true" style="field-sizing: content;">
+            </div>
           </div>
           <div class="modal-footer" style="padding: 0.2rem">
             <button
               id="gameRulesCloseButton"
               type="button"
-              class="btn btn-primary"
+              class="btn btn-primary rounded-pill"
               data-bs-dismiss="modal"
               style="
                 box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f;
@@ -284,6 +304,10 @@
               id="gameResultHeading"
               style="font-size: 1.2rem; font-weight: bolder"
             ></div>
+            <div
+              id="gameResultScore"
+              style="font-size: 1rem; font-weight: bolder; color: darkgreen"
+            ></div>
             <div id="gameResultHeadingGuesedCountries"></div>
             <div id="gameResultGuessing" style="overflow: auto"></div>
           </div>
@@ -291,7 +315,7 @@
             <button
               id="gameResultCloseButton"
               type="button"
-              class="btn btn-primary"
+              class="btn btn-primary rounded-pill"
               data-bs-dismiss="modal"
               style="
                 box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f;
@@ -303,7 +327,7 @@
             <button
               id="shareGameResults"
               type="button"
-              class="btn btn-warning"
+              class="btn btn-warning rounded-pill"
               style="
                 box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f;
                 font-size: 0.9rem;
@@ -389,18 +413,22 @@
           class="card-img-top"
           alt="Game Configuration Image"
         />
-        <div class="card-body text-center" style="padding: 0.25rem">
+        <div class="card-body text-center" style="padding: 0.2rem">
           <h5
             id="game-header"
-            style="color: cornflowerblue; font-weight: bold"
+            style="
+              color: cornflowerblue;
+              font-weight: bold;
+              margin-bottom: 0.25rem;
+            "
             class="card-title"
           >
             Country Alliance Guesser Game
           </h5>
           <h6
             id="game-configuration-header"
-            class="card-subtitle mb-2"
-            style="color: green"
+            class="card-subtitle mb-1"
+            style="color: green; font-size: 0.75rem; font-weight: bold;"
           >
             Game Configuration
           </h6>
@@ -411,8 +439,8 @@
                 <td>
                   <img
                     src="https://flagcdn.com/w320/ua.png"
-                    width="15px"
-                    height="15px"
+                    width="12px"
+                    height="12px"
                     style="
                       border-radius: 50%;
                       border: 1px solid grey;
@@ -425,8 +453,8 @@
                 <td>
                   <img
                     src="https://flagcdn.com/w320/pl.png"
-                    width="15px"
-                    height="15px"
+                    width="12px"
+                    height="12px"
                     style="
                       border-radius: 50%;
                       border: 1px solid grey;
@@ -439,8 +467,8 @@
                 <td>
                   <img
                     src="https://flagcdn.com/w320/de.png"
-                    width="15px"
-                    height="15px"
+                    width="12px"
+                    height="12px"
                     style="
                       border-radius: 50%;
                       border: 1px solid grey;
@@ -453,8 +481,8 @@
                 <td>
                   <img
                     src="https://flagcdn.com/w320/fr.png"
-                    width="15px"
-                    height="15px"
+                    width="12px"
+                    height="12px"
                     style="
                       border-radius: 50%;
                       border: 1px solid grey;
@@ -473,8 +501,8 @@
                 <td>
                   <img
                     src="https://flagcdn.com/w320/ca.png"
-                    width="15px"
-                    height="15px"
+                    width="12px"
+                    height="12px"
                     style="
                       border-radius: 50%;
                       border: 1px solid grey;
@@ -487,8 +515,8 @@
                 <td>
                   <img
                     src="https://flagcdn.com/w320/us.png"
-                    width="15px"
-                    height="15px"
+                    width="12px"
+                    height="12px"
                     style="
                       border-radius: 50%;
                       border: 1px solid grey;
@@ -501,8 +529,8 @@
                 <td>
                   <img
                     src="https://flagcdn.com/w320/mx.png"
-                    width="15px"
-                    height="15px"
+                    width="12px"
+                    height="12px"
                     style="
                       border-radius: 50%;
                       border: 1px solid grey;
@@ -517,14 +545,14 @@
             <span style="margin-left: 3px; margin-right: 3px">:</span>
             <span>2</span>
           </div>
-          <div style="margin-top: 5px" class="country-union-container">
+          <div class="country-union-container">
             <table>
               <tr>
                 <td>
                   <img
                     src="https://flagcdn.com/w320/ar.png"
-                    width="15px"
-                    height="15px"
+                    width="12px"
+                    height="12px"
                     style="
                       border-radius: 50%;
                       border: 1px solid grey;
@@ -537,8 +565,8 @@
                 <td>
                   <img
                     src="https://flagcdn.com/w320/py.png"
-                    width="15px"
-                    height="15px"
+                    width="12px"
+                    height="12px"
                     style="
                       border-radius: 50%;
                       border: 1px solid grey;
@@ -557,8 +585,8 @@
                 <td>
                   <img
                     src="https://flagcdn.com/w320/au.png"
-                    width="15px"
-                    height="15px"
+                    width="12px"
+                    height="12px"
                     style="
                       border-radius: 50%;
                       border: 1px solid grey;
@@ -577,8 +605,8 @@
                 <td style="background-color: orange">
                   <img
                     src="https://flagcdn.com/w320/bw.png"
-                    width="15px"
-                    height="15px"
+                    width="12px"
+                    height="12px"
                     style="
                       border-radius: 50%;
                       border: 1px solid grey;
@@ -593,12 +621,13 @@
             <span style="margin-left: 3px; margin-right: 3px">:</span>
             <span>3</span>
           </div>
-          <div style="margin-top: 5px; font-size: 0.8rem">
+          <div style="font-size: 0.8rem">
             <input
               type="checkbox"
               id="only-independent-countries-checkbox"
               name="only-independent-countries"
               checked
+              style="vertical-align: text-bottom"
             />
             <label
               for="only-independent-countries-checkbox"
@@ -606,12 +635,48 @@
               >Only Independent Countries</label
             >
           </div>
+          <div class="text-center game-room-input-container" style="font-size: 0.8rem; margin-bottom: 5px;">
+            <p style="margin-bottom: 0px" id="opponent-label">Opponent:</p>
+            <label for="gameMode" id="opponent-label-computer">Computer</label
+            ><span style="margin-left: 3px">🖥️</span>
+            <input
+              type="range"
+              style="width: 15%; cursor: pointer"
+              id="gameMode"
+              name="gameMode"
+              min="0"
+              max="1"
+              value="0"
+            />
+            <span>👨</span>
+            <label for="gameMode" id="opponent-label-friend">Friend</label>
+          </div>
+          <div id="game-room-heading-container" class="not-displayed" style="font-size: 0.7rem;">
+            <span id="game-room-heading-text">Game Room ID:</span><span id="game-room-heading-id" style="margin-left: 3px;"></span>
+            </div>
+          <div id="create-game-room-container" class="not-displayed">
+            <button
+              id="create-game-room-button"
+              style="
+              font-size: 0.7rem;
+                margin-bottom: 5px;
+                box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f;
+                --bs-btn-padding-y: 0.2rem;
+                --bs-btn-padding-x: 0.2rem;
+              "
+              class="btn btn-sm btn-success"
+            >
+              Create Game Room
+            </button>
+          </div>
           <button
             id="game-rules-button"
             style="
-              margin-top: 10px;
-              margin-bottom: 5px;
+            font-size: 0.8rem;
+              margin-top: 5px;
               box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f;
+              --bs-btn-padding-y: 0.2rem;
+              --bs-btn-padding-x: 0.2rem;
             "
             class="btn btn-sm btn-info"
           >
@@ -620,10 +685,12 @@
           <button
             id="support-project-button"
             style="
-              margin-top: 10px;
-              margin-bottom: 5px;
+            font-size: 0.8rem;
+              margin-top: 5px;
               margin-left: 15px;
               box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f;
+              --bs-btn-padding-y: 0.2rem;
+              --bs-btn-padding-x: 0.2rem;
             "
             class="btn btn-sm btn-warning"
           >
@@ -640,8 +707,10 @@
               font-family: Cambria, Cochin, Georgia, Times, Times New Roman,
                 serif;
               font-size: 1.2rem;
+              --bs-btn-padding-y: 0.2rem;
+              --bs-btn-padding-x: 0.2rem;
             "
-            class="btn btn-danger mb-2"
+            class="btn btn-danger mb-2 rounded-pill"
           >
             START
           </button>
@@ -664,6 +733,156 @@
       ></div>
     </div>
     <div
+      id="create-game-room-page"
+      class="container-fluid px-4 not-displayed"
+      style="
+        color: #6495ed;
+        overflow: auto;
+        text-align: justify;
+        background: ghostwhite;
+        height: 100vh;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+        box-shadow: rgba(50, 50, 93, 0.381) 0px 30px 60px -12px inset,
+          rgba(0, 0, 0, 0.381) 0px 18px 36px -18px inset;
+      "
+    >
+      <div class="text-center" style="font-size: 0.9rem;">
+        <button
+          type="button"
+          class="btn btn-sm btn-warning return-game-room rounded-pill"
+          style="
+          font-size: 0.8rem;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5),
+              0 2px 10px 0 rgba(0, 0, 0, 0.12) inset;
+          "
+        >
+          BACK TO MAIN PAGE
+        </button>
+        <div
+          class="game-room-instructions-text"
+          style="margin-top: 5px; color: black; font-size: 0.9rem; text-align: justify;"
+        >
+          <span id="game-room-instruction-header" style="font-weight: bold;">Instructions.</span>&nbsp;<span id="game-room-instruction-text">To play with your friend, you need: 1. Choose the desired game configuration, whether you want to guess countries and alliances of countries from all over the world or only independent ones. You can do this on this page or on the main page (after creating a game room, you will not be able to change this setting). 2. Create a game room and a link to the game for your friend by clicking the 'Create Game Room' button. 3. Copy the game link by clicking the 'Copy Link' button and send it to your friend or share the game link by clicking the 'Share Link With Friend' button. 4. After completing a game or several games, you can delete the game room by clicking the 'Delete Game Room' button (after deleting the game room, your friend will no longer be able to use the game link to play with you).</span>
+        </div>
+        <h6
+            id="game-configuration-header-game-room"
+            class="card-subtitle mb-1"
+            style="color: green; font-size: 0.85rem; font-weight: bold; margin-top: 5px;"
+          >
+            Game Configuration
+          </h6>
+          <div style="font-size: 0.8rem">
+            <input
+              type="checkbox"
+              id="only-independent-countries-checkbox-game-room"
+              name="only-independent-countries-game-room"
+              checked
+              style="vertical-align: text-bottom; color: black;"
+            />
+            <label
+              for="only-independent-countries-checkbox-game-room"
+              id="only-independent-countries-checkbox-label-game-room"
+              style="color: black;"
+              >Only Independent Countries</label
+            >
+          </div>
+        <p
+          class="game-room-create-delete"
+          style="margin-top: 10px; margin-bottom: 10px"
+        >
+          <button
+            type="button"
+            class="btn btn-sm btn-success create-game-room"
+            style="
+              font-size: 0.8rem;
+              box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5),
+                0 2px 10px 0 rgba(0, 0, 0, 0.12) inset;
+                margin-right: 10px;
+                  --bs-btn-padding-y: 0.2rem;
+                --bs-btn-padding-x: 0.2rem;
+            "
+          >
+            Create Game Room
+          </button>
+          <button
+            disabled
+            type="button"
+            class="btn btn-sm btn-danger delete-game-room"
+            style="
+              font-size: 0.8rem;
+              box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5),
+                0 2px 10px 0 rgba(0, 0, 0, 0.12) inset;
+                  --bs-btn-padding-y: 0.2rem;
+                --bs-btn-padding-x: 0.2rem;
+            "
+          >
+            Delete Game Room
+          </button>
+          <div>
+              <div
+              id="gameRoomLoaderSpinner"
+              class="text-center not-displayed text-success"
+            >
+              <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+            <div>
+               
+            <label for="roomIdInput" id="game-link-for-friend-label" style="color: black; font-size: 0.6rem; font-weight: bolder;">Game Link For Friend</label>
+            </div>
+            <input
+            id="roomIdInput"
+            class="room-id-input"
+            placeholder="Click 'Create Game Room' to generate game link"
+            readonly
+            aria-readonly="true"
+            style="field-sizing: content; font-size: 0.65rem;"
+          />
+          <div id="copy-to-clipboard-label" style="font-size: 0.6rem; font-weight: bold;"></div>
+        </div>
+        </p>
+        <p
+          class="game-room-heading"
+          style="margin-top: 10px; margin-bottom: 10px"
+        >
+        <button
+        disabled
+            type="button"
+            class="btn btn-sm btn-info copy-to-clipboard-link"
+            style="
+              font-size: 0.8rem;
+              box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5),
+                0 2px 10px 0 rgba(0, 0, 0, 0.12) inset;
+                margin-right: 10px;
+                  --bs-btn-padding-y: 0.2rem;
+                --bs-btn-padding-x: 0.2rem;
+            "
+          >
+            Copy Link
+          </button>
+          <button
+          disabled
+            type="button"
+            class="btn btn-sm btn-warning share-game-room"
+            style="
+             font-size: 0.8rem;
+              box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5),
+                0 2px 10px 0 rgba(0, 0, 0, 0.12) inset;
+                  --bs-btn-padding-y: 0.2rem;
+                --bs-btn-padding-x: 0.2rem;
+            "
+          >
+            Share Link With Friend
+          </button>
+        </p>
+      </div>
+    </div>
+    <div
       id="donate-author-page"
       class="container-fluid px-4 not-displayed"
       style="
@@ -682,7 +901,7 @@
       <div class="text-center">
         <button
           type="button"
-          class="btn btn-sm btn-warning return-donate"
+          class="btn btn-sm btn-warning return-donate rounded-pill"
           style="
             margin-top: 15px;
             margin-bottom: 5px;
@@ -716,14 +935,6 @@
           support it financially (money is spent on the development of
           educational projects and support for Ukraine's right to exist on the
           world map). Thank you!
-        </div>
-        <div
-          class="donate-card"
-          style="margin-top: 10px; color: black; font-size: 0.9rem"
-        >
-          <span style="margin-right: 5px">💳</span
-          ><span id="donate-card-number">Card number (UAH):</span>
-          <span>4441 1110 0670 3668</span>
         </div>
         <p class="donate-heading" style="margin-top: 10px; margin-bottom: 10px">
           <button
@@ -807,7 +1018,7 @@
     >
       <button
         type="button"
-        class="btn btn-sm btn-warning return-game-rules"
+        class="btn btn-sm btn-warning return-game-rules rounded-pill"
         style="
           margin-top: 10px;
           box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5),
@@ -820,10 +1031,10 @@
         class="game-rules-heading"
         style="margin-top: 10px; margin-bottom: 5px"
       ></p>
-      <div id="game-rules-project-container">
+      <div id="game-rules-project-container" style="font-size: 0.8rem;">
         <span
           class="game-rules-project-name"
-          style="font-weight: bold; font-size: 1rem"
+          style="font-weight: bold; font-size: 0.9rem"
           >World Country Alliances Guesser Game</span
         >
         -
@@ -831,7 +1042,7 @@
           >project that helps to study the geography of the countries of the
           world, neighboring countries, flags and parts of the world in a game
           format. Choose ten different alliances of countries on the map, as
-          well as three trap-countries for your opponent. The computer will also
+          well as three trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also
           choose the appropriate number of alliances of countries and
           trap-countries. The attempts to guess the countries take place in
           turn. The one who guesses the opponent's country gets an extra try.
@@ -849,8 +1060,8 @@
             <td>
               <img
                 src="https://flagcdn.com/w320/ua.png"
-                width="12px"
-                height="12px"
+                width="10px"
+                height="10px"
                 style="
                   border-radius: 50%;
                   border: 1px solid grey;
@@ -863,8 +1074,8 @@
             <td>
               <img
                 src="https://flagcdn.com/w320/pl.png"
-                width="12px"
-                height="12px"
+                width="10px"
+                height="10px"
                 style="
                   border-radius: 50%;
                   border: 1px solid grey;
@@ -877,8 +1088,8 @@
             <td>
               <img
                 src="https://flagcdn.com/w320/de.png"
-                width="12px"
-                height="12px"
+                width="10px"
+                height="10px"
                 style="
                   border-radius: 50%;
                   border: 1px solid grey;
@@ -891,8 +1102,8 @@
             <td>
               <img
                 src="https://flagcdn.com/w320/fr.png"
-                width="12px"
-                height="12px"
+                width="10px"
+                height="10px"
                 style="
                   border-radius: 50%;
                   border: 1px solid grey;
@@ -915,8 +1126,8 @@
             <td>
               <img
                 src="https://flagcdn.com/w320/ca.png"
-                width="12px"
-                height="12px"
+                width="10px"
+                height="10px"
                 style="
                   border-radius: 50%;
                   border: 1px solid grey;
@@ -929,8 +1140,8 @@
             <td>
               <img
                 src="https://flagcdn.com/w320/us.png"
-                width="12px"
-                height="12px"
+                width="10px"
+                height="10px"
                 style="
                   border-radius: 50%;
                   border: 1px solid grey;
@@ -943,8 +1154,8 @@
             <td>
               <img
                 src="https://flagcdn.com/w320/mx.png"
-                width="12px"
-                height="12px"
+                width="10px"
+                height="10px"
                 style="
                   border-radius: 50%;
                   border: 1px solid grey;
@@ -967,8 +1178,8 @@
             <td>
               <img
                 src="https://flagcdn.com/w320/ar.png"
-                width="12px"
-                height="12px"
+                width="10px"
+                height="10px"
                 style="
                   border-radius: 50%;
                   border: 1px solid grey;
@@ -981,8 +1192,8 @@
             <td>
               <img
                 src="https://flagcdn.com/w320/py.png"
-                width="12px"
-                height="12px"
+                width="10px"
+                height="10px"
                 style="
                   border-radius: 50%;
                   border: 1px solid grey;
@@ -1005,8 +1216,8 @@
             <td>
               <img
                 src="https://flagcdn.com/w320/au.png"
-                width="12px"
-                height="12px"
+                width="10px"
+                height="10px"
                 style="
                   border-radius: 50%;
                   border: 1px solid grey;
@@ -1029,8 +1240,8 @@
             <td style="background-color: orange">
               <img
                 src="https://flagcdn.com/w320/bw.png"
-                width="12px"
-                height="12px"
+                width="10px"
+                height="10px"
                 style="
                   border-radius: 50%;
                   border: 1px solid grey;
@@ -1046,6 +1257,14 @@
         <span class="game-rules-three-trap-countries-description"
           >Choose three trap countries for the opponent on the world map.</span
         >
+        <br />
+         <span class="game-rules-random-country-selection-description"
+          >To select alliances of countries randomly, click</span
+        ><span> - </span><i class="fa-solid fa-dice"></i>
+        <br />
+          <span class="game-rules-clear-country-selection-description"
+          >To clear selected country alliances, click</span
+        ><span> - </span><i class="fa-solid fa-trash"></i>
         <br />
         <span class="game-rules-trap-countries-rules"
           >When entering an opponent's trap country, he receives one of three
@@ -1064,11 +1283,29 @@
           at least one country's borders. An island country can only be used as
           an alliance with one country or as a trap country.
         </span>
+         <p style="margin-bottom: 0px">
+          <span class="game-rules-score-heading" style="font-weight: bold"
+            >Score</span
+          >:
+        </p>
+         <span class="game-rules-score-description"
+          >
+          If a player guesses an alliance of countries that contains four countries, he gets 15 points, three countries - 25 points, two countries - 35 points, one country - 50 points. When falling into an opponent's trap country, the player loses 10 points the first time, 20 points the second time, and 30 points the third time. At the end of the game, the player gets an additional 10 points for each alliance of countries that was not guessed by the opponent.
+        </span>
+        <br />
+         <p style="margin-bottom: 0px">
+          <span class="game-rules-with-friend-heading" style="font-weight: bold"
+            >Play With A Friend Mode</span
+          >:
+        </p>
+         <span class="game-rules-with-friend-description"
+          >To play with your friend, you need to select the game mode with a friend on the main page, create a game room and a link to the game for your friend and send it to him. Follow the connection status of your friend at the top of the screen after starting the game. There is also the possibility of communicating with your friend via chat at the bottom of the screen: you can greet him, wish him a good game or give yourself hints about your countries and alliances of countries.
+        </span>
       </div>
       <figure class="text-center">
         <p
           class="game-rules-videos"
-          style="margin-top: 10px; font-size: 1rem; font-weight: bold"
+          style="margin-top: 10px; font-size: 1rem; font-weight: bold; margin-bottom: 5px;"
         >
           VIDEOS:
         </p>
@@ -1086,6 +1323,7 @@
         <video
           class="country-alliances-selection-video-tag"
           controls
+          loading="lazy"
           style="
             width: 85%;
             border-radius: 5px;
@@ -1114,6 +1352,7 @@
         <video
           class="country-alliances-gameplay-video-tag"
           controls
+          loading="lazy"
           style="
             width: 85%;
             border-radius: 5px;
@@ -1148,7 +1387,7 @@
     >
       <button
         type="button"
-        class="btn btn-sm btn-warning return-about"
+        class="btn btn-sm btn-warning return-about rounded-pill"
         style="
           margin-top: 10px;
           box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5),
@@ -1198,7 +1437,7 @@
           >project that helps to study the geography of the countries of the
           world, neighboring countries, flags and parts of the world in a game
           format. Choose ten different alliances of countries on the map, as
-          well as three trap-countries for your opponent. The computer will also
+          well as three trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also
           choose the appropriate number of alliances of countries and
           trap-countries. The attempts to guess the countries take place in
           turn. The one who guesses the opponent's country gets an extra try.
@@ -1321,6 +1560,7 @@
         <video
           class="about-country-alliances-gameplay-video-tag"
           controls
+          loading="lazy"
           style="
             width: 85%;
             border-radius: 5px;
@@ -1349,6 +1589,7 @@
         <video
           class="about-country-alliances-gameplay-video-tag"
           controls
+          loading="lazy"
           style="
             width: 85%;
             border-radius: 5px;
@@ -1399,18 +1640,10 @@
     </footer>
 
     <script defer src="js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/firebase.js"></script>
     <script type="module" src="js/Control.FullScreen.js"></script>
     <script type="module" src="js/controller.js"></script>
     <script type="module" src="js/leaflet-control-topcenter.js"></script>
     <script type="module" src="js/leaflet.contextmenu.js"></script>
-    <script type="module">
-      if ("serviceWorker" in navigator) {
-        navigator.serviceWorker
-          .register(new URL("/service-worker.js", import.meta.url))
-          .then(() => {})
-          .catch(() => {});
-      }
-    </script>
-    <!-- <script type="module" src="js/firebase.js"></script> -->
   </body>
 </html>

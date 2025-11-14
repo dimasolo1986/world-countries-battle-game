@@ -3,14 +3,16 @@ import { loadMain } from "./controller.js";
 import { showGameResultWindow, showGameRulesWindow } from "./helpers.js";
 import * as model from "./model.js";
 export class Game {
-  id;
   finished = false;
+  isOpponentPlayerReady = true;
+  isPlayerReady = true;
   gameModalResultLabel = document.getElementById("gameModalResultLabel");
   gameModalRulesLabel = document.getElementById("gameModalRulesLabel");
   gameModalRulesContent = document.getElementById("gameRulesContent");
   gameModalRulesCloseButton = document.getElementById("gameRulesCloseButton");
   guessCountriesMessageField;
   gameModalHeading = document.getElementById("gameResultHeading");
+  gameResultScore = document.getElementById("gameResultScore");
   gameModalHeadingGuessed = document.getElementById(
     "gameResultHeadingGuesedCountries"
   );
@@ -18,16 +20,15 @@ export class Game {
     document.getElementById("gameResultGuessing");
   gameModalResultCloseButton = document.getElementById("gameResultCloseButton");
   gameModalResultShareButton = document.getElementById("shareGameResults");
-  constructor(playerOne, playerTwo, playMap) {
+  constructor(playerOne, playerTwo, playMap, firebase, gameConfiguration) {
     this.guessCountriesMessageField = document.querySelector(
       "#countries-battle-game-message"
     );
     this.playerOne = playerOne;
     this.playerTwo = playerTwo;
     this.playMap = playMap;
-  }
-  initGame() {
-    this.id = crypto.randomUUID();
+    this.firebase = firebase;
+    this.gameConfiguration = gameConfiguration;
   }
 
   showGameRules() {
@@ -38,10 +39,26 @@ export class Game {
     this.gameModalRulesContent.innerHTML = document.getElementById(
       "game-rules-project-container"
     ).innerHTML;
+    const urlParams = new URLSearchParams(window.location.search);
+    const gameRoomId = urlParams.get("gameRoom");
+    if (this.gameConfiguration.gameMode === "user" && !gameRoomId) {
+      document.getElementById("game-rules-friend-link-label").textContent =
+        localization[model.worldCountries.language]["Game Link For Friend"] +
+        ":";
+      document.getElementById("game-rules-friend-link-input").value =
+        document.getElementById("roomIdInput").value;
+      document
+        .getElementById("game-rules-friend-link")
+        .classList.remove("not-displayed");
+    } else {
+      document
+        .getElementById("game-rules-friend-link")
+        .classList.add("not-displayed");
+    }
     showGameRulesWindow();
   }
 
-  showGameResult(playerOneWon) {
+  showGameResult(playerOneWon, deleteGameRoom = false) {
     this.gameModalResultGuessedCountries.innerHTML = "";
     this.playerOne.enableMapInteraction();
     this.gameModalResultLabel.textContent =
@@ -55,6 +72,12 @@ export class Game {
         localization[model.worldCountries.language][
           "Congratulations! You won the game!"
         ];
+      this.gameResultScore.textContent =
+        localization[model.worldCountries.language]["Score"] +
+        ": " +
+        this.playerOne.score +
+        " " +
+        localization[model.worldCountries.language]["Points"];
       this.gameModalHeading.textContent =
         localization[model.worldCountries.language][
           "Congratulations! You won the game!"
@@ -167,15 +190,28 @@ export class Game {
         localization[model.worldCountries.language][
           "Sorry! You lost the game!"
         ];
+      this.gameResultScore.textContent =
+        localization[model.worldCountries.language]["Score"] +
+        ": " +
+        this.playerOne.score +
+        " " +
+        localization[model.worldCountries.language]["Points"];
       this.gameModalHeading.textContent =
         localization[model.worldCountries.language][
           "Sorry! You lost the game!"
         ];
       this.gameModalHeading.style.color = "red";
-      this.gameModalHeadingGuessed.textContent =
-        localization[model.worldCountries.language][
-          "Computer guessed all your countries:"
-        ];
+      if (this.playerTwo.playerType === "friendPlayer") {
+        this.gameModalHeadingGuessed.textContent =
+          localization[model.worldCountries.language][
+            "Opponent guessed all your countries:"
+          ];
+      } else {
+        this.gameModalHeadingGuessed.textContent =
+          localization[model.worldCountries.language][
+            "Computer guessed all your countries:"
+          ];
+      }
       const index =
         Math.floor(this.playerOne.selectedCountryCodes.size / 2) +
         (this.playerOne.selectedCountryCodes.size % 2);
@@ -274,21 +310,29 @@ export class Game {
       this.gameModalResultGuessedCountries.appendChild(userCountriesContainer);
     }
     showGameResultWindow();
-    this.playMap.finishGameHandler(false);
+    this.playMap.finishGameHandler(false, deleteGameRoom);
   }
 
-  finishGame() {
-    this.playerOne.cleanPlayerResources();
-    this.playerTwo.cleanPlayerResources();
+  finishGame(deleteGameRoom) {
+    if (this.gameConfiguration.gameMode === "user") {
+      this.playerOne.sendFinishGameToOpponent();
+    }
+    this.playerOne.cleanPlayerResources(deleteGameRoom);
+    this.playerTwo.cleanPlayerResources(deleteGameRoom);
     this.playerOne = null;
     this.playerTwo = null;
     this.playMap = null;
-    this.id = null;
     this.finished = true;
     loadMain();
   }
 
   playHit() {
+    if (
+      this.gameConfiguration.gameMode === "user" &&
+      (!this.isPlayerReady || !this.isOpponentPlayerReady)
+    ) {
+      return;
+    }
     if (this.playerOne.playerAttemptToGuess) {
       this.playerOne.playerHit();
     } else {
@@ -297,7 +341,77 @@ export class Game {
   }
 
   startGame() {
+    if (
+      this.gameConfiguration.gameMode === "user" &&
+      (this.firebase.opponentConnectionState === "disconnected" ||
+        this.firebase.opponentConnectionState === "failed" ||
+        this.firebase.opponentConnectionState === "connecting")
+    ) {
+      alert(
+        localization[model.worldCountries.language][
+          "Connection with your opponent has failed. Try your attempt later."
+        ]
+      );
+      return;
+    }
+    if (
+      this.gameConfiguration.gameMode === "user" &&
+      this.playerOne.playerConfigured &&
+      !this.playerTwo.playerConfigured
+    ) {
+      this.playerOne.gameMessageField.textContent =
+        localization[model.worldCountries.language][
+          "Opponent has not yet selected countries. Wait for the message to start the game."
+        ];
+      return;
+    }
     this.playMap.initStartPlayMapView();
+    this.playerOne.sendStartGameToOpponent();
+    if (
+      this.gameConfiguration.gameMode === "user" &&
+      this.firebase &&
+      !this.firebase.isHost
+    ) {
+      this.playerTwo.playerHit();
+      return;
+    }
     this.playerOne.playerHit();
+  }
+
+  opponentConnectionHandler(connectionState) {
+    if (this.playerOne)
+      this.playerOne.opponentConnectionHandler(connectionState);
+  }
+
+  requestSelectedCountriesFromOpponent() {
+    if (
+      this.firebase &&
+      this.firebase.opponentConnectionState === "connected"
+    ) {
+      const requestCountriesJson = JSON.stringify({
+        type: "reqCountries",
+      });
+      this.firebase.sendMessage(requestCountriesJson);
+    }
+  }
+
+  sendChatMessage(message) {
+    if (
+      this.firebase &&
+      this.firebase.opponentConnectionState === "connected"
+    ) {
+      const chatMessageJson = JSON.stringify({
+        type: "chat",
+        value: message,
+      });
+      this.firebase.sendChatMessage(chatMessageJson);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  opponentMessagesHandler(message) {
+    if (this.playerOne) this.playerOne.opponentMessagesHandler(message);
   }
 }

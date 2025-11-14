@@ -12,7 +12,7 @@ class gameView {
   _playerTwo;
   _game;
 
-  initGameView() {
+  initGameView(firebase) {
     this._gameConfiguration = new GameConfig("default");
     this._playMap = new PlayMap(
       "playMap",
@@ -28,23 +28,36 @@ class gameView {
       this._playMap,
       "player-one-selected-countries-container",
       "player-one-countries-number",
-      this._gameConfiguration
+      this._gameConfiguration,
+      "userPlayer"
     );
     this._playerTwo = new Player(
       this._playMap,
       "player-two-selected-countries-container",
       "player-two-countries-number",
       this._gameConfiguration,
-      "computerPlayer"
+      this._gameConfiguration.gameMode === "computer"
+        ? "computerPlayer"
+        : "friendPlayer"
     );
     this._playerOne.setOpponentPlayer(this._playerTwo);
     this._playerTwo.setOpponentPlayer(this._playerOne);
-    this._game = new Game(this._playerOne, this._playerTwo, this._playMap);
+    this._game = new Game(
+      this._playerOne,
+      this._playerTwo,
+      this._playMap,
+      this._gameConfiguration.gameMode === "computer" ? undefined : firebase,
+      this._gameConfiguration
+    );
+    firebase.setGame(this._game);
     this._playMap.setGame(this._game);
     this._playMap.setPlayerOne(this._playerOne);
     this._playMap.setPlayerTwo(this._playerTwo);
     this._playerOne.setGame(this._game);
     this._playerTwo.setGame(this._game);
+    this._playerOne.initData();
+    this._playerTwo.initData();
+    this._playerOne.requestSelectedCountriesFromOpponent();
   }
 
   showGame() {

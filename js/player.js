@@ -19,6 +19,9 @@ export class Player {
   lastGuessedCountryNames = [];
   usedHintsCount = 0;
   trapCountryHitted = 0;
+  score = 0;
+  opponentPlayerConfigAcknowledged = false;
+  opponentPlayerStartAcknowledged = false;
   playerAttemptToGuess = false;
   playerWonGame = false;
   playerConfigured = false;
@@ -62,10 +65,14 @@ export class Player {
       "countries-number-field"
     );
     this.playButton = document.querySelector(".guess-country-game-play");
-    this.initData();
   }
 
-  cleanPlayerResources() {
+  cleanPlayerResources(deleteGameRoom) {
+    if (deleteGameRoom) {
+      this.resetGameRoomContainer();
+      sessionStorage.removeItem("game-room");
+      if (this.game.firebase) this.game.firebase.cleanupResources(false);
+    }
     this.playMap = null;
     this.playerMap = null;
     this.opponentPlayer = null;
@@ -90,8 +97,11 @@ export class Player {
     this.countryMarkers = null;
     this.hints = null;
     this.usedHintsCount = null;
+    this.score = null;
     this.trapCountryHitted = null;
     this.playerAttemptToGuess = null;
+    this.opponentPlayerConfigAcknowledged = null;
+    this.opponentPlayerStartAcknowledged = null;
     this.playerConfigured = null;
     this.playerWonGame = null;
     this.countryUnions = null;
@@ -112,9 +122,12 @@ export class Player {
     this.countryPopups = {};
     this.countryMarkers = {};
     this.hints = {};
+    this.score = 0;
     this.usedHintsCount = 0;
     this.trapCountryHitted = 0;
     this.playerAttemptToGuess = false;
+    this.opponentPlayerConfigAcknowledged = false;
+    this.opponentPlayerStartAcknowledged = false;
     this.playerConfigured = false;
     this.playerWonGame = false;
     this.lastGuessedCountryNames = [];
@@ -205,6 +218,16 @@ export class Player {
         };
       }
     });
+    if (
+      this.gameConfiguration.gameMode === "user" &&
+      this.game &&
+      this.game.firebase &&
+      this.game.firebase.opponentConnectionState
+    ) {
+      this.game.opponentConnectionHandler(
+        this.game.firebase.opponentConnectionState
+      );
+    }
     this.addCountryBoundariesAndMarkers(
       this.gameConfiguration.maxCountriesNumberInUnion
     );
@@ -588,6 +611,15 @@ export class Player {
         );
         this.opponentPlayer.trapCountryHitted =
           this.opponentPlayer.trapCountryHitted + 1;
+        if (this.opponentPlayer.trapCountryHitted === 1) {
+          this.score = this.score - 10;
+        } else if (this.opponentPlayer.trapCountryHitted === 2) {
+          this.score = this.score - 20;
+        } else {
+          this.score = this.score - 30;
+        }
+        document.getElementById("player-two-score-field").textContent =
+          this.score;
         this.opponentPlayer.addHint(countryCode, false);
         this.opponentPlayer.setElementStyle(countryBoundary, {
           weight: 1,
@@ -674,6 +706,17 @@ export class Player {
           this.countriesToGuessNext = [];
           const countryUnion =
             this.opponentPlayer.countryUnions[countryUnionIndex];
+          if (countryUnion.length === 4) {
+            this.score = this.score + 15;
+          } else if (countryUnion.length === 3) {
+            this.score = this.score + 25;
+          } else if (countryUnion.length === 2) {
+            this.score = this.score + 35;
+          } else if (countryUnion.length === 1) {
+            this.score = this.score + 50;
+          }
+          document.getElementById("player-two-score-field").textContent =
+            this.score;
           countryUnion.forEach((countryObject) => {
             const countryCode = Object.keys(countryObject)[0];
             const country = this.opponentPlayer.countries[countryCode];
@@ -770,8 +813,8 @@ export class Player {
           weight: 1,
           color: "grey",
           fillColor: "grey",
-          fillOpacity: 0.3,
-          opacity: 0.6,
+          fillOpacity: 0.5,
+          opacity: 0.8,
           className: countryCode,
         });
         this.gameMessageField.textContent =
@@ -791,16 +834,22 @@ export class Player {
       }
 
       if (+this.opponentPlayer.playerCountriesNumberField.textContent === 0) {
+        this.score += +this.playerCountriesNumberField.textContent * 10;
         this.playerWonGame = true;
         this.game.finished = true;
-        this.game.showGameResult(false);
+        this.game.showGameResult(false, false);
         return;
       }
-    } else {
+    } else if (this.playerType === "userPlayer") {
+      this.opponentPlayer.enableMapInteraction();
       if (this.opponentPlayer.countryCodes.length <= 5) {
         this.opponentPlayer.addAvailableCountriesPanel();
       }
-      this.playMap.setMapFiledLabel("Computer Map");
+      this.playMap.setMapFiledLabel(
+        this.gameConfiguration.gameMode === "user"
+          ? "Opponent Map"
+          : "Computer Map"
+      );
       this.countriesNumberField.textContent =
         this.opponentPlayer.countryCodes.length;
       this.gameMessageField.textContent =
@@ -820,6 +869,20 @@ export class Player {
             animate: false,
           });
       }
+      this.game.isOpponentPlayerReady = false;
+      this.game.isPlayerReady = false;
+      return;
+    } else {
+      this.opponentPlayer.disableMapInteraction();
+      this.playMap.setMapFiledLabel("Your Map");
+      this.countriesNumberField.textContent =
+        this.opponentPlayer.countryCodes.length;
+      this.gameMessageField.textContent =
+        localization[model.worldCountries.language][
+          "Opponent is guessing your country..."
+        ];
+      this.game.isOpponentPlayerReady = false;
+      this.game.isPlayerReady = false;
       return;
     }
     this.game.playHit();
@@ -889,6 +952,32 @@ export class Player {
   }
 
   async addUserClickCountriesPlay(countryCode, countryBoundary, countryMarker) {
+    if (
+      this.gameConfiguration.gameMode === "user" &&
+      (this.game.firebase.opponentConnectionState === "disconnected" ||
+        this.game.firebase.opponentConnectionState === "failed" ||
+        this.game.firebase.opponentConnectionState === "connecting")
+    ) {
+      alert(
+        localization[model.worldCountries.language][
+          "Connection with your opponent has failed. Try your attempt later."
+        ]
+      );
+      return;
+    }
+    if (
+      this.gameConfiguration.gameMode === "user" &&
+      !this.opponentPlayer.opponentPlayerStartAcknowledged
+    ) {
+      this.gameMessageField.textContent =
+        localization[model.worldCountries.language][
+          "Opponent has not yet started game. Wait for the message to start."
+        ];
+      return;
+    }
+    if (this.gameConfiguration.gameMode === "user") {
+      this.sendMoveToOpponent(countryCode);
+    }
     this.disableMapInteraction();
     this.alreadyGuessedCountryCodes.push(countryCode);
     const country = this.countries[countryCode];
@@ -921,8 +1010,27 @@ export class Player {
           ]
         }</span>`
       );
-      this.trapCountryHitted = this.trapCountryHitted + 1;
-      this.addHint(countryCode, true);
+      if (this.gameConfiguration.gameMode === "user") {
+        this.trapCountryHitted = this.trapCountryHitted + 1;
+        this.addSelectedCountryToCountryPanel(
+          this.playerSelectedCountriesContainerId,
+          countryCode,
+          Array.from(this.selectedCountryTrapCodes).indexOf(countryCode) + 21,
+          true
+        );
+      } else {
+        this.trapCountryHitted = this.trapCountryHitted + 1;
+        this.addHint(countryCode, true);
+      }
+      if (this.trapCountryHitted === 1) {
+        this.opponentPlayer.score = this.opponentPlayer.score - 10;
+      } else if (this.trapCountryHitted === 2) {
+        this.opponentPlayer.score = this.opponentPlayer.score - 20;
+      } else {
+        this.opponentPlayer.score = this.opponentPlayer.score - 30;
+      }
+      document.getElementById("player-one-score-field").textContent =
+        this.opponentPlayer.score;
       this.setElementStyle(countryBoundary, {
         weight: 1,
         color: "orange",
@@ -987,6 +1095,17 @@ export class Player {
         this.playerCountriesNumberField.textContent =
           +this.playerCountriesNumberField.textContent - 1;
         const countryUnion = this.countryUnions[countryUnionIndex];
+        if (countryUnion.length === 4) {
+          this.opponentPlayer.score = this.opponentPlayer.score + 15;
+        } else if (countryUnion.length === 3) {
+          this.opponentPlayer.score = this.opponentPlayer.score + 25;
+        } else if (countryUnion.length === 2) {
+          this.opponentPlayer.score = this.opponentPlayer.score + 35;
+        } else if (countryUnion.length === 1) {
+          this.opponentPlayer.score = this.opponentPlayer.score + 50;
+        }
+        document.getElementById("player-one-score-field").textContent =
+          this.opponentPlayer.score;
         countryUnion.forEach((countryObject) => {
           const countryCode = Object.keys(countryObject)[0];
           this.setElementStyle(this.countryBoundaries[countryCode], {
@@ -1088,8 +1207,8 @@ export class Player {
         weight: 1,
         color: "grey",
         fillColor: "grey",
-        fillOpacity: 0.3,
-        opacity: 0.6,
+        fillOpacity: 0.5,
+        opacity: 0.8,
         className: countryCode,
       });
       this.gameMessageField.textContent =
@@ -1107,10 +1226,19 @@ export class Player {
       delete this.countryBoundaries[countryCode];
     }
     if (+this.playerCountriesNumberField.textContent === 0) {
+      if (this.gameConfiguration.gameMode === "user") {
+        this.sendEndGameToOpponent();
+      }
+      this.opponentPlayer.score +=
+        +this.opponentPlayer.playerCountriesNumberField.textContent * 10;
       this.opponentPlayer.playerWonGame = true;
       this.game.finished = true;
-      this.game.showGameResult(true);
+      this.game.showGameResult(true, false);
       return;
+    }
+    if (this.gameConfiguration.gameMode === "user") {
+      this.sendMoveAckToOpponent();
+      this.game.isPlayerReady = true;
     }
     this.game.playHit();
   }
@@ -1260,6 +1388,10 @@ export class Player {
     this.gameMessageField.textContent = `${
       localization[model.worldCountries.language]["Press 'Play' to start game!"]
     }`;
+    this.playerConfigured = true;
+    if (this.gameConfiguration.gameMode === "user") {
+      this.sendCountriesConfigurationToOpponent();
+    }
     this.playButton.disabled = false;
   }
 
@@ -1448,6 +1580,8 @@ export class Player {
       ]
     }`;
     this.playMap.setSelectedCountryFiledHtml("");
+    if (this.gameConfiguration.gameMode === "user")
+      this.sendCleanCountriesSelectionToOpponent();
   }
 
   isEnoughCountryNeighbours(countryCode, minNeighboursNumber) {
@@ -2015,6 +2149,9 @@ export class Player {
           });
           this.playButton.disabled = false;
           this.playerConfigured = true;
+          if (this.gameConfiguration.gameMode === "user") {
+            this.sendCountriesConfigurationToOpponent();
+          }
           this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
             animate: false,
           });
@@ -2251,5 +2388,585 @@ export class Player {
       });
       this.playerMap.addLayer(countryBoundary);
     });
+  }
+
+  sendCleanCountriesSelectionToOpponent() {
+    if (
+      this.game.firebase &&
+      this.game.firebase.opponentConnectionState === "connected"
+    ) {
+      const cleanCountriesJson = JSON.stringify({
+        type: "clean",
+      });
+      this.game.firebase.sendMessage(cleanCountriesJson);
+    }
+  }
+
+  requestSelectedCountriesFromOpponent() {
+    if (
+      this.game.firebase &&
+      this.game.firebase.opponentConnectionState === "connected"
+    ) {
+      const requestCountriesJson = JSON.stringify({
+        type: "reqCountries",
+      });
+      this.game.firebase.sendMessage(requestCountriesJson);
+    }
+  }
+
+  sendStartGameToOpponent() {
+    if (
+      this.game.firebase &&
+      this.game.firebase.opponentConnectionState === "connected"
+    ) {
+      const startJson = JSON.stringify({
+        type: "start",
+      });
+      this.game.firebase.sendMessage(startJson);
+    }
+  }
+
+  sendFinishGameToOpponent() {
+    if (
+      this.game.firebase &&
+      this.game.firebase.opponentConnectionState === "connected"
+    ) {
+      const finishJson = JSON.stringify({
+        type: "finish",
+      });
+      this.game.firebase.sendMessage(finishJson);
+    }
+  }
+
+  sendEndGameToOpponent() {
+    if (
+      this.game.firebase &&
+      this.game.firebase.opponentConnectionState === "connected"
+    ) {
+      const endJson = JSON.stringify({
+        type: "end",
+      });
+      this.game.firebase.sendMessage(endJson);
+    }
+  }
+
+  sendCountriesConfigurationToOpponent() {
+    if (
+      this.game.firebase &&
+      this.game.firebase.opponentConnectionState === "connected"
+    ) {
+      const countriesConfigJson = JSON.stringify({
+        type: "conf",
+        countries: [...this.selectedCountryCodes],
+        trapCountries: [...this.selectedCountryTrapCodes],
+        countryUnions: this.countryUnions,
+      });
+      this.game.firebase.sendMessage(countriesConfigJson);
+    }
+  }
+
+  sendMoveToOpponent(countryCode) {
+    if (
+      this.game.firebase &&
+      this.game.firebase.opponentConnectionState === "connected"
+    ) {
+      const moveJson = JSON.stringify({
+        type: "move",
+        value: countryCode,
+      });
+      this.game.firebase.sendMessage(moveJson);
+    }
+  }
+
+  sendMoveAckToOpponent() {
+    if (
+      this.game.firebase &&
+      this.game.firebase.opponentConnectionState === "connected"
+    ) {
+      const moveAckJson = JSON.stringify({
+        type: "moveAck",
+      });
+      this.game.firebase.sendMessage(moveAckJson);
+    }
+  }
+
+  opponentMessagesHandler(message) {
+    const messageObject = JSON.parse(message);
+    if (messageObject.type === "clean") {
+      this.opponentPlayer.selectedCountryCodes = new Set();
+      this.opponentPlayer.selectedCountryTrapCodes = new Set();
+      this.opponentPlayer.countryUnions = [
+        new Array(4),
+        new Array(3),
+        new Array(3),
+        new Array(2),
+        new Array(2),
+        new Array(2),
+        new Array(1),
+        new Array(1),
+        new Array(1),
+        new Array(1),
+      ];
+      this.opponentPlayer.playerConfigured = false;
+      document.getElementById("player-two-countries-number").textContent = "0";
+    } else if (messageObject.type === "reqCountries") {
+      this.sendCountriesConfigurationToOpponent();
+      const input = document.getElementById("chat-message-from-opponent");
+      if (input) {
+        input.value =
+          "👱: " +
+          localization[model.worldCountries.language][
+            "Opponent entered the game room to read your messages"
+          ];
+      }
+    } else if (messageObject.type === "conf") {
+      if (
+        messageObject.countries.length ===
+          this.gameConfiguration.countriesNumber &&
+        messageObject.trapCountries.length ===
+          this.gameConfiguration.countriesTrapNumber
+      ) {
+        this.opponentPlayer.selectedCountryCodes = new Set(
+          messageObject.countries
+        );
+        this.opponentPlayer.selectedCountryTrapCodes = new Set(
+          messageObject.trapCountries
+        );
+        this.opponentPlayer.countryUnions = messageObject.countryUnions;
+        this.opponentPlayer.playerConfigured = true;
+        this.opponentPlayer.addUserClickCountriesPlayHandler();
+        document.getElementById("player-two-countries-number").textContent =
+          this.gameConfiguration.countryUnionsNumber;
+        this.game.firebase.sendMessage(
+          JSON.stringify({ type: "ack", value: "conf" })
+        );
+        if (
+          this.gameConfiguration.gameMode === "user" &&
+          this.playerConfigured &&
+          this.opponentPlayer.playerConfigured
+        ) {
+          this.gameMessageField.textContent =
+            localization[model.worldCountries.language][
+              "Opponent selected countries. Press 'Play' to start game!"
+            ];
+        }
+      }
+    } else if (messageObject.type === "move") {
+      const countryCode = messageObject.value;
+      this.handleOpponentHit(countryCode);
+    } else if (messageObject.type === "ack") {
+      const value = messageObject.value;
+      if (value === "conf") {
+        this.opponentPlayerConfigAcknowledged = true;
+      }
+    } else if (messageObject.type === "start") {
+      this.opponentPlayerStartAcknowledged = true;
+      if (this.playerConfigured && this.opponentPlayer.playerConfigured) {
+        const cleanSection = document.getElementById(
+          "clean-user-countries-selection"
+        );
+        cleanSection.style.display = "none";
+        const randomSection = document.getElementById(
+          "random-user-countries-selection"
+        );
+        randomSection.style.display = "none";
+      }
+      if (
+        this.gameMessageField.textContent ===
+        localization[model.worldCountries.language][
+          "Opponent has not yet started game. Wait for the message to start."
+        ]
+      ) {
+        this.gameMessageField.textContent =
+          localization[model.worldCountries.language][
+            "Your attempt to guess opponent's country"
+          ];
+      }
+    } else if (messageObject.type === "finish") {
+      alert(
+        localization[model.worldCountries.language][
+          "Sorry... Opponent left the game."
+        ]
+      );
+      if (this.game) this.game.finishGame(false);
+    } else if (messageObject.type === "end") {
+      this.score += +this.playerCountriesNumberField.textContent * 10;
+      this.playerWonGame = false;
+      this.game.finished = true;
+      this.game.showGameResult(false, false);
+    } else if (messageObject.type === "deleteGameRoom") {
+      alert(
+        this.game.firebase.gameRoomId +
+          ` - ${
+            localization[model.worldCountries.language][
+              "Game room does not exist. Perhaps the opponent deleted it or left the game"
+            ]
+          }`
+      );
+      if (this.game) this.game.finishGame(false);
+    } else if (messageObject.type === "moveAck") {
+      this.game.isOpponentPlayerReady = true;
+      this.game.playHit();
+    } else if (messageObject.type === "chat") {
+      const message = messageObject.value;
+      const input = document.getElementById("chat-message-from-opponent");
+      if (input) {
+        input.value = "👱: " + message;
+      }
+      const chat = document.getElementById("chat-container");
+      if (chat.classList.contains("not-displayed")) {
+        chat.classList.remove("not-displayed");
+        const chatButtonLeftArrow = document.getElementById(
+          "chat-button-left-arrow"
+        );
+        chatButtonLeftArrow.textContent = "⬇";
+        const chatButtonRightArrow = document.getElementById(
+          "chat-button-right-arrow"
+        );
+        chatButtonRightArrow.textContent = "⬇";
+      }
+    } else if (messageObject.type === "notReady") {
+      const input = document.getElementById("chat-message-from-opponent");
+      if (input) {
+        input.value =
+          "👱: " +
+          localization[model.worldCountries.language][
+            "Opponent has not yet entered the game room to read your messages. Try sending a message later"
+          ];
+      }
+    }
+  }
+
+  async handleOpponentHit(countryCode) {
+    const country = this.countries[countryCode];
+    const countryBoundary = this.countryBoundaries[countryCode];
+    const countryMarker = this.countryMarkers[countryCode];
+    countryMarker.unbindTooltip();
+    countryBoundary.unbindTooltip();
+    countryMarker.off();
+    countryBoundary.off();
+    this.playerMap.removeLayer(countryMarker);
+    delete this.countryMarkers[countryCode];
+    const countryToDeleteIndex = this.countryCodes.indexOf(countryCode);
+    if (countryToDeleteIndex >= 0)
+      this.countryCodes.splice(countryToDeleteIndex, 1);
+    this.countriesNumberField.textContent = this.countryCodes.length;
+    const countryBound = COUNTRY_BOUNDS.find(
+      (bound) => country.countryName === bound.name
+    );
+    this.openCountryPopup(countryCode);
+    const countryCoordinates = country.latlng
+      ? country.latlng
+      : country.capitalLatLng;
+    if (countryBound) {
+      this.playerMap.fitBounds(countryBound.bounds, {
+        animate: false,
+      });
+    } else {
+      this.playerMap.setView(countryCoordinates, 4.5, {
+        animate: false,
+      });
+    }
+    if (this.selectedCountryTrapCodes.has(countryCode)) {
+      this.setMessageInnerHtmlField(
+        `<span>${
+          localization[model.worldCountries.language][
+            "Opponent has fallen into a trap-country"
+          ]
+        }</span> <img src="${
+          country.countryFlag
+        }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${
+          localization[model.worldCountries.language]["countries"][
+            country.countryName
+          ]
+        }.</span> <span style="margin-left:5px;">${
+          localization[model.worldCountries.language][
+            "The opponent gets a hint"
+          ]
+        }</span>`
+      );
+      this.trapCountryHitted = this.trapCountryHitted + 1;
+      if (this.trapCountryHitted === 1) {
+        this.opponentPlayer.score = this.opponentPlayer.score - 10;
+      } else if (this.trapCountryHitted === 2) {
+        this.opponentPlayer.score = this.opponentPlayer.score - 20;
+      } else {
+        this.opponentPlayer.score = this.opponentPlayer.score - 30;
+      }
+      document.getElementById("player-two-score-field").textContent =
+        this.opponentPlayer.score;
+      this.addHint(countryCode, false);
+      this.setElementStyle(countryBoundary, {
+        weight: 1,
+        color: "orange",
+        fillColor: "orange",
+        fillOpacity: 0.5,
+        opacity: 0.8,
+        className: countryCode,
+      });
+      this.playerAttemptToGuess = true;
+      this.opponentPlayer.playerAttemptToGuess = false;
+      await this.sleep(1500);
+      this.closeCountryPopup(countryCode);
+      this.playerMap.removeLayer(countryBoundary);
+      delete this.countryBoundaries[countryCode];
+      const countryBorderCodes = country.countryBorders
+        .map((countryBorder) => {
+          return this.countriesCodeMapping[countryBorder];
+        })
+        .filter(
+          (countryCode) =>
+            countryCode !== undefined && this.countryCodes.includes(countryCode)
+        );
+      countryBorderCodes.forEach((countryBorderCode) => {
+        if (!this.selectedCountryTrapCodes.has(countryBorderCode)) {
+          const countryBoundary = this.countryBoundaries[countryBorderCode];
+          const countryMarker = this.countryMarkers[countryBorderCode];
+          countryMarker.unbindTooltip();
+          countryBoundary.unbindTooltip();
+          countryMarker.off();
+          countryBoundary.off();
+          this.playerMap.removeLayer(countryMarker);
+          this.playerMap.removeLayer(countryBoundary);
+          delete this.countryMarkers[countryBorderCode];
+          delete this.countryPopups[countryBorderCode];
+          delete this.countryTooltips[countryBorderCode];
+          delete this.countryBoundaries[countryBorderCode];
+          const countryIndexToDelete =
+            this.countryCodes.indexOf(countryBorderCode);
+          if (countryIndexToDelete >= 0)
+            this.countryCodes.splice(countryIndexToDelete, 1);
+          this.countriesNumberField.textContent = this.countryCodes.length;
+        }
+      });
+      this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
+        animate: false,
+      });
+      this.enableMapInteraction();
+    } else if (this.selectedCountryCodes.has(countryCode)) {
+      this.playerAttemptToGuess = false;
+      this.opponentPlayer.playerAttemptToGuess = true;
+      if (this.isHintUsed(countryCode)) {
+        this.usedHintsCount = this.usedHintsCount + 1;
+      }
+      this.setElementStyle(countryBoundary, {
+        weight: 1,
+        color: "red",
+        fillColor: "red",
+        fillOpacity: 0.5,
+        opacity: 0.8,
+        className: countryCode,
+      });
+      this.addSelectedCountryToCountryPanel(
+        this.playerSelectedCountriesContainerId,
+        countryCode,
+        Array.from(this.selectedCountryCodes).indexOf(countryCode) + 1,
+        false
+      );
+      const countryUnionIndex = this.getCountryUnionIndex(countryCode);
+      const isCountryUnionGuessed =
+        this.isCountryUnionGuessed(countryUnionIndex);
+      if (isCountryUnionGuessed) {
+        this.playerCountriesNumberField.textContent =
+          +this.playerCountriesNumberField.textContent - 1;
+        const countryUnion = this.countryUnions[countryUnionIndex];
+        if (countryUnion.length === 4) {
+          this.opponentPlayer.score = this.opponentPlayer.score + 15;
+        } else if (countryUnion.length === 3) {
+          this.opponentPlayer.score = this.opponentPlayer.score + 25;
+        } else if (countryUnion.length === 2) {
+          this.opponentPlayer.score = this.opponentPlayer.score + 35;
+        } else if (countryUnion.length === 1) {
+          this.opponentPlayer.score = this.opponentPlayer.score + 50;
+        }
+        document.getElementById("player-two-score-field").textContent =
+          this.opponentPlayer.score;
+        countryUnion.forEach((countryObject) => {
+          const countryCode = Object.keys(countryObject)[0];
+          const country = this.countries[countryCode];
+          const countryBorderCodes = country.countryBorders
+            .map((countryBorder) => {
+              return this.countriesCodeMapping[countryBorder];
+            })
+            .filter(
+              (countryCode) =>
+                countryCode !== undefined &&
+                this.countryCodes.includes(countryCode)
+            );
+          countryBorderCodes.forEach((countryBorderCode) => {
+            if (!this.selectedCountryCodes.has(countryBorderCode)) {
+              const countryBoundary = this.countryBoundaries[countryBorderCode];
+              const countryMarker = this.countryMarkers[countryBorderCode];
+              countryMarker.unbindTooltip();
+              countryBoundary.unbindTooltip();
+              countryMarker.off();
+              countryBoundary.off();
+              this.playerMap.removeLayer(countryMarker);
+              this.playerMap.removeLayer(countryBoundary);
+              delete this.countryMarkers[countryBorderCode];
+              delete this.countryPopups[countryBorderCode];
+              delete this.countryTooltips[countryBorderCode];
+              delete this.countryBoundaries[countryBorderCode];
+              const countryIndexToDelete =
+                this.countryCodes.indexOf(countryBorderCode);
+              if (countryIndexToDelete >= 0)
+                this.countryCodes.splice(countryIndexToDelete, 1);
+              this.countriesNumberField.textContent = this.countryCodes.length;
+            }
+          });
+        });
+        const countryUnionHtml =
+          this.createCountryUnionMessageHtml(countryUnionIndex);
+        this.setMessageInnerHtmlField(
+          `<span style="margin-right:5px;">${
+            localization[model.worldCountries.language]["Opponent guessed"]
+          }</span><div style="display: inline-block;">${
+            countryUnionHtml.outerHTML
+          }</div><span style="margin-left:5px;">${
+            localization[model.worldCountries.language]["Country Alliance"]
+          }</span>`
+        );
+        await this.sleep(1500);
+        this.closeCountryPopup(countryCode);
+        this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
+          animate: false,
+        });
+      } else {
+        this.setMessageInnerHtmlField(
+          `<span>${
+            localization[model.worldCountries.language]["Opponent guessed"]
+          }</span> <img src="${
+            country.countryFlag
+          }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${
+            localization[model.worldCountries.language]["countries"][
+              country.countryName
+            ]
+          }</span>`
+        );
+        await this.sleep(1000);
+        this.closeCountryPopup(countryCode);
+      }
+    } else {
+      this.setElementStyle(countryBoundary, {
+        weight: 1,
+        color: "grey",
+        fillColor: "grey",
+        fillOpacity: 0.5,
+        opacity: 0.8,
+        className: countryCode,
+      });
+      this.gameMessageField.textContent =
+        localization[model.worldCountries.language][
+          "Opponent failed to guess your country!"
+        ];
+      this.playerAttemptToGuess = true;
+      this.opponentPlayer.playerAttemptToGuess = false;
+      await this.sleep(1000);
+      this.closeCountryPopup(countryCode);
+      this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
+        animate: false,
+      });
+      this.playerMap.removeLayer(countryBoundary);
+      delete this.countryBoundaries[countryCode];
+      this.enableMapInteraction();
+    }
+    if (+this.playerCountriesNumberField.textContent === 0) {
+      this.opponentPlayer.score +=
+        +this.opponentPlayer.playerCountriesNumberField.textContent * 10;
+      this.playerWonGame = false;
+      this.game.finished = true;
+      this.game.showGameResult(false, false);
+      return;
+    }
+    this.sendMoveAckToOpponent();
+    this.game.isPlayerReady = true;
+    this.game.playHit();
+  }
+
+  resetGameRoomContainer() {
+    document.querySelector(".create-game-room").disabled = false;
+    document.querySelector(".delete-game-room").disabled = true;
+    document.querySelector("#roomIdInput").value = "";
+    document.querySelector(".copy-to-clipboard-link").disabled = true;
+    document.querySelector(".share-game-room").disabled = true;
+    const createGameRoomButton = document.querySelector(
+      "#create-game-room-button"
+    );
+    createGameRoomButton.textContent =
+      localization[model.worldCountries.language]["Create Game Room"];
+    const gameRoomHeadingContainer = document.querySelector(
+      "#game-room-heading-container"
+    );
+    gameRoomHeadingContainer.classList.add("not-displayed");
+    document.querySelector("#game-room-heading-id").textContent = "";
+  }
+
+  opponentConnectionHandler(connectionState) {
+    const opponentConnectionText = document.getElementById(
+      "opponent-connection-text"
+    );
+    const opponentConnectionIndicator = document.getElementById(
+      "opponent-connection-indicator"
+    );
+    if (connectionState === "connected") {
+      opponentConnectionIndicator.style.backgroundColor = "green";
+      opponentConnectionText.textContent =
+        localization[model.worldCountries.language]["Opponent is online"];
+      opponentConnectionText.style.color = "green";
+    } else if (connectionState === "connecting") {
+      opponentConnectionIndicator.style.backgroundColor = "yellow";
+      opponentConnectionText.textContent =
+        localization[model.worldCountries.language]["Opponent is connecting"];
+      opponentConnectionText.style.color = "green";
+    } else if (connectionState === "disconnected") {
+      opponentConnectionIndicator.style.backgroundColor = "red";
+      opponentConnectionText.style.color = "red";
+      opponentConnectionText.textContent =
+        localization[model.worldCountries.language]["Opponent is not online"];
+      setTimeout(() => {
+        if (
+          this.game &&
+          this.game.firebase &&
+          this.game.firebase.opponentConnectionState !== "connected"
+        ) {
+          alert(
+            localization[model.worldCountries.language][
+              "Sorry... Connection with your opponent has failed. Game is ended."
+            ]
+          );
+          if (this.game) this.game.finishGame(false);
+        }
+      }, 60000);
+    } else if (connectionState === "failed") {
+      opponentConnectionIndicator.style.backgroundColor = "red";
+      opponentConnectionText.style.color = "red";
+      opponentConnectionText.textContent =
+        localization[model.worldCountries.language]["Connection is failed"];
+      setTimeout(() => {
+        if (
+          this.game &&
+          this.game.firebase &&
+          this.game.firebase.opponentConnectionState !== "connected"
+        ) {
+          alert(
+            localization[model.worldCountries.language][
+              "Sorry... Connection with your opponent has failed. Game is ended."
+            ]
+          );
+          if (this.game) this.game.finishGame(false);
+        }
+      }, 60000);
+    } else if (connectionState === "closed") {
+      opponentConnectionIndicator.style.backgroundColor = "red";
+      opponentConnectionText.style.color = "red";
+      opponentConnectionText.textContent =
+        localization[model.worldCountries.language]["Connection is closed"];
+      alert(
+        localization[model.worldCountries.language][
+          "Sorry... Opponent left the game."
+        ]
+      );
+      if (this.game) this.game.finishGame(false);
+    }
   }
 }

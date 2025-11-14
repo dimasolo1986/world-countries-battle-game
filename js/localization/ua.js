@@ -504,6 +504,74 @@ export const localization = {
     },
     Share: "Поділитися",
     Clean: "Очистити",
+    "Opponent:": "Суперник:",
+    "Opponent Map": "Мапа Суперника",
+    "Opponent is online": "Суперник онлайн",
+    "Opponent is not online": "Суперник не онлайн",
+    "Connection is failed": "Помилка підключення",
+    Friend: "Друг",
+    CHAT: "ЧАТ",
+    "Send Message": "Надіслати Повідомлення",
+    "Failed to create game room with ID:":
+      "Не вдалося створити ігрову кімнату з ID:",
+    "Create Game Room": "Створити Ігрову Кімнату",
+    "Delete Game Room": "Видалити Ігрову Кімнату",
+    "Open Game Room": "Відкрити Ігрову Кімнату",
+    "Game Room ID:": "ID Ігрової Кімнати:",
+    "BACK TO MAIN PAGE": "ПОВЕРНУТИСЬ НА ГОЛОВНУ СТОРІНКУ",
+    "Click 'Create Game Room' to generate game link":
+      "Натисніть 'Створити Ігрову Кімнату', щоб створити посилання на гру",
+    "Game Link For Friend": "Посилання На Гру Для Друга",
+    "Copy Link": "Скопіювати Посилання",
+    "Share Link With Friend": "Поділитися З Другом",
+    "Sorry... Connection with your opponent has failed. Game is ended.":
+      "Вибачте... Зв'язок з вашим опонентом втрачено. Гра завершена.",
+    "Connection is closed": "З'єднання закрито",
+    "Sorry... Opponent left the game.": "Вибачте... Суперник вийшов з гри.",
+    "You have selected the game mode with a friend. First, create a game room. Click the 'Create Game Room' button.":
+      "Ви обрали режим гри з другом. Спочатку створіть ігрову кімнату. Натисність кнопку 'Створити Ігрову Кімнату'.",
+    "Opponent has not yet selected countries. Wait for the message to start the game.":
+      "Суперник ще не обрав країни. Зачекайте повідомлення, щоб розпочати гру.",
+    "Opponent has not yet started game. Wait for the message to start.":
+      "Суперник ще не розпочав гру. Зачекайте повідомлення, щоб розпочати.",
+    "Opponent guessed": "Суперник вгадав",
+    "Opponent failed to guess your country!": "Суперник не вгадав вашу країну!",
+    "Opponent guessed all your countries:": "Суперник вгадав усі ваші країни:",
+    "Opponent has not yet confirmed your move. We are waiting for confirmation...":
+      "Опонент ще не підтвердив ваш хід. Чекаємо підтвердження...",
+    "Game Link Copied": "Посилання На Гру Скопійовано",
+    "Copy Error": "Помилка копіювання",
+    "Message From Opponent": "Повідомлення Від Суперника",
+    "Type Your Message Here... (max. length 300 characters)":
+      "Введіть Тут Своє Повідомлення... (макс. довжина 300 символів)",
+    "Opponent entered the game room to read your messages":
+      "Суперник зайшов до ігрової кімнати, щоб читати ваші повідомлення",
+    "Opponent has not yet entered the game room to read your messages. Try sending a message later":
+      "Суперник ще не зайшов до ігрової кімнати, щоб читати ваші повідомлення. Спробуйте надіслати повідомлення пізніше",
+    "Game room does not exist. Perhaps the opponent deleted it or left the game":
+      "Ігрова кімната не існує. Можливо, суперник видалив її або вийшов з гри.",
+    "Connection with your opponent has failed. Try your attempt later.":
+      "Зв'язок з вашим опонентом втрачено. Спробуйте свою спробу пізніше.",
+    "Failed to create a communication channel with your opponent":
+      "Не вдалося створити канал зв'язку з опонентом",
+    "Game Room Deleted:": "Ігрова Кімната Видалена:",
+    "Opponent is connecting": "Суперник підключається",
+    "Failed to delete game room with ID:":
+      "Не вдалося видалити ігрову кімнату з ID:",
+    "To select alliances of countries randomly, click":
+      "Щоб випадковим чином вибрати альянси країн, натисніть",
+    "To clear selected country alliances, click":
+      "Щоб очистити вибрані альянси країн, натисніть",
+    "Instructions.": "Інструкція.",
+    "To play with your friend, you need: 1. Choose the desired game configuration, whether you want to guess countries and alliances of countries from all over the world or only independent ones. You can do this on this page or on the main page (after creating a game room, you will not be able to change this setting). 2. Create a game room and a link to the game for your friend by clicking the 'Create Game Room' button. 3. Copy the game link by clicking the 'Copy Link' button and send it to your friend or share the game link by clicking the 'Share Link With Friend' button. 4. After completing a game or several games, you can delete the game room by clicking the 'Delete Game Room' button (after deleting the game room, your friend will no longer be able to use the game link to play with you).":
+      "Для гри з Вашим другом Вам необхідно: 1. Обрати бажану конфігурацію гри чи бажаєте Ви відгадувати країни та альянси країн серед усіх країн Світу або тільки незалежних. Ви можете це зробити на цій сторінці або на головній (після створення ігрової кімнати Ви не зможете змінити це налаштування). 2. Створити ігрову кімнату та посилання на гру для Вашого друга натиснувши кнопку 'Створити Ігрову Кімнату'. 3. Скопіювати посилання на гру натиснувши на кнопку 'Скопіювати Посилання' та відправити його Вашому другу або поділитись посиланням на гру натиснувши на кнопку 'Поділитися З Другом'. 4. Після завершення гри або декількох ігор Ви можете видалити ігрову кімнату натиснувши на кнопку 'Видалити Ігрову Кімнату' (після видалення ігрової кімнати Ваш друг вже не зможе використовувати посилання на гру для гри з Вами).",
+    "To play with your friend, you need to select the game mode with a friend on the main page, create a game room and a link to the game for your friend and send it to him. Follow the connection status of your friend at the top of the screen after starting the game. There is also the possibility of communicating with your friend via chat at the bottom of the screen: you can greet him, wish him a good game or give yourself hints about your countries and alliances of countries.":
+      "Для гри з Вашим другом Вам необхідно вибрати режим гри з другом на головній сторінці, створити ігрову кімнату та посилання на гру для Вашого друга та відправити йому. Слідкуйте за статусом підключення Вашого друга у верхній частині екрану після старту гри. Також є можливість спілкування з Вашим другом через чат у нижній частині екрану: Ви можете привітатись з ним, побажати гарної гри або самостійно давати підказки про Ваші країни та альянси країн.",
+    "Play With A Friend Mode": "Режим Гри З Другом",
+    "If a player guesses an alliance of countries that contains four countries, he gets 15 points, three countries - 25 points, two countries - 35 points, one country - 50 points. When falling into an opponent's trap country, the player loses 10 points the first time, 20 points the second time, and 30 points the third time. At the end of the game, the player gets an additional 10 points for each alliance of countries that was not guessed by the opponent.":
+      "Якщо гравець вгадує альянс країн, який містить чотири країни він отримує 15 балів, три країни - 25 балів, дві країни - 35 балів, одну країну - 50 балів. При потраплянні в країну-пастку суперника перший раз у гравця відіймаються 10 балів, другий раз - 20 балів, третій раз - 30 балів. В кінці гри гравець отримує додаткові 10 балів за кожен альянс країн, який не був вгаданий суперником.",
+    Score: "Рахунок",
+    Points: "Балів",
     "Random Countries Selection": "Випадковий Вибір Країн",
     "Facebook Page": "Фейсбук Сторінка",
     "Country Alliances Selection — Video Tutorial":
@@ -515,8 +583,8 @@ export const localization = {
     "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!":
       "Якщо Вам подобається цей проект, Ви можете поділитись ним з друзями або підтримати фінансово (гроші витрачаються на розвиток освітніх проектів та підтримку права України існувати на мапі світу). Дякую Вам!",
     "World Country Alliances Guesser Game": "Гра Вгадай Союзи Країн Світу",
-    "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
-      "проект, який допомагає вивчати географію країн світу, сусідніх країн, прапорів та частин світу в ігровому форматі. Виберіть десять різних союзів країн на карті, а також три країни-пастки для вашого суперника. Комп'ютер також вибере відповідну кількість союзів країн та країн-пасток. Спроби вгадати країни відбуваються по черзі. Той, хто вгадає країну суперника, отримує додаткову спробу. Перемагає той, хто першим вгадає всі союзи країн суперника. Слідкуйте за повідомленнями у верхній частині екрана після початку гри.",
+    "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
+      "проект, який допомагає вивчати географію країн світу, сусідніх країн, прапорів та частин світу в ігровому форматі. Виберіть десять різних союзів країн на карті, а також три країни-пастки для вашого суперника. Комп'ютер або ваш друг (залежно від обраного режиму гри) також вибере відповідну кількість союзів країн та країн-пасток. Спроби вгадати країни відбуваються по черзі. Той, хто вгадає країну суперника, отримує додаткову спробу. Перемагає той, хто першим вгадає всі союзи країн суперника. Слідкуйте за повідомленнями у верхній частині екрана після початку гри.",
     "When entering an opponent's trap country, he receives one of three clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located.":
       "При потраплянні в країну-пастку суперника, він отримує одну з трьох підказок щодо розташування однієї з ваших країн: 1. Столиця країни; 2. Частина світу (Європа, Америка, Азія, Африка, Океанія), в якому розташована одна з ваших країн; 3. Регіон (Центральна Європа, Північна Америка, тощо), в якому розташована одна з ваших країн.",
     "Important!": "Важливо!",
@@ -563,6 +631,9 @@ export const localization = {
     "You have fallen into a trap-country": "Ви потрапили в країну-пастку",
     "Computer has fallen into a trap-country":
       "Комп'ютер потрапив в країну-пастку",
+    "Opponent has fallen into a trap-country":
+      "Суперник потрапив в країну-пастку",
+    Computer: "Комп'ютер",
     "The opponent gets a hint": "Суперник отримує підказку",
     "Hints:": "Підказки:",
     "Country Alliance": "Альянс Країн",
@@ -574,6 +645,8 @@ export const localization = {
     "QR Code": "QR Код",
     "Failed attempt to guess country!": "Невдала спроба вгадати країну!",
     "Press 'Play' to start game!": "Натисніть 'Грати', щоб розпочати гру!",
+    "Opponent selected countries. Press 'Play' to start game!":
+      "Суперник вибрав країни. Натисніть 'Грати', щоб розпочати гру!",
     "Already tried this country. Try another one!":
       "Вже спробували цю країну. Спробуйте іншу!",
     "Already guessed this country. Try another one!":
@@ -582,6 +655,7 @@ export const localization = {
     "Computer guessed": "Комп'ютер вгадав",
     "Computer is guessing your country...":
       "Комп'ютер прогнозує вашу країну...",
+    "Opponent is guessing your country...": "Суперник прогнозує вашу країну...",
     "Your attempt to guess opponent's country":
       "Ваша спроба вгадати країну опонента",
     "Computer failed to guess your country!":
@@ -1184,6 +1258,77 @@ export const localization = {
     },
     Share: "Share",
     Clean: "Clean",
+    "Opponent:": "Opponent:",
+    "Opponent Map": "Opponent Map",
+    "Opponent is online": "Opponent is online",
+    "Opponent is not online": "Opponent is not online",
+    "Connection is failed": "Connection is failed",
+    "Sorry... Connection with your opponent has failed. Game is ended.":
+      "Sorry... Connection with your opponent has failed. Game is ended.",
+    "Failed to create game room with ID:":
+      "Failed to create game room with ID:",
+    Friend: "Friend",
+    CHAT: "CHAT",
+    "Game Room ID:": "Game Room ID:",
+    "Create Game Room": "Create Game Room",
+    "Delete Game Room": "Delete Game Room",
+    "Open Game Room": "Open Game Room",
+    "Click 'Create Game Room' to generate game link":
+      "Click 'Create Game Room' to generate game link",
+    "BACK TO MAIN PAGE": "BACK TO MAIN PAGE",
+    "Game Link For Friend": "Game Link For Friend",
+    "Copy Link": "Copy Link",
+    "Share Link With Friend": "Share Link With Friend",
+    "Connection is closed": "Connection is closed",
+    "Sorry... Opponent left the game.": "Sorry... Opponent left the game.",
+    "You have selected the game mode with a friend. First, create a game room. Click the 'Create Game Room' button.":
+      "You have selected the game mode with a friend. First, create a game room. Click the 'Create Game Room' button.",
+    "Opponent has not yet selected countries. Wait for the message to start the game.":
+      "Opponent has not yet selected countries. Wait for the message to start the game.",
+    "Opponent has not yet started game. Wait for the message to start.":
+      "Opponent has not yet started game. Wait for the message to start.",
+    "Opponent guessed": "Opponent guessed",
+    "Opponent has fallen into a trap-country":
+      "Opponent has fallen into a trap-country",
+    "Opponent failed to guess your country!":
+      "Opponent failed to guess your country!",
+    "Opponent guessed all your countries:":
+      "Opponent guessed all your countries:",
+    "Opponent has not yet confirmed your move. We are waiting for confirmation...":
+      "Opponent has not yet confirmed your move. We are waiting for confirmation...",
+    "Game Link Copied": "Game Link Copied",
+    "Copy Error": "Copy Error",
+    "Message From Opponent": "Message From Opponent",
+    "Type Your Message Here... (max. length 300 characters)":
+      "Type Your Message Here... (max. length 300 characters)",
+    "Send Message": "Send Message",
+    "Opponent entered the game room to read your messages":
+      "Opponent entered the game room to read your messages",
+    "Opponent has not yet entered the game room to read your messages. Try sending a message later":
+      "Opponent has not yet entered the game room to read your messages. Try sending a message later",
+    "Game room does not exist. Perhaps the opponent deleted it or left the game":
+      "Game room does not exist. Perhaps the opponent deleted it or left the game",
+    "Connection with your opponent has failed. Try your attempt later.":
+      "Connection with your opponent has failed. Try your attempt later.",
+    "Failed to create a communication channel with your opponent":
+      "Failed to create a communication channel with your opponent",
+    "Opponent is connecting": "Opponent is connecting",
+    "Game Room Deleted:": "Game Room Deleted:",
+    "Failed to delete game room with ID:":
+      "Failed to delete game room with ID:",
+    "To select alliances of countries randomly, click":
+      "To select alliances of countries randomly, click",
+    "To clear selected country alliances, click":
+      "To clear selected country alliances, click",
+    "Instructions.": "Instructions.",
+    "To play with your friend, you need: 1. Choose the desired game configuration, whether you want to guess countries and alliances of countries from all over the world or only independent ones. You can do this on this page or on the main page (after creating a game room, you will not be able to change this setting). 2. Create a game room and a link to the game for your friend by clicking the 'Create Game Room' button. 3. Copy the game link by clicking the 'Copy Link' button and send it to your friend or share the game link by clicking the 'Share Link With Friend' button. 4. After completing a game or several games, you can delete the game room by clicking the 'Delete Game Room' button (after deleting the game room, your friend will no longer be able to use the game link to play with you).":
+      "To play with your friend, you need: 1. Choose the desired game configuration, whether you want to guess countries and alliances of countries from all over the world or only independent ones. You can do this on this page or on the main page (after creating a game room, you will not be able to change this setting). 2. Create a game room and a link to the game for your friend by clicking the 'Create Game Room' button. 3. Copy the game link by clicking the 'Copy Link' button and send it to your friend or share the game link by clicking the 'Share Link With Friend' button. 4. After completing a game or several games, you can delete the game room by clicking the 'Delete Game Room' button (after deleting the game room, your friend will no longer be able to use the game link to play with you).",
+    "To play with your friend, you need to select the game mode with a friend on the main page, create a game room and a link to the game for your friend and send it to him. Follow the connection status of your friend at the top of the screen after starting the game. There is also the possibility of communicating with your friend via chat at the bottom of the screen: you can greet him, wish him a good game or give yourself hints about your countries and alliances of countries.":
+      "To play with your friend, you need to select the game mode with a friend on the main page, create a game room and a link to the game for your friend and send it to him. Follow the connection status of your friend at the top of the screen after starting the game. There is also the possibility of communicating with your friend via chat at the bottom of the screen: you can greet him, wish him a good game or give yourself hints about your countries and alliances of countries.",
+    "If a player guesses an alliance of countries that contains four countries, he gets 15 points, three countries - 25 points, two countries - 35 points, one country - 50 points. When falling into an opponent's trap country, the player loses 10 points the first time, 20 points the second time, and 30 points the third time. At the end of the game, the player gets an additional 10 points for each alliance of countries that was not guessed by the opponent.":
+      "If a player guesses an alliance of countries that contains four countries, he gets 15 points, three countries - 25 points, two countries - 35 points, one country - 50 points. When falling into an opponent's trap country, the player loses 10 points the first time, 20 points the second time, and 30 points the third time. At the end of the game, the player gets an additional 10 points for each alliance of countries that was not guessed by the opponent.",
+    "Play With A Friend Mode": "Play With A Friend Mode",
+    Score: "Score",
     "Random Countries Selection": "Random Countries Selection",
     "Facebook Page": "Facebook Page",
     "Country Alliances Selection — Video Tutorial":
@@ -1196,8 +1341,8 @@ export const localization = {
     "Make Donate": "Make Donate",
     "World Country Alliances Guesser Game":
       "World Country Alliances Guesser Game",
-    "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
-      "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.",
+    "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
+      "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.",
     "When entering an opponent's trap country, he receives one of three clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located.":
       "When entering an opponent's trap country, he receives one of three clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located.",
     "Important!": "Important!",
@@ -1245,6 +1390,7 @@ export const localization = {
       "You have fallen into a trap-country",
     "Computer has fallen into a trap-country":
       "Computer has fallen into a trap-country",
+    Computer: "Computer",
     "Hints:": "Hints:",
     "The opponent gets a hint": "The opponent gets a hint",
     "You have already chosen this country!":
@@ -1255,6 +1401,9 @@ export const localization = {
     "Selected Trap Country": "Selected Trap Country",
     "QR Code": "QR Code",
     "Press 'Play' to start game!": "Press 'Play' to start game!",
+    "Opponent selected countries. Press 'Play' to start game!":
+      "Opponent selected countries. Press 'Play' to start game!",
+    Points: "Points",
     "Failed attempt to guess country!": "Failed attempt to guess country!",
     "Already guessed this country. Try another one!":
       "Already guessed this country. Try another one!",
@@ -1265,6 +1414,8 @@ export const localization = {
     Play: "Play",
     "Computer is guessing your country...":
       "Computer is guessing your country...",
+    "Opponent is guessing your country...":
+      "Opponent is guessing your country...",
     "Your attempt to guess opponent's country":
       "Your attempt to guess opponent's country",
     "Computer failed to guess your country!":
@@ -1873,6 +2024,68 @@ export const localization = {
     },
     "Support Project": "Projekt Unterstützen",
     Clean: "Saubere",
+    "Opponent:": "Gegner:",
+    "Opponent Map": "Gegnerkarte",
+    "Opponent is online": "Gegner ist online",
+    "Opponent is not online": "Gegner ist nicht online",
+    "Connection is failed": "Verbindung ist fehlgeschlagen",
+    Friend: "Freund",
+    "Game Room ID:": "Spielzimmer-ID:",
+    "BACK TO MAIN PAGE": "ZURÜCK ZUR STARTSEITE",
+    "Delete Game Room": "Spielzimmer löschen",
+    "Click 'Create Game Room' to generate game link":
+      "Klicken Sie auf 'Spielzimmer Erstellen', um einen Spiellink zu generieren",
+    "Game Link For Friend": "Spiellink für Freund",
+    "Copy Link": "Link Kopieren",
+    "Share Link With Friend": "Link mit Freund teilen",
+    "Failed to create game room with ID:":
+      "Fehler beim Erstellen des Spielraums mit der ID:",
+    "Sorry... Connection with your opponent has failed. Game is ended.":
+      "Entschuldigung ... Die Verbindung mit Ihrem Gegner ist fehlgeschlagen. Das Spiel ist beendet.",
+    "Connection is closed": "Verbindung ist geschlossen",
+    "Sorry... Opponent left the game.":
+      "Entschuldigung ... Der Gegner hat das Spiel verlassen.",
+    "You have selected the game mode with a friend. First, create a game room. Click the 'Create Game Room' button.":
+      "Sie haben den Spielmodus mit einem Freund ausgewählt. Erstellen Sie zunächst einen Spielraum. Klicken Sie auf die Schaltfläche 'Spielzimmer Erstellen'.",
+    "Opponent has not yet selected countries. Wait for the message to start the game.":
+      "Der Gegner hat noch keine Länder ausgewählt. Warten Sie auf die Nachricht, um das Spiel zu starten.",
+    "Opponent has not yet started game. Wait for the message to start.":
+      "Der Gegner hat das Spiel noch nicht gestartet. Warten Sie auf die Startmeldung.",
+    "Opponent guessed": "Gegner hat geraten",
+    "Opponent has fallen into a trap-country":
+      "Der Gegner ist in eine Falle getappt",
+    "Opponent failed to guess your country!":
+      "Der Gegner hat es nicht geschafft, dein Land zu erraten!",
+    "Game Link Copied": "Spiel Link kopiert",
+    "Message From Opponent": "Nachricht des Gegners",
+    "Type Your Message Here... (max. length 300 characters)":
+      "Geben Sie hier Ihre Nachricht ein... (maximale Länge 300 Zeichen)",
+    "Send Message": "Nachricht senden",
+    "Opponent entered the game room to read your messages":
+      "Der Gegner hat den Spielraum betreten, um deine Nachrichten zu lesen",
+    "Opponent has not yet entered the game room to read your messages. Try sending a message later":
+      "Der Gegner hat den Spielraum noch nicht betreten, um Ihre Nachrichten zu lesen. Versuchen Sie, die Nachricht später zu senden",
+    "Game room does not exist. Perhaps the opponent deleted it or left the game":
+      "Das Spielzimmer existiert nicht. Möglicherweise hat der Gegner es gelöscht oder das Spiel verlassen",
+    "Connection with your opponent has failed. Try your attempt later.":
+      "Die Verbindung zu Ihrem Gegner ist fehlgeschlagen. Versuchen Sie es später erneut.",
+    "Failed to create a communication channel with your opponent":
+      "Es ist nicht gelungen, einen Kommunikationskanal mit Ihrem Gegner herzustellen",
+    "Opponent is connecting": "Gegner verbindet",
+    "Game Room Deleted:": "Spielzimmer gelöscht:",
+    "Failed to delete game room with ID:":
+      "Das Löschen des Spielraums mit der ID ist fehlgeschlagen:",
+    "To select alliances of countries randomly, click":
+      "Um Länder-Allianzen zufällig auszuwählen, klicken Sie hier",
+    "To clear selected country alliances, click":
+      "Um die ausgewählten Länder Allianzen zu löschen, klicken Sie hier",
+    "Instructions.": "Anweisungen.",
+    "Play With A Friend Mode": "Mit einem Freund spielen-Modus",
+    "To play with your friend, you need to select the game mode with a friend on the main page, create a game room and a link to the game for your friend and send it to him. Follow the connection status of your friend at the top of the screen after starting the game. There is also the possibility of communicating with your friend via chat at the bottom of the screen: you can greet him, wish him a good game or give yourself hints about your countries and alliances of countries.":
+      "Um mit einem Freund zu spielen, wähle auf der Startseite den Spielmodus 'Freund', erstelle einen Spielraum und sende ihm den Link zum Spiel. Nach dem Spielstart kannst du den Verbindungsstatus deines Freundes oben auf dem Bildschirm verfolgen. Außerdem kannst du unten auf dem Bildschirm mit ihm chatten: Begrüße ihn, wünsche ihm viel Spaß oder gib ihm Tipps zu deinen Ländern und Länderbündnissen.",
+    "If a player guesses an alliance of countries that contains four countries, he gets 15 points, three countries - 25 points, two countries - 35 points, one country - 50 points. When falling into an opponent's trap country, the player loses 10 points the first time, 20 points the second time, and 30 points the third time. At the end of the game, the player gets an additional 10 points for each alliance of countries that was not guessed by the opponent.":
+      "Errät ein Spieler eine Allianz aus vier Ländern, erhält er 15 Punkte, bei drei Ländern - 25 Punkte, bei zwei Ländern - 35 Punkte und bei einem Land - 50 Punkte. Geratet der Spieler in eine Falle des Gegners, verliert er beim ersten Mal 10 Punkte, beim zweiten Mal 20 Punkte und beim dritten Mal 30 Punkte. Am Spielende erhält der Spieler für jede vom Gegner nicht erratene Länderallianz zusätzlich 10 Punkte.",
+    Score: "Punktestand",
     "Random Countries Selection": "Zufällige Länderauswahl",
     "Facebook Page": "Facebook-Seite",
     "Country Alliances Selection — Video Tutorial":
@@ -1885,8 +2098,8 @@ export const localization = {
     "Make Donate": "Jetzt Spenden",
     "QR Code": "QR Code",
     "World Country Alliances Guesser Game": "Spiel der Weltländerallianzen",
-    "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
-      "projekt, das hilft, die Geographie der Länder der Welt, Nachbarländer, Flaggen und Teile der Welt in einem Spielformat zu studieren. Wählen Sie zehn verschiedene Länderbündnisse auf der Karte sowie drei Fallenländer für Ihren Gegner. Der Computer wählt auch die entsprechende Anzahl von Länderbündnissen und Fallenländern aus. Die Versuche, die Länder zu erraten, finden reihum statt. Wer das Land des Gegners errät, erhält einen zusätzlichen Versuch. Wer zuerst alle Allianzen der gegnerischen Länder errät, hat gewonnen. Folgen Sie den Nachrichten oben auf dem Bildschirm, nachdem das Spiel begonnen hat.",
+    "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
+      "projekt, das hilft, die Geographie der Länder der Welt, Nachbarländer, Flaggen und Teile der Welt in einem Spielformat zu studieren. Wählen Sie zehn verschiedene Länderbündnisse auf der Karte sowie drei Fallenländer für Ihren Gegner. Der Computer oder dein Freund (abhängig vom ausgewählten Spielmodus) wählt auch die entsprechende Anzahl von Länderbündnissen und Fallenländern aus. Die Versuche, die Länder zu erraten, finden reihum statt. Wer das Land des Gegners errät, erhält einen zusätzlichen Versuch. Wer zuerst alle Allianzen der gegnerischen Länder errät, hat gewonnen. Folgen Sie den Nachrichten oben auf dem Bildschirm, nachdem das Spiel begonnen hat.",
     "When entering an opponent's trap country, he receives one of three clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located.":
       "Beim Betreten des Fallenlandes eines Gegners erhält dieser einen von drei Hinweisen auf die Lage eines Ihrer Länder: 1. Hauptstadt des Landes; 2. Region (Europa, Amerika, Asien, Afrika, Ozeanien), in der sich eines Ihrer Länder befindet; 3. Subregion (Mitteleuropa, Nordamerika usw.), in der sich eines Ihrer Länder befindet.",
     "Important!": "Wichtig!",
@@ -1933,6 +2146,10 @@ export const localization = {
     "You have fallen into a trap-country": "Sie sind in eine Falle geraten",
     "Computer has fallen into a trap-country":
       "Der computer sind in eine Falle geraten",
+    Computer: "Computer",
+    CHAT: "CHAT",
+    "Create Game Room": "Spielzimmer Erstellen",
+    "Open Game Room": "Offenes Spielzimmer",
     "The opponent gets a hint": "Der Gegner bekommt einen Hinweis",
     "Hints:": "Tipps:",
     "Country Alliance": "Länder Allianz",
@@ -1942,6 +2159,16 @@ export const localization = {
     Share: "Teilen",
     Collapse: "Minimieren",
     "Press 'Play' to start game!": "Drücke 'Spielen', um das Spiel zu starten!",
+    "Opponent selected countries. Press 'Play' to start game!":
+      "Vom Gegner ausgewählte Länder. Drücke 'Spielen', um das Spiel zu starten!",
+    Points: "Punkte",
+    "Opponent guessed all your countries:":
+      "Der Gegner hat alle deine Länder erraten:",
+    "Opponent has not yet confirmed your move. We are waiting for confirmation...":
+      "Der Gegner hat Ihren Zug noch nicht bestätigt. Wir warten auf die Bestätigung...",
+    "Copy Error": "Kopierfehler",
+    "To play with your friend, you need: 1. Choose the desired game configuration, whether you want to guess countries and alliances of countries from all over the world or only independent ones. You can do this on this page or on the main page (after creating a game room, you will not be able to change this setting). 2. Create a game room and a link to the game for your friend by clicking the 'Create Game Room' button. 3. Copy the game link by clicking the 'Copy Link' button and send it to your friend or share the game link by clicking the 'Share Link With Friend' button. 4. After completing a game or several games, you can delete the game room by clicking the 'Delete Game Room' button (after deleting the game room, your friend will no longer be able to use the game link to play with you).":
+      "Um mit deinem Freund zu spielen, benötigst du Folgendes: 1. Wähle die gewünschte Spielkonfiguration: Möchtest du Länder und Länderbündnisse aus aller Welt oder nur unabhängige Länder erraten. Diese Einstellung kannst du auf dieser Seite oder auf der Startseite vornehmen (nachdem du einen Spielraum erstellt hast, kann diese Einstellung nicht mehr geändert werden). 2. Erstelle einen Spielraum und einen Link zum Spiel für deinen Freund, indem du auf 'Spielzimmer Erstellen' klickst. 3. Kopiere den Spiellink, indem du auf 'Link Kopieren' klickst, und sende ihn an deinen Freund oder teile ihn mit ihm, indem du auf 'Link mit Freund teilen' klickst. 4. Nach einem oder mehreren Spielen kannst du den Spielraum löschen, indem du auf 'Spielzimmer löschen' klickst (nach dem Löschen kann dein Freund den Spiellink nicht mehr verwenden, um mit dir zu spielen).",
     "Already guessed this country. Try another one!":
       "Dieses Land wurde bereits erraten. Versuche ein anderes!",
     "Failed attempt to guess country!":
@@ -1952,6 +2179,8 @@ export const localization = {
     "Already tried this country. Try another one!":
       "Dieses Land wurde bereits ausprobiert. Versuche ein anderes!",
     "Computer is guessing your country...": "Der Computer rät dein Land...",
+    "Opponent is guessing your country...":
+      "Der Gegner versucht, dein Land zu erraten...",
     "Your attempt to guess opponent's country":
       "Dein Versuch, das Land des Gegners zu erraten",
     "Computer failed to guess your country!":
@@ -2563,8 +2792,8 @@ export const localization = {
     "Make Donate": "Faire un Don",
     "World Country Alliances Guesser Game":
       "Jeu des Alliances des Pays du Monde",
-    "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
-      "projet permettant d'étudier la géographie des pays du monde, de leurs voisins, de leurs drapeaux et de certaines régions du monde sous forme de jeu. Choisissez dix alliances de pays différentes sur la carte, ainsi que trois pays pièges pour votre adversaire. L'ordinateur choisira également le nombre approprié d'alliances de pays et de pays pièges. Les tentatives pour deviner les pays se déroulent à tour de rôle. Celui qui devine le pays de l'adversaire obtient un essai supplémentaire. Le premier à deviner toutes les alliances des pays adverses gagne. Suivez les messages en haut de l'écran après le début de la partie.",
+    "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
+      "projet permettant d'étudier la géographie des pays du monde, de leurs voisins, de leurs drapeaux et de certaines régions du monde sous forme de jeu. Choisissez dix alliances de pays différentes sur la carte, ainsi que trois pays pièges pour votre adversaire. L'ordinateur ou votre ami (selon le mode de jeu sélectionné) choisira également le nombre approprié d'alliances de pays et de pays pièges. Les tentatives pour deviner les pays se déroulent à tour de rôle. Celui qui devine le pays de l'adversaire obtient un essai supplémentaire. Le premier à deviner toutes les alliances des pays adverses gagne. Suivez les messages en haut de l'écran après le début de la partie.",
     "When entering an opponent's trap country, he receives one of three clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located.":
       "Lorsqu'il entre dans le pays piège d'un adversaire, il reçoit l'un des trois indices sur l'emplacement de l'un de vos pays : 1. Capitale du pays ; 2. Région (Europe, Amérique, Asie, Afrique, Océanie) dans laquelle se trouve l'un de vos pays ; 3. Sous-région (Europe centrale, Amérique du Nord, etc.) dans laquelle se trouve l'un de vos pays.",
     "Important!": "Important!",
@@ -2611,6 +2840,11 @@ export const localization = {
     "You have fallen into a trap-country": "Vous êtes tombé dans un pays-piège",
     "Computer has fallen into a trap-country":
       "L'ordinateur êtes tombé dans un pays-piège",
+    Computer: "Ordinateur",
+    "Open Game Room": "Salle de jeux ouverte",
+    "Delete Game Room": "Supprimer la salle de jeux",
+    "Game Link For Friend": "Lien de jeu pour un ami",
+    "Instructions.": "Instructions.",
     "The opponent gets a hint": "L'adversaire reçoit un indice",
     "Hints:": "Conseils:",
     "Country Alliance": "Alliance des Pays",
@@ -2620,7 +2854,70 @@ export const localization = {
     "QR Code": "QR Code",
     Share: "Partager",
     Clean: "Propre",
+    "Opponent:": "Adversaire:",
+    "Message From Opponent": "Message de l'adversaire",
+    "Opponent Map": "Carte des adversaires",
+    "Opponent is online": "L'adversaire est en ligne",
+    "Opponent is not online": "L'adversaire n'est pas en ligne",
+    "Connection is failed": "La connexion a échoué",
+    "Create Game Room": "Créer une salle de jeux",
+    "Click 'Create Game Room' to generate game link":
+      "Cliquez sur 'Créer une salle de jeux' pour générer le lien du jeu",
+    Friend: "Ami",
+    "Game Room ID:": "ID de la salle de jeux:",
+    "Failed to create game room with ID:":
+      "Échec de la création de la salle de jeu avec l'ID:",
     "Random Countries Selection": "Sélection aléatoire de pays",
+    "BACK TO MAIN PAGE": "RETOUR À LA PAGE PRINCIPALE",
+    "Copy Link": "Copier le Lien",
+    "Share Link With Friend": "Partager le lien avec un ami",
+    "Sorry... Connection with your opponent has failed. Game is ended.":
+      "Désolé… La connexion avec votre adversaire a échoué. La partie est terminée.",
+    "Connection is closed": "La connexion est fermée",
+    "Sorry... Opponent left the game.":
+      "Désolé... L'adversaire a quitté le jeu.",
+    "You have selected the game mode with a friend. First, create a game room. Click the 'Create Game Room' button.":
+      "Vous avez sélectionné le mode de jeu avec un ami. Commencez par créer une salle de jeu. Cliquez sur le bouton 'Créer une salle de jeux'.",
+    "Opponent has not yet selected countries. Wait for the message to start the game.":
+      "L'adversaire n'a pas encore sélectionné de pays. Attendez le message pour démarrer la partie.",
+    "Opponent has not yet started game. Wait for the message to start.":
+      "L'adversaire n'a pas encore commencé la partie. Veuillez attendre le message de démarrage.",
+    "Opponent has fallen into a trap-country":
+      "L'adversaire est tombé dans un pays-piège",
+    "Opponent guessed": "L'adversaire a deviné",
+    "Opponent failed to guess your country!":
+      "Votre adversaire n'a pas réussi à deviner votre pays!",
+    "Opponent has not yet confirmed your move. We are waiting for confirmation...":
+      "Votre adversaire n'a pas encore confirmé votre coup. Nous attendons la confirmation...",
+    "Type Your Message Here... (max. length 300 characters)":
+      "Saisissez votre message ici... (longueur maximale : 300 caractères)",
+    "Opponent entered the game room to read your messages":
+      "Votre adversaire est entré dans la salle de jeu pour lire vos messages",
+    "Opponent has not yet entered the game room to read your messages. Try sending a message later":
+      "Votre adversaire n'est pas encore entré dans la salle de jeu pour lire vos messages. Veuillez réessayer d'envoyer un message plus tard",
+    "Game room does not exist. Perhaps the opponent deleted it or left the game":
+      "La salle de jeu n'existe pas. Il se peut que l'adversaire l'ait supprimée ou ait quitté la partie",
+    "Connection with your opponent has failed. Try your attempt later.":
+      "La connexion avec votre adversaire a échoué. Veuillez réessayer ultérieurement.",
+    "Failed to create a communication channel with your opponent":
+      "Échec de la création d'un canal de communication avec votre adversaire",
+    "Opponent is connecting": "L'adversaire se connecte",
+    "Game Room Deleted:": "Salle de jeux supprimée:",
+    Points: "Points",
+    "Failed to delete game room with ID:":
+      "Échec de la suppression de la salle de jeu avec l'identifiant:",
+    "To select alliances of countries randomly, click":
+      "Pour sélectionner aléatoirement des alliances de pays, cliquez ici",
+    "To clear selected country alliances, click":
+      "Pour supprimer les alliances de pays sélectionnés, cliquez ici",
+    "To play with your friend, you need: 1. Choose the desired game configuration, whether you want to guess countries and alliances of countries from all over the world or only independent ones. You can do this on this page or on the main page (after creating a game room, you will not be able to change this setting). 2. Create a game room and a link to the game for your friend by clicking the 'Create Game Room' button. 3. Copy the game link by clicking the 'Copy Link' button and send it to your friend or share the game link by clicking the 'Share Link With Friend' button. 4. After completing a game or several games, you can delete the game room by clicking the 'Delete Game Room' button (after deleting the game room, your friend will no longer be able to use the game link to play with you).":
+      "Pour jouer avec votre ami, suivez ces étapes : 1. Choisissez la configuration de jeu souhaitée : deviner les pays et les alliances de pays du monde entier ou uniquement les pays indépendants. Vous pouvez le faire sur cette page ou sur la page principale (une fois la salle de jeu créée, vous ne pourrez plus modifier ce paramètre). 2. Créez une salle de jeu et un lien pour votre ami en cliquant sur le bouton 'Créer une salle de jeux'. 3. Copiez le lien en cliquant sur le bouton 'Copier le Lien' et envoyez-le à votre ami, ou partagez-le en cliquant sur le bouton 'Partager le lien avec un ami'. 4. Après une ou plusieurs parties, vous pouvez supprimer la salle de jeu en cliquant sur le bouton 'Supprimer la salle de jeux' (votre ami ne pourra alors plus utiliser le lien pour jouer avec vous).",
+    "Play With A Friend Mode": "Mode Jouer avec un ami",
+    "To play with your friend, you need to select the game mode with a friend on the main page, create a game room and a link to the game for your friend and send it to him. Follow the connection status of your friend at the top of the screen after starting the game. There is also the possibility of communicating with your friend via chat at the bottom of the screen: you can greet him, wish him a good game or give yourself hints about your countries and alliances of countries.":
+      "Pour jouer avec un ami, sélectionnez le mode de jeu 'Avec un ami' sur la page principale, créez une salle de jeu et envoyez-lui un lien. Une fois la partie lancée, vous pourrez suivre la connexion de votre ami en haut de l'écran. Vous pouvez également discuter avec lui via le chat en bas de l'écran : saluez-le, souhaitez-lui bonne partie ou échangez des conseils sur vos pays et alliances.",
+    Score: "Score",
+    "If a player guesses an alliance of countries that contains four countries, he gets 15 points, three countries - 25 points, two countries - 35 points, one country - 50 points. When falling into an opponent's trap country, the player loses 10 points the first time, 20 points the second time, and 30 points the third time. At the end of the game, the player gets an additional 10 points for each alliance of countries that was not guessed by the opponent.":
+      "Si un joueur devine une alliance de quatre pays, il marque 15 points, trois pays - 25 points, deux pays - 35 points, et un seul pays - 50 points. Êtes tombé dans un pays-piège, le joueur perd 10 points la première fois, 20 points la deuxième fois et 30 points la troisième fois. À la fin de la partie, le joueur gagne 10 points supplémentaires pour chaque alliance non devinée par son adversaire.",
     "Facebook Page": "Page Facebook",
     "Country Alliances Selection — Video Tutorial":
       "Sélection des alliances de pays — Tutoriel vidéo",
@@ -2628,6 +2925,12 @@ export const localization = {
     "VIDEOS:": "VIDÉOS:",
     Collapse: "Réduire",
     "Press 'Play' to start game!": "Appuie sur 'Jouer' pour démarrer le jeu!",
+    "Opponent selected countries. Press 'Play' to start game!":
+      "L'adversaire a sélectionné des pays. Appuie sur 'Jouer' pour démarrer le jeu!",
+    "Opponent guessed all your countries:":
+      "Votre adversaire a deviné tous vos pays:",
+    "Copy Error": "Erreur de copie",
+    CHAT: "CHAT",
     "Failed attempt to guess country!":
       "La tentative de deviner le pays a échoué!",
     "You guessed": "Vous l'avez deviné",
@@ -2638,6 +2941,10 @@ export const localization = {
     "Already guessed this country. Try another one!":
       "Ce pays a déjà été deviné. Essayez-en un autre!",
     "Computer is guessing your country...": "L'ordinateur devine votre pays...",
+    "Opponent is guessing your country...":
+      "Votre adversaire est en train de deviner votre pays...",
+    "Game Link Copied": "Lien du jeu copié",
+    "Send Message": "Envoyer un message",
     "Your attempt to guess opponent's country":
       "Votre tentative de deviner le pays de l'adversaire",
     "Computer failed to guess your country!":
@@ -3245,8 +3552,8 @@ export const localization = {
     "Support Project": "Apoyar el Proyecto",
     "World Country Alliances Guesser Game":
       "Juego de Alianzas de los Países del Mundo",
-    "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
-      "un proyecto que te ayuda a estudiar la geografía de los países del mundo, sus vecinos, sus banderas y partes del mundo en formato de juego. Elige diez alianzas diferentes de países en el mapa, además de tres países trampa para tu oponente. La computadora también elegirá el número adecuado de alianzas y países trampa. Los intentos para adivinar los países se realizan por turnos. Quien adivine el país del oponente tiene un intento extra. Quien primero adivine todas las alianzas de países del oponente gana. Sigue los mensajes en la parte superior de la pantalla después de que comience el juego.",
+    "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
+      "un proyecto que te ayuda a estudiar la geografía de los países del mundo, sus vecinos, sus banderas y partes del mundo en formato de juego. Elige diez alianzas diferentes de países en el mapa, además de tres países trampa para tu oponente. El ordenador o tu amigo (depende del modo de juego seleccionado) también elegirá el número adecuado de alianzas y países trampa. Los intentos para adivinar los países se realizan por turnos. Quien adivine el país del oponente tiene un intento extra. Quien primero adivine todas las alianzas de países del oponente gana. Sigue los mensajes en la parte superior de la pantalla después de que comience el juego.",
     "When entering an opponent's trap country, he receives one of three clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located.":
       "Al entrar al país trampa de un oponente, este recibe una de tres pistas sobre la ubicación de uno de sus países: 1. La capital del país; 2. La región (Europa, América, Asia, África, Oceanía) en la que se encuentra uno de sus países; 3. La subregión (Europa Central, América del Norte, etc.) en la que se encuentra uno de sus países.",
     "Important!": "¡Importante!",
@@ -3293,10 +3600,65 @@ export const localization = {
     "You have fallen into a trap-country": "Has caído en una trampa país",
     "Computer has fallen into a trap-country":
       "La computadora ha caído en una trampa país",
+    Computer: "Computadora",
     "The opponent gets a hint": "El oponente recibe una pista",
     "Hints:": "Consejos:",
     "Country Alliance": "Alianza de Países",
     BACK: "VOLVER",
+    "Opponent:": "Adversario:",
+    "Opponent Map": "Mapa del oponente",
+    "Opponent is online": "El oponente está en línea",
+    "Opponent is not online": "El oponente no está en línea",
+    "Connection is failed": "La conexión ha fallado",
+    "Game Room ID:": "ID de la sala de juegos:",
+    Friend: "Amigo",
+    "Create Game Room": "Crear sala de juegos",
+    "Click 'Create Game Room' to generate game link":
+      "Haga clic en 'Crear sala de juegos' para generar el enlace del juego",
+    "Open Game Room": "Sala de juegos abierta",
+    "BACK TO MAIN PAGE": "VOLVER A LA PÁGINA PRINCIPAL",
+    "Delete Game Room": "Eliminar sala de juegos",
+    "Game Link For Friend": "Enlace del juego amigo",
+    "Copy Link": "Copiar Enlace",
+    "Failed to create game room with ID:":
+      "No se pudo crear la sala de juegos con ID:",
+    "Share Link With Friend": "Compartir enlace con amigo",
+    "Sorry... Connection with your opponent has failed. Game is ended.":
+      "Lo sentimos... La conexión con tu oponente ha fallado. El juego ha terminado.",
+    "Connection is closed": "La conexión está cerrada",
+    "Sorry... Opponent left the game.":
+      "Lo siento... El oponente abandonó el juego.",
+    "You have selected the game mode with a friend. First, create a game room. Click the 'Create Game Room' button.":
+      "Has seleccionado el modo de juego con un amigo. Primero, crea una sala de juegos. Haz clic en el botón 'Crear sala de juegos'.",
+    "Opponent has not yet selected countries. Wait for the message to start the game.":
+      "El oponente aún no ha seleccionado el país. Espera el mensaje para iniciar el juego.",
+    "Opponent has not yet started game. Wait for the message to start.":
+      "El oponente aún no ha comenzado la partida. Espere a que aparezca el mensaje para empezar.",
+    "Opponent guessed": "El oponente adivinó",
+    "Opponent has fallen into a trap-country":
+      "El oponente ha caído en una trampa país",
+    "Opponent failed to guess your country!":
+      "¡El oponente no pudo adivinar tu país!",
+    "Opponent guessed all your countries:":
+      "Tu oponente adivinó todos tus países:",
+    "Opponent has not yet confirmed your move. We are waiting for confirmation...":
+      "Tu oponente aún no ha confirmado tu movimiento. Estamos esperando la confirmación...",
+    "Opponent entered the game room to read your messages":
+      "Tu oponente entró en la sala de juego para leer tus mensajes",
+    "Opponent has not yet entered the game room to read your messages. Try sending a message later":
+      "Tu oponente aún no ha entrado en la sala de juego para leer tus mensajes. Intenta enviar un mensaje más tarde",
+    "Game room does not exist. Perhaps the opponent deleted it or left the game":
+      "La sala de juego no existe. Quizás el oponente la eliminó o abandonó la partida",
+    "Connection with your opponent has failed. Try your attempt later.":
+      "Se ha perdido la conexión con tu oponente. Inténtalo de nuevo más tarde.",
+    "Failed to create a communication channel with your opponent":
+      "No se pudo establecer un canal de comunicación con tu oponente",
+    "Opponent is connecting": "El oponente se está conectando",
+    "Failed to delete game room with ID:":
+      "No se pudo eliminar la sala de juegos con ID:",
+    "To clear selected country alliances, click":
+      "Para eliminar las alianzas de los países seleccionados, haga clic",
+    "Play With A Friend Mode": "Modo Jugar con un Amigo",
     "Selected Alliance Country": "País de alianza seleccionado",
     "Selected Trap Country": "País de trampa seleccionado",
     "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!":
@@ -3306,6 +3668,10 @@ export const localization = {
     Share: "Compartir",
     Collapse: "Minimizar",
     "Press 'Play' to start game!": "Pulsa 'Jugar' para comenzar el juego!",
+    "Opponent selected countries. Press 'Play' to start game!":
+      "Países seleccionados por el oponente. Pulsa 'Jugar' para comenzar el juego!",
+    "Game Link Copied": "Enlace del juego copiado",
+    Score: "Puntuación",
     "Failed attempt to guess country!": "¡Intento fallido de adivinar el país!",
     "You guessed": "Lo adivinaste",
     "Computer guessed": "La computadora lo adivinó",
@@ -3324,6 +3690,25 @@ export const localization = {
       "Este país ya ha sido adivinado. ¡Prueba con otro!",
     "Computer is guessing your country...":
       "La computadora está adivinando tu país...",
+    "Opponent is guessing your country...":
+      "Tu oponente está intentando adivinar tu país...",
+    "Copy Error": "Error de copia",
+    CHAT: "CHARLAR",
+    "Message From Opponent": "Mensaje del oponente",
+    "Send Message": "Enviar mensaje",
+    "Type Your Message Here... (max. length 300 characters)":
+      "Escribe tu mensaje aquí... (longitud máxima: 300 caracteres)",
+    "Game Room Deleted:": "Sala de juegos eliminada:",
+    "To select alliances of countries randomly, click":
+      "Para seleccionar alianzas de países al azar, haga clic",
+    "Instructions.": "Instrucciones.",
+    "To play with your friend, you need: 1. Choose the desired game configuration, whether you want to guess countries and alliances of countries from all over the world or only independent ones. You can do this on this page or on the main page (after creating a game room, you will not be able to change this setting). 2. Create a game room and a link to the game for your friend by clicking the 'Create Game Room' button. 3. Copy the game link by clicking the 'Copy Link' button and send it to your friend or share the game link by clicking the 'Share Link With Friend' button. 4. After completing a game or several games, you can delete the game room by clicking the 'Delete Game Room' button (after deleting the game room, your friend will no longer be able to use the game link to play with you).":
+      "Para jugar con tu amigo, necesitas: 1. Elegir la configuración de juego deseada: si quieres adivinar países y alianzas de todo el mundo o solo países independientes. Puedes hacerlo en esta página o en la página principal (una vez creada la sala de juego, no podrás cambiar esta configuración). 2. Crear una sala de juego y un enlace para tu amigo haciendo clic en el botón 'Crear sala de juegos'. 3. Copiar el enlace haciendo clic en el botón 'Copiar Enlace' y enviárselo a tu amigo, o compartirlo haciendo clic en el botón 'Compartir enlace con amigo'. 4. Después de completar una o varias partidas, puedes eliminar la sala de juego haciendo clic en el botón 'Eliminar sala de juegos' (tras eliminarla, tu amigo ya no podrá usar el enlace para jugar contigo).",
+    "To play with your friend, you need to select the game mode with a friend on the main page, create a game room and a link to the game for your friend and send it to him. Follow the connection status of your friend at the top of the screen after starting the game. There is also the possibility of communicating with your friend via chat at the bottom of the screen: you can greet him, wish him a good game or give yourself hints about your countries and alliances of countries.":
+      "Para jugar con un amigo, selecciona el modo de juego 'Con un amigo' en la página principal, crea una sala de juego y envíale un enlace. Tras iniciar la partida, podrás ver el estado de conexión de tu amigo en la parte superior de la pantalla. También puedes comunicarte con él mediante el chat en la parte inferior de la pantalla: saludarlo, desearle suerte o intercambiar consejos sobre vuestros países y alianzas.",
+    Points: "Puntos",
+    "If a player guesses an alliance of countries that contains four countries, he gets 15 points, three countries - 25 points, two countries - 35 points, one country - 50 points. When falling into an opponent's trap country, the player loses 10 points the first time, 20 points the second time, and 30 points the third time. At the end of the game, the player gets an additional 10 points for each alliance of countries that was not guessed by the opponent.":
+      "Si un jugador adivina una alianza de cuatro países, obtiene 15 puntos, con tres países - 25 puntos, con dos países - 35 puntos, y con un país - 50 puntos. Al caer en un país trampa del oponente, el jugador pierde 10 puntos la primera vez, 20 la segunda y 30 la tercera. Al final de la partida, el jugador recibe 10 puntos adicionales por cada alianza que el oponente no haya adivinado.",
     "Your attempt to guess opponent's country":
       "Tu intento de adivinar el país del oponente",
     "Computer failed to guess your country!":
@@ -3933,6 +4318,10 @@ export const localization = {
     "Make Donate": "Fai una Donazione",
     "QR Code": "Codice QR",
     Clean: "Pulita",
+    "Opponent:": "Avversario:",
+    "Create Game Room": "Crea una sala giochi",
+    "Click 'Create Game Room' to generate game link":
+      "Fai clic su 'Crea una sala giochi' per generare il collegamento al gioco",
     "Random Countries Selection": "Selezione casuale dei paesi",
     "Facebook Page": "Pagina Facebook",
     "Country Alliances Selection — Video Tutorial":
@@ -3942,8 +4331,8 @@ export const localization = {
     "VIDEOS:": "VIDEO:",
     "World Country Alliances Guesser Game":
       "Gioco delle Alleanze tra i Paesi del Mondo",
-    "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
-      "progetto che aiuta a studiare la geografia dei paesi del mondo, dei paesi confinanti, delle bandiere e di altre parti del mondo in un formato di gioco. Scegli dieci diverse alleanze di paesi sulla mappa, oltre a tre paesi-trappola per il tuo avversario. Il computer sceglierà anche il numero appropriato di alleanze di paesi e paesi-trappola. I tentativi di indovinare i paesi avvengono a turno. Chi indovina il paese dell'avversario ha un tentativo extra. Vince chi indovina per primo tutte le alleanze dei paesi dell'avversario. Segui i messaggi nella parte superiore dello schermo dopo l'inizio del gioco.",
+    "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
+      "progetto che aiuta a studiare la geografia dei paesi del mondo, dei paesi confinanti, delle bandiere e di altre parti del mondo in un formato di gioco. Scegli dieci diverse alleanze di paesi sulla mappa, oltre a tre paesi-trappola per il tuo avversario. Il computer o il tuo amico (a seconda della modalità di gioco selezionata) sceglierà anche il numero appropriato di alleanze di paesi e paesi-trappola. I tentativi di indovinare i paesi avvengono a turno. Chi indovina il paese dell'avversario ha un tentativo extra. Vince chi indovina per primo tutte le alleanze dei paesi dell'avversario. Segui i messaggi nella parte superiore dello schermo dopo l'inizio del gioco.",
     "When entering an opponent's trap country, he receives one of three clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located.":
       "Quando entri nel paese trappola di un avversario, il tuo avversario riceve uno dei tre indizi sulla posizione di uno dei tuoi paesi: 1. La capitale del paese; 2. La regione (Europa, America, Asia, Africa, Oceania) in cui si trova uno dei tuoi paesi; 3. La sottoregione (Europa centrale, Nord America, ecc.) in cui si trova uno dei tuoi paesi.",
     "Important!": "Importante!",
@@ -3990,7 +4379,59 @@ export const localization = {
     "You have fallen into a trap-country": "Siete caduti in un paese-trappola",
     "Computer has fallen into a trap-country":
       "Il computer è caduto in un paese-trappola",
+    Computer: "Computer",
+    "Opponent is online": "L'avversario è online",
+    "Opponent Map": "Mappa dell'avversario",
+    "Opponent is not online": "L'avversario non è online",
+    "Connection is failed": "La connessione è fallita",
+    "Game Room ID:": "ID sala giochi:",
+    "Open Game Room": "Sala giochi aperta",
+    Friend: "Amico",
+    "BACK TO MAIN PAGE": "TORNA ALLA PAGINA PRINCIPALE",
+    "Delete Game Room": "Elimina la sala giochi",
+    "Game Link For Friend": "Link di gioco per un amico",
+    "Copy Link": "Copia il Collegamento",
+    "Failed to create game room with ID:":
+      "Impossibile creare la sala giochi con ID:",
+    "Share Link With Friend": "Condividi il link con un amico",
+    "Sorry... Connection with your opponent has failed. Game is ended.":
+      "Spiacenti... La connessione con il tuo avversario è fallita. La partita è terminata.",
+    "Connection is closed": "La connessione è chiusa",
+    "Sorry... Opponent left the game.":
+      "Mi dispiace... L'avversario ha abbandonato la partita.",
+    "You have selected the game mode with a friend. First, create a game room. Click the 'Create Game Room' button.":
+      "Hai selezionato la modalità di gioco con un amico. Per prima cosa, crea una sala giochi. Clicca sul pulsante 'Crea una sala giochi'.",
+    "Opponent has not yet selected countries. Wait for the message to start the game.":
+      "L'avversario non ha ancora selezionato i paesi. Attendi il messaggio per iniziare la partita.",
+    "Opponent has not yet started game. Wait for the message to start.":
+      "L'avversario non ha ancora iniziato la partita. Attendi il messaggio di inizio.",
+    "Opponent guessed": "L'avversario ha indovinato",
+    "Opponent has fallen into a trap-country":
+      "L'avversario è caduto in un paese-trappola",
+    "Opponent failed to guess your country!":
+      "L'avversario non è riuscito a indovinare il tuo Paese!",
+    "Opponent has not yet confirmed your move. We are waiting for confirmation...":
+      "L'avversario non ha ancora confermato la tua mossa. Stiamo aspettando la conferma...",
+    "Copy Error": "Errore di copia",
+    CHAT: "CHIACCHIERATA",
+    "Message From Opponent": "Messaggio dall'avversario",
+    "Type Your Message Here... (max. length 300 characters)":
+      "Scrivi qui il tuo messaggio... (lunghezza massima 300 caratteri)",
+    "Send Message": "Invia messaggio",
+    "Opponent has not yet entered the game room to read your messages. Try sending a message later":
+      "L'avversario non è ancora entrato nella stanza di gioco per leggere i tuoi messaggi. Prova a inviare un messaggio più tardi",
+    "Game room does not exist. Perhaps the opponent deleted it or left the game":
+      "La stanza di gioco non esiste. Forse l'avversario l'ha eliminata o ha abbandonato la partita",
     "The opponent gets a hint": "L'avversario riceve un suggerimento",
+    "Connection with your opponent has failed. Try your attempt later.":
+      "La connessione con il tuo avversario è fallita. Riprova più tardi.",
+    "Failed to create a communication channel with your opponent":
+      "Impossibile stabilire un canale di comunicazione con il tuo avversario",
+    "Opponent is connecting": "L'avversario si sta connettendo",
+    "To select alliances of countries randomly, click":
+      "Per selezionare alleanze di paesi in modo casuale, clicca qui",
+    "To clear selected country alliances, click":
+      "Per rimuovere le alleanze dei paesi selezionati, clicca qui",
     "Hints:": "Suggerimenti:",
     "Country Alliance": "Alleanza di Paese",
     BACK: "TORNA",
@@ -3998,6 +4439,22 @@ export const localization = {
     "Selected Trap Country": "Paese Trappola Selezionato",
     Share: "Condividi",
     "Press 'Play' to start game!": "Premi 'Gioca' per iniziare il gioco!",
+    "Opponent selected countries. Press 'Play' to start game!":
+      "Paesi selezionati dall'avversario. Premi 'Gioca' per iniziare il gioco!",
+    "Opponent entered the game room to read your messages":
+      "L'avversario è entrato nella sala giochi per leggere i tuoi messaggi",
+    "Game Link Copied": "Link al gioco copiato",
+    "Game Room Deleted:": "Sala giochi eliminata:",
+    "Failed to delete game room with ID:":
+      "Impossibile eliminare la stanza di gioco con ID:",
+    "To play with your friend, you need: 1. Choose the desired game configuration, whether you want to guess countries and alliances of countries from all over the world or only independent ones. You can do this on this page or on the main page (after creating a game room, you will not be able to change this setting). 2. Create a game room and a link to the game for your friend by clicking the 'Create Game Room' button. 3. Copy the game link by clicking the 'Copy Link' button and send it to your friend or share the game link by clicking the 'Share Link With Friend' button. 4. After completing a game or several games, you can delete the game room by clicking the 'Delete Game Room' button (after deleting the game room, your friend will no longer be able to use the game link to play with you).":
+      "Per giocare con il tuo amico, devi: 1. Scegliere la configurazione di gioco desiderata, se vuoi indovinare paesi e alleanze di paesi da tutto il mondo o solo quelli indipendenti. Puoi farlo in questa pagina o nella pagina principale (dopo aver creato una sala giochi, non potrai modificare questa impostazione). 2. Crea una sala giochi e un collegamento alla partita per il tuo amico cliccando sul pulsante 'Crea una sala giochi'. 3. Copia il collegamento alla partita cliccando sul pulsante 'Copia il Collegamento' e invialo al tuo amico oppure condividi il collegamento alla partita cliccando sul pulsante 'Condividi il link con un amico'. 4. Dopo aver completato una o più partite, puoi eliminare la sala giochi cliccando sul pulsante 'Elimina la sala giochi' (dopo aver eliminato la sala giochi, il tuo amico non potrà più utilizzare il collegamento alla partita per giocare con te).",
+    "To play with your friend, you need to select the game mode with a friend on the main page, create a game room and a link to the game for your friend and send it to him. Follow the connection status of your friend at the top of the screen after starting the game. There is also the possibility of communicating with your friend via chat at the bottom of the screen: you can greet him, wish him a good game or give yourself hints about your countries and alliances of countries.":
+      "Per giocare con un amico, devi selezionare la modalità di gioco con un amico nella pagina principale, creare una stanza di gioco e un collegamento al gioco per il tuo amico, quindi inviarglielo. Segui lo stato di connessione del tuo amico nella parte superiore dello schermo dopo aver avviato la partita. C'è anche la possibilità di comunicare con il tuo amico tramite chat nella parte inferiore dello schermo: puoi salutarlo, augurargli una buona partita o darti suggerimenti sui tuoi paesi e sulle alleanze tra paesi.",
+    "Play With A Friend Mode": "Modalità Gioca con un amico",
+    "If a player guesses an alliance of countries that contains four countries, he gets 15 points, three countries - 25 points, two countries - 35 points, one country - 50 points. When falling into an opponent's trap country, the player loses 10 points the first time, 20 points the second time, and 30 points the third time. At the end of the game, the player gets an additional 10 points for each alliance of countries that was not guessed by the opponent.":
+      "Se un giocatore indovina un'alleanza di paesi che contiene quattro paesi, ottiene 15 punti, tre paesi - 25 punti, due paesi - 35 punti, un paese - 50 punti. Quando cade nella trappola di un paese avversario, il giocatore perde 10 punti la prima volta, 20 punti la seconda volta e 30 punti la terza volta. Alla fine della partita, il giocatore ottiene altri 10 punti per ogni alleanza di paesi che non è stata indovinata dall'avversario.",
+    Score: "Punteggio",
     "Failed attempt to guess country!":
       "Tentativo fallito di indovinare il paese!",
     "You guessed": "Hai indovinato",
@@ -4011,6 +4468,12 @@ export const localization = {
       "Hai già indovinato questo paese. Prova con un altro!",
     "Computer is guessing your country...":
       "Il computer sta indovinando il tuo paese...",
+    "Opponent is guessing your country...":
+      "L'avversario sta cercando di indovinare il tuo paese...",
+    "Opponent guessed all your countries:":
+      "L'avversario ha indovinato tutti i tuoi paesi:",
+    "Instructions.": "Istruzioni.",
+    Points: "Punti",
     "Your attempt to guess opponent's country":
       "Il tuo tentativo di indovinare il paese dell'avversario",
     "Computer failed to guess your country!":

@@ -132,6 +132,36 @@ export class PlayMap {
       .fitWorld()
       .setView(latLon, defaultZoomLevel);
     L.control.layers(baseMaps).setPosition("topleft").addTo(this.map);
+    L.Control.playerOneScoreField = L.Control.extend({
+      onAdd: function (map) {
+        const playerOneScoreField = L.DomUtil.create("div");
+        playerOneScoreField.id = "player-one-score-field";
+        playerOneScoreField.style.backgroundColor = "white";
+        playerOneScoreField.style.boxShadow =
+          "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
+        playerOneScoreField.style.paddingRight = "3px";
+        playerOneScoreField.style.width = "50px";
+        playerOneScoreField.classList.add("text-center");
+        playerOneScoreField.style.paddingLeft = "3px";
+        playerOneScoreField.style.paddingTop = "2px";
+        playerOneScoreField.style.paddingBottom = "2px";
+        playerOneScoreField.style.fontSize = "0.7rem";
+        playerOneScoreField.style.opacity = "0.7";
+        playerOneScoreField.style.borderRadius = "2px";
+        playerOneScoreField.style.fontWeight = "bolder";
+        playerOneScoreField.style.marginTop = "5px";
+        playerOneScoreField.style.color = "green";
+        playerOneScoreField.textContent = "0";
+        playerOneScoreField.title =
+          localization[model.worldCountries.language]["Score"];
+        return playerOneScoreField;
+      },
+      onRemove: function (map) {},
+    });
+    L.control.playeronescorefield = function (opts) {
+      return new L.Control.playerOneScoreField(opts);
+    };
+    L.control.playeronescorefield({ position: "topleft" }).addTo(this.map);
     L.Control.PlayerOneCountriesField = L.Control.extend({
       gameConfiguration: this.gameConfiguration,
       cleanFunction: this.cleanSelection.bind(this),
@@ -159,7 +189,7 @@ export class PlayMap {
         container.appendChild(userIconContainer);
         container.appendChild(userCountriesNumber);
         const random = L.DomUtil.create("div");
-        random.style.height = "25px";
+        random.style.height = "23px";
         random.style.display = "flex";
         random.style.justifyContent = "center";
         random.style.alignItems = "center";
@@ -175,8 +205,14 @@ export class PlayMap {
           '<i class="fa-solid fa-dice"></i>'
         );
         random.addEventListener("click", this.randomFunction);
+        random.addEventListener("mouseover", () => {
+          random.style.backgroundColor = "lightgreen";
+        });
+        random.addEventListener("mouseout", () => {
+          random.style.backgroundColor = "white";
+        });
         const clean = L.DomUtil.create("div");
-        clean.style.height = "25px";
+        clean.style.height = "23px";
         clean.style.display = "flex";
         clean.style.justifyContent = "center";
         clean.style.alignItems = "center";
@@ -189,6 +225,12 @@ export class PlayMap {
           '<i class="fa-solid fa-trash"></i>'
         );
         clean.addEventListener("click", this.cleanFunction);
+        clean.addEventListener("mouseover", () => {
+          clean.style.backgroundColor = "red";
+        });
+        clean.addEventListener("mouseout", () => {
+          clean.style.backgroundColor = "white";
+        });
         container.insertAdjacentHTML(
           "beforeend",
           this.gameConfiguration.countriesUnionsHtml
@@ -217,6 +259,8 @@ export class PlayMap {
         messageField.style.width = "100%";
         messageField.style.marginTop = "0px";
         messageField.style.overflow = "auto";
+        messageField.style.fontFamily =
+          "Cambria, Cochin, Georgia, Times,Times New Roman, serif";
         messageField.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
         messageField.textContent =
@@ -232,6 +276,179 @@ export class PlayMap {
       return new L.Control.MessageField(opts);
     };
     L.control.messagefield({ position: "topcenter" }).addTo(this.map);
+    if (this.gameConfiguration.gameMode === "user") {
+      L.Control.OpponentConnectionField = L.Control.extend({
+        onAdd: function (map) {
+          const opponentConnectionField = L.DomUtil.create("div");
+          opponentConnectionField.id = "opponent-connection-field";
+          opponentConnectionField.style.backgroundColor = "white";
+          opponentConnectionField.style.boxShadow =
+            "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
+          opponentConnectionField.style.paddingRight = "3px";
+          opponentConnectionField.style.paddingLeft = "3px";
+          opponentConnectionField.style.fontSize = "0.5rem";
+          opponentConnectionField.style.opacity = "0.7";
+          opponentConnectionField.style.borderRadius = "2px";
+          opponentConnectionField.style.fontWeight = "bolder";
+          opponentConnectionField.style.marginTop = "10px";
+          const opponentConnectionIndicator = L.DomUtil.create("span");
+          opponentConnectionIndicator.id = "opponent-connection-indicator";
+          opponentConnectionIndicator.style.borderRadius = "50%";
+          opponentConnectionIndicator.style.border = "1px solid grey";
+          opponentConnectionIndicator.style.marginRight = "3px";
+          opponentConnectionIndicator.style.boxShadow =
+            "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
+          opponentConnectionIndicator.style.width = "7px";
+          opponentConnectionIndicator.style.height = "7px";
+          opponentConnectionIndicator.style.verticalAlign = "middle";
+          opponentConnectionIndicator.style.display = "inline-block";
+          opponentConnectionIndicator.style.backgroundColor = "red";
+          const opponentConnectionText = L.DomUtil.create("span");
+          opponentConnectionText.id = "opponent-connection-text";
+          opponentConnectionText.style.color = "red";
+          opponentConnectionText.textContent =
+            localization[model.worldCountries.language][
+              "Opponent is not online"
+            ];
+          opponentConnectionField.appendChild(opponentConnectionIndicator);
+          opponentConnectionField.appendChild(opponentConnectionText);
+          return opponentConnectionField;
+        },
+        onRemove: function (map) {},
+      });
+      L.control.opponentconnectionfield = function (opts) {
+        return new L.Control.OpponentConnectionField(opts);
+      };
+      L.control
+        .opponentconnectionfield({ position: "topcenter" })
+        .addTo(this.map);
+      L.Control.Chat = L.Control.extend({
+        chatButtonFunction: this.chatButtonHandler.bind(this),
+        chatMessage: this.sendChatMessage.bind(this),
+        onAdd: function (map) {
+          const chat = L.DomUtil.create("div");
+          chat.id = "chat";
+          chat.style.width = "100%";
+          chat.style.marginBottom = "0px";
+          chat.classList.add("text-center");
+          const chatButton = L.DomUtil.create("div");
+          chatButton.id = "chat-button";
+          chatButton.style.backgroundColor = "white";
+          chatButton.style.color = "darkblue";
+          chatButton.style.cursor = "pointer";
+          chatButton.style.boxShadow =
+            "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
+          chatButton.style.fontSize = "0.75rem";
+          chatButton.style.opacity = "0.7";
+          chatButton.style.width = "20%";
+          chatButton.style.fontWeight = "bolder";
+          chatButton.style.marginBottom = "0px";
+          chatButton.style.display = "inline-block";
+          chatButton.style.borderTopLeftRadius = "5px";
+          chatButton.style.borderTopRightRadius = "5px";
+          chatButton.classList.add("text-center");
+          const chatButtonLeftArrow = L.DomUtil.create("span");
+          chatButtonLeftArrow.id = "chat-button-left-arrow";
+          chatButtonLeftArrow.textContent = "⬆";
+          chatButtonLeftArrow.style.marginRight = "5px";
+          const chatButtonText = L.DomUtil.create("span");
+          chatButtonText.id = "chat-button-text";
+          chatButtonText.textContent =
+            localization[model.worldCountries.language]["CHAT"];
+          const chatButtonRightArrow = L.DomUtil.create("span");
+          chatButtonRightArrow.id = "chat-button-right-arrow";
+          chatButtonRightArrow.textContent = "⬆";
+          chatButtonRightArrow.style.marginLeft = "5px";
+          const chatContainer = L.DomUtil.create("div");
+          chatContainer.id = "chat-container";
+          chatContainer.classList.add("not-displayed");
+          chatContainer.style.backgroundColor = "white";
+          chatContainer.style.color = "darkblue";
+          chatContainer.style.boxShadow =
+            "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
+          chatContainer.style.fontSize = "0.7rem";
+          chatContainer.style.opacity = "0.7";
+          chatContainer.style.width = "100%";
+          chatContainer.style.fontWeight = "bolder";
+          chatContainer.style.marginBottom = "0px";
+          const chatMessageFromOpponent = L.DomUtil.create("input");
+          chatMessageFromOpponent.id = "chat-message-from-opponent";
+          chatMessageFromOpponent.readOnly = true;
+          chatMessageFromOpponent.placeholder =
+            "👱 " +
+            localization[model.worldCountries.language][
+              "Message From Opponent"
+            ];
+          chatMessageFromOpponent.ariaReadonly = true;
+          chatMessageFromOpponent.style.width = "100%";
+          chatMessageFromOpponent.style.border = "0px";
+          chatMessageFromOpponent.style.borderTop = "1px dotted black";
+          chatMessageFromOpponent.style.overflowX = "hidden";
+          const chatMessageToOpponentContainer = L.DomUtil.create("div");
+          const chatMessageToOpponent = L.DomUtil.create("input");
+          chatMessageToOpponent.id = "chat-message-to-opponent";
+          chatMessageToOpponent.placeholder =
+            "✉️ " +
+            localization[model.worldCountries.language][
+              "Type Your Message Here... (max. length 300 characters)"
+            ];
+          chatMessageToOpponent.style.width = "90%";
+          chatMessageToOpponent.style.border = "0px";
+          chatMessageToOpponent.style.borderTop = "1px solid black";
+          chatMessageToOpponent.style.borderRight = "1px solid black";
+          chatMessageToOpponent.style.float = "left";
+          chatMessageToOpponent.maxLength = 300;
+          chatMessageToOpponent.style.overflowX = "hidden";
+          const chatMessageToOpponentButton = L.DomUtil.create("input");
+          chatMessageToOpponentButton.type = "button";
+          chatMessageToOpponentButton.id = "chat-message-to-opponent-button";
+          chatMessageToOpponentButton.value = `📩`;
+          chatMessageToOpponentButton.style.width = "10%";
+          chatMessageToOpponentButton.style.float = "right";
+          chatMessageToOpponentButton.style.backgroundColor = "white";
+          chatMessageToOpponentButton.style.border = "0px";
+          chatMessageToOpponentButton.style.borderTop = "1px solid black";
+          chatMessageToOpponentButton.style.boxShadow =
+            "rgba(0, 0, 0, 0.5) 0px 1px 5px, rgba(0, 0, 0, 0.12) 0px 1px 5px inset";
+          chatMessageToOpponentButton.title =
+            localization[model.worldCountries.language]["Send Message"];
+          chatMessageToOpponentButton.addEventListener(
+            "click",
+            this.chatMessage
+          );
+          chatMessageToOpponentButton.addEventListener("mouseover", () => {
+            chatMessageToOpponentButton.style.backgroundColor = "#25cff2";
+          });
+          chatMessageToOpponentButton.addEventListener("mouseout", () => {
+            chatMessageToOpponentButton.style.backgroundColor = "white";
+          });
+          chatMessageToOpponent.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              this.chatMessage();
+            }
+          });
+          chatMessageToOpponentContainer.appendChild(chatMessageToOpponent);
+          chatMessageToOpponentContainer.appendChild(
+            chatMessageToOpponentButton
+          );
+          chat.appendChild(chatButton);
+          chat.appendChild(chatContainer);
+          chatContainer.appendChild(chatMessageFromOpponent);
+          chatContainer.appendChild(chatMessageToOpponentContainer);
+          chatButton.appendChild(chatButtonLeftArrow);
+          chatButton.appendChild(chatButtonText);
+          chatButton.appendChild(chatButtonRightArrow);
+          chatButton.addEventListener("click", this.chatButtonFunction);
+          return chat;
+        },
+        onRemove: function (map) {},
+      });
+      L.control.chat = function (opts) {
+        return new L.Control.Chat(opts);
+      };
+      L.control.chat({ position: "bottomcenter" }).addTo(this.map);
+    }
     L.Control.MapField = L.Control.extend({
       onAdd: function (map) {
         const mapFiled = L.DomUtil.create("div");
@@ -241,11 +458,11 @@ export class PlayMap {
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
         mapFiled.style.paddingRight = "3px";
         mapFiled.style.paddingLeft = "3px";
-        mapFiled.style.fontSize = "0.8rem";
+        mapFiled.style.fontSize = "0.7rem";
         mapFiled.style.opacity = "0.7";
         mapFiled.style.borderRadius = "2px";
         mapFiled.style.fontWeight = "bolder";
-        mapFiled.style.marginTop = "20px";
+        mapFiled.style.marginTop = "15px";
         mapFiled.style.color = "darkblue";
         mapFiled.textContent =
           localization[model.worldCountries.language][playerMapLabel];
@@ -319,8 +536,9 @@ export class PlayMap {
         playButton.classList.add("btn-sm");
         playButton.classList.add("btn-danger");
         playButton.classList.add("guess-country-game-play");
+        playButton.classList.add("rounded-pill");
         playButton.style.marginTop = "10px";
-        playButton.style.marginBottom = "10px";
+        playButton.style.marginBottom = "6px";
         playButton.style.paddinTop = "0.35rem";
         playButton.style.paddinBottom = "0.35rem";
         playButton.style.fontSize = "0.8rem";
@@ -340,16 +558,17 @@ export class PlayMap {
     };
     L.control.playbutton({ position: "topright" }).addTo(this.map);
     L.Control.FinishButton = L.Control.extend({
-      finishFunction: this.finishGameHandler.bind(this, true),
+      finishFunction: this.finishGameHandler.bind(this, true, false),
       onAdd: function (map) {
         const finishButton = L.DomUtil.create("button");
         finishButton.classList.add("btn");
         finishButton.classList.add("btn-sm");
         finishButton.classList.add("btn-primary");
         finishButton.classList.add("guess-country-game-finish");
+        finishButton.classList.add("rounded-pill");
         finishButton.style.marginTop = "5px";
         finishButton.style.fontSize = "0.8rem";
-        finishButton.style.marginBottom = "10px";
+        finishButton.style.marginBottom = "7px";
         finishButton.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
         finishButton.style.paddinTop = "0.35rem";
@@ -373,9 +592,10 @@ export class PlayMap {
         gameRulesButton.classList.add("btn-sm");
         gameRulesButton.classList.add("btn-secondary");
         gameRulesButton.classList.add("guess-country-game-rules");
+        gameRulesButton.classList.add("rounded-pill");
         gameRulesButton.style.marginTop = "5px";
         gameRulesButton.style.fontSize = "0.8rem";
-        gameRulesButton.style.marginBottom = "10px";
+        gameRulesButton.style.marginBottom = "7px";
         gameRulesButton.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
         gameRulesButton.style.paddinTop = "0.35rem";
@@ -497,6 +717,36 @@ export class PlayMap {
     L.control
       .guessedcountryalliancepanel({ position: "topcenter" })
       .addTo(this.map);
+    L.Control.playerTwoScoreField = L.Control.extend({
+      onAdd: function (map) {
+        const playerTwoScoreField = L.DomUtil.create("div");
+        playerTwoScoreField.id = "player-two-score-field";
+        playerTwoScoreField.style.backgroundColor = "white";
+        playerTwoScoreField.style.boxShadow =
+          "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
+        playerTwoScoreField.style.paddingRight = "3px";
+        playerTwoScoreField.style.width = "50px";
+        playerTwoScoreField.classList.add("text-center");
+        playerTwoScoreField.style.paddingLeft = "3px";
+        playerTwoScoreField.style.paddingTop = "2px";
+        playerTwoScoreField.style.paddingBottom = "2px";
+        playerTwoScoreField.style.fontSize = "0.7rem";
+        playerTwoScoreField.style.opacity = "0.7";
+        playerTwoScoreField.style.borderRadius = "2px";
+        playerTwoScoreField.style.fontWeight = "bolder";
+        playerTwoScoreField.style.marginTop = "5px";
+        playerTwoScoreField.style.color = "green";
+        playerTwoScoreField.textContent = "0";
+        playerTwoScoreField.title =
+          localization[model.worldCountries.language]["Score"];
+        return playerTwoScoreField;
+      },
+      onRemove: function (map) {},
+    });
+    L.control.playertwoscorefield = function (opts) {
+      return new L.Control.playerTwoScoreField(opts);
+    };
+    L.control.playertwoscorefield({ position: "topright" }).addTo(this.map);
     L.Control.PlayerTwoCountriesField = L.Control.extend({
       gameConfiguration: this.gameConfiguration,
       onAdd: function (map) {
@@ -513,7 +763,11 @@ export class PlayMap {
         const userIconContainer = L.DomUtil.create("span");
         userIconContainer.insertAdjacentHTML(
           "afterbegin",
-          '<i class="fa-solid fa-desktop"></i>'
+          `<i class="fa-solid ${
+            this.gameConfiguration.gameMode === "computer"
+              ? "fa-desktop"
+              : "fa-user"
+          }"></i>`
         );
         const userCountriesNumber = L.DomUtil.create("span");
         userCountriesNumber.style.marginLeft = "5px";
@@ -567,17 +821,62 @@ export class PlayMap {
 
   cleanSelection() {
     this.playerOne.cleanSelection();
+    const randomSection = document.getElementById(
+      "random-user-countries-selection"
+    );
+    randomSection.style.display = "flex";
   }
 
   reandomCountriesSelection() {
     this.playerOne.randomCountrySelection();
+    const randomSection = document.getElementById(
+      "random-user-countries-selection"
+    );
+    randomSection.style.display = "none";
   }
 
   gameRulesFunction() {
     this.game.showGameRules();
   }
 
-  finishGameHandler(useConfirm) {
+  sendChatMessage() {
+    const messageInput = document.getElementById("chat-message-to-opponent");
+    let sent = false;
+    if (messageInput && messageInput.value !== "") {
+      sent = this.game.sendChatMessage(messageInput.value);
+    }
+    if (!sent && messageInput.value !== "") {
+      document.getElementById("chat-message-from-opponent").value =
+        "👱: " +
+        localization[model.worldCountries.language][
+          "Opponent has not yet entered the game room to read your messages. Try sending a message later"
+        ];
+    }
+    messageInput.value = "";
+  }
+
+  chatButtonHandler() {
+    const chat = document.getElementById("chat-container");
+    const chatButtonLeftArrow = document.getElementById(
+      "chat-button-left-arrow"
+    );
+    if (chatButtonLeftArrow.textContent === "⬆") {
+      chatButtonLeftArrow.textContent = "⬇";
+    } else {
+      chatButtonLeftArrow.textContent = "⬆";
+    }
+    const chatButtonRightArrow = document.getElementById(
+      "chat-button-right-arrow"
+    );
+    if (chatButtonRightArrow.textContent === "⬆") {
+      chatButtonRightArrow.textContent = "⬇";
+    } else {
+      chatButtonRightArrow.textContent = "⬆";
+    }
+    chat.classList.toggle("not-displayed");
+  }
+
+  finishGameHandler(useConfirm, deleteGameRoom) {
     if (useConfirm) {
       const confirmExit = confirm(
         localization[model.worldCountries.language][
@@ -588,13 +887,19 @@ export class PlayMap {
         document.getElementById(
           "only-independent-countries-checkbox"
         ).checked = true;
-        this.game.finishGame();
+        document.getElementById(
+          "only-independent-countries-checkbox-game-room"
+        ).checked = true;
+        this.game.finishGame(deleteGameRoom);
       }
     } else {
       document.getElementById(
         "only-independent-countries-checkbox"
       ).checked = true;
-      this.game.finishGame();
+      document.getElementById(
+        "only-independent-countries-checkbox-game-room"
+      ).checked = true;
+      this.game.finishGame(deleteGameRoom);
     }
   }
 

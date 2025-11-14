@@ -96,6 +96,81 @@ tr td:first-child {
   display: none;
 }
 
+#modal-dialog-content {
+  max-height: 85vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: darkgrey;
+}
+
+#modal-dialog-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+#modal-dialog-content::-webkit-scrollbar-track {
+  background: lightgrey;
+  border-radius: 10px;
+}
+
+#modal-dialog-content::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  border-radius: 10px;
+  border: 1px solid lightgrey;
+}
+
+#modal-dialog-content::-webkit-scrollbar-thumb:hover {
+  background-color: darkgrey;
+}
+
+#gameMode {
+  -webkit-appearance: none;
+  width: 15%;
+  height: 6px;
+  background: #d0d0d0;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+}
+
+#gameMode::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #6495ed;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  transition: background 0.2s, transform 0.2s;
+}
+#gameMode::-webkit-slider-thumb:hover {
+  background: #1d6fd8;
+  transform: scale(1.1);
+}
+
+#gameMode::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: #6495ed;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  transition: background 0.2s, transform 0.2s;
+}
+#gameMode::-moz-range-thumb:hover {
+  background: #1d6fd8;
+  transform: scale(1.1);
+}
+
+#gameMode::-ms-thumb {
+  width: 18px;
+  height: 18px;
+  background: #6495ed;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
 @media (max-width: 479px) {
   .logo-game {
     display: none;

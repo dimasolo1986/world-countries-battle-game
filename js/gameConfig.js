@@ -154,10 +154,13 @@ export class GameConfig {
             `;
       this.countriesTrapNumber = 3;
       this.countriesNumber = 20;
+      this.countryUnionsNumber = 10;
       this.maxCountriesNumberInUnion = 4;
       this.onlyIndependentCountries = document.querySelector(
         "#only-independent-countries-checkbox"
       ).checked;
+      this.gameMode =
+        document.querySelector("#gameMode").value === "0" ? "computer" : "user";
     }
   }
 }
