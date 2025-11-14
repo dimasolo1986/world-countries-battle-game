@@ -39,7 +39,9 @@ export class Game {
     this.gameModalRulesContent.innerHTML = document.getElementById(
       "game-rules-project-container"
     ).innerHTML;
-    const urlParams = new URLSearchParams(window.location.search);
+    const rawParams = window.location.search;
+    const cleanedParams = rawParams.replace(/[\u200B-\u200D\uFEFF]/g, "");
+    const urlParams = new URLSearchParams(cleanedParams);
     const gameRoomId = urlParams.get("gameRoom");
     if (this.gameConfiguration.gameMode === "user" && !gameRoomId) {
       document.getElementById("game-rules-friend-link-label").textContent =
