@@ -399,11 +399,10 @@ export class PlayMap {
           chatMessageToOpponent.style.float = "left";
           chatMessageToOpponent.maxLength = 300;
           chatMessageToOpponent.style.overflowX = "hidden";
-          const chatMessageToOpponentButton = L.DomUtil.create("input");
+          const chatMessageToOpponentButton = L.DomUtil.create("button");
           chatMessageToOpponentButton.style.height = "100%";
-          chatMessageToOpponentButton.type = "button";
           chatMessageToOpponentButton.id = "chat-message-to-opponent-button";
-          chatMessageToOpponentButton.value = `📩`;
+          chatMessageToOpponentButton.textContent = `📩`;
           chatMessageToOpponentButton.style.width = "10%";
           chatMessageToOpponentButton.style.float = "right";
           chatMessageToOpponentButton.style.backgroundColor = "white";
