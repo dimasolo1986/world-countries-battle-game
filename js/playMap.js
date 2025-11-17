@@ -84,7 +84,7 @@ export class PlayMap {
     };
     this.map = L.map("map", {
       attributionControl: false,
-      contextmenu: true,
+      contextmenu: false,
       layers: [streetLayer],
       contextmenuItems: [
         {
@@ -385,8 +385,10 @@ export class PlayMap {
           chatMessageFromOpponent.style.borderTop = "1px dotted black";
           chatMessageFromOpponent.style.overflowX = "hidden";
           const chatMessageToOpponentContainer = L.DomUtil.create("div");
+          chatMessageToOpponentContainer.style.display = "flex";
           const chatMessageToOpponent = L.DomUtil.create("input");
           chatMessageToOpponent.id = "chat-message-to-opponent";
+          chatMessageToOpponent.type = "text";
           chatMessageToOpponent.placeholder =
             "✉️ " +
             localization[model.worldCountries.language][
@@ -396,16 +398,14 @@ export class PlayMap {
           chatMessageToOpponent.style.border = "0px";
           chatMessageToOpponent.style.borderTop = "1px solid black";
           chatMessageToOpponent.style.borderRight = "1px solid black";
-          chatMessageToOpponent.style.float = "left";
           chatMessageToOpponent.maxLength = 300;
           chatMessageToOpponent.style.overflowX = "hidden";
           const chatMessageToOpponentButton = L.DomUtil.create("input");
-          chatMessageToOpponentButton.style.height = "100%";
+
           chatMessageToOpponentButton.type = "button";
           chatMessageToOpponentButton.id = "chat-message-to-opponent-button";
           chatMessageToOpponentButton.value = `📩`;
           chatMessageToOpponentButton.style.width = "10%";
-          chatMessageToOpponentButton.style.float = "right";
           chatMessageToOpponentButton.style.backgroundColor = "white";
           chatMessageToOpponentButton.style.border = "0px";
           chatMessageToOpponentButton.style.borderTop = "1px solid black";
