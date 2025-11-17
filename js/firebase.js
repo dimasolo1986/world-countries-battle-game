@@ -94,6 +94,7 @@ export class Firebase {
 
   async joinGameRoom(gameRoomId) {
     if (this.peerConnection) {
+      this.cleanupOldGameRooms().catch(() => {});
       const offerSnap = await get(ref(this.db, `room-${gameRoomId}/offer`));
       if (!offerSnap.exists()) {
         alert(
@@ -194,8 +195,26 @@ export class Firebase {
     this.gameRoomId = null;
   }
 
+  async cleanupOldGameRooms(maxAgeMs = 24 * 60 * 60 * 1000) {
+    const roomsRef = ref(this.db);
+    const snapshot = await get(roomsRef);
+
+    if (!snapshot.exists()) return;
+
+    const now = Date.now();
+
+    for (const roomKey of Object.keys(snapshot.val())) {
+      const room = snapshot.val()[roomKey];
+
+      if (room.createdAt && now - room.createdAt > maxAgeMs) {
+        await remove(ref(this.db, roomKey));
+      }
+    }
+  }
+
   async createGameRoom(gameRoomId) {
     if (this.peerConnection) {
+      this.cleanupOldGameRooms().catch(() => {});
       this.peerConnection.onicecandidate = (event) => {
         if (event.candidate) {
           const candRef = push(
@@ -214,6 +233,7 @@ export class Firebase {
       const offer = await this.peerConnection.createOffer();
       await this.peerConnection.setLocalDescription(offer);
       await set(ref(this.db, `room-${gameRoomId}/offer`), offer);
+      await set(ref(this.db, `room-${gameRoomId}/createdAt`), Date.now());
       onChildAdded(
         ref(this.db, `room-${gameRoomId}/answerCandidates`),
         (snap) => {
