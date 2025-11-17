@@ -43,12 +43,10 @@ class mainView {
     gameRulesView,
     gameRoomView
   ) {
-    const rawParams = window.location.pathname;
-    const params = rawParams.split("/");
-    let gameRoomId = undefined;
-    if (params && params.length >= 2) {
-      gameRoomId = params[1];
-    }
+    const rawParams = window.location.search;
+    const cleanedParams = rawParams.replace(/[\u200B-\u200D\uFEFF]/g, "");
+    const urlParams = new URLSearchParams(cleanedParams);
+    const gameRoomId = urlParams.get("gameRoom");
     const firebase = gameRoomView.getFirebase();
     if (
       !gameRoomId &&
@@ -190,12 +188,10 @@ class mainView {
     gameRulesView,
     gameRoomView
   ) {
-    const rawParams = window.location.pathname;
-    const params = rawParams.split("/");
-    let gameRoomId = undefined;
-    if (params && params.length >= 2) {
-      gameRoomId = params[1];
-    }
+    const rawParams = window.location.search;
+    const cleanedParams = rawParams.replace(/[\u200B-\u200D\uFEFF]/g, "");
+    const urlParams = new URLSearchParams(cleanedParams);
+    const gameRoomId = urlParams.get("gameRoom");
     const firebase = gameRoomView.getFirebase();
     if (gameRoomId) {
       await firebase.initializeApplication();

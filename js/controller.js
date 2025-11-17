@@ -87,12 +87,10 @@ const init = function () {
     e.returnValue = "";
   });
   window.addEventListener("unload", function (e) {
-    const rawParams = window.location.pathname;
-    const params = rawParams.split("/");
-    let roomId = undefined;
-    if (params && params.length >= 2) {
-      roomId = params[1];
-    }
+    const rawParams = window.location.search;
+    const cleanedParams = rawParams.replace(/[\u200B-\u200D\uFEFF]/g, "");
+    const urlParams = new URLSearchParams(cleanedParams);
+    const roomId = urlParams.get("gameRoom");
     if (!roomId) {
       cleanFirebase(true);
     }
@@ -106,12 +104,10 @@ const init = function () {
     }
   });
   document.addEventListener("DOMContentLoaded", function () {
-    const rawParams = window.location.pathname;
-    const params = rawParams.split("/");
-    let roomId = undefined;
-    if (params && params.length >= 2) {
-      roomId = params[1];
-    }
+    const rawParams = window.location.search;
+    const cleanedParams = rawParams.replace(/[\u200B-\u200D\uFEFF]/g, "");
+    const urlParams = new URLSearchParams(cleanedParams);
+    const roomId = urlParams.get("gameRoom");
     const gameMode = sessionStorage.getItem("game-mode");
     const gameModeCheckSlider = document.getElementById("gameMode");
     const gameRoomContainer = document.getElementById(
