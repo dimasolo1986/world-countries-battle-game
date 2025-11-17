@@ -189,11 +189,14 @@
         } else {
           languageSelectElement.value = "en";
         }
-         const rawParams = window.location.search;
-        const cleanedParams = rawParams.replace(/[\u200B-\u200D\uFEFF]/g, "");
-        const urlParams = new URLSearchParams(cleanedParams);
-    const roomId = urlParams.get("gameRoom");
-    const allCountries = urlParams.get("allCountries");
+        const rawParams = window.location.pathname;
+    const params = rawParams.split("/");
+    let roomId = undefined;
+    let allCountries = undefined;
+    if (params && params.length >= 2) {
+      roomId = params[1];
+      allCountries = params[3];
+    }
     if(roomId) {
       const isWebRtc = isWebRTCAvailable();
       if (!isWebRtc) {

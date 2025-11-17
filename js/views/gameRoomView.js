@@ -79,8 +79,8 @@ class gameRoomView {
     onlyIndependentCountriesCheckbox.disabled = true;
     this._gameRoomOnlyIndependentCountriesCheckbox.disabled = true;
     const gameUrl =
-      window.location.href +
-      `?gameRoom=${gameRoomId}&allCountries=${
+      window.location.origin +
+      `/${gameRoomId}/allCountries/${
         onlyIndependentCountriesCheckbox.checked ? false : true
       }`;
     try {
