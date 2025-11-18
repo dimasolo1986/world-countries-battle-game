@@ -165,9 +165,11 @@
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         function isWebRTCAvailable() {
-  return !!(navigator.mediaDevices &&
-            navigator.mediaDevices.getUserMedia &&
-            window.RTCPeerConnection);
+  if(window.RTCPeerConnection) {
+    return true
+  } else {
+    return false;
+  };
 }
         const languageSelectElement =
           document.getElementById("language-selector");
