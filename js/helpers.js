@@ -31,6 +31,24 @@ export const showGameResultWindow = function () {
   gameResult.show();
 };
 
+export const resetGameRoomContainer = function () {
+  document.querySelector(".create-game-room").disabled = false;
+  document.querySelector(".delete-game-room").disabled = true;
+  document.querySelector("#roomIdInput").value = "";
+  document.querySelector(".copy-to-clipboard-link").disabled = true;
+  document.querySelector(".share-game-room").disabled = true;
+  const createGameRoomButton = document.querySelector(
+    "#create-game-room-button"
+  );
+  createGameRoomButton.textContent =
+    localization[model.worldCountries.language]["Create Game Room"];
+  const gameRoomHeadingContainer = document.querySelector(
+    "#game-room-heading-container"
+  );
+  gameRoomHeadingContainer.classList.add("not-displayed");
+  document.querySelector("#game-room-heading-id").textContent = "";
+};
+
 export const showGameRulesWindow = function () {
   const gameRules = new bootstrap.Modal(
     document.getElementById("gameRulesModal"),

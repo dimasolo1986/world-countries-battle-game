@@ -2,6 +2,7 @@ import { initializeApp } from "./firebase-app.js";
 import { getAuth, signInAnonymously } from "./firebase-auth.js";
 import { STUN_SERVER_LIST } from "./config.js";
 import { localization } from "./localization/ua.js";
+import { resetGameRoomContainer } from "./helpers.js";
 import * as model from "./model.js";
 import {
   getDatabase,
@@ -257,6 +258,11 @@ export class Firebase {
             .then(() => {})
             .catch(() => {});
           this.answered = true;
+        }
+      });
+      onValue(ref(this.db, `room-${gameRoomId}`), (snap) => {
+        if (!snap.exists()) {
+          resetGameRoomContainer();
         }
       });
       this.peerConnection.addEventListener("negotiationneeded", () => {

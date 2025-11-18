@@ -1,7 +1,11 @@
 import { localization } from "./localization/ua.js";
 import { WORLD_MAP_BOUNDS } from "./config.js";
 import { COUNTRY_BOUNDS } from "./data/countriesBounds.js";
-import { getCountryGeo, getRandomInt } from "./helpers.js";
+import {
+  getCountryGeo,
+  getRandomInt,
+  resetGameRoomContainer,
+} from "./helpers.js";
 import * as model from "./model.js";
 export class Player {
   playerMap;
@@ -69,7 +73,7 @@ export class Player {
 
   cleanPlayerResources(deleteGameRoom) {
     if (deleteGameRoom) {
-      this.resetGameRoomContainer();
+      resetGameRoomContainer();
       sessionStorage.removeItem("game-room");
       if (this.game.firebase) this.game.firebase.cleanupResources(false);
     }
@@ -2881,24 +2885,6 @@ export class Player {
     this.sendMoveAckToOpponent();
     this.game.isPlayerReady = true;
     this.game.playHit();
-  }
-
-  resetGameRoomContainer() {
-    document.querySelector(".create-game-room").disabled = false;
-    document.querySelector(".delete-game-room").disabled = true;
-    document.querySelector("#roomIdInput").value = "";
-    document.querySelector(".copy-to-clipboard-link").disabled = true;
-    document.querySelector(".share-game-room").disabled = true;
-    const createGameRoomButton = document.querySelector(
-      "#create-game-room-button"
-    );
-    createGameRoomButton.textContent =
-      localization[model.worldCountries.language]["Create Game Room"];
-    const gameRoomHeadingContainer = document.querySelector(
-      "#game-room-heading-container"
-    );
-    gameRoomHeadingContainer.classList.add("not-displayed");
-    document.querySelector("#game-room-heading-id").textContent = "";
   }
 
   opponentConnectionHandler(connectionState) {

@@ -518,6 +518,8 @@ export const localization = {
     "Delete Game Room": "Видалити Ігрову Кімнату",
     "Open Game Room": "Відкрити Ігрову Кімнату",
     "Game Room ID:": "ID Ігрової Кімнати:",
+    "Game room was deleted or expired":
+      "Ігрову кімнату видалено або термін її дії закінчився",
     "BACK TO MAIN PAGE": "ПОВЕРНУТИСЬ НА ГОЛОВНУ СТОРІНКУ",
     "Click 'Create Game Room' to generate game link":
       "Натисніть 'Створити Ігрову Кімнату', щоб створити посилання на гру",
@@ -1279,6 +1281,7 @@ export const localization = {
     "Game Link For Friend": "Game Link For Friend",
     "Copy Link": "Copy Link",
     "Share Link With Friend": "Share Link With Friend",
+    "Game room was deleted or expired": "Game room was deleted or expired",
     "Connection is closed": "Connection is closed",
     "Sorry... Opponent left the game.": "Sorry... Opponent left the game.",
     "You have selected the game mode with a friend. First, create a game room. Click the 'Create Game Room' button.":
@@ -2037,6 +2040,8 @@ export const localization = {
       "Klicken Sie auf 'Spielzimmer Erstellen', um einen Spiellink zu generieren",
     "Game Link For Friend": "Spiellink für Freund",
     "Copy Link": "Link Kopieren",
+    "Game room was deleted or expired":
+      "Der Spielraum wurde gelöscht oder ist abgelaufen",
     "Share Link With Friend": "Link mit Freund teilen",
     "Failed to create game room with ID:":
       "Fehler beim Erstellen des Spielraums mit der ID:",
@@ -2792,6 +2797,8 @@ export const localization = {
     "Make Donate": "Faire un Don",
     "World Country Alliances Guesser Game":
       "Jeu des Alliances des Pays du Monde",
+    "Game room was deleted or expired":
+      "La salle de jeux a été supprimée ou a expiré",
     "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
       "projet permettant d'étudier la géographie des pays du monde, de leurs voisins, de leurs drapeaux et de certaines régions du monde sous forme de jeu. Choisissez dix alliances de pays différentes sur la carte, ainsi que trois pays pièges pour votre adversaire. L'ordinateur ou votre ami (selon le mode de jeu sélectionné) choisira également le nombre approprié d'alliances de pays et de pays pièges. Les tentatives pour deviner les pays se déroulent à tour de rôle. Celui qui devine le pays de l'adversaire obtient un essai supplémentaire. Le premier à deviner toutes les alliances des pays adverses gagne. Suivez les messages en haut de l'écran après le début de la partie.",
     "When entering an opponent's trap country, he receives one of three clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located.":
@@ -3561,6 +3568,8 @@ export const localization = {
       "Los países de una misma alianza deben estar unidos por fronteras. Las alianzas deben estar separadas entre sí por al menos la frontera de un país. Un país insular sólo puede utilizarse como alianza con un solo país o como país trampa.",
     "Do you like Geography and Countries of the World? Visit":
       "¿Te gusta la geografía y los países del mundo? Visita",
+    "Game room was deleted or expired":
+      "La sala de juegos fue eliminada o expiró",
     "Country Alliance Guesser Game": "Juego de Alianzas de Países",
     "Game Configuration": "Configuración del Juego",
     "You selected": "Usted seleccionó",
@@ -4318,6 +4327,8 @@ export const localization = {
     "Make Donate": "Fai una Donazione",
     "QR Code": "Codice QR",
     Clean: "Pulita",
+    "Game room was deleted or expired":
+      "La sala giochi è stata eliminata o è scaduta",
     "Opponent:": "Avversario:",
     "Create Game Room": "Crea una sala giochi",
     "Click 'Create Game Room' to generate game link":
