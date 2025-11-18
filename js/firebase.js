@@ -13,6 +13,7 @@ import {
   onValue,
   remove,
   push,
+  serverTimestamp,
 } from "./firebase-database.js";
 
 export class Firebase {
@@ -27,6 +28,7 @@ export class Firebase {
   answered;
   opponentConnectionState;
   turnServers = [];
+  serverTimeOffset = 0;
   constructor() {
     this.firebaseConfig = {
       apiKey: "AIzaSyBz5cGGomnSf6XR_SBN-mxVEslHQGDWnKs",
@@ -95,6 +97,9 @@ export class Firebase {
 
   async joinGameRoom(gameRoomId) {
     if (this.peerConnection) {
+      onValue(ref(this.db, "/.info/serverTimeOffset"), (snap) => {
+        this.serverTimeOffset = snap.val() || 0;
+      });
       this.cleanupOldGameRooms().catch(() => {});
       const offerSnap = await get(ref(this.db, `room-${gameRoomId}/offer`));
       if (!offerSnap.exists()) {
@@ -202,7 +207,7 @@ export class Firebase {
 
     if (!snapshot.exists()) return;
 
-    const now = Date.now();
+    const now = Date.now() + this.serverTimeOffset;
 
     for (const roomKey of Object.keys(snapshot.val())) {
       const room = snapshot.val()[roomKey];
@@ -215,6 +220,9 @@ export class Firebase {
 
   async createGameRoom(gameRoomId) {
     if (this.peerConnection) {
+      onValue(ref(this.db, "/.info/serverTimeOffset"), (snap) => {
+        this.serverTimeOffset = snap.val() || 0;
+      });
       this.cleanupOldGameRooms().catch(() => {});
       this.peerConnection.onicecandidate = (event) => {
         if (event.candidate) {
@@ -234,7 +242,10 @@ export class Firebase {
       const offer = await this.peerConnection.createOffer();
       await this.peerConnection.setLocalDescription(offer);
       await set(ref(this.db, `room-${gameRoomId}/offer`), offer);
-      await set(ref(this.db, `room-${gameRoomId}/createdAt`), Date.now());
+      await set(
+        ref(this.db, `room-${gameRoomId}/createdAt`),
+        serverTimestamp()
+      );
       onChildAdded(
         ref(this.db, `room-${gameRoomId}/answerCandidates`),
         (snap) => {
