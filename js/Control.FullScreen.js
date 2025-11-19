@@ -153,7 +153,8 @@
       }
 
       container.style.marginLeft = "17px";
-      container.style.marginTop = "50px";
+      container.style.marginTop = "33px";
+      container.style.opacity = "0.7";
 
       if (this.options.content) {
         content = this.options.content;
@@ -231,6 +232,7 @@
       this.link.href = "#";
       this.link.title = title;
       this.link.innerHTML = content;
+      this.link.style.backgroundPosition = "2px 2px";
 
       this.link.setAttribute("role", "button");
       this.link.setAttribute("aria-label", title);
@@ -348,9 +350,13 @@
       this.link.title = this._map._isFullscreen
         ? this.options.title
         : this.options.titleCancel;
-      this._map._isFullscreen
-        ? L.DomUtil.removeClass(this.link, "leaflet-fullscreen-on")
-        : L.DomUtil.addClass(this.link, "leaflet-fullscreen-on");
+      if (this._map._isFullscreen) {
+        L.DomUtil.removeClass(this.link, "leaflet-fullscreen-on");
+        this.link.style.backgroundPosition = "2px 2px";
+      } else {
+        L.DomUtil.addClass(this.link, "leaflet-fullscreen-on");
+        this.link.style.backgroundPosition = "2px -24px";
+      }
     },
 
     _handleFullscreenChange(ev) {

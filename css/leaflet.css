@@ -322,6 +322,14 @@ svg.leaflet-image-layer.leaflet-interactive path {
   background-repeat: no-repeat;
   display: block;
 }
+.fullscreen-icon {
+  background-image: url(../assets/img/icon-fullscreen.svg);
+  background-size: 26px 52px;
+  background-position: 2px 2px;
+}
+.fullscreen-icon.leaflet-fullscreen-on {
+  background-position: 2px -24px;
+}
 .leaflet-bar a:hover,
 .leaflet-bar a:focus {
   background-color: #f4f4f4;
@@ -490,6 +498,9 @@ svg.leaflet-image-layer.leaflet-interactive path {
 .leaflet-touch .leaflet-bar {
   border: 2px solid rgba(0, 0, 0, 0.2);
   background-clip: padding-box;
+}
+.leaflet-control-layers {
+  opacity: 0.7;
 }
 
 /* popup */

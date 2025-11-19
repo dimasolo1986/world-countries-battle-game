@@ -120,8 +120,8 @@ export class PlayMap {
         title: "Full Screen",
         titleCancel: "Exit Fullscreen Mode",
         forceSeparateButton: false,
-        forcePseudoFullscreen: true,
-        addFullScreen: false,
+        forcePseudoFullscreen: false,
+        addFullScreen: true,
         zoomResetFunction: reset.bind(this),
       },
       maxBounds: [
@@ -538,7 +538,7 @@ export class PlayMap {
         playButton.classList.add("btn-danger");
         playButton.classList.add("guess-country-game-play");
         playButton.classList.add("rounded-pill");
-        playButton.style.marginTop = "10px";
+        playButton.style.marginTop = "12px";
         playButton.style.marginBottom = "6px";
         playButton.style.paddinTop = "0.35rem";
         playButton.style.paddinBottom = "0.35rem";
@@ -567,7 +567,7 @@ export class PlayMap {
         finishButton.classList.add("btn-primary");
         finishButton.classList.add("guess-country-game-finish");
         finishButton.classList.add("rounded-pill");
-        finishButton.style.marginTop = "5px";
+        finishButton.style.marginTop = "8px";
         finishButton.style.fontSize = "0.8rem";
         finishButton.style.marginBottom = "7px";
         finishButton.style.boxShadow =
@@ -594,7 +594,7 @@ export class PlayMap {
         gameRulesButton.classList.add("btn-secondary");
         gameRulesButton.classList.add("guess-country-game-rules");
         gameRulesButton.classList.add("rounded-pill");
-        gameRulesButton.style.marginTop = "5px";
+        gameRulesButton.style.marginTop = "9px";
         gameRulesButton.style.fontSize = "0.8rem";
         gameRulesButton.style.marginBottom = "7px";
         gameRulesButton.style.boxShadow =
@@ -735,7 +735,7 @@ export class PlayMap {
         playerTwoScoreField.style.opacity = "0.7";
         playerTwoScoreField.style.borderRadius = "2px";
         playerTwoScoreField.style.fontWeight = "bolder";
-        playerTwoScoreField.style.marginTop = "5px";
+        playerTwoScoreField.style.marginTop = "8px";
         playerTwoScoreField.style.color = "green";
         playerTwoScoreField.textContent = "0";
         playerTwoScoreField.title =
