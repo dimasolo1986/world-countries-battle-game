@@ -836,7 +836,16 @@ export class PlayMap {
     randomSection.style.display = "none";
   }
 
+  exitFullScreen() {
+    if (this.map && this.map._isFullscreen) {
+      this.map.fullscreenControl._screenfull
+        .exit()
+        .then(() => this.map.invalidateSize());
+    }
+  }
+
   gameRulesFunction() {
+    this.exitFullScreen();
     this.game.showGameRules();
   }
 

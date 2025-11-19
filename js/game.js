@@ -311,11 +311,13 @@ export class Game {
       }
       this.gameModalResultGuessedCountries.appendChild(userCountriesContainer);
     }
+    this.playMap.exitFullScreen();
     showGameResultWindow();
     this.playMap.finishGameHandler(false, deleteGameRoom);
   }
 
   finishGame(deleteGameRoom) {
+    this.playMap.exitFullScreen();
     if (this.gameConfiguration.gameMode === "user") {
       this.playerOne.sendFinishGameToOpponent();
     }
