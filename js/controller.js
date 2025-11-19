@@ -35,6 +35,13 @@ const init = function () {
   gameRoomView.addGameRoomCopyLinkHandlerClick();
   gameRoomView.addShareLinkHandlerClick();
   gameRoomView.addOnlyIndependentCountriesListener();
+  gameRoomView.addStartGameHandlerClick(
+    aboutView,
+    gameView,
+    donateAuthorView,
+    gameRulesView,
+    mainView
+  );
   donateAuthorView.addShareWebSiteHandlerClick();
   gameRulesView.addReturnToMainHandlerClick(
     mainView,

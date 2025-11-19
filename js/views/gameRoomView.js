@@ -41,8 +41,10 @@ class gameRoomView {
   _gameRoomImportantDescription = document.querySelector(
     ".game-room-important-description"
   );
+  _startButton = document.querySelector("#start-button-game-room");
 
   _returnBackListenerAdded = false;
+  _startButtonListenerAdded = false;
   _gameRoomCreateListenerAdded = false;
   _gameRoomDeleteListenerAdded = false;
   _gameRoomCopyLinkListenerAdded = false;
@@ -94,6 +96,7 @@ class gameRoomView {
       this._firebase.setIsHost(true);
       await this._firebase.createGameRoom(gameRoomId);
       this._firebase.setGameRoomId(gameRoomId);
+      this._startButton.disabled = false;
     } catch (err) {
       this._gameRoomInputLink.value =
         localization[model.worldCountries.language][
@@ -156,6 +159,7 @@ class gameRoomView {
       }
     }
     sessionStorage.removeItem("game-room");
+    this._startButton.disabled = true;
     const createGameRoomButton = document.querySelector(
       "#create-game-room-button"
     );
@@ -260,6 +264,50 @@ class gameRoomView {
     }
   }
 
+  startGame(aboutView, gameView, donateAuthorView, gameRulesView, mainView) {
+    if (!this._firebase.gameRoomId) {
+      alert(
+        localization[model.worldCountries.language][
+          "You have selected the game mode with a friend. First, create a game room. Click the 'Create Game Room' button."
+        ]
+      );
+      return;
+    }
+    this._startButton.disabled = true;
+    mainView.hideMain();
+    document.querySelector("header").classList.add("not-displayed");
+    document.querySelector("footer").classList.add("not-displayed");
+    aboutView.hideAboutProject();
+    donateAuthorView.hideDonateProject();
+    gameRulesView.hideGameRulesProject();
+    this.hideGameRoomProject();
+    gameView.showGame();
+    gameView.initGameView(this._firebase);
+  }
+
+  addStartGameHandlerClick(
+    aboutView,
+    gameView,
+    donateAuthorView,
+    gameRulesView,
+    mainView
+  ) {
+    if (!this._startButtonListenerAdded) {
+      this._startButton.addEventListener(
+        "click",
+        this.startGame.bind(
+          this,
+          aboutView,
+          gameView,
+          donateAuthorView,
+          gameRulesView,
+          mainView
+        )
+      );
+      this._startButtonListenerAdded = true;
+    }
+  }
+
   addReturnBackHandlerClick(
     mainView,
     aboutView,
@@ -286,10 +334,20 @@ class gameRoomView {
   }
 
   showGameRoomProject() {
+    if (this._firebase.gameRoomId) {
+      this._startButton.disabled = false;
+    } else {
+      this._startButton.disabled = true;
+    }
     this._parentElement.classList.remove("not-displayed");
   }
 
   hideGameRoomProject() {
+    if (this._firebase.gameRoomId) {
+      this._startButton.disabled = false;
+    } else {
+      this._startButton.disabled = true;
+    }
     this._parentElement.classList.add("not-displayed");
   }
 
@@ -335,6 +393,9 @@ class gameRoomView {
     }`;
     this._gameRoomInstructionHeader.textContent = `${
       localization[model.worldCountries.language]["Instructions."]
+    }`;
+    this._startButton.textContent = `${
+      localization[model.worldCountries.language]["START"]
     }`;
     this._gameRoomInstructionText.textContent = `${
       localization[model.worldCountries.language][
