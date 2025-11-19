@@ -63,6 +63,9 @@ class aboutView {
     this._gameModalRulesContent.innerHTML = document.getElementById(
       "game-rules-project-container"
     ).innerHTML;
+    document
+      .getElementById("game-rules-friend-link")
+      .classList.add("not-displayed");
     showGameRulesWindow();
   }
 
