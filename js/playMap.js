@@ -50,6 +50,9 @@ export class PlayMap {
     latLon,
     defaultZoomLevel = 2.4
   ) {
+    document
+      .getElementById("mapLoaderSpinner")
+      .classList.remove("not-displayed");
     document.getElementById(this.mapId).innerHTML = `<div
         id="map"
         style="
@@ -131,6 +134,7 @@ export class PlayMap {
     })
       .fitWorld()
       .setView(latLon, defaultZoomLevel);
+    document.getElementById("mapLoaderSpinner").classList.add("not-displayed");
     L.control.layers(baseMaps).setPosition("topleft").addTo(this.map);
     L.Control.playerOneScoreField = L.Control.extend({
       onAdd: function (map) {
@@ -863,10 +867,12 @@ export class PlayMap {
         ];
     }
     messageInput.value = "";
+    messageInput.focus();
   }
 
   chatButtonHandler() {
     const chat = document.getElementById("chat-container");
+    const inputField = document.getElementById("chat-message-to-opponent");
     const chatButtonLeftArrow = document.getElementById(
       "chat-button-left-arrow"
     );
@@ -884,6 +890,7 @@ export class PlayMap {
       chatButtonRightArrow.textContent = "⬆";
     }
     chat.classList.toggle("not-displayed");
+    inputField.focus();
   }
 
   finishGameHandler(useConfirm, deleteGameRoom) {
