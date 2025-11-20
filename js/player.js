@@ -2619,7 +2619,6 @@ export class Player {
       }
       const chat = document.getElementById("chat-container");
       if (chat.classList.contains("not-displayed")) {
-        const inputField = document.getElementById("chat-message-to-opponent");
         chat.classList.remove("not-displayed");
         const chatButtonLeftArrow = document.getElementById(
           "chat-button-left-arrow"
@@ -2629,7 +2628,6 @@ export class Player {
           "chat-button-right-arrow"
         );
         chatButtonRightArrow.textContent = "⬇";
-        inputField.focus();
       }
     } else if (messageObject.type === "notReady") {
       const input = document.getElementById("chat-message-from-opponent");

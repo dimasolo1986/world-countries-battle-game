@@ -50,9 +50,6 @@ export class PlayMap {
     latLon,
     defaultZoomLevel = 2.4
   ) {
-    document
-      .getElementById("mapLoaderSpinner")
-      .classList.remove("not-displayed");
     document.getElementById(this.mapId).innerHTML = `<div
         id="map"
         style="
@@ -134,7 +131,6 @@ export class PlayMap {
     })
       .fitWorld()
       .setView(latLon, defaultZoomLevel);
-    document.getElementById("mapLoaderSpinner").classList.add("not-displayed");
     L.control.layers(baseMaps).setPosition("topleft").addTo(this.map);
     L.Control.playerOneScoreField = L.Control.extend({
       onAdd: function (map) {
