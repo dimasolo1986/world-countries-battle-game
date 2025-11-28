@@ -1210,7 +1210,7 @@ export class Player {
           localization[model.worldCountries.language]["You guessed"]
         }</span><div style="display: inline-block; margin-left:5px;">${
           countryUnionHtml.outerHTML
-        }</div><div><span style="
+        }</div><div style="margin-top:5px;"><span style="
                     color: white;
                     font-size: 0.75rem;
                     border-radius: 2px;
