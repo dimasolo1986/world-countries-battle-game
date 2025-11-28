@@ -693,7 +693,7 @@ export class PlayMap {
         guessedCountryAlliancePanel.style.padding = "5px";
         guessedCountryAlliancePanel.style.overflow = "hidden";
         guessedCountryAlliancePanel.style.fontSize = "0.7rem;";
-        const guessedCountryAlliancePanelHeader = `<div class="text-center"><span style="font-size:0.75rem;font-weight:bold;color:green;">${
+        const guessedCountryAlliancePanelHeader = `<div id="guessed-country-alliance-header" class="text-center"><span style="font-size:0.75rem;font-weight:bold;color:green;">${
           localization[model.worldCountries.language]["Congratulations!"]
         }</span></div>`;
         guessedCountryAlliancePanel.insertAdjacentHTML(
