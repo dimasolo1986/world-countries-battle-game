@@ -2492,6 +2492,7 @@ export class Player {
       const endJson = JSON.stringify({
         type: "end",
       });
+      this.game.firebase.endGame();
       this.game.firebase.sendMessage(endJson);
     }
   }

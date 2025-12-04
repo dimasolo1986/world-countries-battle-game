@@ -218,6 +218,15 @@ export class Firebase {
     }
   }
 
+  endGame() {
+    if (this.gameRoomId && this.db && this.peerConnection) {
+      set(
+        ref(this.db, `room-${this.gameRoomId}/gameEndedAt`),
+        serverTimestamp()
+      );
+    }
+  }
+
   async createGameRoom(gameRoomId) {
     if (this.peerConnection) {
       onValue(ref(this.db, "/.info/serverTimeOffset"), (snap) => {
