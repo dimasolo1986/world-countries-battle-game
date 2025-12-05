@@ -72,6 +72,9 @@ export class PlayMap {
     function reset() {
       this.map.fitBounds(WORLD_MAP_BOUNDS, { animate: false });
     }
+    function gameRules() {
+      this.gameRulesFunction();
+    }
     const streetLayer = L.tileLayer(
       "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"
     );
@@ -106,6 +109,12 @@ export class PlayMap {
         {
           text: localization[model.worldCountries.language]["Reset"],
           callback: reset,
+          context: this,
+        },
+        "-",
+        {
+          text: localization[model.worldCountries.language]["Game Rules"],
+          callback: gameRules,
           context: this,
         },
       ],
@@ -662,7 +671,7 @@ export class PlayMap {
         hintsPanel.style.padding = "3px";
         hintsPanel.style.overflow = "hidden";
         hintsPanel.style.fontSize = "0.7rem;";
-        const hintsPanelsHeader = `<div class="text-center"><span style="font-size:0.7rem;font-weight:bold;">${
+        const hintsPanelsHeader = `<div class="text-center"><span style="font-size:0.7rem;font-weight:bold;">💡 ${
           localization[model.worldCountries.language]["Hints:"]
         }</span></div>`;
         hintsPanel.insertAdjacentHTML("beforeend", hintsPanelsHeader);
@@ -693,7 +702,7 @@ export class PlayMap {
         guessedCountryAlliancePanel.style.padding = "5px";
         guessedCountryAlliancePanel.style.overflow = "hidden";
         guessedCountryAlliancePanel.style.fontSize = "0.7rem;";
-        const guessedCountryAlliancePanelHeader = `<div id="guessed-country-alliance-header" class="text-center"><span style="font-size:0.75rem;font-weight:bold;color:green;">${
+        const guessedCountryAlliancePanelHeader = `<div id="guessed-country-alliance-header" class="text-center"><span style="font-size:0.75rem;font-weight:bold;color:green;">👏 ${
           localization[model.worldCountries.language]["Congratulations!"]
         }</span></div>`;
         guessedCountryAlliancePanel.insertAdjacentHTML(

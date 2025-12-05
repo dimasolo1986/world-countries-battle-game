@@ -242,7 +242,7 @@ export class Player {
       this.selectRandomCountries();
       this.addUserClickCountriesPlayHandler();
     }
-    this.gameMessageField.textContent = `${
+    this.gameMessageField.textContent = `ℹ️ ${
       localization[model.worldCountries.language][
         "Choose one alliance from four countries"
       ]
@@ -521,10 +521,11 @@ export class Player {
       this.playMap.setMapFiledLabel("Your Map");
       this.countriesNumberField.textContent =
         this.opponentPlayer.countryCodes.length;
-      this.gameMessageField.textContent =
+      this.gameMessageField.textContent = `ℹ️ ${
         localization[model.worldCountries.language][
           "Computer is guessing your country..."
-        ];
+        ]
+      }`;
       await this.sleep(700);
       let countryIndex = undefined;
       let countryCode = undefined;
@@ -597,7 +598,7 @@ export class Player {
       }
       if (this.opponentPlayer.selectedCountryTrapCodes.has(countryCode)) {
         this.setMessageInnerHtmlField(
-          `<span>${
+          `<span>⚠️ ${
             localization[model.worldCountries.language][
               "Computer has fallen into a trap-country"
             ]
@@ -768,7 +769,7 @@ export class Player {
               countryUnionIndex
             );
           this.setMessageInnerHtmlField(
-            `<span style="margin-right:5px;">${
+            `<span style="margin-right:5px;">⚠️ ${
               localization[model.worldCountries.language]["Computer guessed"]
             }</span><div style="display: inline-block;">${
               countryUnionHtml.outerHTML
@@ -799,7 +800,7 @@ export class Player {
             }
           });
           this.setMessageInnerHtmlField(
-            `<span>${
+            `<span>ℹ️ ${
               localization[model.worldCountries.language]["Computer guessed"]
             }</span> <img src="${
               country.countryFlag
@@ -821,10 +822,11 @@ export class Player {
           opacity: 0.8,
           className: countryCode,
         });
-        this.gameMessageField.textContent =
+        this.gameMessageField.textContent = `⛔ ${
           localization[model.worldCountries.language][
             "Computer failed to guess your country!"
-          ];
+          ]
+        }`;
         this.playerAttemptToGuess = false;
         this.opponentPlayer.playerAttemptToGuess = true;
         await this.sleep(1000);
@@ -856,10 +858,11 @@ export class Player {
       );
       this.countriesNumberField.textContent =
         this.opponentPlayer.countryCodes.length;
-      this.gameMessageField.textContent =
+      this.gameMessageField.textContent = `⚠️ ${
         localization[model.worldCountries.language][
           "Your attempt to guess opponent's country"
-        ];
+        ]
+      }`;
       if (this.opponentPlayer.lastGuessedCountryNames.length !== 0) {
         const countryBounds = [];
         this.opponentPlayer.lastGuessedCountryNames.forEach((countryName) => {
@@ -881,10 +884,11 @@ export class Player {
       this.playMap.setMapFiledLabel("Your Map");
       this.countriesNumberField.textContent =
         this.opponentPlayer.countryCodes.length;
-      this.gameMessageField.textContent =
+      this.gameMessageField.textContent = `ℹ️ ${
         localization[model.worldCountries.language][
           "Opponent is guessing your country..."
-        ];
+        ]
+      }`;
       this.game.isOpponentPlayerReady = false;
       this.game.isPlayerReady = false;
       return;
@@ -998,7 +1002,7 @@ export class Player {
     this.openCountryPopup(countryCode);
     if (this.selectedCountryTrapCodes.has(countryCode)) {
       this.setMessageInnerHtmlField(
-        `<span>${
+        `<span>⛔ ${
           localization[model.worldCountries.language][
             "You have fallen into a trap-country"
           ]
@@ -1049,7 +1053,7 @@ export class Player {
       });
       document.getElementById(
         "guessed-country-alliance-panel-content"
-      ).innerHTML = `<div><span style="
+      ).innerHTML = `<div>⚠️ <span style="
                     color: white;
                     font-size: 0.75rem;
                     border-radius: 2px;
@@ -1196,7 +1200,7 @@ export class Player {
         const countryUnionHtml =
           this.createCountryUnionMessageHtml(countryUnionIndex);
         this.setMessageInnerHtmlField(
-          `<span style="margin-right:5px;">${
+          `<span style="margin-right:5px;">⚠️ ${
             localization[model.worldCountries.language]["You guessed"]
           }</span><div style="display: inline-block;">${
             countryUnionHtml.outerHTML
@@ -1233,7 +1237,7 @@ export class Player {
         });
       } else {
         this.setMessageInnerHtmlField(
-          `<span>${
+          `<span>ℹ️ ${
             localization[model.worldCountries.language]["You guessed"]
           }</span> <img src="${
             country.countryFlag
@@ -1257,10 +1261,11 @@ export class Player {
         opacity: 0.8,
         className: countryCode,
       });
-      this.gameMessageField.textContent =
+      this.gameMessageField.textContent = `⛔ ${
         localization[model.worldCountries.language][
           "Failed attempt to guess country!"
-        ];
+        ]
+      }`;
       this.playerAttemptToGuess = true;
       this.opponentPlayer.playerAttemptToGuess = false;
       await this.sleep(1000);
@@ -1431,7 +1436,7 @@ export class Player {
       );
     });
     this.showSelectedCountries();
-    this.gameMessageField.textContent = `${
+    this.gameMessageField.textContent = `▶️ ${
       localization[model.worldCountries.language]["Press 'Play' to start game!"]
     }`;
     this.playerConfigured = true;
@@ -1620,7 +1625,7 @@ export class Player {
       "afterend",
       this.gameConfiguration.countriesUnionsHtml
     );
-    this.gameMessageField.textContent = `${
+    this.gameMessageField.textContent = `ℹ️ ${
       localization[model.worldCountries.language][
         "Choose one alliance from four countries"
       ]
@@ -1830,7 +1835,7 @@ export class Player {
     countryMarker.off("click");
     countryBoundary.off("click");
     if (this.playerConfigured) {
-      this.gameMessageField.textContent = `${
+      this.gameMessageField.textContent = `▶️ ${
         localization[model.worldCountries.language][
           "Press 'Play' to start game!"
         ]
@@ -1861,7 +1866,7 @@ export class Player {
             +this.playerCountriesNumberField.textContent + 1;
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(3);
-          this.gameMessageField.textContent = `${
+          this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
               "Choose the first alliance from three countries"
             ]
@@ -1890,7 +1895,7 @@ export class Player {
             +this.playerCountriesNumberField.textContent + 1;
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(3);
-          this.gameMessageField.textContent = `${
+          this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
               "Choose the second alliance from three countries"
             ]
@@ -1919,7 +1924,7 @@ export class Player {
             +this.playerCountriesNumberField.textContent + 1;
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(2);
-          this.gameMessageField.textContent = `${
+          this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
               "Choose the first alliance from two countries"
             ]
@@ -1948,7 +1953,7 @@ export class Player {
             +this.playerCountriesNumberField.textContent + 1;
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(2);
-          this.gameMessageField.textContent = `${
+          this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
               "Choose the second alliance from two countries"
             ]
@@ -1977,7 +1982,7 @@ export class Player {
             +this.playerCountriesNumberField.textContent + 1;
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(2);
-          this.gameMessageField.textContent = `${
+          this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
               "Choose the third alliance from two countries"
             ]
@@ -2006,7 +2011,7 @@ export class Player {
             +this.playerCountriesNumberField.textContent + 1;
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
-          this.gameMessageField.textContent = `${
+          this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
               "Choose the first alliance from one country"
             ]
@@ -2032,7 +2037,7 @@ export class Player {
         if (this.selectedCountryCodes.size === 17) {
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
-          this.gameMessageField.textContent = `${
+          this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
               "Choose the second alliance from one country"
             ]
@@ -2058,7 +2063,7 @@ export class Player {
         if (this.selectedCountryCodes.size === 18) {
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
-          this.gameMessageField.textContent = `${
+          this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
               "Choose the third alliance from one country"
             ]
@@ -2084,7 +2089,7 @@ export class Player {
         if (this.selectedCountryCodes.size === 19) {
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
-          this.gameMessageField.textContent = `${
+          this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
               "Choose the fourth alliance from one country"
             ]
@@ -2110,7 +2115,7 @@ export class Player {
         if (this.selectedCountryCodes.size === 20) {
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
-          this.gameMessageField.textContent = `${
+          this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
               "Choose the first trap country"
             ]
@@ -2129,7 +2134,7 @@ export class Player {
         if (this.selectedCountryCodes.size === 21) {
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
-          this.gameMessageField.textContent = `${
+          this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
               "Choose the second trap country"
             ]
@@ -2148,7 +2153,7 @@ export class Player {
         if (this.selectedCountryCodes.size === 22) {
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
-          this.gameMessageField.textContent = `${
+          this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
               "Choose the third trap country"
             ]
@@ -2167,7 +2172,7 @@ export class Player {
         if (this.selectedCountryCodes.size === 23) {
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
-          this.gameMessageField.textContent = `${
+          this.gameMessageField.textContent = `▶️ ${
             localization[model.worldCountries.language][
               "Press 'Play' to start game!"
             ]
@@ -2592,10 +2597,11 @@ export class Player {
           this.playerConfigured &&
           this.opponentPlayer.playerConfigured
         ) {
-          this.gameMessageField.textContent =
+          this.gameMessageField.textContent = `▶️ ${
             localization[model.worldCountries.language][
               "Opponent selected countries. Press 'Play' to start game!"
-            ];
+            ]
+          }`;
         }
       }
     } else if (messageObject.type === "move") {
@@ -2624,10 +2630,11 @@ export class Player {
           "Opponent has not yet started game. Wait for the message to start."
         ]
       ) {
-        this.gameMessageField.textContent =
+        this.gameMessageField.textContent = `⚠️ ${
           localization[model.worldCountries.language][
             "Your attempt to guess opponent's country"
-          ];
+          ]
+        }`;
       }
     } else if (messageObject.type === "finish") {
       alert(
@@ -2716,7 +2723,7 @@ export class Player {
     }
     if (this.selectedCountryTrapCodes.has(countryCode)) {
       this.setMessageInnerHtmlField(
-        `<span>${
+        `<span>⚠️ ${
           localization[model.worldCountries.language][
             "Opponent has fallen into a trap-country"
           ]
@@ -2865,7 +2872,7 @@ export class Player {
         const countryUnionHtml =
           this.createCountryUnionMessageHtml(countryUnionIndex);
         this.setMessageInnerHtmlField(
-          `<span style="margin-right:5px;">${
+          `<span style="margin-right:5px;">⚠️ ${
             localization[model.worldCountries.language]["Opponent guessed"]
           }</span><div style="display: inline-block;">${
             countryUnionHtml.outerHTML
@@ -2880,7 +2887,7 @@ export class Player {
         });
       } else {
         this.setMessageInnerHtmlField(
-          `<span>${
+          `<span>ℹ️ ${
             localization[model.worldCountries.language]["Opponent guessed"]
           }</span> <img src="${
             country.countryFlag
@@ -2902,10 +2909,11 @@ export class Player {
         opacity: 0.8,
         className: countryCode,
       });
-      this.gameMessageField.textContent =
+      this.gameMessageField.textContent = `⛔ ${
         localization[model.worldCountries.language][
           "Opponent failed to guess your country!"
-        ];
+        ]
+      }`;
       this.playerAttemptToGuess = true;
       this.opponentPlayer.playerAttemptToGuess = false;
       await this.sleep(1000);
