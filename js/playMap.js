@@ -160,7 +160,7 @@ export class PlayMap {
         playerOneScoreField.style.fontWeight = "bolder";
         playerOneScoreField.style.marginTop = "5px";
         playerOneScoreField.style.color = "green";
-        playerOneScoreField.textContent = "0";
+        playerOneScoreField.textContent = "🏅 0";
         playerOneScoreField.title =
           localization[model.worldCountries.language]["Score"];
         return playerOneScoreField;
@@ -746,7 +746,7 @@ export class PlayMap {
         playerTwoScoreField.style.fontWeight = "bolder";
         playerTwoScoreField.style.marginTop = "8px";
         playerTwoScoreField.style.color = "green";
-        playerTwoScoreField.textContent = "0";
+        playerTwoScoreField.textContent = "🏅 0";
         playerTwoScoreField.title =
           localization[model.worldCountries.language]["Score"];
         return playerTwoScoreField;

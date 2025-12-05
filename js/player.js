@@ -623,8 +623,9 @@ export class Player {
         } else {
           this.score = this.score - 30;
         }
-        document.getElementById("player-two-score-field").textContent =
-          this.score;
+        document.getElementById(
+          "player-two-score-field"
+        ).textContent = `🏅 ${this.score}`;
         this.opponentPlayer.addHint(countryCode, false);
         this.opponentPlayer.setElementStyle(countryBoundary, {
           weight: 1,
@@ -720,8 +721,9 @@ export class Player {
           } else if (countryUnion.length === 1) {
             this.score = this.score + 50;
           }
-          document.getElementById("player-two-score-field").textContent =
-            this.score;
+          document.getElementById(
+            "player-two-score-field"
+          ).textContent = `🏅 ${this.score}`;
           countryUnion.forEach((countryObject) => {
             const countryCode = Object.keys(countryObject)[0];
             const country = this.opponentPlayer.countries[countryCode];
@@ -1041,8 +1043,9 @@ export class Player {
         this.opponentPlayer.score = this.opponentPlayer.score - 30;
         points = 30;
       }
-      document.getElementById("player-one-score-field").textContent =
-        this.opponentPlayer.score;
+      document.getElementById(
+        "player-one-score-field"
+      ).textContent = `🏅 ${this.opponentPlayer.score}`;
       this.setElementStyle(countryBoundary, {
         weight: 1,
         color: "orange",
@@ -1144,8 +1147,9 @@ export class Player {
           this.opponentPlayer.score = this.opponentPlayer.score + 50;
           points = 50;
         }
-        document.getElementById("player-one-score-field").textContent =
-          this.opponentPlayer.score;
+        document.getElementById(
+          "player-one-score-field"
+        ).textContent = `🏅 ${this.opponentPlayer.score}`;
         countryUnion.forEach((countryObject) => {
           const countryCode = Object.keys(countryObject)[0];
           this.setElementStyle(this.countryBoundaries[countryCode], {
@@ -2747,8 +2751,9 @@ export class Player {
       } else {
         this.opponentPlayer.score = this.opponentPlayer.score - 30;
       }
-      document.getElementById("player-two-score-field").textContent =
-        this.opponentPlayer.score;
+      document.getElementById(
+        "player-two-score-field"
+      ).textContent = `🏅 ${this.opponentPlayer.score}`;
       this.addHint(countryCode, false);
       this.setElementStyle(countryBoundary, {
         weight: 1,
@@ -2833,8 +2838,9 @@ export class Player {
         } else if (countryUnion.length === 1) {
           this.opponentPlayer.score = this.opponentPlayer.score + 50;
         }
-        document.getElementById("player-two-score-field").textContent =
-          this.opponentPlayer.score;
+        document.getElementById(
+          "player-two-score-field"
+        ).textContent = `🏅 ${this.opponentPlayer.score}`;
         countryUnion.forEach((countryObject) => {
           const countryCode = Object.keys(countryObject)[0];
           const country = this.countries[countryCode];
