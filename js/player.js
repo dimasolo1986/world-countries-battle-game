@@ -927,9 +927,8 @@ export class Player {
         const country = this.countries[countryCode];
         const container = document.createElement("div");
         container.style.cursor = "pointer";
-        const locationIcon = document.createElement("i");
-        locationIcon.classList.add("fa-solid");
-        locationIcon.classList.add("fa-location-crosshairs");
+        const locationIcon = document.createElement("span");
+        locationIcon.textContent = "📍";
         locationIcon.style.width = "10px";
         locationIcon.style.height = "10px";
         locationIcon.style.marginRight = "5px";
@@ -969,9 +968,10 @@ export class Player {
         this.game.firebase.opponentConnectionState === "connecting")
     ) {
       alert(
-        localization[model.worldCountries.language][
-          "Connection with your opponent has failed. Try your attempt later."
-        ]
+        "⚠️ " +
+          localization[model.worldCountries.language][
+            "Connection with your opponent has failed. Try your attempt later."
+          ]
       );
       return;
     }
@@ -980,6 +980,7 @@ export class Player {
       !this.opponentPlayer.opponentPlayerStartAcknowledged
     ) {
       this.gameMessageField.textContent =
+        "⚠️ " +
         localization[model.worldCountries.language][
           "Opponent has not yet started game. Wait for the message to start."
         ];
@@ -1056,7 +1057,7 @@ export class Player {
       });
       document.getElementById(
         "guessed-country-alliance-panel-content"
-      ).innerHTML = `<div>⚠️ <span style="
+      ).innerHTML = `<div style="background-color: red; border-radius: 2px;">⚠️ <span style="
                     color: white;
                     font-size: 0.75rem;
                     border-radius: 2px;
@@ -1440,7 +1441,7 @@ export class Player {
       );
     });
     this.showSelectedCountries();
-    this.gameMessageField.textContent = `▶️ ${
+    this.gameMessageField.textContent = `ℹ️ ${
       localization[model.worldCountries.language]["Press 'Play' to start game!"]
     }`;
     this.playerConfigured = true;
@@ -1839,7 +1840,7 @@ export class Player {
     countryMarker.off("click");
     countryBoundary.off("click");
     if (this.playerConfigured) {
-      this.gameMessageField.textContent = `▶️ ${
+      this.gameMessageField.textContent = `ℹ️ ${
         localization[model.worldCountries.language][
           "Press 'Play' to start game!"
         ]
@@ -2176,7 +2177,7 @@ export class Player {
         if (this.selectedCountryCodes.size === 23) {
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
-          this.gameMessageField.textContent = `▶️ ${
+          this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
               "Press 'Play' to start game!"
             ]
@@ -2570,7 +2571,7 @@ export class Player {
       const input = document.getElementById("chat-message-from-opponent");
       if (input) {
         input.value =
-          "👱: " +
+          "🧓: " +
           localization[model.worldCountries.language][
             "Opponent entered the game room to read your messages"
           ];
@@ -2601,7 +2602,7 @@ export class Player {
           this.playerConfigured &&
           this.opponentPlayer.playerConfigured
         ) {
-          this.gameMessageField.textContent = `▶️ ${
+          this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
               "Opponent selected countries. Press 'Play' to start game!"
             ]
@@ -2642,9 +2643,10 @@ export class Player {
       }
     } else if (messageObject.type === "finish") {
       alert(
-        localization[model.worldCountries.language][
-          "Sorry... Opponent left the game."
-        ]
+        "⚠️ " +
+          localization[model.worldCountries.language][
+            "Sorry... Opponent left the game."
+          ]
       );
       if (this.game) this.game.finishGame(false);
     } else if (messageObject.type === "end") {
@@ -2654,7 +2656,8 @@ export class Player {
       this.game.showGameResult(false, false);
     } else if (messageObject.type === "deleteGameRoom") {
       alert(
-        this.game.firebase.gameRoomId +
+        "⚠️ " +
+          this.game.firebase.gameRoomId +
           ` - ${
             localization[model.worldCountries.language][
               "Game room does not exist. Perhaps the opponent deleted it or left the game"
@@ -2669,7 +2672,7 @@ export class Player {
       const message = messageObject.value;
       const input = document.getElementById("chat-message-from-opponent");
       if (input) {
-        input.value = "👱: " + message;
+        input.value = "🧓: " + message;
       }
       const chat = document.getElementById("chat-container");
       if (chat.classList.contains("not-displayed")) {
@@ -2687,7 +2690,7 @@ export class Player {
       const input = document.getElementById("chat-message-from-opponent");
       if (input) {
         input.value =
-          "👱: " +
+          "🧓: " +
           localization[model.worldCountries.language][
             "Opponent has not yet entered the game room to read your messages. Try sending a message later"
           ];
@@ -2973,9 +2976,10 @@ export class Player {
           this.game.firebase.opponentConnectionState !== "connected"
         ) {
           alert(
-            localization[model.worldCountries.language][
-              "Sorry... Connection with your opponent has failed. Game is ended."
-            ]
+            "⚠️ " +
+              localization[model.worldCountries.language][
+                "Sorry... Connection with your opponent has failed. Game is ended."
+              ]
           );
           if (this.game) this.game.finishGame(false);
         }
@@ -2992,9 +2996,10 @@ export class Player {
           this.game.firebase.opponentConnectionState !== "connected"
         ) {
           alert(
-            localization[model.worldCountries.language][
-              "Sorry... Connection with your opponent has failed. Game is ended."
-            ]
+            "⚠️ " +
+              localization[model.worldCountries.language][
+                "Sorry... Connection with your opponent has failed. Game is ended."
+              ]
           );
           if (this.game) this.game.finishGame(false);
         }
@@ -3005,9 +3010,10 @@ export class Player {
       opponentConnectionText.textContent =
         localization[model.worldCountries.language]["Connection is closed"];
       alert(
-        localization[model.worldCountries.language][
-          "Sorry... Opponent left the game."
-        ]
+        "⚠️ " +
+          localization[model.worldCountries.language][
+            "Sorry... Opponent left the game."
+          ]
       );
       if (this.game) this.game.finishGame(false);
     }

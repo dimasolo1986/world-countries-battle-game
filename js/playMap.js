@@ -186,10 +186,7 @@ export class PlayMap {
         container.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
         const userIconContainer = L.DomUtil.create("span");
-        userIconContainer.insertAdjacentHTML(
-          "afterbegin",
-          '<i class="fa-solid fa-user"></i>'
-        );
+        userIconContainer.textContent = "🧑";
         const userCountriesNumber = L.DomUtil.create("span");
         userCountriesNumber.style.marginLeft = "5px";
         userCountriesNumber.id = playerOneSelectedCountriesNumber;
@@ -209,10 +206,7 @@ export class PlayMap {
           ];
         random.id = "random-user-countries-selection";
         random.style.borderTop = "1px dotted black";
-        random.insertAdjacentHTML(
-          "afterbegin",
-          '<i class="fa-solid fa-dice"></i>'
-        );
+        random.textContent = "🎲";
         random.addEventListener("click", this.randomFunction);
         random.addEventListener("mouseover", () => {
           random.style.backgroundColor = "lightgreen";
@@ -229,10 +223,7 @@ export class PlayMap {
         clean.title = localization[model.worldCountries.language]["Clean"];
         clean.id = "clean-user-countries-selection";
         clean.style.borderTop = "1px dotted black";
-        clean.insertAdjacentHTML(
-          "afterbegin",
-          '<i class="fa-solid fa-trash"></i>'
-        );
+        clean.textContent = "🗑️";
         clean.addEventListener("click", this.cleanFunction);
         clean.addEventListener("mouseover", () => {
           clean.style.backgroundColor = "red";
@@ -384,7 +375,7 @@ export class PlayMap {
           chatMessageFromOpponent.id = "chat-message-from-opponent";
           chatMessageFromOpponent.readOnly = true;
           chatMessageFromOpponent.placeholder =
-            "👱 " +
+            "🧓 " +
             localization[model.worldCountries.language][
               "Message From Opponent"
             ];
@@ -475,7 +466,7 @@ export class PlayMap {
         mapFiled.style.marginTop = "15px";
         mapFiled.style.color = "darkblue";
         mapFiled.textContent =
-          localization[model.worldCountries.language][playerMapLabel];
+          "🗺️ " + localization[model.worldCountries.language][playerMapLabel];
         return mapFiled;
       },
       onRemove: function (map) {},
@@ -525,6 +516,7 @@ export class PlayMap {
         countriesField.style.fontSize = "0.5rem";
         countriesField.style.marginTop = "50px";
         countriesField.textContent =
+          "🌍 " +
           localization[model.worldCountries.language]["Available Countries:"] +
           " ";
         const countriesNumberField = L.DomUtil.create("span");
@@ -635,7 +627,7 @@ export class PlayMap {
         availableCountriesPanel.style.padding = "3px";
         availableCountriesPanel.style.width = "fit-content";
         availableCountriesPanel.style.overflow = "hidden";
-        const availableCountriesHeader = `<div class="text-center"><span style="font-size:0.7rem; font-weight:bold;">${
+        const availableCountriesHeader = `<div class="text-center"><span style="font-size:0.7rem; font-weight:bold;">🌍 ${
           localization[model.worldCountries.language]["Available Countries:"]
         }</span></div>`;
         availableCountriesPanel.insertAdjacentHTML(
@@ -771,14 +763,11 @@ export class PlayMap {
         container.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
         const userIconContainer = L.DomUtil.create("span");
-        userIconContainer.insertAdjacentHTML(
-          "afterbegin",
-          `<i class="fa-solid ${
-            this.gameConfiguration.gameMode === "computer"
-              ? "fa-desktop"
-              : "fa-user"
-          }"></i>`
-        );
+        if (this.gameConfiguration.gameMode === "computer") {
+          userIconContainer.textContent = "🖥️";
+        } else {
+          userIconContainer.textContent = "🧓";
+        }
         const userCountriesNumber = L.DomUtil.create("span");
         userCountriesNumber.style.marginLeft = "5px";
         userCountriesNumber.id = playerTwoSelectedCountriesNumber;
@@ -866,7 +855,7 @@ export class PlayMap {
     }
     if (!sent && messageInput.value !== "") {
       document.getElementById("chat-message-from-opponent").value =
-        "👱: " +
+        "🧓: " +
         localization[model.worldCountries.language][
           "Opponent has not yet entered the game room to read your messages. Try sending a message later"
         ];
@@ -901,9 +890,10 @@ export class PlayMap {
   finishGameHandler(useConfirm, deleteGameRoom) {
     if (useConfirm) {
       const confirmExit = confirm(
-        localization[model.worldCountries.language][
-          "Are you sure you want to leave this game?"
-        ]
+        "❓ " +
+          localization[model.worldCountries.language][
+            "Are you sure you want to leave this game?"
+          ]
       );
       if (confirmExit) {
         document.getElementById(
@@ -935,7 +925,7 @@ export class PlayMap {
 
   setMapFiledLabel(label) {
     document.getElementById("map-field").textContent =
-      localization[model.worldCountries.language][label];
+      "🗺️ " + localization[model.worldCountries.language][label];
   }
 
   showMapElement(elementId) {

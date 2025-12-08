@@ -156,11 +156,6 @@
     <link rel="stylesheet" href="css/leaflet.css" />
     <link rel="stylesheet" href="css/leaflet-control-topcenter.css" />
     <link rel="stylesheet" href="css/leaflet.contextmenu.css" />
-    <script
-      defer
-      src="https://kit.fontawesome.com/5ab6aa530f.js"
-      crossorigin="anonymous"
-    ></script>
     <script defer src="js/leaflet.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -394,17 +389,14 @@
           "
           >About Project</a
         >
-        <i
-          id="shareWebSite"
-          class="fa-solid fa-square-share-nodes"
-          style="
-            color: #85c1e9;
-            font-size: 0.85rem;
-            margin-right: 10px;
-            cursor: pointer;
-          "
-          aria-hidden="true"
-        ></i>
+        <svg  id="shareWebSite" style="cursor: pointer; padding: 1px; background-color: #85c1e9; margin-right: 10px; border-radius: 1px;" xmlns="http://www.w3.org/2000/svg"  width="12" height="12" viewBox="0 0 24 24" fill="#212529" stroke="#212529" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="share-icon">
+          <title>Share</title>
+  <circle cx="18" cy="5" r="3"></circle>
+  <circle cx="6" cy="12" r="3"></circle>
+  <circle cx="18" cy="19" r="3"></circle>
+  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+</svg>
       </div>
     </header>
 
@@ -1297,11 +1289,11 @@
         <br />
          <span class="game-rules-random-country-selection-description"
           >To select alliances of countries randomly, click</span
-        ><span> - </span><i class="fa-solid fa-dice"></i>
+        ><span> - </span><span>🎲</span>
         <br />
           <span class="game-rules-clear-country-selection-description"
           >To clear selected country alliances, click</span
-        ><span> - </span><i class="fa-solid fa-trash"></i>
+        ><span> - </span><span>🗑️</span>
         <br />
         <span class="game-rules-trap-countries-rules"
           >When entering an opponent's trap country, he receives one of three

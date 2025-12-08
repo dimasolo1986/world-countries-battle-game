@@ -51,9 +51,10 @@ export class Firebase {
         await signInAnonymously(auth);
       } catch {
         alert(
-          localization[model.worldCountries.language][
-            "Failed to create a communication channel with your opponent"
-          ]
+          "⛔ " +
+            localization[model.worldCountries.language][
+              "Failed to create a communication channel with your opponent"
+            ]
         );
       }
       const turnData = await this.getTurnServers();
@@ -104,7 +105,8 @@ export class Firebase {
       const offerSnap = await get(ref(this.db, `room-${gameRoomId}/offer`));
       if (!offerSnap.exists()) {
         alert(
-          gameRoomId +
+          "⚠️ " +
+            gameRoomId +
             ` - ${
               localization[model.worldCountries.language][
                 "Game room does not exist. Perhaps the opponent deleted it or left the game"
