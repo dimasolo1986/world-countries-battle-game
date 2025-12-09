@@ -111,6 +111,23 @@ const init = function () {
     }
   });
   document.addEventListener("DOMContentLoaded", function () {
+    function getShareWebSiteContent() {
+      return {
+        title: `${
+          localization[model.worldCountries.language][
+            "Country Alliance Guesser Game"
+          ]
+        }`,
+        text: `${
+          localization[model.worldCountries.language][
+            "World Country Alliances Guesser Game"
+          ]
+        } - ${
+          document.querySelector(".about-project-description").textContent
+        }`,
+        url: "https://www.countriesguesser.com",
+      };
+    }
     const rawParams = window.location.search;
     const cleanedParams = rawParams.replace(/[\u200B-\u200D\uFEFF]/g, "");
     const urlParams = new URLSearchParams(cleanedParams);
@@ -139,25 +156,12 @@ const init = function () {
         document.activeElement.blur();
       }
     });
-    const shareWebSiteContent = {
-      title: `${
-        localization[model.worldCountries.language][
-          "Country Alliance Guesser Game"
-        ]
-      }`,
-      text: `${
-        localization[model.worldCountries.language][
-          "World Country Alliances Guesser Game"
-        ]
-      } - ${document.querySelector(".about-project-description").textContent}`,
-      url: "https://www.countriesguesser.com",
-    };
     const shareWebSiteButton = document.getElementById("shareWebSite");
     if (shareWebSiteButton) {
       shareWebSiteButton.addEventListener("click", function () {
         if (navigator.share) {
           navigator
-            .share(shareWebSiteContent)
+            .share(getShareWebSiteContent())
             .then(function () {})
             .catch(function () {});
         }
@@ -168,7 +172,7 @@ const init = function () {
       shareWebSiteDonate.addEventListener("click", function () {
         if (navigator.share) {
           navigator
-            .share(shareWebSiteContent)
+            .share(getShareWebSiteContent())
             .then(function () {})
             .catch(function () {});
         }
@@ -179,7 +183,7 @@ const init = function () {
       shareGameResults.addEventListener("click", function () {
         if (navigator.share) {
           navigator
-            .share(shareWebSiteContent)
+            .share(getShareWebSiteContent())
             .then(function () {})
             .catch(function () {});
         }
