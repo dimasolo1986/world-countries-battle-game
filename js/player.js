@@ -1215,17 +1215,20 @@ export class Player {
             localization[model.worldCountries.language]["Country Alliance"]
           }</span>`
         );
-        document.getElementById("gameCountryAllianceGuessedLabel").textContent =
-          localization[model.worldCountries.language]["Congratulations!"];
-        document.getElementById(
-          "gameCountryAllianceGuessedCountries"
-        ).innerHTML = `👏 <span style="font-weight:bold; color:darkblue;">${
-          localization[model.worldCountries.language]["You guessed"]
-        }</span><div style="display: inline-block; margin-left:5px;">${
-          countryUnionHtml.outerHTML
-        }</div><span style="margin-left:5px; color: darkblue; font-weight:bold;">${
-          localization[model.worldCountries.language]["Country Alliance"]
-        }</span><div style="margin-top:5px;"><span style="
+        if (this.playerMap && !this.playerMap._isFullscreen) {
+          document.getElementById(
+            "gameCountryAllianceGuessedLabel"
+          ).textContent =
+            localization[model.worldCountries.language]["Congratulations!"];
+          document.getElementById(
+            "gameCountryAllianceGuessedCountries"
+          ).innerHTML = `👏 <span style="font-weight:bold; color:darkblue;">${
+            localization[model.worldCountries.language]["You guessed"]
+          }</span><div style="display: inline-block; margin-left:5px;">${
+            countryUnionHtml.outerHTML
+          }</div><span style="margin-left:5px; color: darkblue; font-weight:bold;">${
+            localization[model.worldCountries.language]["Country Alliance"]
+          }</span><div style="margin-top:5px;"><span style="
                     color: white;
                     font-size: 1rem;
                     border-radius: 2px;
@@ -1234,13 +1237,38 @@ export class Player {
                     padding-right: 3px;
                     font-weight: bolder;
                   ">+${points} ${
-          localization[model.worldCountries.language]["Points"]
-        }</span></div>`;
-        document.getElementById(
-          "gameCountryAllianceGuessedCloseButton"
-        ).textContent = localization[model.worldCountries.language]["Close"];
-        showGameCountryAllianceGuessedWindow();
+            localization[model.worldCountries.language]["Points"]
+          }</span></div>`;
+          document.getElementById(
+            "gameCountryAllianceGuessedCloseButton"
+          ).textContent = localization[model.worldCountries.language]["Close"];
+          showGameCountryAllianceGuessedWindow();
+        } else if (this.playerMap && this.playerMap._isFullscreen) {
+          document.getElementById(
+            "guessed-country-alliance-panel-content"
+          ).innerHTML = `<span style="font-weight:bold; color:darkblue;">${
+            localization[model.worldCountries.language]["You guessed"]
+          }</span><div style="display: inline-block; margin-left:5px;">${
+            countryUnionHtml.outerHTML
+          }</div><div style="margin-top:5px;"><span style="
+                    color: white;
+                    font-size: 0.75rem;
+                    border-radius: 2px;
+                    background-color: green;
+                    padding-left: 3px;
+                    padding-right: 3px;
+                    font-weight: bolder;
+                  ">+${points} ${
+            localization[model.worldCountries.language]["Points"]
+          }</span></div>`;
+          document
+            .getElementById("guessed-country-alliance-panel")
+            .classList.remove("not-displayed");
+        }
         await this.sleep(1500);
+        document
+          .getElementById("guessed-country-alliance-panel")
+          .classList.add("not-displayed");
         this.closeCountryPopup(countryCode);
         this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
           animate: false,
