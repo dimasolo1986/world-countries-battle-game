@@ -23,6 +23,24 @@ export const getRandomInt = function (
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
+export const showGameCountryAllianceGuessedWindow = function () {
+  const gameCountryAllianceGuessedWindow = new bootstrap.Modal(
+    document.getElementById("gameCountryAllianceGuessedModal"),
+    {}
+  );
+  gameCountryAllianceGuessedWindow.show();
+};
+
+export const hideGameCountryAllianceGuessedWindow = function () {
+  const gameCountryAllianceGuessedWindow = document.getElementById(
+    "gameCountryAllianceGuessedModal"
+  );
+  const modal = bootstrap.Modal.getInstance(gameCountryAllianceGuessedWindow);
+  if (modal) {
+    modal.hide();
+  }
+};
+
 export const showGameResultWindow = function () {
   const gameResult = new bootstrap.Modal(
     document.getElementById("gameResultModal"),

@@ -5,6 +5,8 @@ import {
   getCountryGeo,
   getRandomInt,
   resetGameRoomContainer,
+  showGameCountryAllianceGuessedWindow,
+  hideGameCountryAllianceGuessedWindow,
 } from "./helpers.js";
 import * as model from "./model.js";
 export class Player {
@@ -1057,7 +1059,7 @@ export class Player {
       });
       document.getElementById(
         "guessed-country-alliance-panel-content"
-      ).innerHTML = `<div style="background-color: red; border-radius: 2px;">⚠️ <span style="
+      ).innerHTML = `<div style="background-color: red; border-radius: 2px;">&nbsp;⚠️&nbsp;<span style="
                     color: white;
                     font-size: 0.75rem;
                     border-radius: 2px;
@@ -1213,15 +1215,19 @@ export class Player {
             localization[model.worldCountries.language]["Country Alliance"]
           }</span>`
         );
+        document.getElementById("gameCountryAllianceGuessedLabel").textContent =
+          localization[model.worldCountries.language]["Congratulations!"];
         document.getElementById(
-          "guessed-country-alliance-panel-content"
-        ).innerHTML = `<span style="font-weight:bold;">${
+          "gameCountryAllianceGuessedCountries"
+        ).innerHTML = `👏 <span style="font-weight:bold; color:darkblue;">${
           localization[model.worldCountries.language]["You guessed"]
         }</span><div style="display: inline-block; margin-left:5px;">${
           countryUnionHtml.outerHTML
-        }</div><div style="margin-top:5px;"><span style="
+        }</div><span style="margin-left:5px; color: darkblue; font-weight:bold;">${
+          localization[model.worldCountries.language]["Country Alliance"]
+        }</span><div style="margin-top:5px;"><span style="
                     color: white;
-                    font-size: 0.75rem;
+                    font-size: 1rem;
                     border-radius: 2px;
                     background-color: green;
                     padding-left: 3px;
@@ -1230,12 +1236,11 @@ export class Player {
                   ">+${points} ${
           localization[model.worldCountries.language]["Points"]
         }</span></div>`;
-        const guessedCountryAlliance = document.getElementById(
-          "guessed-country-alliance-panel"
-        );
-        guessedCountryAlliance.classList.remove("not-displayed");
+        document.getElementById(
+          "gameCountryAllianceGuessedCloseButton"
+        ).textContent = localization[model.worldCountries.language]["Close"];
+        showGameCountryAllianceGuessedWindow();
         await this.sleep(1500);
-        guessedCountryAlliance.classList.add("not-displayed");
         this.closeCountryPopup(countryCode);
         this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
           animate: false,
@@ -1285,6 +1290,7 @@ export class Player {
       if (this.gameConfiguration.gameMode === "user") {
         this.sendEndGameToOpponent();
       }
+      hideGameCountryAllianceGuessedWindow();
       this.opponentPlayer.score +=
         +this.opponentPlayer.playerCountriesNumberField.textContent * 10;
       this.opponentPlayer.playerWonGame = true;

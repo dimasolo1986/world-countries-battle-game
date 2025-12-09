@@ -170,6 +170,15 @@ tr td:first-child {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
 }
 
+#gameCountryAllianceGuessedModal .modal-dialog {
+  max-width: fit-content !important;
+  width: auto !important;
+  margin: auto;
+}
+#gameCountryAllianceGuessedModal .modal-content {
+  width: fit-content;
+}
+
 @media (max-width: 479px) {
   .logo-game {
     display: none;
