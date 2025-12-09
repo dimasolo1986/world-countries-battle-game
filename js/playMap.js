@@ -191,6 +191,7 @@ export class PlayMap {
         userCountriesNumber.style.marginLeft = "5px";
         userCountriesNumber.id = playerOneSelectedCountriesNumber;
         userCountriesNumber.style.fontWeight = "bolder";
+        userCountriesNumber.style.color = "darkblue";
         userCountriesNumber.textContent = "0";
         container.appendChild(userIconContainer);
         container.appendChild(userCountriesNumber);
@@ -506,6 +507,7 @@ export class PlayMap {
         const countriesField = L.DomUtil.create("div");
         countriesField.id = "countries-field";
         countriesField.style.backgroundColor = "white";
+        countriesField.style.color = "darkblue";
         countriesField.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
         countriesField.style.paddingRight = "3px";
@@ -772,6 +774,7 @@ export class PlayMap {
         userCountriesNumber.style.marginLeft = "5px";
         userCountriesNumber.id = playerTwoSelectedCountriesNumber;
         userCountriesNumber.style.fontWeight = "bolder";
+        userCountriesNumber.style.color = "darkblue";
         userCountriesNumber.textContent = "0";
         container.appendChild(userIconContainer);
         container.appendChild(userCountriesNumber);
