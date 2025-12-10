@@ -1153,6 +1153,14 @@ export class Player {
         document.getElementById(
           "player-one-score-field"
         ).textContent = `🏅 ${this.opponentPlayer.score}`;
+        const countryUnionString = countryUnion
+          .map(
+            (countryObject) =>
+              localization[model.worldCountries.language]["countries"][
+                this.countries[Object.keys(countryObject)[0]].countryName
+              ]
+          )
+          .join("🔗");
         countryUnion.forEach((countryObject) => {
           const countryCode = Object.keys(countryObject)[0];
           this.setElementStyle(this.countryBoundaries[countryCode], {
@@ -1228,7 +1236,7 @@ export class Player {
             countryUnionHtml.outerHTML
           }</div><span style="margin-left:5px; color: darkblue; font-weight:bold;">${
             localization[model.worldCountries.language]["Country Alliance"]
-          }</span><div style="margin-top:5px;"><span style="
+          }</span><div style="color: darkblue; font-weight:bold;font-size: 0.8rem;">${countryUnionString}</div><div style="margin-top:5px;"><span style="
                     color: white;
                     font-size: 1rem;
                     border-radius: 2px;
@@ -1243,6 +1251,7 @@ export class Player {
             "gameCountryAllianceGuessedCloseButton"
           ).textContent = localization[model.worldCountries.language]["Close"];
           showGameCountryAllianceGuessedWindow();
+          setTimeout(hideGameCountryAllianceGuessedWindow, 10000);
         } else if (this.playerMap && this.playerMap._isFullscreen) {
           document.getElementById(
             "guessed-country-alliance-panel-content"

@@ -385,7 +385,7 @@ class gameRoomView {
     this._gameShareLink.textContent = `${
       localization[model.worldCountries.language]["Share Link With Friend"]
     }`;
-    this._gameRoomGameConfigurationHeader.textContent = `${
+    this._gameRoomGameConfigurationHeader.textContent = `🛠️ ${
       localization[model.worldCountries.language]["Game Configuration"]
     }`;
     this._gameRoomOnlyIndependentCountriesCheckboxLabel.textContent = `${

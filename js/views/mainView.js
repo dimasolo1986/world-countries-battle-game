@@ -306,7 +306,7 @@ class mainView {
         "Country Alliance Guesser Game"
       ]
     }`;
-    this._gameConfigurationHeader.textContent = `${
+    this._gameConfigurationHeader.textContent = `🛠️ ${
       localization[model.worldCountries.language]["Game Configuration"]
     }`;
     this._onlyIndependentCountriesCheckboxLabel.textContent = `${

@@ -81,9 +81,17 @@ export class PlayMap {
     const natGeoWorldMap = L.tileLayer(
       "https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}"
     );
+    const openStreetMap = L.tileLayer(
+      "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+    );
+    const worldTopoMap = L.tileLayer(
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}"
+    );
     const baseMaps = {
       WorldStreetMap: streetLayer,
       NatGeoWorldMap: natGeoWorldMap,
+      OpenStreetMap: openStreetMap,
+      WorldTopoMap: worldTopoMap,
     };
     this.map = L.map("map", {
       attributionControl: false,
@@ -91,29 +99,32 @@ export class PlayMap {
       layers: [streetLayer],
       contextmenuItems: [
         {
-          text: localization[model.worldCountries.language]["Center Map Here"],
+          text:
+            "📍 " +
+            localization[model.worldCountries.language]["Center Map Here"],
           callback: centerMap,
           context: this,
         },
         "-",
         {
-          text: localization[model.worldCountries.language]["Zoom In"],
+          text: "➕ " + localization[model.worldCountries.language]["Zoom In"],
           callback: zoomIn,
           context: this,
         },
         {
-          text: localization[model.worldCountries.language]["Zoom Out"],
+          text: "➖ " + localization[model.worldCountries.language]["Zoom Out"],
           callback: zoomOut,
           context: this,
         },
         {
-          text: localization[model.worldCountries.language]["Reset"],
+          text: "🔍 " + localization[model.worldCountries.language]["Reset"],
           callback: reset,
           context: this,
         },
         "-",
         {
-          text: localization[model.worldCountries.language]["Game Rules"],
+          text:
+            "📄 " + localization[model.worldCountries.language]["Game Rules"],
           callback: gameRules,
           context: this,
         },
@@ -545,12 +556,12 @@ export class PlayMap {
         playButton.style.marginBottom = "6px";
         playButton.style.paddinTop = "0.35rem";
         playButton.style.paddinBottom = "0.35rem";
-        playButton.style.fontSize = "0.8rem";
+        playButton.style.fontSize = "0.75rem";
         playButton.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
         playButton.disabled = true;
         playButton.textContent =
-          localization[model.worldCountries.language]["Play"];
+          "🕹️ " + localization[model.worldCountries.language]["Play"];
         playButton.addEventListener("click", this.playFunction);
         return playButton;
       },
@@ -571,14 +582,14 @@ export class PlayMap {
         finishButton.classList.add("guess-country-game-finish");
         finishButton.classList.add("rounded-pill");
         finishButton.style.marginTop = "8px";
-        finishButton.style.fontSize = "0.8rem";
+        finishButton.style.fontSize = "0.75rem";
         finishButton.style.marginBottom = "7px";
         finishButton.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
         finishButton.style.paddinTop = "0.35rem";
         finishButton.style.paddinBottom = "0.35rem";
         finishButton.textContent =
-          localization[model.worldCountries.language]["Finish"];
+          "⛔ " + localization[model.worldCountries.language]["Finish"];
         finishButton.addEventListener("click", this.finishFunction);
         return finishButton;
       },
@@ -598,14 +609,14 @@ export class PlayMap {
         gameRulesButton.classList.add("guess-country-game-rules");
         gameRulesButton.classList.add("rounded-pill");
         gameRulesButton.style.marginTop = "9px";
-        gameRulesButton.style.fontSize = "0.8rem";
+        gameRulesButton.style.fontSize = "0.75rem";
         gameRulesButton.style.marginBottom = "7px";
         gameRulesButton.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
         gameRulesButton.style.paddinTop = "0.35rem";
         gameRulesButton.style.paddinBottom = "0.35rem";
         gameRulesButton.textContent =
-          localization[model.worldCountries.language]["Rules"];
+          "📄 " + localization[model.worldCountries.language]["Rules"];
         gameRulesButton.addEventListener("click", this.gameRulesFunction);
         return gameRulesButton;
       },
@@ -738,7 +749,7 @@ export class PlayMap {
         playerTwoScoreField.style.opacity = "0.7";
         playerTwoScoreField.style.borderRadius = "2px";
         playerTwoScoreField.style.fontWeight = "bolder";
-        playerTwoScoreField.style.marginTop = "8px";
+        playerTwoScoreField.style.marginTop = "11px";
         playerTwoScoreField.style.color = "green";
         playerTwoScoreField.textContent = "🏅 0";
         playerTwoScoreField.title =
