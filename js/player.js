@@ -158,8 +158,8 @@ export class Player {
       const countryMarker = this.createCountryMarker(
         country,
         countryTooltip,
-        12,
-        12
+        14,
+        14
       );
       const countryBoundary = this.createCountryBoundary(
         countryGeo,
@@ -1160,7 +1160,7 @@ export class Player {
                 this.countries[Object.keys(countryObject)[0]].countryName
               ]
           )
-          .join("🔗");
+          .join(" 🔗 ");
         countryUnion.forEach((countryObject) => {
           const countryCode = Object.keys(countryObject)[0];
           this.setElementStyle(this.countryBoundaries[countryCode], {
@@ -2322,7 +2322,6 @@ export class Player {
       {
         icon: this.createCountryMarkerIcon(country, width, height),
         riseOnHover: true,
-        opacity: 0.95,
         alt: localization[model.worldCountries.language]["countries"][
           country.name.common
         ],
