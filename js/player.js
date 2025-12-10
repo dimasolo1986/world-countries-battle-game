@@ -1857,9 +1857,7 @@ export class Player {
 
   setSelectedCountryFiledHtml(country) {
     this.playMap.setSelectedCountryFiledHtml(
-      `<span>${
-        localization[model.worldCountries.language]["You selected"]
-      }</span> <img src="${
+      `<img src="${
         country.countryFlag
       }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;color:${
         country.countryName !== "Russia" ? "darkblue" : "red"
