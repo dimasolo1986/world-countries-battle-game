@@ -17,6 +17,9 @@ class mainView {
   _opponentLabelComputer = document.querySelector("#opponent-label-computer");
   _opponentLabelFriend = document.querySelector("#opponent-label-friend");
   _gameRoomIdLabel = document.querySelector("#game-room-heading-text");
+  _opponentConnectionLabel = document.querySelector(
+    "#opponent-connection-main-page-text"
+  );
   _gameModeSlider = document.querySelector("#gameMode");
   _gameRulesButton = document.querySelector("#game-rules-button");
   _gameCardHeader = document.querySelector("#game-header");
@@ -335,6 +338,11 @@ class mainView {
     }`;
     this._gameRoomIdLabel.textContent = `${
       localization[model.worldCountries.language]["Game Room ID:"]
+    }`;
+    this._opponentConnectionLabel.textContent = `${
+      localization[model.worldCountries.language][
+        this._opponentConnectionLabel.dataset.connection
+      ]
     }`;
     this._createGameRoomButton.textContent = `${
       localization[model.worldCountries.language]["Create Game Room"]

@@ -30,6 +30,9 @@ class aboutView {
   _facebookPage = document.querySelector(
     ".about-countries-guesser-facebook-page"
   );
+  _facebookPageShare = document.querySelector(
+    ".about-countries-guesser-facebook-page-share"
+  );
   _gameModalRulesLabel = document.getElementById("gameModalRulesLabel");
   _gameModalRulesContent = document.getElementById("gameRulesContent");
   _gameModalRulesCloseButton = document.getElementById("gameRulesCloseButton");
@@ -150,6 +153,9 @@ class aboutView {
     }`;
     this._facebookPage.textContent = `${
       localization[model.worldCountries.language]["Facebook Page"]
+    }`;
+    this._facebookPageShare.textContent = `${
+      localization[model.worldCountries.language]["On Facebook Page you can share your impressions about the game or the results of your games"]
     }`;
     this._aboutMapLibrary.textContent = `${
       localization[model.worldCountries.language]["Used Map Library:"]

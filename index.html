@@ -200,6 +200,11 @@
       if(gameRoomInputContainer) gameRoomInputContainer.classList.add("not-displayed");
       const createGameRoomContainer = document.querySelector("#create-game-room-container");
       if (createGameRoomContainer) createGameRoomContainer.classList.add("not-displayed");
+      const gameRoomHeadingContainer = document.querySelector("#game-room-heading-container");
+      if (gameRoomHeadingContainer) {
+        document.querySelector("#game-room-heading-id").textContent = roomId;
+        gameRoomHeadingContainer.classList.remove("not-displayed");
+      }
     }
     if(allCountries) {
       const onlyIndependentCountriesCheckbox = document.getElementById("only-independent-countries-checkbox");
@@ -708,6 +713,7 @@
             <label for="gameMode" id="opponent-label-friend">Friend</label>
           </div>
           <div id="game-room-heading-container" class="not-displayed" style="font-size: 0.7rem;">
+            <div style="padding-left: 3px; padding-right: 3px; font-size: 0.5rem; border-radius: 2px; font-weight: bolder;"><span id="opponent-connection-main-page-text" style="color: red;" data-connection="Opponent is not online">Opponent is not online</span></div>
             <span id="game-room-heading-text">Game Room ID:</span><span id="game-room-heading-id" style="margin-left: 3px;"></span>
             </div>
           <div id="create-game-room-container" class="not-displayed">
@@ -770,7 +776,7 @@
           >
             START
           </button>
-          <div class="mb-1"><img alt="Made In Ukraine Image" style="width: 100px;" src="https://img.shields.io/badge/made_in-Ukraine-ffd700.svg?labelColor=0057b7"></div>
+          <div id="made-in-ukraine-banner" class="mb-1"><img alt="Made In Ukraine Image" style="width: 100px;" src="https://img.shields.io/badge/made_in-Ukraine-ffd700.svg?labelColor=0057b7"></div>
         </div>
       </div>
     </main>
@@ -1610,7 +1616,7 @@
         rel="external"
         >Countries Guesser Online Game</a
       >
-      <br />
+      <p style="margin-bottom: 0px;" class="about-countries-guesser-facebook-page-share">On Facebook Page you can share your impressions about the game or the results of your games</p>
       <p class="about-map-library" style="display: inline">Used Map Library:</p>
       <a
         class="about-map-library-link"

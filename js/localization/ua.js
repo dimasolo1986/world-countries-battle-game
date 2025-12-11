@@ -576,6 +576,8 @@ export const localization = {
     Points: "Балів",
     "Random Countries Selection": "Випадковий Вибір Країн",
     "Facebook Page": "Фейсбук Сторінка",
+    "On Facebook Page you can share your impressions about the game or the results of your games":
+      "На сторінці гри у Facebook ви можете поділитися своїми враженнями про гру або результатами ваших ігор",
     "Country Alliances Selection — Video Tutorial":
       "Вибір Альянсів Країн — Відеоінструкція",
     "VIDEOS:": "ВІДЕО:",
@@ -1338,6 +1340,8 @@ export const localization = {
       "If your browser blocks or disables WebRTC (real-time communication for the web), you will not be able to play with your friend. Try a different browser.",
     "Random Countries Selection": "Random Countries Selection",
     "Facebook Page": "Facebook Page",
+    "On Facebook Page you can share your impressions about the game or the results of your games":
+      "On Facebook Page you can share your impressions about the game or the results of your games",
     "Country Alliances Selection — Video Tutorial":
       "Country Alliances Selection — Video Tutorial",
     "Country Alliance Guesser Gameplay": "Country Alliance Guesser Gameplay",
@@ -2097,6 +2101,8 @@ export const localization = {
     Score: "Punktestand",
     "Random Countries Selection": "Zufällige Länderauswahl",
     "Facebook Page": "Facebook-Seite",
+    "On Facebook Page you can share your impressions about the game or the results of your games":
+      "Auf der Facebook-Seite können Sie Ihre Eindrücke vom Spiel oder die Ergebnisse Ihrer Spiele teilen",
     "Country Alliances Selection — Video Tutorial":
       "Auswahl der Länderallianzen – Video-Tutorial",
     "Country Alliance Guesser Gameplay":
@@ -2934,6 +2940,8 @@ export const localization = {
     "If a player guesses an alliance of countries that contains four countries, he gets 15 points, three countries - 25 points, two countries - 35 points, one country - 50 points. When falling into an opponent's trap country, the player loses 10 points the first time, 20 points the second time, and 30 points the third time. At the end of the game, the player gets an additional 10 points for each alliance of countries that was not guessed by the opponent.":
       "Si un joueur devine une alliance de quatre pays, il marque 15 points, trois pays - 25 points, deux pays - 35 points, et un seul pays - 50 points. Êtes tombé dans un pays-piège, le joueur perd 10 points la première fois, 20 points la deuxième fois et 30 points la troisième fois. À la fin de la partie, le joueur gagne 10 points supplémentaires pour chaque alliance non devinée par son adversaire.",
     "Facebook Page": "Page Facebook",
+    "On Facebook Page you can share your impressions about the game or the results of your games":
+      "Sur notre page Facebook, vous pouvez partager vos impressions sur le jeu ou les résultats de vos parties",
     "Country Alliances Selection — Video Tutorial":
       "Sélection des alliances de pays — Tutoriel vidéo",
     "Country Alliance Guesser Gameplay": "Jeu des Alliances de Pays Gameplay",
@@ -3698,6 +3706,8 @@ export const localization = {
     Clean: "Limpia",
     "Random Countries Selection": "Selección aleatoria de países",
     "Facebook Page": "Página de Facebook",
+    "On Facebook Page you can share your impressions about the game or the results of your games":
+      "En la página de Facebook puedes compartir tus impresiones sobre el juego o los resultados de tus partidas",
     "Country Alliances Selection — Video Tutorial":
       "Selección de alianzas entre países — Videotutorial",
     "Country Alliance Guesser Gameplay":
@@ -4347,6 +4357,8 @@ export const localization = {
       "Fai clic su 'Crea una sala giochi' per generare il collegamento al gioco",
     "Random Countries Selection": "Selezione casuale dei paesi",
     "Facebook Page": "Pagina Facebook",
+    "On Facebook Page you can share your impressions about the game or the results of your games":
+      "Sulla pagina Facebook puoi condividere le tue impressioni sulla partita o i risultati delle tue partite",
     "Country Alliances Selection — Video Tutorial":
       "Selezione delle alleanze nazionali — Video tutorial",
     "Country Alliance Guesser Gameplay":

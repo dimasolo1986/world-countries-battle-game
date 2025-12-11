@@ -168,6 +168,9 @@ export class Firebase {
         }
       );
       this.peerConnection.onconnectionstatechange = function () {
+        this.mainPageConnectionStateHandler(
+          this.peerConnection.iceConnectionState
+        );
         this.opponentConnectionState = this.peerConnection.connectionState;
         if (this.game) {
           this.game.opponentConnectionHandler(
@@ -226,6 +229,38 @@ export class Firebase {
         ref(this.db, `room-${this.gameRoomId}/gameEndedAt`),
         serverTimestamp()
       );
+    }
+  }
+
+  mainPageConnectionStateHandler(connectionState) {
+    const opponentConnectionText = document.getElementById(
+      "opponent-connection-main-page-text"
+    );
+    if (connectionState === "connected") {
+      opponentConnectionText.textContent =
+        localization[model.worldCountries.language]["Opponent is online"];
+      opponentConnectionText.style.color = "green";
+      opponentConnectionText.dataset.connection = "Opponent is online";
+    } else if (connectionState === "connecting") {
+      opponentConnectionText.textContent =
+        localization[model.worldCountries.language]["Opponent is connecting"];
+      opponentConnectionText.style.color = "green";
+      opponentConnectionText.dataset.connection = "Opponent is connecting";
+    } else if (connectionState === "disconnected") {
+      opponentConnectionText.style.color = "red";
+      opponentConnectionText.textContent =
+        localization[model.worldCountries.language]["Opponent is not online"];
+      opponentConnectionText.dataset.connection = "Opponent is not online";
+    } else if (connectionState === "failed") {
+      opponentConnectionText.style.color = "red";
+      opponentConnectionText.textContent =
+        localization[model.worldCountries.language]["Connection is failed"];
+      opponentConnectionText.dataset.connection = "Connection is failed";
+    } else if (connectionState === "closed") {
+      opponentConnectionText.style.color = "red";
+      opponentConnectionText.textContent =
+        localization[model.worldCountries.language]["Connection is closed"];
+      opponentConnectionText.dataset.connection = "Connection is closed";
     }
   }
 
@@ -296,6 +331,9 @@ export class Firebase {
         this.createGameRoom(gameRoomId);
       });
       this.peerConnection.oniceconnectionstatechange = async () => {
+        this.mainPageConnectionStateHandler(
+          this.peerConnection.iceConnectionState
+        );
         this.opponentConnectionState = this.peerConnection.iceConnectionState;
         if (this.game) {
           this.game.opponentConnectionHandler(

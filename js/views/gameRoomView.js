@@ -122,6 +122,9 @@ class gameRoomView {
     );
     gameRoomHeadingContainer.classList.remove("not-displayed");
     document.querySelector("#game-room-heading-id").textContent = gameRoomId;
+    document
+      .querySelector("#made-in-ukraine-banner")
+      .classList.add("not-displayed");
   }
 
   async deleteGameRoom() {
@@ -170,6 +173,9 @@ class gameRoomView {
     );
     gameRoomHeadingContainer.classList.add("not-displayed");
     document.querySelector("#game-room-heading-id").textContent = "";
+    document
+      .querySelector("#made-in-ukraine-banner")
+      .classList.remove("not-displayed");
   }
 
   copyLink() {
