@@ -2670,10 +2670,11 @@ export class Player {
         randomSection.style.display = "none";
       }
       if (
-        this.gameMessageField.textContent ===
-        localization[model.worldCountries.language][
-          "Opponent has not yet started game. Wait for the message to start."
-        ]
+        this.gameMessageField.textContent.endsWith(
+          localization[model.worldCountries.language][
+            "Opponent has not yet started game. Wait for the message to start."
+          ]
+        )
       ) {
         this.gameMessageField.textContent = `⚠️ ${
           localization[model.worldCountries.language][
