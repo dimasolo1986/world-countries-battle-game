@@ -99,7 +99,7 @@ class gameRulesView {
   }
 
   translateElements() {
-    this._gameRulesReturnBack.textContent = `${
+    this._gameRulesReturnBack.textContent = `🚪 ${
       localization[model.worldCountries.language]["BACK"]
     }`;
     this._gameRulesHeading.textContent = `${

@@ -79,13 +79,13 @@ class donateAuthorView {
   }
 
   translateElements() {
-    this._donateReturnBack.textContent = `${
+    this._donateReturnBack.textContent = `🚪 ${
       localization[model.worldCountries.language]["BACK"]
     }`;
-    this._donateHeading.textContent = `${
+    this._donateHeading.textContent = `🪙 ${
       localization[model.worldCountries.language]["Make Donate"]
     }`;
-    this._donateShareWebSite.textContent = `${
+    this._donateShareWebSite.textContent = `🔗 ${
       localization[model.worldCountries.language]["Share"]
     }`;
     this._donateText.textContent = `${

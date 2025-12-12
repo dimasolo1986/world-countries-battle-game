@@ -116,7 +116,7 @@ class aboutView {
   }
 
   translateElements() {
-    this._aboutReturnToMain.textContent = `${
+    this._aboutReturnToMain.textContent = `🚪 ${
       localization[model.worldCountries.language]["BACK"]
     }`;
     this._aboutUkraineHelpDescription.textContent = `${
@@ -155,7 +155,9 @@ class aboutView {
       localization[model.worldCountries.language]["Facebook Page"]
     }`;
     this._facebookPageShare.textContent = `${
-      localization[model.worldCountries.language]["On Facebook Page you can share your impressions about the game or the results of your games"]
+      localization[model.worldCountries.language][
+        "On Facebook Page you can share your impressions about the game or the results of your games"
+      ]
     }`;
     this._aboutMapLibrary.textContent = `${
       localization[model.worldCountries.language]["Used Map Library:"]

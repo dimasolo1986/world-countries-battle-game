@@ -115,8 +115,9 @@ class gameRoomView {
     const createGameRoomButton = document.querySelector(
       "#create-game-room-button"
     );
+    createGameRoomButton.dataset.text = "Open Game Room";
     createGameRoomButton.textContent =
-      localization[model.worldCountries.language]["Open Game Room"];
+      "🎮 " + localization[model.worldCountries.language]["Open Game Room"];
     const gameRoomHeadingContainer = document.querySelector(
       "#game-room-heading-container"
     );
@@ -167,7 +168,7 @@ class gameRoomView {
       "#create-game-room-button"
     );
     createGameRoomButton.textContent =
-      localization[model.worldCountries.language]["Create Game Room"];
+      "🎮 " + localization[model.worldCountries.language]["Create Game Room"];
     const gameRoomHeadingContainer = document.querySelector(
       "#game-room-heading-container"
     );
@@ -368,13 +369,13 @@ class gameRoomView {
   }
 
   translateElements() {
-    this._gameRoomReturnBack.textContent = `${
+    this._gameRoomReturnBack.textContent = `🚪 ${
       localization[model.worldCountries.language]["BACK TO MAIN PAGE"]
     }`;
-    this._gameRoomCreateButton.textContent = `${
+    this._gameRoomCreateButton.textContent = `🎮 ${
       localization[model.worldCountries.language]["Create Game Room"]
     }`;
-    this._gameRoomDeleteButton.textContent = `${
+    this._gameRoomDeleteButton.textContent = `🗑️ ${
       localization[model.worldCountries.language]["Delete Game Room"]
     }`;
     this._gameRoomInputLink.placeholder = `${
@@ -385,10 +386,10 @@ class gameRoomView {
     this._gameLinkForFriendLabel.textContent = `${
       localization[model.worldCountries.language]["Game Link For Friend"]
     }`;
-    this._gameRoomCopyLink.textContent = `${
+    this._gameRoomCopyLink.textContent = `📋 ${
       localization[model.worldCountries.language]["Copy Link"]
     }`;
-    this._gameShareLink.textContent = `${
+    this._gameShareLink.textContent = `🔗 ${
       localization[model.worldCountries.language]["Share Link With Friend"]
     }`;
     this._gameRoomGameConfigurationHeader.textContent = `🛠️ ${

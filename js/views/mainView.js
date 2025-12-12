@@ -315,10 +315,10 @@ class mainView {
     this._onlyIndependentCountriesCheckboxLabel.textContent = `${
       localization[model.worldCountries.language]["Only Independent Countries"]
     }`;
-    this._gameRulesButton.textContent = `${
+    this._gameRulesButton.textContent = `📄 ${
       localization[model.worldCountries.language]["Game Rules"]
     }`;
-    this._supportProjectButton.textContent = `${
+    this._supportProjectButton.textContent = `🔗 ${
       localization[model.worldCountries.language]["Support Project"]
     }`;
     this._startButton.textContent = `${
@@ -344,8 +344,10 @@ class mainView {
         this._opponentConnectionLabel.dataset.connection
       ]
     }`;
-    this._createGameRoomButton.textContent = `${
-      localization[model.worldCountries.language]["Create Game Room"]
+    this._createGameRoomButton.textContent = `🎮 ${
+      localization[model.worldCountries.language][
+        this._createGameRoomButton.dataset.text
+      ]
     }`;
     this._shareWebSite.firstElementChild.textContent = `${
       localization[model.worldCountries.language]["Share"]
