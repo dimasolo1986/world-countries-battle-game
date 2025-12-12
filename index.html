@@ -203,6 +203,12 @@
       const gameRoomHeadingContainer = document.querySelector("#game-room-heading-container");
       if (gameRoomHeadingContainer) {
         document.querySelector("#game-room-heading-id").textContent = roomId;
+        const connectionText = document.querySelector("#opponent-connection-main-page-text");
+        if (connectionText) {
+           connectionText.dataset.connection = "Checking Connection...";
+           connectionText.textContent = "Checking Connection...";
+           connectionText.style.color = "darkblue";
+        }
         gameRoomHeadingContainer.classList.remove("not-displayed");
       }
     }

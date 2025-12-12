@@ -512,6 +512,7 @@ export const localization = {
     Friend: "Друг",
     CHAT: "ЧАТ",
     "Send Message": "Надіслати Повідомлення",
+    "Checking Connection...": "Перевірка з'єднання...",
     "Failed to create game room with ID:":
       "Не вдалося створити ігрову кімнату з ID:",
     "Create Game Room": "Створити Ігрову Кімнату",
@@ -1336,6 +1337,7 @@ export const localization = {
       "If a player guesses an alliance of countries that contains four countries, he gets 15 points, three countries - 25 points, two countries - 35 points, one country - 50 points. When falling into an opponent's trap country, the player loses 10 points the first time, 20 points the second time, and 30 points the third time. At the end of the game, the player gets an additional 10 points for each alliance of countries that was not guessed by the opponent.",
     "Play With A Friend Mode": "Play With A Friend Mode",
     Score: "Score",
+    "Checking Connection...": "Checking Connection...",
     "If your browser blocks or disables WebRTC (real-time communication for the web), you will not be able to play with your friend. Try a different browser.":
       "If your browser blocks or disables WebRTC (real-time communication for the web), you will not be able to play with your friend. Try a different browser.",
     "Random Countries Selection": "Random Countries Selection",
@@ -2041,6 +2043,7 @@ export const localization = {
     "Opponent is not online": "Gegner ist nicht online",
     "Connection is failed": "Verbindung ist fehlgeschlagen",
     Friend: "Freund",
+    "Checking Connection...": "Verbindung wird geprüft...",
     "Game Room ID:": "Spielzimmer-ID:",
     "BACK TO MAIN PAGE": "ZURÜCK ZUR STARTSEITE",
     "Delete Game Room": "Spielzimmer löschen",
@@ -2876,6 +2879,7 @@ export const localization = {
     Share: "Partager",
     Clean: "Propre",
     "Opponent:": "Adversaire:",
+    "Checking Connection...": "Verbindung wird geprüft...",
     "Message From Opponent": "Message de l'adversaire",
     "Opponent Map": "Carte des adversaires",
     "Opponent is online": "L'adversaire est en ligne",
@@ -3591,6 +3595,7 @@ export const localization = {
     "Country Alliance Guesser Game": "Juego de Alianzas de Países",
     "Game Configuration": "Configuración del Juego",
     "You selected": "Usted seleccionó",
+    "Checking Connection...": "Comprobando conexión...",
     "Choose one alliance from four countries":
       "Elige una alianza entre cuatro países",
     "Choose one alliance of countries that includes four countries on the world map.":
@@ -4349,6 +4354,7 @@ export const localization = {
     "Make Donate": "Fai una Donazione",
     "QR Code": "Codice QR",
     Clean: "Pulita",
+    "Checking Connection...": "Controllo della connessione...",
     "Game room was deleted or expired":
       "La sala giochi è stata eliminata o è scaduta",
     "Opponent:": "Avversario:",
