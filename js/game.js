@@ -6,6 +6,7 @@ export class Game {
   finished = false;
   isOpponentPlayerReady = true;
   isPlayerReady = true;
+  bonusCountries;
   gameModalResultLabel = document.getElementById("gameModalResultLabel");
   gameModalRulesLabel = document.getElementById("gameModalRulesLabel");
   gameModalRulesContent = document.getElementById("gameRulesContent");
@@ -24,11 +25,23 @@ export class Game {
     this.guessCountriesMessageField = document.querySelector(
       "#countries-battle-game-message"
     );
+    this.bonusCountries = [];
     this.playerOne = playerOne;
     this.playerTwo = playerTwo;
     this.playMap = playMap;
     this.firebase = firebase;
     this.gameConfiguration = gameConfiguration;
+  }
+
+  getRandomBonusCountries(allCountries, excludedSet, count = 5) {
+    const bonusCountries = [];
+    for (const code of allCountries) {
+      if (!excludedSet.has(code) && code !== "RU") {
+        bonusCountries.push(code);
+      }
+    }
+    bonusCountries.sort(() => Math.random() - 0.5);
+    this.bonusCountries = bonusCountries.slice(0, count);
   }
 
   showGameRules() {

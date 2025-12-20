@@ -36,6 +36,9 @@ class gameRulesView {
   _gameRulesClearCountriesSelectionDescription = document.querySelector(
     ".game-rules-clear-country-selection-description"
   );
+  _gameRulesBonusCountriesDescription = document.querySelector(
+    ".game-rules-bonus-countries-rules"
+  );
   _gameVideos = document.querySelector(".game-rules-videos");
   _gameRulesCountryAllianceSelectionVideoTitle = document.querySelector(
     ".game-rules-country-alliance-selection-video-tutorial"
@@ -161,6 +164,11 @@ class gameRulesView {
     this._gameRulesImportantDescription.textContent = `${
       localization[model.worldCountries.language][
         "Countries in the same alliance of countries must be united by borders. Alliances of countries must be separated from each other by at least one country's borders. An island country can only be used as an alliance with one country or as a trap country."
+      ]
+    }`;
+    this._gameRulesBonusCountriesDescription.textContent = `${
+      localization[model.worldCountries.language][
+        "The computer will also randomly select five bonus countries, when hit, players get an extra attempt to guess the opponent's country and 10 extra points."
       ]
     }`;
     this._gameRulesWithFriendHeader.textContent = `${

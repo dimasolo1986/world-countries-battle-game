@@ -571,6 +571,16 @@ export const localization = {
     "To play with your friend, you need to select the game mode with a friend on the main page, create a game room and a link to the game for your friend and send it to him. Follow the connection status of your friend at the top of the screen after starting the game. There is also the possibility of communicating with your friend via chat at the bottom of the screen: you can greet him, wish him a good game or give yourself hints about your countries and alliances of countries (chat may be hidden by the bottom browser bar, so open it full screen or hide this bar).":
       "Для гри з Вашим другом Вам необхідно вибрати режим гри з другом на головній сторінці, створити ігрову кімнату та посилання на гру для Вашого друга та відправити йому. Слідкуйте за статусом підключення Вашого друга у верхній частині екрану після старту гри. Також є можливість спілкування з Вашим другом через чат у нижній частині екрану: Ви можете привітатись з ним, побажати гарної гри або самостійно давати підказки про Ваші країни та альянси країн (чат може бути прихований нижньою панеллю браузера, тому відкривайте на весь екран або сховайте цю панель).",
     "Play With A Friend Mode": "Режим Гри З Другом",
+    "You have fallen into a bonus-country": "Ви потрапили у країну-бонус",
+    "Computer has fallen into a bonus-country":
+      "Комп'ютер потрапив у країну-бонус",
+    "Additional attempt to guess and": "Додаткова спроба вгадати та",
+    "Opponent has fallen into a bonus-country":
+      "Суперник потрапив у країну-бонус",
+    "He gets additional attempt to guess and":
+      "Він отримує додаткову спробу вгадати та",
+    "The computer will also randomly select five bonus countries, when hit, players get an extra attempt to guess the opponent's country and 10 extra points.":
+      "Комп'ютер також випадковим чином вибере п'ять бонусних країн, при потраплянні в які гравці отримують додаткову спробу вгадати країну суперника та 10 додаткових балів.",
     "If a player guesses an alliance of countries that contains four countries, he gets 15 points, three countries - 25 points, two countries - 35 points, one country - 50 points. When falling into an opponent's trap country, the player loses 10 points the first time, 20 points the second time, and 30 points the third time. At the end of the game, the player gets an additional 10 points for each alliance of countries that was not guessed by the opponent.":
       "Якщо гравець вгадує альянс країн, який містить чотири країни він отримує 15 балів, три країни - 25 балів, дві країни - 35 балів, одну країну - 50 балів. При потраплянні в країну-пастку суперника перший раз у гравця відіймаються 10 балів, другий раз - 20 балів, третій раз - 30 балів. В кінці гри гравець отримує додаткові 10 балів за кожен альянс країн, який не був вгаданий суперником.",
     Score: "Рахунок",
@@ -1289,6 +1299,17 @@ export const localization = {
     "Game room was deleted or expired": "Game room was deleted or expired",
     "Connection is closed": "Connection is closed",
     "Sorry... Opponent left the game.": "Sorry... Opponent left the game.",
+    "You have fallen into a bonus-country":
+      "You have fallen into a bonus-country",
+    "Computer has fallen into a bonus-country":
+      "Computer has fallen into a bonus-country",
+    "Additional attempt to guess and": "Additional attempt to guess and",
+    "Opponent has fallen into a bonus-country":
+      "Opponent has fallen into a bonus-country",
+    "He gets additional attempt to guess and":
+      "He gets additional attempt to guess and",
+    "The computer will also randomly select five bonus countries, when hit, players get an extra attempt to guess the opponent's country and 10 extra points.":
+      "The computer will also randomly select five bonus countries, when hit, players get an extra attempt to guess the opponent's country and 10 extra points.",
     "You have selected the game mode with a friend. First, create a game room. Click the 'Create Game Room' button.":
       "You have selected the game mode with a friend. First, create a game room. Click the 'Create Game Room' button.",
     "Opponent has not yet selected countries. Wait for the message to start the game.":
@@ -2102,6 +2123,17 @@ export const localization = {
     "If a player guesses an alliance of countries that contains four countries, he gets 15 points, three countries - 25 points, two countries - 35 points, one country - 50 points. When falling into an opponent's trap country, the player loses 10 points the first time, 20 points the second time, and 30 points the third time. At the end of the game, the player gets an additional 10 points for each alliance of countries that was not guessed by the opponent.":
       "Errät ein Spieler eine Allianz aus vier Ländern, erhält er 15 Punkte, bei drei Ländern - 25 Punkte, bei zwei Ländern - 35 Punkte und bei einem Land - 50 Punkte. Geratet der Spieler in eine Falle des Gegners, verliert er beim ersten Mal 10 Punkte, beim zweiten Mal 20 Punkte und beim dritten Mal 30 Punkte. Am Spielende erhält der Spieler für jede vom Gegner nicht erratene Länderallianz zusätzlich 10 Punkte.",
     Score: "Punktestand",
+    "You have fallen into a bonus-country":
+      "Sie sind in ein Bonusland gefallen",
+    "Computer has fallen into a bonus-country":
+      "Der Computer ist in ein Bonusland gefallen",
+    "Additional attempt to guess and": "Zusätzlicher Versuch zu raten und",
+    "Opponent has fallen into a bonus-country":
+      "Der Gegner ist in ein Bonusland gefallen",
+    "He gets additional attempt to guess and":
+      "Er erhält einen zusätzlichen Versuch zu raten und",
+    "The computer will also randomly select five bonus countries, when hit, players get an extra attempt to guess the opponent's country and 10 extra points.":
+      "Der Computer wählt außerdem nach dem Zufallsprinzip fünf Bonusländer aus. Wird eines davon getroffen, erhalten die Spieler einen zusätzlichen Versuch, das Land des Gegners zu erraten, und 10 Zusatzpunkte.",
     "Random Countries Selection": "Zufällige Länderauswahl",
     "Facebook Page": "Facebook-Seite",
     "On Facebook Page you can share your impressions about the game or the results of your games":
@@ -2901,6 +2933,17 @@ export const localization = {
     "Connection is closed": "La connexion est fermée",
     "Sorry... Opponent left the game.":
       "Désolé... L'adversaire a quitté le jeu.",
+    "You have fallen into a bonus-country":
+      "Vous êtes tombé dans un pays bonus",
+    "Computer has fallen into a bonus-country":
+      "L'ordinateur est tombé dans un pays bonus",
+    "Additional attempt to guess and": "Tentative supplémentaire de deviner et",
+    "Opponent has fallen into a bonus-country":
+      "L'adversaire est tombé dans un pays à bonus",
+    "He gets additional attempt to guess and":
+      "Il a droit à une tentative supplémentaire pour deviner et",
+    "The computer will also randomly select five bonus countries, when hit, players get an extra attempt to guess the opponent's country and 10 extra points.":
+      "L'ordinateur sélectionnera également au hasard cinq pays bonus - lorsqu'ils sont touchés, les joueurs bénéficient d'une tentative supplémentaire pour deviner le pays de l'adversaire et de 10 points supplémentaires.",
     "You have selected the game mode with a friend. First, create a game room. Click the 'Create Game Room' button.":
       "Vous avez sélectionné le mode de jeu avec un ami. Commencez par créer une salle de jeu. Cliquez sur le bouton 'Créer une salle de jeux'.",
     "Opponent has not yet selected countries. Wait for the message to start the game.":
@@ -3632,6 +3675,17 @@ export const localization = {
     "You have fallen into a trap-country": "Has caído en una trampa país",
     "Computer has fallen into a trap-country":
       "La computadora ha caído en una trampa país",
+    "You have fallen into a bonus-country":
+      "Has caído en un país de bonificación",
+    "Computer has fallen into a bonus-country":
+      "La computadora ha caído en una país de bonificación",
+    "Additional attempt to guess and": "Intento adicional de adivinar y",
+    "Opponent has fallen into a bonus-country":
+      "El oponente ha caído en un país de bonificación",
+    "He gets additional attempt to guess and":
+      "El oponente tiene un intento adicional de adivinar y",
+    "The computer will also randomly select five bonus countries, when hit, players get an extra attempt to guess the opponent's country and 10 extra points.":
+      "La computadora también seleccionará al azar cinco países de bonificación, cuando los acierta, los jugadores obtendrán un intento extra para adivinar el país del oponente y 10 puntos extra.",
     Computer: "Computadora",
     "The opponent gets a hint": "El oponente recibe una pista",
     "Hints:": "Consejos:",
@@ -4420,6 +4474,16 @@ export const localization = {
     "You have fallen into a trap-country": "Siete caduti in un paese-trappola",
     "Computer has fallen into a trap-country":
       "Il computer è caduto in un paese-trappola",
+    "You have fallen into a bonus-country": "Sei caduto in un paese bonus",
+    "Computer has fallen into a bonus-country":
+      "Il computer è caduto in un paese bonus",
+    "Additional attempt to guess and": "Ulteriore tentativo di indovinare e",
+    "Opponent has fallen into a bonus-country":
+      "L'avversario è caduto in un paese bonus",
+    "He gets additional attempt to guess and":
+      "Ha un ulteriore tentativo di indovinare e",
+    "The computer will also randomly select five bonus countries, when hit, players get an extra attempt to guess the opponent's country and 10 extra points.":
+      "Il computer selezionerà inoltre casualmente cinque paesi bonus - quando vengono scelti, i giocatori avranno un tentativo extra per indovinare il paese dell'avversario e 10 punti extra.",
     Computer: "Computer",
     "Opponent is online": "L'avversario è online",
     "Opponent Map": "Mappa dell'avversario",
