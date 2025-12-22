@@ -1260,17 +1260,17 @@ export class Player {
           localization[model.worldCountries.language]["Congratulations!"];
         document.getElementById(
           "gameCountryAllianceGuessedCountries"
-        ).innerHTML = `<span style="color: darkblue;">🎁 ${
+        ).innerHTML = `<span style="color: darkblue; font-weight:bold;">🎁 ${
           localization[model.worldCountries.language][
             "You have fallen into a bonus-country"
           ]
         }</span> <img src="${
           country.countryFlag
-        }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;color: darkblue;">${
+        }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;color: darkblue;font-weight:bold;">${
           localization[model.worldCountries.language]["countries"][
             country.countryName
           ]
-        }.</span> <span style="margin-left:5px;color: darkblue;">${
+        }.</span> <span style="margin-left:5px;color: darkblue;font-weight:bold;">${
           localization[model.worldCountries.language][
             "Additional attempt to guess and"
           ]
