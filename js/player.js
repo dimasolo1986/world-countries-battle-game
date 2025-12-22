@@ -722,21 +722,22 @@ export class Player {
           "player-two-score-field"
         ).textContent = `🏅 ${this.score}`;
         this.setMessageInnerHtmlField(
-          `<span>ℹ️ ${
+          `<span style="font-size: 0.75rem;">ℹ️ ${
             localization[model.worldCountries.language][
               "Computer has fallen into a bonus-country"
             ]
           }</span> <img src="${
             country.countryFlag
-          }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${
+          }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;font-size: 0.75rem;">${
             localization[model.worldCountries.language]["countries"][
               country.countryName
             ]
-          }.</span> <span style="margin-left:5px;">${
+          }.</span> <span style="margin-left:5px;font-size: 0.75rem;">${
             localization[model.worldCountries.language][
               "Additional attempt to guess and"
             ]
           }</span><span style="
+          font-size: 0.75rem;
                     margin-left: 3px;
                     color: white;
                     border-radius: 2px;
@@ -1259,17 +1260,17 @@ export class Player {
           localization[model.worldCountries.language]["Congratulations!"];
         document.getElementById(
           "gameCountryAllianceGuessedCountries"
-        ).innerHTML = `<span>🎁 ${
+        ).innerHTML = `<span style="color: darkblue;">🎁 ${
           localization[model.worldCountries.language][
             "You have fallen into a bonus-country"
           ]
         }</span> <img src="${
           country.countryFlag
-        }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${
+        }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;color: darkblue;">${
           localization[model.worldCountries.language]["countries"][
             country.countryName
           ]
-        }.</span> <span style="margin-left:5px;">${
+        }.</span> <span style="margin-left:5px;color: darkblue;">${
           localization[model.worldCountries.language][
             "Additional attempt to guess and"
           ]
