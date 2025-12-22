@@ -1254,6 +1254,42 @@ export class Player {
                     localization[model.worldCountries.language]["Points"]
                   }</span>`
       );
+      if (this.playerMap && !this.playerMap._isFullscreen) {
+        document.getElementById("gameCountryAllianceGuessedLabel").textContent =
+          localization[model.worldCountries.language]["Congratulations!"];
+        document.getElementById(
+          "gameCountryAllianceGuessedCountries"
+        ).innerHTML = `<span>🎁 ${
+          localization[model.worldCountries.language][
+            "You have fallen into a bonus-country"
+          ]
+        }</span> <img src="${
+          country.countryFlag
+        }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${
+          localization[model.worldCountries.language]["countries"][
+            country.countryName
+          ]
+        }.</span> <span style="margin-left:5px;">${
+          localization[model.worldCountries.language][
+            "Additional attempt to guess and"
+          ]
+        }</span><span style="
+                    margin-left: 3px;
+                    color: white;
+                    border-radius: 2px;
+                    background-color: green;
+                    padding-left: 2px;
+                    padding-right: 2px;
+                    font-weight: bolder;
+                  ">+10 ${
+                    localization[model.worldCountries.language]["Points"]
+                  }</span>`;
+        document.getElementById(
+          "gameCountryAllianceGuessedCloseButton"
+        ).textContent = localization[model.worldCountries.language]["Close"];
+        showGameCountryAllianceGuessedWindow();
+        setTimeout(hideGameCountryAllianceGuessedWindow, 10000);
+      }
       await this.sleep(1500);
       this.closeCountryPopup(countryCode);
       this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
@@ -3084,21 +3120,22 @@ export class Player {
         "player-two-score-field"
       ).textContent = `🏅 ${this.opponentPlayer.score}`;
       this.setMessageInnerHtmlField(
-        `<span>ℹ️ ${
+        `<span style="font-size: 0.7rem;">ℹ️ ${
           localization[model.worldCountries.language][
             "Opponent has fallen into a bonus-country"
           ]
         }</span> <img src="${
           country.countryFlag
-        }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${
+        }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;font-size: 0.7rem;">${
           localization[model.worldCountries.language]["countries"][
             country.countryName
           ]
-        }.</span> <span style="margin-left:5px;">${
+        }.</span> <span style="margin-left:5px; font-size: 0.7rem;">${
           localization[model.worldCountries.language][
             "He gets additional attempt to guess and"
           ]
         }</span><span style="
+        font-size: 0.7rem;
                     margin-left: 3px;
                     color: white;
                     border-radius: 2px;
