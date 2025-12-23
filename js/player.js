@@ -2562,7 +2562,7 @@ export class Player {
   }
 
   createCountryPopup(country) {
-    const countryPopup = L.popup({ closeOnClick: false })
+    const countryPopup = L.popup({ closeOnClick: false, closeButton: false })
       .setLatLng(country.latlng ? country.latlng : country.capitalInfo.latlng)
       .setContent(
         `<img src="${
