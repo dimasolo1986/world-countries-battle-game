@@ -745,7 +745,7 @@ export class Player {
                     padding-left: 2px;
                     padding-right: 2px;
                     font-weight: bolder;
-                  ">+10${
+                  ">+10&nbsp;${
                     localization[model.worldCountries.language]["Points"]
                   }</span>`
         );
@@ -1251,7 +1251,7 @@ export class Player {
                     padding-left: 2px;
                     padding-right: 2px;
                     font-weight: bolder;
-                  ">+10${
+                  ">+10&nbsp;${
                     localization[model.worldCountries.language]["Points"]
                   }</span>`
       );
@@ -1282,7 +1282,7 @@ export class Player {
                     padding-left: 2px;
                     padding-right: 2px;
                     font-weight: bolder;
-                  ">+10${
+                  ">+10&nbsp;${
                     localization[model.worldCountries.language]["Points"]
                   }</span>`;
         document.getElementById(
@@ -3144,7 +3144,7 @@ export class Player {
                     padding-left: 2px;
                     padding-right: 2px;
                     font-weight: bolder;
-                  ">+10${
+                  ">+10&nbsp;${
                     localization[model.worldCountries.language]["Points"]
                   }</span>`
       );
