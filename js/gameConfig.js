@@ -150,9 +150,16 @@ export class GameConfig {
                 </td>
               </tr>
             </table></div>
+            <div style="display:inline-flex; align-items:center"> <table>
+              <tr style="margin:0px">
+                <td style="padding:2px; background-color:orange;" class="country24">
+                  <span style="color:grey; border:solid 1px grey; border-radius:50%; display:inline-block; height:10px; width:10px;"></span>
+                </td>
+              </tr>
+            </table></div>
             </div></div>
             `;
-      this.countriesTrapNumber = 3;
+      this.countriesTrapNumber = 4;
       this.countriesNumber = 20;
       this.countryUnionsNumber = 10;
       this.maxCountriesNumberInUnion = 4;

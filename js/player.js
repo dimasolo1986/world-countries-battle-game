@@ -7,6 +7,7 @@ import {
   resetGameRoomContainer,
   showGameCountryAllianceGuessedWindow,
   hideGameCountryAllianceGuessedWindow,
+  showCountryCoatOfArmsWindow,
 } from "./helpers.js";
 import * as model from "./model.js";
 export class Player {
@@ -45,6 +46,7 @@ export class Player {
   countryCodes = [];
   countriesToGuessNext = [];
   alreadyGuessedCountryCodes = [];
+  hintTypes = new Set(["capital", "region", "subregion", "emblem"]);
   constructor(
     playerMap,
     playerSelectedCountriesContainerId,
@@ -114,6 +116,7 @@ export class Player {
     this.countryCodes = null;
     this.countriesToGuessNext = null;
     this.alreadyGuessedCountryCodes = null;
+    this.hintTypes = null;
   }
 
   initData() {
@@ -137,6 +140,7 @@ export class Player {
     this.playerConfigured = false;
     this.playerWonGame = false;
     this.lastGuessedCountryNames = [];
+    this.hintTypes = new Set(["capital", "region", "subregion", "emblem"]);
     this.countryUnions = [
       new Array(4),
       new Array(3),
@@ -195,6 +199,7 @@ export class Player {
           countryRegion: country.region,
           countrySubregion: country?.subregion,
           countryFlag: country.flags.png,
+          countryCoatOfArms: country.coatOfArms?.png,
           countryIndependent: country.independent,
           cca2: country.cca2,
           cca3: country.cca3,
@@ -215,6 +220,7 @@ export class Player {
           countryRegion: country.region,
           countrySubregion: country?.subregion,
           countryFlag: country.flags.png,
+          countryCoatOfArms: country.coatOfArms?.png,
           countryIndependent: country.independent,
           cca2: country.cca2,
           cca3: country.cca3,
@@ -251,7 +257,14 @@ export class Player {
     }`;
   }
 
-  addHint(trapCountryCode, addCountryImage) {
+  getRandomHintType() {
+    let randomHintIndex = getRandomInt(0, this.hintTypes.size - 1);
+    let hintType = Array.from(this.hintTypes)[randomHintIndex];
+    this.hintTypes.delete(hintType);
+    return hintType;
+  }
+
+  addHint(trapCountryCode, addCountryImage, hintType) {
     const selectedCountryCodes = [];
     Array.from(this.opponentPlayer.selectedCountryCodes).forEach(
       (countryCode) => {
@@ -269,7 +282,7 @@ export class Player {
     let randomCountryIndex = getRandomInt(0, selectedCountryCodes.length - 1);
     let countryCode = selectedCountryCodes[randomCountryIndex];
     const country = this.opponentPlayer.countries[countryCode];
-    if (this.trapCountryHitted === 1) {
+    if (hintType === "capital") {
       const hasCapital = selectedCountryCodes.some((countryCode) => {
         return (
           this.opponentPlayer.countries[countryCode].countryCapital !==
@@ -278,16 +291,16 @@ export class Player {
       });
       const countryCapital = country.countryCapital;
       while (!countryCapital && hasCapital) {
-        this.addHint(trapCountryCode, addCountryImage);
+        this.addHint(trapCountryCode, addCountryImage, hintType);
       }
       if (countryCapital) {
         this.hints[countryCode] = { Capital: countryCapital };
       } else {
         this.hints[countryCode] = { Region: country.countryRegion };
       }
-    } else if (this.trapCountryHitted === 2) {
+    } else if (hintType === "region") {
       this.hints[countryCode] = { Region: country.countryRegion };
-    } else {
+    } else if (hintType === "subregion") {
       const hasSubregion = selectedCountryCodes.some((countryCode) => {
         return (
           this.opponentPlayer.countries[countryCode].countrySubregion !==
@@ -296,10 +309,26 @@ export class Player {
       });
       const countrySubregion = country.countrySubregion;
       while (!countrySubregion && hasSubregion) {
-        this.addHint(trapCountryCode, addCountryImage);
+        this.addHint(trapCountryCode, addCountryImage, hintType);
       }
       if (countrySubregion) {
         this.hints[countryCode] = { Subregion: countrySubregion };
+      } else {
+        this.hints[countryCode] = { Region: country.countryRegion };
+      }
+    } else {
+      const hasCoatOfArms = selectedCountryCodes.some((countryCode) => {
+        return (
+          this.opponentPlayer.countries[countryCode].countryCoatOfArms !==
+          undefined
+        );
+      });
+      const countryCoatOfArms = country.countryCoatOfArms;
+      while (!countryCoatOfArms && hasCoatOfArms) {
+        this.addHint(trapCountryCode, addCountryImage, hintType);
+      }
+      if (countryCoatOfArms) {
+        this.hints[countryCode] = { CoatOfArms: countryCoatOfArms };
       } else {
         this.hints[countryCode] = { Region: country.countryRegion };
       }
@@ -313,21 +342,12 @@ export class Player {
   }
 
   isHintUsed(countryCode) {
-    const country = this.countries[countryCode];
-    let isUsed = false;
-    Object.entries(this.hints).forEach(([countryCodeObject, countryObject]) => {
-      const countryValue = Object.values(countryObject)[0];
-      if (
-        countryCode in this.hints ||
-        country.countryCapital === countryValue ||
-        country.countryRegion === countryValue ||
-        country.countrySubregion === countryValue
-      ) {
-        isUsed = true;
-        delete this.hints[countryCodeObject];
-      }
-    });
-    return isUsed;
+    if (countryCode in this.hints) {
+      delete this.hints[countryCode];
+      return true;
+    } else {
+      return false;
+    }
   }
 
   removeHint(countryCode) {
@@ -416,16 +436,53 @@ export class Player {
         const hintObject = this.hints[countryCode];
         const hintHeader = Object.keys(hintObject)[0];
         const hintValue = Object.values(hintObject)[0];
-        const hintHtml = `<div style="font-size:0.7rem;">${(
-          index + 1
-        ).toString()}.&nbsp;${
-          localization[model.worldCountries.language][hintHeader]
-        }:&nbsp;${
-          hintHeader === "Capital"
-            ? localization[model.worldCountries.language]["capitals"][hintValue]
-            : localization[model.worldCountries.language][hintValue]
-        }</div>`;
-        hintsPanelContent.insertAdjacentHTML("beforeend", hintHtml);
+        if (hintHeader === "CoatOfArms") {
+          const coatOfArmsImage = document.getElementById(
+            "country-coat-of-arms"
+          );
+          const coatOfArmsWindowHeader = document.getElementById(
+            "coatOfArmsModalLabel"
+          );
+          coatOfArmsWindowHeader.textContent =
+            localization[model.worldCountries.language]["Coat Of Arms"];
+          const coatOfArmsCloseButton = document.getElementById(
+            "coatOfArmsModalCloseButton"
+          );
+          coatOfArmsCloseButton.textContent =
+            localization[model.worldCountries.language]["Close"];
+          if (coatOfArmsImage) coatOfArmsImage.src = hintValue;
+          const linkContainer = document.createElement("div");
+          linkContainer.style.fontSize = "0.7rem";
+          linkContainer.textContent = (index + 1).toString() + ". ";
+          const coatOfArmsLink = document.createElement("a");
+          coatOfArmsLink.style.cursor = "pointer";
+          coatOfArmsLink.style.color = "#0000ee";
+          coatOfArmsLink.style.textDecoration = "none";
+          coatOfArmsLink.textContent =
+            localization[model.worldCountries.language][hintHeader];
+          coatOfArmsLink.addEventListener(
+            "click",
+            function () {
+              this.playMap.exitFullScreen();
+              showCountryCoatOfArmsWindow();
+            }.bind(this)
+          );
+          linkContainer.appendChild(coatOfArmsLink);
+          hintsPanelContent.insertAdjacentElement("beforeend", linkContainer);
+        } else {
+          const hintHtml = `<div style="font-size:0.7rem;">${(
+            index + 1
+          ).toString()}.&nbsp;${
+            localization[model.worldCountries.language][hintHeader]
+          }:&nbsp;${
+            hintHeader === "Capital"
+              ? localization[model.worldCountries.language]["capitals"][
+                  hintValue
+                ]
+              : localization[model.worldCountries.language][hintValue]
+          }</div>`;
+          hintsPanelContent.insertAdjacentHTML("beforeend", hintHtml);
+        }
       });
       hintsPanel.classList.remove("not-displayed");
     } else {
@@ -439,7 +496,8 @@ export class Player {
       return (
         country.countryCapital === hint ||
         country.countryRegion === hint ||
-        country.countrySubregion === hint
+        country.countrySubregion === hint ||
+        country.countryCoatOfArms === hint
       );
     });
   }
@@ -449,7 +507,8 @@ export class Player {
       return (
         (country.countryCapital === hint ||
           country.countryRegion === hint ||
-          country.countrySubregion === hint) &&
+          country.countrySubregion === hint ||
+          country.countryCoatOfArms === hint) &&
         !this.alreadyGuessedCountryCodes.includes(country.cca2) &&
         this.countryCodes.includes(country.cca2)
       );
@@ -516,7 +575,7 @@ export class Player {
     this.playMap.cleanMap();
     this.opponentPlayer.addAllCountryBoundaries();
     this.opponentPlayer.addAllCountryMarkers();
-    this.addHintsToHintPanel();
+    if (this.playerType !== "computerPlayer") this.addHintsToHintPanel();
     if (this.playerType === "computerPlayer") {
       this.playMap.hideMapElement("available-countries-panel");
       this.opponentPlayer.disableMapInteraction();
@@ -622,13 +681,16 @@ export class Player {
           this.score = this.score - 10;
         } else if (this.opponentPlayer.trapCountryHitted === 2) {
           this.score = this.score - 20;
-        } else {
+        } else if (this.opponentPlayer.trapCountryHitted === 3) {
           this.score = this.score - 30;
+        } else {
+          this.score = this.score - 50;
         }
         document.getElementById(
           "player-two-score-field"
         ).textContent = `🏅 ${this.score}`;
-        this.opponentPlayer.addHint(countryCode, false);
+        const hintType = this.opponentPlayer.getRandomHintType();
+        this.opponentPlayer.addHint(countryCode, false, hintType);
         this.opponentPlayer.setElementStyle(countryBoundary, {
           weight: 1,
           color: "orange",
@@ -1105,7 +1167,8 @@ export class Player {
         );
       } else {
         this.trapCountryHitted = this.trapCountryHitted + 1;
-        this.addHint(countryCode, true);
+        const hintType = this.getRandomHintType();
+        this.addHint(countryCode, true, hintType);
       }
       let points = 0;
       if (this.trapCountryHitted === 1) {
@@ -1114,9 +1177,12 @@ export class Player {
       } else if (this.trapCountryHitted === 2) {
         this.opponentPlayer.score = this.opponentPlayer.score - 20;
         points = 20;
-      } else {
+      } else if (this.trapCountryHitted === 3) {
         this.opponentPlayer.score = this.opponentPlayer.score - 30;
         points = 30;
+      } else {
+        this.opponentPlayer.score = this.opponentPlayer.score - 50;
+        points = 50;
       }
       document.getElementById(
         "player-one-score-field"
@@ -1839,6 +1905,15 @@ export class Player {
         countriesCodeList,
         true
       );
+      const fourthTrapCountry = this.selectRandomCountryUnion(
+        countriesCodeList,
+        1
+      );
+      this.fillComputerPlayerSelectedCountries(
+        fourthTrapCountry,
+        countriesCodeList,
+        true
+      );
       this.selectedCountryCodes.forEach((countryCode) => {
         if (this.selectedCountryNeighboursCodes.has(countryCode)) {
           this.selectedCountryNeighboursCodes.delete(countryCode);
@@ -2412,6 +2487,25 @@ export class Player {
         );
         this.addNeighbourCountriesByCountryCode(countryCode);
         if (this.selectedCountryCodes.size === 23) {
+          this.finishCountriesUnionSelection();
+          this.addCountryBoundariesAndMarkers(1);
+          this.gameMessageField.textContent = `ℹ️ ${
+            localization[model.worldCountries.language][
+              "Choose the fourth trap country"
+            ]
+          }`;
+        }
+      }
+      if (this.selectedCountryCodes.size === 24) {
+        this.setSelectedCountryFiledHtml(country);
+        this.selectedCountryTrapCodes.add(countryCode);
+        this.addUserPlayerInitialCountrySelection(
+          countryCode,
+          countryBoundary,
+          "orange"
+        );
+        this.addNeighbourCountriesByCountryCode(countryCode);
+        if (this.selectedCountryCodes.size === 24) {
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
           this.gameMessageField.textContent = `ℹ️ ${
@@ -3026,13 +3120,16 @@ export class Player {
         this.opponentPlayer.score = this.opponentPlayer.score - 10;
       } else if (this.trapCountryHitted === 2) {
         this.opponentPlayer.score = this.opponentPlayer.score - 20;
-      } else {
+      } else if (this.trapCountryHitted === 3) {
         this.opponentPlayer.score = this.opponentPlayer.score - 30;
+      } else {
+        this.opponentPlayer.score = this.opponentPlayer.score - 50;
       }
       document.getElementById(
         "player-two-score-field"
       ).textContent = `🏅 ${this.opponentPlayer.score}`;
-      this.addHint(countryCode, false);
+      const hintType = this.getRandomHintType();
+      this.addHint(countryCode, false, hintType);
       this.setElementStyle(countryBoundary, {
         weight: 1,
         color: "orange",

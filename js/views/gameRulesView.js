@@ -112,7 +112,7 @@ class gameRulesView {
     }`;
     this._gameRulesProjectDescription.textContent = `${
       localization[model.worldCountries.language][
-        "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as three trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts."
+        "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts."
       ]
     }`;
     this._gameRulesRandomCountriesSelectionDescription.textContent = `${
@@ -150,12 +150,12 @@ class gameRulesView {
     }`;
     this._gameRulesThreeTrapCountriesDescription.textContent = `${
       localization[model.worldCountries.language][
-        "Choose three trap countries for the opponent on the world map."
+        "Choose four trap countries for the opponent on the world map."
       ]
     }`;
     this._gameRulesTrapCountriesRules.textContent = `${
       localization[model.worldCountries.language][
-        "When entering an opponent's trap country, he receives one of three clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located."
+        "When entering an opponent's trap country, he receives one of four clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 4. Coat Of Arms Image."
       ]
     }`;
     this._gameRulesImportant.textContent = `${
@@ -184,7 +184,7 @@ class gameRulesView {
     }`;
     this._gameRulesScoreDescription.textContent = `${
       localization[model.worldCountries.language][
-        "If a player guesses an alliance of countries that contains four countries, he gets 15 points, three countries - 25 points, two countries - 35 points, one country - 50 points. When falling into an opponent's trap country, the player loses 10 points the first time, 20 points the second time, and 30 points the third time. At the end of the game, the player gets an additional 10 points for each alliance of countries that was not guessed by the opponent."
+        "If a player guesses an alliance of countries that contains four countries, he gets 15 points, three countries - 25 points, two countries - 35 points, one country - 50 points. When falling into an opponent's trap country, the player loses 10 points the first time, 20 points the second time, 30 points the third time and 50 points the fourth time. At the end of the game, the player gets an additional 10 points for each alliance of countries that was not guessed by the opponent."
       ]
     }`;
     this._gameVideos.textContent = `${

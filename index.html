@@ -16,7 +16,7 @@
           "https://www.countriesguesser.com/assets/img/game-configuration-img.png"
         ],
         "inLanguage": ["en", "uk", "de", "fr", "es", "it"],
-        "description": "Countries Guesser Game is an online strategy game that helps you learn geography, countries, neighbors, and flags. Choose ten alliances of countries and three trap-countries, then take turns guessing with computer or your friend. Correct guesses grant extra attempts, and the winner is the one who first finds all opponent's alliances.",
+        "description": "Countries Guesser Game is an online strategy game that helps you learn geography, countries, neighbors, and flags. Choose ten alliances of countries and four trap-countries, then take turns guessing with computer or your friend. Correct guesses grant extra attempts, and the winner is the one who first finds all opponent's alliances.",
         "applicationCategory": "EducationalGame",
         "additionalType": "Game",
         "operatingSystem": "Web",
@@ -47,7 +47,7 @@
           {
             "@type": "Quiz",
             "name": "Trap Countries Challenge",
-            "description": "Each player also picks 3 trap-countries. Guessing them leads to a penalty (clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located). Strategy and attention are needed to win.",
+            "description": "Each player also picks 4 trap-countries. Guessing them leads to a penalty (clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located); 4. Coat Of Arms Image. Strategy and attention are needed to win.",
             "inLanguage": ["en", "uk", "de", "fr", "es", "it"]
           }
         ],
@@ -225,6 +225,62 @@
     </script>
   </head>
   <body>
+    <!-- Modal Coat Of Arms Hint -->
+    <div
+      class="modal fade"
+      id="coatOfArmsModal"
+      tabindex="-1"
+      aria-labelledby="coatOfArmsModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div
+          class="modal-content"
+          style="
+            background-color: #f7fafd;
+            font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+            font-size: 0.8rem;
+          "
+        >
+          <div class="modal-header" style="padding: 0.4rem">
+            <h1
+              class="modal-title"
+              id="coatOfArmsModalLabel"
+              style="
+                font-weight: bold;
+                color: cornflowerblue;
+                font-size: 1.1rem;
+              "
+            >
+              Coat Of Arms
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body text-center" style="padding: 0.5rem; text-align: justify">
+            <img id="country-coat-of-arms" width="200px" height="200px" />
+          </div>
+          <div class="modal-footer" style="padding: 0.2rem">
+            <button
+              id="coatOfArmsModalCloseButton"
+              type="button"
+              class="btn btn-primary rounded-pill"
+              data-bs-dismiss="modal"
+              style="
+                box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f;
+                font-size: 0.7rem;
+              "
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Modal Game Rules -->
     <div
       class="modal fade"
@@ -686,7 +742,7 @@
               </tr>
             </table>
             <span style="margin-left: 3px; margin-right: 3px">:</span>
-            <span>3</span>
+            <span>4</span>
           </div>
           <div style="font-size: 0.8rem">
             <input
@@ -1135,7 +1191,7 @@
           >project that helps to study the geography of the countries of the
           world, neighboring countries, flags and parts of the world in a game
           format. Choose ten different alliances of countries on the map, as
-          well as three trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also
+          well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also
           choose the appropriate number of alliances of countries and
           trap-countries. The attempts to guess the countries take place in
           turn. The one who guesses the opponent's country gets an extra try.
@@ -1346,9 +1402,9 @@
             </td>
           </tr>
         </table>
-        <span>: 3 -</span>
+        <span>: 4 -</span>
         <span class="game-rules-three-trap-countries-description"
-          >Choose three trap countries for the opponent on the world map.</span
+          >Choose four trap countries for the opponent on the world map.</span
         >
         <br />
          <span class="game-rules-random-country-selection-description"
@@ -1362,11 +1418,11 @@
         <span class="game-rules-bonus-countries-rules">The computer will also randomly select five bonus countries, when hit, players get an extra attempt to guess the opponent's country and 10 extra points.</span>
         <br/>
         <span class="game-rules-trap-countries-rules"
-          >When entering an opponent's trap country, he receives one of three
+          >When entering an opponent's trap country, he receives one of four
           clues about the location of one of your countries: 1. Capital of the
           country; 2. Region (Europe, America, Asia, Africa, Oceania) in which
           one of your countries is located; 3. Subregion (Central Europe, North
-          America, etc.) in which one of your countries is located.</span
+          America, etc.) in which one of your countries is located; 4. Coat Of Arms Image.</span
         >
         <br />
         <span style="font-weight: bold" class="game-rules-important"
@@ -1385,7 +1441,7 @@
         </p>
          <span class="game-rules-score-description"
           >
-          If a player guesses an alliance of countries that contains four countries, he gets 15 points, three countries - 25 points, two countries - 35 points, one country - 50 points. When falling into an opponent's trap country, the player loses 10 points the first time, 20 points the second time, and 30 points the third time. At the end of the game, the player gets an additional 10 points for each alliance of countries that was not guessed by the opponent.
+          If a player guesses an alliance of countries that contains four countries, he gets 15 points, three countries - 25 points, two countries - 35 points, one country - 50 points. When falling into an opponent's trap country, the player loses 10 points the first time, 20 points the second time, 30 points the third time and 50 points the fourth time. At the end of the game, the player gets an additional 10 points for each alliance of countries that was not guessed by the opponent.
         </span>
         <br />
          <p style="margin-bottom: 0px">
@@ -1532,7 +1588,7 @@
           >project that helps to study the geography of the countries of the
           world, neighboring countries, flags and parts of the world in a game
           format. Choose ten different alliances of countries on the map, as
-          well as three trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also
+          well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also
           choose the appropriate number of alliances of countries and
           trap-countries. The attempts to guess the countries take place in
           turn. The one who guesses the opponent's country gets an extra try.

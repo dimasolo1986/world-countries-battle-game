@@ -75,6 +75,14 @@ export const showGameRulesWindow = function () {
   gameRules.show();
 };
 
+export const showCountryCoatOfArmsWindow = function () {
+  const countryCoatOfArms = new bootstrap.Modal(
+    document.getElementById("coatOfArmsModal"),
+    {}
+  );
+  countryCoatOfArms.show();
+};
+
 export const getCountryGeo = function (countryCode) {
   const countryGeo = {};
   countryGeo.type = COUNTRIES_GEO.type;
