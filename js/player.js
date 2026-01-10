@@ -577,6 +577,7 @@ export class Player {
     this.opponentPlayer.addAllCountryMarkers();
     if (this.playerType !== "computerPlayer") this.addHintsToHintPanel();
     if (this.playerType === "computerPlayer") {
+      this.playMap.hideMapElement("hints-panel");
       this.playMap.hideMapElement("available-countries-panel");
       this.opponentPlayer.disableMapInteraction();
       this.playMap.setMapFiledLabel("Your Map");
