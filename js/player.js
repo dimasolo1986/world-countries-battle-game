@@ -345,9 +345,19 @@ export class Player {
     if (countryCode in this.hints) {
       delete this.hints[countryCode];
       return true;
-    } else {
-      return false;
     }
+    const country = this.countries[countryCode];
+    for (const [hintCountryCode, hintObject] of Object.entries(this.hints)) {
+      const hintValue = Object.values(hintObject)[0];
+      if (
+        country.countryRegion === hintValue ||
+        country.countrySubregion === hintValue
+      ) {
+        delete this.hints[hintCountryCode];
+        return true;
+      }
+    }
+    return false;
   }
 
   removeHint(countryCode) {
