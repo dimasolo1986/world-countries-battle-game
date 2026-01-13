@@ -159,6 +159,8 @@
     <script defer src="js/leaflet.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("#startButtonText").classList.remove("not-displayed");
+        document.querySelector("#startLoaderSpinner").classList.add("not-displayed");
         function isWebRTCAvailable() {
   if(window.RTCPeerConnection) {
     return true
@@ -837,7 +839,15 @@
             "
             class="btn btn-danger mb-2 rounded-pill"
           >
-            START
+            <div
+              id="startLoaderSpinner"
+              class="text-center text-light"
+            >
+              <div class="spinner-border spinner-border-sm" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+            <span id="startButtonText" class="not-displayed">START</span>
           </button>
           <div id="made-in-ukraine-banner" class="mb-1"><img alt="Made In Ukraine Image" style="width: 100px;" src="https://img.shields.io/badge/made_in-Ukraine-ffd700.svg?labelColor=0057b7"></div>
         </div>

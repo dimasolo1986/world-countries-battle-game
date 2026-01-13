@@ -4,6 +4,7 @@ class mainView {
   _parentElement = document.querySelector(".main-container");
   _aboutButton = document.querySelector("#about-button");
   _startButton = document.querySelector("#start-button");
+  _startButtonText = document.querySelector("#startButtonText");
   _shareWebSite = document.querySelector("#shareWebSite");
   _supportProjectButton = document.querySelector("#support-project-button");
   _createGameRoomContainer = document.querySelector(
@@ -321,7 +322,7 @@ class mainView {
     this._supportProjectButton.textContent = `🔗 ${
       localization[model.worldCountries.language]["Support Project"]
     }`;
-    this._startButton.textContent = `${
+    this._startButtonText.textContent = `${
       localization[model.worldCountries.language]["START"]
     }`;
     this._aboutButton.textContent = `${

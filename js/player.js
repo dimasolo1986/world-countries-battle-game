@@ -464,10 +464,10 @@ export class Player {
           const linkContainer = document.createElement("div");
           linkContainer.style.fontSize = "0.7rem";
           linkContainer.textContent = (index + 1).toString() + ". ";
-          const coatOfArmsLink = document.createElement("a");
-          coatOfArmsLink.style.cursor = "pointer";
-          coatOfArmsLink.style.color = "#0000ee";
-          coatOfArmsLink.style.textDecoration = "none";
+          const coatOfArmsLink = document.createElement("button");
+          coatOfArmsLink.id = "coat-of-arms-link";
+          coatOfArmsLink.classList.add("btn", "btn-info", "btn-sm");
+          coatOfArmsLink.style.fontSize = "0.6rem";
           coatOfArmsLink.textContent =
             localization[model.worldCountries.language][hintHeader];
           coatOfArmsLink.addEventListener(

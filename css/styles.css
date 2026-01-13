@@ -179,6 +179,12 @@ tr td:first-child {
   width: fit-content;
 }
 
+#coat-of-arms-link {
+  --bs-btn-padding-y: 0.05rem;
+  --bs-btn-padding-x: 0.35rem;
+  padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
+}
+
 @media (max-width: 479px) {
   .logo-game {
     display: none;
