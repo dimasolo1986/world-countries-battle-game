@@ -532,20 +532,13 @@ export class Player {
   }
 
   enableMapInteraction() {
-    this.countryCodes.forEach((countryCode) => {
-      if (!this.alreadyGuessedCountryCodes.includes(countryCode)) {
-        const countryBoundaryEl = document.querySelector(`.${countryCode}`);
-        if (countryBoundaryEl) {
-          countryBoundaryEl.style.cursor = "pointer";
-          countryBoundaryEl.style.pointerEvents = "auto";
-        }
-      }
-    });
-    const markers = document.querySelectorAll("img.leaflet-marker-icon");
-    markers.forEach((marker) => {
-      marker.style.cursor = "pointer";
-      marker.style.pointerEvents = "auto";
-    });
+    document.getElementById("playMap").style.cursor = "grab";
+    const countryBoundaries = document.querySelector(".leaflet-overlay-pane");
+    countryBoundaries.style.pointerEvents = "auto";
+    countryBoundaries.removeAttribute("inert");
+    const markers = document.querySelector(".leaflet-marker-pane");
+    markers.style.pointerEvents = "auto";
+    markers.removeAttribute("inert");
     if (this.playerMap) {
       this.playerMap.dragging.enable();
       this.playerMap.doubleClickZoom.enable();
@@ -553,23 +546,17 @@ export class Player {
       this.playerMap.boxZoom.enable();
       this.playerMap.keyboard.enable();
       if (this.playerMap.tap) this.playerMap.tap.enable();
-      document.getElementById("playMap").style.cursor = "grab";
     }
   }
 
   disableMapInteraction() {
-    this.countryCodes.forEach((countryCode) => {
-      const countryBoundaryEl = document.querySelector(`.${countryCode}`);
-      if (countryBoundaryEl) {
-        countryBoundaryEl.style.cursor = "none";
-        countryBoundaryEl.style.pointerEvents = "none";
-      }
-    });
-    const markers = document.querySelectorAll("img.leaflet-marker-icon");
-    markers.forEach((marker) => {
-      marker.style.cursor = "none";
-      marker.style.pointerEvents = "none";
-    });
+    document.getElementById("playMap").style.cursor = "default";
+    const countryBoundaries = document.querySelector(".leaflet-overlay-pane");
+    countryBoundaries.style.pointerEvents = "none";
+    countryBoundaries.setAttribute("inert", "");
+    const markers = document.querySelector(".leaflet-marker-pane");
+    markers.style.pointerEvents = "none";
+    markers.setAttribute("inert", "");
     if (this.playerMap) {
       this.playerMap.dragging.disable();
       this.playerMap.doubleClickZoom.disable();
@@ -577,7 +564,6 @@ export class Player {
       this.playerMap.boxZoom.disable();
       this.playerMap.keyboard.disable();
       if (this.playerMap.tap) this.playerMap.tap.disable();
-      document.getElementById("playMap").style.cursor = "default";
     }
   }
 
