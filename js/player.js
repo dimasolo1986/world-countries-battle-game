@@ -982,7 +982,6 @@ export class Player {
         return;
       }
     } else if (this.playerType === "userPlayer") {
-      this.opponentPlayer.enableMapInteraction();
       if (this.opponentPlayer.countryCodes.length <= 5) {
         this.opponentPlayer.addAvailableCountriesPanel();
       }
@@ -993,11 +992,6 @@ export class Player {
       );
       this.countriesNumberField.textContent =
         this.opponentPlayer.countryCodes.length;
-      this.gameMessageField.textContent = `⚠️ ${
-        localization[model.worldCountries.language][
-          "Your attempt to guess opponent's country"
-        ]
-      }`;
       if (this.opponentPlayer.lastGuessedCountryNames.length !== 0) {
         const countryBounds = [];
         this.opponentPlayer.lastGuessedCountryNames.forEach((countryName) => {
@@ -1011,6 +1005,12 @@ export class Player {
             animate: false,
           });
       }
+      this.gameMessageField.textContent = `⚠️ ${
+        localization[model.worldCountries.language][
+          "Your attempt to guess opponent's country"
+        ]
+      }`;
+      this.opponentPlayer.enableMapInteraction();
       this.game.isOpponentPlayerReady = false;
       this.game.isPlayerReady = false;
       return;
