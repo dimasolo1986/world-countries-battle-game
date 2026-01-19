@@ -910,21 +910,9 @@ export class PlayMap {
           ]
       );
       if (confirmExit) {
-        document.getElementById(
-          "only-independent-countries-checkbox"
-        ).checked = true;
-        document.getElementById(
-          "only-independent-countries-checkbox-game-room"
-        ).checked = true;
         this.game.finishGame(deleteGameRoom);
       }
     } else {
-      document.getElementById(
-        "only-independent-countries-checkbox"
-      ).checked = true;
-      document.getElementById(
-        "only-independent-countries-checkbox-game-room"
-      ).checked = true;
       this.game.finishGame(deleteGameRoom);
     }
   }
