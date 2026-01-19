@@ -11,6 +11,7 @@ export class Game {
   gameModalRulesLabel = document.getElementById("gameModalRulesLabel");
   gameModalRulesContent = document.getElementById("gameRulesContent");
   gameModalRulesCloseButton = document.getElementById("gameRulesCloseButton");
+  gameModalPlayAgainButton = document.getElementById("gameResultPlayButton");
   guessCountriesMessageField;
   gameModalHeading = document.getElementById("gameResultHeading");
   gameResultScore = document.getElementById("gameResultScore");
@@ -80,6 +81,8 @@ export class Game {
       localization[model.worldCountries.language]["Game Result"];
     this.gameModalResultCloseButton.textContent =
       localization[model.worldCountries.language]["Close"];
+    this.gameModalPlayAgainButton.textContent =
+      localization[model.worldCountries.language]["Play Again"];
     this.gameModalResultShareButton.textContent =
       localization[model.worldCountries.language]["Share"];
     if (playerOneWon) {

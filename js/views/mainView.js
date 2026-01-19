@@ -4,6 +4,7 @@ class mainView {
   _parentElement = document.querySelector(".main-container");
   _aboutButton = document.querySelector("#about-button");
   _startButton = document.querySelector("#start-button");
+  _playAgainButton = document.querySelector("#gameResultPlayButton");
   _startButtonText = document.querySelector("#startButtonText");
   _shareWebSite = document.querySelector("#shareWebSite");
   _supportProjectButton = document.querySelector("#support-project-button");
@@ -208,6 +209,17 @@ class mainView {
     }
     if (!this._startButtonListenerAdded) {
       this._startButton.addEventListener(
+        "click",
+        this.startGame.bind(
+          this,
+          aboutView,
+          gameView,
+          donateAuthorView,
+          gameRulesView,
+          gameRoomView
+        )
+      );
+      this._playAgainButton.addEventListener(
         "click",
         this.startGame.bind(
           this,

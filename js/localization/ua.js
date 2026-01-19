@@ -511,6 +511,7 @@ export const localization = {
     "Connection is failed": "Помилка підключення",
     Friend: "Друг",
     CHAT: "ЧАТ",
+    "Play Again": "Грати Знову",
     "Send Message": "Надіслати Повідомлення",
     "Checking Connection...": "Перевірка з'єднання...",
     "Failed to create game room with ID:":
@@ -1517,6 +1518,7 @@ export const localization = {
     "Slavutych, Ukraine - birthplace of the project":
       "Slavutych, Ukraine - birthplace of the project",
     Close: "Close",
+    "Play Again": "Play Again",
     "Full Screen": "Full Screen",
     "Exit Fullscreen Mode": "Exit Fullscreen Mode",
     START: "START",
@@ -2074,6 +2076,7 @@ export const localization = {
     "Game Room ID:": "Spielzimmer-ID:",
     "BACK TO MAIN PAGE": "ZURÜCK ZUR STARTSEITE",
     "Delete Game Room": "Spielzimmer löschen",
+    "Play Again": "Erneut Spielen",
     "Click 'Create Game Room' to generate game link":
       "Klicken Sie auf 'Spielzimmer Erstellen', um einen Spiellink zu generieren",
     "Game Link For Friend": "Spiellink für Freund",
@@ -2909,6 +2912,7 @@ export const localization = {
     "Computer has fallen into a trap-country":
       "L'ordinateur êtes tombé dans un pays-piège",
     Computer: "Ordinateur",
+    "Play Again": "Rejouer",
     "Open Game Room": "Salle de jeux ouverte",
     "Delete Game Room": "Supprimer la salle de jeux",
     "Game Link For Friend": "Lien de jeu pour un ami",
@@ -3706,6 +3710,7 @@ export const localization = {
     "Hints:": "Consejos:",
     "Country Alliance": "Alianza de Países",
     BACK: "VOLVER",
+    "Play Again": "Jugar de Nuevo",
     "Opponent:": "Adversario:",
     "Opponent Map": "Mapa del oponente",
     "Opponent is online": "El oponente está en línea",
@@ -4439,6 +4444,7 @@ export const localization = {
     "Country Alliance Guesser Gameplay":
       "Gameplay di indovinare l'alleanza del paese",
     "VIDEOS:": "VIDEO:",
+    "Play Again": "Gioca di Nuovo",
     "World Country Alliances Guesser Game":
       "Gioco delle Alleanze tra i Paesi del Mondo",
     "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
