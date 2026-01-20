@@ -569,7 +569,9 @@ export class Player {
         country.countryCapital === hint ||
         country.countryRegion === hint ||
         country.countrySubregion === hint ||
-        country.countryCoatOfArms === hint
+        country.countryCoatOfArms === hint ||
+        country.countryFlag === hint ||
+        country.countryName === hint
       );
     });
   }
@@ -580,7 +582,9 @@ export class Player {
         (country.countryCapital === hint ||
           country.countryRegion === hint ||
           country.countrySubregion === hint ||
-          country.countryCoatOfArms === hint) &&
+          country.countryCoatOfArms === hint ||
+          country.countryFlag === hint ||
+          country.countryName === hint) &&
         !this.alreadyGuessedCountryCodes.includes(country.cca2) &&
         this.countryCodes.includes(country.cca2)
       );
