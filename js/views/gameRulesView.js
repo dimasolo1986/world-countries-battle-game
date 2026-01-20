@@ -5,56 +5,56 @@ class gameRulesView {
   _gameRulesReturnBack = document.querySelector(".return-game-rules");
   _gameRulesHeading = document.querySelector(".game-rules-project-name");
   _gameRulesProjectDescription = document.querySelector(
-    ".game-rules-project-description"
+    ".game-rules-project-description",
   );
   _gameRulesNameHeading = document.querySelector(".game-rules-name-heading");
   _gameRulesFourCountriesAllianceDescription = document.querySelector(
-    ".game-rules-four-countries-alliance-description"
+    ".game-rules-four-countries-alliance-description",
   );
   _gameRulesThreeCountriesAllianceDescription = document.querySelector(
-    ".game-rules-three-countries-alliance-description"
+    ".game-rules-three-countries-alliance-description",
   );
   _gameRulesTwoCountriesAllianceDescription = document.querySelector(
-    ".game-rules-two-countries-alliance-description"
+    ".game-rules-two-countries-alliance-description",
   );
   _gameRulesOneCountriesAllianceDescription = document.querySelector(
-    ".game-rules-one-countries-alliance-description"
+    ".game-rules-one-countries-alliance-description",
   );
   _gameRulesThreeTrapCountriesDescription = document.querySelector(
-    ".game-rules-three-trap-countries-description"
+    ".game-rules-three-trap-countries-description",
   );
   _gameRulesTrapCountriesRules = document.querySelector(
-    ".game-rules-trap-countries-rules"
+    ".game-rules-trap-countries-rules",
   );
   _gameRulesImportant = document.querySelector(".game-rules-important");
   _gameRulesImportantDescription = document.querySelector(
-    ".game-rules-important-description"
+    ".game-rules-important-description",
   );
   _gameRulesRandomCountriesSelectionDescription = document.querySelector(
-    ".game-rules-random-country-selection-description"
+    ".game-rules-random-country-selection-description",
   );
   _gameRulesClearCountriesSelectionDescription = document.querySelector(
-    ".game-rules-clear-country-selection-description"
+    ".game-rules-clear-country-selection-description",
   );
   _gameRulesBonusCountriesDescription = document.querySelector(
-    ".game-rules-bonus-countries-rules"
+    ".game-rules-bonus-countries-rules",
   );
   _gameVideos = document.querySelector(".game-rules-videos");
   _gameRulesCountryAllianceSelectionVideoTitle = document.querySelector(
-    ".game-rules-country-alliance-selection-video-tutorial"
+    ".game-rules-country-alliance-selection-video-tutorial",
   );
   _gameRulesCountryAllianceGameplayVideoTitle = document.querySelector(
-    ".game-rules-country-alliance-gameplay-video-tutorial"
+    ".game-rules-country-alliance-gameplay-video-tutorial",
   );
   _gameRulesWithFriendHeader = document.querySelector(
-    ".game-rules-with-friend-heading"
+    ".game-rules-with-friend-heading",
   );
   _gameRulesWithFriendDescription = document.querySelector(
-    ".game-rules-with-friend-description"
+    ".game-rules-with-friend-description",
   );
   _gameRulesScoreHeading = document.querySelector(".game-rules-score-heading");
   _gameRulesScoreDescription = document.querySelector(
-    ".game-rules-score-description"
+    ".game-rules-score-description",
   );
 
   _returnToMainListenerAdded = false;
@@ -72,7 +72,7 @@ class gameRulesView {
     mainView,
     donateAuthorView,
     aboutView,
-    gameRoomView
+    gameRoomView,
   ) {
     if (!this._returnToMainListenerAdded) {
       this._gameRulesReturnBack.addEventListener(
@@ -82,8 +82,8 @@ class gameRulesView {
           mainView,
           donateAuthorView,
           aboutView,
-          gameRoomView
-        )
+          gameRoomView,
+        ),
       );
       this._returnToMainListenerAdded = true;
     }
@@ -155,7 +155,7 @@ class gameRulesView {
     }`;
     this._gameRulesTrapCountriesRules.textContent = `${
       localization[model.worldCountries.language][
-        "When entering an opponent's trap country, he receives one of four clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 4. Coat Of Arms Image."
+        "When entering an opponent's trap country, he receives one of six clues about the location of one of your countries: 1. Name of the country; 2. Capital of the country; 3. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 4. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 5. Coat Of Arms Image; 6. Flag Image."
       ]
     }`;
     this._gameRulesImportant.textContent = `${

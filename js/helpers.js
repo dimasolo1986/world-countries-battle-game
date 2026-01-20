@@ -8,7 +8,7 @@ export const sortData = function (data, direction = "asc") {
       a.name.common
     ].localeCompare(
       localization[model.worldCountries.language]["countries"][b.name.common],
-      model.worldCountries.language
+      model.worldCountries.language,
     );
     return direction === "asc" ? result : -result;
   });
@@ -16,7 +16,7 @@ export const sortData = function (data, direction = "asc") {
 
 export const getRandomInt = function (
   min = 0,
-  max = model.worldCountries.countries.length - 1
+  max = model.worldCountries.countries.length - 1,
 ) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -26,14 +26,14 @@ export const getRandomInt = function (
 export const showGameCountryAllianceGuessedWindow = function () {
   const gameCountryAllianceGuessedWindow = new bootstrap.Modal(
     document.getElementById("gameCountryAllianceGuessedModal"),
-    {}
+    {},
   );
   gameCountryAllianceGuessedWindow.show();
 };
 
 export const hideGameCountryAllianceGuessedWindow = function () {
   const gameCountryAllianceGuessedWindow = document.getElementById(
-    "gameCountryAllianceGuessedModal"
+    "gameCountryAllianceGuessedModal",
   );
   const modal = bootstrap.Modal.getInstance(gameCountryAllianceGuessedWindow);
   if (modal) {
@@ -44,7 +44,7 @@ export const hideGameCountryAllianceGuessedWindow = function () {
 export const showGameResultWindow = function () {
   const gameResult = new bootstrap.Modal(
     document.getElementById("gameResultModal"),
-    {}
+    {},
   );
   gameResult.show();
 };
@@ -56,12 +56,12 @@ export const resetGameRoomContainer = function () {
   document.querySelector(".copy-to-clipboard-link").disabled = true;
   document.querySelector(".share-game-room").disabled = true;
   const createGameRoomButton = document.querySelector(
-    "#create-game-room-button"
+    "#create-game-room-button",
   );
   createGameRoomButton.textContent =
     localization[model.worldCountries.language]["Create Game Room"];
   const gameRoomHeadingContainer = document.querySelector(
-    "#game-room-heading-container"
+    "#game-room-heading-container",
   );
   gameRoomHeadingContainer.classList.add("not-displayed");
   document.querySelector("#game-room-heading-id").textContent = "";
@@ -70,47 +70,47 @@ export const resetGameRoomContainer = function () {
 export const showGameRulesWindow = function () {
   const gameRules = new bootstrap.Modal(
     document.getElementById("gameRulesModal"),
-    {}
+    {},
   );
   gameRules.show();
 };
 
-export const showCountryCoatOfArmsWindow = function () {
-  const countryCoatOfArms = new bootstrap.Modal(
-    document.getElementById("coatOfArmsModal"),
-    {}
+export const showCountryCoatOfArmsFlagWindow = function (modalId) {
+  const countryCoatOfArmsFlag = new bootstrap.Modal(
+    document.getElementById(modalId),
+    {},
   );
-  countryCoatOfArms.show();
+  countryCoatOfArmsFlag.show();
 };
 
 export const getCountryGeo = function (countryCode) {
   const countryGeo = {};
   countryGeo.type = COUNTRIES_GEO.type;
   countryGeo.features = COUNTRIES_GEO.features.filter(
-    (feature) => feature.properties.country_a2 === countryCode
+    (feature) => feature.properties.country_a2 === countryCode,
   );
   return countryGeo;
 };
 
 export const shareQuizResults = function () {
   const quizResultsLabelText = document.getElementById(
-    "quizModalResultLabel"
+    "quizModalResultLabel",
   ).textContent;
   const quizName = document.getElementById("quizModalName").textContent;
   const quizScoreNameResult =
     document.querySelector(".score-name-result").textContent;
   const quizScoreResult = document.querySelector(".score-result").textContent;
   const quizScoreResultPoints = document.querySelector(
-    ".score-result-points"
+    ".score-result-points",
   ).textContent;
   const quizRightAnswersText = document.querySelector(
-    ".right-answers-text"
+    ".right-answers-text",
   ).textContent;
   const quizRightAnswersNumberText = document.querySelector(
-    ".right-answers-number"
+    ".right-answers-number",
   ).textContent;
   const quizRightAnswersOutOfText = document.querySelector(
-    ".right-answers-out-of"
+    ".right-answers-out-of",
   ).textContent;
   const answeredNumber = document.querySelector(".answered-number").textContent;
   const ratingText = document.querySelector(".rating-text").textContent;

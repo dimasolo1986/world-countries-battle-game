@@ -511,6 +511,8 @@ export const localization = {
     "Connection is failed": "Помилка підключення",
     Friend: "Друг",
     CHAT: "ЧАТ",
+    "Country Flag": "Прапор Країни",
+    Country: "Країна",
     "Play Again": "Грати Знову",
     "Send Message": "Надіслати Повідомлення",
     "Checking Connection...": "Перевірка з'єднання...",
@@ -603,8 +605,8 @@ export const localization = {
     "World Country Alliances Guesser Game": "Гра Вгадай Союзи Країн Світу",
     "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
       "проект, який допомагає вивчати географію країн світу, сусідніх країн, прапорів та частин світу в ігровому форматі. Виберіть десять різних союзів країн на карті, а також чотири країни-пастки для вашого суперника. Комп'ютер або ваш друг (залежно від обраного режиму гри) також вибере відповідну кількість союзів країн та країн-пасток. Спроби вгадати країни відбуваються по черзі. Той, хто вгадає країну суперника, отримує додаткову спробу. Перемагає той, хто першим вгадає всі союзи країн суперника. Слідкуйте за повідомленнями у верхній частині екрана після початку гри.",
-    "When entering an opponent's trap country, he receives one of four clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 4. Coat Of Arms Image.":
-      "При потраплянні в країну-пастку суперника, він отримує одну з чотирьох підказок щодо розташування однієї з ваших країн: 1. Столиця країни; 2. Частина світу (Європа, Америка, Азія, Африка, Океанія), в якому розташована одна з ваших країн; 3. Регіон (Центральна Європа, Північна Америка, тощо), в якому розташована одна з ваших країн; 4. Зображення Герба Країни.",
+    "When entering an opponent's trap country, he receives one of six clues about the location of one of your countries: 1. Name of the country; 2. Capital of the country; 3. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 4. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 5. Coat Of Arms Image; 6. Flag Image.":
+      "При потраплянні в країну-пастку суперника, він отримує одну з шести підказок щодо розташування однієї з ваших країн: 1. Назва Країни; 2. Столиця країни; 3. Частина світу (Європа, Америка, Азія, Африка, Океанія), в якому розташована одна з ваших країн; 4. Регіон (Центральна Європа, Північна Америка, тощо), в якому розташована одна з ваших країн; 5. Зображення Герба Країни; 6. Зображення Прапора Країни.",
     "Important!": "Важливо!",
     "Countries in the same alliance of countries must be united by borders. Alliances of countries must be separated from each other by at least one country's borders. An island country can only be used as an alliance with one country or as a trap country.":
       "Країни в одному альянсі країн повинні бути об'єднані кордонами. Альянси країн повинні бути відділені один від одного хоча б кордонами однієї країни. Острівна країна може використовуватись тільки в якості альянса з однієї країни або як країна-пастка.",
@@ -648,6 +650,7 @@ export const localization = {
     "Choose the third trap country": "Виберіть третю країну-пастку",
     "Choose the fourth trap country": "Виберіть четверту країну-пастку",
     CoatOfArms: "Відкрити Герб Країни",
+    Flag: "Відкрити Прапор Країни",
     "Coat Of Arms": "Герб Країни",
     "You have fallen into a trap-country": "Ви потрапили в країну-пастку",
     "Computer has fallen into a trap-country":
@@ -1290,6 +1293,8 @@ export const localization = {
       "Failed to create game room with ID:",
     Friend: "Friend",
     CHAT: "CHAT",
+    "Country Flag": "Country Flag",
+    Country: "Country",
     "Game Room ID:": "Game Room ID:",
     "Create Game Room": "Create Game Room",
     "Delete Game Room": "Delete Game Room",
@@ -1381,8 +1386,8 @@ export const localization = {
       "World Country Alliances Guesser Game",
     "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
       "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.",
-    "When entering an opponent's trap country, he receives one of four clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 4. Coat Of Arms Image.":
-      "When entering an opponent's trap country, he receives one of four clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 4. Coat Of Arms Image.",
+    "When entering an opponent's trap country, he receives one of six clues about the location of one of your countries: 1. Name of the country; 2. Capital of the country; 3. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 4. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 5. Coat Of Arms Image; 6. Flag Image.":
+      "When entering an opponent's trap country, he receives one of six clues about the location of one of your countries: 1. Name of the country; 2. Capital of the country; 3. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 4. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 5. Coat Of Arms Image; 6. Flag Image.",
     "Important!": "Important!",
     "Countries in the same alliance of countries must be united by borders. Alliances of countries must be separated from each other by at least one country's borders. An island country can only be used as an alliance with one country or as a trap country.":
       "Countries in the same alliance of countries must be united by borders. Alliances of countries must be separated from each other by at least one country's borders. An island country can only be used as an alliance with one country or as a trap country.",
@@ -1426,6 +1431,7 @@ export const localization = {
     "Choose the third trap country": "Choose the third trap country",
     "Choose the fourth trap country": "Choose the fourth trap country",
     CoatOfArms: "View Coat Of Arms",
+    Flag: "View Country Flag",
     "Coat Of Arms": "Coat Of Arms",
     "You have fallen into a trap-country":
       "You have fallen into a trap-country",
@@ -2072,6 +2078,8 @@ export const localization = {
     "Opponent is not online": "Gegner ist nicht online",
     "Connection is failed": "Verbindung ist fehlgeschlagen",
     Friend: "Freund",
+    "Country Flag": "Landesflagge",
+    Country: "Land",
     "Checking Connection...": "Verbindung wird geprüft...",
     "Game Room ID:": "Spielzimmer-ID:",
     "BACK TO MAIN PAGE": "ZURÜCK ZUR STARTSEITE",
@@ -2161,8 +2169,8 @@ export const localization = {
     "World Country Alliances Guesser Game": "Spiel der Weltländerallianzen",
     "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
       "projekt, das hilft, die Geographie der Länder der Welt, Nachbarländer, Flaggen und Teile der Welt in einem Spielformat zu studieren. Wählen Sie zehn verschiedene Länderbündnisse auf der Karte sowie vier Fallenländer für Ihren Gegner. Der Computer oder dein Freund (abhängig vom ausgewählten Spielmodus) wählt auch die entsprechende Anzahl von Länderbündnissen und Fallenländern aus. Die Versuche, die Länder zu erraten, finden reihum statt. Wer das Land des Gegners errät, erhält einen zusätzlichen Versuch. Wer zuerst alle Allianzen der gegnerischen Länder errät, hat gewonnen. Folgen Sie den Nachrichten oben auf dem Bildschirm, nachdem das Spiel begonnen hat.",
-    "When entering an opponent's trap country, he receives one of four clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 4. Coat Of Arms Image.":
-      "Beim Betreten des Fallenlandes eines Gegners erhält dieser einen von vier Hinweisen auf die Lage eines Ihrer Länder: 1. Hauptstadt des Landes; 2. Region (Europa, Amerika, Asien, Afrika, Ozeanien), in der sich eines Ihrer Länder befindet; 3. Subregion (Mitteleuropa, Nordamerika usw.), in der sich eines Ihrer Länder befindet; 4. Wappenbild.",
+    "When entering an opponent's trap country, he receives one of six clues about the location of one of your countries: 1. Name of the country; 2. Capital of the country; 3. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 4. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 5. Coat Of Arms Image; 6. Flag Image.":
+      "Beim Betreten des Fallenlandes eines Gegners erhält dieser einen von sechs Hinweisen auf die Lage eines Ihrer Länder: 1. Name des Landes; 2. Hauptstadt des Landes; 3. Region (Europa, Amerika, Asien, Afrika, Ozeanien), in der sich eines Ihrer Länder befindet; 4. Subregion (Mitteleuropa, Nordamerika usw.), in der sich eines Ihrer Länder befindet; 5. Wappenbild; 6. Flagge.",
     "Important!": "Wichtig!",
     "Countries in the same alliance of countries must be united by borders. Alliances of countries must be separated from each other by at least one country's borders. An island country can only be used as an alliance with one country or as a trap country.":
       "Länder innerhalb eines Länderbündnisses müssen durch Grenzen verbunden sein. Länderbündnisse müssen durch mindestens eine Landesgrenze voneinander getrennt sein. Ein Inselstaat kann nur als Bündnis mit einem Land oder als Fallenstaat verwendet werden.",
@@ -2206,6 +2214,7 @@ export const localization = {
     "Choose the third trap country": "Wählen Sie das dritte Fallenland",
     "Choose the fourth trap country": "Wählen Sie das vierte Fallenland",
     CoatOfArms: "Wappen Ansehen",
+    Flag: "Flagge Anzeigen",
     "Coat Of Arms": "Wappen",
     "You have fallen into a trap-country": "Sie sind in eine Falle geraten",
     "Computer has fallen into a trap-country":
@@ -2862,8 +2871,8 @@ export const localization = {
       "La salle de jeux a été supprimée ou a expiré",
     "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
       "projet permettant d'étudier la géographie des pays du monde, de leurs voisins, de leurs drapeaux et de certaines régions du monde sous forme de jeu. Choisissez dix alliances de pays différentes sur la carte, ainsi que quatre pays pièges pour votre adversaire. L'ordinateur ou votre ami (selon le mode de jeu sélectionné) choisira également le nombre approprié d'alliances de pays et de pays pièges. Les tentatives pour deviner les pays se déroulent à tour de rôle. Celui qui devine le pays de l'adversaire obtient un essai supplémentaire. Le premier à deviner toutes les alliances des pays adverses gagne. Suivez les messages en haut de l'écran après le début de la partie.",
-    "When entering an opponent's trap country, he receives one of four clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 4. Coat Of Arms Image.":
-      "Lorsqu'il entre dans le pays piège d'un adversaire, il reçoit l'un des quatre indices sur l'emplacement de l'un de vos pays : 1. Capitale du pays ; 2. Région (Europe, Amérique, Asie, Afrique, Océanie) dans laquelle se trouve l'un de vos pays ; 3. Sous-région (Europe centrale, Amérique du Nord, etc.) dans laquelle se trouve l'un de vos pays; 4. Image Des Armoiries.",
+    "When entering an opponent's trap country, he receives one of six clues about the location of one of your countries: 1. Name of the country; 2. Capital of the country; 3. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 4. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 5. Coat Of Arms Image; 6. Flag Image.":
+      "Lorsqu'il entre dans le pays piège d'un adversaire, il reçoit l'un des six indices sur l'emplacement de l'un de vos pays : 1. Nom du pays ; 2. Capitale du pays ; 3. Région (Europe, Amérique, Asie, Afrique, Océanie) dans laquelle se trouve l'un de vos pays ; 4. Sous-région (Europe centrale, Amérique du Nord, etc.) dans laquelle se trouve l'un de vos pays; 4. Image Des Armoiries; 6. Image du Drapeau.",
     "Important!": "Important!",
     "Countries in the same alliance of countries must be united by borders. Alliances of countries must be separated from each other by at least one country's borders. An island country can only be used as an alliance with one country or as a trap country.":
       "Les pays d'une même alliance doivent être unis par des frontières. Les alliances doivent être séparées par au moins une frontière. Un pays insulaire ne peut être utilisé que comme alliance avec un seul pays ou comme pays piège.",
@@ -2907,6 +2916,7 @@ export const localization = {
     "Choose the third trap country": "Choisissez le troisième pays piège",
     "Choose the fourth trap country": "Choisissez le quatrième pays piège",
     CoatOfArms: "Voir Les Armoiries",
+    Flag: "Voir le Drapeau",
     "Coat Of Arms": "Blason",
     "You have fallen into a trap-country": "Vous êtes tombé dans un pays-piège",
     "Computer has fallen into a trap-country":
@@ -2921,6 +2931,8 @@ export const localization = {
     "Hints:": "Conseils:",
     "Country Alliance": "Alliance des Pays",
     BACK: "RETOUR",
+    "Country Flag": "Drapeau du Pays",
+    Country: "Pays",
     "Selected Alliance Country": "Pays d'alliance sélectionné",
     "Selected Trap Country": "Pays de piège sélectionné",
     "QR Code": "QR Code",
@@ -3642,8 +3654,8 @@ export const localization = {
       "Juego de Alianzas de los Países del Mundo",
     "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
       "un proyecto que te ayuda a estudiar la geografía de los países del mundo, sus vecinos, sus banderas y partes del mundo en formato de juego. Elige diez alianzas diferentes de países en el mapa, además de cuatro países trampa para tu oponente. El ordenador o tu amigo (depende del modo de juego seleccionado) también elegirá el número adecuado de alianzas y países trampa. Los intentos para adivinar los países se realizan por turnos. Quien adivine el país del oponente tiene un intento extra. Quien primero adivine todas las alianzas de países del oponente gana. Sigue los mensajes en la parte superior de la pantalla después de que comience el juego.",
-    "When entering an opponent's trap country, he receives one of four clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 4. Coat Of Arms Image.":
-      "Al entrar al país trampa de un oponente, este recibe una de cuatro pistas sobre la ubicación de uno de sus países: 1. La capital del país; 2. La región (Europa, América, Asia, África, Oceanía) en la que se encuentra uno de sus países; 3. La subregión (Europa Central, América del Norte, etc.) en la que se encuentra uno de sus países; 4. Imagen Del Escudo De Armas.",
+    "When entering an opponent's trap country, he receives one of six clues about the location of one of your countries: 1. Name of the country; 2. Capital of the country; 3. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 4. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 5. Coat Of Arms Image; 6. Flag Image.":
+      "Al entrar al país trampa de un oponente, este recibe una de seis pistas sobre la ubicación de uno de sus países: 1. Nombre del País; 2. La capital del país; 3. La región (Europa, América, Asia, África, Oceanía) en la que se encuentra uno de sus países; 4. La subregión (Europa Central, América del Norte, etc.) en la que se encuentra uno de sus países; 5. Imagen Del Escudo De Armas; 6. Imagen de la Bandera.",
     "Important!": "¡Importante!",
     "Countries in the same alliance of countries must be united by borders. Alliances of countries must be separated from each other by at least one country's borders. An island country can only be used as an alliance with one country or as a trap country.":
       "Los países de una misma alianza deben estar unidos por fronteras. Las alianzas deben estar separadas entre sí por al menos la frontera de un país. Un país insular sólo puede utilizarse como alianza con un solo país o como país trampa.",
@@ -3690,6 +3702,7 @@ export const localization = {
     "Choose the third trap country": "Elige el tercer país trampa",
     "Choose the fourth trap country": "Elige el cuarta país trampa",
     CoatOfArms: "Ver Escudo De Armas",
+    Flag: "Ver Bandera",
     "Coat Of Arms": "Escudo de Armas",
     "You have fallen into a trap-country": "Has caído en una trampa país",
     "Computer has fallen into a trap-country":
@@ -3778,6 +3791,8 @@ export const localization = {
       "Países seleccionados por el oponente. Pulsa 'Jugar' para comenzar el juego!",
     "Game Link Copied": "Enlace del juego copiado",
     Score: "Puntuación",
+    "Country Flag": "Bandera del País",
+    Country: "País",
     "Failed attempt to guess country!": "¡Intento fallido de adivinar el país!",
     "You guessed": "Lo adivinaste",
     "Computer guessed": "La computadora lo adivinó",
@@ -4449,8 +4464,8 @@ export const localization = {
       "Gioco delle Alleanze tra i Paesi del Mondo",
     "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
       "progetto che aiuta a studiare la geografia dei paesi del mondo, dei paesi confinanti, delle bandiere e di altre parti del mondo in un formato di gioco. Scegli dieci diverse alleanze di paesi sulla mappa, oltre a quattro paesi-trappola per il tuo avversario. Il computer o il tuo amico (a seconda della modalità di gioco selezionata) sceglierà anche il numero appropriato di alleanze di paesi e paesi-trappola. I tentativi di indovinare i paesi avvengono a turno. Chi indovina il paese dell'avversario ha un tentativo extra. Vince chi indovina per primo tutte le alleanze dei paesi dell'avversario. Segui i messaggi nella parte superiore dello schermo dopo l'inizio del gioco.",
-    "When entering an opponent's trap country, he receives one of four clues about the location of one of your countries: 1. Capital of the country; 2. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 3. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 4. Coat Of Arms Image.":
-      "Quando entri nel paese trappola di un avversario, il tuo avversario riceve uno dei quattro indizi sulla posizione di uno dei tuoi paesi: 1. La capitale del paese; 2. La regione (Europa, America, Asia, Africa, Oceania) in cui si trova uno dei tuoi paesi; 3. La sottoregione (Europa centrale, Nord America, ecc.) in cui si trova uno dei tuoi paesi; 4. Immagine Dello Stemma.",
+    "When entering an opponent's trap country, he receives one of six clues about the location of one of your countries: 1. Name of the country; 2. Capital of the country; 3. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 4. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 5. Coat Of Arms Image; 6. Flag Image.":
+      "Quando entri nel paese trappola di un avversario, il tuo avversario riceve uno dei sei indizi sulla posizione di uno dei tuoi paesi: 1. Nome del Paese; 2. La capitale del paese; 3. La regione (Europa, America, Asia, Africa, Oceania) in cui si trova uno dei tuoi paesi; 4. La sottoregione (Europa centrale, Nord America, ecc.) in cui si trova uno dei tuoi paesi; 5. Immagine Dello Stemma; 6. Immagine Della Bandiera.",
     "Important!": "Importante!",
     "Countries in the same alliance of countries must be united by borders. Alliances of countries must be separated from each other by at least one country's borders. An island country can only be used as an alliance with one country or as a trap country.":
       "I paesi appartenenti alla stessa alleanza di paesi devono essere uniti dai confini. Le alleanze di paesi devono essere separate l'una dall'altra dai confini di almeno uno dei paesi. Uno stato insulare può essere utilizzato solo come alleanza con un singolo stato o come stato trappola.",
@@ -4494,6 +4509,7 @@ export const localization = {
     "Choose the third trap country": "Scegli il terzo paese trappola",
     "Choose the fourth trap country": "Scegli il quarta paese trappola",
     CoatOfArms: "Visualizza Lo Stemma",
+    Flag: "Visualizza Bandiera",
     "Coat Of Arms": "Stemma",
     "You have fallen into a trap-country": "Siete caduti in un paese-trappola",
     "Computer has fallen into a trap-country":
@@ -4516,6 +4532,8 @@ export const localization = {
     "Game Room ID:": "ID sala giochi:",
     "Open Game Room": "Sala giochi aperta",
     Friend: "Amico",
+    "Country Flag": "Bandiera del Paese",
+    Country: "Paese",
     "BACK TO MAIN PAGE": "TORNA ALLA PAGINA PRINCIPALE",
     "Delete Game Room": "Elimina la sala giochi",
     "Game Link For Friend": "Link di gioco per un amico",
