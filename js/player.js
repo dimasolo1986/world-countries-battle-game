@@ -1709,9 +1709,7 @@ export class Player {
         visited.has(country) ||
         visited.size >= numberOfCountries ||
         selectedCountryCodes.has(country) ||
-        selectedCountryNeighboursCodes.has(country) ||
-        (country === "UA" && visited.has("RU")) ||
-        (country === "RU" && visited.has("UA"))
+        selectedCountryNeighboursCodes.has(country)
       )
         return;
       visited.add(country);
@@ -1735,6 +1733,11 @@ export class Player {
     }
     dfs(countryCode);
     const result = countryUnionCountries.slice(0, numberOfCountries);
+    if (result.includes("RU"))
+      return this.selectRandomCountryUnion(
+        countriesCodeList,
+        numberOfCountries,
+      );
     return result;
   }
 
