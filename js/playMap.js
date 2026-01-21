@@ -17,13 +17,13 @@ export class PlayMap {
     playerTwoSelectedCountriesNumber,
     playerMapLabel,
     latLon,
-    defaultZoomLevel = 2.4
+    defaultZoomLevel = 2.4,
   ) {
     this.mapId = mapId;
     this.gameConfiguration = gameConfiguration;
     if (this.gameConfiguration.onlyIndependentCountries) {
       this.countriesNumber = model.worldCountries.countries.filter(
-        (country) => country.independent
+        (country) => country.independent,
       ).length;
     } else {
       this.countriesNumber = model.worldCountries.countries.length;
@@ -36,7 +36,7 @@ export class PlayMap {
       playerTwoSelectedCountriesNumber,
       playerMapLabel,
       latLon,
-      defaultZoomLevel
+      defaultZoomLevel,
     );
   }
 
@@ -48,7 +48,7 @@ export class PlayMap {
     playerTwoSelectedCountriesNumber,
     playerMapLabel,
     latLon,
-    defaultZoomLevel = 2.4
+    defaultZoomLevel = 2.4,
   ) {
     document.getElementById(this.mapId).innerHTML = `<div
         id="map"
@@ -76,16 +76,16 @@ export class PlayMap {
       this.gameRulesFunction();
     }
     const streetLayer = L.tileLayer(
-      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
     );
     const natGeoWorldMap = L.tileLayer(
-      "https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}"
+      "https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}",
     );
     const openStreetMap = L.tileLayer(
-      "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+      "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
     );
     const worldTopoMap = L.tileLayer(
-      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}"
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
     );
     const baseMaps = {
       WorldStreetMap: streetLayer,
@@ -245,7 +245,7 @@ export class PlayMap {
         });
         container.insertAdjacentHTML(
           "beforeend",
-          this.gameConfiguration.countriesUnionsHtml
+          this.gameConfiguration.countriesUnionsHtml,
         );
         container.appendChild(random);
         container.appendChild(clean);
@@ -427,7 +427,7 @@ export class PlayMap {
             localization[model.worldCountries.language]["Send Message"];
           chatMessageToOpponentButton.addEventListener(
             "click",
-            this.chatMessage
+            this.chatMessage,
           );
           chatMessageToOpponentButton.addEventListener("mouseover", () => {
             chatMessageToOpponentButton.style.backgroundColor = "#25cff2";
@@ -443,7 +443,7 @@ export class PlayMap {
           });
           chatMessageToOpponentContainer.appendChild(chatMessageToOpponent);
           chatMessageToOpponentContainer.appendChild(
-            chatMessageToOpponentButton
+            chatMessageToOpponentButton,
           );
           chat.appendChild(chatButton);
           chat.appendChild(chatContainer);
@@ -645,7 +645,7 @@ export class PlayMap {
         }</span></div>`;
         availableCountriesPanel.insertAdjacentHTML(
           "beforeend",
-          availableCountriesHeader
+          availableCountriesHeader,
         );
         const availableCountriesPanelContent = L.DomUtil.create("div");
         availableCountriesPanelContent.id = "available-countries-panel-content";
@@ -669,6 +669,7 @@ export class PlayMap {
         hintsPanel.style.backgroundColor = "white";
         hintsPanel.style.opacity = "0.7";
         hintsPanel.style.width = "fit-content";
+        hintsPanel.style.maxWidth = "220px";
         hintsPanel.style.borderRadius = "2px";
         hintsPanel.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
@@ -712,14 +713,14 @@ export class PlayMap {
         }</span></div>`;
         guessedCountryAlliancePanel.insertAdjacentHTML(
           "beforeend",
-          guessedCountryAlliancePanelHeader
+          guessedCountryAlliancePanelHeader,
         );
         const guessedCountryAlliancePanelContent = L.DomUtil.create("div");
         guessedCountryAlliancePanelContent.classList.add("text-center");
         guessedCountryAlliancePanelContent.id =
           "guessed-country-alliance-panel-content";
         guessedCountryAlliancePanel.appendChild(
-          guessedCountryAlliancePanelContent
+          guessedCountryAlliancePanelContent,
         );
 
         return guessedCountryAlliancePanel;
@@ -792,7 +793,7 @@ export class PlayMap {
 
         container.insertAdjacentHTML(
           "beforeend",
-          this.gameConfiguration.countriesUnionsHtml
+          this.gameConfiguration.countriesUnionsHtml,
         );
         return container;
       },
@@ -828,14 +829,14 @@ export class PlayMap {
         ) {
           this.map.removeLayer(layer);
         }
-      }.bind(this)
+      }.bind(this),
     );
   }
 
   cleanSelection() {
     this.playerOne.cleanSelection();
     const randomSection = document.getElementById(
-      "random-user-countries-selection"
+      "random-user-countries-selection",
     );
     randomSection.style.display = "flex";
   }
@@ -843,7 +844,7 @@ export class PlayMap {
   reandomCountriesSelection() {
     this.playerOne.randomCountrySelection();
     const randomSection = document.getElementById(
-      "random-user-countries-selection"
+      "random-user-countries-selection",
     );
     randomSection.style.display = "none";
   }
@@ -882,7 +883,7 @@ export class PlayMap {
     const chat = document.getElementById("chat-container");
     const inputField = document.getElementById("chat-message-to-opponent");
     const chatButtonLeftArrow = document.getElementById(
-      "chat-button-left-arrow"
+      "chat-button-left-arrow",
     );
     if (chatButtonLeftArrow.textContent === "⬆") {
       chatButtonLeftArrow.textContent = "⬇";
@@ -890,7 +891,7 @@ export class PlayMap {
       chatButtonLeftArrow.textContent = "⬆";
     }
     const chatButtonRightArrow = document.getElementById(
-      "chat-button-right-arrow"
+      "chat-button-right-arrow",
     );
     if (chatButtonRightArrow.textContent === "⬆") {
       chatButtonRightArrow.textContent = "⬇";
@@ -907,7 +908,7 @@ export class PlayMap {
         "❓ " +
           localization[model.worldCountries.language][
             "Are you sure you want to leave this game?"
-          ]
+          ],
       );
       if (confirmExit) {
         this.game.finishGame(deleteGameRoom);
@@ -919,7 +920,7 @@ export class PlayMap {
 
   setSelectedCountryFiledHtml(content) {
     const selectedCountryField = document.getElementById(
-      "selected-country-field"
+      "selected-country-field",
     );
     selectedCountryField.innerHTML = "";
     selectedCountryField.innerHTML = content;
@@ -941,11 +942,11 @@ export class PlayMap {
   initSelectionCountriesMapView() {
     document.querySelector(".guess-country-game-play").disabled = true;
     const cleanSection = document.getElementById(
-      "clean-user-countries-selection"
+      "clean-user-countries-selection",
     );
     cleanSection.style.display = "flex";
     const randomSection = document.getElementById(
-      "random-user-countries-selection"
+      "random-user-countries-selection",
     );
     randomSection.style.display = "flex";
     document.getElementById("countries-number-field").textContent =
@@ -962,11 +963,11 @@ export class PlayMap {
   initStartPlayMapView() {
     document.querySelector(".guess-country-game-play").disabled = true;
     const cleanSection = document.getElementById(
-      "clean-user-countries-selection"
+      "clean-user-countries-selection",
     );
     cleanSection.style.display = "none";
     const randomSection = document.getElementById(
-      "random-user-countries-selection"
+      "random-user-countries-selection",
     );
     randomSection.style.display = "none";
     document.getElementById("countries-number-field").textContent =

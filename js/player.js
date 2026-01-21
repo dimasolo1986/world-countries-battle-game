@@ -487,6 +487,7 @@ export class Player {
           coatOfArmsLink.classList.add("btn", "btn-info", "btn-sm");
           coatOfArmsLink.style.fontSize = "0.6rem";
           coatOfArmsLink.style.marginBottom = "2px";
+          coatOfArmsLink.style.border = "1px dotted grey";
           coatOfArmsLink.textContent =
             localization[model.worldCountries.language][hintHeader];
           coatOfArmsLink.addEventListener(
@@ -519,9 +520,10 @@ export class Player {
           linkContainer.textContent = (index + 1).toString() + ". ";
           const flagLink = document.createElement("button");
           flagLink.id = "flag-link";
-          flagLink.classList.add("btn", "btn-info", "btn-sm");
+          flagLink.classList.add("btn", "btn-warning", "btn-sm");
           flagLink.style.fontSize = "0.6rem";
           flagLink.style.marginBottom = "2px";
+          flagLink.style.border = "1px dotted grey";
           flagLink.textContent =
             localization[model.worldCountries.language][hintHeader];
           flagLink.addEventListener(
