@@ -589,7 +589,7 @@ export class PlayMap {
         finishButton.style.paddinTop = "0.35rem";
         finishButton.style.paddinBottom = "0.35rem";
         finishButton.textContent =
-          "⛔ " + localization[model.worldCountries.language]["Finish"];
+          localization[model.worldCountries.language]["Finish"];
         finishButton.addEventListener("click", this.finishFunction);
         return finishButton;
       },
@@ -616,7 +616,7 @@ export class PlayMap {
         gameRulesButton.style.paddinTop = "0.35rem";
         gameRulesButton.style.paddinBottom = "0.35rem";
         gameRulesButton.textContent =
-          "📄 " + localization[model.worldCountries.language]["Rules"];
+          localization[model.worldCountries.language]["Rules"];
         gameRulesButton.addEventListener("click", this.gameRulesFunction);
         return gameRulesButton;
       },
