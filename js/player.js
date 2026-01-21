@@ -1795,6 +1795,9 @@ export class Player {
       );
     });
     this.showSelectedCountries();
+    this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
+      animate: false,
+    });
     this.gameMessageField.textContent = `ℹ️ ${
       localization[model.worldCountries.language]["Press 'Play' to start game!"]
     }`;
