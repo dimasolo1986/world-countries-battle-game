@@ -31,6 +31,14 @@ export const showGameCountryAllianceGuessedWindow = function () {
   gameCountryAllianceGuessedWindow.show();
 };
 
+export const hideModalWindow = function (modalId) {
+  const modalWindow = document.getElementById(modalId);
+  const modal = bootstrap.Modal.getInstance(modalWindow);
+  if (modal) {
+    modal.hide();
+  }
+};
+
 export const hideGameCountryAllianceGuessedWindow = function () {
   const gameCountryAllianceGuessedWindow = document.getElementById(
     "gameCountryAllianceGuessedModal",
