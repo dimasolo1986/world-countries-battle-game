@@ -71,7 +71,6 @@ export class Game {
         .getElementById("game-rules-friend-link")
         .classList.add("not-displayed");
     }
-    if (this.playerOne.hitTimeoutId) clearTimeout(this.playerOne.hitTimeoutId);
     showGameRulesWindow();
   }
 

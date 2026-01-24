@@ -464,22 +464,46 @@ export class PlayMap {
     }
     L.Control.MapField = L.Control.extend({
       onAdd: function (map) {
+        const container = L.DomUtil.create("div");
+        container.style.marginTop = "15px";
+        container.style.opacity = "0.7";
+        container.style.borderRadius = "2px";
+        const timerFieldContainer = L.DomUtil.create("div");
+        timerFieldContainer.id = "timer-field-container";
+        timerFieldContainer.style.display = "inline-block";
+        timerFieldContainer.style.borderLeft = "1px dotted grey";
+        timerFieldContainer.style.display = "none";
+        const timerFieldTimer = L.DomUtil.create("span");
+        timerFieldTimer.textContent = "⏱️";
+        const timerField = L.DomUtil.create("span");
+        timerField.id = "timer-field";
+        timerField.style.fontSize = "0.6rem";
+        timerField.style.backgroundColor = "white";
+        timerField.style.fontWeight = "bolder";
+        timerField.style.color = "green";
+        timerField.textContent = "60";
+        timerField.style.opacity = "0.7";
+        timerField.style.verticalAlign = "middle";
+        timerField.style.paddingRight = "2px";
+        timerFieldContainer.appendChild(timerFieldTimer);
+        timerFieldContainer.appendChild(timerField);
         const mapFiled = L.DomUtil.create("div");
         mapFiled.id = "map-field";
         mapFiled.style.backgroundColor = "white";
-        mapFiled.style.boxShadow =
+        mapFiled.style.display = "inline-block";
+        container.style.backgroundColor = "white";
+        container.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
-        mapFiled.style.paddingRight = "3px";
-        mapFiled.style.paddingLeft = "3px";
-        mapFiled.style.fontSize = "0.7rem";
-        mapFiled.style.opacity = "0.7";
-        mapFiled.style.borderRadius = "2px";
+        mapFiled.style.paddingRight = "2px";
+        mapFiled.style.paddingLeft = "2px";
+        mapFiled.style.fontSize = "0.6rem";
         mapFiled.style.fontWeight = "bolder";
-        mapFiled.style.marginTop = "15px";
         mapFiled.style.color = "darkblue";
         mapFiled.textContent =
           "🗺️ " + localization[model.worldCountries.language][playerMapLabel];
-        return mapFiled;
+        container.appendChild(mapFiled);
+        container.appendChild(timerFieldContainer);
+        return container;
       },
       onRemove: function (map) {},
     });
@@ -856,9 +880,26 @@ export class PlayMap {
         .then(() => this.map.invalidateSize());
     }
   }
-
   gameRulesFunction() {
+    function setPlayerTimeout() {
+      this.playerOne.setHitTimeout();
+    }
+    function clearPlayerTimeout() {
+      if (this.playerOne.hitTimeoutId)
+        clearTimeout(this.playerOne.hitTimeoutId);
+      if (this.playerOne.hitIntervalId)
+        clearInterval(this.playerOne.hitIntervalId);
+    }
     this.exitFullScreen();
+    const gameRulesModal = document.getElementById("gameRulesModal");
+    gameRulesModal.addEventListener(
+      "shown.bs.modal",
+      clearPlayerTimeout.bind(this),
+    );
+    gameRulesModal.addEventListener(
+      "hidden.bs.modal",
+      setPlayerTimeout.bind(this),
+    );
     this.game.showGameRules();
   }
 

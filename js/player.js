@@ -13,6 +13,7 @@ import {
 import * as model from "./model.js";
 export class Player {
   hitTimeoutId;
+  hitIntervalId;
   playerMap;
   playMap;
   opponentPlayer;
@@ -91,7 +92,9 @@ export class Player {
       if (this.game.firebase) this.game.firebase.cleanupResources(false);
     }
     if (this.hitTimeoutId) clearTimeout(this.hitTimeoutId);
+    if (this.hitIntervalId) clearInterval(this.hitIntervalId);
     this.hitTimeoutId = null;
+    this.hitIntervalId = null;
     this.playMap = null;
     this.playerMap = null;
     this.opponentPlayer = null;
@@ -132,6 +135,7 @@ export class Player {
 
   initData() {
     this.hitTimeoutId = null;
+    this.hitIntervalId = null;
     this.playMap.initSelectionCountriesMapView();
     this.selectedCountryCodes = new Set();
     this.selectedCountryTrapCodes = new Set();
@@ -646,6 +650,7 @@ export class Player {
     this.opponentPlayer.addAllCountryMarkers();
     if (this.playerType !== "computerPlayer") this.addHintsToHintPanel();
     if (this.playerType === "computerPlayer") {
+      document.getElementById("timer-field-container").style.display = "none";
       this.playMap.hideMapElement("hints-panel");
       this.playMap.hideMapElement("available-countries-panel");
       this.opponentPlayer.disableMapInteraction();
@@ -1086,6 +1091,7 @@ export class Player {
       this.game.isPlayerReady = false;
       return;
     } else {
+      document.getElementById("timer-field-container").style.display = "none";
       this.opponentPlayer.disableMapInteraction();
       this.playMap.setMapFiledLabel("Your Map");
       this.countriesNumberField.textContent =
@@ -1103,6 +1109,24 @@ export class Player {
   }
 
   hitTimeout() {
+    const timerField = document.getElementById("timer-field");
+    timerField.textContent = "60";
+    timerField.style.color = "green";
+    document.getElementById("timer-field-container").style.display =
+      "inline-block";
+    if (this.hitIntervalId) clearInterval(this.hitIntervalId);
+    this.hitIntervalId = setInterval(() => {
+      let timer = +timerField.textContent;
+      timer = timer - 1;
+      if (timer >= 0) {
+        if (timer <= 10) {
+          timerField.style.color = "red";
+        } else {
+          timerField.style.color = "green";
+        }
+        timerField.textContent = timer;
+      }
+    }, 1000);
     this.hitTimeoutId = setTimeout(async () => {
       this.opponentPlayer.disableMapInteraction();
       hideModalWindow("flagModal");
@@ -1199,6 +1223,8 @@ export class Player {
   async addUserClickCountriesPlay(countryCode, countryBoundary, countryMarker) {
     if (this.opponentPlayer.hitTimeoutId)
       clearTimeout(this.opponentPlayer.hitTimeoutId);
+    if (this.opponentPlayer.hitIntervalId)
+      clearInterval(this.opponentPlayer.hitIntervalId);
     if (
       this.gameConfiguration.gameMode === "user" &&
       (this.game.firebase.opponentConnectionState === "disconnected" ||
