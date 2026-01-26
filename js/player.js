@@ -1753,14 +1753,14 @@ export class Player {
   }
 
   clearOpponentPlayerTimeout() {
-    if (this.opponentPlayer.hitTimeoutId)
+    if (this.opponentPlayer && this.opponentPlayer.hitTimeoutId)
       clearTimeout(this.opponentPlayer.hitTimeoutId);
-    if (this.opponentPlayer.hitIntervalId)
+    if (this.opponentPlayer && this.opponentPlayer.hitIntervalId)
       clearInterval(this.opponentPlayer.hitIntervalId);
   }
 
   setOpponentHitTimeout() {
-    this.opponentPlayer.setHitTimeout();
+    if (this.opponentPlayer) this.opponentPlayer.setHitTimeout();
   }
 
   addUserClickCountriesPlayHandler() {
