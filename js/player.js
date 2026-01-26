@@ -1222,10 +1222,7 @@ export class Player {
   }
 
   async addUserClickCountriesPlay(countryCode, countryBoundary, countryMarker) {
-    if (this.opponentPlayer.hitTimeoutId)
-      clearTimeout(this.opponentPlayer.hitTimeoutId);
-    if (this.opponentPlayer.hitIntervalId)
-      clearInterval(this.opponentPlayer.hitIntervalId);
+    this.clearOpponentPlayerTimeout();
     if (
       this.gameConfiguration.gameMode === "user" &&
       (this.game.firebase.opponentConnectionState === "disconnected" ||
@@ -1484,6 +1481,25 @@ export class Player {
           "gameCountryAllianceGuessedCloseButton",
         ).textContent = localization[model.worldCountries.language]["Close"];
         showGameCountryAllianceGuessedWindow();
+        const modal = document.getElementById(
+          "gameCountryAllianceGuessedModal",
+        );
+        modal.removeEventListener(
+          "shown.bs.modal",
+          this.clearOpponentPlayerTimeout,
+        );
+        modal.removeEventListener(
+          "hidden.bs.modal",
+          this.setOpponentHitTimeout,
+        );
+        modal.addEventListener(
+          "shown.bs.modal",
+          this.clearOpponentPlayerTimeout.bind(this),
+        );
+        modal.addEventListener(
+          "hidden.bs.modal",
+          this.setOpponentHitTimeout.bind(this),
+        );
         setTimeout(hideGameCountryAllianceGuessedWindow, 10000);
       }
       await this.sleep(1500);
@@ -1626,6 +1642,25 @@ export class Player {
             "gameCountryAllianceGuessedCloseButton",
           ).textContent = localization[model.worldCountries.language]["Close"];
           showGameCountryAllianceGuessedWindow();
+          const modal = document.getElementById(
+            "gameCountryAllianceGuessedModal",
+          );
+          modal.removeEventListener(
+            "shown.bs.modal",
+            this.clearOpponentPlayerTimeout,
+          );
+          modal.removeEventListener(
+            "hidden.bs.modal",
+            this.setOpponentHitTimeout,
+          );
+          modal.addEventListener(
+            "shown.bs.modal",
+            this.clearOpponentPlayerTimeout.bind(this),
+          );
+          modal.addEventListener(
+            "hidden.bs.modal",
+            this.setOpponentHitTimeout.bind(this),
+          );
           setTimeout(hideGameCountryAllianceGuessedWindow, 10000);
         } else if (this.playerMap && this.playerMap._isFullscreen) {
           document.getElementById(
@@ -1715,6 +1750,17 @@ export class Player {
       this.game.isPlayerReady = true;
     }
     this.game.playHit();
+  }
+
+  clearOpponentPlayerTimeout() {
+    if (this.opponentPlayer.hitTimeoutId)
+      clearTimeout(this.opponentPlayer.hitTimeoutId);
+    if (this.opponentPlayer.hitIntervalId)
+      clearInterval(this.opponentPlayer.hitIntervalId);
+  }
+
+  setOpponentHitTimeout() {
+    this.opponentPlayer.setHitTimeout();
   }
 
   addUserClickCountriesPlayHandler() {
