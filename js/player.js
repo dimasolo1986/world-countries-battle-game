@@ -1108,13 +1108,14 @@ export class Player {
     this.game.playHit();
   }
 
-  hitTimeout() {
+  hitTimeout(time = 60) {
     const timerField = document.getElementById("timer-field");
-    timerField.textContent = "60";
+    timerField.textContent = `${time}`;
     timerField.style.color = "green";
     document.getElementById("timer-field-container").style.display =
       "inline-block";
     if (this.hitIntervalId) clearInterval(this.hitIntervalId);
+    if (this.hitTimeoutId) clearTimeout(this.hitTimeoutId);
     this.hitIntervalId = setInterval(() => {
       let timer = +timerField.textContent;
       timer = timer - 1;
@@ -1144,17 +1145,17 @@ export class Player {
         this.sendMoveAckToOpponent();
       }
       this.game.playHit();
-    }, 60000);
+    }, time * 1000);
   }
 
-  setHitTimeout() {
+  setHitTimeout(time = 60) {
     if (
       this.gameConfiguration.gameMode === "user" &&
       this.opponentPlayerStartAcknowledged
     ) {
-      this.hitTimeout();
+      this.hitTimeout(time);
     } else if (this.gameConfiguration.gameMode === "computer") {
-      this.hitTimeout();
+      this.hitTimeout(time);
     }
   }
 

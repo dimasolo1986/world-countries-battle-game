@@ -468,6 +468,7 @@ export class PlayMap {
         container.style.marginTop = "15px";
         container.style.opacity = "0.7";
         container.style.borderRadius = "2px";
+        container.style.backgroundColor = "white";
         const timerFieldContainer = L.DomUtil.create("div");
         timerFieldContainer.id = "timer-field-container";
         timerFieldContainer.style.display = "inline-block";
@@ -478,20 +479,16 @@ export class PlayMap {
         const timerField = L.DomUtil.create("span");
         timerField.id = "timer-field";
         timerField.style.fontSize = "0.6rem";
-        timerField.style.backgroundColor = "white";
         timerField.style.fontWeight = "bolder";
         timerField.style.color = "green";
         timerField.textContent = "60";
-        timerField.style.opacity = "0.7";
         timerField.style.verticalAlign = "middle";
         timerField.style.paddingRight = "2px";
         timerFieldContainer.appendChild(timerFieldTimer);
         timerFieldContainer.appendChild(timerField);
         const mapFiled = L.DomUtil.create("div");
         mapFiled.id = "map-field";
-        mapFiled.style.backgroundColor = "white";
         mapFiled.style.display = "inline-block";
-        container.style.backgroundColor = "white";
         container.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
         mapFiled.style.paddingRight = "2px";
@@ -882,7 +879,9 @@ export class PlayMap {
   }
   gameRulesFunction() {
     function setPlayerTimeout() {
-      this.playerOne.setHitTimeout();
+      this.playerOne.setHitTimeout(
+        +document.getElementById("timer-field").textContent,
+      );
     }
     function clearPlayerTimeout() {
       if (this.playerOne.hitTimeoutId)
