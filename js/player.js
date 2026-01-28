@@ -12,8 +12,8 @@ import {
 } from "./helpers.js";
 import * as model from "./model.js";
 export class Player {
-  hitTimeoutId;
-  hitIntervalId;
+  hitTimeoutIds = [];
+  hitIntervalIds = [];
   playerMap;
   playMap;
   opponentPlayer;
@@ -85,16 +85,32 @@ export class Player {
     this.playButton = document.querySelector(".guess-country-game-play");
   }
 
+  clearAllTimeouts(player) {
+    player.hitTimeoutIds.forEach((id) => {
+      clearTimeout(id);
+    });
+    player.hitTimeoutIds.length = 0;
+  }
+
+  clearAllIntervals(player) {
+    player.hitIntervalIds.forEach((id) => {
+      clearInterval(id);
+    });
+    player.hitIntervalIds.length = 0;
+  }
+
   cleanPlayerResources(deleteGameRoom) {
     if (deleteGameRoom) {
       resetGameRoomContainer();
       sessionStorage.removeItem("game-room");
       if (this.game.firebase) this.game.firebase.cleanupResources(false);
     }
-    if (this.hitTimeoutId) clearTimeout(this.hitTimeoutId);
-    if (this.hitIntervalId) clearInterval(this.hitIntervalId);
-    this.hitTimeoutId = null;
-    this.hitIntervalId = null;
+    if (this.hitTimeoutIds && this.hitTimeoutIds.length != 0)
+      this.clearAllTimeouts(this);
+    if (this.hitIntervalIds && this.hitIntervalIds.length != 0)
+      this.clearAllIntervals(this);
+    this.hitTimeoutIds = [];
+    this.hitIntervalIds = [];
     this.playMap = null;
     this.playerMap = null;
     this.opponentPlayer = null;
@@ -134,8 +150,8 @@ export class Player {
   }
 
   initData() {
-    this.hitTimeoutId = null;
-    this.hitIntervalId = null;
+    this.hitTimeoutIds = [];
+    this.hitIntervalIds = [];
     this.playMap.initSelectionCountriesMapView();
     this.selectedCountryCodes = new Set();
     this.selectedCountryTrapCodes = new Set();
@@ -1114,9 +1130,11 @@ export class Player {
     timerField.style.color = "green";
     document.getElementById("timer-field-container").style.display =
       "inline-block";
-    if (this.hitIntervalId) clearInterval(this.hitIntervalId);
-    if (this.hitTimeoutId) clearTimeout(this.hitTimeoutId);
-    this.hitIntervalId = setInterval(() => {
+    if (this.hitIntervalIds && this.hitIntervalIds.length != 0)
+      this.clearAllIntervals(this);
+    if (this.hitTimeoutIds && this.hitTimeoutIds.length != 0)
+      this.clearAllTimeouts(this);
+    const hitIntervalId = setInterval(() => {
       let timer = +timerField.textContent;
       timer = timer - 1;
       if (timer >= 0) {
@@ -1128,7 +1146,8 @@ export class Player {
         timerField.textContent = timer;
       }
     }, 1000);
-    this.hitTimeoutId = setTimeout(async () => {
+    this.hitIntervalIds.push(hitIntervalId);
+    const hitTimeoutId = setTimeout(async () => {
       this.opponentPlayer.disableMapInteraction();
       hideModalWindow("flagModal");
       hideModalWindow("coatOfArmsModal");
@@ -1146,6 +1165,7 @@ export class Player {
       }
       this.game.playHit();
     }, time * 1000);
+    this.hitTimeoutIds.push(hitTimeoutId);
   }
 
   setHitTimeout(time = 60) {
@@ -1753,10 +1773,18 @@ export class Player {
   }
 
   clearOpponentPlayerTimeout() {
-    if (this.opponentPlayer && this.opponentPlayer.hitTimeoutId)
-      clearTimeout(this.opponentPlayer.hitTimeoutId);
-    if (this.opponentPlayer && this.opponentPlayer.hitIntervalId)
-      clearInterval(this.opponentPlayer.hitIntervalId);
+    if (
+      this.opponentPlayer &&
+      this.opponentPlayer.hitTimeoutIds &&
+      this.opponentPlayer.hitTimeoutIds.length != 0
+    )
+      this.clearAllTimeouts(this.opponentPlayer);
+    if (
+      this.opponentPlayer &&
+      this.opponentPlayer.hitIntervalIds &&
+      this.opponentPlayer.hitIntervalIds.length != 0
+    )
+      this.clearAllIntervals(this.opponentPlayer);
   }
 
   setOpponentHitTimeout() {

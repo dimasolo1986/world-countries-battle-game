@@ -884,10 +884,16 @@ export class PlayMap {
       );
     }
     function clearPlayerTimeout() {
-      if (this.playerOne.hitTimeoutId)
-        clearTimeout(this.playerOne.hitTimeoutId);
-      if (this.playerOne.hitIntervalId)
-        clearInterval(this.playerOne.hitIntervalId);
+      if (
+        this.playerOne.hitTimeoutIds &&
+        this.playerOne.hitTimeoutIds.length != 0
+      )
+        this.playerOne.clearAllTimeouts(this.playerOne);
+      if (
+        this.playerOne.hitIntervalIds &&
+        this.playerOne.hitIntervalIds.length != 0
+      )
+        this.playerOne.clearAllIntervals(this.playerOne);
     }
     this.exitFullScreen();
     const gameRulesModal = document.getElementById("gameRulesModal");
