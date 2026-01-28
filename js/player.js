@@ -791,7 +791,7 @@ export class Player {
         });
         this.playerAttemptToGuess = false;
         this.opponentPlayer.playerAttemptToGuess = true;
-        await this.sleep(1500);
+        await this.sleep(2500);
         this.opponentPlayer.closeCountryPopup(countryCode);
         this.opponentPlayer.playerMap.removeLayer(countryBoundary);
         delete this.opponentPlayer.countryBoundaries[countryCode];
@@ -1393,7 +1393,7 @@ export class Player {
       });
       this.playerAttemptToGuess = true;
       this.opponentPlayer.playerAttemptToGuess = false;
-      await this.sleep(1500);
+      await this.sleep(2500);
       guessedCountryAlliance.classList.add("not-displayed");
       guessedCountryAllianceHeader.classList.remove("not-displayed");
       this.closeCountryPopup(countryCode);
@@ -3358,7 +3358,7 @@ export class Player {
         });
         this.playerAttemptToGuess = true;
         this.opponentPlayer.playerAttemptToGuess = false;
-        await this.sleep(1500);
+        await this.sleep(2500);
         this.closeCountryPopup(countryCode);
         this.playerMap.removeLayer(countryBoundary);
         delete this.countryBoundaries[countryCode];
