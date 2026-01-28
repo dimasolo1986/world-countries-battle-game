@@ -878,34 +878,35 @@ export class PlayMap {
     }
   }
   gameRulesFunction() {
-    function setPlayerTimeout() {
-      this.playerOne.setHitTimeout(
-        +document.getElementById("timer-field").textContent,
-      );
-    }
-    function clearPlayerTimeout() {
-      if (
-        this.playerOne.hitTimeoutIds &&
-        this.playerOne.hitTimeoutIds.length != 0
-      )
-        this.playerOne.clearAllTimeouts(this.playerOne);
-      if (
-        this.playerOne.hitIntervalIds &&
-        this.playerOne.hitIntervalIds.length != 0
-      )
-        this.playerOne.clearAllIntervals(this.playerOne);
-    }
     this.exitFullScreen();
     const gameRulesModal = document.getElementById("gameRulesModal");
     gameRulesModal.addEventListener(
       "shown.bs.modal",
-      clearPlayerTimeout.bind(this),
+      this.clearPlayerTimeout.bind(this),
     );
     gameRulesModal.addEventListener(
       "hidden.bs.modal",
-      setPlayerTimeout.bind(this),
+      this.setPlayerTimeout.bind(this),
     );
     this.game.showGameRules();
+  }
+
+  setPlayerTimeout() {
+    this.playerOne.setHitTimeout(
+      +document.getElementById("timer-field").textContent,
+    );
+  }
+  clearPlayerTimeout() {
+    if (
+      this.playerOne.hitTimeoutIds &&
+      this.playerOne.hitTimeoutIds.length != 0
+    )
+      this.playerOne.clearAllTimeouts(this.playerOne);
+    if (
+      this.playerOne.hitIntervalIds &&
+      this.playerOne.hitIntervalIds.length != 0
+    )
+      this.playerOne.clearAllIntervals(this.playerOne);
   }
 
   sendChatMessage() {
@@ -950,6 +951,7 @@ export class PlayMap {
 
   finishGameHandler(useConfirm, deleteGameRoom) {
     if (useConfirm) {
+      this.clearPlayerTimeout();
       const confirmExit = confirm(
         "❓ " +
           localization[model.worldCountries.language][
@@ -958,6 +960,8 @@ export class PlayMap {
       );
       if (confirmExit) {
         this.game.finishGame(deleteGameRoom);
+      } else {
+        this.setPlayerTimeout();
       }
     } else {
       this.game.finishGame(deleteGameRoom);
