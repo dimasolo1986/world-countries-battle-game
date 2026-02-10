@@ -155,7 +155,7 @@ class gameRulesView {
     }`;
     this._gameRulesTrapCountriesRules.textContent = `${
       localization[model.worldCountries.language][
-        "When entering an opponent's trap country, he receives one of six clues about the location of one of your countries: 1. Name of the country; 2. Capital of the country; 3. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 4. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 5. Coat Of Arms Image; 6. Flag Image."
+        "When entering an opponent's trap country, he receives one of seven clues about the location of one of your countries: 1. Name of the country; 2. Capital of the country; 3. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 4. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 5. Coat Of Arms Image; 6. Flag Image; 7. Country's Outline On Map."
       ]
     }`;
     this._gameRulesImportant.textContent = `${

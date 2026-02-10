@@ -56,6 +56,7 @@ export class Player {
     "subregion",
     "flag",
     "emblem",
+    "boundary",
   ]);
   constructor(
     playerMap,
@@ -179,6 +180,7 @@ export class Player {
       "subregion",
       "flag",
       "emblem",
+      "boundary",
     ]);
     this.countryUnions = [
       new Array(4),
@@ -339,6 +341,8 @@ export class Player {
       }
     } else if (hintType === "country") {
       this.hints[countryCode] = { Country: country.countryName };
+    } else if (hintType === "boundary") {
+      this.hints[countryCode] = { Outline: country.countryName };
     } else if (hintType === "flag") {
       this.hints[countryCode] = { Flag: country.countryFlag };
     } else if (hintType === "region") {
@@ -560,6 +564,45 @@ export class Player {
           );
           linkContainer.appendChild(flagLink);
           hintsPanelContent.insertAdjacentElement("beforeend", linkContainer);
+        } else if (hintHeader === "Outline") {
+          const countryOutlineWindowHeader = document.getElementById(
+            "countryOutlineLabel",
+          );
+          countryOutlineWindowHeader.textContent =
+            localization[model.worldCountries.language][
+              "Country's Outline On Map"
+            ];
+          const countryOutlineCloseButton = document.getElementById(
+            "countryOutlineCloseButton",
+          );
+          countryOutlineCloseButton.textContent =
+            localization[model.worldCountries.language]["Close"];
+
+          const linkContainer = document.createElement("div");
+          linkContainer.style.fontSize = "0.7rem";
+          linkContainer.textContent = (index + 1).toString() + ". ";
+          const countryOutlineLink = document.createElement("button");
+          countryOutlineLink.id = "country-outline-link";
+          countryOutlineLink.classList.add("btn", "btn-success", "btn-sm");
+          countryOutlineLink.style.fontSize = "0.6rem";
+          countryOutlineLink.style.marginBottom = "2px";
+          countryOutlineLink.style.border = "1px dotted grey";
+          countryOutlineLink.textContent =
+            localization[model.worldCountries.language][hintHeader];
+          const outlineModal = document.getElementById("countryOutlineModal");
+          outlineModal.addEventListener(
+            "shown.bs.modal",
+            this.createOutlineMap.bind(this, hintValue, countryCode),
+          );
+          countryOutlineLink.addEventListener(
+            "click",
+            function () {
+              this.playMap.exitFullScreen();
+              showCountryCoatOfArmsFlagWindow("countryOutlineModal");
+            }.bind(this),
+          );
+          linkContainer.appendChild(countryOutlineLink);
+          hintsPanelContent.insertAdjacentElement("beforeend", linkContainer);
         } else {
           let hint = "";
           if (hintHeader === "Capital") {
@@ -587,6 +630,60 @@ export class Player {
     } else {
       hintsPanel.classList.add("not-displayed");
     }
+  }
+
+  createOutlineMap(hintValue, countryCode) {
+    const countryBound = COUNTRY_BOUNDS.find(
+      (bound) => hintValue === bound.name,
+    );
+    const country = this.countries[countryCode];
+    document.getElementById("countryOutlineMap").innerHTML = `<div
+        id="outlineMap"
+        style="
+         background-color: #99d9f2;
+          width: 225px;
+          height: 150px;
+          position: relative;
+          border-radius: 5px;
+          box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 5px, rgba(0, 0, 0, 0.12) 0px 2px 10px inset;
+          border: 1px solid black;
+        "
+      ></div>`;
+    const map = L.map("outlineMap", {
+      attributionControl: false,
+      zoomControl: false,
+      scrollWheelZoom: false,
+      doubleClickZoom: false,
+      boxZoom: false,
+      touchZoom: false,
+      keyboard: false,
+      dragging: false,
+    });
+    L.tileLayer(
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Physical_Map/MapServer/tile/{z}/{y}/{x}",
+    ).addTo(map);
+    const countryGeo = getCountryGeo(countryCode);
+    L.geoJson(countryGeo, {
+      style: {
+        weight: 2,
+        fillOpacity: 0.55,
+        color: "#3388ff",
+        fillColor: "#3388ff",
+        opacity: 1,
+      },
+    }).addTo(map);
+    if (countryBound) {
+      map.fitBounds(countryBound.bounds, {
+        animate: false,
+      });
+    } else {
+      map.setView(
+        country.latlng ? country.latlng : country.capitalLatLng,
+        4.5,
+        { animate: false },
+      );
+    }
+    map.invalidateSize();
   }
 
   isCountriesContainHint(hint) {
@@ -1151,6 +1248,7 @@ export class Player {
       this.opponentPlayer.disableMapInteraction();
       hideModalWindow("flagModal");
       hideModalWindow("coatOfArmsModal");
+      hideModalWindow("countryOutlineModal");
       this.gameMessageField.textContent = `⚠️ ${localization[model.worldCountries.language]["Time is up! The attempt to guess the country passes to your opponent"]}`;
       this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
         animate: false,
