@@ -148,6 +148,7 @@ export class Player {
     this.countriesToGuessNext = null;
     this.alreadyGuessedCountryCodes = null;
     this.hintTypes = null;
+    document.getElementById("countryOutlineMap").innerHTML = "";
   }
 
   initData() {
