@@ -667,7 +667,7 @@ export class Player {
     L.geoJson(countryGeo, {
       style: {
         weight: 2,
-        fillOpacity: 0.55,
+        fillOpacity: 0.4,
         color: "#3388ff",
         fillColor: "#3388ff",
         opacity: 1,
