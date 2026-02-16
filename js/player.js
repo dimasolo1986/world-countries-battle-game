@@ -642,8 +642,8 @@ export class Player {
         id="outlineMap"
         style="
          background-color: #99d9f2;
-          width: 225px;
-          height: 150px;
+          width: 300px;
+          height: 225px;
           position: relative;
           border-radius: 5px;
           box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 5px, rgba(0, 0, 0, 0.12) 0px 2px 10px inset;
