@@ -661,6 +661,7 @@ export class PlayMap {
         availableCountriesPanel.style.padding = "3px";
         availableCountriesPanel.style.width = "fit-content";
         availableCountriesPanel.style.overflow = "hidden";
+        availableCountriesPanel.style.marginTop = "10px";
         const availableCountriesHeader = `<div class="text-center"><span style="font-size:0.7rem; font-weight:bold;">🌍 ${
           localization[model.worldCountries.language]["Available Countries:"]
         }</span></div>`;
@@ -680,7 +681,7 @@ export class PlayMap {
       return new L.Control.AvailableCountriesPanel(opts);
     };
     L.control
-      .availablecountriespanel({ position: "bottomcenter" })
+      .availablecountriespanel({ position: "topcenter" })
       .addTo(this.map);
     L.Control.HintsPanel = L.Control.extend({
       onAdd: function (map) {
