@@ -180,3 +180,42 @@ export const generateRoomId = function (length = 8) {
   }
   return result;
 };
+
+export const getCountryPhoto = async function (country) {
+  try {
+    let imageUrl = null;
+    let imgUrlArray = [];
+    const countryLandscapeUrl = `https://commons.wikimedia.org/w/api.php?origin=*&action=query&format=json&generator=categorymembers&gcmtitle=Category:Landscapes_of_${country.countryName}&gcmtype=file&prop=imageinfo&iiprop=url`;
+    const resLandscapes = await fetch(countryLandscapeUrl);
+    const dataLandscapes = await resLandscapes.json();
+    const urlsLaandscapes = extractImageUrls(dataLandscapes);
+    imgUrlArray.push(...urlsLaandscapes);
+    if (imgUrlArray.length === 0) return null;
+    imgUrlArray = imgUrlArray.filter(
+      (url) => /\.(jpe?g)(\?.*)?$/i.test(url) && !url.includes("View_of_Earth"),
+    );
+    let randomUrlIndex = getRandomInt(0, imgUrlArray.length - 1);
+    imageUrl = imgUrlArray[randomUrlIndex];
+    return imageUrl;
+  } catch (e) {
+    return null;
+  }
+};
+
+function extractImageUrls(wikiData) {
+  try {
+    if (!wikiData?.query?.pages) return [];
+    const pages = wikiData.query.pages;
+    const urls = [];
+    for (const pageId in pages) {
+      const page = pages[pageId];
+      if (page.imageinfo && page.imageinfo.length > 0) {
+        const imgUrl = page.imageinfo[0].url;
+        if (imgUrl) urls.push(imgUrl);
+      }
+    }
+    return urls;
+  } catch (e) {
+    return [];
+  }
+}

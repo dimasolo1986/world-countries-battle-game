@@ -9,6 +9,7 @@ import {
   hideGameCountryAllianceGuessedWindow,
   showCountryCoatOfArmsFlagWindow,
   hideModalWindow,
+  getCountryPhoto,
 } from "./helpers.js";
 import * as model from "./model.js";
 export class Player {
@@ -57,6 +58,7 @@ export class Player {
     "flag",
     "emblem",
     "boundary",
+    "photo",
   ]);
   constructor(
     playerMap,
@@ -182,6 +184,7 @@ export class Player {
       "flag",
       "emblem",
       "boundary",
+      "photo",
     ]);
     this.countryUnions = [
       new Array(4),
@@ -306,7 +309,7 @@ export class Player {
     return hintType;
   }
 
-  addHint(trapCountryCode, addCountryImage, hintType) {
+  async addHint(trapCountryCode, addCountryImage, hintType) {
     const selectedCountryCodes = [];
     Array.from(this.opponentPlayer.selectedCountryCodes).forEach(
       (countryCode) => {
@@ -348,6 +351,15 @@ export class Player {
       this.hints[countryCode] = { Flag: country.countryFlag };
     } else if (hintType === "region") {
       this.hints[countryCode] = { Region: country.countryRegion };
+    } else if (hintType === "photo") {
+      const countryPhotoUrl = await getCountryPhoto(country);
+      if (countryPhotoUrl && this.playerType !== "computerPlayer") {
+        this.hints[countryCode] = { CountryPhoto: countryPhotoUrl };
+      } else if (countryPhotoUrl === null) {
+        this.hints[countryCode] = { Region: country.countryRegion };
+      } else {
+        this.hints[countryCode] = { Region: country.countryRegion };
+      }
     } else if (hintType === "subregion") {
       const hasSubregion = selectedCountryCodes.some((countryCode) => {
         return (
@@ -603,6 +615,44 @@ export class Player {
             }.bind(this),
           );
           linkContainer.appendChild(countryOutlineLink);
+          hintsPanelContent.insertAdjacentElement("beforeend", linkContainer);
+        } else if (hintHeader === "CountryPhoto") {
+          const countryPhoto = document.getElementById("country-photo");
+          const countryPhotoWindowHeader =
+            document.getElementById("countryPhotoLabel");
+          countryPhotoWindowHeader.textContent =
+            localization[model.worldCountries.language]["Landscape Of Country"];
+          const countryPhotoCloseButton = document.getElementById(
+            "countryPhotoCloseButton",
+          );
+          countryPhotoCloseButton.textContent =
+            localization[model.worldCountries.language]["Close"];
+          if (countryPhoto) {
+            countryPhoto.src = hintValue;
+            countryPhoto.style.width = "100%";
+            countryPhoto.style.boxShadow =
+              "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
+            countryPhoto.style.borderRadius = "5px";
+          }
+          const linkContainer = document.createElement("div");
+          linkContainer.style.fontSize = "0.7rem";
+          linkContainer.textContent = (index + 1).toString() + ". ";
+          const countryPhotoLink = document.createElement("button");
+          countryPhotoLink.id = "country-photo-link";
+          countryPhotoLink.classList.add("btn", "btn-secondary", "btn-sm");
+          countryPhotoLink.style.fontSize = "0.6rem";
+          countryPhotoLink.style.marginBottom = "2px";
+          countryPhotoLink.style.border = "1px dotted grey";
+          countryPhotoLink.textContent =
+            localization[model.worldCountries.language][hintHeader];
+          countryPhotoLink.addEventListener(
+            "click",
+            function () {
+              this.playMap.exitFullScreen();
+              showCountryCoatOfArmsFlagWindow("countryPhotoModal");
+            }.bind(this),
+          );
+          linkContainer.appendChild(countryPhotoLink);
           hintsPanelContent.insertAdjacentElement("beforeend", linkContainer);
         } else {
           let hint = "";
@@ -1250,6 +1300,7 @@ export class Player {
       hideModalWindow("flagModal");
       hideModalWindow("coatOfArmsModal");
       hideModalWindow("countryOutlineModal");
+      hideModalWindow("countryPhotoModal");
       this.gameMessageField.textContent = `⚠️ ${localization[model.worldCountries.language]["Time is up! The attempt to guess the country passes to your opponent"]}`;
       this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
         animate: false,

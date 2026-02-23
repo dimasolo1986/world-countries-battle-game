@@ -185,6 +185,7 @@ tr td:first-child {
 
 #coat-of-arms-link,
 #country-outline-link,
+#country-photo-link,
 #flag-link {
   --bs-btn-padding-y: 0.05rem;
   --bs-btn-padding-x: 0.35rem;
