@@ -87,11 +87,15 @@ export class PlayMap {
     const worldTopoMap = L.tileLayer(
       "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
     );
+     const siteliteLayer = L.tileLayer(
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    );
     const baseMaps = {
       WorldStreetMap: streetLayer,
       NatGeoWorldMap: natGeoWorldMap,
       OpenStreetMap: openStreetMap,
       WorldTopoMap: worldTopoMap,
+      Satellite: siteliteLayer
     };
     this.map = L.map("map", {
       attributionControl: false,
