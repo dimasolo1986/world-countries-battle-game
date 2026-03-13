@@ -1907,8 +1907,6 @@ export class Player {
       Object.entries(this.countryBoundaries).forEach(
         ([countryCode, countryBoundary]) => {
           const countryMarker = this.countryMarkers[countryCode];
-          countryMarker.off();
-          countryBoundary.off();
           this.addMouseOverStyleEventToCountryBoundary(countryBoundary, {
             weight: 1,
             fillOpacity: 0.5,
@@ -2887,7 +2885,7 @@ export class Player {
   }
 
   addMouseOverStyleEventToCountryBoundary(countryBoundary, styleObject) {
-    countryBoundary.on("mouseover", function (event) {
+    countryBoundary.once("mouseover", function (event) {
       if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
         countryBoundary.fire("click");
       } else {
@@ -2904,6 +2902,20 @@ export class Player {
         L.DomEvent.stopPropagation(event);
         countryBoundary.setStyle(styleObject);
         countryBoundary.bringToBack();
+        countryBoundary.once("mouseover", function (event) {
+          if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
+            countryBoundary.fire("click");
+          } else {
+            L.DomEvent.stopPropagation(event);
+            countryBoundary.setStyle({
+              weight: 1,
+              fillOpacity: 0.5,
+              opacity: 1,
+              className: styleObject.className
+            });
+            countryBoundary.bringToFront();
+          }
+        });
       });
     }
   }
