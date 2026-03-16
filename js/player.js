@@ -750,6 +750,13 @@ export class Player {
       );
     }
     map.invalidateSize();
+    const outlineModal = document.getElementById("countryOutlineModal");
+    outlineModal.addEventListener(
+      "hidden.bs.modal",
+      () => {
+        map.remove();
+      }, { once: true }
+    );
   }
 
   isCountriesContainHint(hint) {
