@@ -166,6 +166,7 @@ export class GameConfig {
       this.onlyIndependentCountries = document.querySelector(
         "#only-independent-countries-checkbox"
       ).checked;
+      this.hitTime = +document.querySelector("#time-select").value;
       this.gameMode =
         document.querySelector("#gameMode").value === "0" ? "computer" : "user";
     }

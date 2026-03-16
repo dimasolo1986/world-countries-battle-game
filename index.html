@@ -189,6 +189,7 @@
         const urlParams = new URLSearchParams(cleanedParams);
     const roomId = urlParams.get("gameRoom");
     const allCountries = urlParams.get("allCountries");
+    const hitTime = urlParams.get("time");
     if(roomId) {
       const isWebRtc = isWebRTCAvailable();
       if (!isWebRtc) {
@@ -218,6 +219,11 @@
       } else {
         onlyIndependentCountriesCheckbox.checked = true;
       }
+    }
+    if(hitTime) {
+      const hitTimeSelect = document.getElementById("time-select");
+      hitTimeSelect.disabled = true;
+      hitTimeSelect.value = hitTime;
     }
       });
     </script>
@@ -940,6 +946,12 @@
               id="only-independent-countries-checkbox-label"
               >Only Independent Countries</label
             >
+            <label style="margin-left: 5px;" for="time-select">⏱️:</label>
+<select name="time-select" id="time-select" style="cursor: pointer; font-weight: 500;">
+  <option value="30">30</option>
+  <option value="45">45</option>
+  <option selected value="60">60</option>
+</select>
           </div>
           <div class="text-center game-room-input-container" style="font-size: 0.8rem; margin-bottom: 5px;">
             <p style="margin-bottom: 0px" id="opponent-label">Opponent:</p>
@@ -1083,7 +1095,7 @@
           class="game-room-instructions-text"
           style="margin-top: 5px; color: black; font-size: 0.9rem; text-align: justify;"
         >
-          <span id="game-room-instruction-header" style="font-weight: bold;">Instructions.</span>&nbsp;<span id="game-room-instruction-text">To play with your friend, you need: 1. Choose the desired game configuration, whether you want to guess countries and alliances of countries from all over the world or only independent ones. You can do this on this page or on the main page (after creating a game room, you will not be able to change this setting). 2. Create a game room and a link to the game for your friend by clicking the 'Create Game Room' button. 3. Copy the game link by clicking the 'Copy Link' button and send it to your friend or share the game link by clicking the 'Share Link With Friend' button. 4. After completing a game or several games, you can delete the game room by clicking the 'Delete Game Room' button (after deleting the game room, your friend will no longer be able to use the game link to play with you).</span> <span style="font-weight: bold" class="game-room-important"
+          <span id="game-room-instruction-header" style="font-weight: bold;">Instructions.</span>&nbsp;<span id="game-room-instruction-text">To play with your friend, you need: 1. Choose the desired game configuration, whether you want to guess countries and alliances of countries from all over the world or only independent ones, time (in seconds) to try to guess the opponent's country. You can do this on this page or on the main page (after creating a game room, you will not be able to change this setting). 2. Create a game room and a link to the game for your friend by clicking the 'Create Game Room' button. 3. Copy the game link by clicking the 'Copy Link' button and send it to your friend or share the game link by clicking the 'Share Link With Friend' button. 4. After completing a game or several games, you can delete the game room by clicking the 'Delete Game Room' button (after deleting the game room, your friend will no longer be able to use the game link to play with you).</span> <span style="font-weight: bold" class="game-room-important"
           >Important!</span
         >&nbsp;
         <span class="game-room-important-description"
@@ -1111,6 +1123,12 @@
               style="color: black;"
               >Only Independent Countries</label
             >
+             <label style="margin-left: 5px;" for="time-select-game-room">⏱️:</label>
+<select name="time-select-game-room" id="time-select-game-room" style="cursor: pointer; font-weight: 500;">
+  <option value="30">30</option>
+  <option value="45">45</option>
+  <option selected value="60">60</option>
+</select>
           </div>
         <p
           class="game-room-create-delete"
@@ -1163,7 +1181,7 @@
             placeholder="Click 'Create Game Room' to generate game link"
             readonly
             aria-readonly="true"
-            style="field-sizing: content; font-size: 0.65rem;"
+            style="field-sizing: content; font-size: 0.6rem;"
           />
           <div id="copy-to-clipboard-label" style="font-size: 0.6rem; font-weight: bold;"></div>
         </div>
@@ -1619,7 +1637,7 @@
           >Countries in the same alliance of countries must be united by
           borders. Alliances of countries must be separated from each other by
           at least one country's borders. An island country can only be used as
-          an alliance with one country or as a trap country. If the player does not make an attempt to guess the opponent's country within one minute, the turn passes to the opponent.
+          an alliance with one country or as a trap country. If the player does not make an attempt to guess the opponent's country within one minute (can be changed), the turn passes to the opponent.
         </span>
          <p style="margin-bottom: 0px">
           <span class="game-rules-score-heading" style="font-weight: bold"

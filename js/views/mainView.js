@@ -14,6 +14,7 @@ class mainView {
   _onlyIndependentCountriesCheckbox = document.querySelector(
     "#only-independent-countries-checkbox"
   );
+  _hitTimeSelect = document.querySelector("#time-select");
   _createGameRoomButton = document.querySelector("#create-game-room-button");
   _opponentLabel = document.querySelector("#opponent-label");
   _opponentLabelComputer = document.querySelector("#opponent-label-computer");
@@ -41,6 +42,7 @@ class mainView {
   _gameModeChangeListenerAdded = false;
   _gameRoomListenerAdded = false;
   _onlyIndependentCountriesListenerAdded = false;
+  _hitTimeListenerAdded = false;
 
   startGame(
     aboutView,
@@ -144,6 +146,17 @@ class mainView {
         ).checked = this._onlyIndependentCountriesCheckbox.checked;
       });
       this._onlyIndependentCountriesListenerAdded = true;
+    }
+  }
+
+  addHitTimeListener() {
+    if(!this._hitTimeListenerAdded) {
+      this._hitTimeSelect.addEventListener("change", () => {
+          document.getElementById(
+          "time-select-game-room"
+        ).value = this._hitTimeSelect.value;
+      });
+      this._hitTimeListenerAdded = true;
     }
   }
 

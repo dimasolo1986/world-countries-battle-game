@@ -24,6 +24,7 @@ class gameRoomView {
   _gameRoomOnlyIndependentCountriesCheckbox = document.querySelector(
     "#only-independent-countries-checkbox-game-room"
   );
+  _gameRoomHitTimeSelect = document.querySelector("#time-select-game-room");
   _gameRoomInstructionHeader = document.querySelector(
     "#game-room-instruction-header"
   );
@@ -50,6 +51,18 @@ class gameRoomView {
   _gameRoomCopyLinkListenerAdded = false;
   _gameRoomShareLinkListenerAdded = false;
   _onlyIndependentCountriesListenerAdded = false;
+  _gameRoomHitTimeSelectListenerAdded = false;
+
+  addHitTimeSelectListener() {
+    if(!this._gameRoomHitTimeSelectListenerAdded) {
+      this._gameRoomHitTimeSelect.addEventListener("change", () => {
+          document.getElementById(
+          "time-select"
+        ).value = this._gameRoomHitTimeSelect.value;
+      });
+      this._gameRoomHitTimeSelectListenerAdded = true;
+    }
+  }
 
   addOnlyIndependentCountriesListener() {
     if (!this._onlyIndependentCountriesListenerAdded) {
@@ -79,16 +92,19 @@ class gameRoomView {
     const spinner = document.getElementById("gameRoomLoaderSpinner");
     spinner.classList.remove("not-displayed");
     const gameRoomId = generateRoomId();
+    const hitTimeSelect = document.getElementById("time-select");
     const onlyIndependentCountriesCheckbox = document.getElementById(
       "only-independent-countries-checkbox"
     );
+    hitTimeSelect.disabled = true;
     onlyIndependentCountriesCheckbox.disabled = true;
     this._gameRoomOnlyIndependentCountriesCheckbox.disabled = true;
+    this._gameRoomHitTimeSelect.disabled = true;
     const gameUrl =
       window.location.origin +
       `?gameRoom=${gameRoomId}&allCountries=${
         onlyIndependentCountriesCheckbox.checked ? false : true
-      }`;
+      }&time=${hitTimeSelect.value}`;
     try {
       await this._firebase.initializeApplication();
       this._firebase.getApplicationDatabase();
@@ -135,11 +151,14 @@ class gameRoomView {
     this._gameRoomDeleteButton.disabled = true;
     this._gameRoomCopyLink.disabled = true;
     this._gameShareLink.disabled = true;
+    const hitTimeSelect = document.getElementById("time-select");
     const onlyIndependentCountriesCheckbox = document.getElementById(
       "only-independent-countries-checkbox"
     );
+    hitTimeSelect.disabled = false;
     onlyIndependentCountriesCheckbox.disabled = false;
     this._gameRoomOnlyIndependentCountriesCheckbox.disabled = false;
+    this._gameRoomHitTimeSelect.disabled = false;
     const gameRoomId = sessionStorage.getItem("game-room");
     if (gameRoomId) {
       try {
@@ -406,7 +425,7 @@ class gameRoomView {
     }`;
     this._gameRoomInstructionText.textContent = `${
       localization[model.worldCountries.language][
-        "To play with your friend, you need: 1. Choose the desired game configuration, whether you want to guess countries and alliances of countries from all over the world or only independent ones. You can do this on this page or on the main page (after creating a game room, you will not be able to change this setting). 2. Create a game room and a link to the game for your friend by clicking the 'Create Game Room' button. 3. Copy the game link by clicking the 'Copy Link' button and send it to your friend or share the game link by clicking the 'Share Link With Friend' button. 4. After completing a game or several games, you can delete the game room by clicking the 'Delete Game Room' button (after deleting the game room, your friend will no longer be able to use the game link to play with you)."
+        "To play with your friend, you need: 1. Choose the desired game configuration, whether you want to guess countries and alliances of countries from all over the world or only independent ones, time (in seconds) to try to guess the opponent's country. You can do this on this page or on the main page (after creating a game room, you will not be able to change this setting). 2. Create a game room and a link to the game for your friend by clicking the 'Create Game Room' button. 3. Copy the game link by clicking the 'Copy Link' button and send it to your friend or share the game link by clicking the 'Share Link With Friend' button. 4. After completing a game or several games, you can delete the game room by clicking the 'Delete Game Room' button (after deleting the game room, your friend will no longer be able to use the game link to play with you)."
       ]
     }`;
     this._gameRoomImportantHeader.textContent = `${
