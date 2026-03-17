@@ -298,10 +298,13 @@ export class Player {
       this.selectRandomCountries();
       this.addUserClickCountriesPlayHandler();
     }
-    this.gameMessageField.textContent = `ℹ️ ${localization[model.worldCountries.language][
-      "Choose one alliance from four countries"
-    ]
-      }`;
+    this.setMessageInnerHtmlField(
+      `<span style="font-size: 0.8rem;">ℹ️ ${localization[model.worldCountries.language][
+      "Choose one alliance from four countries on map or click"
+      ] + " 🎲 - " + localization[model.worldCountries.language][
+      "Random Countries Selection"
+      ]
+      }</span>`);
   }
 
   addCountryBoundaryBlinking(countryCode) {
@@ -2301,10 +2304,13 @@ export class Player {
       "afterend",
       this.gameConfiguration.countriesUnionsHtml,
     );
-    this.gameMessageField.textContent = `ℹ️ ${localization[model.worldCountries.language][
-      "Choose one alliance from four countries"
-    ]
-      }`;
+    this.setMessageInnerHtmlField(
+      `<span style="font-size: 0.8rem;">ℹ️ ${localization[model.worldCountries.language][
+      "Choose one alliance from four countries on map or click"
+      ] + " 🎲 - " + localization[model.worldCountries.language][
+      "Random Countries Selection"
+      ]
+      }</span>`);
     this.playMap.setSelectedCountryFiledHtml("");
     if (this.gameConfiguration.gameMode === "user")
       this.sendCleanCountriesSelectionToOpponent();
@@ -2499,6 +2505,9 @@ export class Player {
   }
 
   addUserPlayerInitialCountrySelectionHandler(countryCode, countryBoundary) {
+    document.getElementById(
+      "random-user-countries-selection",
+    ).style.display = "none";
     const countryMarker = this.countryMarkers[countryCode];
     const country = this.countries[countryCode];
     countryMarker.off("click");
@@ -2516,6 +2525,10 @@ export class Player {
         this.selectedCountryCodes.size >= 1 &&
         this.selectedCountryCodes.size <= 4
       ) {
+        this.gameMessageField.textContent = `ℹ️ ${localization[model.worldCountries.language][
+          "Choose one alliance from four countries"
+        ]
+          }`;
         this.setSelectedCountryFiledHtml(country);
         this.addUserPlayerInitialCountrySelection(
           countryCode,

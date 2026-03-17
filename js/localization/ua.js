@@ -623,6 +623,7 @@ export const localization = {
     "You selected": "Ви вибрали",
     "Choose one alliance from four countries":
       "Виберіть один альянс з чотирьох країн",
+      "Choose one alliance from four countries on map or click": "Виберіть один альянс з чотирьох країн на мапі або натисніть",
     "Choose one alliance of countries that includes four countries on the world map.":
       "Виберіть один альянс країн, який включає чотири країни на мапі світу.",
     "Choose two alliances of countries that include three countries on the world map.":
@@ -1410,6 +1411,7 @@ export const localization = {
     "You selected": "You selected",
     "Choose one alliance from four countries":
       "Choose one alliance from four countries",
+      "Choose one alliance from four countries on map or click": "Choose one alliance from four countries on map or click",
     "Choose one alliance of countries that includes four countries on the world map.":
       "Choose one alliance of countries that includes four countries on the world map.",
     "Choose two alliances of countries that include three countries on the world map.":
@@ -2199,6 +2201,7 @@ export const localization = {
     "You selected": "Sie haben ausgewählt",
     "Choose one alliance from four countries":
       "Wählen Sie eine Allianz aus vier Ländern",
+      "Choose one alliance from four countries on map or click": "Wählen Sie auf der Karte ein Bündnis aus vier Ländern aus oder klicken Sie",
     "Choose one alliance of countries that includes four countries on the world map.":
       "Wählen Sie auf der Weltkarte eine Länderallianz aus, die vier Länder umfasst.",
     "Choose two alliances of countries that include three countries on the world map.":
@@ -2907,6 +2910,7 @@ export const localization = {
     "You selected": "Vous avez sélectionné",
     "Choose one alliance from four countries":
       "Choisissez une alliance parmi quatre pays",
+      "Choose one alliance from four countries on map or click": "Choisissez une alliance parmi les quatre pays indiqués sur la carte ou cliquez",
     "Choose one alliance of countries that includes four countries on the world map.":
       "Choisissez une alliance de pays contenant quatre pays sur la carte du monde.",
     "Choose two alliances of countries that include three countries on the world map.":
@@ -3697,6 +3701,7 @@ export const localization = {
     "Checking Connection...": "Comprobando conexión...",
     "Choose one alliance from four countries":
       "Elige una alianza entre cuatro países",
+      "Choose one alliance from four countries on map or click": "Elija una alianza entre cuatro países en el mapa o haga clic aquí",
     "Choose one alliance of countries that includes four countries on the world map.":
       "Elige una alianza de países que contenga cuatro países en el mapa mundial.",
     "Choose two alliances of countries that include three countries on the world map.":
@@ -4512,6 +4517,7 @@ export const localization = {
     CountryPhoto: "Visualizza la Foto del Paese",
     "Choose one alliance from four countries":
       "Scegli un'alleanza tra quattro paesi",
+      "Choose one alliance from four countries on map or click": "Scegli un'alleanza tra quattro paesi sulla mappa oppure fai clic",
     "Choose one alliance of countries that includes four countries on the world map.":
       "Scegli un'alleanza di paesi che contenga quattro paesi sulla mappa del mondo.",
     "Choose two alliances of countries that include three countries on the world map.":
