@@ -1335,10 +1335,10 @@ export class Player {
   setHitTimeout(time = this.gameConfiguration.hitTime) {
     if (
       this.gameConfiguration.gameMode === "user" &&
-      this.opponentPlayerStartAcknowledged
+      this.opponentPlayerStartAcknowledged  && this.playerAttemptToGuess
     ) {
       this.hitTimeout(time);
-    } else if (this.gameConfiguration.gameMode === "computer") {
+    } else if (this.gameConfiguration.gameMode === "computer" && this.playerAttemptToGuess) {
       this.hitTimeout(time);
     }
   }
