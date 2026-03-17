@@ -976,7 +976,7 @@ export class PlayMap {
       if (confirmExit) {
         this.game.finishGame(deleteGameRoom);
       } else {
-        this.setPlayerTimeout();
+        if (this.game && this.game.started) this.setPlayerTimeout();
       }
     } else {
       this.game.finishGame(deleteGameRoom);
