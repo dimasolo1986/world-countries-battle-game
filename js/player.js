@@ -2315,6 +2315,9 @@ export class Player {
     if (this.gameConfiguration.gameMode === "user")
       this.sendCleanCountriesSelectionToOpponent();
     if (this.game) this.game.bonusCountries = [];
+      this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
+      animate: false,
+    });
   }
 
   isEnoughCountryNeighbours(countryCode, minNeighboursNumber) {
