@@ -1961,7 +1961,7 @@ export class Player {
             opacity: 0,
             className: countryCode,
           });
-          countryMarker.on(
+          countryMarker.once(
             "click",
             function (ev) {
               L.DomEvent.stopPropagation(ev);
@@ -1972,7 +1972,7 @@ export class Player {
               );
             }.bind(this),
           );
-          countryBoundary.on(
+          countryBoundary.once(
             "click",
             function (ev) {
               L.DomEvent.stopPropagation(ev);
@@ -2350,7 +2350,7 @@ export class Player {
     const countryMarker = this.countryMarkers[countryCode];
     if (this.playerType === "userPlayer") {
       countryBoundary.off("click");
-      countryBoundary.on("click", (ev) => {
+      countryBoundary.once("click", (ev) => {
         L.DomEvent.stopPropagation(ev);
         this.addUserPlayerInitialCountrySelectionHandler(
           countryCode,
@@ -2359,7 +2359,7 @@ export class Player {
         );
       });
       countryMarker.off("click");
-      countryMarker.on("click", (ev) => {
+      countryMarker.once("click", (ev) => {
         L.DomEvent.stopPropagation(ev);
         this.addUserPlayerInitialCountrySelectionHandler(
           countryCode,

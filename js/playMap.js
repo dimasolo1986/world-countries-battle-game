@@ -860,6 +860,13 @@ export class PlayMap {
     );
   }
 
+  destroyMap() {
+    if(this.map) {
+      this.map.off();
+      this.map.remove();
+    }
+  }
+
   cleanSelection() {
     this.playerOne.cleanSelection();
     const randomSection = document.getElementById(

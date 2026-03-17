@@ -345,6 +345,7 @@ export class Game {
     if (this.gameConfiguration.gameMode === "user") {
       this.playerOne.sendFinishGameToOpponent();
     }
+    this.playMap.destroyMap();
     this.playerOne.cleanPlayerResources(deleteGameRoom);
     this.playerTwo.cleanPlayerResources(deleteGameRoom);
     this.playerOne = null;
