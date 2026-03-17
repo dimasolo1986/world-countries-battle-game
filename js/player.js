@@ -1964,7 +1964,7 @@ export class Player {
             opacity: 0,
             className: countryCode,
           });
-          countryMarker.once(
+          countryMarker.on(
             "click",
             function (ev) {
               L.DomEvent.stopPropagation(ev);
@@ -1975,7 +1975,7 @@ export class Player {
               );
             }.bind(this),
           );
-          countryBoundary.once(
+          countryBoundary.on(
             "click",
             function (ev) {
               L.DomEvent.stopPropagation(ev);
