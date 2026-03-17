@@ -72,6 +72,7 @@ export class Player {
     this.playMap = playerMap;
     this.gameConfiguration = gameConfiguration;
     this.playerType = playerType;
+    if (playerType === "userPlayer") this.playerAttemptToGuess = true;
     this.gameMessageField = document.querySelector(
       "#countries-battle-game-message",
     );
@@ -172,7 +173,11 @@ export class Player {
     this.score = 0;
     this.usedHintsCount = 0;
     this.trapCountryHitted = 0;
-    this.playerAttemptToGuess = false;
+    if (this.playerType === "userPlayer") {
+      this.playerAttemptToGuess = true;
+    } else {
+      this.playerAttemptToGuess = false;
+    }
     this.opponentPlayerConfigAcknowledged = false;
     this.opponentPlayerStartAcknowledged = false;
     this.playerConfigured = false;
