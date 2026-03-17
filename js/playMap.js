@@ -861,7 +861,7 @@ export class PlayMap {
   }
 
   destroyMap() {
-    if(this.map) {
+    if (this.map) {
       this.map.off();
       this.map.remove();
     }
@@ -892,15 +892,17 @@ export class PlayMap {
   }
   gameRulesFunction() {
     this.exitFullScreen();
-    const gameRulesModal = document.getElementById("gameRulesModal");
-    gameRulesModal.addEventListener(
-      "shown.bs.modal",
-      this.clearPlayerTimeout.bind(this),
-    );
-    gameRulesModal.addEventListener(
-      "hidden.bs.modal",
-      this.setPlayerTimeout.bind(this),
-    );
+    if (this.game && this.game.started) {
+      const gameRulesModal = document.getElementById("gameRulesModal");
+      gameRulesModal.addEventListener(
+        "shown.bs.modal",
+        this.clearPlayerTimeout.bind(this),
+      );
+      gameRulesModal.addEventListener(
+        "hidden.bs.modal",
+        this.setPlayerTimeout.bind(this),
+      );
+    }
     this.game.showGameRules();
   }
 

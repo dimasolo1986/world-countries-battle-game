@@ -4,6 +4,7 @@ import { showGameResultWindow, showGameRulesWindow } from "./helpers.js";
 import * as model from "./model.js";
 export class Game {
   finished = false;
+  started = false;
   isOpponentPlayerReady = true;
   isPlayerReady = true;
   bonusCountries;
@@ -352,6 +353,7 @@ export class Game {
     this.playerTwo = null;
     this.playMap = null;
     this.finished = true;
+    this.started = false;
     loadMain();
   }
 
@@ -395,6 +397,7 @@ export class Game {
       return;
     }
     this.playMap.initStartPlayMapView();
+    this.started = true;
     this.playerOne.sendStartGameToOpponent();
     if (
       this.gameConfiguration.gameMode === "user" &&
