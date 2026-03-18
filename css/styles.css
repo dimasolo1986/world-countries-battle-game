@@ -200,6 +200,21 @@ tr td:first-child {
   100% {opacity: 0.8;}
 }
 
+@media (hover: hover) {
+  #clean-user-countries-selection:hover {
+    background-color: red;
+  
+  }
+}
+
+@media (hover: hover) {
+  #random-user-countries-selection:hover {
+    background-color: lightgreen;
+  
+  }
+}
+
+
 #coat-of-arms-link,
 #country-outline-link,
 #country-photo-link,

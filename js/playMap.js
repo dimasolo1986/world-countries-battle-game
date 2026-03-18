@@ -228,12 +228,6 @@ export class PlayMap {
         random.style.borderTop = "1px dotted black";
         random.textContent = "🎲";
         random.addEventListener("click", this.randomFunction);
-        random.addEventListener("mouseover", () => {
-          random.style.backgroundColor = "lightgreen";
-        });
-        random.addEventListener("mouseout", () => {
-          random.style.backgroundColor = "white";
-        });
         const clean = L.DomUtil.create("div");
         clean.style.height = "23px";
         clean.style.display = "flex";
@@ -245,12 +239,6 @@ export class PlayMap {
         clean.style.borderTop = "1px dotted black";
         clean.textContent = "🗑️";
         clean.addEventListener("click", this.cleanFunction);
-        clean.addEventListener("mouseover", () => {
-          clean.style.backgroundColor = "red";
-        });
-        clean.addEventListener("mouseout", () => {
-          clean.style.backgroundColor = "white";
-        });
         container.insertAdjacentHTML(
           "beforeend",
           this.gameConfiguration.countriesUnionsHtml,
