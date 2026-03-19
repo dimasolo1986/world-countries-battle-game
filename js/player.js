@@ -838,6 +838,44 @@ export class Player {
     }
   }
 
+  deleteCountryNeighbourBorders(player, country, countriesNumberField, selectedCodes) {
+    const countryBorderCodes = country.countryBorders
+      .map((countryBorder) => {
+        return player.countriesCodeMapping[countryBorder];
+      })
+      .filter(
+        (countryCode) =>
+          countryCode !== undefined &&
+          player.countryCodes.includes(countryCode),
+      );
+    countryBorderCodes.forEach((countryBorderCode) => {
+      if (
+        !selectedCodes.has(countryBorderCode)
+      ) {
+        const countryBoundary =
+          player.countryBoundaries[countryBorderCode];
+        const countryMarker =
+          player.countryMarkers[countryBorderCode];
+        countryMarker.unbindTooltip();
+        countryBoundary.unbindTooltip();
+        countryMarker.off();
+        countryBoundary.off();
+        player.playerMap.removeLayer(countryMarker);
+        player.playerMap.removeLayer(countryBoundary);
+        delete player.countryMarkers[countryBorderCode];
+        delete player.countryPopups[countryBorderCode];
+        delete player.countryTooltips[countryBorderCode];
+        delete player.countryBoundaries[countryBorderCode];
+        const countryIndexToDelete =
+          player.countryCodes.indexOf(countryBorderCode);
+        if (countryIndexToDelete >= 0)
+          player.countryCodes.splice(countryIndexToDelete, 1);
+        countriesNumberField.textContent =
+          player.countryCodes.length;
+      }
+    });
+  }
+
   async playerHit() {
     this.disableMapInteraction();
     this.playMap.cleanMap();
@@ -971,41 +1009,7 @@ export class Player {
           this.opponentPlayer.closeCountryPopup(countryCode);
           this.opponentPlayer.playerMap.removeLayer(countryBoundary);
           delete this.opponentPlayer.countryBoundaries[countryCode];
-          const countryBorderCodes = country.countryBorders
-            .map((countryBorder) => {
-              return this.opponentPlayer.countriesCodeMapping[countryBorder];
-            })
-            .filter(
-              (countryCode) =>
-                countryCode !== undefined &&
-                this.opponentPlayer.countryCodes.includes(countryCode),
-            );
-          countryBorderCodes.forEach((countryBorderCode) => {
-            if (
-              !this.opponentPlayer.selectedCountryTrapCodes.has(countryBorderCode)
-            ) {
-              const countryBoundary =
-                this.opponentPlayer.countryBoundaries[countryBorderCode];
-              const countryMarker =
-                this.opponentPlayer.countryMarkers[countryBorderCode];
-              countryMarker.unbindTooltip();
-              countryBoundary.unbindTooltip();
-              countryMarker.off();
-              countryBoundary.off();
-              this.opponentPlayer.playerMap.removeLayer(countryMarker);
-              this.opponentPlayer.playerMap.removeLayer(countryBoundary);
-              delete this.opponentPlayer.countryMarkers[countryBorderCode];
-              delete this.opponentPlayer.countryPopups[countryBorderCode];
-              delete this.opponentPlayer.countryTooltips[countryBorderCode];
-              delete this.opponentPlayer.countryBoundaries[countryBorderCode];
-              const countryIndexToDelete =
-                this.opponentPlayer.countryCodes.indexOf(countryBorderCode);
-              if (countryIndexToDelete >= 0)
-                this.opponentPlayer.countryCodes.splice(countryIndexToDelete, 1);
-              this.countriesNumberField.textContent =
-                this.opponentPlayer.countryCodes.length;
-            }
-          });
+          this.deleteCountryNeighbourBorders(this.opponentPlayer, country, this.countriesNumberField, this.opponentPlayer.selectedCountryTrapCodes);
           this.opponentPlayer.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
             animate: false,
           });
@@ -1036,6 +1040,7 @@ export class Player {
               className: countryCode,
             });
           }
+          this.deleteCountryNeighbourBorders(this, country, this.opponentPlayer.countriesNumberField, new Set([...this.selectedCountryCodes, ...this.selectedCountryTrapCodes]));
           this.opponentPlayer.addCountryBoundaryBlinking(countryCode);
           this.opponentPlayer.setElementStyle(countryBoundary, {
             weight: 1,
@@ -1045,6 +1050,7 @@ export class Player {
             opacity: 0.8,
             className: countryCode,
           });
+          this.deleteCountryNeighbourBorders(this.opponentPlayer, country, this.countriesNumberField, new Set([...this.opponentPlayer.selectedCountryCodes, ...this.opponentPlayer.selectedCountryTrapCodes]));
           this.score = this.score + 10;
           document.getElementById("player-two-score-field").textContent =
             `🏅 ${this.score}`;
@@ -1124,44 +1130,7 @@ export class Player {
             countryUnion.forEach((countryObject) => {
               const countryCode = Object.keys(countryObject)[0];
               const country = this.opponentPlayer.countries[countryCode];
-              const countryBorderCodes = country.countryBorders
-                .map((countryBorder) => {
-                  return this.opponentPlayer.countriesCodeMapping[countryBorder];
-                })
-                .filter(
-                  (countryCode) =>
-                    countryCode !== undefined &&
-                    this.opponentPlayer.countryCodes.includes(countryCode),
-                );
-              countryBorderCodes.forEach((countryBorderCode) => {
-                if (
-                  !this.opponentPlayer.selectedCountryCodes.has(countryBorderCode)
-                ) {
-                  const countryBoundary =
-                    this.opponentPlayer.countryBoundaries[countryBorderCode];
-                  const countryMarker =
-                    this.opponentPlayer.countryMarkers[countryBorderCode];
-                  countryMarker.unbindTooltip();
-                  countryBoundary.unbindTooltip();
-                  countryMarker.off();
-                  countryBoundary.off();
-                  this.opponentPlayer.playerMap.removeLayer(countryMarker);
-                  this.opponentPlayer.playerMap.removeLayer(countryBoundary);
-                  delete this.opponentPlayer.countryMarkers[countryBorderCode];
-                  delete this.opponentPlayer.countryPopups[countryBorderCode];
-                  delete this.opponentPlayer.countryTooltips[countryBorderCode];
-                  delete this.opponentPlayer.countryBoundaries[countryBorderCode];
-                  const countryIndexToDelete =
-                    this.opponentPlayer.countryCodes.indexOf(countryBorderCode);
-                  if (countryIndexToDelete >= 0)
-                    this.opponentPlayer.countryCodes.splice(
-                      countryIndexToDelete,
-                      1,
-                    );
-                  this.countriesNumberField.textContent =
-                    this.opponentPlayer.countryCodes.length;
-                }
-              });
+              this.deleteCountryNeighbourBorders(this.opponentPlayer, country, this.countriesNumberField, this.opponentPlayer.selectedCountryCodes);
             });
             const countryUnionHtml =
               this.opponentPlayer.createCountryUnionMessageHtml(
@@ -1340,7 +1309,7 @@ export class Player {
   setHitTimeout(time = this.gameConfiguration.hitTime) {
     if (
       this.gameConfiguration.gameMode === "user" &&
-      this.opponentPlayerStartAcknowledged  && this.playerAttemptToGuess
+      this.opponentPlayerStartAcknowledged && this.playerAttemptToGuess
     ) {
       this.hitTimeout(time);
     } else if (this.gameConfiguration.gameMode === "computer" && this.playerAttemptToGuess) {
@@ -1532,35 +1501,7 @@ export class Player {
         );
         guessedCountryAllianceHeader.classList.add("not-displayed");
         guessedCountryAlliance.classList.remove("not-displayed");
-        const countryBorderCodes = country.countryBorders
-          .map((countryBorder) => {
-            return this.countriesCodeMapping[countryBorder];
-          })
-          .filter(
-            (countryCode) =>
-              countryCode !== undefined &&
-              this.countryCodes.includes(countryCode),
-          );
-        countryBorderCodes.forEach((countryBorderCode) => {
-          if (!this.selectedCountryTrapCodes.has(countryBorderCode)) {
-            const countryBoundary = this.countryBoundaries[countryBorderCode];
-            const countryMarker = this.countryMarkers[countryBorderCode];
-            countryMarker.unbindTooltip();
-            countryBoundary.unbindTooltip();
-            countryMarker.off();
-            countryBoundary.off();
-            this.playerMap.removeLayer(countryBoundary);
-            this.playerMap.removeLayer(countryMarker);
-            delete this.countryMarkers[countryBorderCode];
-            delete this.countryBoundaries[countryBorderCode];
-            const countryIndexToDelete =
-              this.countryCodes.indexOf(countryBorderCode);
-            if (countryIndexToDelete >= 0) {
-              this.countryCodes.splice(countryIndexToDelete, 1);
-            }
-            this.countriesNumberField.textContent = this.countryCodes.length;
-          }
-        });
+        this.deleteCountryNeighbourBorders(this, country, this.countriesNumberField, this.selectedCountryTrapCodes);
         this.playerAttemptToGuess = true;
         this.opponentPlayer.playerAttemptToGuess = false;
         await this.sleep(2500);
@@ -1601,6 +1542,7 @@ export class Player {
           });
         }
         this.addCountryBoundaryBlinking(countryCode);
+        this.deleteCountryNeighbourBorders(this.opponentPlayer, country, this.countriesNumberField, new Set([...this.opponentPlayer.selectedCountryTrapCodes, ...this.opponentPlayer.selectedCountryCodes]));
         this.setElementStyle(countryBoundary, {
           weight: 1,
           color: "purple",
@@ -1609,6 +1551,7 @@ export class Player {
           opacity: 0.8,
           className: countryCode,
         });
+        this.deleteCountryNeighbourBorders(this, country, this.opponentPlayer.countriesNumberField, new Set([...this.selectedCountryTrapCodes, ...this.selectedCountryCodes]));
         this.opponentPlayer.score = this.opponentPlayer.score + 10;
         document.getElementById("player-one-score-field").textContent =
           `🏅 ${this.opponentPlayer.score}`;
@@ -1759,37 +1702,7 @@ export class Player {
             );
             if (countryGuessedIndex >= 0)
               this.lastGuessedCountryNames.splice(countryGuessedIndex, 1);
-            const countryBorderCodes = country.countryBorders
-              .map((countryBorder) => {
-                return this.countriesCodeMapping[countryBorder];
-              })
-              .filter(
-                (countryCode) =>
-                  countryCode !== undefined &&
-                  this.countryCodes.includes(countryCode),
-              );
-            countryBorderCodes.forEach((countryBorderCode) => {
-              if (!this.selectedCountryCodes.has(countryBorderCode)) {
-                const countryBoundary =
-                  this.countryBoundaries[countryBorderCode];
-                const countryMarker = this.countryMarkers[countryBorderCode];
-                countryMarker.unbindTooltip();
-                countryBoundary.unbindTooltip();
-                countryMarker.off();
-                countryBoundary.off();
-                this.playerMap.removeLayer(countryBoundary);
-                this.playerMap.removeLayer(countryMarker);
-                delete this.countryMarkers[countryBorderCode];
-                delete this.countryBoundaries[countryBorderCode];
-                const countryIndexToDelete =
-                  this.countryCodes.indexOf(countryBorderCode);
-                if (countryIndexToDelete >= 0) {
-                  this.countryCodes.splice(countryIndexToDelete, 1);
-                }
-                this.countriesNumberField.textContent =
-                  this.countryCodes.length;
-              }
-            });
+            this.deleteCountryNeighbourBorders(this, country, this.countriesNumberField, this.selectedCountryCodes);
           });
           const countryUnionHtml =
             this.createCountryUnionMessageHtml(countryUnionIndex);
@@ -2320,7 +2233,7 @@ export class Player {
     if (this.gameConfiguration.gameMode === "user")
       this.sendCleanCountriesSelectionToOpponent();
     if (this.game) this.game.bonusCountries = [];
-      this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
+    this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
       animate: false,
     });
   }
@@ -3516,36 +3429,7 @@ export class Player {
           this.closeCountryPopup(countryCode);
           this.playerMap.removeLayer(countryBoundary);
           delete this.countryBoundaries[countryCode];
-          const countryBorderCodes = country.countryBorders
-            .map((countryBorder) => {
-              return this.countriesCodeMapping[countryBorder];
-            })
-            .filter(
-              (countryCode) =>
-                countryCode !== undefined &&
-                this.countryCodes.includes(countryCode),
-            );
-          countryBorderCodes.forEach((countryBorderCode) => {
-            if (!this.selectedCountryTrapCodes.has(countryBorderCode)) {
-              const countryBoundary = this.countryBoundaries[countryBorderCode];
-              const countryMarker = this.countryMarkers[countryBorderCode];
-              countryMarker.unbindTooltip();
-              countryBoundary.unbindTooltip();
-              countryMarker.off();
-              countryBoundary.off();
-              this.playerMap.removeLayer(countryMarker);
-              this.playerMap.removeLayer(countryBoundary);
-              delete this.countryMarkers[countryBorderCode];
-              delete this.countryPopups[countryBorderCode];
-              delete this.countryTooltips[countryBorderCode];
-              delete this.countryBoundaries[countryBorderCode];
-              const countryIndexToDelete =
-                this.countryCodes.indexOf(countryBorderCode);
-              if (countryIndexToDelete >= 0)
-                this.countryCodes.splice(countryIndexToDelete, 1);
-              this.countriesNumberField.textContent = this.countryCodes.length;
-            }
-          });
+          this.deleteCountryNeighbourBorders(this, country, this.countriesNumberField, this.selectedCountryTrapCodes);
           this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
             animate: false,
           });
@@ -3578,6 +3462,7 @@ export class Player {
             });
           }
           this.addCountryBoundaryBlinking(countryCode);
+          this.deleteCountryNeighbourBorders(this.opponentPlayer, country, this.countriesNumberField, new Set([...this.opponentPlayer.selectedCountryCodes, ...this.opponentPlayer.selectedCountryTrapCodes]));
           this.setElementStyle(countryBoundary, {
             weight: 1,
             color: "purple",
@@ -3586,6 +3471,7 @@ export class Player {
             opacity: 0.8,
             className: countryCode,
           });
+          this.deleteCountryNeighbourBorders(this, country, this.opponentPlayer.countriesNumberField, new Set([...this.selectedCountryCodes, ...this.selectedCountryTrapCodes]));
           this.opponentPlayer.score = this.opponentPlayer.score + 10;
           document.getElementById("player-two-score-field").textContent =
             `🏅 ${this.opponentPlayer.score}`;
@@ -3660,38 +3546,7 @@ export class Player {
             countryUnion.forEach((countryObject) => {
               const countryCode = Object.keys(countryObject)[0];
               const country = this.countries[countryCode];
-              const countryBorderCodes = country.countryBorders
-                .map((countryBorder) => {
-                  return this.countriesCodeMapping[countryBorder];
-                })
-                .filter(
-                  (countryCode) =>
-                    countryCode !== undefined &&
-                    this.countryCodes.includes(countryCode),
-                );
-              countryBorderCodes.forEach((countryBorderCode) => {
-                if (!this.selectedCountryCodes.has(countryBorderCode)) {
-                  const countryBoundary =
-                    this.countryBoundaries[countryBorderCode];
-                  const countryMarker = this.countryMarkers[countryBorderCode];
-                  countryMarker.unbindTooltip();
-                  countryBoundary.unbindTooltip();
-                  countryMarker.off();
-                  countryBoundary.off();
-                  this.playerMap.removeLayer(countryMarker);
-                  this.playerMap.removeLayer(countryBoundary);
-                  delete this.countryMarkers[countryBorderCode];
-                  delete this.countryPopups[countryBorderCode];
-                  delete this.countryTooltips[countryBorderCode];
-                  delete this.countryBoundaries[countryBorderCode];
-                  const countryIndexToDelete =
-                    this.countryCodes.indexOf(countryBorderCode);
-                  if (countryIndexToDelete >= 0)
-                    this.countryCodes.splice(countryIndexToDelete, 1);
-                  this.countriesNumberField.textContent =
-                    this.countryCodes.length;
-                }
-              });
+              this.deleteCountryNeighbourBorders(this, country, this.countriesNumberField, this.selectedCountryCodes);
             });
             const countryUnionHtml =
               this.createCountryUnionMessageHtml(countryUnionIndex);
