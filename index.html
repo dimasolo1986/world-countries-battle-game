@@ -467,7 +467,7 @@
               id="gameRulesContent"
             ></div>
                 <div id="game-rules-friend-link" class="not-displayed text-center" style="font-size: 0.5rem; justify-content: center; align-items: center;"><span id="game-rules-friend-link-label" style="font-weight: bold;">Game Link For Friend</span>
-            <input id="game-rules-friend-link-input" class="form-control" readonly aria-readonly="true" style="field-sizing: content; width: fit-content; display: inline-block; font-size: 0.6rem; padding: 0.25rem 0.25rem;">
+            <input id="game-rules-friend-link-input" class="form-control" readonly aria-readonly="true" style="field-sizing: content; width: fit-content; display: inline-block; font-size: 0.6rem; padding: 0.25rem 0.25rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
             </div>
           </div>
           <div class="modal-footer" style="padding: 0.2rem; justify-content: center;">
@@ -1135,11 +1135,11 @@
             </div>
             <input
             id="roomIdInput"
-            class="room-id-input form-control"
+            class="room-id-input form-control  text-center"
             placeholder="Click 'Create Game Room' to generate game link"
             readonly
             aria-readonly="true"
-            style="field-sizing: content; font-size: 0.6rem; display: inline-block; padding: 0.25rem 0.25rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+            style="field-sizing: content; font-size: 0.65rem; display: inline-block; padding: 0.25rem 0.25rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 50%;"
           />
           <div id="copy-to-clipboard-label" style="font-size: 0.6rem; font-weight: bold;"></div>
         </div>
