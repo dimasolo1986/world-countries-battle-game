@@ -989,8 +989,13 @@ export class Player {
           } else {
             this.score = this.score - 50;
           }
-          document.getElementById("player-two-score-field").textContent =
-            `🏅 ${this.score}`;
+          const scoreElement = document.getElementById("player-two-score-field");
+          scoreElement.textContent = `🏅 ${this.score}`;
+          if (this.score < 0) {
+            scoreElement.style.color = "red";
+          } else {
+            scoreElement.style.color = "green";
+          }
           const hintType = this.opponentPlayer.getRandomHintType();
           this.opponentPlayer.addHint(countryCode, false, hintType);
           this.opponentPlayer.addCountryBoundaryBlinking(countryCode);
@@ -1040,6 +1045,7 @@ export class Player {
               className: countryCode,
             });
           }
+          this.deleteCountryNeighbourBorders(this.opponentPlayer, country, this.countriesNumberField, new Set([...this.opponentPlayer.selectedCountryCodes, ...this.opponentPlayer.selectedCountryTrapCodes]));
           this.deleteCountryNeighbourBorders(this, country, this.opponentPlayer.countriesNumberField, new Set([...this.selectedCountryCodes, ...this.selectedCountryTrapCodes]));
           this.opponentPlayer.addCountryBoundaryBlinking(countryCode);
           this.opponentPlayer.setElementStyle(countryBoundary, {
@@ -1050,10 +1056,14 @@ export class Player {
             opacity: 0.8,
             className: countryCode,
           });
-          this.deleteCountryNeighbourBorders(this.opponentPlayer, country, this.countriesNumberField, new Set([...this.opponentPlayer.selectedCountryCodes, ...this.opponentPlayer.selectedCountryTrapCodes]));
           this.score = this.score + 10;
-          document.getElementById("player-two-score-field").textContent =
-            `🏅 ${this.score}`;
+          const scoreElement = document.getElementById("player-two-score-field");
+          scoreElement.textContent = `🏅 ${this.score}`;
+          if (this.score < 0) {
+            scoreElement.style.color = "red";
+          } else {
+            scoreElement.style.color = "green";
+          }
           this.setMessageInnerHtmlField(
             `<span style="font-size: 0.75rem;">ℹ️ ${localization[model.worldCountries.language][
             "Computer has fallen into a bonus-country"
@@ -1125,8 +1135,13 @@ export class Player {
             } else if (countryUnion.length === 1) {
               this.score = this.score + 50;
             }
-            document.getElementById("player-two-score-field").textContent =
-              `🏅 ${this.score}`;
+            const scoreElement = document.getElementById("player-two-score-field");
+            scoreElement.textContent = `🏅 ${this.score}`;
+            if (this.score < 0) {
+              scoreElement.style.color = "red";
+            } else {
+              scoreElement.style.color = "green";
+            }
             countryUnion.forEach((countryObject) => {
               const countryCode = Object.keys(countryObject)[0];
               const country = this.opponentPlayer.countries[countryCode];
@@ -1308,11 +1323,11 @@ export class Player {
 
   setHitTimeout(time = this.gameConfiguration.hitTime) {
     if (
-      this.gameConfiguration.gameMode === "user" &&
+      this.gameConfiguration && this.gameConfiguration.gameMode === "user" &&
       this.opponentPlayerStartAcknowledged && this.playerAttemptToGuess
     ) {
       this.hitTimeout(time);
-    } else if (this.gameConfiguration.gameMode === "computer" && this.playerAttemptToGuess) {
+    } else if (this.gameConfiguration && this.gameConfiguration.gameMode === "computer" && this.playerAttemptToGuess) {
       this.hitTimeout(time);
     }
   }
@@ -1469,8 +1484,13 @@ export class Player {
           this.opponentPlayer.score = this.opponentPlayer.score - 50;
           points = 50;
         }
-        document.getElementById("player-one-score-field").textContent =
-          `🏅 ${this.opponentPlayer.score}`;
+        const scoreElement = document.getElementById("player-one-score-field");
+        scoreElement.textContent = `🏅 ${this.opponentPlayer.score}`;
+        if (this.opponentPlayer.score < 0) {
+          scoreElement.style.color = "red";
+        } else {
+          scoreElement.style.color = "green";
+        }
         this.addCountryBoundaryBlinking(countryCode);
         this.setElementStyle(countryBoundary, {
           weight: 1,
@@ -1553,8 +1573,13 @@ export class Player {
         });
         this.deleteCountryNeighbourBorders(this, country, this.opponentPlayer.countriesNumberField, new Set([...this.selectedCountryTrapCodes, ...this.selectedCountryCodes]));
         this.opponentPlayer.score = this.opponentPlayer.score + 10;
-        document.getElementById("player-one-score-field").textContent =
-          `🏅 ${this.opponentPlayer.score}`;
+        const scoreElement = document.getElementById("player-one-score-field");
+        scoreElement.textContent = `🏅 ${this.opponentPlayer.score}`;
+        if (this.opponentPlayer.score < 0) {
+          scoreElement.style.color = "red";
+        } else {
+          scoreElement.style.color = "green";
+        }
         this.setMessageInnerHtmlField(
           `<span>🎁 ${localization[model.worldCountries.language][
           "You have fallen into a bonus-country"
@@ -1671,8 +1696,13 @@ export class Player {
             this.opponentPlayer.score = this.opponentPlayer.score + 50;
             points = 50;
           }
-          document.getElementById("player-one-score-field").textContent =
-            `🏅 ${this.opponentPlayer.score}`;
+          const scoreElement = document.getElementById("player-one-score-field");
+          scoreElement.textContent = `🏅 ${this.opponentPlayer.score}`;
+          if (this.opponentPlayer.score < 0) {
+            scoreElement.style.color = "red";
+          } else {
+            scoreElement.style.color = "green";
+          }
           const countryUnionString = countryUnion
             .map(
               (countryObject) =>
@@ -3409,8 +3439,13 @@ export class Player {
           } else {
             this.opponentPlayer.score = this.opponentPlayer.score - 50;
           }
-          document.getElementById("player-two-score-field").textContent =
-            `🏅 ${this.opponentPlayer.score}`;
+          const scoreElement = document.getElementById("player-two-score-field");
+          scoreElement.textContent = `🏅 ${this.opponentPlayer.score}`;
+          if (this.opponentPlayer.score < 0) {
+            scoreElement.style.color = "red";
+          } else {
+            scoreElement.style.color = "green";
+          }
           const hintType = this.getRandomHintType();
           this.addHint(countryCode, false, hintType);
           this.addCountryBoundaryBlinking(countryCode);
@@ -3473,8 +3508,13 @@ export class Player {
           });
           this.deleteCountryNeighbourBorders(this, country, this.opponentPlayer.countriesNumberField, new Set([...this.selectedCountryCodes, ...this.selectedCountryTrapCodes]));
           this.opponentPlayer.score = this.opponentPlayer.score + 10;
-          document.getElementById("player-two-score-field").textContent =
-            `🏅 ${this.opponentPlayer.score}`;
+          const scoreElement = document.getElementById("player-two-score-field");
+          scoreElement.textContent = `🏅 ${this.opponentPlayer.score}`;
+          if (this.opponentPlayer.score < 0) {
+            scoreElement.style.color = "red";
+          } else {
+            scoreElement.style.color = "green";
+          }
           this.setMessageInnerHtmlField(
             `<span style="font-size: 0.7rem;">ℹ️ ${localization[model.worldCountries.language][
             "Opponent has fallen into a bonus-country"
@@ -3541,8 +3581,13 @@ export class Player {
             } else if (countryUnion.length === 1) {
               this.opponentPlayer.score = this.opponentPlayer.score + 50;
             }
-            document.getElementById("player-two-score-field").textContent =
-              `🏅 ${this.opponentPlayer.score}`;
+            const scoreElement = document.getElementById("player-two-score-field");
+            scoreElement.textContent = `🏅 ${this.opponentPlayer.score}`;
+            if (this.opponentPlayer.score < 0) {
+              scoreElement.style.color = "red";
+            } else {
+              scoreElement.style.color = "green";
+            }
             countryUnion.forEach((countryObject) => {
               const countryCode = Object.keys(countryObject)[0];
               const country = this.countries[countryCode];
