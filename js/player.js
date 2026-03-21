@@ -546,13 +546,11 @@ export class Player {
             localization[model.worldCountries.language]["Close"];
           if (coatOfArmsImage) coatOfArmsImage.src = hintValue;
           const linkContainer = document.createElement("div");
-          linkContainer.style.fontSize = "0.7rem";
-          linkContainer.textContent = (index + 1).toString() + ". ";
           const coatOfArmsLink = document.createElement("button");
           coatOfArmsLink.id = "coat-of-arms-link";
           coatOfArmsLink.classList.add("btn", "btn-info", "btn-sm");
           coatOfArmsLink.style.fontSize = "0.6rem";
-          coatOfArmsLink.style.width = "90%";
+          coatOfArmsLink.style.width = "100%";
           coatOfArmsLink.style.marginBottom = "3px";
           coatOfArmsLink.style.border = "1px dotted grey";
           coatOfArmsLink.textContent =
@@ -583,13 +581,11 @@ export class Player {
             flagImage.style.borderRadius = "5px";
           }
           const linkContainer = document.createElement("div");
-          linkContainer.style.fontSize = "0.7rem";
-          linkContainer.textContent = (index + 1).toString() + ". ";
           const flagLink = document.createElement("button");
           flagLink.id = "flag-link";
           flagLink.classList.add("btn", "btn-warning", "btn-sm");
           flagLink.style.fontSize = "0.6rem";
-          flagLink.style.width = "90%";
+          flagLink.style.width = "100%";
           flagLink.style.marginBottom = "3px";
           flagLink.style.border = "1px dotted grey";
           flagLink.textContent =
@@ -618,13 +614,11 @@ export class Player {
             localization[model.worldCountries.language]["Close"];
 
           const linkContainer = document.createElement("div");
-          linkContainer.style.fontSize = "0.7rem";
-          linkContainer.textContent = (index + 1).toString() + ". ";
           const countryOutlineLink = document.createElement("button");
           countryOutlineLink.id = "country-outline-link";
           countryOutlineLink.classList.add("btn", "btn-success", "btn-sm");
           countryOutlineLink.style.fontSize = "0.6rem";
-          countryOutlineLink.style.width = "90%";
+          countryOutlineLink.style.width = "100%";
           countryOutlineLink.style.marginBottom = "3px";
           countryOutlineLink.style.border = "1px dotted grey";
           countryOutlineLink.textContent =
@@ -662,13 +656,11 @@ export class Player {
             countryPhoto.style.borderRadius = "5px";
           }
           const linkContainer = document.createElement("div");
-          linkContainer.style.fontSize = "0.7rem";
-          linkContainer.textContent = (index + 1).toString() + ". ";
           const countryPhotoLink = document.createElement("button");
           countryPhotoLink.id = "country-photo-link";
           countryPhotoLink.classList.add("btn", "btn-secondary", "btn-sm");
           countryPhotoLink.style.fontSize = "0.6rem";
-          countryPhotoLink.style.width = "90%";
+          countryPhotoLink.style.width = "100%";
           countryPhotoLink.style.marginBottom = "3px";
           countryPhotoLink.style.border = "1px dotted grey";
           countryPhotoLink.textContent =
@@ -697,9 +689,7 @@ export class Player {
           } else {
             hint = localization[model.worldCountries.language][hintValue];
           }
-          const hintHtml = `<div style="font-size:0.7rem;">${(
-            index + 1
-          ).toString()}.&nbsp;${localization[model.worldCountries.language][hintHeader]
+          const hintHtml = `<div>${localization[model.worldCountries.language][hintHeader]
             }:&nbsp;${hint}</div>`;
           hintsPanelContent.insertAdjacentHTML("beforeend", hintHtml);
         }
