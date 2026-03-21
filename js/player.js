@@ -552,7 +552,8 @@ export class Player {
           coatOfArmsLink.id = "coat-of-arms-link";
           coatOfArmsLink.classList.add("btn", "btn-info", "btn-sm");
           coatOfArmsLink.style.fontSize = "0.6rem";
-          coatOfArmsLink.style.marginBottom = "2px";
+          coatOfArmsLink.style.width = "100%";
+          coatOfArmsLink.style.marginBottom = "3px";
           coatOfArmsLink.style.border = "1px dotted grey";
           coatOfArmsLink.textContent =
             localization[model.worldCountries.language][hintHeader];
@@ -588,7 +589,8 @@ export class Player {
           flagLink.id = "flag-link";
           flagLink.classList.add("btn", "btn-warning", "btn-sm");
           flagLink.style.fontSize = "0.6rem";
-          flagLink.style.marginBottom = "2px";
+          flagLink.style.width = "100%";
+          flagLink.style.marginBottom = "3px";
           flagLink.style.border = "1px dotted grey";
           flagLink.textContent =
             localization[model.worldCountries.language][hintHeader];
@@ -622,7 +624,8 @@ export class Player {
           countryOutlineLink.id = "country-outline-link";
           countryOutlineLink.classList.add("btn", "btn-success", "btn-sm");
           countryOutlineLink.style.fontSize = "0.6rem";
-          countryOutlineLink.style.marginBottom = "2px";
+          countryOutlineLink.style.width = "100%";
+          countryOutlineLink.style.marginBottom = "3px";
           countryOutlineLink.style.border = "1px dotted grey";
           countryOutlineLink.textContent =
             localization[model.worldCountries.language][hintHeader];
@@ -665,7 +668,8 @@ export class Player {
           countryPhotoLink.id = "country-photo-link";
           countryPhotoLink.classList.add("btn", "btn-secondary", "btn-sm");
           countryPhotoLink.style.fontSize = "0.6rem";
-          countryPhotoLink.style.marginBottom = "2px";
+          countryPhotoLink.style.width = "100%";
+          countryPhotoLink.style.marginBottom = "3px";
           countryPhotoLink.style.border = "1px dotted grey";
           countryPhotoLink.textContent =
             localization[model.worldCountries.language][hintHeader];
