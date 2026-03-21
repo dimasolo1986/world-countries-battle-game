@@ -903,6 +903,7 @@ export class Player {
     if (this.playerType === "computerPlayer") {
       try {
         document.getElementById("timer-field-container").style.display = "none";
+        this.playMap.hideMapElement("hints-link");
         this.playMap.hideMapElement("hints-panel");
         this.playMap.hideMapElement("available-countries-panel");
         this.playMap.setMapFiledLabel("Your Map");
