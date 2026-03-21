@@ -523,181 +523,205 @@ export class Player {
 
   addHintsToHintPanel() {
     const hintsPanel = document.getElementById("hints-panel");
-    if (Object.keys(this.hints).length !== 0) {
-      const hintsPanelContent = document.getElementById("hints-panel-content");
-      hintsPanelContent.innerHTML = "";
-      Object.keys(this.hints).forEach((countryCode, index) => {
-        const hintObject = this.hints[countryCode];
-        const hintHeader = Object.keys(hintObject)[0];
-        const hintValue = Object.values(hintObject)[0];
-        if (hintHeader === "CoatOfArms") {
-          const coatOfArmsImage = document.getElementById(
-            "country-coat-of-arms",
-          );
-          const coatOfArmsWindowHeader = document.getElementById(
-            "coatOfArmsModalLabel",
-          );
-          coatOfArmsWindowHeader.textContent =
-            localization[model.worldCountries.language]["Coat Of Arms"];
-          const coatOfArmsCloseButton = document.getElementById(
-            "coatOfArmsModalCloseButton",
-          );
-          coatOfArmsCloseButton.textContent =
-            localization[model.worldCountries.language]["Close"];
-          if (coatOfArmsImage) coatOfArmsImage.src = hintValue;
-          const linkContainer = document.createElement("div");
-          const coatOfArmsLink = document.createElement("button");
-          coatOfArmsLink.id = "coat-of-arms-link";
-          coatOfArmsLink.classList.add("btn", "btn-info", "btn-sm");
-          coatOfArmsLink.style.fontSize = "0.6rem";
-          coatOfArmsLink.style.width = "100%";
-          coatOfArmsLink.style.marginBottom = "3px";
-          coatOfArmsLink.style.border = "1px dotted grey";
-          coatOfArmsLink.textContent =
-            localization[model.worldCountries.language][hintHeader];
-          coatOfArmsLink.addEventListener(
-            "click",
-            function () {
-              this.playMap.exitFullScreen();
-              showCountryCoatOfArmsFlagWindow("coatOfArmsModal");
-            }.bind(this),
-          );
-          linkContainer.appendChild(coatOfArmsLink);
-          hintsPanelContent.insertAdjacentElement("beforeend", linkContainer);
-        } else if (hintHeader === "Flag") {
-          const flagImage = document.getElementById("country-flag");
-          const flagWindowHeader = document.getElementById("flagModalLabel");
-          flagWindowHeader.textContent =
-            localization[model.worldCountries.language]["Country Flag"];
-          const flagCloseButton = document.getElementById(
-            "flagModalCloseButton",
-          );
-          flagCloseButton.textContent =
-            localization[model.worldCountries.language]["Close"];
-          if (flagImage) {
-            flagImage.src = hintValue;
-            flagImage.style.boxShadow =
-              "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
-            flagImage.style.borderRadius = "5px";
-          }
-          const linkContainer = document.createElement("div");
-          const flagLink = document.createElement("button");
-          flagLink.id = "flag-link";
-          flagLink.classList.add("btn", "btn-warning", "btn-sm");
-          flagLink.style.fontSize = "0.6rem";
-          flagLink.style.width = "100%";
-          flagLink.style.marginBottom = "3px";
-          flagLink.style.border = "1px dotted grey";
-          flagLink.textContent =
-            localization[model.worldCountries.language][hintHeader];
-          flagLink.addEventListener(
-            "click",
-            function () {
-              this.playMap.exitFullScreen();
-              showCountryCoatOfArmsFlagWindow("flagModal");
-            }.bind(this),
-          );
-          linkContainer.appendChild(flagLink);
-          hintsPanelContent.insertAdjacentElement("beforeend", linkContainer);
-        } else if (hintHeader === "Outline") {
-          const countryOutlineWindowHeader = document.getElementById(
-            "countryOutlineLabel",
-          );
-          countryOutlineWindowHeader.textContent =
-            localization[model.worldCountries.language][
-            "Country's Outline On Map"
-            ];
-          const countryOutlineCloseButton = document.getElementById(
-            "countryOutlineCloseButton",
-          );
-          countryOutlineCloseButton.textContent =
-            localization[model.worldCountries.language]["Close"];
-
-          const linkContainer = document.createElement("div");
-          const countryOutlineLink = document.createElement("button");
-          countryOutlineLink.id = "country-outline-link";
-          countryOutlineLink.classList.add("btn", "btn-success", "btn-sm");
-          countryOutlineLink.style.fontSize = "0.6rem";
-          countryOutlineLink.style.width = "100%";
-          countryOutlineLink.style.marginBottom = "3px";
-          countryOutlineLink.style.border = "1px dotted grey";
-          countryOutlineLink.textContent =
-            localization[model.worldCountries.language][hintHeader];
-          const outlineModal = document.getElementById("countryOutlineModal");
-          outlineModal.addEventListener(
-            "shown.bs.modal",
-            this.createOutlineMap.bind(this, hintValue, countryCode),
-          );
-          countryOutlineLink.addEventListener(
-            "click",
-            function () {
-              this.playMap.exitFullScreen();
-              showCountryCoatOfArmsFlagWindow("countryOutlineModal");
-            }.bind(this),
-          );
-          linkContainer.appendChild(countryOutlineLink);
-          hintsPanelContent.insertAdjacentElement("beforeend", linkContainer);
-        } else if (hintHeader === "CountryPhoto") {
-          const countryPhoto = document.getElementById("country-photo");
-          const countryPhotoWindowHeader =
-            document.getElementById("countryPhotoLabel");
-          countryPhotoWindowHeader.textContent =
-            localization[model.worldCountries.language]["Landscape Of Country"];
-          const countryPhotoCloseButton = document.getElementById(
-            "countryPhotoCloseButton",
-          );
-          countryPhotoCloseButton.textContent =
-            localization[model.worldCountries.language]["Close"];
-          if (countryPhoto) {
-            countryPhoto.src = hintValue;
-            countryPhoto.style.width = "100%";
-            countryPhoto.style.boxShadow =
-              "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
-            countryPhoto.style.borderRadius = "5px";
-          }
-          const linkContainer = document.createElement("div");
-          const countryPhotoLink = document.createElement("button");
-          countryPhotoLink.id = "country-photo-link";
-          countryPhotoLink.classList.add("btn", "btn-secondary", "btn-sm");
-          countryPhotoLink.style.fontSize = "0.6rem";
-          countryPhotoLink.style.width = "100%";
-          countryPhotoLink.style.marginBottom = "3px";
-          countryPhotoLink.style.border = "1px dotted grey";
-          countryPhotoLink.textContent =
-            localization[model.worldCountries.language][hintHeader];
-          countryPhotoLink.addEventListener(
-            "click",
-            function () {
-              this.playMap.exitFullScreen();
-              showCountryCoatOfArmsFlagWindow("countryPhotoModal");
-            }.bind(this),
-          );
-          linkContainer.appendChild(countryPhotoLink);
-          hintsPanelContent.insertAdjacentElement("beforeend", linkContainer);
-        } else {
-          let hint = "";
-          if (hintHeader === "Capital") {
-            hint =
-              localization[model.worldCountries.language]["capitals"][
-              hintValue
-              ];
-          } else if (hintHeader === "Country") {
-            hint =
-              localization[model.worldCountries.language]["countries"][
-              hintValue
-              ];
-          } else {
-            hint = localization[model.worldCountries.language][hintValue];
-          }
-          const hintHtml = `<div style="font-size:0.7rem; margin-bottom:3px;">${localization[model.worldCountries.language][hintHeader]
-            }:&nbsp;${hint}</div>`;
-          hintsPanelContent.insertAdjacentHTML("beforeend", hintHtml);
+    const hintBtn = document.getElementById("hints-link");
+    if (hintBtn) hintBtn.remove();
+    if (hintsPanel) hintsPanel.classList.add("not-displayed");
+    if (Object.keys(this.hints).length === 0) return;
+    const hintsPanelContent = document.getElementById("hints-panel-content");
+    hintsPanelContent.innerHTML = "";
+    Object.keys(this.hints).forEach((countryCode) => {
+      const hintObject = this.hints[countryCode];
+      const hintHeader = Object.keys(hintObject)[0];
+      const hintValue = Object.values(hintObject)[0];
+      if (hintHeader === "CoatOfArms") {
+        const coatOfArmsImage = document.getElementById(
+          "country-coat-of-arms",
+        );
+        const coatOfArmsWindowHeader = document.getElementById(
+          "coatOfArmsModalLabel",
+        );
+        coatOfArmsWindowHeader.textContent =
+          localization[model.worldCountries.language]["Coat Of Arms"];
+        const coatOfArmsCloseButton = document.getElementById(
+          "coatOfArmsModalCloseButton",
+        );
+        coatOfArmsCloseButton.textContent =
+          localization[model.worldCountries.language]["Close"];
+        if (coatOfArmsImage) coatOfArmsImage.src = hintValue;
+        const linkContainer = document.createElement("div");
+        const coatOfArmsLink = document.createElement("button");
+        coatOfArmsLink.id = "coat-of-arms-link";
+        coatOfArmsLink.classList.add("btn", "btn-info", "btn-sm");
+        coatOfArmsLink.style.fontSize = "0.6rem";
+        coatOfArmsLink.style.width = "100%";
+        coatOfArmsLink.style.marginBottom = "3px";
+        coatOfArmsLink.style.border = "1px dotted grey";
+        coatOfArmsLink.textContent =
+          localization[model.worldCountries.language][hintHeader];
+        coatOfArmsLink.addEventListener(
+          "click",
+          function () {
+            this.playMap.exitFullScreen();
+            showCountryCoatOfArmsFlagWindow("coatOfArmsModal");
+          }.bind(this),
+        );
+        linkContainer.appendChild(coatOfArmsLink);
+        hintsPanelContent.insertAdjacentElement("beforeend", linkContainer);
+      } else if (hintHeader === "Flag") {
+        const flagImage = document.getElementById("country-flag");
+        const flagWindowHeader = document.getElementById("flagModalLabel");
+        flagWindowHeader.textContent =
+          localization[model.worldCountries.language]["Country Flag"];
+        const flagCloseButton = document.getElementById(
+          "flagModalCloseButton",
+        );
+        flagCloseButton.textContent =
+          localization[model.worldCountries.language]["Close"];
+        if (flagImage) {
+          flagImage.src = hintValue;
+          flagImage.style.boxShadow =
+            "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
+          flagImage.style.borderRadius = "5px";
         }
-      });
-      hintsPanel.classList.remove("not-displayed");
-    } else {
-      hintsPanel.classList.add("not-displayed");
-    }
+        const linkContainer = document.createElement("div");
+        const flagLink = document.createElement("button");
+        flagLink.id = "flag-link";
+        flagLink.classList.add("btn", "btn-warning", "btn-sm");
+        flagLink.style.fontSize = "0.6rem";
+        flagLink.style.width = "100%";
+        flagLink.style.marginBottom = "3px";
+        flagLink.style.border = "1px dotted grey";
+        flagLink.textContent =
+          localization[model.worldCountries.language][hintHeader];
+        flagLink.addEventListener(
+          "click",
+          function () {
+            this.playMap.exitFullScreen();
+            showCountryCoatOfArmsFlagWindow("flagModal");
+          }.bind(this),
+        );
+        linkContainer.appendChild(flagLink);
+        hintsPanelContent.insertAdjacentElement("beforeend", linkContainer);
+      } else if (hintHeader === "Outline") {
+        const countryOutlineWindowHeader = document.getElementById(
+          "countryOutlineLabel",
+        );
+        countryOutlineWindowHeader.textContent =
+          localization[model.worldCountries.language][
+          "Country's Outline On Map"
+          ];
+        const countryOutlineCloseButton = document.getElementById(
+          "countryOutlineCloseButton",
+        );
+        countryOutlineCloseButton.textContent =
+          localization[model.worldCountries.language]["Close"];
+
+        const linkContainer = document.createElement("div");
+        const countryOutlineLink = document.createElement("button");
+        countryOutlineLink.id = "country-outline-link";
+        countryOutlineLink.classList.add("btn", "btn-success", "btn-sm");
+        countryOutlineLink.style.fontSize = "0.6rem";
+        countryOutlineLink.style.width = "100%";
+        countryOutlineLink.style.marginBottom = "3px";
+        countryOutlineLink.style.border = "1px dotted grey";
+        countryOutlineLink.textContent =
+          localization[model.worldCountries.language][hintHeader];
+        const outlineModal = document.getElementById("countryOutlineModal");
+        outlineModal.addEventListener(
+          "shown.bs.modal",
+          this.createOutlineMap.bind(this, hintValue, countryCode),
+        );
+        countryOutlineLink.addEventListener(
+          "click",
+          function () {
+            this.playMap.exitFullScreen();
+            showCountryCoatOfArmsFlagWindow("countryOutlineModal");
+          }.bind(this),
+        );
+        linkContainer.appendChild(countryOutlineLink);
+        hintsPanelContent.insertAdjacentElement("beforeend", linkContainer);
+      } else if (hintHeader === "CountryPhoto") {
+        const countryPhoto = document.getElementById("country-photo");
+        const countryPhotoWindowHeader =
+          document.getElementById("countryPhotoLabel");
+        countryPhotoWindowHeader.textContent =
+          localization[model.worldCountries.language]["Landscape Of Country"];
+        const countryPhotoCloseButton = document.getElementById(
+          "countryPhotoCloseButton",
+        );
+        countryPhotoCloseButton.textContent =
+          localization[model.worldCountries.language]["Close"];
+        if (countryPhoto) {
+          countryPhoto.src = hintValue;
+          countryPhoto.style.width = "100%";
+          countryPhoto.style.boxShadow =
+            "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
+          countryPhoto.style.borderRadius = "5px";
+        }
+        const linkContainer = document.createElement("div");
+        const countryPhotoLink = document.createElement("button");
+        countryPhotoLink.id = "country-photo-link";
+        countryPhotoLink.classList.add("btn", "btn-secondary", "btn-sm");
+        countryPhotoLink.style.fontSize = "0.6rem";
+        countryPhotoLink.style.width = "100%";
+        countryPhotoLink.style.marginBottom = "3px";
+        countryPhotoLink.style.border = "1px dotted grey";
+        countryPhotoLink.textContent =
+          localization[model.worldCountries.language][hintHeader];
+        countryPhotoLink.addEventListener(
+          "click",
+          function () {
+            this.playMap.exitFullScreen();
+            showCountryCoatOfArmsFlagWindow("countryPhotoModal");
+          }.bind(this),
+        );
+        linkContainer.appendChild(countryPhotoLink);
+        hintsPanelContent.insertAdjacentElement("beforeend", linkContainer);
+      } else {
+        let hint = "";
+        if (hintHeader === "Capital") {
+          hint =
+            localization[model.worldCountries.language]["capitals"][
+            hintValue
+            ];
+        } else if (hintHeader === "Country") {
+          hint =
+            localization[model.worldCountries.language]["countries"][
+            hintValue
+            ];
+        } else {
+          hint = localization[model.worldCountries.language][hintValue];
+        }
+        const hintHtml = `<div style="font-size:0.7rem; margin-bottom:3px;"><span style="font-weight:bold;">${localization[model.worldCountries.language][hintHeader]
+          }:</span>&nbsp;${hint}</div>`;
+        hintsPanelContent.insertAdjacentHTML("beforeend", hintHtml);
+      }
+    });
+    L.Control.HintsButton = L.Control.extend({
+      onAdd: function (map) {
+        const hintsButton = L.DomUtil.create("button");
+        hintsButton.classList.add("btn", "btn-primary", "btn-sm");
+        hintsButton.id = "hints-link";
+        hintsButton.style.opacity = "0.8";
+        hintsButton.style.fontSize = "0.6rem";
+        hintsButton.style.marginTop = "10px";
+        hintsButton.style.padding = "0.25rem";
+        hintsButton.style.maxWidth = "220px";
+        hintsButton.style.boxShadow =
+          "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
+        hintsButton.textContent = localization[model.worldCountries.language]["View Hints"];
+        hintsButton.addEventListener("click", function () {
+          if (button) button.remove();
+          hintsPanel.classList.remove("not-displayed");
+        }.bind(this), { once: true });
+        return hintsButton;
+      },
+      onRemove: function () { },
+    });
+    L.control.hintsbutton = function (opts) {
+      return new L.Control.HintsButton(opts);
+    };
+    const button = L.control.hintsbutton({ position: "topcenter" }).addTo(this.playerMap);
   }
 
   createOutlineMap(hintValue, countryCode) {
@@ -832,7 +856,7 @@ export class Player {
     }
   }
 
-  deleteCountryNeighbourBorders(player, country, selectedCodes, countriesNumberField=undefined) {
+  deleteCountryNeighbourBorders(player, country, selectedCodes, countriesNumberField = undefined) {
     const countryBorderCodes = country.countryBorders
       .map((countryBorder) => {
         return player.countriesCodeMapping[countryBorder];
@@ -3458,7 +3482,7 @@ export class Player {
           this.closeCountryPopup(countryCode);
           this.playerMap.removeLayer(countryBoundary);
           delete this.countryBoundaries[countryCode];
-          this.deleteCountryNeighbourBorders(this, country, this.selectedCountryTrapCodes,  this.countriesNumberField);
+          this.deleteCountryNeighbourBorders(this, country, this.selectedCountryTrapCodes, this.countriesNumberField);
           this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
             animate: false,
           });
