@@ -989,7 +989,8 @@ export class PlayMap {
   }
 
   hideMapElement(elementId) {
-    document.getElementById(elementId).classList.add("not-displayed");
+    const element = document.getElementById(elementId);
+    if (element) element.classList.add("not-displayed");
   }
 
   initSelectionCountriesMapView() {
