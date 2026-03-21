@@ -689,7 +689,7 @@ export class Player {
           } else {
             hint = localization[model.worldCountries.language][hintValue];
           }
-          const hintHtml = `<div style="font-size:0.7rem;">${localization[model.worldCountries.language][hintHeader]
+          const hintHtml = `<div style="font-size:0.7rem; margin-bottom:3px;">${localization[model.worldCountries.language][hintHeader]
             }:&nbsp;${hint}</div>`;
           hintsPanelContent.insertAdjacentHTML("beforeend", hintHtml);
         }
