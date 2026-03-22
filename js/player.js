@@ -526,7 +526,8 @@ export class Player {
     const hintBtn = document.getElementById("hints-link");
     if (hintBtn) hintBtn.remove();
     if (hintsPanel) hintsPanel.classList.add("not-displayed");
-    if (Object.keys(this.hints).length === 0) return;
+    const hintsLength = Object.keys(this.hints).length;
+    if (hintsLength === 0) return;
     const hintsPanelContent = document.getElementById("hints-panel-content");
     hintsPanelContent.innerHTML = "";
     Object.keys(this.hints).forEach((countryCode) => {
@@ -728,7 +729,7 @@ export class Player {
         hintsButton.style.maxWidth = "220px";
         hintsButton.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
-        hintsButton.textContent = localization[model.worldCountries.language]["View Hints"];
+        hintsButton.textContent = localization[model.worldCountries.language]["View Hints"] + ` - ${hintsLength}`;
         hintsButton.addEventListener("click", function () {
           if (button) button.remove();
           hintsPanel.classList.remove("not-displayed");
@@ -1702,7 +1703,7 @@ export class Player {
         this.playerAttemptToGuess = false;
         this.opponentPlayer.playerAttemptToGuess = true;
         if (this.opponentPlayer.isHintUsed(countryCode)) {
-          this.opponentPlayer.usedHintsCount = this.usedHintsCount + 1;
+          this.opponentPlayer.usedHintsCount = this.opponentPlayer.usedHintsCount + 1;
         }
         this.addCountryBoundaryBlinking(countryCode);
         this.setElementStyle(countryBoundary, {
@@ -3585,8 +3586,8 @@ export class Player {
         } else if (this.selectedCountryCodes.has(countryCode)) {
           this.playerAttemptToGuess = false;
           this.opponentPlayer.playerAttemptToGuess = true;
-          if (this.isHintUsed(countryCode)) {
-            this.usedHintsCount = this.usedHintsCount + 1;
+          if (this.opponentPlayer.isHintUsed(countryCode)) {
+            this.opponentPlayer.usedHintsCount = this.opponentPlayer.usedHintsCount + 1;
           }
           this.addCountryBoundaryBlinking(countryCode);
           this.setElementStyle(countryBoundary, {
