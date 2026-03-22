@@ -695,7 +695,7 @@ export class PlayMap {
         hintsPanel.style.padding = "3px";
         hintsPanel.style.overflow = "hidden";
         hintsPanel.style.fontSize = "0.7rem;";
-        const hintsPanelsHeader = `<div class="text-center" style="border-bottom:1px dashed black; margin-bottom:2px;"><span style="font-size:0.7rem;font-weight:bold;">💡 ${localization[model.worldCountries.language]["Hints:"]
+        const hintsPanelsHeader = `<div class="text-center" style="border-bottom:1px dashed black; margin-bottom:2px;"><span style="font-size:0.75rem;font-weight:bold;">💡 ${localization[model.worldCountries.language]["Hints:"]
           }</span></div>`;
         hintsPanel.insertAdjacentHTML("beforeend", hintsPanelsHeader);
         const hintsPanelContent = L.DomUtil.create("div");

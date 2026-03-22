@@ -553,7 +553,7 @@ export class Player {
         const coatOfArmsLink = document.createElement("button");
         coatOfArmsLink.id = "coat-of-arms-link";
         coatOfArmsLink.classList.add("btn", "btn-info", "btn-sm");
-        coatOfArmsLink.style.fontSize = "0.6rem";
+        coatOfArmsLink.style.fontSize = "0.65rem";
         coatOfArmsLink.style.width = "100%";
         coatOfArmsLink.style.marginBottom = "3px";
         coatOfArmsLink.style.border = "1px dotted grey";
@@ -588,7 +588,7 @@ export class Player {
         const flagLink = document.createElement("button");
         flagLink.id = "flag-link";
         flagLink.classList.add("btn", "btn-warning", "btn-sm");
-        flagLink.style.fontSize = "0.6rem";
+        flagLink.style.fontSize = "0.65rem";
         flagLink.style.width = "100%";
         flagLink.style.marginBottom = "3px";
         flagLink.style.border = "1px dotted grey";
@@ -621,7 +621,7 @@ export class Player {
         const countryOutlineLink = document.createElement("button");
         countryOutlineLink.id = "country-outline-link";
         countryOutlineLink.classList.add("btn", "btn-success", "btn-sm");
-        countryOutlineLink.style.fontSize = "0.6rem";
+        countryOutlineLink.style.fontSize = "0.65rem";
         countryOutlineLink.style.width = "100%";
         countryOutlineLink.style.marginBottom = "3px";
         countryOutlineLink.style.border = "1px dotted grey";
@@ -663,7 +663,7 @@ export class Player {
         const countryPhotoLink = document.createElement("button");
         countryPhotoLink.id = "country-photo-link";
         countryPhotoLink.classList.add("btn", "btn-secondary", "btn-sm");
-        countryPhotoLink.style.fontSize = "0.6rem";
+        countryPhotoLink.style.fontSize = "0.65rem";
         countryPhotoLink.style.width = "100%";
         countryPhotoLink.style.marginBottom = "3px";
         countryPhotoLink.style.border = "1px dotted grey";
@@ -723,13 +723,17 @@ export class Player {
         hintsButton.classList.add("btn", "btn-primary", "btn-sm");
         hintsButton.id = "hints-link";
         hintsButton.style.opacity = "0.8";
-        hintsButton.style.fontSize = "0.6rem";
+        hintsButton.style.fontSize = "0.65rem";
         hintsButton.style.marginTop = "10px";
         hintsButton.style.padding = "0.25rem";
         hintsButton.style.maxWidth = "220px";
         hintsButton.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
-        hintsButton.textContent = localization[model.worldCountries.language]["View Hints"] + ` - ${hintsLength}`;
+        if (hintsLength === 1) {
+          hintsButton.textContent = localization[model.worldCountries.language]["View Hint"];
+        } else {
+          hintsButton.textContent = localization[model.worldCountries.language]["View Hints"];
+        }
         hintsButton.addEventListener("click", function () {
           if (button) button.remove();
           hintsPanel.classList.remove("not-displayed");
