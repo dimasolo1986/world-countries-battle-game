@@ -697,6 +697,25 @@ export class Player {
         hintsPanelContent.insertAdjacentHTML("beforeend", hintHtml);
       }
     });
+    const hideHintsPanelButton = document.createElement("div");
+    hideHintsPanelButton.style.borderTop = "1px dashed black";
+    hideHintsPanelButton.style.textAlign = "center";
+    hideHintsPanelButton.style.fontSize = "0.7rem";
+    hideHintsPanelButton.style.cursor = "pointer";
+    hideHintsPanelButton.style.fontWeight = "bold";
+    hideHintsPanelButton.textContent = localization[model.worldCountries.language]["Hide"];
+    hideHintsPanelButton.style.color = "#007bff";
+    hideHintsPanelButton.addEventListener("mouseover", function () {
+      hideHintsPanelButton.style.color = "blue";
+    });
+    hideHintsPanelButton.addEventListener("mouseout", function () {
+      hideHintsPanelButton.style.color = "#007bff";
+    });
+    hideHintsPanelButton.addEventListener("click", function () {
+      hideHintsPanelButton.remove();
+      this.addHintsToHintPanel();
+    }.bind(this), { once: true });
+    hintsPanelContent.insertAdjacentElement("beforeend", hideHintsPanelButton);
     L.Control.HintsButton = L.Control.extend({
       onAdd: function (map) {
         const hintsButton = L.DomUtil.create("button");

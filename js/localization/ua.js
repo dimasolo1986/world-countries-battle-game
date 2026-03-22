@@ -624,7 +624,7 @@ export const localization = {
     "You selected": "Ви вибрали",
     "Choose one alliance from four countries":
       "Виберіть один альянс з чотирьох країн",
-      "Choose one alliance from four countries on map or click": "Виберіть один альянс з чотирьох країн на мапі або натисніть",
+    "Choose one alliance from four countries on map or click": "Виберіть один альянс з чотирьох країн на мапі або натисніть",
     "Choose one alliance of countries that includes four countries on the world map.":
       "Виберіть один альянс країн, який включає чотири країни на мапі світу.",
     "Choose two alliances of countries that include three countries on the world map.":
@@ -668,6 +668,7 @@ export const localization = {
     Computer: "Комп'ютер",
     "The opponent gets a hint": "Суперник отримує підказку",
     "Hints:": "Підказки:",
+    "Hide": "Приховати",
     "Country Alliance": "Альянс Країн",
     "You have already chosen this country!": "Ви вже обрали цю країну!",
     BACK: "НАЗАД",
@@ -1413,7 +1414,7 @@ export const localization = {
     "You selected": "You selected",
     "Choose one alliance from four countries":
       "Choose one alliance from four countries",
-      "Choose one alliance from four countries on map or click": "Choose one alliance from four countries on map or click",
+    "Choose one alliance from four countries on map or click": "Choose one alliance from four countries on map or click",
     "Choose one alliance of countries that includes four countries on the world map.":
       "Choose one alliance of countries that includes four countries on the world map.",
     "Choose two alliances of countries that include three countries on the world map.":
@@ -1455,6 +1456,7 @@ export const localization = {
       "Computer has fallen into a trap-country",
     Computer: "Computer",
     "Hints:": "Hints:",
+    "Hide": "Hide",
     "The opponent gets a hint": "The opponent gets a hint",
     "You have already chosen this country!":
       "You have already chosen this country!",
@@ -2204,7 +2206,7 @@ export const localization = {
     "You selected": "Sie haben ausgewählt",
     "Choose one alliance from four countries":
       "Wählen Sie eine Allianz aus vier Ländern",
-      "Choose one alliance from four countries on map or click": "Wählen Sie auf der Karte ein Bündnis aus vier Ländern aus oder klicken Sie",
+    "Choose one alliance from four countries on map or click": "Wählen Sie auf der Karte ein Bündnis aus vier Ländern aus oder klicken Sie",
     "Choose one alliance of countries that includes four countries on the world map.":
       "Wählen Sie auf der Weltkarte eine Länderallianz aus, die vier Länder umfasst.",
     "Choose two alliances of countries that include three countries on the world map.":
@@ -2249,6 +2251,7 @@ export const localization = {
     "Open Game Room": "Offenes Spielzimmer",
     "The opponent gets a hint": "Der Gegner bekommt einen Hinweis",
     "Hints:": "Tipps:",
+    "Hide": "Verstecken",
     "Country Alliance": "Länder Allianz",
     BACK: "ZURÜCK",
     "Selected Alliance Country": "Ausgewähltes Allianzland",
@@ -2914,7 +2917,7 @@ export const localization = {
     "View Hints": "Afficher les Astuces",
     "Choose one alliance from four countries":
       "Choisissez une alliance parmi quatre pays",
-      "Choose one alliance from four countries on map or click": "Choisissez une alliance parmi les quatre pays indiqués sur la carte ou cliquez",
+    "Choose one alliance from four countries on map or click": "Choisissez une alliance parmi les quatre pays indiqués sur la carte ou cliquez",
     "Choose one alliance of countries that includes four countries on the world map.":
       "Choisissez une alliance de pays contenant quatre pays sur la carte du monde.",
     "Choose two alliances of countries that include three countries on the world map.":
@@ -2961,6 +2964,7 @@ export const localization = {
     "Instructions.": "Instructions.",
     "The opponent gets a hint": "L'adversaire reçoit un indice",
     "Hints:": "Conseils:",
+    "Hide": "Masquer",
     "Country Alliance": "Alliance des Pays",
     BACK: "RETOUR",
     "Country Flag": "Drapeau du Pays",
@@ -3706,7 +3710,7 @@ export const localization = {
     "Checking Connection...": "Comprobando conexión...",
     "Choose one alliance from four countries":
       "Elige una alianza entre cuatro países",
-      "Choose one alliance from four countries on map or click": "Elija una alianza entre cuatro países en el mapa o haga clic aquí",
+    "Choose one alliance from four countries on map or click": "Elija una alianza entre cuatro países en el mapa o haga clic aquí",
     "Choose one alliance of countries that includes four countries on the world map.":
       "Elige una alianza de países que contenga cuatro países en el mapa mundial.",
     "Choose two alliances of countries that include three countries on the world map.":
@@ -3759,6 +3763,7 @@ export const localization = {
     Computer: "Computadora",
     "The opponent gets a hint": "El oponente recibe una pista",
     "Hints:": "Consejos:",
+    "Hide": "Ocultar",
     "Country Alliance": "Alianza de Países",
     BACK: "VOLVER",
     "Play Again": "Jugar de Nuevo",
@@ -4523,7 +4528,7 @@ export const localization = {
     CountryPhoto: "Visualizza la Foto del Paese",
     "Choose one alliance from four countries":
       "Scegli un'alleanza tra quattro paesi",
-      "Choose one alliance from four countries on map or click": "Scegli un'alleanza tra quattro paesi sulla mappa oppure fai clic",
+    "Choose one alliance from four countries on map or click": "Scegli un'alleanza tra quattro paesi sulla mappa oppure fai clic",
     "Choose one alliance of countries that includes four countries on the world map.":
       "Scegli un'alleanza di paesi che contenga quattro paesi sulla mappa del mondo.",
     "Choose two alliances of countries that include three countries on the world map.":
@@ -4628,6 +4633,7 @@ export const localization = {
     "To clear selected country alliances, click":
       "Per rimuovere le alleanze dei paesi selezionati, clicca qui",
     "Hints:": "Suggerimenti:",
+    "Hide": "Nascondere",
     "Country Alliance": "Alleanza di Paese",
     BACK: "TORNA",
     "Selected Alliance Country": "Paese Alleanza Selezionato",
