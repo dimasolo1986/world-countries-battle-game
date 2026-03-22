@@ -695,7 +695,7 @@ export class Player {
         }
         const hintHtml = `<div style="font-size:0.7rem; margin-bottom:3px;"><span style="font-weight:bold;">${localization[model.worldCountries.language][hintHeader]
           }:</span>&nbsp;${hint}</div>`;
-        hintsPanelContent.insertAdjacentHTML("beforeend", hintHtml);
+        hintsPanelContent.insertAdjacentHTML("afterbegin", hintHtml);
       }
     });
     const hideHintsPanelButton = document.createElement("div");
