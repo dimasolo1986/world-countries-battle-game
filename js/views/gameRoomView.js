@@ -18,11 +18,8 @@ class gameRoomView {
   _gameRoomGameConfigurationHeader = document.querySelector(
     "#game-configuration-header-game-room"
   );
-  _gameRoomOnlyIndependentCountriesCheckboxLabel = document.querySelector(
-    "#only-independent-countries-checkbox-label-game-room"
-  );
-  _gameRoomOnlyIndependentCountriesCheckbox = document.querySelector(
-    "#only-independent-countries-checkbox-game-room"
+  _gameRoomOnlyIndependentCountriesSelect = document.querySelector(
+    "#only-independent-countries-game-room-select"
   );
   _gameRoomHitTimeSelect = document.querySelector("#time-select-game-room");
   _gameRoomInstructionHeader = document.querySelector(
@@ -66,12 +63,12 @@ class gameRoomView {
 
   addOnlyIndependentCountriesListener() {
     if (!this._onlyIndependentCountriesListenerAdded) {
-      this._gameRoomOnlyIndependentCountriesCheckbox.addEventListener(
+      this._gameRoomOnlyIndependentCountriesSelect.addEventListener(
         "change",
         () => {
           document.getElementById(
-            "only-independent-countries-checkbox"
-          ).checked = this._gameRoomOnlyIndependentCountriesCheckbox.checked;
+            "only-independent-countries-select"
+          ).value = this._gameRoomOnlyIndependentCountriesSelect.value;
         }
       );
       this._onlyIndependentCountriesListenerAdded = true;
@@ -93,17 +90,17 @@ class gameRoomView {
     spinner.classList.remove("not-displayed");
     const gameRoomId = generateRoomId();
     const hitTimeSelect = document.getElementById("time-select");
-    const onlyIndependentCountriesCheckbox = document.getElementById(
-      "only-independent-countries-checkbox"
+    const onlyIndependentCountriesSelect = document.getElementById(
+      "only-independent-countries-select"
     );
     hitTimeSelect.disabled = true;
-    onlyIndependentCountriesCheckbox.disabled = true;
-    this._gameRoomOnlyIndependentCountriesCheckbox.disabled = true;
+    onlyIndependentCountriesSelect.disabled = true;
+    this._gameRoomOnlyIndependentCountriesSelect.disabled = true;
     this._gameRoomHitTimeSelect.disabled = true;
     const gameUrl =
       window.location.origin +
       `?gameRoom=${gameRoomId}&allCountries=${
-        onlyIndependentCountriesCheckbox.checked ? false : true
+        onlyIndependentCountriesSelect.value === "Only Independent Countries" ? false : true
       }&time=${hitTimeSelect.value}`;
     try {
       await this._firebase.initializeApplication();
@@ -152,12 +149,12 @@ class gameRoomView {
     this._gameRoomCopyLink.disabled = true;
     this._gameShareLink.disabled = true;
     const hitTimeSelect = document.getElementById("time-select");
-    const onlyIndependentCountriesCheckbox = document.getElementById(
-      "only-independent-countries-checkbox"
+     const onlyIndependentCountriesSelect = document.getElementById(
+      "only-independent-countries-select"
     );
     hitTimeSelect.disabled = false;
-    onlyIndependentCountriesCheckbox.disabled = false;
-    this._gameRoomOnlyIndependentCountriesCheckbox.disabled = false;
+    onlyIndependentCountriesSelect.disabled = false;
+    this._gameRoomOnlyIndependentCountriesSelect.disabled = false;
     this._gameRoomHitTimeSelect.disabled = false;
     const gameRoomId = sessionStorage.getItem("game-room");
     if (gameRoomId) {
@@ -414,9 +411,11 @@ class gameRoomView {
     this._gameRoomGameConfigurationHeader.textContent = `🛠️ ${
       localization[model.worldCountries.language]["Game Configuration"]
     }`;
-    this._gameRoomOnlyIndependentCountriesCheckboxLabel.textContent = `${
-      localization[model.worldCountries.language]["Only Independent Countries"]
-    }`;
+     const options = Array.from(this._gameRoomOnlyIndependentCountriesSelect.options);
+        options.forEach((option) => {
+          option.textContent =
+            localization[model.worldCountries.language][option.value];
+        });
     this._gameRoomInstructionHeader.textContent = `${
       localization[model.worldCountries.language]["Instructions."]
     }`;

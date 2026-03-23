@@ -164,8 +164,8 @@ export class GameConfig {
       this.countryUnionsNumber = 10;
       this.maxCountriesNumberInUnion = 4;
       this.onlyIndependentCountries = document.querySelector(
-        "#only-independent-countries-checkbox"
-      ).checked;
+        "#only-independent-countries-select"
+      ).value === "Only Independent Countries" ? true : false;
       this.hitTime = +document.querySelector("#time-select").value;
       this.gameMode =
         document.querySelector("#gameMode").value === "0" ? "computer" : "user";

@@ -212,12 +212,12 @@
       }
     }
     if(allCountries) {
-      const onlyIndependentCountriesCheckbox = document.getElementById("only-independent-countries-checkbox");
-      onlyIndependentCountriesCheckbox.disabled = true;
+      const onlyIndependentCountriesSelect = document.getElementById("only-independent-countries-select");
+      onlyIndependentCountriesSelect.disabled = true;
       if (allCountries === "true") {
-        onlyIndependentCountriesCheckbox.checked = false;
+        onlyIndependentCountriesSelect.value = "All Countries";
       } else {
-        onlyIndependentCountriesCheckbox.checked = true;
+        onlyIndependentCountriesSelect.value = "Only Independent Countries";
       }
     }
     if(hitTime) {
@@ -671,7 +671,7 @@
       <div
         class="card"
         style="
-          width: 20rem;
+          width: 21rem;
           box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5),
             0 2px 10px 0 rgba(0, 0, 0, 0.12) inset;
           font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
@@ -754,7 +754,7 @@
               </tr>
             </table>
             <span style="margin-left: 3px; margin-right: 3px">:</span>
-            <span style="margin-right: 10px;">1</span>
+            <span style="margin-right: 35px;">1</span>
             <table style="margin-left: 10px">
               <tr>
                 <td>
@@ -838,7 +838,7 @@
               </tr>
             </table>
             <span style="margin-left: 3px; margin-right: 3px">:</span>
-            <span style="margin-right: 16px;">3</span>
+            <span style="margin-right: 25px;">3</span>
             <table style="margin-left: 10px">
               <tr>
                 <td>
@@ -858,7 +858,7 @@
               </tr>
             </table>
             <span style="margin-left: 3px; margin-right: 3px">:</span>
-            <span style="margin-right: 14px;">4</span>
+            <span style="margin-right: 30px;">4</span>
             <table style="margin-left: 10px">
               <tr>
                 <td style="background-color: orange">
@@ -881,18 +881,11 @@
             <span>4</span>
           </div>
           <div style="font-size: 0.8rem">
-            <input
-              type="checkbox"
-              id="only-independent-countries-checkbox"
-              name="only-independent-countries"
-              checked
-              style="vertical-align: text-bottom"
-            />
-            <label
-              for="only-independent-countries-checkbox"
-              id="only-independent-countries-checkbox-label"
-              >Only Independent Countries</label
-            >
+            <label style="margin-right: 3px;" for="only-independent-countries-select">🌍:</label>
+            <select class="form-select form-select-sm" name="only-independent-countries-select" id="only-independent-countries-select" style="cursor: pointer; font-weight: 500; width: fit-content; display: inline-block; font-size: 0.75rem; padding: 0rem 1.6rem 0rem 0.3rem; background-size: 10px 10px; ">
+  <option value="Only Independent Countries" selected>Only Independent Countries</option>
+  <option value="All Countries">All Countries</option>
+</select>
             <label style="margin-left: 3px;" for="time-select">⏱️:</label>
 <select class="form-select form-select-sm" name="time-select" id="time-select" style="cursor: pointer; font-weight: 500; width: fit-content; display: inline-block; font-size: 0.75rem; padding: 0rem 1.6rem 0rem 0.3rem; background-size: 10px 10px; ">
   <option value="30">30</option>
@@ -901,7 +894,7 @@
 </select>
           </div>
           <div class="text-center game-room-input-container" style="font-size: 0.8rem; margin-bottom: 5px;">
-            <p style="margin-bottom: 0px" id="opponent-label">Opponent:</p>
+            <p style="margin-bottom: 0px; margin-top: 2px; font-weight: bold; color: cornflowerblue;" id="opponent-label">Opponent:</p>
             <label for="gameMode" id="opponent-label-computer">Computer</label
             ><span style="margin-left: 3px">🖥️</span>
             <input
@@ -1012,7 +1005,7 @@
       id="create-game-room-page"
       class="container-fluid px-4 not-displayed"
       style="
-        color: #6495ed;
+        color: black;
         overflow: auto;
         text-align: justify;
         background: ghostwhite;
@@ -1057,19 +1050,11 @@
             🛠️ Game Configuration
           </h6>
           <div style="font-size: 0.8rem">
-            <input
-              type="checkbox"
-              id="only-independent-countries-checkbox-game-room"
-              name="only-independent-countries-game-room"
-              checked
-              style="vertical-align: text-bottom; color: black;"
-            />
-            <label
-              for="only-independent-countries-checkbox-game-room"
-              id="only-independent-countries-checkbox-label-game-room"
-              style="color: black;"
-              >Only Independent Countries</label
-            >
+            <label style="margin-right: 3px;" for="only-independent-countries-game-room-select">🌍:</label>
+            <select class="form-select form-select-sm" name="only-independent-countries-game-room-select" id="only-independent-countries-game-room-select" style="cursor: pointer; font-weight: 500; width: fit-content; display: inline-block; font-size: 0.75rem; padding: 0rem 1.6rem 0rem 0.3rem; background-size: 10px 10px; ">
+  <option value="Only Independent Countries" selected>Only Independent Countries</option>
+  <option value="All Countries">All Countries</option>
+</select>
              <label style="margin-left: 5px;" for="time-select-game-room">⏱️:</label>
 <select class="form-select form-select-sm" name="time-select-game-room" id="time-select-game-room" style="cursor: pointer; font-weight: 500; width: fit-content; display: inline-block; font-size: 0.8rem; padding: 0rem 2rem 0rem 0.3rem; background-size: 12px 12px; ">
   <option value="30">30</option>

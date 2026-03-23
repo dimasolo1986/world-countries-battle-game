@@ -11,8 +11,8 @@ class mainView {
   _createGameRoomContainer = document.querySelector(
     "#create-game-room-container"
   );
-  _onlyIndependentCountriesCheckbox = document.querySelector(
-    "#only-independent-countries-checkbox"
+  _onlyIndependentCountriesSelect = document.querySelector(
+    "#only-independent-countries-select"
   );
   _hitTimeSelect = document.querySelector("#time-select");
   _createGameRoomButton = document.querySelector("#create-game-room-button");
@@ -27,9 +27,6 @@ class mainView {
   _gameRulesButton = document.querySelector("#game-rules-button");
   _gameConfigurationHeader = document.querySelector(
     "#game-configuration-header"
-  );
-  _onlyIndependentCountriesCheckboxLabel = document.querySelector(
-    "#only-independent-countries-checkbox-label"
   );
   _header = document.querySelector("header");
   _footer = document.querySelector("footer");
@@ -62,7 +59,7 @@ class mainView {
     ) {
       alert(
         localization[model.worldCountries.language][
-          "You have selected the game mode with a friend. First, create a game room. Click the 'Create Game Room' button."
+        "You have selected the game mode with a friend. First, create a game room. Click the 'Create Game Room' button."
         ]
       );
       return;
@@ -139,19 +136,19 @@ class mainView {
 
   addOnlyIndependentCountriesListener() {
     if (!this._onlyIndependentCountriesListenerAdded) {
-      this._onlyIndependentCountriesCheckbox.addEventListener("change", () => {
+      this._onlyIndependentCountriesSelect.addEventListener("change", () => {
         document.getElementById(
-          "only-independent-countries-checkbox-game-room"
-        ).checked = this._onlyIndependentCountriesCheckbox.checked;
+          "only-independent-countries-game-room-select"
+        ).value = this._onlyIndependentCountriesSelect.value;
       });
       this._onlyIndependentCountriesListenerAdded = true;
     }
   }
 
   addHitTimeListener() {
-    if(!this._hitTimeListenerAdded) {
+    if (!this._hitTimeListenerAdded) {
       this._hitTimeSelect.addEventListener("change", () => {
-          document.getElementById(
+        document.getElementById(
           "time-select-game-room"
         ).value = this._hitTimeSelect.value;
       });
@@ -329,49 +326,39 @@ class mainView {
   }
 
   translateElements() {
-    this._gameConfigurationHeader.textContent = `🛠️ ${
-      localization[model.worldCountries.language]["Game Configuration"]
-    }`;
-    this._onlyIndependentCountriesCheckboxLabel.textContent = `${
-      localization[model.worldCountries.language]["Only Independent Countries"]
-    }`;
-    this._gameRulesButton.textContent = `📄 ${
-      localization[model.worldCountries.language]["Game Rules"]
-    }`;
-    this._supportProjectButton.textContent = `🔗 ${
-      localization[model.worldCountries.language]["Support Project"]
-    }`;
-    this._startButtonText.textContent = `${
-      localization[model.worldCountries.language]["START"]
-    }`;
-    this._aboutButton.textContent = `${
-      localization[model.worldCountries.language]["About Project"]
-    }`;
-    this._opponentLabel.textContent = `${
-      localization[model.worldCountries.language]["Opponent:"]
-    }`;
-    this._opponentLabelComputer.textContent = `${
-      localization[model.worldCountries.language]["Computer"]
-    }`;
-    this._opponentLabelFriend.textContent = `${
-      localization[model.worldCountries.language]["Friend"]
-    }`;
-    this._gameRoomIdLabel.textContent = `${
-      localization[model.worldCountries.language]["Game Room ID:"]
-    }`;
-    this._opponentConnectionLabel.textContent = `${
-      localization[model.worldCountries.language][
-        this._opponentConnectionLabel.dataset.connection
+    this._gameConfigurationHeader.textContent = `🛠️ ${localization[model.worldCountries.language]["Game Configuration"]
+      }`;
+    const options = Array.from(this._onlyIndependentCountriesSelect.options);
+    options.forEach((option) => {
+      option.textContent =
+        localization[model.worldCountries.language][option.value];
+    });
+    this._gameRulesButton.textContent = `📄 ${localization[model.worldCountries.language]["Game Rules"]
+      }`;
+    this._supportProjectButton.textContent = `🔗 ${localization[model.worldCountries.language]["Support Project"]
+      }`;
+    this._startButtonText.textContent = `${localization[model.worldCountries.language]["START"]
+      }`;
+    this._aboutButton.textContent = `${localization[model.worldCountries.language]["About Project"]
+      }`;
+    this._opponentLabel.textContent = `${localization[model.worldCountries.language]["Opponent:"]
+      }`;
+    this._opponentLabelComputer.textContent = `${localization[model.worldCountries.language]["Computer"]
+      }`;
+    this._opponentLabelFriend.textContent = `${localization[model.worldCountries.language]["Friend"]
+      }`;
+    this._gameRoomIdLabel.textContent = `${localization[model.worldCountries.language]["Game Room ID:"]
+      }`;
+    this._opponentConnectionLabel.textContent = `${localization[model.worldCountries.language][
+      this._opponentConnectionLabel.dataset.connection
       ]
-    }`;
-    this._createGameRoomButton.textContent = `🎮 ${
-      localization[model.worldCountries.language][
-        this._createGameRoomButton.dataset.text
+      }`;
+    this._createGameRoomButton.textContent = `🎮 ${localization[model.worldCountries.language][
+      this._createGameRoomButton.dataset.text
       ]
-    }`;
-    this._shareWebSite.firstElementChild.textContent = `${
-      localization[model.worldCountries.language]["Share"]
-    }`;
+      }`;
+    this._shareWebSite.firstElementChild.textContent = `${localization[model.worldCountries.language]["Share"]
+      }`;
   }
 }
 
