@@ -25,7 +25,6 @@ class mainView {
   );
   _gameModeSlider = document.querySelector("#gameMode");
   _gameRulesButton = document.querySelector("#game-rules-button");
-  _gameCardHeader = document.querySelector("#game-header");
   _gameConfigurationHeader = document.querySelector(
     "#game-configuration-header"
   );
@@ -330,11 +329,6 @@ class mainView {
   }
 
   translateElements() {
-    this._gameCardHeader.textContent = `${
-      localization[model.worldCountries.language][
-        "Country Alliance Guesser Game"
-      ]
-    }`;
     this._gameConfigurationHeader.textContent = `🛠️ ${
       localization[model.worldCountries.language]["Game Configuration"]
     }`;
