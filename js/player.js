@@ -306,9 +306,7 @@ export class Player {
     this.setMessageInnerHtmlField(
       `<span style="font-size: 0.8rem;">ℹ️ ${localization[model.worldCountries.language][
       "Choose one alliance from four countries on map or click"
-      ] + " 🎲 - " + localization[model.worldCountries.language][
-      "Random Countries Selection"
-      ]
+      ] + " 🎲"
       }</span>`);
   }
 
@@ -2299,9 +2297,7 @@ export class Player {
     this.setMessageInnerHtmlField(
       `<span style="font-size: 0.8rem;">ℹ️ ${localization[model.worldCountries.language][
       "Choose one alliance from four countries on map or click"
-      ] + " 🎲 - " + localization[model.worldCountries.language][
-      "Random Countries Selection"
-      ]
+      ] + " 🎲"
       }</span>`);
     this.playMap.setSelectedCountryFiledHtml("");
     if (this.gameConfiguration.gameMode === "user")
