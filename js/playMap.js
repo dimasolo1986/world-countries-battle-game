@@ -348,7 +348,7 @@ export class PlayMap {
             "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
           chatButton.style.fontSize = "0.75rem";
           chatButton.style.opacity = "0.7";
-          chatButton.style.width = "20%";
+          chatButton.style.width = "25%";
           chatButton.style.fontWeight = "bolder";
           chatButton.style.marginBottom = "0px";
           chatButton.style.display = "inline-block";
@@ -358,7 +358,7 @@ export class PlayMap {
           const chatButtonLeftArrow = L.DomUtil.create("span");
           chatButtonLeftArrow.id = "chat-button-left-arrow";
           chatButtonLeftArrow.textContent = "⬆";
-          chatButtonLeftArrow.style.marginRight = "5px";
+          chatButtonLeftArrow.style.marginRight = "10px";
           const chatButtonText = L.DomUtil.create("span");
           chatButtonText.id = "chat-button-text";
           chatButtonText.textContent =
@@ -366,7 +366,7 @@ export class PlayMap {
           const chatButtonRightArrow = L.DomUtil.create("span");
           chatButtonRightArrow.id = "chat-button-right-arrow";
           chatButtonRightArrow.textContent = "⬆";
-          chatButtonRightArrow.style.marginLeft = "5px";
+          chatButtonRightArrow.style.marginLeft = "10px";
           const chatContainer = L.DomUtil.create("div");
           chatContainer.id = "chat-container";
           chatContainer.classList.add("not-displayed");

@@ -567,7 +567,7 @@ export class Player {
           }.bind(this),
         );
         linkContainer.appendChild(coatOfArmsLink);
-        hintsPanelContent.insertAdjacentElement("beforeend", linkContainer);
+        hintsPanelContent.insertAdjacentElement("afterbegin", linkContainer);
       } else if (hintHeader === "Flag") {
         const flagImage = document.getElementById("country-flag");
         const flagWindowHeader = document.getElementById("flagModalLabel");
@@ -602,7 +602,7 @@ export class Player {
           }.bind(this),
         );
         linkContainer.appendChild(flagLink);
-        hintsPanelContent.insertAdjacentElement("beforeend", linkContainer);
+        hintsPanelContent.insertAdjacentElement("afterbegin", linkContainer);
       } else if (hintHeader === "Outline") {
         const countryOutlineWindowHeader = document.getElementById(
           "countryOutlineLabel",
@@ -640,7 +640,7 @@ export class Player {
           }.bind(this),
         );
         linkContainer.appendChild(countryOutlineLink);
-        hintsPanelContent.insertAdjacentElement("beforeend", linkContainer);
+        hintsPanelContent.insertAdjacentElement("afterbegin", linkContainer);
       } else if (hintHeader === "CountryPhoto") {
         const countryPhoto = document.getElementById("country-photo");
         const countryPhotoWindowHeader =
@@ -677,7 +677,7 @@ export class Player {
           }.bind(this),
         );
         linkContainer.appendChild(countryPhotoLink);
-        hintsPanelContent.insertAdjacentElement("beforeend", linkContainer);
+        hintsPanelContent.insertAdjacentElement("afterbegin", linkContainer);
       } else {
         let hint = "";
         if (hintHeader === "Capital") {
@@ -693,30 +693,31 @@ export class Player {
         } else {
           hint = localization[model.worldCountries.language][hintValue];
         }
-        const hintHtml = `<div style="font-size:0.7rem; margin-bottom:3px;"><span style="font-weight:bold;">${localization[model.worldCountries.language][hintHeader]
+        const hintHtml = `<div style="font-size:0.7rem;"><span style="font-weight:bold;">${localization[model.worldCountries.language][hintHeader]
           }:</span>&nbsp;${hint}</div>`;
-        hintsPanelContent.insertAdjacentHTML("afterbegin", hintHtml);
+        hintsPanelContent.insertAdjacentHTML("beforeend", hintHtml);
       }
     });
-    const hideHintsPanelButton = document.createElement("div");
-    hideHintsPanelButton.style.borderTop = "1px dashed black";
+    const hideHintsPanelContainer = document.createElement("div");
+    const hideHintsPanelButton = document.createElement("button");
+    hideHintsPanelButton.classList.add("btn", "btn-sm", "btn-primary");
+    hideHintsPanelContainer.style.borderTop = "1px dashed black";
+    hideHintsPanelButton.id = "hints-hide-button";
     hideHintsPanelButton.style.textAlign = "center";
-    hideHintsPanelButton.style.fontSize = "0.7rem";
+    hideHintsPanelButton.style.fontSize = "0.65rem";
+    hideHintsPanelButton.style.width = "100%";
+    hideHintsPanelButton.style.marginTop = "2px";
+    hideHintsPanelButton.style.border = "1px dotted grey";
     hideHintsPanelButton.style.cursor = "pointer";
     hideHintsPanelButton.style.fontWeight = "bold";
     hideHintsPanelButton.textContent = localization[model.worldCountries.language]["Hide"];
-    hideHintsPanelButton.style.color = "#007bff";
-    hideHintsPanelButton.addEventListener("mouseover", function () {
-      hideHintsPanelButton.style.color = "blue";
-    });
-    hideHintsPanelButton.addEventListener("mouseout", function () {
-      hideHintsPanelButton.style.color = "#007bff";
-    });
+    hideHintsPanelContainer.appendChild(hideHintsPanelButton);
     hideHintsPanelButton.addEventListener("click", function () {
       hideHintsPanelButton.remove();
+      hideHintsPanelContainer.remove();
       this.addHintsToHintPanel();
     }.bind(this), { once: true });
-    hintsPanelContent.insertAdjacentElement("beforeend", hideHintsPanelButton);
+    hintsPanelContent.insertAdjacentElement("beforeend", hideHintsPanelContainer);
     L.Control.HintsButton = L.Control.extend({
       onAdd: function (map) {
         const hintsButton = L.DomUtil.create("button");

@@ -218,7 +218,8 @@ tr td:first-child {
 #coat-of-arms-link,
 #country-outline-link,
 #country-photo-link,
-#flag-link {
+#flag-link,
+#hints-hide-button {
   --bs-btn-padding-y: 0.05rem;
   --bs-btn-padding-x: 0.35rem;
   padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
