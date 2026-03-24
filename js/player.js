@@ -51,16 +51,7 @@ export class Player {
   countryCodes = [];
   countriesToGuessNext = [];
   alreadyGuessedCountryCodes = [];
-  hintTypes = new Set([
-    "country",
-    "capital",
-    "region",
-    "subregion",
-    "flag",
-    "emblem",
-    "boundary",
-    "photo",
-  ]);
+  hintTypes = new Set();
   constructor(
     playerMap,
     playerSelectedCountriesContainerId,
@@ -184,16 +175,32 @@ export class Player {
     this.playerWonGame = false;
     this.playerAlreadyHitting = false;
     this.lastGuessedCountryNames = [];
-    this.hintTypes = new Set([
-      "country",
-      "capital",
-      "region",
-      "subregion",
-      "flag",
-      "emblem",
-      "boundary",
-      "photo",
-    ]);
+    if (this.gameConfiguration.hintsType === "All Hints") {
+      this.hintTypes = new Set([
+        "country",
+        "capital",
+        "region",
+        "subregion",
+        "flag",
+        "emblem",
+        "boundary",
+        "photo",
+      ]);
+    } else if (this.gameConfiguration.hintsType === "Text Hints") {
+      this.hintTypes = new Set([
+        "country",
+        "capital",
+        "region",
+        "subregion",
+      ]);
+    } else {
+      this.hintTypes = new Set([
+        "flag",
+        "emblem",
+        "boundary",
+        "photo",
+      ]);
+    }
     this.countryUnions = [
       new Array(4),
       new Array(3),
@@ -363,7 +370,7 @@ export class Player {
       if (countryCapital) {
         this.hints[countryCode] = { Capital: countryCapital };
       } else {
-        this.hints[countryCode] = { Region: country.countryRegion };
+        this.hints[countryCode] = { Country: country.countryName };
       }
     } else if (hintType === "country") {
       this.hints[countryCode] = { Country: country.countryName };
@@ -378,9 +385,9 @@ export class Player {
       if (countryPhotoUrl && this.playerType !== "computerPlayer") {
         this.hints[countryCode] = { CountryPhoto: countryPhotoUrl };
       } else if (countryPhotoUrl === null) {
-        this.hints[countryCode] = { Region: country.countryRegion };
+        this.hints[countryCode] = { Outline: country.countryName };
       } else {
-        this.hints[countryCode] = { Region: country.countryRegion };
+        this.hints[countryCode] = { Outline: country.countryName };
       }
     } else if (hintType === "subregion") {
       const hasSubregion = selectedCountryCodes.some((countryCode) => {
@@ -412,7 +419,7 @@ export class Player {
       if (countryCoatOfArms) {
         this.hints[countryCode] = { CoatOfArms: countryCoatOfArms };
       } else {
-        this.hints[countryCode] = { Region: country.countryRegion };
+        this.hints[countryCode] = { Flag: country.countryFlag };
       }
     }
     this.addSelectedCountryToCountryPanel(

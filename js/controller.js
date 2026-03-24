@@ -35,6 +35,7 @@ const init = function () {
   gameRoomView.addGameRoomCopyLinkHandlerClick();
   gameRoomView.addShareLinkHandlerClick();
   gameRoomView.addOnlyIndependentCountriesListener();
+  gameRoomView.addHintsTypeSelectListener();
   gameRoomView.addHitTimeSelectListener();
   gameRoomView.addStartGameHandlerClick(
     aboutView,
@@ -66,6 +67,7 @@ const init = function () {
   );
   mainView.addGameModeChangeHandler(gameRoomView);
   mainView.addOnlyIndependentCountriesListener();
+  mainView.addHintsTypeListener();
   mainView.addHitTimeListener();
   mainView.addGameRoomListenerHandler(
     aboutView,

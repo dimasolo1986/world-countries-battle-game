@@ -190,6 +190,7 @@
     const roomId = urlParams.get("gameRoom");
     const allCountries = urlParams.get("allCountries");
     const hitTime = urlParams.get("time");
+    const hintType = urlParams.get("hints");
     if(roomId) {
       const isWebRtc = isWebRTCAvailable();
       if (!isWebRtc) {
@@ -218,6 +219,17 @@
         onlyIndependentCountriesSelect.value = "All Countries";
       } else {
         onlyIndependentCountriesSelect.value = "Independent Countries";
+      }
+    }
+     if(hintType) {
+      const hintTypeSelect = document.getElementById("hint-types-select");
+      hintTypeSelect.disabled = true;
+      if (hintType === "all") {
+        hintTypeSelect.value = "All Hints";
+      } else if (hintType === "text") {
+        hintTypeSelect.value = "Text Hints";
+      } else {
+        hintTypeSelect.value = "Visual Hints";
       }
     }
     if(hitTime) {
@@ -687,7 +699,7 @@
           <h5
             id="game-configuration-header"
             class="card-subtitle mb-1"
-            style="color: green; font-size: 0.9rem; margin-top: 5px; font-weight: bold;"
+            style="color: green; font-size: 0.85rem; margin-top: 2px; font-weight: bold;"
           >
             🛠️ Game Configuration
           </h5>
@@ -881,17 +893,25 @@
             <span>4</span>
           </div>
           <div style="font-size: 0.8rem">
-            <label style="margin-right: 3px;" for="only-independent-countries-select">🌍 :</label>
-            <select class="form-select form-select-sm" name="only-independent-countries-select" id="only-independent-countries-select" style="cursor: pointer; font-weight: 500; width: fit-content; display: inline-block; font-size: 0.75rem; padding: 0rem 1.6rem 0rem 0.3rem; background-size: 10px 10px; ">
-  <option value="Independent Countries" selected>Independent Countries</option>
-  <option value="All Countries">All Countries</option>
+ <label style="margin-right: 3px;" for="hint-types-select">💡 :</label>
+            <select class="form-select form-select-sm" name="hint-types-select" id="hint-types-select" style="cursor: pointer; font-weight: 500; width: fit-content; display: inline-block; font-size: 0.75rem; padding: 0rem 1.6rem 0rem 0.3rem; background-size: 10px 10px; ">
+  <option value="All Hints" selected>All Hints</option>
+  <option value="Text Hints">Text Hints</option>
+  <option value="Visual Hints">Visual Hints</option>
 </select>
-            <label style="margin-left: 3px;" for="time-select">⏱️ :</label>
+            <label style="margin-left: 20px;" for="time-select">⏱️ :</label>
 <select class="form-select form-select-sm" name="time-select" id="time-select" style="cursor: pointer; font-weight: 500; width: fit-content; display: inline-block; font-size: 0.75rem; padding: 0rem 1.6rem 0rem 0.3rem; background-size: 10px 10px; ">
   <option value="30">30</option>
   <option value="45">45</option>
   <option selected value="60">60</option>
 </select>
+<div style="margin-top: 10px;">
+   <label for="only-independent-countries-select">🌍 :</label>
+            <select class="form-select form-select-sm" name="only-independent-countries-select" id="only-independent-countries-select" style="cursor: pointer; font-weight: 500; width: fit-content; display: inline-block; font-size: 0.75rem; padding: 0rem 1.6rem 0rem 0.3rem; background-size: 10px 10px; ">
+  <option value="Independent Countries" selected>Independent Countries</option>
+  <option value="All Countries">All Countries</option>
+</select>
+</div>
           </div>
           <div class="text-center game-room-input-container" style="font-size: 0.8rem; margin-bottom: 5px;">
             <p style="margin-bottom: 0px; margin-top: 2px; font-weight: bold; color: cornflowerblue;" id="opponent-label">Opponent:</p>
@@ -971,7 +991,7 @@
               --bs-btn-padding-y: 0.2rem;
               --bs-btn-padding-x: 0.2rem;
             "
-            class="btn btn-danger mb-2"
+            class="btn btn-danger mb-1"
           >
             <div
               id="startLoaderSpinner"
@@ -983,7 +1003,7 @@
             </div>
             <span id="startButtonText" class="not-displayed">START</span>
           </button>
-          <div id="made-in-ukraine-banner" class="mb-2"><img alt="Made In Ukraine Image" style="width: 100px;" src="https://img.shields.io/badge/made_in-Ukraine-ffd700.svg?labelColor=0057b7"></div>
+          <div id="made-in-ukraine-banner" class="mb-1"><img alt="Made In Ukraine Image" style="width: 100px;" src="https://img.shields.io/badge/made_in-Ukraine-ffd700.svg?labelColor=0057b7"></div>
         </div>
       </div>
     </main>
@@ -1036,7 +1056,7 @@
           class="game-room-instructions-text"
           style="margin-top: 5px; color: black; font-size: 0.9rem; text-align: justify;"
         >
-          <span id="game-room-instruction-header" style="font-weight: bold;">Instructions.</span>&nbsp;<span id="game-room-instruction-text">To play with your friend, you need: 1. Choose the desired game configuration, whether you want to guess countries and alliances of countries from all over the world or only independent ones, time (in seconds) to try to guess the opponent's country. You can do this on this page or on the main page (after creating a game room, you will not be able to change this setting). 2. Create a game room and a link to the game for your friend by clicking the 'Create Game Room' button. 3. Copy the game link by clicking the 'Copy Link' button and send it to your friend or share the game link by clicking the 'Share Link With Friend' button. 4. After completing a game or several games, you can delete the game room by clicking the 'Delete Game Room' button (after deleting the game room, your friend will no longer be able to use the game link to play with you).</span> <span style="font-weight: bold" class="game-room-important"
+          <span id="game-room-instruction-header" style="font-weight: bold;">Instructions.</span>&nbsp;<span id="game-room-instruction-text">To play with your friend, you need: 1. Choose the desired game configuration, whether you want to guess countries and alliances of countries from all over the world or only independent ones, receive all or only text clues (country name, country capital, region, subregion) or visual clues (country coat of arms, country flag, country's outline on map, photo from country), time (in seconds) to try to guess the opponent's country. You can do this on this page or on the main page (after creating a game room, you will not be able to change this setting). 2. Create a game room and a link to the game for your friend by clicking the 'Create Game Room' button. 3. Copy the game link by clicking the 'Copy Link' button and send it to your friend or share the game link by clicking the 'Share Link With Friend' button. 4. After completing a game or several games, you can delete the game room by clicking the 'Delete Game Room' button (after deleting the game room, your friend will no longer be able to use the game link to play with you).</span> <span style="font-weight: bold" class="game-room-important"
           >Important!</span
         >&nbsp;
         <span class="game-room-important-description"
@@ -1051,10 +1071,11 @@
             🛠️ Game Configuration
           </h6>
           <div style="font-size: 0.8rem">
-            <label style="margin-right: 3px;" for="only-independent-countries-game-room-select">🌍 :</label>
-            <select class="form-select form-select-sm" name="only-independent-countries-game-room-select" id="only-independent-countries-game-room-select" style="cursor: pointer; font-weight: 500; width: fit-content; display: inline-block; font-size: 0.75rem; padding: 0rem 1.6rem 0rem 0.3rem; background-size: 10px 10px; ">
-  <option value="Independent Countries" selected>Independent Countries</option>
-  <option value="All Countries">All Countries</option>
+           <label style="margin-right: 3px;" for="hint-types-game-room-select">💡 :</label>
+            <select class="form-select form-select-sm" name="hint-types-game-room-select" id="hint-types-game-room-select" style="cursor: pointer; font-weight: 500; width: fit-content; display: inline-block; font-size: 0.75rem; padding: 0rem 1.6rem 0rem 0.3rem; background-size: 10px 10px; ">
+  <option value="All Hints" selected>All Hints</option>
+  <option value="Text Hints">Text Hints</option>
+  <option value="Visual Hints">Visual Hints</option>
 </select>
              <label style="margin-left: 5px;" for="time-select-game-room">⏱️ :</label>
 <select class="form-select form-select-sm" name="time-select-game-room" id="time-select-game-room" style="cursor: pointer; font-weight: 500; width: fit-content; display: inline-block; font-size: 0.8rem; padding: 0rem 2rem 0rem 0.3rem; background-size: 12px 12px; ">
@@ -1062,6 +1083,13 @@
   <option value="45">45</option>
   <option selected value="60">60</option>
 </select>
+<div style="margin-top: 10px;">
+   <label style="margin-right: 3px;" for="only-independent-countries-game-room-select">🌍 :</label>
+            <select class="form-select form-select-sm" name="only-independent-countries-game-room-select" id="only-independent-countries-game-room-select" style="cursor: pointer; font-weight: 500; width: fit-content; display: inline-block; font-size: 0.75rem; padding: 0rem 1.6rem 0rem 0.3rem; background-size: 10px 10px; ">
+  <option value="Independent Countries" selected>Independent Countries</option>
+  <option value="All Countries">All Countries</option>
+</select>
+</div>
           </div>
         <p
           class="game-room-create-delete"
@@ -1560,7 +1588,7 @@
         <span class="game-rules-bonus-countries-rules">The computer will also randomly select five bonus countries, when hit, players get an extra attempt to guess the opponent's country and 10 extra points.</span>
         <br/>
         <span class="game-rules-trap-countries-rules"
-          >When entering an opponent's trap country, he receives one of eight clues about the location of one of your countries: 1. Name of the country; 2. Capital of the country; 3. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 4. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 5. Coat Of Arms Image; 6. Flag Image; 7. Country's Outline On Map; 8. Photo From Country.</span
+          >When entering an opponent's trap country, he receives one of eight clues about the location of one of your countries: 1. Name of the country; 2. Capital of the country; 3. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 4. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 5. Coat Of Arms Image; 6. Flag Image; 7. Country's Outline On Map; 8. Photo From Country. You can configure to receive only text clues (country name, country capital, region, subregion) or visual clues (country coat of arms, country flag, country's outline on map, photo from country).</span
         >
         <br />
         <span style="font-weight: bold" class="game-rules-important"

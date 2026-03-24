@@ -163,12 +163,13 @@ export class GameConfig {
       this.countriesNumber = 20;
       this.countryUnionsNumber = 10;
       this.maxCountriesNumberInUnion = 4;
-      this.onlyIndependentCountries = document.querySelector(
-        "#only-independent-countries-select"
+      this.hintsType = document.getElementById("hint-types-select").value;
+      this.onlyIndependentCountries = document.getElementById(
+        "only-independent-countries-select"
       ).value === "Independent Countries" ? true : false;
-      this.hitTime = +document.querySelector("#time-select").value;
+      this.hitTime = +document.getElementById("time-select").value;
       this.gameMode =
-        document.querySelector("#gameMode").value === "0" ? "computer" : "user";
+        document.getElementById("gameMode").value === "0" ? "computer" : "user";
     }
   }
 }

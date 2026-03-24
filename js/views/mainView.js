@@ -14,6 +14,7 @@ class mainView {
   _onlyIndependentCountriesSelect = document.querySelector(
     "#only-independent-countries-select"
   );
+  _hintsTypeSelect = document.querySelector("#hint-types-select");
   _hitTimeSelect = document.querySelector("#time-select");
   _createGameRoomButton = document.querySelector("#create-game-room-button");
   _opponentLabel = document.querySelector("#opponent-label");
@@ -38,6 +39,7 @@ class mainView {
   _gameModeChangeListenerAdded = false;
   _gameRoomListenerAdded = false;
   _onlyIndependentCountriesListenerAdded = false;
+  _hintsTypeListenerAdded = false;
   _hitTimeListenerAdded = false;
 
   startGame(
@@ -142,6 +144,17 @@ class mainView {
         ).value = this._onlyIndependentCountriesSelect.value;
       });
       this._onlyIndependentCountriesListenerAdded = true;
+    }
+  }
+
+    addHintsTypeListener() {
+    if (!this._hintsTypeListenerAdded) {
+      this._hintsTypeSelect.addEventListener("change", () => {
+        document.getElementById(
+          "hint-types-game-room-select"
+        ).value = this._hintsTypeSelect.value;
+      });
+      this._hintsTypeListenerAdded = true;
     }
   }
 
@@ -328,8 +341,13 @@ class mainView {
   translateElements() {
     this._gameConfigurationHeader.textContent = `🛠️ ${localization[model.worldCountries.language]["Game Configuration"]
       }`;
-    const options = Array.from(this._onlyIndependentCountriesSelect.options);
-    options.forEach((option) => {
+    const onlyIndependentOptions = Array.from(this._onlyIndependentCountriesSelect.options);
+    onlyIndependentOptions.forEach((option) => {
+      option.textContent =
+        localization[model.worldCountries.language][option.value];
+    });
+    const hintTypeOptions = Array.from(this._hintsTypeSelect.options);
+    hintTypeOptions.forEach((option) => {
       option.textContent =
         localization[model.worldCountries.language][option.value];
     });
