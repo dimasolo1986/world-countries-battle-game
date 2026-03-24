@@ -100,7 +100,7 @@ class gameRoomView {
     const gameUrl =
       window.location.origin +
       `?gameRoom=${gameRoomId}&allCountries=${
-        onlyIndependentCountriesSelect.value === "Only Independent Countries" ? false : true
+        onlyIndependentCountriesSelect.value === "Independent Countries" ? false : true
       }&time=${hitTimeSelect.value}`;
     try {
       await this._firebase.initializeApplication();

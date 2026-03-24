@@ -699,7 +699,7 @@ export const localization = {
     "Computer Map": "Мапа Компьютера",
     "Available Countries:": "Доступні Країни:",
     "Card number (UAH):": "Номер картки (UAH):",
-    "Only Independent Countries": "Тільки Незалежні Країни",
+    "Independent Countries": "Незалежні Країни",
     "Congratulations! You won the game!": "Вітаємо! Ви виграли гру!",
     "Congratulations!": "Вітаємо!",
     "You guessed all the opponent's countries:":
@@ -718,7 +718,6 @@ export const localization = {
       "Не можна вибрати країну-агресора!",
     FINISH: "ЗАКІНЧИТИ",
     Finish: "Закінчити",
-    "Only Independent Countries": "Тільки незалежні країни",
     "All Countries": "Всі Країни",
     "War Aggressor": "Країна Агресор",
     "Aggressor Supporter": "Прибічник Агресора",
@@ -1490,7 +1489,7 @@ export const localization = {
     "Computer Map": "Computer Map",
     "Available Countries:": "Available Countries:",
     "Card number (UAH):": "Card number (UAH):",
-    "Only Independent Countries": "Only Independent Countries",
+    "Independent Countries": "Independent Countries",
     "Congratulations! You won the game!": "Congratulations! You won the game!",
     "Congratulations!": "Congratulations!",
     "You guessed all the opponent's countries:":
@@ -1508,7 +1507,6 @@ export const localization = {
     "Games:": "Games:",
     "You can't select a war aggressor country!":
       "You can't select a war aggressor country!",
-    "Only Independent Countries": "Only Independent Countries",
     "All Countries": "All Countries",
     FINISH: "FINISH",
     Finish: "Finish",
@@ -2290,7 +2288,7 @@ export const localization = {
     "Computer Map": "Computerkarte",
     "Available Countries:": "Verfügbare Länder:",
     "Card number (UAH):": "Kartennummer (UAH):",
-    "Only Independent Countries": "Nur Unabhängige Länder",
+    "Independent Countries": "Unabhängige Länder",
     "Congratulations! You won the game!":
       "Herzlichen Glückwunsch! Du hast das Spiel gewonnen!",
     "Congratulations!": "Herzlichen Glückwunsch!",
@@ -2311,7 +2309,6 @@ export const localization = {
     "Games:": "Spiele:",
     "You can't select a war aggressor country!":
       "Sie können kein Kriegsaggressorland auswählen!",
-    "Only Independent Countries": "Nur unabhängige Länder",
     "All Countries": "Alle Länder",
     FINISH: "FERTIG",
     Finish: "Fertig",
@@ -3088,7 +3085,7 @@ export const localization = {
     "Computer Map": "Carte de l'ordinateur",
     "Available Countries:": "Pays Disponibles:",
     "Card number (UAH):": "Numéro de carte (UAH):",
-    "Only Independent Countries": "Seuls les Pays Indépendants",
+    "Independent Countries": "Pays Indépendants",
     "Congratulations! You won the game!":
       "Félicitations! Vous avez gagné la partie!",
     "Congratulations!": "Félicitations!",
@@ -3109,7 +3106,6 @@ export const localization = {
     "Games:": "Jeux:",
     "You can't select a war aggressor country!":
       "Vous ne pouvez pas sélectionner un pays agresseur de guerre!",
-    "Only Independent Countries": "Uniquement les Pays Indépendants",
     "All Countries": "Tous les Pays",
     FINISH: "TERMINER",
     Finish: "Terminer",
@@ -3887,7 +3883,7 @@ export const localization = {
     "Computer Map": "Mapa de la computadora",
     "Available Countries:": "Países Disponibles:",
     "Card number (UAH):": "Número de tarjeta (UAH):",
-    "Only Independent Countries": "Sólo Países Independientes",
+    "Independent Countries": "Países Independientes",
     "Congratulations! You won the game!": "¡Felicidades! ¡Ganaste el juego!",
     "Congratulations!": "¡Felicidades!",
     "You guessed all the opponent's countries:":
@@ -3905,7 +3901,6 @@ export const localization = {
     "Games:": "Juegos:",
     "You can't select a war aggressor country!":
       "¡No puedes seleccionar un país agresor de guerra!",
-    "Only Independent Countries": "Solo Países Independientes",
     "All Countries": "Todos los Países",
     FINISH: "TERMINAR",
     Finish: "Terminar",
@@ -4684,7 +4679,7 @@ export const localization = {
     "Computer Map": "Mappa del computer",
     "Available Countries:": "Paesi Disponibili:",
     "Card number (UAH):": "Numero della carta (UAH):",
-    "Only Independent Countries": "Solo Paesi Indipendenti",
+    "Independent Countries": "Paesi Indipendenti",
     "Congratulations! You won the game!":
       "Congratulazioni! Hai vinto la partita!",
     "Congratulations!": "Congratulazioni!",
