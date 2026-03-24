@@ -359,7 +359,7 @@ class mainView {
       }`;
     this._aboutButton.textContent = `${localization[model.worldCountries.language]["About Project"]
       }`;
-    this._opponentLabel.textContent = `${localization[model.worldCountries.language]["Opponent:"]
+    this._opponentLabel.textContent = `${localization[model.worldCountries.language]["Opponent"]
       }`;
     this._opponentLabelComputer.textContent = `${localization[model.worldCountries.language]["Computer"]
       }`;
