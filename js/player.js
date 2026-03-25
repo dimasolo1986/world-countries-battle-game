@@ -1371,6 +1371,7 @@ export class Player {
   }
 
   setHitTimeout(time = this.gameConfiguration.hitTime) {
+    if (this.gameConfiguration.hitTime === 0) return;
     if (
       this.gameConfiguration && this.gameConfiguration.gameMode === "user" &&
       this.opponentPlayerStartAcknowledged && this.playerAttemptToGuess

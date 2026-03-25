@@ -168,6 +168,7 @@ export class GameConfig {
         "only-independent-countries-select"
       ).value === "Independent Countries" ? true : false;
       this.hitTime = +document.getElementById("time-select").value;
+      this.bonusCountries = +document.getElementById("bonus-countries-select").value;
       this.gameMode =
         document.getElementById("gameMode").value === "0" ? "computer" : "user";
     }

@@ -35,7 +35,8 @@ export class Game {
     this.gameConfiguration = gameConfiguration;
   }
 
-  getRandomBonusCountries(allCountries, excludedSet, count = 5) {
+  getRandomBonusCountries(allCountries, excludedSet, count = this.gameConfiguration.bonusCountries) {
+    if (count === 0) return [];
     const bonusCountries = [];
     for (const code of allCountries) {
       if (!excludedSet.has(code) && code !== "RU") {

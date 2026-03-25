@@ -37,6 +37,7 @@ const init = function () {
   gameRoomView.addOnlyIndependentCountriesListener();
   gameRoomView.addHintsTypeSelectListener();
   gameRoomView.addHitTimeSelectListener();
+  gameRoomView.addBonusCountriesSelectListener();
   gameRoomView.addStartGameHandlerClick(
     aboutView,
     gameView,
@@ -69,6 +70,7 @@ const init = function () {
   mainView.addOnlyIndependentCountriesListener();
   mainView.addHintsTypeListener();
   mainView.addHitTimeListener();
+  mainView.addBonusCountriesListener();
   mainView.addGameRoomListenerHandler(
     aboutView,
     gameView,

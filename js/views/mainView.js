@@ -16,6 +16,7 @@ class mainView {
   );
   _hintsTypeSelect = document.querySelector("#hint-types-select");
   _hitTimeSelect = document.querySelector("#time-select");
+  _bonusCountriesSelect = document.querySelector("#bonus-countries-select");
   _createGameRoomButton = document.querySelector("#create-game-room-button");
   _opponentLabel = document.querySelector("#opponent-label");
   _opponentLabelComputer = document.querySelector("#opponent-label-computer");
@@ -41,6 +42,7 @@ class mainView {
   _onlyIndependentCountriesListenerAdded = false;
   _hintsTypeListenerAdded = false;
   _hitTimeListenerAdded = false;
+  _bonusCountriesSelectListenerAdded = false;
 
   startGame(
     aboutView,
@@ -155,6 +157,17 @@ class mainView {
         ).value = this._hintsTypeSelect.value;
       });
       this._hintsTypeListenerAdded = true;
+    }
+  }
+
+  addBonusCountriesListener() {
+    if (!this._bonusCountriesSelectListenerAdded) {
+      this._bonusCountriesSelect.addEventListener("change", () => {
+        document.getElementById(
+          "bonus-countries-game-room-select"
+        ).value = this._bonusCountriesSelect.value;
+      });
+      this._bonusCountriesSelectListenerAdded = true;
     }
   }
 

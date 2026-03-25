@@ -23,6 +23,7 @@ class gameRoomView {
   );
   _gameRoomHintsTypeSelect = document.querySelector("#hint-types-game-room-select");
   _gameRoomHitTimeSelect = document.querySelector("#time-select-game-room");
+  _gameRoomBonusCountriesSelect = document.querySelector("#bonus-countries-game-room-select");
   _gameRoomInstructionHeader = document.querySelector(
     "#game-room-instruction-header"
   );
@@ -51,6 +52,7 @@ class gameRoomView {
   _onlyIndependentCountriesListenerAdded = false;
   _gameRoomHitTimeSelectListenerAdded = false;
   _gameRoomHintsTypeSelectListenerAdded = false;
+  _gameRoomBonusCountriesListenerAdded = false;
 
   addHitTimeSelectListener() {
     if(!this._gameRoomHitTimeSelectListenerAdded) {
@@ -60,6 +62,17 @@ class gameRoomView {
         ).value = this._gameRoomHitTimeSelect.value;
       });
       this._gameRoomHitTimeSelectListenerAdded = true;
+    }
+  }
+
+  addBonusCountriesSelectListener() {
+    if(!this._gameRoomBonusCountriesListenerAdded) {
+      this._gameRoomBonusCountriesSelect.addEventListener("change", () => {
+          document.getElementById(
+          "bonus-countries-select"
+        ).value = this._gameRoomBonusCountriesSelect.value;
+      });
+      this._gameRoomBonusCountriesListenerAdded = true;
     }
   }
 
@@ -102,6 +115,7 @@ class gameRoomView {
     const spinner = document.getElementById("gameRoomLoaderSpinner");
     spinner.classList.remove("not-displayed");
     const gameRoomId = generateRoomId();
+    const bonusCountriesSelect = document.getElementById("bonus-countries-select");
     const hitTimeSelect = document.getElementById("time-select");
     const onlyIndependentCountriesSelect = document.getElementById(
       "only-independent-countries-select"
@@ -118,14 +132,16 @@ class gameRoomView {
     hitTimeSelect.disabled = true;
     onlyIndependentCountriesSelect.disabled = true;
     hintsTypeSelect.disabled = true;
+    bonusCountriesSelect.disabled = true;
     this._gameRoomOnlyIndependentCountriesSelect.disabled = true;
     this._gameRoomHitTimeSelect.disabled = true;
     this._gameRoomHintsTypeSelect.disabled = true;
+    this._gameRoomBonusCountriesSelect.disabled = true;
     const gameUrl =
       window.location.origin +
       `?gameRoom=${gameRoomId}&allCountries=${
         onlyIndependentCountriesSelect.value === "Independent Countries" ? false : true
-      }&hints=${urlHintType}&time=${hitTimeSelect.value}`;
+      }&hints=${urlHintType}&time=${hitTimeSelect.value}&bonus=${bonusCountriesSelect.value}`;
     try {
       await this._firebase.initializeApplication();
       this._firebase.getApplicationDatabase();
@@ -172,6 +188,7 @@ class gameRoomView {
     this._gameRoomDeleteButton.disabled = true;
     this._gameRoomCopyLink.disabled = true;
     this._gameShareLink.disabled = true;
+    const bonusCountriesSelect = document.getElementById("bonus-countries-select");
     const hitTimeSelect = document.getElementById("time-select");
      const onlyIndependentCountriesSelect = document.getElementById(
       "only-independent-countries-select"
@@ -179,10 +196,12 @@ class gameRoomView {
     const hintsTypeSelect = document.getElementById("hint-types-select");
     hintsTypeSelect.disabled = false;
     hitTimeSelect.disabled = false;
+    bonusCountriesSelect.disabled = false;
     onlyIndependentCountriesSelect.disabled = false;
     this._gameRoomOnlyIndependentCountriesSelect.disabled = false;
     this._gameRoomHitTimeSelect.disabled = false;
     this._gameRoomHintsTypeSelect.disabled = false;
+    this._gameRoomBonusCountriesSelect.disabled = false;
     const gameRoomId = sessionStorage.getItem("game-room");
     if (gameRoomId) {
       try {
@@ -456,7 +475,7 @@ class gameRoomView {
     }`;
     this._gameRoomInstructionText.textContent = `${
       localization[model.worldCountries.language][
-        "To play with your friend, you need: 1. Choose the desired game configuration, whether you want to guess countries and alliances of countries from all over the world or only independent ones, receive all or only text clues (country name, country capital, region, subregion) or visual clues (country coat of arms, country flag, country's outline on map, photo from country), time (in seconds) to try to guess the opponent's country. You can do this on this page or on the main page (after creating a game room, you will not be able to change this setting). 2. Create a game room and a link to the game for your friend by clicking the 'Create Game Room' button. 3. Copy the game link by clicking the 'Copy Link' button and send it to your friend or share the game link by clicking the 'Share Link With Friend' button. 4. After completing a game or several games, you can delete the game room by clicking the 'Delete Game Room' button (after deleting the game room, your friend will no longer be able to use the game link to play with you)."
+        "To play with your friend, you need: 1. Choose the desired game configuration, whether you want to guess countries and alliances of countries from all over the world or only independent ones, receive all or only text clues (country name, country capital, region, subregion) or visual clues (country coat of arms, country flag, country's outline on map, photo from country), time (in seconds) to try to guess the opponent's country, number of bonus countries. You can do this on this page or on the main page (after creating a game room, you will not be able to change this setting). 2. Create a game room and a link to the game for your friend by clicking the 'Create Game Room' button. 3. Copy the game link by clicking the 'Copy Link' button and send it to your friend or share the game link by clicking the 'Share Link With Friend' button. 4. After completing a game or several games, you can delete the game room by clicking the 'Delete Game Room' button (after deleting the game room, your friend will no longer be able to use the game link to play with you)."
       ]
     }`;
     this._gameRoomImportantHeader.textContent = `${
