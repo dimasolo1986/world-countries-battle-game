@@ -638,6 +638,7 @@ export class Player {
         outlineModal.addEventListener(
           "shown.bs.modal",
           this.createOutlineMap.bind(this, hintValue, countryCode),
+          { once: true }
         );
         countryOutlineLink.addEventListener(
           "click",
@@ -814,6 +815,11 @@ export class Player {
       () => {
         map.remove();
       }, { once: true }
+    );
+    outlineModal.addEventListener(
+      "shown.bs.modal",
+      this.createOutlineMap.bind(this, hintValue, countryCode),
+      { once: true }
     );
   }
 
