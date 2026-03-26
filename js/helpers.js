@@ -185,7 +185,8 @@ export const getCountryPhoto = async function (country) {
   try {
     let imageUrl = null;
     let imgUrlArray = [];
-    const countryLandscapeUrl = `https://commons.wikimedia.org/w/api.php?origin=*&action=query&format=json&generator=categorymembers&gcmtitle=Category:Landscapes_of_${country.countryName}&gcmtype=file&prop=imageinfo&iiprop=url`;
+    const countryWikiCategoryName = country.countryWikiLandscapeCategoryName ?? `Landscapes_of_${country.countryName}`;
+    const countryLandscapeUrl = `https://commons.wikimedia.org/w/api.php?origin=*&action=query&format=json&generator=categorymembers&gcmtitle=Category:${countryWikiCategoryName}&gcmtype=file&prop=imageinfo&iiprop=url`;
     const resLandscapes = await fetch(countryLandscapeUrl);
     const dataLandscapes = await resLandscapes.json();
     const urlsLaandscapes = extractImageUrls(dataLandscapes);

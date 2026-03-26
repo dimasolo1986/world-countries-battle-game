@@ -255,6 +255,7 @@ export class Player {
         this.countryCodes.push(country.cca2);
         this.countries[country.cca2] = {
           countryName: country.name.common,
+          countryWikiLandscapeCategoryName: country?.wikiLandscapeCategoryName,
           countryCapital: country.capital?.[0],
           countryRegion: country.region,
           countrySubregion: country?.subregion,
@@ -276,6 +277,7 @@ export class Player {
         this.countryCodes.push(country.cca2);
         this.countries[country.cca2] = {
           countryName: country.name.common,
+          countryWikiLandscapeCategoryName: country?.wikiLandscapeCategoryName,
           countryCapital: country?.capital?.[0],
           countryRegion: country.region,
           countrySubregion: country?.subregion,
