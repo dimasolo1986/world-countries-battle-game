@@ -1655,7 +1655,7 @@ export class Player {
         if (this.playerMap && !this.playerMap._isFullscreen) {
           document.getElementById(
             "gameCountryAllianceGuessedLabel",
-          ).textContent =
+          ).textContent = "👏 " +
             localization[model.worldCountries.language]["Congratulations!"];
           document.getElementById(
             "gameCountryAllianceGuessedCountries",
@@ -1795,11 +1795,11 @@ export class Player {
           if (this.playerMap && !this.playerMap._isFullscreen) {
             document.getElementById(
               "gameCountryAllianceGuessedLabel",
-            ).textContent =
+            ).textContent = "👏 " +
               localization[model.worldCountries.language]["Congratulations!"];
             document.getElementById(
               "gameCountryAllianceGuessedCountries",
-            ).innerHTML = `👏 <span style="font-weight:bold; color:darkblue;">${localization[model.worldCountries.language]["You guessed"]
+            ).innerHTML = `<span style="font-weight:bold; color:darkblue;">${localization[model.worldCountries.language]["You guessed"]
             }</span><div style="display: inline-block; margin-left:5px;">${countryUnionHtml.outerHTML
               }</div><span style="margin-left:5px; color: darkblue; font-weight:bold;">${localization[model.worldCountries.language]["Country Alliance"]
               }</span><div style="color: darkblue; font-weight:bold;font-size: 0.8rem;">${countryUnionString}</div><div style="margin-top:5px;"><span style="

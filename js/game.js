@@ -79,7 +79,7 @@ export class Game {
   showGameResult(playerOneWon, deleteGameRoom = false) {
     this.gameModalResultGuessedCountries.innerHTML = "";
     this.playerOne.enableMapInteraction();
-    this.gameModalResultLabel.textContent =
+    this.gameModalResultLabel.textContent = "📝 " +
       localization[model.worldCountries.language]["Game Result"];
     this.gameModalResultCloseButton.textContent =
       localization[model.worldCountries.language]["Close"];
@@ -88,17 +88,17 @@ export class Game {
     this.gameModalResultShareButton.textContent =
       localization[model.worldCountries.language]["Share"];
     if (playerOneWon) {
-      this.guessCountriesMessageField.textContent =
+      this.guessCountriesMessageField.textContent = "👏 " +
         localization[model.worldCountries.language][
           "Congratulations! You won the game!"
         ];
-      this.gameResultScore.textContent =
+      this.gameResultScore.textContent = "🏅 " +
         localization[model.worldCountries.language]["Score"] +
         ": " +
         this.playerOne.score +
         " " +
         localization[model.worldCountries.language]["Points"];
-      this.gameModalHeading.textContent =
+      this.gameModalHeading.textContent = "👏 " +
         localization[model.worldCountries.language][
           "Congratulations! You won the game!"
         ];
@@ -210,17 +210,17 @@ export class Game {
       }
       this.gameModalResultGuessedCountries.appendChild(userCountriesContainer);
     } else {
-      this.guessCountriesMessageField.textContent =
+      this.guessCountriesMessageField.textContent = "💔 " +
         localization[model.worldCountries.language][
           "Sorry! You lost the game!"
         ];
-      this.gameResultScore.textContent =
+      this.gameResultScore.textContent = "🏅 " +
         localization[model.worldCountries.language]["Score"] +
         ": " +
         this.playerOne.score +
         " " +
         localization[model.worldCountries.language]["Points"];
-      this.gameModalHeading.textContent =
+      this.gameModalHeading.textContent = "💔 " +
         localization[model.worldCountries.language][
           "Sorry! You lost the game!"
         ];

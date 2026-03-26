@@ -173,7 +173,7 @@ class aboutView {
     this._aboutGameRulesLink.textContent = `${
       localization[model.worldCountries.language]["Game Rules"]
     }`;
-    this._aboutVideos.textContent = `${
+    this._aboutVideos.textContent = `📼 ${
       localization[model.worldCountries.language]["VIDEOS:"]
     }`;
     this._aboutCountryAllianceSelectionVideoTitle.textContent = `${
