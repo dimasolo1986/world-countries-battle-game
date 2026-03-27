@@ -155,6 +155,7 @@ class gameRoomView {
         localization[model.worldCountries.language][
           "Failed to create game room with ID:"
         ] + ` ${gameRoomId}`;
+        spinner.classList.add("not-displayed");
       return;
     }
     this._gameRoomInputLink.value = gameUrl;

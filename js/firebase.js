@@ -1,6 +1,6 @@
 import { initializeApp } from "./firebase-app.js";
 import { getAuth, signInAnonymously } from "./firebase-auth.js";
-import { STUN_SERVER_LIST } from "./config.js";
+import { STUN_SERVER_LIST, FIREBASE_DATA, METERED_DATA } from "./config.js";
 import { localization } from "./localization/ua.js";
 import { resetGameRoomContainer } from "./helpers.js";
 import * as model from "./model.js";
@@ -31,7 +31,7 @@ export class Firebase {
   serverTimeOffset = 0;
   constructor() {
     this.firebaseConfig = {
-      apiKey: "AIzaSyBz5cGGomnSf6XR_SBN-mxVEslHQGDWnKs",
+      apiKey: String.fromCharCode(...FIREBASE_DATA),
       authDomain: "country-alliance-guesser.firebaseapp.com",
       databaseURL:
         "https://country-alliance-guesser-default-rtdb.europe-west1.firebasedatabase.app",
@@ -52,9 +52,9 @@ export class Firebase {
       } catch {
         alert(
           "⛔ " +
-            localization[model.worldCountries.language][
-              "Failed to create a communication channel with your opponent"
-            ]
+          localization[model.worldCountries.language][
+          "Failed to create a communication channel with your opponent"
+          ]
         );
       }
       const turnData = await this.getTurnServers();
@@ -65,7 +65,7 @@ export class Firebase {
   async getTurnServers() {
     try {
       const response = await fetch(
-        "https://country-alliance-guesser.metered.live/api/v1/turn/credentials?apiKey=4e0eaf4a7148fdb275531187af8dfc11784f"
+        `https://country-alliance-guesser.metered.live/api/v1/turn/credentials?apiKey=${String.fromCharCode(...METERED_DATA)}`
       );
       if (!response.ok) {
         return [];
@@ -101,17 +101,16 @@ export class Firebase {
       onValue(ref(this.db, "/.info/serverTimeOffset"), (snap) => {
         this.serverTimeOffset = snap.val() || 0;
       });
-      this.cleanupOldGameRooms().catch(() => {});
+      this.cleanupOldGameRooms().catch(() => { });
       const offerSnap = await get(ref(this.db, `room-${gameRoomId}/offer`));
       if (!offerSnap.exists()) {
         alert(
           "⚠️ " +
-            gameRoomId +
-            ` - ${
-              localization[model.worldCountries.language][
-                "Game room does not exist. Perhaps the opponent deleted it or left the game"
-              ]
-            }`
+          gameRoomId +
+          ` - ${localization[model.worldCountries.language][
+          "Game room does not exist. Perhaps the opponent deleted it or left the game"
+          ]
+          }`
         );
         return false;
       }
@@ -269,7 +268,7 @@ export class Firebase {
       onValue(ref(this.db, "/.info/serverTimeOffset"), (snap) => {
         this.serverTimeOffset = snap.val() || 0;
       });
-      this.cleanupOldGameRooms().catch(() => {});
+      this.cleanupOldGameRooms().catch(() => { });
       this.peerConnection.onicecandidate = (event) => {
         if (event.candidate) {
           const candRef = push(
@@ -312,8 +311,8 @@ export class Firebase {
         if (answer && this.peerConnection.signalingState !== "stable") {
           this.peerConnection
             .setRemoteDescription(answer)
-            .then(() => {})
-            .catch(() => {});
+            .then(() => { })
+            .catch(() => { });
           this.answered = true;
         }
       });
@@ -374,7 +373,7 @@ export class Firebase {
         this.dataChannel.onopen = null;
         this.dataChannel.onmessage = null;
         this.dataChannel = null;
-      } catch (err) {}
+      } catch (err) { }
     }
     if (this.peerConnection && closeChannel) {
       try {
@@ -384,12 +383,12 @@ export class Firebase {
         this.peerConnection.ondatachannel = null;
         this.peerConnection.close();
         this.peerConnection = null;
-      } catch (err) {}
+      } catch (err) { }
     }
     if (this.isHost && this.gameRoomId) {
       try {
         this.deleteGameRoom(this.gameRoomId);
-      } catch (err) {}
+      } catch (err) { }
     }
     if (this.db) {
       this.db = null;
