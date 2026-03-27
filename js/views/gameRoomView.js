@@ -468,7 +468,7 @@ class gameRoomView {
           option.textContent =
             localization[model.worldCountries.language][option.value];
         });
-    this._gameRoomInstructionHeader.textContent = `${
+    this._gameRoomInstructionHeader.textContent = `📜 ${
       localization[model.worldCountries.language]["Instructions."]
     }`;
     this._startButton.textContent = `${
@@ -479,7 +479,7 @@ class gameRoomView {
         "To play with your friend, you need: 1. Choose the desired game configuration, whether you want to guess countries and alliances of countries from all over the world or only independent ones, receive all or only text clues (country name, country capital, region, subregion) or visual clues (country coat of arms, country flag, country's outline on map, photo from country), time (in seconds) to try to guess the opponent's country, number of bonus countries. You can do this on this page or on the main page (after creating a game room, you will not be able to change this setting). 2. Create a game room and a link to the game for your friend by clicking the 'Create Game Room' button. 3. Copy the game link by clicking the 'Copy Link' button and send it to your friend or share the game link by clicking the 'Share Link With Friend' button. 4. After completing a game or several games, you can delete the game room by clicking the 'Delete Game Room' button (after deleting the game room, your friend will no longer be able to use the game link to play with you)."
       ]
     }`;
-    this._gameRoomImportantHeader.textContent = `${
+    this._gameRoomImportantHeader.textContent = `ℹ️ ${
       localization[model.worldCountries.language]["Important!"]
     }`;
     this._gameRoomImportantDescription.textContent = `${
