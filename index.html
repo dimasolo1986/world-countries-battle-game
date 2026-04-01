@@ -154,6 +154,31 @@
     <link rel="stylesheet" href="css/leaflet.contextmenu.css" />
     <script defer src="js/leaflet.js"></script>
     <script>
+      function toggleFullScreen(elementId) {
+    const countryPhotoContainer = document.getElementById(elementId);
+    if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+        if (countryPhotoContainer.requestFullscreen) {
+            countryPhotoContainer.requestFullscreen();
+        } else if (countryPhotoContainer.mozRequestFullScreen) {
+            countryPhotoContainer.mozRequestFullScreen();
+        } else if (countryPhotoContainer.webkitRequestFullscreen) { 
+            countryPhotoContainer.webkitRequestFullscreen();
+        } else if (countryPhotoContainer.msRequestFullscreen) {
+            countryPhotoContainer.msRequestFullscreen();
+        }
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+    }
+}
+
       document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#startButtonText").classList.remove("not-displayed");
         document.querySelector("#startLoaderSpinner").classList.add("not-displayed");
@@ -277,8 +302,8 @@
               Country Photo
             </h1>
           </div>
-          <div class="modal-body text-center" style="padding: 0.5rem; text-align: justify">
-            <img id="country-photo" />
+          <div class="modal-body text-center" id="country-photo-container" style="padding: 0.5rem; text-align: justify">
+            <img id="country-photo" onclick="toggleFullScreen('country-photo-container')" style="cursor: pointer;" title="Click to toggle full screen"/>
           </div>
           <div class="modal-footer" style="padding: 0.2rem; justify-content: center;">
             <button

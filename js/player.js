@@ -661,6 +661,7 @@ export class Player {
         countryPhotoCloseButton.textContent =
           localization[model.worldCountries.language]["Close"];
         if (countryPhoto) {
+          countryPhoto.title = localization[model.worldCountries.language]["Click to toggle full screen"];
           countryPhoto.src = hintValue;
           countryPhoto.style.width = "100%";
           countryPhoto.style.boxShadow =

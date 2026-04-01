@@ -622,6 +622,7 @@ export const localization = {
       "Подобається Географія і Країни Світу? Відвідайте",
     "Country Alliance Guesser Game": "Гра Вгадай Альянси Країн",
     "Game Configuration": "Конфігурація Гри",
+    "Click to toggle full screen": "Натисніть, щоб ввімкнути/вимкнути повноекранний режим",
     "You selected": "Ви вибрали",
     "Choose one alliance from four countries":
       "Виберіть один альянс з чотирьох країн",
@@ -1318,6 +1319,7 @@ export const localization = {
     "Create Game Room": "Create Game Room",
     "Delete Game Room": "Delete Game Room",
     "Open Game Room": "Open Game Room",
+    "Click to toggle full screen": "Click to toggle full screen",
     "Click 'Create Game Room' to generate game link":
       "Click 'Create Game Room' to generate game link",
     "BACK TO MAIN PAGE": "BACK TO MAIN PAGE",
@@ -2103,6 +2105,7 @@ export const localization = {
     "View Hints": "Hinweise Anzeigen",
     "View Hint": "Hinweis Anzeigen",
     "Country Flag": "Landesflagge",
+    "Click to toggle full screen": "Zum Umschalten auf Vollbild klicken",
     "Country's Outline On Map": "Umriss des Landes auf der Karte",
     Outline: "Länderübersicht Anzeigen",
     CountryPhoto: "Länderfoto Ansehen",
@@ -2905,6 +2908,7 @@ export const localization = {
     "Country's Outline On Map": "Contour du pays sur la carte",
     Outline: "Afficher le Contour du Pays",
     CountryPhoto: "Afficher la Photo du Pays",
+    "Click to toggle full screen": "Cliquez pour activer/désactiver le mode plein écran",
     "Landscape Of Country": "Paysage du Pays",
     "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
       "projet permettant d'étudier la géographie des pays du monde, de leurs voisins, de leurs drapeaux et de certaines régions du monde sous forme de jeu. Choisissez dix alliances de pays différentes sur la carte, ainsi que quatre pays pièges pour votre adversaire. L'ordinateur ou votre ami (selon le mode de jeu sélectionné) choisira également le nombre approprié d'alliances de pays et de pays pièges. Les tentatives pour deviner les pays se déroulent à tour de rôle. Celui qui devine le pays de l'adversaire obtient un essai supplémentaire. Le premier à deviner toutes les alliances des pays adverses gagne. Suivez les messages en haut de l'écran après le début de la partie.",
@@ -3716,6 +3720,7 @@ export const localization = {
     "View Hint": "Ver Consejo",
     "Country's Outline On Map": "Contorno del país en el mapa",
     Outline: "Ver el Esquema del País",
+    "Click to toggle full screen": "Haz clic para activar/desactivar la pantalla completa",
     "Checking Connection...": "Comprobando conexión...",
     "Choose one alliance from four countries":
       "Elige una alianza entre cuatro países",
@@ -4500,6 +4505,7 @@ export const localization = {
     "Country's Outline On Map": "Contorno del Paese sulla mappa",
     Outline: "Visualizza il Profilo del Paese",
     Clean: "Pulita",
+    "Click to toggle full screen": "Fai clic per attivare la modalità a schermo intero",
     "View Hints": "Visualizza Suggerimenti",
     "View Hint": "Visualizza Suggerimento",
     "Time is up! The attempt to guess the country passes to your opponent":
