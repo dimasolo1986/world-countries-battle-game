@@ -651,6 +651,7 @@ export class Player {
         hintsPanelContent.insertAdjacentElement("afterbegin", linkContainer);
       } else if (hintHeader === "CountryPhoto") {
         const countryPhoto = document.getElementById("country-photo");
+        const fullScreenButton = document.getElementById("countryPhotoFullScreenButton");
         const countryPhotoWindowHeader =
           document.getElementById("countryPhotoLabel");
         countryPhotoWindowHeader.textContent =
@@ -660,6 +661,7 @@ export class Player {
         );
         countryPhotoCloseButton.textContent =
           localization[model.worldCountries.language]["Close"];
+          fullScreenButton.textContent = localization[model.worldCountries.language]["Full Screen"];
         if (countryPhoto) {
           countryPhoto.title = localization[model.worldCountries.language]["Click to toggle full screen"];
           countryPhoto.src = hintValue;
@@ -1358,6 +1360,17 @@ export class Player {
     this.hitIntervalIds.push(hitIntervalId);
     const hitTimeoutId = setTimeout(async () => {
       this.opponentPlayer.disableMapInteraction();
+    if (document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+    }
       hideModalWindow("flagModal");
       hideModalWindow("coatOfArmsModal");
       hideModalWindow("countryOutlineModal");

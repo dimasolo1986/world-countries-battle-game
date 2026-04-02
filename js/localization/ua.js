@@ -516,6 +516,7 @@ export const localization = {
     Friend: "Друг",
     CHAT: "ЧАТ",
     "Country Flag": "Прапор Країни",
+    "Full Screen": "На Весь Екран",
     Country: "Країна",
     "View Hints": "Показати Підказки",
     "View Hint": "Показати Підказку",
@@ -1312,6 +1313,7 @@ export const localization = {
     Friend: "Friend",
     CHAT: "CHAT",
     "Country Flag": "Country Flag",
+    "Full Screen": "Full Screen",
     Country: "Country",
     "View Hints": "View Hints",
     "View Hint": "View Hint",
@@ -2110,6 +2112,7 @@ export const localization = {
     Outline: "Länderübersicht Anzeigen",
     CountryPhoto: "Länderfoto Ansehen",
     Country: "Land",
+    "Full Screen": "Vollbildmodus",
     "Checking Connection...": "Verbindung wird geprüft...",
     "Game Room ID:": "Spielzimmer-ID:",
     "BACK TO MAIN PAGE": "ZURÜCK ZUR STARTSEITE",
@@ -2905,6 +2908,7 @@ export const localization = {
       "Jeu des Alliances des Pays du Monde",
     "Game room was deleted or expired":
       "La salle de jeux a été supprimée ou a expiré",
+      "Full Screen": "Plein écran",
     "Country's Outline On Map": "Contour du pays sur la carte",
     Outline: "Afficher le Contour du Pays",
     CountryPhoto: "Afficher la Photo du Pays",
@@ -3700,6 +3704,7 @@ export const localization = {
       "Si tu navegador bloquea o deshabilita WebRTC (comunicación en tiempo real para la web), no podrás jugar con tu amigo. Prueba con otro navegador.",
     "World Country Alliances Guesser Game":
       "Juego de Alianzas de los Países del Mundo",
+      "Full Screen": "Pantalla Completa",
     "Time is up! The attempt to guess the country passes to your opponent":
       "¡Se acabó el tiempo! El intento de adivinar el país pasa a tu oponente",
     "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
@@ -4505,6 +4510,7 @@ export const localization = {
     "Country's Outline On Map": "Contorno del Paese sulla mappa",
     Outline: "Visualizza il Profilo del Paese",
     Clean: "Pulita",
+    "Full Screen": "Schermo Intero",
     "Click to toggle full screen": "Fai clic per attivare la modalità a schermo intero",
     "View Hints": "Visualizza Suggerimenti",
     "View Hint": "Visualizza Suggerimento",
