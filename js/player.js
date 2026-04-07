@@ -661,7 +661,7 @@ export class Player {
         );
         countryPhotoCloseButton.textContent =
           localization[model.worldCountries.language]["Close"];
-          fullScreenButton.textContent = localization[model.worldCountries.language]["Full Screen"];
+        fullScreenButton.textContent = localization[model.worldCountries.language]["Full Screen"];
         if (countryPhoto) {
           countryPhoto.title = localization[model.worldCountries.language]["Click to toggle full screen"];
           countryPhoto.src = hintValue;
@@ -942,6 +942,8 @@ export class Player {
     this.opponentPlayer.addAllCountryMarkers();
     if (this.playerType !== "computerPlayer") this.addHintsToHintPanel();
     if (this.playerType === "computerPlayer") {
+      let countryIndex = undefined;
+      let countryCode = undefined;
       try {
         document.getElementById("timer-field-container").style.display = "none";
         this.playMap.hideMapElement("hints-link");
@@ -955,8 +957,6 @@ export class Player {
         ]
           }`;
         await this.sleep(700);
-        let countryIndex = undefined;
-        let countryCode = undefined;
         if (this.countriesToGuessNext.length !== 0) {
           countryIndex = getRandomInt(0, this.countriesToGuessNext.length - 1);
           countryCode = this.countriesToGuessNext[countryIndex];
@@ -1284,7 +1284,7 @@ export class Player {
           return;
         }
       } catch (err) {
-        this.opponentPlayer.removeCountryBoundaryBlinking(countryCode);
+        if (countryCode) this.opponentPlayer.removeCountryBoundaryBlinking(countryCode);
       }
     } else if (this.playerType === "userPlayer") {
       if (this.opponentPlayer.countryCodes.length <= 5) {
@@ -1360,17 +1360,17 @@ export class Player {
     this.hitIntervalIds.push(hitIntervalId);
     const hitTimeoutId = setTimeout(async () => {
       this.opponentPlayer.disableMapInteraction();
-    if (document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
+      if (document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
         if (document.exitFullscreen) {
-            document.exitFullscreen();
+          document.exitFullscreen();
         } else if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
+          document.mozCancelFullScreen();
         } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
+          document.webkitExitFullscreen();
         } else if (document.msExitFullscreen) {
-            document.msExitFullscreen();
+          document.msExitFullscreen();
         }
-    }
+      }
       hideModalWindow("flagModal");
       hideModalWindow("coatOfArmsModal");
       hideModalWindow("countryOutlineModal");
@@ -1942,7 +1942,7 @@ export class Player {
       }
     } catch (err) {
       this.playerAlreadyHitting = false;
-      this.removeCountryBoundaryBlinking(countryCode);
+      if (countryCode) this.removeCountryBoundaryBlinking(countryCode);
     }
     this.playerAlreadyHitting = false;
     this.game.playHit();
@@ -3725,7 +3725,7 @@ export class Player {
         this.game.isPlayerReady = true;
         this.game.playHit();
       } catch (err) {
-        this.removeCountryBoundaryBlinking(countryCode);
+        if (countryCode) this.removeCountryBoundaryBlinking(countryCode);
       }
     }
   }
