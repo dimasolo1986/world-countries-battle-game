@@ -230,13 +230,13 @@ export class Player {
         country.cca2,
         countryTooltip,
       );
-      this.addMouseOverStyleEventToCountryBoundary(countryBoundary, {
+      this.addMouseOverStyleEventToCountryBoundary(countryBoundary, countryMarker, {
         weight: 1,
         fillOpacity: 0.5,
         opacity: 1,
         className: country.cca2,
       });
-      this.addMouseOutStyleEventToCountryBoundary(countryBoundary, {
+      this.addMouseOutStyleEventToCountryBoundary(countryBoundary, countryMarker, {
         weight: 0,
         fillOpacity: 0.1,
         opacity: 0,
@@ -1972,13 +1972,13 @@ export class Player {
       Object.entries(this.countryBoundaries).forEach(
         ([countryCode, countryBoundary]) => {
           const countryMarker = this.countryMarkers[countryCode];
-          this.addMouseOverStyleEventToCountryBoundary(countryBoundary, {
+          this.addMouseOverStyleEventToCountryBoundary(countryBoundary, countryMarker, {
             weight: 1,
             fillOpacity: 0.5,
             opacity: 1,
             className: countryCode,
           });
-          this.addMouseOutStyleEventToCountryBoundary(countryBoundary, {
+          this.addMouseOutStyleEventToCountryBoundary(countryBoundary, countryMarker, {
             weight: 0,
             fillOpacity: 0.1,
             opacity: 0,
@@ -1988,6 +1988,7 @@ export class Player {
             "click",
             function (ev) {
               L.DomEvent.stopPropagation(ev);
+              countryMarker.disablePermanentHighlight();
               this.addUserClickCountriesPlay(
                 countryCode,
                 countryBoundary,
@@ -1999,6 +2000,7 @@ export class Player {
             "click",
             function (ev) {
               L.DomEvent.stopPropagation(ev);
+              countryMarker.disablePermanentHighlight();
               this.addUserClickCountriesPlay(
                 countryCode,
                 countryBoundary,
@@ -2379,6 +2381,7 @@ export class Player {
       countryBoundary.off("click");
       countryBoundary.once("click", (ev) => {
         L.DomEvent.stopPropagation(ev);
+        countryMarker.disablePermanentHighlight();
         this.addUserPlayerInitialCountrySelectionHandler(
           countryCode,
           countryBoundary,
@@ -2388,6 +2391,7 @@ export class Player {
       countryMarker.off("click");
       countryMarker.once("click", (ev) => {
         L.DomEvent.stopPropagation(ev);
+        countryMarker.disablePermanentHighlight();
         this.addUserPlayerInitialCountrySelectionHandler(
           countryCode,
           countryBoundary,
@@ -2960,22 +2964,24 @@ export class Player {
     }
   }
 
-  addMouseOverStyleEventToCountryBoundary(countryBoundary, styleObject) {
+  addMouseOverStyleEventToCountryBoundary(countryBoundary, countryMarker, styleObject) {
     countryBoundary.once("mouseover", function (event) {
       if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
         countryBoundary.fire("click");
       } else {
         L.DomEvent.stopPropagation(event);
+        if (countryMarker) countryMarker.enablePermanentHighlight();
         countryBoundary.setStyle(styleObject);
         countryBoundary.bringToFront();
       }
     });
   }
 
-  addMouseOutStyleEventToCountryBoundary(countryBoundary, styleObject) {
+  addMouseOutStyleEventToCountryBoundary(countryBoundary, countryMarker, styleObject) {
     if (!("ontouchstart" in window || navigator.maxTouchPoints > 0)) {
       countryBoundary.on("mouseout", function (event) {
         L.DomEvent.stopPropagation(event);
+        if (countryMarker) countryMarker.disablePermanentHighlight();
         countryBoundary.setStyle(styleObject);
         countryBoundary.bringToBack();
         countryBoundary.once("mouseover", function (event) {
@@ -2983,6 +2989,7 @@ export class Player {
             countryBoundary.fire("click");
           } else {
             L.DomEvent.stopPropagation(event);
+            if (countryMarker) countryMarker.enablePermanentHighlight();
             countryBoundary.setStyle({
               weight: 1,
               fillOpacity: 0.5,
@@ -3017,10 +3024,15 @@ export class Player {
     ).bindTooltip(countryTooltip);
     marker.dataId = country.cca2;
     marker.on("mouseover", function (event) {
+      marker.enablePermanentHighlight();
       L.DomEvent.stopPropagation(event);
       if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
         marker.fire("click");
       }
+    });
+    marker.on("mouseout", function (event) {
+      marker.disablePermanentHighlight();
+      L.DomEvent.stopPropagation(event);
     });
     return marker;
   }
