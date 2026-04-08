@@ -219,16 +219,17 @@ export class Player {
     model.worldCountries.countries.forEach((country) => {
       const countryGeo = getCountryGeo(country.cca2);
       const countryTooltip = this.createCountryTooltip(country);
-      const countryMarker = this.createCountryMarker(
-        country,
-        countryTooltip,
-        14,
-        14,
-      );
       const countryBoundary = this.createCountryBoundary(
         countryGeo,
         country.cca2,
         countryTooltip,
+      );
+      const countryMarker = this.createCountryMarker(
+        country,
+        countryBoundary,
+        countryTooltip,
+        14,
+        14,
       );
       this.addMouseOverStyleEventToCountryBoundary(countryBoundary, countryMarker, {
         weight: 1,
@@ -1575,15 +1576,13 @@ export class Player {
         document.getElementById(
           "guessed-country-alliance-panel-content",
         ).innerHTML =
-          `<div style="background-color: red; border-radius: 2px;">&nbsp;⚠️&nbsp;<span style="
+          `<div>⚠️&nbsp;<span style="
                     color: white;
                     font-size: 0.75rem;
-                    border-radius: 2px;
-                    background-color: red;
                     padding-left: 3px;
                     padding-right: 3px;
                     font-weight: bolder;
-                  ">-${points} ${localization[model.worldCountries.language]["Points"]
+                  ">- ${points} ${localization[model.worldCountries.language]["Points"]
           }</span></div>`;
         const guessedCountryAlliance = document.getElementById(
           "guessed-country-alliance-panel",
@@ -1592,6 +1591,7 @@ export class Player {
           "guessed-country-alliance-header",
         );
         guessedCountryAllianceHeader.classList.add("not-displayed");
+        guessedCountryAlliance.style.backgroundColor = "red";
         guessedCountryAlliance.classList.remove("not-displayed");
         this.deleteCountryNeighbourBorders(this, country, this.selectedCountryTrapCodes, this.countriesNumberField);
         this.playerAttemptToGuess = true;
@@ -1599,6 +1599,7 @@ export class Player {
         await this.sleep(2500);
         this.removeCountryBoundaryBlinking(countryCode);
         guessedCountryAlliance.classList.add("not-displayed");
+        guessedCountryAlliance.style.backgroundColor = "white";
         guessedCountryAllianceHeader.classList.remove("not-displayed");
         this.closeCountryPopup(countryCode);
         this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
@@ -3010,7 +3011,7 @@ export class Player {
     });
   }
 
-  createCountryMarker(country, countryTooltip, width, height) {
+  createCountryMarker(country, countryBoundary, countryTooltip, width, height) {
     const marker = L.marker(
       country.latlng ? country.latlng : country.capitalInfo.latlng,
       {
@@ -3025,6 +3026,12 @@ export class Player {
     marker.dataId = country.cca2;
     marker.on("mouseover", function (event) {
       marker.enablePermanentHighlight();
+      countryBoundary.setStyle({
+        weight: 1,
+        fillOpacity: 0.5,
+        opacity: 1,
+        className: country.cca2,
+      });
       L.DomEvent.stopPropagation(event);
       if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
         marker.fire("click");
@@ -3032,6 +3039,12 @@ export class Player {
     });
     marker.on("mouseout", function (event) {
       marker.disablePermanentHighlight();
+      countryBoundary.setStyle({
+        weight: 0,
+        fillOpacity: 0.1,
+        opacity: 0,
+        className: country.cca2,
+      });
       L.DomEvent.stopPropagation(event);
     });
     return marker;
