@@ -2537,6 +2537,8 @@ export class Player {
     const countryMarker = this.countryMarkers[countryCode];
     const country = this.countries[countryCode];
     countryMarker.off("click");
+    countryMarker.off("mouseover");
+    countryMarker.off("mouseout");
     countryBoundary.off("click");
     if (this.playerConfigured) {
       this.gameMessageField.textContent = `ℹ️ ${localization[model.worldCountries.language][
