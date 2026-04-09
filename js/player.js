@@ -3014,6 +3014,7 @@ export class Player {
       country.latlng ? country.latlng : country.capitalInfo.latlng,
       {
         icon: this.createCountryMarkerIcon(country, width, height),
+        zIndexOffset: 10000,
         riseOnHover: true,
         alt: localization[model.worldCountries.language]["countries"][
           country.name.common
