@@ -2498,7 +2498,6 @@ export class Player {
     });
     countryBoundary.off();
     countryBoundary.closeTooltip();
-    countryBoundary.bringToFront();
     this.addSelectedCountryToCountryPanel(
       this.playerSelectedCountriesContainerId,
       countryCode,
@@ -2975,7 +2974,6 @@ export class Player {
         L.DomEvent.stopPropagation(event);
         if (countryMarker) countryMarker.enablePermanentHighlight();
         countryBoundary.setStyle(styleObject);
-        countryBoundary.bringToFront();
       }
     });
   }
@@ -2986,7 +2984,6 @@ export class Player {
         L.DomEvent.stopPropagation(event);
         if (countryMarker) countryMarker.disablePermanentHighlight();
         countryBoundary.setStyle(styleObject);
-        countryBoundary.bringToBack();
         countryBoundary.once("mouseover", function (event) {
           if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
             countryBoundary.fire("click");
@@ -2999,7 +2996,6 @@ export class Player {
               opacity: 1,
               className: styleObject.className
             });
-            countryBoundary.bringToFront();
           }
         });
       });
