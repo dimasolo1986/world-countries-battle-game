@@ -12,9 +12,12 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: url("../assets/img/background-image.png") no-repeat center center;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
   background-image: image-set(
-    url("../assets/img/background-image.avif") type("image/avif")
+    url("../assets/img/background-image.avif") type("image/avif"),
+    url("../assets/img/background-image.png") type("image/png")
   );
   background-size: cover;
   opacity: 0.8;
