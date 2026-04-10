@@ -13,6 +13,9 @@ body::before {
   position: fixed;
   inset: 0;
   background: url("../assets/img/background-image.png") no-repeat center center;
+  background-image: image-set(
+    url("../assets/img/background-image.avif") type("image/avif")
+  );
   background-size: cover;
   opacity: 0.8;
   z-index: -1;

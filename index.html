@@ -733,12 +733,17 @@
           font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
         "
       >
+      <picture>
+         <source srcset="assets/img/game-configuration-img-700-310.avif" type="image/avif">
+         <source srcset="assets/img/game-configuration-img-700-310.png" type="image/png">
         <img
           src="assets/img/game-configuration-img-700-310.png"
           class="card-img-top"
           alt="Game Configuration Image"
           style="border-bottom: 1px dotted grey;"
+           fetchpriority=high
         />
+        </picture>
         <div class="card-body text-center" style="padding: 0.1rem; background-color: ghostwhite; border-radius: 0.375rem;">
           <h5
             id="game-configuration-header"
