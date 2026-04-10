@@ -149,10 +149,26 @@
       href="assets/img/globe.png"
     />
     <link href="css/styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="css/leaflet.css" />
-    <link rel="stylesheet" href="css/leaflet-control-topcenter.css" />
-    <link rel="stylesheet" href="css/leaflet.contextmenu.css" />
-    <link rel="stylesheet" href="css/leaflet-marker-highlight.css" />
+    <link rel="stylesheet" href="css/leaflet.css"  media="print"
+      onload="this.media='all'"/>
+    <noscript>
+      <link rel="stylesheet" href="css/leaflet.css">
+    </noscript>
+    <link rel="stylesheet" href="css/leaflet-control-topcenter.css" media="print"
+      onload="this.media='all'"/>
+    <noscript>
+      <link rel="stylesheet" href="css/leaflet-control-topcenter.css">
+    </noscript>
+    <link rel="stylesheet" href="css/leaflet.contextmenu.css" media="print"
+      onload="this.media='all'"/>
+    <noscript>
+      <link rel="stylesheet" href="css/leaflet.contextmenu.css">
+    </noscript>
+    <link rel="stylesheet" href="css/leaflet-marker-highlight.css" media="print"
+      onload="this.media='all'"/>
+    <noscript>
+      <link rel="stylesheet" href="css/leaflet-marker-highlight.css">
+    </noscript>
     <script defer src="js/leaflet.js"></script>
     <script>
       function toggleFullScreen(elementId) {
@@ -669,6 +685,9 @@
     </div>
     <!-- Header -->
     <header class="bg-dark py-1 sticky-top">
+      <picture>
+         <source srcset="icons/icon-192.avif" type="image/avif">
+         <source srcset="icons/icon-192.png" type="image/png">
       <img
         id="game-logo"
         class="logo"
@@ -676,6 +695,7 @@
         alt="Globe Logo"
         style="height: 25px; width: 25px; margin-left: 10px; cursor: pointer"
       />
+      </picture>
       <h1
         style="
           color: #85c1e9;
