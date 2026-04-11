@@ -1984,27 +1984,27 @@ export class Player {
           this.opponentPlayer.playerAttemptToGuess = false;
         }
       }
-      if (+this.playerCountriesNumberField.textContent === 0) {
-        if (this.gameConfiguration.gameMode === "user") {
-          this.sendEndGameToOpponent();
-        }
-        hideGameCountryAllianceGuessedWindow();
-        this.opponentPlayer.score +=
-          +this.opponentPlayer.playerCountriesNumberField.textContent * 10;
-        this.opponentPlayer.playerWonGame = true;
-        this.game.finished = true;
-        this.game.showGameResult(true, false);
-        return;
-      }
-      if (this.gameConfiguration.gameMode === "user") {
-        this.sendMoveAckToOpponent();
-        this.game.isPlayerReady = true;
-      }
     } catch (err) {
       this.playerAlreadyHitting = false;
       this.playerAttemptToGuess = true;
       this.opponentPlayer.playerAttemptToGuess = false;
       if (countryCode) this.removeCountryBoundaryBlinking(countryCode);
+    }
+    if (+this.playerCountriesNumberField.textContent === 0) {
+      if (this.gameConfiguration.gameMode === "user") {
+        this.sendEndGameToOpponent();
+      }
+      hideGameCountryAllianceGuessedWindow();
+      this.opponentPlayer.score +=
+        +this.opponentPlayer.playerCountriesNumberField.textContent * 10;
+      this.opponentPlayer.playerWonGame = true;
+      this.game.finished = true;
+      this.game.showGameResult(true, false);
+      return;
+    }
+    if (this.gameConfiguration.gameMode === "user") {
+      this.sendMoveAckToOpponent();
+      this.game.isPlayerReady = true;
     }
     this.playerAlreadyHitting = false;
     this.game.playHit();
