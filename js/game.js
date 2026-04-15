@@ -90,7 +90,7 @@ export class Game {
     if (playerOneWon) {
       this.guessCountriesMessageField.textContent = "👏 " +
         localization[model.worldCountries.language][
-          "Congratulations! You won the game!"
+        "Congratulations! You won the game!"
         ];
       this.gameResultScore.textContent = "🏅 " +
         localization[model.worldCountries.language]["Score"] +
@@ -100,12 +100,12 @@ export class Game {
         localization[model.worldCountries.language]["Points"];
       this.gameModalHeading.textContent = "👏 " +
         localization[model.worldCountries.language][
-          "Congratulations! You won the game!"
+        "Congratulations! You won the game!"
         ];
       this.gameModalHeading.style.color = "darkgreen";
       this.gameModalHeadingGuessed.textContent =
         localization[model.worldCountries.language][
-          "You guessed all the opponent's countries:"
+        "You guessed all the opponent's countries:"
         ];
       const index =
         Math.floor(this.playerTwo.selectedCountryCodes.size / 2) +
@@ -121,87 +121,75 @@ export class Game {
       for (let i = 0; i < index; i++) {
         const countriesTemplate =
           this.playerTwo.selectedCountryCodes.size !== countryIndex + 1
-            ? `<tr style="display: table-row;"><td style="border:none; display:table-cell;"><img src="${
-                this.playerTwo.countries[
-                  selectedCountryCodesArray[countryIndex]
-                ].countryFlag
-              }" alt="${
-                localization[model.worldCountries.language]["countries"][
-                  this.playerTwo.countries[
-                    selectedCountryCodesArray[countryIndex]
-                  ].countryName
-                ]
-              }" title="${
-                localization[model.worldCountries.language]["countries"][
-                  this.playerTwo.countries[
-                    selectedCountryCodesArray[countryIndex]
-                  ].countryName
-                ]
-              }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 2px 5px #00000080,
-                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/></td> <td style="border:none;display:table-cell;"><span style="margin-right: 10px;">${
-                                localization[model.worldCountries.language][
-                                  "countries"
-                                ][
-                                  this.playerTwo.countries[
-                                    selectedCountryCodesArray[countryIndex]
-                                  ].countryName
-                                ]
-                              }</span></td><td style="border:none;display:table-cell;"><img src="${
-                                this.playerTwo.countries[
-                                  selectedCountryCodesArray[countryIndex + 1]
-                                ].countryFlag
-                              }" alt="${
-                                localization[model.worldCountries.language][
-                                  "countries"
-                                ][
-                                  this.playerTwo.countries[
-                                    selectedCountryCodesArray[countryIndex + 1]
-                                  ].countryName
-                                ]
-                              }" title="${
-                                localization[model.worldCountries.language][
-                                  "countries"
-                                ][
-                                  this.playerTwo.countries[
-                                    selectedCountryCodesArray[countryIndex + 1]
-                                  ].countryName
-                                ]
-                              }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 2px 5px #00000080,
-                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/></td> <td style="border:none;display:table-cell;"><span>${
-                                localization[model.worldCountries.language][
-                                  "countries"
-                                ][
-                                  this.playerTwo.countries[
-                                    selectedCountryCodesArray[countryIndex + 1]
-                                  ].countryName
-                                ]
-                              }</span></td></tr>`
-            : `<tr style="display: table-row;"><td style="border:none;display:table-cell;"><img src="${
-                this.playerTwo.countries[
-                  selectedCountryCodesArray[countryIndex]
-                ].countryFlag
-              }" alt="${
-                localization[model.worldCountries.language]["countries"][
-                  this.playerTwo.countries[
-                    selectedCountryCodesArray[countryIndex]
-                  ].countryName
-                ]
-              }" title="${
-                localization[model.worldCountries.language]["countries"][
-                  this.playerTwo.countries[
-                    selectedCountryCodesArray[countryIndex]
-                  ].countryName
-                ]
-              }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 2px 5px #00000080,
-                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/></td><td style="border:none;display:table-cell;"> <span>${
-                                localization[model.worldCountries.language][
-                                  "countries"
-                                ][
-                                  this.playerTwo.countries[
-                                    selectedCountryCodesArray[countryIndex]
-                                  ].countryName
-                                ]
-                              }</span></td></tr>`;
+            ? `<tr style="display: table-row;"><td style="border:none; display:table-cell;"><img src="${this.playerTwo.countries[
+              selectedCountryCodesArray[countryIndex]
+            ].countryFlag
+            }" alt="${localization[model.worldCountries.language]["countries"][
+            this.playerTwo.countries[
+              selectedCountryCodesArray[countryIndex]
+            ].countryName
+            ]
+            }" title="${localization[model.worldCountries.language]["countries"][
+            this.playerTwo.countries[
+              selectedCountryCodesArray[countryIndex]
+            ].countryName
+            ]
+            }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 2px 5px #00000080,
+                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/></td> <td style="border:none;display:table-cell;"><span style="margin-right: 10px;">${localization[model.worldCountries.language][
+            "countries"
+            ][
+            this.playerTwo.countries[
+              selectedCountryCodesArray[countryIndex]
+            ].countryName
+            ]
+            }</span></td><td style="border:none;display:table-cell;"><img src="${this.playerTwo.countries[
+              selectedCountryCodesArray[countryIndex + 1]
+            ].countryFlag
+            }" alt="${localization[model.worldCountries.language][
+            "countries"
+            ][
+            this.playerTwo.countries[
+              selectedCountryCodesArray[countryIndex + 1]
+            ].countryName
+            ]
+            }" title="${localization[model.worldCountries.language][
+            "countries"
+            ][
+            this.playerTwo.countries[
+              selectedCountryCodesArray[countryIndex + 1]
+            ].countryName
+            ]
+            }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 2px 5px #00000080,
+                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/></td> <td style="border:none;display:table-cell;"><span>${localization[model.worldCountries.language][
+            "countries"
+            ][
+            this.playerTwo.countries[
+              selectedCountryCodesArray[countryIndex + 1]
+            ].countryName
+            ]
+            }</span></td></tr>`
+            : `<tr style="display: table-row;"><td style="border:none;display:table-cell;"><img src="${this.playerTwo.countries[
+              selectedCountryCodesArray[countryIndex]
+            ].countryFlag
+            }" alt="${localization[model.worldCountries.language]["countries"][
+            this.playerTwo.countries[
+              selectedCountryCodesArray[countryIndex]
+            ].countryName
+            ]
+            }" title="${localization[model.worldCountries.language]["countries"][
+            this.playerTwo.countries[
+              selectedCountryCodesArray[countryIndex]
+            ].countryName
+            ]
+            }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 2px 5px #00000080,
+                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/></td><td style="border:none;display:table-cell;"> <span>${localization[model.worldCountries.language][
+            "countries"
+            ][
+            this.playerTwo.countries[
+              selectedCountryCodesArray[countryIndex]
+            ].countryName
+            ]
+            }</span></td></tr>`;
         userCountriesContainer.insertAdjacentHTML(
           "beforeend",
           countriesTemplate,
@@ -212,7 +200,7 @@ export class Game {
     } else {
       this.guessCountriesMessageField.textContent = "💔 " +
         localization[model.worldCountries.language][
-          "Sorry! You lost the game!"
+        "Sorry! You lost the game!"
         ];
       this.gameResultScore.textContent = "🏅 " +
         localization[model.worldCountries.language]["Score"] +
@@ -222,18 +210,18 @@ export class Game {
         localization[model.worldCountries.language]["Points"];
       this.gameModalHeading.textContent = "💔 " +
         localization[model.worldCountries.language][
-          "Sorry! You lost the game!"
+        "Sorry! You lost the game!"
         ];
       this.gameModalHeading.style.color = "red";
       if (this.playerTwo.playerType === "friendPlayer") {
         this.gameModalHeadingGuessed.textContent =
           localization[model.worldCountries.language][
-            "Opponent guessed all your countries:"
+          "Opponent guessed all your countries:"
           ];
       } else {
         this.gameModalHeadingGuessed.textContent =
           localization[model.worldCountries.language][
-            "Computer guessed all your countries:"
+          "Computer guessed all your countries:"
           ];
       }
       const index =
@@ -248,87 +236,75 @@ export class Game {
       for (let i = 0; i < index; i++) {
         const countriesTemplate =
           this.playerOne.selectedCountryCodes.size !== countryIndex + 1
-            ? `<tr style="display: table-row;"><td style="border:none;display:table-cell;"><img src="${
-                this.playerOne.countries[
-                  selectedCountryCodesArray[countryIndex]
-                ].countryFlag
-              }" alt="${
-                localization[model.worldCountries.language]["countries"][
-                  this.playerOne.countries[
-                    selectedCountryCodesArray[countryIndex]
-                  ].countryName
-                ]
-              }" title="${
-                localization[model.worldCountries.language]["countries"][
-                  this.playerOne.countries[
-                    selectedCountryCodesArray[countryIndex]
-                  ].countryName
-                ]
-              }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 2px 5px #00000080,
-                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/> </td><td style="border:none;display:table-cell;"><span style="margin-right: 10px;">${
-                                localization[model.worldCountries.language][
-                                  "countries"
-                                ][
-                                  this.playerOne.countries[
-                                    selectedCountryCodesArray[countryIndex]
-                                  ].countryName
-                                ]
-                              }</span></td><td style="border:none;display:table-cell;"><img src="${
-                                this.playerOne.countries[
-                                  selectedCountryCodesArray[countryIndex + 1]
-                                ].countryFlag
-                              }" alt="${
-                                localization[model.worldCountries.language][
-                                  "countries"
-                                ][
-                                  this.playerOne.countries[
-                                    selectedCountryCodesArray[countryIndex + 1]
-                                  ].countryName
-                                ]
-                              }" title="${
-                                localization[model.worldCountries.language][
-                                  "countries"
-                                ][
-                                  this.playerOne.countries[
-                                    selectedCountryCodesArray[countryIndex + 1]
-                                  ].countryName
-                                ]
-                              }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 2px 5px #00000080,
-                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/></td> <td style="border:none;display:table-cell;"><span>${
-                                localization[model.worldCountries.language][
-                                  "countries"
-                                ][
-                                  this.playerOne.countries[
-                                    selectedCountryCodesArray[countryIndex + 1]
-                                  ].countryName
-                                ]
-                              }</span></td></tr>`
-            : `<tr style="display: table-row;"><td style="border:none;display:table-cell;"><img src="${
-                this.playerOne.countries[
-                  selectedCountryCodesArray[countryIndex]
-                ].countryFlag
-              }" alt="${
-                localization[model.worldCountries.language]["countries"][
-                  this.playerOne.countries[
-                    selectedCountryCodesArray[countryIndex]
-                  ].countryName
-                ]
-              }" title="${
-                localization[model.worldCountries.language]["countries"][
-                  this.playerOne.countries[
-                    selectedCountryCodesArray[countryIndex]
-                  ].countryName
-                ]
-              }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 2px 5px #00000080,
-                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/></td> <td style="border:none;display:table-cell;"> <span>${
-                                localization[model.worldCountries.language][
-                                  "countries"
-                                ][
-                                  this.playerOne.countries[
-                                    selectedCountryCodesArray[countryIndex]
-                                  ].countryName
-                                ]
-                              }</span></td></tr>`;
+            ? `<tr style="display: table-row;"><td style="border:none;display:table-cell;"><img src="${this.playerOne.countries[
+              selectedCountryCodesArray[countryIndex]
+            ].countryFlag
+            }" alt="${localization[model.worldCountries.language]["countries"][
+            this.playerOne.countries[
+              selectedCountryCodesArray[countryIndex]
+            ].countryName
+            ]
+            }" title="${localization[model.worldCountries.language]["countries"][
+            this.playerOne.countries[
+              selectedCountryCodesArray[countryIndex]
+            ].countryName
+            ]
+            }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 2px 5px #00000080,
+                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/> </td><td style="border:none;display:table-cell;"><span style="margin-right: 10px;">${localization[model.worldCountries.language][
+            "countries"
+            ][
+            this.playerOne.countries[
+              selectedCountryCodesArray[countryIndex]
+            ].countryName
+            ]
+            }</span></td><td style="border:none;display:table-cell;"><img src="${this.playerOne.countries[
+              selectedCountryCodesArray[countryIndex + 1]
+            ].countryFlag
+            }" alt="${localization[model.worldCountries.language][
+            "countries"
+            ][
+            this.playerOne.countries[
+              selectedCountryCodesArray[countryIndex + 1]
+            ].countryName
+            ]
+            }" title="${localization[model.worldCountries.language][
+            "countries"
+            ][
+            this.playerOne.countries[
+              selectedCountryCodesArray[countryIndex + 1]
+            ].countryName
+            ]
+            }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 2px 5px #00000080,
+                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/></td> <td style="border:none;display:table-cell;"><span>${localization[model.worldCountries.language][
+            "countries"
+            ][
+            this.playerOne.countries[
+              selectedCountryCodesArray[countryIndex + 1]
+            ].countryName
+            ]
+            }</span></td></tr>`
+            : `<tr style="display: table-row;"><td style="border:none;display:table-cell;"><img src="${this.playerOne.countries[
+              selectedCountryCodesArray[countryIndex]
+            ].countryFlag
+            }" alt="${localization[model.worldCountries.language]["countries"][
+            this.playerOne.countries[
+              selectedCountryCodesArray[countryIndex]
+            ].countryName
+            ]
+            }" title="${localization[model.worldCountries.language]["countries"][
+            this.playerOne.countries[
+              selectedCountryCodesArray[countryIndex]
+            ].countryName
+            ]
+            }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 2px 5px #00000080,
+                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/></td> <td style="border:none;display:table-cell;"> <span>${localization[model.worldCountries.language][
+            "countries"
+            ][
+            this.playerOne.countries[
+              selectedCountryCodesArray[countryIndex]
+            ].countryName
+            ]
+            }</span></td></tr>`;
         userCountriesContainer.insertAdjacentHTML(
           "beforeend",
           countriesTemplate,
@@ -381,7 +357,7 @@ export class Game {
     ) {
       alert(
         localization[model.worldCountries.language][
-          "Connection with your opponent has failed. Try your attempt later."
+        "Connection with your opponent has failed. Try your attempt later."
         ],
       );
       return;
@@ -393,7 +369,7 @@ export class Game {
     ) {
       this.playerOne.gameMessageField.textContent =
         localization[model.worldCountries.language][
-          "Opponent has not yet selected countries. Wait for the message to start the game."
+        "Opponent has not yet selected countries. Wait for the message to start the game."
         ];
       return;
     }

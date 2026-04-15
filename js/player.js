@@ -1081,9 +1081,18 @@ export class Player {
               animate: false,
             });
           } catch (err) {
-            if (countryCode) this.opponentPlayer.removeCountryBoundaryBlinking(countryCode);
+            if (countryCode) {
+              this.opponentPlayer.removeCountryBoundaryBlinking(countryCode);
+              this.opponentPlayer.closeCountryPopup(countryCode);
+              this.opponentPlayer.playerMap.removeLayer(countryBoundary);
+              delete this.opponentPlayer.countryBoundaries[countryCode];
+              this.deleteCountryNeighbourBorders(this.opponentPlayer, country, this.opponentPlayer.selectedCountryTrapCodes, this.countriesNumberField);
+            }
             this.playerAttemptToGuess = false;
             this.opponentPlayer.playerAttemptToGuess = true;
+            this.opponentPlayer.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
+              animate: false,
+            });
           }
         } else if (this.game && this.game.bonusCountries.includes(countryCode)) {
           try {
@@ -1162,9 +1171,15 @@ export class Player {
               animate: false,
             });
           } catch (err) {
-            if (countryCode) this.opponentPlayer.removeCountryBoundaryBlinking(countryCode);
+            if (countryCode) {
+              this.opponentPlayer.removeCountryBoundaryBlinking(countryCode);
+              this.opponentPlayer.closeCountryPopup(countryCode);
+            }
             this.playerAttemptToGuess = true;
             this.opponentPlayer.playerAttemptToGuess = false;
+            this.opponentPlayer.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
+              animate: false,
+            });
           }
         } else if (this.opponentPlayer.selectedCountryCodes.has(countryCode)) {
           try {
@@ -1267,7 +1282,10 @@ export class Player {
               this.opponentPlayer.closeCountryPopup(countryCode);
             }
           } catch (err) {
-            if (countryCode) this.opponentPlayer.removeCountryBoundaryBlinking(countryCode);
+            if (countryCode) {
+              this.opponentPlayer.removeCountryBoundaryBlinking(countryCode);
+              this.opponentPlayer.closeCountryPopup(countryCode);
+            }
             this.playerAttemptToGuess = true;
             this.opponentPlayer.playerAttemptToGuess = false;
           }
@@ -1295,8 +1313,16 @@ export class Player {
             this.opponentPlayer.playerMap.removeLayer(countryBoundary);
             delete this.opponentPlayer.countryBoundaries[countryCode];
           } catch (err) {
+            if (countryCode) {
+              this.opponentPlayer.closeCountryPopup(countryCode);
+              delete this.opponentPlayer.countryBoundaries[countryCode];
+            }
+            this.opponentPlayer.playerMap.removeLayer(countryBoundary);
             this.playerAttemptToGuess = false;
             this.opponentPlayer.playerAttemptToGuess = true;
+            this.opponentPlayer.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
+              animate: false,
+            });
           }
         }
 
@@ -1643,9 +1669,20 @@ export class Player {
             animate: false,
           });
         } catch (err) {
-          if (countryCode) this.removeCountryBoundaryBlinking(countryCode);
+          if (countryCode) {
+            this.removeCountryBoundaryBlinking(countryCode);
+            this.closeCountryPopup(countryCode);
+          }
+          if (guessedCountryAlliance) {
+            guessedCountryAlliance.classList.add("not-displayed");
+            guessedCountryAlliance.style.backgroundColor = "white";
+          }
+          if (guessedCountryAllianceHeader) guessedCountryAllianceHeader.classList.remove("not-displayed");
           this.playerAttemptToGuess = true;
           this.opponentPlayer.playerAttemptToGuess = false;
+          this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
+            animate: false,
+          });
         }
       } else if (this.game && this.game.bonusCountries.includes(countryCode)) {
         try {
@@ -1777,9 +1814,15 @@ export class Player {
             animate: false,
           });
         } catch (err) {
-          if (countryCode) this.removeCountryBoundaryBlinking(countryCode);
+          if (countryCode) {
+            this.removeCountryBoundaryBlinking(countryCode);
+            this.closeCountryPopup(countryCode);
+          }
           this.playerAttemptToGuess = false;
           this.opponentPlayer.playerAttemptToGuess = true;
+          this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
+            animate: false,
+          });
         }
       } else if (this.selectedCountryCodes.has(countryCode)) {
         try {
@@ -1954,7 +1997,10 @@ export class Player {
         } catch (err) {
           this.playerAttemptToGuess = false;
           this.opponentPlayer.playerAttemptToGuess = true;
-          if (countryCode) this.removeCountryBoundaryBlinking(countryCode);
+          if (countryCode) {
+            this.removeCountryBoundaryBlinking(countryCode);
+            this.closeCountryPopup(countryCode);
+          }
         }
       } else {
         try {
@@ -1980,8 +2026,16 @@ export class Player {
           this.playerMap.removeLayer(countryBoundary);
           delete this.countryBoundaries[countryCode];
         } catch (err) {
+          if (countryCode) {
+            this.closeCountryPopup(countryCode);
+            this.playerMap.removeLayer(countryBoundary);
+            delete this.countryBoundaries[countryCode];
+          }
           this.playerAttemptToGuess = true;
           this.opponentPlayer.playerAttemptToGuess = false;
+          this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
+            animate: false,
+          });
         }
       }
     } catch (err) {
@@ -2034,18 +2088,6 @@ export class Player {
       Object.entries(this.countryBoundaries).forEach(
         ([countryCode, countryBoundary]) => {
           const countryMarker = this.countryMarkers[countryCode];
-          this.addMouseOverStyleEventToCountryBoundary(countryBoundary, countryMarker, {
-            weight: 1,
-            fillOpacity: 0.5,
-            opacity: 1,
-            className: countryCode,
-          });
-          this.addMouseOutStyleEventToCountryBoundary(countryBoundary, countryMarker, {
-            weight: 0,
-            fillOpacity: 0.1,
-            opacity: 0,
-            className: countryCode,
-          });
           countryMarker.on(
             "click",
             function (ev) {
@@ -2373,10 +2415,18 @@ export class Player {
     Object.entries(this.countryBoundaries).forEach(
       ([countryCode, countryBoundary]) => {
         const countryMarker = this.countryMarkers[countryCode];
+        if (countryMarker) {
+          countryMarker.unbindTooltip();
+          countryMarker.off();
+        }
+        countryBoundary.unbindTooltip();
+        countryBoundary.off();
         this.playerMap.removeLayer(countryBoundary);
         delete this.countryBoundaries[countryCode];
         this.playerMap.removeLayer(countryMarker);
         delete this.countryMarkers[countryCode];
+        delete this.countryTooltips[countryCode];
+        delete this.countryPopups[countryCode];
       },
     );
     this.initData();
@@ -3627,7 +3677,16 @@ export class Player {
           } catch (err) {
             this.playerAttemptToGuess = true;
             this.opponentPlayer.playerAttemptToGuess = false;
-            if (countryCode) this.removeCountryBoundaryBlinking(countryCode);
+            if (countryCode) {
+              this.removeCountryBoundaryBlinking(countryCode);
+              this.closeCountryPopup(countryCode);
+              this.playerMap.removeLayer(countryBoundary);
+              delete this.countryBoundaries[countryCode];
+              this.deleteCountryNeighbourBorders(this, country, this.selectedCountryTrapCodes, this.countriesNumberField);
+            }
+            this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
+              animate: false,
+            });
           }
         } else if (this.game && this.game.bonusCountries.includes(countryCode)) {
           try {
@@ -3709,7 +3768,13 @@ export class Player {
           } catch (err) {
             this.playerAttemptToGuess = false;
             this.opponentPlayer.playerAttemptToGuess = true;
-            if (countryCode) this.removeCountryBoundaryBlinking(countryCode);
+            if (countryCode) {
+              this.removeCountryBoundaryBlinking(countryCode);
+              this.closeCountryPopup(countryCode);
+            }
+            this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
+              animate: false,
+            });
           }
         } else if (this.selectedCountryCodes.has(countryCode)) {
           try {
@@ -3791,7 +3856,10 @@ export class Player {
           } catch (err) {
             this.playerAttemptToGuess = false;
             this.opponentPlayer.playerAttemptToGuess = true;
-            if (countryCode) this.removeCountryBoundaryBlinking(countryCode);
+            if (countryCode) {
+              this.removeCountryBoundaryBlinking(countryCode);
+              this.closeCountryPopup(countryCode);
+            }
           }
         } else {
           try {
@@ -3817,8 +3885,16 @@ export class Player {
             this.playerMap.removeLayer(countryBoundary);
             delete this.countryBoundaries[countryCode];
           } catch (err) {
+            if (countryCode) {
+              this.closeCountryPopup(countryCode);
+              this.playerMap.removeLayer(countryBoundary);
+              delete this.countryBoundaries[countryCode];
+            }
             this.playerAttemptToGuess = true;
             this.opponentPlayer.playerAttemptToGuess = false;
+            this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
+              animate: false,
+            });
           }
         }
         if (+this.playerCountriesNumberField.textContent === 0) {
