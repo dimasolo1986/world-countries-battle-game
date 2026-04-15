@@ -841,7 +841,9 @@ export class PlayMap {
           layer instanceof L.Marker ||
           layer instanceof L.Polyline ||
           layer instanceof L.Polygon ||
-          layer instanceof L.GeoJSON
+          layer instanceof L.GeoJSON ||
+          layer instanceof L.LayerGroup ||
+          layer instanceof L.FeatureGroup
         ) {
           this.map.removeLayer(layer);
         }

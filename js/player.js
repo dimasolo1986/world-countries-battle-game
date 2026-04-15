@@ -939,8 +939,7 @@ export class Player {
   async playerHit() {
     this.disableMapInteraction();
     this.playMap.cleanMap();
-    this.opponentPlayer.addAllCountryBoundaries();
-    this.opponentPlayer.addAllCountryMarkers();
+    this.opponentPlayer.addAllCountryBoundariesAndMarkers();
     if (this.playerType !== "computerPlayer") this.addHintsToHintPanel();
     if (this.playerType === "computerPlayer") {
       let countryIndex = undefined;
@@ -3250,20 +3249,10 @@ export class Player {
     );
   }
 
-  addAllCountryBoundaries() {
-    Object.entries(this.countryBoundaries).forEach(
-      ([countryCode, countryBoundary]) => {
-        this.playerMap.addLayer(countryBoundary);
-      },
-    );
-  }
-
-  addAllCountryMarkers() {
-    Object.entries(this.countryMarkers).forEach(
-      ([countryCode, countryMarker]) => {
-        this.playerMap.addLayer(countryMarker);
-      },
-    );
+  addAllCountryBoundariesAndMarkers() {
+    const countryBoundariesMarkerGroup = L.featureGroup([...Object.values(this.countryBoundaries
+    ), ...Object.values(this.countryMarkers)]);
+    this.playerMap.addLayer(countryBoundariesMarkerGroup);
   }
 
   showSelectedCountries() {
