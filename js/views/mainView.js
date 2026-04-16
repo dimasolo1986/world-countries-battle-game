@@ -44,7 +44,7 @@ class mainView {
   _hitTimeListenerAdded = false;
   _bonusCountriesSelectListenerAdded = false;
 
-  startGame(
+  async startGame(
     aboutView,
     gameView,
     donateAuthorView,
@@ -68,16 +68,21 @@ class mainView {
       );
       return;
     }
+    document.querySelector("#startButtonText").classList.add("not-displayed");
+    document.querySelector("#startLoaderSpinner").classList.remove("not-displayed");
     this._startButton.disabled = true;
-    this.hideMain();
-    this._header.classList.add("not-displayed");
-    this._footer.classList.add("not-displayed");
     aboutView.hideAboutProject();
     donateAuthorView.hideDonateProject();
     gameRulesView.hideGameRulesProject();
     gameRoomView.hideGameRoomProject();
-    gameView.showGame();
     gameView.initGameView(firebase);
+    await new Promise(resolve => setTimeout(resolve, 500));
+    this.hideMain();
+    this._header.classList.add("not-displayed");
+    this._footer.classList.add("not-displayed");
+    document.querySelector("#startLoaderSpinner").classList.add("not-displayed");
+    document.querySelector("#startButtonText").classList.remove("not-displayed");
+    gameView.showGame();
   }
 
   aboutProject(
@@ -149,7 +154,7 @@ class mainView {
     }
   }
 
-    addHintsTypeListener() {
+  addHintsTypeListener() {
     if (!this._hintsTypeListenerAdded) {
       this._hintsTypeSelect.addEventListener("change", () => {
         document.getElementById(
@@ -382,11 +387,11 @@ class mainView {
       }`;
     this._opponentConnectionLabel.textContent = `${localization[model.worldCountries.language][
       this._opponentConnectionLabel.dataset.connection
-      ]
+    ]
       }`;
     this._createGameRoomButton.textContent = `🎮 ${localization[model.worldCountries.language][
       this._createGameRoomButton.dataset.text
-      ]
+    ]
       }`;
     this._shareWebSite.firstElementChild.textContent = `${localization[model.worldCountries.language]["Share"]
       }`;

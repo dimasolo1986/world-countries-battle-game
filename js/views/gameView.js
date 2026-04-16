@@ -62,6 +62,7 @@ class gameView {
 
   showGame() {
     this._parentElement.classList.remove("not-displayed");
+    this._playMap.map.invalidateSize();
   }
 
   hideGame() {

@@ -374,6 +374,7 @@ export class Game {
       return;
     }
     this.playMap.initStartPlayMapView();
+    this.playMap.cleanMap();
     this.started = true;
     this.playerOne.sendStartGameToOpponent();
     if (

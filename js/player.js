@@ -27,6 +27,7 @@ export class Player {
   playerCountriesNumberField;
   playerSelectedCountriesContainer;
   playerSelectedCountriesContainerId;
+  countryBoundariesAndMarkersFeatureGroup;
   lastGuessedCountryNames = [];
   usedHintsCount = 0;
   trapCountryHitted = 0;
@@ -136,6 +137,7 @@ export class Player {
     this.playerAttemptToGuess = null;
     this.opponentPlayerConfigAcknowledged = null;
     this.opponentPlayerStartAcknowledged = null;
+    this.countryBoundariesAndMarkersFeatureGroup = null;
     this.playerConfigured = null;
     this.playerWonGame = null;
     this.playerAlreadyHitting = null;
@@ -175,6 +177,7 @@ export class Player {
     this.playerWonGame = false;
     this.playerAlreadyHitting = false;
     this.lastGuessedCountryNames = [];
+    this.countryBoundariesAndMarkersFeatureGroup = L.featureGroup();
     if (this.gameConfiguration.hintsType === "All Hints") {
       this.hintTypes = new Set([
         "country",
@@ -216,7 +219,13 @@ export class Player {
     this.countryCodes = [];
     this.countriesToGuessNext = [];
     this.alreadyGuessedCountryCodes = [];
-    model.worldCountries.countries.forEach((country) => {
+    let worldCountries = [];
+    if (this.gameConfiguration.onlyIndependentCountries) {
+      worldCountries = model.worldCountries.countries.filter(country => country.independent);
+    } else {
+      worldCountries = model.worldCountries.countries;
+    }
+    worldCountries.forEach((country) => {
       const countryGeo = getCountryGeo(country.cca2);
       const countryTooltip = this.createCountryTooltip(country);
       const countryBoundary = this.createCountryBoundary(
@@ -244,54 +253,27 @@ export class Player {
         className: country.cca2,
       });
       const countryPopup = this.createCountryPopup(country);
-      if (
-        this.gameConfiguration.onlyIndependentCountries &&
-        country.independent
-      ) {
-        this.countryMarkers[country.cca2] = countryMarker;
-        this.countryBoundaries[country.cca2] = countryBoundary;
-        this.countryPopups[country.cca2] = countryPopup;
-        this.countryTooltips[country.cca2] = countryTooltip;
-        this.countriesCodeMapping[country.cca3] = country.cca2;
-        this.countryCodes.push(country.cca2);
-        this.countries[country.cca2] = {
-          countryName: country.name.common,
-          countryWikiLandscapeCategoryName: country?.wikiLandscapeCategoryName,
-          countryCapital: country.capital?.[0],
-          countryRegion: country.region,
-          countrySubregion: country?.subregion,
-          countryFlag: country.flags.png,
-          countryCoatOfArms: country.coatOfArms?.png,
-          countryIndependent: country.independent,
-          cca2: country.cca2,
-          cca3: country.cca3,
-          latlng: country.latlng,
-          capitalLatLng: country.capitalInfo.latlng,
-          countryBorders: country.borders ? country.borders : [],
-        };
-      } else if (!this.gameConfiguration.onlyIndependentCountries) {
-        this.countryMarkers[country.cca2] = countryMarker;
-        this.countryBoundaries[country.cca2] = countryBoundary;
-        this.countryPopups[country.cca2] = countryPopup;
-        this.countryTooltips[country.cca2] = countryTooltip;
-        this.countriesCodeMapping[country.cca3] = country.cca2;
-        this.countryCodes.push(country.cca2);
-        this.countries[country.cca2] = {
-          countryName: country.name.common,
-          countryWikiLandscapeCategoryName: country?.wikiLandscapeCategoryName,
-          countryCapital: country?.capital?.[0],
-          countryRegion: country.region,
-          countrySubregion: country?.subregion,
-          countryFlag: country.flags.png,
-          countryCoatOfArms: country.coatOfArms?.png,
-          countryIndependent: country.independent,
-          cca2: country.cca2,
-          cca3: country.cca3,
-          latlng: country.latlng,
-          capitalLatLng: country.capitalInfo.latlng,
-          countryBorders: country.borders ? country.borders : [],
-        };
-      }
+      this.countryMarkers[country.cca2] = countryMarker;
+      this.countryBoundaries[country.cca2] = countryBoundary;
+      this.countryPopups[country.cca2] = countryPopup;
+      this.countryTooltips[country.cca2] = countryTooltip;
+      this.countriesCodeMapping[country.cca3] = country.cca2;
+      this.countryCodes.push(country.cca2);
+      this.countries[country.cca2] = {
+        countryName: country.name.common,
+        countryWikiLandscapeCategoryName: country?.wikiLandscapeCategoryName,
+        countryCapital: country.capital?.[0],
+        countryRegion: country.region,
+        countrySubregion: country?.subregion,
+        countryFlag: country.flags.png,
+        countryCoatOfArms: country.coatOfArms?.png,
+        countryIndependent: country.independent,
+        cca2: country.cca2,
+        cca3: country.cca3,
+        latlng: country.latlng,
+        capitalLatLng: country.capitalInfo.latlng,
+        countryBorders: country.borders ? country.borders : [],
+      };
     });
     if (
       this.gameConfiguration.gameMode === "user" &&
@@ -938,7 +920,6 @@ export class Player {
 
   async playerHit() {
     this.disableMapInteraction();
-    this.playMap.cleanMap();
     this.opponentPlayer.addAllCountryBoundariesAndMarkers();
     if (this.playerType !== "computerPlayer") this.addHintsToHintPanel();
     if (this.playerType === "computerPlayer") {
@@ -3250,14 +3231,18 @@ export class Player {
   }
 
   addAllCountryBoundariesAndMarkers() {
-    const countryBoundariesMarkerGroup = L.featureGroup([...Object.values(this.countryBoundaries
-    ), ...Object.values(this.countryMarkers)]);
-    this.playerMap.addLayer(countryBoundariesMarkerGroup);
+    this.playerMap.removeLayer(this.countryBoundariesAndMarkersFeatureGroup);
+    this.countryBoundariesAndMarkersFeatureGroup.clearLayers();
+    this.playerMap.removeLayer(this.opponentPlayer.countryBoundariesAndMarkersFeatureGroup);
+    Object.values(this.countryBoundaries)
+      .forEach(layer => this.countryBoundariesAndMarkersFeatureGroup.addLayer(layer));
+    Object.values(this.countryMarkers)
+      .forEach(layer => this.countryBoundariesAndMarkersFeatureGroup.addLayer(layer));
+    this.playerMap.addLayer(this.countryBoundariesAndMarkersFeatureGroup);
   }
 
   showSelectedCountries() {
-    this.removeAllCountryMarkers();
-    this.removeAllCountryBoundaries();
+    this.playMap.cleanMap();
     Object.entries(this.countryMarkers).forEach(
       ([countryCode, countryMarker]) => {
         countryMarker.off();
@@ -3265,7 +3250,7 @@ export class Player {
           this.selectedCountryCodes.has(countryCode) ||
           this.selectedCountryTrapCodes.has(countryCode)
         ) {
-          this.playerMap.addLayer(countryMarker);
+          this.countryBoundariesAndMarkersFeatureGroup.addLayer(countryMarker);
         }
       },
     );
@@ -3280,7 +3265,7 @@ export class Player {
         opacity: 0.8,
         className: countryCode,
       });
-      this.playerMap.addLayer(countryBoundary);
+      this.countryBoundariesAndMarkersFeatureGroup.addLayer(countryBoundary);
     });
     this.selectedCountryTrapCodes.forEach((countryCode) => {
       const countryBoundary = this.countryBoundaries[countryCode];
@@ -3293,8 +3278,9 @@ export class Player {
         opacity: 0.8,
         className: countryCode,
       });
-      this.playerMap.addLayer(countryBoundary);
+      this.countryBoundariesAndMarkersFeatureGroup.addLayer(countryBoundary);
     });
+    this.playerMap.addLayer(this.countryBoundariesAndMarkersFeatureGroup);
   }
 
   sendCleanCountriesSelectionToOpponent() {
