@@ -918,9 +918,9 @@ export class Player {
     });
   }
 
-  async playerHit() {
+  async playerHit(addCountryBoundariesAndMarkers = true) {
     this.disableMapInteraction();
-    this.opponentPlayer.addAllCountryBoundariesAndMarkers();
+    if (addCountryBoundariesAndMarkers) this.opponentPlayer.addAllCountryBoundariesAndMarkers();
     if (this.playerType !== "computerPlayer") this.addHintsToHintPanel();
     if (this.playerType === "computerPlayer") {
       let countryIndex = undefined;
@@ -1007,6 +1007,7 @@ export class Player {
         }
         if (this.opponentPlayer.selectedCountryTrapCodes.has(countryCode)) {
           try {
+            addCountryBoundariesAndMarkers = true;
             this.setMessageInnerHtmlField(
               `<span>⚠️ ${localization[model.worldCountries.language][
               "Computer has fallen into a trap-country"
@@ -1076,6 +1077,7 @@ export class Player {
           }
         } else if (this.game && this.game.bonusCountries.includes(countryCode)) {
           try {
+            addCountryBoundariesAndMarkers = false;
             this.playerAttemptToGuess = true;
             this.opponentPlayer.playerAttemptToGuess = false;
             const countryBoundaryComputer = this.countryBoundaries[countryCode];
@@ -1163,6 +1165,7 @@ export class Player {
           }
         } else if (this.opponentPlayer.selectedCountryCodes.has(countryCode)) {
           try {
+            addCountryBoundariesAndMarkers = false;
             this.playerAttemptToGuess = true;
             this.opponentPlayer.playerAttemptToGuess = false;
             if (this.isHintUsed(countryCode)) {
@@ -1271,6 +1274,7 @@ export class Player {
           }
         } else {
           try {
+            addCountryBoundariesAndMarkers = true;
             this.opponentPlayer.setElementStyle(countryBoundary, {
               weight: 1,
               color: "grey",
@@ -1368,7 +1372,7 @@ export class Player {
       this.game.isPlayerReady = false;
       return;
     }
-    this.game.playHit();
+    this.game.playHit(addCountryBoundariesAndMarkers);
   }
 
   hitTimeout(time = this.gameConfiguration.hitTime) {
@@ -1509,7 +1513,7 @@ export class Player {
     });
   }
 
-  async addUserClickCountriesPlay(countryCode, countryBoundary, countryMarker) {
+  async addUserClickCountriesPlay(countryCode, countryBoundary, countryMarker, addCountryBoundariesAndMarkers = true) {
     try {
       if (this.playerAlreadyHitting) return;
       this.playerAlreadyHitting = true;
@@ -1560,6 +1564,7 @@ export class Player {
       this.openCountryPopup(countryCode);
       if (this.selectedCountryTrapCodes.has(countryCode)) {
         try {
+          addCountryBoundariesAndMarkers = true;
           this.setMessageInnerHtmlField(
             `<span>⛔ ${localization[model.worldCountries.language][
             "You have fallen into a trap-country"
@@ -1666,6 +1671,7 @@ export class Player {
         }
       } else if (this.game && this.game.bonusCountries.includes(countryCode)) {
         try {
+          addCountryBoundariesAndMarkers = false;
           this.playerAttemptToGuess = false;
           this.opponentPlayer.playerAttemptToGuess = true;
           const countryBoundaryUser =
@@ -1806,6 +1812,7 @@ export class Player {
         }
       } else if (this.selectedCountryCodes.has(countryCode)) {
         try {
+          addCountryBoundariesAndMarkers = false;
           this.playerAttemptToGuess = false;
           this.opponentPlayer.playerAttemptToGuess = true;
           if (this.opponentPlayer.isHintUsed(countryCode)) {
@@ -1984,6 +1991,7 @@ export class Player {
         }
       } else {
         try {
+          addCountryBoundariesAndMarkers = true;
           this.setElementStyle(countryBoundary, {
             weight: 1,
             color: "grey",
@@ -2041,7 +2049,7 @@ export class Player {
       this.game.isPlayerReady = true;
     }
     this.playerAlreadyHitting = false;
-    this.game.playHit();
+    this.game.playHit(addCountryBoundariesAndMarkers);
   }
 
   clearOpponentPlayerTimeout() {
@@ -3557,7 +3565,7 @@ export class Player {
     }
   }
 
-  async handleOpponentHit(countryCode) {
+  async handleOpponentHit(countryCode, addCountryBoundariesAndMarkers = true) {
     if (countryCode === "timeout") {
       this.playerAttemptToGuess = true;
       this.opponentPlayer.playerAttemptToGuess = false;
@@ -3597,6 +3605,7 @@ export class Player {
         }
         if (this.selectedCountryTrapCodes.has(countryCode)) {
           try {
+            addCountryBoundariesAndMarkers = true;
             this.setMessageInnerHtmlField(
               `<span>⚠️ ${localization[model.worldCountries.language][
               "Opponent has fallen into a trap-country"
@@ -3665,6 +3674,7 @@ export class Player {
           }
         } else if (this.game && this.game.bonusCountries.includes(countryCode)) {
           try {
+            addCountryBoundariesAndMarkers = false;
             this.playerAttemptToGuess = false;
             this.opponentPlayer.playerAttemptToGuess = true;
             const countryBoundaryOpponent =
@@ -3753,6 +3763,7 @@ export class Player {
           }
         } else if (this.selectedCountryCodes.has(countryCode)) {
           try {
+            addCountryBoundariesAndMarkers = false;
             this.playerAttemptToGuess = false;
             this.opponentPlayer.playerAttemptToGuess = true;
             if (this.opponentPlayer.isHintUsed(countryCode)) {
@@ -3838,6 +3849,7 @@ export class Player {
           }
         } else {
           try {
+            addCountryBoundariesAndMarkers = true;
             this.setElementStyle(countryBoundary, {
               weight: 1,
               color: "grey",
@@ -3887,7 +3899,7 @@ export class Player {
       }
       this.sendMoveAckToOpponent();
       this.game.isPlayerReady = true;
-      this.game.playHit();
+      this.game.playHit(addCountryBoundariesAndMarkers);
     }
   }
 

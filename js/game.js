@@ -334,7 +334,7 @@ export class Game {
     loadMain();
   }
 
-  playHit() {
+  playHit(addCountryBoundariesAndMarkers = true) {
     if (
       this.gameConfiguration.gameMode === "user" &&
       (!this.isPlayerReady || !this.isOpponentPlayerReady)
@@ -342,9 +342,9 @@ export class Game {
       return;
     }
     if (this.playerOne.playerAttemptToGuess) {
-      this.playerOne.playerHit();
+      this.playerOne.playerHit(addCountryBoundariesAndMarkers);
     } else {
-      this.playerTwo.playerHit();
+      this.playerTwo.playerHit(addCountryBoundariesAndMarkers);
     }
   }
 
