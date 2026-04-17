@@ -296,24 +296,14 @@ export class Player {
   }
 
   addCountryBoundaryBlinking(countryCode) {
-    let countryBoundary;
-    if (L.Browser.canvas) {
-      countryBoundary = document.querySelector(`.leaflet-overlay-pane canvas`);
-    } else {
-      countryBoundary = document.querySelector(`.${countryCode}`);
-    }
+    const countryBoundary = document.querySelector(`.${countryCode}`);
     if (countryBoundary) {
       countryBoundary.classList.add("blinking");
     }
   }
 
   removeCountryBoundaryBlinking(countryCode) {
-    let countryBoundary;
-    if (L.Browser.canvas) {
-      countryBoundary = document.querySelector(`.leaflet-overlay-pane canvas`);
-    } else {
-      countryBoundary = document.querySelector(`.${countryCode}`);
-    }
+    const countryBoundary = document.querySelector(`.${countryCode}`);
     if (countryBoundary) {
       countryBoundary.classList.remove("blinking");
     }
@@ -2072,7 +2062,6 @@ export class Player {
             "click",
             function (ev) {
               L.DomEvent.stopPropagation(ev);
-              countryMarker.disablePermanentHighlight();
               this.addUserClickCountriesPlay(
                 countryCode,
                 countryBoundary,
@@ -2084,7 +2073,6 @@ export class Player {
             "click",
             function (ev) {
               L.DomEvent.stopPropagation(ev);
-              countryMarker.disablePermanentHighlight();
               this.addUserClickCountriesPlay(
                 countryCode,
                 countryBoundary,
@@ -2469,7 +2457,6 @@ export class Player {
       countryBoundary.off("click");
       countryBoundary.once("click", (ev) => {
         L.DomEvent.stopPropagation(ev);
-        countryMarker.disablePermanentHighlight();
         this.addUserPlayerInitialCountrySelectionHandler(
           countryCode,
           countryBoundary,
@@ -2479,7 +2466,6 @@ export class Player {
       countryMarker.off("click");
       countryMarker.once("click", (ev) => {
         L.DomEvent.stopPropagation(ev);
-        countryMarker.disablePermanentHighlight();
         this.addUserPlayerInitialCountrySelectionHandler(
           countryCode,
           countryBoundary,
@@ -3059,7 +3045,6 @@ export class Player {
         countryBoundary.fire("click");
       } else {
         L.DomEvent.stopPropagation(event);
-        if (countryMarker) countryMarker.enablePermanentHighlight();
         countryBoundary.setStyle(styleObject);
       }
     });
@@ -3069,14 +3054,12 @@ export class Player {
     if (!("ontouchstart" in window || navigator.maxTouchPoints > 0)) {
       countryBoundary.on("mouseout", function (event) {
         L.DomEvent.stopPropagation(event);
-        if (countryMarker) countryMarker.disablePermanentHighlight();
         countryBoundary.setStyle(styleObject);
         countryBoundary.once("mouseover", function (event) {
           if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
             countryBoundary.fire("click");
           } else {
             L.DomEvent.stopPropagation(event);
-            if (countryMarker) countryMarker.enablePermanentHighlight();
             countryBoundary.setStyle({
               weight: 1,
               fillOpacity: 0.5,
@@ -3111,7 +3094,6 @@ export class Player {
     ).bindPopup(countryPopup).bindTooltip(countryTooltip);
     marker.dataId = country.cca2;
     marker.on("mouseover", function (event) {
-      marker.enablePermanentHighlight();
       countryBoundary.setStyle({
         weight: 1,
         fillOpacity: 0.5,
@@ -3124,7 +3106,6 @@ export class Player {
       }
     });
     marker.on("mouseout", function (event) {
-      marker.disablePermanentHighlight();
       countryBoundary.setStyle({
         weight: 0,
         fillOpacity: 0.1,

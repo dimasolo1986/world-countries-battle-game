@@ -101,12 +101,7 @@ export class PlayMap {
       PhysicalMap: physicalMap,
       Satellite: siteliteLayer
     };
-    let preferCanvas = false;
-    if (L.Browser.canvas) {
-      preferCanvas = true;
-    }
     this.map = L.map("map", {
-      preferCanvas: preferCanvas,
       attributionControl: false,
       contextmenu: true,
       layers: [streetLayer],
