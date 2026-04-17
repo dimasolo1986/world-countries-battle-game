@@ -3211,6 +3211,7 @@ export class Player {
     this.playerMap.removeLayer(this.countryBoundariesAndMarkersFeatureGroup);
     this.countryBoundariesAndMarkersFeatureGroup.clearLayers();
     this.playerMap.removeLayer(this.opponentPlayer.countryBoundariesAndMarkersFeatureGroup);
+    this.opponentPlayer.countryBoundariesAndMarkersFeatureGroup.clearLayers();
     Object.values(this.countryBoundaries)
       .forEach(layer => this.countryBoundariesAndMarkersFeatureGroup.addLayer(layer));
     Object.values(this.countryMarkers)
