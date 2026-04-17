@@ -44,7 +44,6 @@ export class Player {
   countries = {};
   countriesCodeMapping = {};
   countryBoundaries = {};
-  countryTooltips = {};
   countryPopups = {};
   countryMarkers = {};
   hints = {};
@@ -127,7 +126,6 @@ export class Player {
     this.lastGuessedCountryNames = [];
     this.countriesCodeMapping = null;
     this.countryBoundaries = null;
-    this.countryTooltips = null;
     this.countryPopups = null;
     this.countryMarkers = null;
     this.hints = null;
@@ -159,7 +157,6 @@ export class Player {
     this.countries = {};
     this.countriesCodeMapping = {};
     this.countryBoundaries = {};
-    this.countryTooltips = {};
     this.countryPopups = {};
     this.countryMarkers = {};
     this.hints = {};
@@ -256,7 +253,6 @@ export class Player {
       this.countryMarkers[country.cca2] = countryMarker;
       this.countryBoundaries[country.cca2] = countryBoundary;
       this.countryPopups[country.cca2] = countryPopup;
-      this.countryTooltips[country.cca2] = countryTooltip;
       this.countriesCodeMapping[country.cca3] = country.cca2;
       this.countryCodes.push(country.cca2);
       this.countries[country.cca2] = {
@@ -303,14 +299,24 @@ export class Player {
   }
 
   addCountryBoundaryBlinking(countryCode) {
-    const countryBoundary = document.querySelector(`.${countryCode}`);
+    let countryBoundary;
+    if (L.Browser.canvas) {
+      countryBoundary = document.querySelector(`.leaflet-overlay-pane canvas`);
+    } else {
+      countryBoundary = document.querySelector(`.${countryCode}`);
+    }
     if (countryBoundary) {
       countryBoundary.classList.add("blinking");
     }
   }
 
   removeCountryBoundaryBlinking(countryCode) {
-    const countryBoundary = document.querySelector(`.${countryCode}`);
+    let countryBoundary;
+    if (L.Browser.canvas) {
+      countryBoundary = document.querySelector(`.leaflet-overlay-pane canvas`);
+    } else {
+      countryBoundary = document.querySelector(`.${countryCode}`);
+    }
     if (countryBoundary) {
       countryBoundary.classList.remove("blinking");
     }
@@ -470,9 +476,7 @@ export class Player {
     if (countryPopup) {
       countryPopup.close();
       this.playerMap.removeLayer(countryPopup);
-      this.playerMap.removeLayer(this.countryTooltips[countryCode]);
       delete this.countryPopups[countryCode];
-      delete this.countryTooltips[countryCode];
     }
   }
 
@@ -906,7 +910,6 @@ export class Player {
         player.playerMap.removeLayer(countryBoundary);
         delete player.countryMarkers[countryBorderCode];
         delete player.countryPopups[countryBorderCode];
-        delete player.countryTooltips[countryBorderCode];
         delete player.countryBoundaries[countryBorderCode];
         const countryIndexToDelete =
           player.countryCodes.indexOf(countryBorderCode);
@@ -2413,7 +2416,6 @@ export class Player {
         delete this.countryBoundaries[countryCode];
         this.playerMap.removeLayer(countryMarker);
         delete this.countryMarkers[countryCode];
-        delete this.countryTooltips[countryCode];
         delete this.countryPopups[countryCode];
       },
     );
