@@ -505,12 +505,14 @@ export class Player {
     if (hintBtn) hintBtn.remove();
     if (hintsPanel) hintsPanel.classList.add("not-displayed");
     const hintsLength = Object.keys(this.hints).length;
+    let hintType;
     if (hintsLength === 0) return;
     const hintsPanelContent = document.getElementById("hints-panel-content");
     hintsPanelContent.innerHTML = "";
     Object.keys(this.hints).forEach((countryCode) => {
       const hintObject = this.hints[countryCode];
       const hintHeader = Object.keys(hintObject)[0];
+      hintType = hintHeader;
       const hintValue = Object.values(hintObject)[0];
       if (hintHeader === "CoatOfArms") {
         const coatOfArmsImage = document.getElementById(
@@ -701,6 +703,7 @@ export class Player {
     }.bind(this), { once: true });
     hintsPanelContent.insertAdjacentElement("beforeend", hideHintsPanelContainer);
     L.Control.HintsButton = L.Control.extend({
+      context: this,
       onAdd: function (map) {
         const hintsButton = L.DomUtil.create("button");
         hintsButton.classList.add("btn", "btn-primary", "btn-sm");
@@ -717,10 +720,28 @@ export class Player {
         } else {
           hintsButton.textContent = localization[model.worldCountries.language]["View Hints"];
         }
-        hintsButton.addEventListener("click", function () {
-          if (button) button.remove();
-          hintsPanel.classList.remove("not-displayed");
-        }.bind(this), { once: true });
+        hintsButton.addEventListener("click", function viewHint() {
+          if (hintType && hintsLength === 1) {
+            this.playMap.exitFullScreen();
+            if (hintType === "CoatOfArms") {
+              showCountryCoatOfArmsFlagWindow("coatOfArmsModal");
+            } else if (hintType === "Flag") {
+              showCountryCoatOfArmsFlagWindow("flagModal");
+            } else if (hintType === "Outline") {
+              showCountryCoatOfArmsFlagWindow("countryOutlineModal");
+            } else if (hintType === "CountryPhoto") {
+              showCountryCoatOfArmsFlagWindow("countryPhotoModal");
+            } else {
+              if (button) button.remove();
+              hintsPanel.classList.remove("not-displayed");
+              return;
+            }
+            hintsButton.addEventListener("click", viewHint.bind(this), { once: true });
+          } else {
+            if (button) button.remove();
+            hintsPanel.classList.remove("not-displayed");
+          }
+        }.bind(this.context), { once: true });
         return hintsButton;
       },
       onRemove: function () { },
