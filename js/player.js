@@ -363,9 +363,9 @@ export class Player {
       if (countryPhotoUrl && this.playerType !== "computerPlayer") {
         this.hints[countryCode] = { CountryPhoto: countryPhotoUrl };
       } else if (countryPhotoUrl === null) {
-        this.hints[countryCode] = { Outline: country.countryName };
+        this.hints[countryCode] = { Flag: country.countryFlag };
       } else {
-        this.hints[countryCode] = { Outline: country.countryName };
+        this.hints[countryCode] = { Flag: country.countryFlag };
       }
     } else if (hintType === "subregion") {
       const hasSubregion = selectedCountryCodes.some((countryCode) => {
@@ -500,10 +500,14 @@ export class Player {
   }
 
   addHintsToHintPanel() {
-    const hintsLength = Object.keys(this.hints).length;
-    if (hintsLength === 0) return;
     const hintsPanel = document.getElementById("hints-panel");
     const hintBtn = document.getElementById("hints-link");
+    const hintsLength = Object.keys(this.hints).length;
+    if (hintsLength === 0) {
+      if (hintBtn) hintBtn.remove();
+      if (hintsPanel) hintsPanel.classList.add("not-displayed");
+      return;
+    };
     const hintsNumber = hintBtn ? +hintBtn.dataset.hints : 0;
     if (hintsNumber && hintsNumber === hintsLength) {
       hintBtn.classList.remove("not-displayed");
