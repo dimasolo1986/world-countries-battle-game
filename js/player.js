@@ -500,13 +500,18 @@ export class Player {
   }
 
   addHintsToHintPanel() {
+    const hintsLength = Object.keys(this.hints).length;
+    if (hintsLength === 0) return;
     const hintsPanel = document.getElementById("hints-panel");
     const hintBtn = document.getElementById("hints-link");
+    const hintsNumber = hintBtn ? +hintBtn.dataset.hints : 0;
+    if (hintsNumber && hintsNumber === hintsLength) {
+      hintBtn.classList.remove("not-displayed");
+      return;
+    };
     if (hintBtn) hintBtn.remove();
     if (hintsPanel) hintsPanel.classList.add("not-displayed");
-    const hintsLength = Object.keys(this.hints).length;
     let hintType;
-    if (hintsLength === 0) return;
     const hintsPanelContent = document.getElementById("hints-panel-content");
     hintsPanelContent.innerHTML = "";
     Object.keys(this.hints).forEach((countryCode) => {
@@ -715,18 +720,19 @@ export class Player {
         hintsButton.style.maxWidth = "220px";
         hintsButton.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
+        hintsButton.dataset.hints = `${hintsLength}`;
         if (hintsLength === 1) {
-           if (hintType && hintType === "CoatOfArms") {
-              hintsButton.classList.add("btn-info");
-            } else if (hintType && hintType === "Flag") {
-              hintsButton.classList.add("btn-warning");
-            } else if (hintType && hintType === "Outline") {
-              hintsButton.classList.add("btn-success");
-            } else if (hintType && hintType === "CountryPhoto") {
-              hintsButton.classList.add("btn-secondary");
-            } else {
-              hintsButton.classList.add("btn-primary");
-            }
+          if (hintType && hintType === "CoatOfArms") {
+            hintsButton.classList.add("btn-info");
+          } else if (hintType && hintType === "Flag") {
+            hintsButton.classList.add("btn-warning");
+          } else if (hintType && hintType === "Outline") {
+            hintsButton.classList.add("btn-success");
+          } else if (hintType && hintType === "CountryPhoto") {
+            hintsButton.classList.add("btn-secondary");
+          } else {
+            hintsButton.classList.add("btn-primary");
+          }
           hintsButton.textContent = localization[model.worldCountries.language]["View Hint"];
         } else {
           hintsButton.classList.add("btn-primary");
@@ -938,7 +944,7 @@ export class Player {
   async playerHit(addCountryBoundariesAndMarkers = true) {
     this.disableMapInteraction();
     if (addCountryBoundariesAndMarkers) this.opponentPlayer.addAllCountryBoundariesAndMarkers();
-    if (this.playerType !== "computerPlayer") this.addHintsToHintPanel();
+    if (this.playerType === "userPlayer") this.addHintsToHintPanel();
     if (this.playerType === "computerPlayer") {
       let countryIndex = undefined;
       let countryCode = undefined;
@@ -1376,6 +1382,8 @@ export class Player {
       this.game.isPlayerReady = false;
       return;
     } else {
+      this.playMap.hideMapElement("hints-link");
+      this.playMap.hideMapElement("hints-panel");
       document.getElementById("timer-field-container").style.display = "none";
       this.playMap.setMapFiledLabel("Your Map");
       this.countriesNumberField.textContent =
