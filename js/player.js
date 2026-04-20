@@ -3585,6 +3585,7 @@ export class Player {
       this.game.playHit();
     } else {
       try {
+        this.alreadyGuessedCountryCodes.push(countryCode);
         const country = this.countries[countryCode];
         const countryBoundary = this.countryBoundaries[countryCode];
         const countryMarker = this.countryMarkers[countryCode];
