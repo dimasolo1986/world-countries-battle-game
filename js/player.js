@@ -706,7 +706,7 @@ export class Player {
       context: this,
       onAdd: function (map) {
         const hintsButton = L.DomUtil.create("button");
-        hintsButton.classList.add("btn", "btn-primary", "btn-sm");
+        hintsButton.classList.add("btn", "btn-sm");
         hintsButton.id = "hints-link";
         hintsButton.style.opacity = "0.8";
         hintsButton.style.fontSize = "0.65rem";
@@ -716,8 +716,20 @@ export class Player {
         hintsButton.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
         if (hintsLength === 1) {
+           if (hintType && hintType === "CoatOfArms") {
+              hintsButton.classList.add("btn-info");
+            } else if (hintType && hintType === "Flag") {
+              hintsButton.classList.add("btn-warning");
+            } else if (hintType && hintType === "Outline") {
+              hintsButton.classList.add("btn-success");
+            } else if (hintType && hintType === "CountryPhoto") {
+              hintsButton.classList.add("btn-secondary");
+            } else {
+              hintsButton.classList.add("btn-primary");
+            }
           hintsButton.textContent = localization[model.worldCountries.language]["View Hint"];
         } else {
+          hintsButton.classList.add("btn-primary");
           hintsButton.textContent = localization[model.worldCountries.language]["View Hints"];
         }
         hintsButton.addEventListener("click", function viewHint() {
