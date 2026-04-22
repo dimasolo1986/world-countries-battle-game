@@ -322,6 +322,9 @@ export class Game {
     this.playMap.exitFullScreen();
     if (this.gameConfiguration.gameMode === "user") {
       this.playerOne.sendFinishGameToOpponent();
+      if (window.gtag) gtag("event", "game_friend_end");
+    } else {
+      if (window.gtag) gtag("event", "game_computer_end");
     }
     this.playMap.destroyMap();
     this.playerOne.cleanPlayerResources(deleteGameRoom);
@@ -376,6 +379,13 @@ export class Game {
     this.playMap.initStartPlayMapView();
     this.playMap.cleanMap();
     this.started = true;
+    if (window.gtag) {
+      if (this.gameConfiguration.gameMode === "user") {
+        gtag("event", "game_friend_start");
+      } else {
+        gtag("event", "game_computer_start");
+      }
+    }
     this.playerOne.sendStartGameToOpponent();
     if (
       this.gameConfiguration.gameMode === "user" &&
