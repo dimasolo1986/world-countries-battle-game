@@ -233,8 +233,8 @@ export class Player {
         countryBoundary,
         countryTooltip,
         countryPopup,
-        14,
-        14,
+        15,
+        15,
       );
       this.addMouseOverStyleEventToCountryBoundary(countryBoundary, countryMarker, {
         weight: 1,
