@@ -83,6 +83,7 @@ class mainView {
     document.querySelector("#startLoaderSpinner").classList.add("not-displayed");
     document.querySelector("#startButtonText").classList.remove("not-displayed");
     gameView.showGame();
+    if (window.gtag) gtag("event", "game_select_countries_view");
   }
 
   aboutProject(
