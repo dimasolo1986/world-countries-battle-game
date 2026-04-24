@@ -281,6 +281,10 @@ svg.leaflet-image-layer.leaflet-interactive path {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.5), 0 2px 2px 0 rgba(0, 0, 0, 0.12) inset;
 }
 
+.box-shadow-marker-icon-hover {
+  box-shadow: 0 7px 7px 0 rgba(0, 0, 0, 0.5), 0 7px 7px 0 rgba(0, 0, 0, 0.12) inset;
+}
+
 /* visual tweaks */
 
 .leaflet-container {

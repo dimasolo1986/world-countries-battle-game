@@ -3091,6 +3091,7 @@ export class Player {
       } else {
         L.DomEvent.stopPropagation(event);
         countryBoundary.setStyle(styleObject);
+        countryMarker._icon.classList.add("box-shadow-marker-icon-hover");
       }
     });
   }
@@ -3100,6 +3101,7 @@ export class Player {
       countryBoundary.on("mouseout", function (event) {
         L.DomEvent.stopPropagation(event);
         countryBoundary.setStyle(styleObject);
+        countryMarker._icon.classList.remove("box-shadow-marker-icon-hover");
         countryBoundary.once("mouseover", function (event) {
           if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
             countryBoundary.fire("click");
@@ -3111,6 +3113,7 @@ export class Player {
               opacity: 1,
               className: styleObject.className
             });
+            countryMarker._icon.classList.add("box-shadow-marker-icon-hover");
           }
         });
       });
