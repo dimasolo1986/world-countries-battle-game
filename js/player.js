@@ -2664,6 +2664,7 @@ export class Player {
         }`;
       return;
     }
+    countryMarker._icon.classList.add("box-shadow-marker-icon-hover");
     this.selectedCountryCodes.add(countryCode);
     if (this.gameConfiguration.type === "default") {
       if (
