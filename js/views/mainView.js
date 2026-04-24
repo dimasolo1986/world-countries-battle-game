@@ -99,6 +99,7 @@ class mainView {
     gameView.hideGame();
     gameRoomView.hideGameRoomProject();
     sessionStorage.setItem("currentWindow", "about-project");
+    if (window.gtag) gtag("event", "about_project_view");
   }
 
   supportProject(
@@ -115,6 +116,7 @@ class mainView {
     gameRoomView.hideGameRoomProject();
     gameView.hideGame();
     sessionStorage.setItem("currentWindow", "donate-author");
+    if (window.gtag) gtag("event", "donate_project_view");
   }
 
   gameRules(
@@ -131,6 +133,7 @@ class mainView {
     gameRulesView.showGameRulesProject();
     gameRoomView.hideGameRoomProject();
     sessionStorage.setItem("currentWindow", "game-rules");
+    if (window.gtag) gtag("event", "game_rules_view");
   }
 
   gameRoom(aboutView, gameView, donateAuthorView, gameRulesView, gameRoomView) {
@@ -141,6 +144,7 @@ class mainView {
     this.hideMain();
     gameRoomView.showGameRoomProject();
     sessionStorage.setItem("currentWindow", "game-room");
+    if (window.gtag) gtag("event", "game_room_view");
   }
 
   addOnlyIndependentCountriesListener() {
