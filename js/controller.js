@@ -170,6 +170,7 @@ const init = function () {
             .share(getShareWebSiteContent())
             .then(function () {})
             .catch(function () {});
+             if (window.gtag) gtag("event", "share_website");
         }
       });
     }
@@ -181,6 +182,7 @@ const init = function () {
             .share(getShareWebSiteContent())
             .then(function () {})
             .catch(function () {});
+             if (window.gtag) gtag("event", "share_website");
         }
       });
     }
@@ -192,6 +194,7 @@ const init = function () {
             .share(getShareWebSiteContent())
             .then(function () {})
             .catch(function () {});
+             if (window.gtag) gtag("event", "share_website");
         }
       });
     }

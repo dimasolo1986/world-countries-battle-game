@@ -45,6 +45,7 @@ class donateAuthorView {
             })
             .then(function () {})
             .catch(function () {});
+            if (window.gtag) gtag("event", "share_website");
         }
       });
     }
