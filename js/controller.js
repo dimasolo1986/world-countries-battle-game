@@ -119,18 +119,15 @@ const init = function () {
   document.addEventListener("DOMContentLoaded", function () {
     function getShareWebSiteContent() {
       return {
-        title: `${
-          localization[model.worldCountries.language][
-            "Country Alliance Guesser Game"
+        title: `${localization[model.worldCountries.language][
+          "Country Alliance Guesser Game"
           ]
-        }`,
-        text: `${
-          localization[model.worldCountries.language][
-            "World Country Alliances Guesser Game"
+          }`,
+        text: `${localization[model.worldCountries.language][
+          "World Country Alliances Guesser Game"
           ]
-        } - ${
-          document.querySelector(".about-project-description").textContent
-        }`,
+          } - ${document.querySelector(".about-project-description").textContent
+          }`,
         url: "https://www.countriesguesser.com",
       };
     }
@@ -168,9 +165,10 @@ const init = function () {
         if (navigator.share) {
           navigator
             .share(getShareWebSiteContent())
-            .then(function () {})
-            .catch(function () {});
-             if (window.gtag) gtag("event", "share_website");
+            .then(function () {
+              if (window.gtag) gtag("event", "share_website");
+            })
+            .catch(function () { });
         }
       });
     }
@@ -180,9 +178,10 @@ const init = function () {
         if (navigator.share) {
           navigator
             .share(getShareWebSiteContent())
-            .then(function () {})
-            .catch(function () {});
-             if (window.gtag) gtag("event", "share_website");
+            .then(function () {
+              if (window.gtag) gtag("event", "share_website");
+            })
+            .catch(function () { });
         }
       });
     }
@@ -192,9 +191,8 @@ const init = function () {
         if (navigator.share) {
           navigator
             .share(getShareWebSiteContent())
-            .then(function () {})
-            .catch(function () {});
-             if (window.gtag) gtag("event", "share_website");
+            .then(function () { if (window.gtag) gtag("event", "share_website"); })
+            .catch(function () { });
         }
       });
     }

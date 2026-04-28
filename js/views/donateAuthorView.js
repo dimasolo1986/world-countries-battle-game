@@ -29,23 +29,21 @@ class donateAuthorView {
         if (navigator.share) {
           navigator
             .share({
-              title: `${
-                localization[model.worldCountries.language][
-                  "Country Alliance Guesser Game"
+              title: `${localization[model.worldCountries.language][
+                "Country Alliance Guesser Game"
                 ]
-              }`,
-              text: `${
-                localization[model.worldCountries.language][
-                  "World Country Alliances Guesser Game"
+                }`,
+              text: `${localization[model.worldCountries.language][
+                "World Country Alliances Guesser Game"
                 ]
-              } - ${
-                document.querySelector(".about-project-description").textContent
-              }`,
+                } - ${document.querySelector(".about-project-description").textContent
+                }`,
               url: "https://www.countriesguesser.com",
             })
-            .then(function () {})
-            .catch(function () {});
-            if (window.gtag) gtag("event", "share_website");
+            .then(function () {
+              if (window.gtag) gtag("event", "share_website")
+            })
+            .catch(function () { });
         }
       });
     }
@@ -80,23 +78,18 @@ class donateAuthorView {
   }
 
   translateElements() {
-    this._donateReturnBack.textContent = `🚪 ${
-      localization[model.worldCountries.language]["BACK"]
-    }`;
-    this._donateHeading.textContent = `🪙 ${
-      localization[model.worldCountries.language]["Make Donate"]
-    }`;
-    this._donateShareWebSite.textContent = `🔗 ${
-      localization[model.worldCountries.language]["Share"]
-    }`;
-    this._donateText.textContent = `${
-      localization[model.worldCountries.language][
-        "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!"
+    this._donateReturnBack.textContent = `🚪 ${localization[model.worldCountries.language]["BACK"]
+      }`;
+    this._donateHeading.textContent = `🪙 ${localization[model.worldCountries.language]["Make Donate"]
+      }`;
+    this._donateShareWebSite.textContent = `🔗 ${localization[model.worldCountries.language]["Share"]
+      }`;
+    this._donateText.textContent = `${localization[model.worldCountries.language][
+      "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!"
       ]
-    }`;
-    this._donateQrCodeText.textContent = `${
-      localization[model.worldCountries.language]["QR Code"]
-    }`;
+      }`;
+    this._donateQrCodeText.textContent = `${localization[model.worldCountries.language]["QR Code"]
+      }`;
   }
 }
 
