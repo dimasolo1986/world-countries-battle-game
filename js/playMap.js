@@ -99,7 +99,7 @@ export class PlayMap {
       OpenStreetMap: openStreetMap,
       WorldTopoMap: worldTopoMap,
       PhysicalMap: physicalMap,
-      Satellite: siteliteLayer
+      Satellite: siteliteLayer,
     };
     this.map = L.map("map", {
       attributionControl: false,
@@ -184,7 +184,7 @@ export class PlayMap {
           localization[model.worldCountries.language]["Score"];
         return playerOneScoreField;
       },
-      onRemove: function (map) { },
+      onRemove: function (map) {},
     });
     L.control.playeronescorefield = function (opts) {
       return new L.Control.playerOneScoreField(opts);
@@ -222,7 +222,7 @@ export class PlayMap {
         random.style.cursor = "pointer";
         random.title =
           localization[model.worldCountries.language][
-          "Random Countries Selection"
+            "Random Countries Selection"
           ];
         random.id = "random-user-countries-selection";
         random.style.borderTop = "1px dotted black";
@@ -247,7 +247,7 @@ export class PlayMap {
         container.appendChild(clean);
         return container;
       },
-      onRemove: function (map) { },
+      onRemove: function (map) {},
     });
     L.control.playerOneCountriesField = function (opts) {
       return new L.Control.PlayerOneCountriesField(opts);
@@ -273,12 +273,12 @@ export class PlayMap {
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
         messageField.textContent =
           localization[model.worldCountries.language][
-          "Choose one alliance from four countries"
+            "Choose one alliance from four countries"
           ];
         return messageField;
       },
 
-      onRemove: function (map) { },
+      onRemove: function (map) {},
     });
     L.control.messagefield = function (opts) {
       return new L.Control.MessageField(opts);
@@ -316,13 +316,13 @@ export class PlayMap {
           opponentConnectionText.style.color = "red";
           opponentConnectionText.textContent =
             localization[model.worldCountries.language][
-            "Opponent is not online"
+              "Opponent is not online"
             ];
           opponentConnectionField.appendChild(opponentConnectionIndicator);
           opponentConnectionField.appendChild(opponentConnectionText);
           return opponentConnectionField;
         },
-        onRemove: function (map) { },
+        onRemove: function (map) {},
       });
       L.control.opponentconnectionfield = function (opts) {
         return new L.Control.OpponentConnectionField(opts);
@@ -385,7 +385,7 @@ export class PlayMap {
           chatMessageFromOpponent.placeholder =
             "🧓 " +
             localization[model.worldCountries.language][
-            "Message From Opponent"
+              "Message From Opponent"
             ];
           chatMessageFromOpponent.ariaReadonly = true;
           chatMessageFromOpponent.style.width = "100%";
@@ -400,7 +400,7 @@ export class PlayMap {
           chatMessageToOpponent.placeholder =
             "✉️ " +
             localization[model.worldCountries.language][
-            "Type Your Message Here... (max. length 300 characters)"
+              "Type Your Message Here... (max. length 300 characters)"
             ];
           chatMessageToOpponent.style.width = "90%";
           chatMessageToOpponent.style.border = "0px";
@@ -451,7 +451,7 @@ export class PlayMap {
           chatButton.addEventListener("click", this.chatButtonFunction);
           return chat;
         },
-        onRemove: function (map) { },
+        onRemove: function (map) {},
       });
       L.control.chat = function (opts) {
         return new L.Control.Chat(opts);
@@ -498,7 +498,7 @@ export class PlayMap {
         container.appendChild(timerFieldContainer);
         return container;
       },
-      onRemove: function (map) { },
+      onRemove: function (map) {},
     });
     L.control.mapfield = function (opts) {
       return new L.Control.MapField(opts);
@@ -524,7 +524,7 @@ export class PlayMap {
         selectedCountryField.innerHTML = "";
         return selectedCountryField;
       },
-      onRemove: function (map) { },
+      onRemove: function (map) {},
     });
     L.control.selectedcountryfield = function (opts) {
       return new L.Control.SelectedCountryField(opts);
@@ -554,7 +554,7 @@ export class PlayMap {
         countriesField.appendChild(countriesNumberField);
         return countriesField;
       },
-      onRemove: function (map) { },
+      onRemove: function (map) {},
     });
     L.control.countriesfield = function (opts) {
       return new L.Control.CountriesField(opts);
@@ -583,7 +583,7 @@ export class PlayMap {
         return playButton;
       },
 
-      onRemove: function (map) { },
+      onRemove: function (map) {},
     });
     L.control.playbutton = function (opts) {
       return new L.Control.PlayButton(opts);
@@ -610,7 +610,7 @@ export class PlayMap {
         finishButton.addEventListener("click", this.finishFunction);
         return finishButton;
       },
-      onRemove: function (map) { },
+      onRemove: function (map) {},
     });
     L.control.finishbutton = function (opts) {
       return new L.Control.FinishButton(opts);
@@ -637,7 +637,7 @@ export class PlayMap {
         gameRulesButton.addEventListener("click", this.gameRulesFunction);
         return gameRulesButton;
       },
-      onRemove: function (map) { },
+      onRemove: function (map) {},
     });
     L.control.gamerulesbutton = function (opts) {
       return new L.Control.GameRulesButton(opts);
@@ -658,8 +658,9 @@ export class PlayMap {
         availableCountriesPanel.style.width = "fit-content";
         availableCountriesPanel.style.overflow = "hidden";
         availableCountriesPanel.style.marginTop = "10px";
-        const availableCountriesHeader = `<div class="text-center"><span style="font-size:0.7rem; font-weight:bold;">🌍 ${localization[model.worldCountries.language]["Available Countries:"]
-          }</span></div>`;
+        const availableCountriesHeader = `<div class="text-center"><span style="font-size:0.7rem; font-weight:bold;">🌍 ${
+          localization[model.worldCountries.language]["Available Countries:"]
+        }</span></div>`;
         availableCountriesPanel.insertAdjacentHTML(
           "beforeend",
           availableCountriesHeader,
@@ -670,7 +671,7 @@ export class PlayMap {
 
         return availableCountriesPanel;
       },
-      onRemove: function (map) { },
+      onRemove: function (map) {},
     });
     L.control.availablecountriespanel = function (opts) {
       return new L.Control.AvailableCountriesPanel(opts);
@@ -695,8 +696,9 @@ export class PlayMap {
         hintsPanel.style.padding = "3px";
         hintsPanel.style.overflow = "hidden";
         hintsPanel.style.fontSize = "0.7rem;";
-        const hintsPanelsHeader = `<div class="text-center" style="border-bottom:1px dashed black; margin-bottom:2px;"><span style="font-size:0.75rem;font-weight:bold;">💡 ${localization[model.worldCountries.language]["Hints:"]
-          }</span></div>`;
+        const hintsPanelsHeader = `<div class="text-center" style="border-bottom:1px dashed black; margin-bottom:2px;"><span style="font-size:0.75rem;font-weight:bold;">💡 ${
+          localization[model.worldCountries.language]["Hints:"]
+        }</span></div>`;
         hintsPanel.insertAdjacentHTML("beforeend", hintsPanelsHeader);
         const hintsPanelContent = L.DomUtil.create("div");
         hintsPanelContent.id = "hints-panel-content";
@@ -704,7 +706,7 @@ export class PlayMap {
 
         return hintsPanel;
       },
-      onRemove: function (map) { },
+      onRemove: function (map) {},
     });
     L.control.hintspanel = function (opts) {
       return new L.Control.HintsPanel(opts);
@@ -725,8 +727,9 @@ export class PlayMap {
         guessedCountryAlliancePanel.style.padding = "5px";
         guessedCountryAlliancePanel.style.overflow = "hidden";
         guessedCountryAlliancePanel.style.fontSize = "0.7rem;";
-        const guessedCountryAlliancePanelHeader = `<div id="guessed-country-alliance-header" class="text-center"><span style="font-size:0.75rem;font-weight:bold;color:green;">👏 ${localization[model.worldCountries.language]["Congratulations!"]
-          }</span></div>`;
+        const guessedCountryAlliancePanelHeader = `<div id="guessed-country-alliance-header" class="text-center"><span style="font-size:0.75rem;font-weight:bold;color:green;">👏 ${
+          localization[model.worldCountries.language]["Congratulations!"]
+        }</span></div>`;
         guessedCountryAlliancePanel.insertAdjacentHTML(
           "beforeend",
           guessedCountryAlliancePanelHeader,
@@ -741,7 +744,7 @@ export class PlayMap {
 
         return guessedCountryAlliancePanel;
       },
-      onRemove: function (map) { },
+      onRemove: function (map) {},
     });
     L.control.guessedcountryalliancepanel = function (opts) {
       return new L.Control.GuessedCountryAlliancePanel(opts);
@@ -773,7 +776,7 @@ export class PlayMap {
           localization[model.worldCountries.language]["Score"];
         return playerTwoScoreField;
       },
-      onRemove: function (map) { },
+      onRemove: function (map) {},
     });
     L.control.playertwoscorefield = function (opts) {
       return new L.Control.playerTwoScoreField(opts);
@@ -813,7 +816,7 @@ export class PlayMap {
         );
         return container;
       },
-      onRemove: function (map) { },
+      onRemove: function (map) {},
     });
     L.control.playerTwoCountriesField = function (opts) {
       return new L.Control.PlayerTwoCountriesField(opts);
@@ -872,6 +875,7 @@ export class PlayMap {
       "random-user-countries-selection",
     );
     randomSection.style.display = "none";
+    if (window.gtag) gtag("event", "game_random_countries_selection");
   }
 
   exitFullScreen() {
@@ -925,7 +929,7 @@ export class PlayMap {
       document.getElementById("chat-message-from-opponent").value =
         "🧓: " +
         localization[model.worldCountries.language][
-        "Opponent has not yet entered the game room to read your messages. Try sending a message later"
+          "Opponent has not yet entered the game room to read your messages. Try sending a message later"
         ];
     }
     messageInput.value = "";
@@ -960,9 +964,9 @@ export class PlayMap {
       this.clearPlayerTimeout();
       const confirmExit = confirm(
         "❓ " +
-        localization[model.worldCountries.language][
-        "Are you sure you want to leave this game?"
-        ],
+          localization[model.worldCountries.language][
+            "Are you sure you want to leave this game?"
+          ],
       );
       if (confirmExit) {
         this.game.finishGame(deleteGameRoom);

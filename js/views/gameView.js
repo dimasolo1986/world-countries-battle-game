@@ -3,9 +3,24 @@ import { GameConfig } from "../gameConfig.js";
 import { Game } from "../game.js";
 import { Player } from "../player.js";
 import { PlayMap } from "../playMap.js";
+import { showModalWindow, hideModalWindow } from "../helpers.js";
+import * as model from "../model.js";
+import { localization } from "../localization/ua.js";
 class gameView {
   _parentElement = document.querySelector("#countriesBattleGamePlay");
   _gameMessageField = document.querySelector(".countries-battle-game-message");
+  _gameModalCountriesSelectionHeader = document.getElementById(
+    "gameCountryAllianceInitialSelectionLabel",
+  );
+  _gameModalCountriesSelectionContent = document.getElementById(
+    "gameCountryAllianceInitialSelectionCountries",
+  );
+  _gameModalCountriesSelectionRandomButton = document.getElementById(
+    "gameCountryAllianceInitialSelectionRandomButton",
+  );
+  _gameModalCountriesSelectionUserButton = document.getElementById(
+    "gameCountryAllianceInitialSelectionUserButton",
+  );
   _gameConfiguration;
   _playMap;
   _playerOne;
@@ -22,14 +37,14 @@ class gameView {
       "player-two-selected-countries-container",
       "player-two-countries-number",
       "Your Map",
-      GEOGRAPHICAL_CENTER
+      GEOGRAPHICAL_CENTER,
     );
     this._playerOne = new Player(
       this._playMap,
       "player-one-selected-countries-container",
       "player-one-countries-number",
       this._gameConfiguration,
-      "userPlayer"
+      "userPlayer",
     );
     this._playerTwo = new Player(
       this._playMap,
@@ -38,7 +53,7 @@ class gameView {
       this._gameConfiguration,
       this._gameConfiguration.gameMode === "computer"
         ? "computerPlayer"
-        : "friendPlayer"
+        : "friendPlayer",
     );
     this._playerOne.setOpponentPlayer(this._playerTwo);
     this._playerTwo.setOpponentPlayer(this._playerOne);
@@ -47,7 +62,7 @@ class gameView {
       this._playerTwo,
       this._playMap,
       this._gameConfiguration.gameMode === "computer" ? undefined : firebase,
-      this._gameConfiguration
+      this._gameConfiguration,
     );
     firebase.setGame(this._game);
     this._playMap.setGame(this._game);
@@ -62,7 +77,33 @@ class gameView {
 
   showGame() {
     this._parentElement.classList.remove("not-displayed");
+    this.showInitialCountriesSelectionWindow();
     this._playMap.map.invalidateSize();
+  }
+
+  showInitialCountriesSelectionWindow() {
+    this._gameModalCountriesSelectionHeader.textContent =
+      "🌍 " +
+      localization[model.worldCountries.language]["Countries Selection"];
+    this._gameModalCountriesSelectionContent.textContent =
+      localization[model.worldCountries.language][
+        "To play the game, choose ten different alliances of countries on the map and four trap-countries for your opponent. Follow the instructions at the top of the screen. To read the rules of the game, click the Rules button. We wish you a great game and a victory!"
+      ] + " 🏆";
+    this._gameModalCountriesSelectionUserButton.textContent =
+      "🗺️ " +
+      localization[model.worldCountries.language]["Choose Countries On Map"];
+    this._gameModalCountriesSelectionRandomButton.textContent =
+      "🎲 " +
+      localization[model.worldCountries.language]["Random Countries Selection"];
+    this._gameModalCountriesSelectionRandomButton.addEventListener(
+      "click",
+      function () {
+        this._playMap.reandomCountriesSelection();
+        hideModalWindow("gameCountryAllianceInitialSelectionModal");
+      }.bind(this),
+      { once: true },
+    );
+    showModalWindow("gameCountryAllianceInitialSelectionModal");
   }
 
   hideGame() {

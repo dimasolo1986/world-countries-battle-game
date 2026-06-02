@@ -504,7 +504,7 @@ export const localization = {
     },
     Share: "Поділитися",
     Clean: "Очистити",
-    "Opponent": "Суперник",
+    Opponent: "Суперник",
     "Opponent Map": "Мапа Суперника",
     "Opponent is online": "Суперник онлайн",
     "Opponent is not online": "Суперник не онлайн",
@@ -597,6 +597,10 @@ export const localization = {
       "Якщо гравець вгадує альянс країн, який містить чотири країни він отримує 15 балів, три країни - 25 балів, дві країни - 35 балів, одну країну - 50 балів. При потраплянні в країну-пастку суперника перший раз у гравця відіймаються 10 балів, другий раз - 20 балів, третій раз - 30 балів, четвертий раз - 50 балів. В кінці гри гравець отримує додаткові 10 балів за кожен альянс країн, який не був вгаданий суперником.",
     Score: "Рахунок",
     Points: "Балів",
+    "Choose Countries On Map": "Обрати Країни На Мапі",
+    "To play the game, choose ten different alliances of countries on the map and four trap-countries for your opponent. Follow the instructions at the top of the screen. To read the rules of the game, click the Rules button. We wish you a great game and a victory!":
+      "Щоб розпочати гру, оберіть десять різних альянсів країн на мапі та чотири країни-пастки для вашого суперника. Дотримуйтесь інструкцій у верхній частині екрана. Щоб ознайомитися з правилами гри, натисніть кнопку Правила. Бажаємо Вам чудової гри та перемоги!",
+    "Countries Selection": "Вибір Країн",
     "Random Countries Selection": "Випадковий Вибір Країн",
     "Facebook Page": "Фейсбук Сторінка",
     "On Facebook Page you can share your impressions about the game or the results of your games":
@@ -623,11 +627,13 @@ export const localization = {
       "Подобається Географія і Країни Світу? Відвідайте",
     "Country Alliance Guesser Game": "Гра Вгадай Альянси Країн",
     "Game Configuration": "Конфігурація Гри",
-    "Click to toggle full screen": "Натисніть, щоб ввімкнути/вимкнути повноекранний режим",
+    "Click to toggle full screen":
+      "Натисніть, щоб ввімкнути/вимкнути повноекранний режим",
     "You selected": "Ви вибрали",
     "Choose one alliance from four countries":
       "Виберіть один альянс з чотирьох країн",
-    "Choose one alliance from four countries on map or click": "Виберіть один альянс з чотирьох країн на мапі або натисніть",
+    "Choose one alliance from four countries on map or click":
+      "Виберіть один альянс з чотирьох країн на мапі або натисніть",
     "Choose one alliance of countries that includes four countries on the world map.":
       "Виберіть один альянс країн, який включає чотири країни на мапі світу.",
     "Choose two alliances of countries that include three countries on the world map.":
@@ -671,7 +677,7 @@ export const localization = {
     Computer: "Комп'ютер",
     "The opponent gets a hint": "Суперник отримує підказку",
     "Hints:": "Підказки:",
-    "Hide": "Приховати",
+    Hide: "Приховати",
     "Country Alliance": "Альянс Країн",
     "You have already chosen this country!": "Ви вже обрали цю країну!",
     BACK: "НАЗАД",
@@ -1295,7 +1301,7 @@ export const localization = {
     },
     Share: "Share",
     Clean: "Clean",
-    "Opponent": "Opponent",
+    Opponent: "Opponent",
     "Opponent Map": "Opponent Map",
     "Country's Outline On Map": "Country's Outline On Map",
     Outline: "View Country Outline",
@@ -1393,6 +1399,10 @@ export const localization = {
     "Checking Connection...": "Checking Connection...",
     "If your browser blocks or disables WebRTC (real-time communication for the web), you will not be able to play with your friend. Try a different browser.":
       "If your browser blocks or disables WebRTC (real-time communication for the web), you will not be able to play with your friend. Try a different browser.",
+    "To play the game, choose ten different alliances of countries on the map and four trap-countries for your opponent. Follow the instructions at the top of the screen. To read the rules of the game, click the Rules button. We wish you a great game and a victory!":
+      "To play the game, choose ten different alliances of countries on the map and four trap-countries for your opponent. Follow the instructions at the top of the screen. To read the rules of the game, click the Rules button. We wish you a great game and a victory!",
+    "Countries Selection": "Countries Selection",
+    "Choose Countries On Map": "Choose Countries On Map",
     "Random Countries Selection": "Random Countries Selection",
     "Facebook Page": "Facebook Page",
     "On Facebook Page you can share your impressions about the game or the results of your games":
@@ -1421,7 +1431,8 @@ export const localization = {
     "You selected": "You selected",
     "Choose one alliance from four countries":
       "Choose one alliance from four countries",
-    "Choose one alliance from four countries on map or click": "Choose one alliance from four countries on map or click",
+    "Choose one alliance from four countries on map or click":
+      "Choose one alliance from four countries on map or click",
     "Choose one alliance of countries that includes four countries on the world map.":
       "Choose one alliance of countries that includes four countries on the world map.",
     "Choose two alliances of countries that include three countries on the world map.":
@@ -1463,7 +1474,7 @@ export const localization = {
       "Computer has fallen into a trap-country",
     Computer: "Computer",
     "Hints:": "Hints:",
-    "Hide": "Hide",
+    Hide: "Hide",
     "The opponent gets a hint": "The opponent gets a hint",
     "You have already chosen this country!":
       "You have already chosen this country!",
@@ -1497,7 +1508,7 @@ export const localization = {
     "Available Countries:": "Available Countries:",
     "Card number (UAH):": "Card number (UAH):",
     "Independent Countries": "Independent Countries",
-     "All Hints": "All Hints",
+    "All Hints": "All Hints",
     "Text Hints": "Text Hints",
     "Visual Hints": "Visual Hints",
     "Congratulations! You won the game!": "Congratulations! You won the game!",
@@ -2098,7 +2109,7 @@ export const localization = {
     },
     "Support Project": "Projekt Unterstützen",
     Clean: "Saubere",
-    "Opponent": "Gegner",
+    Opponent: "Gegner",
     "Opponent Map": "Gegnerkarte",
     "Opponent is online": "Gegner ist online",
     "Opponent is not online": "Gegner ist nicht online",
@@ -2187,6 +2198,10 @@ export const localization = {
       "Er erhält einen zusätzlichen Versuch zu raten und",
     "The computer will also randomly select five bonus countries (can be changed), when hit, players get an extra attempt to guess the opponent's country and 10 extra points.":
       "Der Computer wählt außerdem nach dem Zufallsprinzip fünf Bonusländer aus (kann geändert werden). Wird eines davon getroffen, erhalten die Spieler einen zusätzlichen Versuch, das Land des Gegners zu erraten, und 10 Zusatzpunkte.",
+    "To play the game, choose ten different alliances of countries on the map and four trap-countries for your opponent. Follow the instructions at the top of the screen. To read the rules of the game, click the Rules button. We wish you a great game and a victory!":
+      "Wähle zum Spielen zehn verschiedene Länderallianzen auf der Karte und vier Fallenländer für deinen Gegner. Folge den Anweisungen oben auf dem Bildschirm. Um die Spielregeln zu lesen, klicke auf die Schaltfläche Regeln. Wir wünschen euch ein tolles Spiel und den Sieg!",
+    "Countries Selection": "Länderauswahl",
+    "Choose Countries On Map": "Länder auf der Karte auswählen",
     "Random Countries Selection": "Zufällige Länderauswahl",
     "Facebook Page": "Facebook-Seite",
     "On Facebook Page you can share your impressions about the game or the results of your games":
@@ -2217,7 +2232,8 @@ export const localization = {
     "You selected": "Sie haben ausgewählt",
     "Choose one alliance from four countries":
       "Wählen Sie eine Allianz aus vier Ländern",
-    "Choose one alliance from four countries on map or click": "Wählen Sie auf der Karte ein Bündnis aus vier Ländern aus oder klicken Sie",
+    "Choose one alliance from four countries on map or click":
+      "Wählen Sie auf der Karte ein Bündnis aus vier Ländern aus oder klicken Sie",
     "Choose one alliance of countries that includes four countries on the world map.":
       "Wählen Sie auf der Weltkarte eine Länderallianz aus, die vier Länder umfasst.",
     "Choose two alliances of countries that include three countries on the world map.":
@@ -2262,7 +2278,7 @@ export const localization = {
     "Open Game Room": "Offenes Spielzimmer",
     "The opponent gets a hint": "Der Gegner bekommt einen Hinweis",
     "Hints:": "Tipps:",
-    "Hide": "Verstecken",
+    Hide: "Verstecken",
     "Country Alliance": "Länder Allianz",
     BACK: "ZURÜCK",
     "Selected Alliance Country": "Ausgewähltes Allianzland",
@@ -2301,7 +2317,7 @@ export const localization = {
     "Available Countries:": "Verfügbare Länder:",
     "Card number (UAH):": "Kartennummer (UAH):",
     "Independent Countries": "Unabhängige Länder",
-     "All Hints": "Alle Hinweise",
+    "All Hints": "Alle Hinweise",
     "Text Hints": "Texthinweise",
     "Visual Hints": "Visuelle Hinweise",
     "Congratulations! You won the game!":
@@ -2908,11 +2924,12 @@ export const localization = {
       "Jeu des Alliances des Pays du Monde",
     "Game room was deleted or expired":
       "La salle de jeux a été supprimée ou a expiré",
-      "Full Screen": "Plein écran",
+    "Full Screen": "Plein écran",
     "Country's Outline On Map": "Contour du pays sur la carte",
     Outline: "Afficher le Contour du Pays",
     CountryPhoto: "Afficher la Photo du Pays",
-    "Click to toggle full screen": "Cliquez pour activer/désactiver le mode plein écran",
+    "Click to toggle full screen":
+      "Cliquez pour activer/désactiver le mode plein écran",
     "Landscape Of Country": "Paysage du Pays",
     "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
       "projet permettant d'étudier la géographie des pays du monde, de leurs voisins, de leurs drapeaux et de certaines régions du monde sous forme de jeu. Choisissez dix alliances de pays différentes sur la carte, ainsi que quatre pays pièges pour votre adversaire. L'ordinateur ou votre ami (selon le mode de jeu sélectionné) choisira également le nombre approprié d'alliances de pays et de pays pièges. Les tentatives pour deviner les pays se déroulent à tour de rôle. Celui qui devine le pays de l'adversaire obtient un essai supplémentaire. Le premier à deviner toutes les alliances des pays adverses gagne. Suivez les messages en haut de l'écran après le début de la partie.",
@@ -2932,7 +2949,8 @@ export const localization = {
     "View Hint": "Afficher les Astuces",
     "Choose one alliance from four countries":
       "Choisissez une alliance parmi quatre pays",
-    "Choose one alliance from four countries on map or click": "Choisissez une alliance parmi les quatre pays indiqués sur la carte ou cliquez",
+    "Choose one alliance from four countries on map or click":
+      "Choisissez une alliance parmi les quatre pays indiqués sur la carte ou cliquez",
     "Choose one alliance of countries that includes four countries on the world map.":
       "Choisissez une alliance de pays contenant quatre pays sur la carte du monde.",
     "Choose two alliances of countries that include three countries on the world map.":
@@ -2979,7 +2997,7 @@ export const localization = {
     "Instructions.": "Instructions.",
     "The opponent gets a hint": "L'adversaire reçoit un indice",
     "Hints:": "Conseils:",
-    "Hide": "Masquer",
+    Hide: "Masquer",
     "Country Alliance": "Alliance des Pays",
     BACK: "RETOUR",
     "Country Flag": "Drapeau du Pays",
@@ -2989,7 +3007,7 @@ export const localization = {
     "QR Code": "QR Code",
     Share: "Partager",
     Clean: "Propre",
-    "Opponent": "Adversaire",
+    Opponent: "Adversaire",
     "Checking Connection...": "Verbindung wird geprüft...",
     "Message From Opponent": "Message de l'adversaire",
     "Opponent Map": "Carte des adversaires",
@@ -3003,6 +3021,10 @@ export const localization = {
     "Game Room ID:": "ID de la salle de jeux:",
     "Failed to create game room with ID:":
       "Échec de la création de la salle de jeu avec l'ID:",
+    "To play the game, choose ten different alliances of countries on the map and four trap-countries for your opponent. Follow the instructions at the top of the screen. To read the rules of the game, click the Rules button. We wish you a great game and a victory!":
+      "Pour jouer, choisissez dix alliances de pays différentes sur la carte et quatre pays pièges pour votre adversaire. Suivez les instructions en haut de l'écran. Pour consulter les règles du jeu, cliquez sur le bouton Règles. Nous vous souhaitons un excellent match et une victoire !",
+    "Countries Selection": "Sélection des Pays",
+    "Choose Countries On Map": "Choisissez les pays sur la carte",
     "Random Countries Selection": "Sélection aléatoire de pays",
     "BACK TO MAIN PAGE": "RETOUR À LA PAGE PRINCIPALE",
     "Copy Link": "Copier le Lien",
@@ -3103,7 +3125,7 @@ export const localization = {
     "Available Countries:": "Pays Disponibles:",
     "Card number (UAH):": "Numéro de carte (UAH):",
     "Independent Countries": "Pays Indépendants",
-     "All Hints": "Tous les Indices",
+    "All Hints": "Tous les Indices",
     "Text Hints": "Indices Textuels",
     "Visual Hints": "Indices Visuels",
     "Congratulations! You won the game!":
@@ -3704,7 +3726,7 @@ export const localization = {
       "Si tu navegador bloquea o deshabilita WebRTC (comunicación en tiempo real para la web), no podrás jugar con tu amigo. Prueba con otro navegador.",
     "World Country Alliances Guesser Game":
       "Juego de Alianzas de los Países del Mundo",
-      "Full Screen": "Pantalla Completa",
+    "Full Screen": "Pantalla Completa",
     "Time is up! The attempt to guess the country passes to your opponent":
       "¡Se acabó el tiempo! El intento de adivinar el país pasa a tu oponente",
     "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
@@ -3725,11 +3747,13 @@ export const localization = {
     "View Hint": "Ver Consejo",
     "Country's Outline On Map": "Contorno del país en el mapa",
     Outline: "Ver el Esquema del País",
-    "Click to toggle full screen": "Haz clic para activar/desactivar la pantalla completa",
+    "Click to toggle full screen":
+      "Haz clic para activar/desactivar la pantalla completa",
     "Checking Connection...": "Comprobando conexión...",
     "Choose one alliance from four countries":
       "Elige una alianza entre cuatro países",
-    "Choose one alliance from four countries on map or click": "Elija una alianza entre cuatro países en el mapa o haga clic aquí",
+    "Choose one alliance from four countries on map or click":
+      "Elija una alianza entre cuatro países en el mapa o haga clic aquí",
     "Choose one alliance of countries that includes four countries on the world map.":
       "Elige una alianza de países que contenga cuatro países en el mapa mundial.",
     "Choose two alliances of countries that include three countries on the world map.":
@@ -3782,11 +3806,11 @@ export const localization = {
     Computer: "Computadora",
     "The opponent gets a hint": "El oponente recibe una pista",
     "Hints:": "Consejos:",
-    "Hide": "Ocultar",
+    Hide: "Ocultar",
     "Country Alliance": "Alianza de Países",
     BACK: "VOLVER",
     "Play Again": "Jugar de Nuevo",
-    "Opponent": "Adversario",
+    Opponent: "Adversario",
     "Opponent Map": "Mapa del oponente",
     "Opponent is online": "El oponente está en línea",
     "Opponent is not online": "El oponente no está en línea",
@@ -3862,6 +3886,10 @@ export const localization = {
     "Computer guessed": "La computadora lo adivinó",
     Play: "Jugar",
     Clean: "Limpia",
+    "To play the game, choose ten different alliances of countries on the map and four trap-countries for your opponent. Follow the instructions at the top of the screen. To read the rules of the game, click the Rules button. We wish you a great game and a victory!":
+      "Para jugar, elige diez alianzas de países diferentes en el mapa y cuatro países trampa para tu oponente. Sigue las instrucciones que aparecen en la parte superior de la pantalla. Para leer las reglas del juego, haz clic en el botón Reglas. ¡Les deseamos un gran partido y una victoria!",
+    "Countries Selection": "Selección de Países",
+    "Choose Countries On Map": "Seleccione países en el mapa",
     "Random Countries Selection": "Selección aleatoria de países",
     "Facebook Page": "Página de Facebook",
     "On Facebook Page you can share your impressions about the game or the results of your games":
@@ -3906,7 +3934,7 @@ export const localization = {
     "Available Countries:": "Países Disponibles:",
     "Card number (UAH):": "Número de tarjeta (UAH):",
     "Independent Countries": "Países Independientes",
-      "All Hints": "Todas las Pistas",
+    "All Hints": "Todas las Pistas",
     "Text Hints": "Pistas de Texto",
     "Visual Hints": "Pistas Visuales",
     "Congratulations! You won the game!": "¡Felicidades! ¡Ganaste el juego!",
@@ -4511,7 +4539,8 @@ export const localization = {
     Outline: "Visualizza il Profilo del Paese",
     Clean: "Pulita",
     "Full Screen": "Schermo Intero",
-    "Click to toggle full screen": "Fai clic per attivare la modalità a schermo intero",
+    "Click to toggle full screen":
+      "Fai clic per attivare la modalità a schermo intero",
     "View Hints": "Visualizza Suggerimenti",
     "View Hint": "Visualizza Suggerimento",
     "Time is up! The attempt to guess the country passes to your opponent":
@@ -4519,10 +4548,14 @@ export const localization = {
     "Checking Connection...": "Controllo della connessione...",
     "Game room was deleted or expired":
       "La sala giochi è stata eliminata o è scaduta",
-    "Opponent": "Avversario",
+    Opponent: "Avversario",
     "Create Game Room": "Crea una sala giochi",
     "Click 'Create Game Room' to generate game link":
       "Fai clic su 'Crea una sala giochi' per generare il collegamento al gioco",
+    "To play the game, choose ten different alliances of countries on the map and four trap-countries for your opponent. Follow the instructions at the top of the screen. To read the rules of the game, click the Rules button. We wish you a great game and a victory!":
+      "Per giocare, scegli dieci diverse alleanze di paesi sulla mappa e quattro paesi trappola per il tuo avversario. Segui le istruzioni nella parte superiore dello schermo. Per leggere le regole del gioco, clicca sul pulsante Regole. Vi auguriamo una grande partita e una vittoria!",
+    "Countries Selection": "Selezione dei Paesi",
+    "Choose Countries On Map": "Seleziona i paesi sulla mappa",
     "Random Countries Selection": "Selezione casuale dei paesi",
     "Facebook Page": "Pagina Facebook",
     "On Facebook Page you can share your impressions about the game or the results of your games":
@@ -4551,7 +4584,8 @@ export const localization = {
     CountryPhoto: "Visualizza la Foto del Paese",
     "Choose one alliance from four countries":
       "Scegli un'alleanza tra quattro paesi",
-    "Choose one alliance from four countries on map or click": "Scegli un'alleanza tra quattro paesi sulla mappa oppure fai clic",
+    "Choose one alliance from four countries on map or click":
+      "Scegli un'alleanza tra quattro paesi sulla mappa oppure fai clic",
     "Choose one alliance of countries that includes four countries on the world map.":
       "Scegli un'alleanza di paesi che contenga quattro paesi sulla mappa del mondo.",
     "Choose two alliances of countries that include three countries on the world map.":
@@ -4656,7 +4690,7 @@ export const localization = {
     "To clear selected country alliances, click":
       "Per rimuovere le alleanze dei paesi selezionati, clicca qui",
     "Hints:": "Suggerimenti:",
-    "Hide": "Nascondere",
+    Hide: "Nascondere",
     "Country Alliance": "Alleanza di Paese",
     BACK: "TORNA",
     "Selected Alliance Country": "Paese Alleanza Selezionato",
@@ -4707,7 +4741,7 @@ export const localization = {
     "Available Countries:": "Paesi Disponibili:",
     "Card number (UAH):": "Numero della carta (UAH):",
     "Independent Countries": "Paesi Indipendenti",
-     "All Hints": "Tutti Indizi",
+    "All Hints": "Tutti Indizi",
     "Text Hints": "Indizi Testuali",
     "Visual Hints": "Indizi Visivi",
     "Congratulations! You won the game!":

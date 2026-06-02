@@ -39,6 +39,11 @@ export const hideModalWindow = function (modalId) {
   }
 };
 
+export const showModalWindow = function (modalId) {
+  const modalWindow = new bootstrap.Modal(document.getElementById(modalId), {});
+  modalWindow.show();
+};
+
 export const hideGameCountryAllianceGuessedWindow = function () {
   const gameCountryAllianceGuessedWindow = document.getElementById(
     "gameCountryAllianceGuessedModal",
@@ -185,7 +190,9 @@ export const getCountryPhoto = async function (country) {
   try {
     let imageUrl = null;
     let imgUrlArray = [];
-    const countryWikiCategoryName = country.countryWikiLandscapeCategoryName ?? `Landscapes_of_${country.countryName}`;
+    const countryWikiCategoryName =
+      country.countryWikiLandscapeCategoryName ??
+      `Landscapes_of_${country.countryName}`;
     const countryLandscapeUrl = `https://commons.wikimedia.org/w/api.php?origin=*&action=query&format=json&generator=categorymembers&gcmtitle=Category:${countryWikiCategoryName}&gcmtype=file&prop=imageinfo&iiprop=url`;
     const resLandscapes = await fetch(countryLandscapeUrl);
     const dataLandscapes = await resLandscapes.json();
