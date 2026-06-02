@@ -83,7 +83,6 @@ class gameView {
 
   showInitialCountriesSelectionWindow() {
     this._gameModalCountriesSelectionHeader.textContent =
-      "🌍 " +
       localization[model.worldCountries.language]["Countries Selection"];
     this._gameModalCountriesSelectionContent.textContent =
       localization[model.worldCountries.language][
