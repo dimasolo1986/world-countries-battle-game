@@ -701,7 +701,18 @@
                 font-size: 0.75rem;
               "
             >
-              🎲 Random Countries Selection
+              <div
+                id="randomCountrySelectionLoaderSpinner"
+                class="text-center text-light"
+                style="display: none;"
+              >
+                <div class="spinner-border spinner-border-sm" role="status" style="vertical-align: sub;">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+              <span id="gameCountryAllianceInitialSelectionRandomEmoji">🎲&nbsp;</span><span id="gameCountryAllianceInitialSelectionRandomButtonText"
+                >Random Countries Selection</span
+              >
             </button>
              <button
               id="gameCountryAllianceInitialSelectionUserButton"

@@ -18,6 +18,9 @@ class gameView {
   _gameModalCountriesSelectionRandomButton = document.getElementById(
     "gameCountryAllianceInitialSelectionRandomButton",
   );
+  _gameModalCountriesSelectionRandomButtonText = document.getElementById(
+    "gameCountryAllianceInitialSelectionRandomButtonText",
+  );
   _gameModalCountriesSelectionUserButton = document.getElementById(
     "gameCountryAllianceInitialSelectionUserButton",
   );
@@ -91,14 +94,25 @@ class gameView {
     this._gameModalCountriesSelectionUserButton.textContent =
       "🗺️ " +
       localization[model.worldCountries.language]["Choose Countries On Map"];
-    this._gameModalCountriesSelectionRandomButton.textContent =
-      "🎲 " +
+    this._gameModalCountriesSelectionRandomButtonText.textContent =
       localization[model.worldCountries.language]["Random Countries Selection"];
     this._gameModalCountriesSelectionRandomButton.addEventListener(
       "click",
-      function () {
+      async function () {
+        const spinner = document.getElementById(
+          "randomCountrySelectionLoaderSpinner",
+        );
+        document
+          .getElementById("gameCountryAllianceInitialSelectionRandomEmoji")
+          .classList.add("not-displayed");
+        spinner.style.display = "inline-block";
         this._playMap.reandomCountriesSelection();
+        await new Promise((resolve) => setTimeout(resolve, 300));
+        spinner.style.display = "none";
         hideModalWindow("gameCountryAllianceInitialSelectionModal");
+        document
+          .getElementById("gameCountryAllianceInitialSelectionRandomEmoji")
+          .classList.remove("not-displayed");
       }.bind(this),
       { once: true },
     );
