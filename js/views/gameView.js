@@ -125,6 +125,8 @@ class gameView {
         "click",
         function () {
           videoTutorial.classList.toggle("not-displayed");
+          if (window.gtag)
+            gtag("event", "game_countries_selection_video_tutorial");
         }.bind(this),
       );
       this._videoTutorialButtonListenerAdded = true;
