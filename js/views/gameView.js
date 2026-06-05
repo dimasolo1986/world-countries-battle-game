@@ -24,6 +24,10 @@ class gameView {
   _gameModalCountriesSelectionUserButton = document.getElementById(
     "gameCountryAllianceInitialSelectionUserButton",
   );
+  _gameCountryAllianceInitialSelectionTutorialButton = document.getElementById(
+    "gameCountryAllianceInitialSelectionTutorialButton",
+  );
+  _videoTutorialButtonListenerAdded = false;
   _gameConfiguration;
   _playMap;
   _playerOne;
@@ -96,6 +100,24 @@ class gameView {
       localization[model.worldCountries.language]["Choose Countries On Map"];
     this._gameModalCountriesSelectionRandomButtonText.textContent =
       localization[model.worldCountries.language]["Random Countries Selection"];
+    this._gameCountryAllianceInitialSelectionTutorialButton.textContent =
+      localization[model.worldCountries.language][
+        "Country Alliances Selection — Video Tutorial"
+      ];
+    const videoTutorial = document.getElementById(
+      "countryAllianceSelectionVideoTutorial",
+    );
+    videoTutorial.classList.add("not-displayed");
+    if (!this._videoTutorialButtonListenerAdded) {
+      this._gameCountryAllianceInitialSelectionTutorialButton.addEventListener(
+        "click",
+        function () {
+          videoTutorial.classList.toggle("not-displayed");
+        }.bind(this),
+      );
+      this._videoTutorialButtonListenerAdded = true;
+    }
+
     this._gameModalCountriesSelectionRandomButton.addEventListener(
       "click",
       async function () {
