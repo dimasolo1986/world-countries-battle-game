@@ -27,7 +27,11 @@ class gameView {
   _gameCountryAllianceInitialSelectionTutorialButton = document.getElementById(
     "gameCountryAllianceInitialSelectionTutorialButton",
   );
+  _gameCountryAllianceInitialSelectionRulesButton = document.getElementById(
+    "gameCountryAllianceInitialSelectionRulesButton",
+  );
   _videoTutorialButtonListenerAdded = false;
+  _gameRulesListenerAdded = false;
   _gameConfiguration;
   _playMap;
   _playerOne;
@@ -104,6 +108,8 @@ class gameView {
       localization[model.worldCountries.language][
         "Country Alliances Selection — Video Tutorial"
       ];
+    this._gameCountryAllianceInitialSelectionRulesButton.textContent =
+      localization[model.worldCountries.language]["Rules"];
     const videoTutorial = document.getElementById(
       "countryAllianceSelectionVideoTutorial",
     );
@@ -120,6 +126,22 @@ class gameView {
       },
       { once: true },
     );
+    if (!this._gameRulesListenerAdded) {
+      this._gameCountryAllianceInitialSelectionRulesButton.addEventListener(
+        "click",
+        function () {
+          const video = document.getElementById(
+            "countryAllianceSelectionVideo",
+          );
+          video.pause();
+          video.currentTime = 0;
+          videoTutorial.classList.add("not-displayed");
+          this._game.showGameRules();
+          if (window.gtag) if (window.gtag) gtag("event", "game_rules_view");
+        }.bind(this),
+      );
+      this._gameRulesListenerAdded = true;
+    }
     if (!this._videoTutorialButtonListenerAdded) {
       this._gameCountryAllianceInitialSelectionTutorialButton.addEventListener(
         "click",
