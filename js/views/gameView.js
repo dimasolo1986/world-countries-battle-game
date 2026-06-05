@@ -137,7 +137,7 @@ class gameView {
           video.currentTime = 0;
           videoTutorial.classList.add("not-displayed");
           this._game.showGameRules();
-          if (window.gtag) if (window.gtag) gtag("event", "game_rules_view");
+          if (window.gtag) gtag("event", "game_rules_view");
         }.bind(this),
       );
       this._gameRulesListenerAdded = true;
