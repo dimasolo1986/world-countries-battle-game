@@ -108,6 +108,18 @@ class gameView {
       "countryAllianceSelectionVideoTutorial",
     );
     videoTutorial.classList.add("not-displayed");
+    const modal = document.getElementById(
+      "gameCountryAllianceInitialSelectionModal",
+    );
+    modal.addEventListener(
+      "hidden.bs.modal",
+      () => {
+        const video = document.getElementById("countryAllianceSelectionVideo");
+        video.pause();
+        video.currentTime = 0;
+      },
+      { once: true },
+    );
     if (!this._videoTutorialButtonListenerAdded) {
       this._gameCountryAllianceInitialSelectionTutorialButton.addEventListener(
         "click",
