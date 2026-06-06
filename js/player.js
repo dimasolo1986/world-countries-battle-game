@@ -480,8 +480,8 @@ export class Player {
         `<td style="border: none;">
                   <img
                     src="${country.countryFlag}"
-                    width="11px"
-                    height="11px"
+                    width="12px"
+                    height="12px"
                     style="
                       border-radius: 50%;
                       border: 1px solid grey;
