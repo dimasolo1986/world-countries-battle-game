@@ -184,19 +184,9 @@ export class Player {
         "photo",
       ]);
     } else if (this.gameConfiguration.hintsType === "Text Hints") {
-      this.hintTypes = new Set([
-        "country",
-        "capital",
-        "region",
-        "subregion",
-      ]);
+      this.hintTypes = new Set(["country", "capital", "region", "subregion"]);
     } else {
-      this.hintTypes = new Set([
-        "flag",
-        "emblem",
-        "boundary",
-        "photo",
-      ]);
+      this.hintTypes = new Set(["flag", "emblem", "boundary", "photo"]);
     }
     this.countryUnions = [
       new Array(4),
@@ -215,7 +205,9 @@ export class Player {
     this.alreadyGuessedCountryCodes = [];
     let worldCountries = [];
     if (this.gameConfiguration.onlyIndependentCountries) {
-      worldCountries = model.worldCountries.countries.filter(country => country.independent);
+      worldCountries = model.worldCountries.countries.filter(
+        (country) => country.independent,
+      );
     } else {
       worldCountries = model.worldCountries.countries;
     }
@@ -236,18 +228,26 @@ export class Player {
         15,
         15,
       );
-      this.addMouseOverStyleEventToCountryBoundary(countryBoundary, countryMarker, {
-        weight: 1,
-        fillOpacity: 0.5,
-        opacity: 1,
-        className: country.cca2,
-      });
-      this.addMouseOutStyleEventToCountryBoundary(countryBoundary, countryMarker, {
-        weight: 0,
-        fillOpacity: 0.1,
-        opacity: 0,
-        className: country.cca2,
-      });
+      this.addMouseOverStyleEventToCountryBoundary(
+        countryBoundary,
+        countryMarker,
+        {
+          weight: 1,
+          fillOpacity: 0.5,
+          opacity: 1,
+          className: country.cca2,
+        },
+      );
+      this.addMouseOutStyleEventToCountryBoundary(
+        countryBoundary,
+        countryMarker,
+        {
+          weight: 0,
+          fillOpacity: 0.1,
+          opacity: 0,
+          className: country.cca2,
+        },
+      );
       this.countryMarkers[country.cca2] = countryMarker;
       this.countryBoundaries[country.cca2] = countryBoundary;
       this.countriesCodeMapping[country.cca3] = country.cca2;
@@ -289,10 +289,12 @@ export class Player {
       this.addUserClickCountriesPlayHandler();
     }
     this.setMessageInnerHtmlField(
-      `<span style="font-size: 0.8rem;">ℹ️ ${localization[model.worldCountries.language][
-      "Choose one alliance from four countries on map or click"
-      ] + " 🎲"
-      }</span>`);
+      `<span style="font-size: 0.8rem;">ℹ️ ${
+        localization[model.worldCountries.language][
+          "Choose one alliance from four countries on map or click"
+        ] + " 🎲"
+      }</span>`,
+    );
   }
 
   addCountryBoundaryBlinking(countryCode) {
@@ -475,7 +477,7 @@ export class Player {
       const country = this.countries[countryCode];
       countryUnionRow.insertAdjacentHTML(
         "beforeend",
-        `<td>
+        `<td style="border: none;">
                   <img
                     src="${country.countryFlag}"
                     width="10px"
@@ -507,12 +509,12 @@ export class Player {
       if (hintBtn) hintBtn.remove();
       if (hintsPanel) hintsPanel.classList.add("not-displayed");
       return;
-    };
+    }
     const hintsNumber = hintBtn ? +hintBtn.dataset.hints : 0;
     if (hintsNumber && hintsNumber === hintsLength) {
       hintBtn.classList.remove("not-displayed");
       return;
-    };
+    }
     if (hintBtn) hintBtn.remove();
     if (hintsPanel) hintsPanel.classList.add("not-displayed");
     let hintType;
@@ -524,9 +526,7 @@ export class Player {
       hintType = hintHeader;
       const hintValue = Object.values(hintObject)[0];
       if (hintHeader === "CoatOfArms") {
-        const coatOfArmsImage = document.getElementById(
-          "country-coat-of-arms",
-        );
+        const coatOfArmsImage = document.getElementById("country-coat-of-arms");
         const coatOfArmsWindowHeader = document.getElementById(
           "coatOfArmsModalLabel",
         );
@@ -562,9 +562,7 @@ export class Player {
         const flagWindowHeader = document.getElementById("flagModalLabel");
         flagWindowHeader.textContent =
           localization[model.worldCountries.language]["Country Flag"];
-        const flagCloseButton = document.getElementById(
-          "flagModalCloseButton",
-        );
+        const flagCloseButton = document.getElementById("flagModalCloseButton");
         flagCloseButton.textContent =
           localization[model.worldCountries.language]["Close"];
         if (flagImage) {
@@ -598,7 +596,7 @@ export class Player {
         );
         countryOutlineWindowHeader.textContent =
           localization[model.worldCountries.language][
-          "Country's Outline On Map"
+            "Country's Outline On Map"
           ];
         const countryOutlineCloseButton = document.getElementById(
           "countryOutlineCloseButton",
@@ -620,7 +618,7 @@ export class Player {
         outlineModal.addEventListener(
           "shown.bs.modal",
           this.createOutlineMap.bind(this, hintValue, countryCode),
-          { once: true }
+          { once: true },
         );
         countryOutlineLink.addEventListener(
           "click",
@@ -633,7 +631,9 @@ export class Player {
         hintsPanelContent.insertAdjacentElement("afterbegin", linkContainer);
       } else if (hintHeader === "CountryPhoto") {
         const countryPhoto = document.getElementById("country-photo");
-        const fullScreenButton = document.getElementById("countryPhotoFullScreenButton");
+        const fullScreenButton = document.getElementById(
+          "countryPhotoFullScreenButton",
+        );
         const countryPhotoWindowHeader =
           document.getElementById("countryPhotoLabel");
         countryPhotoWindowHeader.textContent =
@@ -643,9 +643,13 @@ export class Player {
         );
         countryPhotoCloseButton.textContent =
           localization[model.worldCountries.language]["Close"];
-        fullScreenButton.textContent = localization[model.worldCountries.language]["Full Screen"];
+        fullScreenButton.textContent =
+          localization[model.worldCountries.language]["Full Screen"];
         if (countryPhoto) {
-          countryPhoto.title = localization[model.worldCountries.language]["Click to toggle full screen"];
+          countryPhoto.title =
+            localization[model.worldCountries.language][
+              "Click to toggle full screen"
+            ];
           countryPhoto.src = hintValue;
           countryPhoto.style.width = "100%";
           countryPhoto.style.boxShadow =
@@ -675,19 +679,16 @@ export class Player {
         let hint = "";
         if (hintHeader === "Capital") {
           hint =
-            localization[model.worldCountries.language]["capitals"][
-            hintValue
-            ];
+            localization[model.worldCountries.language]["capitals"][hintValue];
         } else if (hintHeader === "Country") {
           hint =
-            localization[model.worldCountries.language]["countries"][
-            hintValue
-            ];
+            localization[model.worldCountries.language]["countries"][hintValue];
         } else {
           hint = localization[model.worldCountries.language][hintValue];
         }
-        const hintHtml = `<div style="font-size:0.7rem;"><span style="font-weight:bold;">${localization[model.worldCountries.language][hintHeader]
-          }:</span>&nbsp;${hint}</div>`;
+        const hintHtml = `<div style="font-size:0.7rem;"><span style="font-weight:bold;">${
+          localization[model.worldCountries.language][hintHeader]
+        }:</span>&nbsp;${hint}</div>`;
         hintsPanelContent.insertAdjacentHTML("beforeend", hintHtml);
       }
     });
@@ -703,14 +704,22 @@ export class Player {
     hideHintsPanelButton.style.border = "1px dotted grey";
     hideHintsPanelButton.style.cursor = "pointer";
     hideHintsPanelButton.style.fontWeight = "bold";
-    hideHintsPanelButton.textContent = localization[model.worldCountries.language]["Hide"];
+    hideHintsPanelButton.textContent =
+      localization[model.worldCountries.language]["Hide"];
     hideHintsPanelContainer.appendChild(hideHintsPanelButton);
-    hideHintsPanelButton.addEventListener("click", function () {
-      hideHintsPanelButton.remove();
-      hideHintsPanelContainer.remove();
-      this.addHintsToHintPanel();
-    }.bind(this), { once: true });
-    hintsPanelContent.insertAdjacentElement("beforeend", hideHintsPanelContainer);
+    hideHintsPanelButton.addEventListener(
+      "click",
+      function () {
+        hideHintsPanelButton.remove();
+        hideHintsPanelContainer.remove();
+        this.addHintsToHintPanel();
+      }.bind(this),
+      { once: true },
+    );
+    hintsPanelContent.insertAdjacentElement(
+      "beforeend",
+      hideHintsPanelContainer,
+    );
     L.Control.HintsButton = L.Control.extend({
       context: this,
       onAdd: function (map) {
@@ -737,41 +746,51 @@ export class Player {
           } else {
             hintsButton.classList.add("btn-primary");
           }
-          hintsButton.textContent = localization[model.worldCountries.language]["View Hint"];
+          hintsButton.textContent =
+            localization[model.worldCountries.language]["View Hint"];
         } else {
           hintsButton.classList.add("btn-primary");
-          hintsButton.textContent = localization[model.worldCountries.language]["View Hints"];
+          hintsButton.textContent =
+            localization[model.worldCountries.language]["View Hints"];
         }
-        hintsButton.addEventListener("click", function viewHint() {
-          if (hintType && hintsLength === 1) {
-            this.playMap.exitFullScreen();
-            if (hintType === "CoatOfArms") {
-              showCountryCoatOfArmsFlagWindow("coatOfArmsModal");
-            } else if (hintType === "Flag") {
-              showCountryCoatOfArmsFlagWindow("flagModal");
-            } else if (hintType === "Outline") {
-              showCountryCoatOfArmsFlagWindow("countryOutlineModal");
-            } else if (hintType === "CountryPhoto") {
-              showCountryCoatOfArmsFlagWindow("countryPhotoModal");
+        hintsButton.addEventListener(
+          "click",
+          function viewHint() {
+            if (hintType && hintsLength === 1) {
+              this.playMap.exitFullScreen();
+              if (hintType === "CoatOfArms") {
+                showCountryCoatOfArmsFlagWindow("coatOfArmsModal");
+              } else if (hintType === "Flag") {
+                showCountryCoatOfArmsFlagWindow("flagModal");
+              } else if (hintType === "Outline") {
+                showCountryCoatOfArmsFlagWindow("countryOutlineModal");
+              } else if (hintType === "CountryPhoto") {
+                showCountryCoatOfArmsFlagWindow("countryPhotoModal");
+              } else {
+                if (button) button.remove();
+                hintsPanel.classList.remove("not-displayed");
+                return;
+              }
+              hintsButton.addEventListener("click", viewHint.bind(this), {
+                once: true,
+              });
             } else {
               if (button) button.remove();
               hintsPanel.classList.remove("not-displayed");
-              return;
             }
-            hintsButton.addEventListener("click", viewHint.bind(this), { once: true });
-          } else {
-            if (button) button.remove();
-            hintsPanel.classList.remove("not-displayed");
-          }
-        }.bind(this.context), { once: true });
+          }.bind(this.context),
+          { once: true },
+        );
         return hintsButton;
       },
-      onRemove: function () { },
+      onRemove: function () {},
     });
     L.control.hintsbutton = function (opts) {
       return new L.Control.HintsButton(opts);
     };
-    const button = L.control.hintsbutton({ position: "topcenter" }).addTo(this.playerMap);
+    const button = L.control
+      .hintsbutton({ position: "topcenter" })
+      .addTo(this.playerMap);
   }
 
   createOutlineMap(hintValue, countryCode) {
@@ -831,12 +850,13 @@ export class Player {
       "hidden.bs.modal",
       () => {
         map.remove();
-      }, { once: true }
+      },
+      { once: true },
     );
     outlineModal.addEventListener(
       "shown.bs.modal",
       this.createOutlineMap.bind(this, hintValue, countryCode),
-      { once: true }
+      { once: true },
     );
   }
 
@@ -911,7 +931,12 @@ export class Player {
     }
   }
 
-  deleteCountryNeighbourBorders(player, country, selectedCodes, countriesNumberField = undefined) {
+  deleteCountryNeighbourBorders(
+    player,
+    country,
+    selectedCodes,
+    countriesNumberField = undefined,
+  ) {
     const countryBorderCodes = country.countryBorders
       .map((countryBorder) => {
         return player.countriesCodeMapping[countryBorder];
@@ -922,13 +947,9 @@ export class Player {
           player.countryCodes.includes(countryCode),
       );
     countryBorderCodes.forEach((countryBorderCode) => {
-      if (
-        !selectedCodes.has(countryBorderCode)
-      ) {
-        const countryBoundary =
-          player.countryBoundaries[countryBorderCode];
-        const countryMarker =
-          player.countryMarkers[countryBorderCode];
+      if (!selectedCodes.has(countryBorderCode)) {
+        const countryBoundary = player.countryBoundaries[countryBorderCode];
+        const countryMarker = player.countryMarkers[countryBorderCode];
         countryMarker.off();
         countryBoundary.off();
         player.playerMap.removeLayer(countryMarker);
@@ -939,15 +960,16 @@ export class Player {
           player.countryCodes.indexOf(countryBorderCode);
         if (countryIndexToDelete >= 0)
           player.countryCodes.splice(countryIndexToDelete, 1);
-        if (countriesNumberField) countriesNumberField.textContent =
-          player.countryCodes.length;
+        if (countriesNumberField)
+          countriesNumberField.textContent = player.countryCodes.length;
       }
     });
   }
 
   async playerHit(addCountryBoundariesAndMarkers = true) {
     this.disableMapInteraction();
-    if (addCountryBoundariesAndMarkers) this.opponentPlayer.addAllCountryBoundariesAndMarkers();
+    if (addCountryBoundariesAndMarkers)
+      this.opponentPlayer.addAllCountryBoundariesAndMarkers();
     if (this.playerType === "userPlayer") this.addHintsToHintPanel();
     if (this.playerType === "computerPlayer") {
       let countryIndex = undefined;
@@ -960,10 +982,11 @@ export class Player {
         this.playMap.setMapFiledLabel("Your Map");
         this.countriesNumberField.textContent =
           this.opponentPlayer.countryCodes.length;
-        this.gameMessageField.textContent = `ℹ️ ${localization[model.worldCountries.language][
-          "Computer is guessing your country..."
-        ]
-          }`;
+        this.gameMessageField.textContent = `ℹ️ ${
+          localization[model.worldCountries.language][
+            "Computer is guessing your country..."
+          ]
+        }`;
         await this.sleep(700);
         if (this.countriesToGuessNext.length !== 0) {
           countryIndex = getRandomInt(0, this.countriesToGuessNext.length - 1);
@@ -982,7 +1005,8 @@ export class Player {
             countryCode =
               this.opponentPlayer.selectComputerRandomCountryByHint(hint);
             this.opponentPlayer.alreadyGuessedCountryCodes.push(countryCode);
-            countryIndex = this.opponentPlayer.countryCodes.indexOf(countryCode);
+            countryIndex =
+              this.opponentPlayer.countryCodes.indexOf(countryCode);
             this.opponentPlayer.countryCodes.splice(countryIndex, 1);
           } else {
             this.removeHint(countryCode);
@@ -1036,16 +1060,20 @@ export class Player {
           try {
             addCountryBoundariesAndMarkers = true;
             this.setMessageInnerHtmlField(
-              `<span>⚠️ ${localization[model.worldCountries.language][
-              "Computer has fallen into a trap-country"
-              ]
-              }</span> <img src="${country.countryFlag
-              }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${localization[model.worldCountries.language]["countries"][
-              country.countryName
-              ]
-              }.</span> <span style="margin-left:5px;">${localization[model.worldCountries.language][
-              "The opponent gets a hint"
-              ]
+              `<span>⚠️ ${
+                localization[model.worldCountries.language][
+                  "Computer has fallen into a trap-country"
+                ]
+              }</span> <img src="${
+                country.countryFlag
+              }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${
+                localization[model.worldCountries.language]["countries"][
+                  country.countryName
+                ]
+              }.</span> <span style="margin-left:5px;">${
+                localization[model.worldCountries.language][
+                  "The opponent gets a hint"
+                ]
               }</span>`,
             );
             this.opponentPlayer.trapCountryHitted =
@@ -1059,7 +1087,9 @@ export class Player {
             } else {
               this.score = this.score - 50;
             }
-            const scoreElement = document.getElementById("player-two-score-field");
+            const scoreElement = document.getElementById(
+              "player-two-score-field",
+            );
             scoreElement.textContent = `🏅 ${this.score}`;
             if (this.score < 0) {
               scoreElement.style.color = "red";
@@ -1084,7 +1114,12 @@ export class Player {
             this.opponentPlayer.closeCountryPopup(countryPopup);
             this.opponentPlayer.playerMap.removeLayer(countryBoundary);
             delete this.opponentPlayer.countryBoundaries[countryCode];
-            this.deleteCountryNeighbourBorders(this.opponentPlayer, country, this.opponentPlayer.selectedCountryTrapCodes, this.countriesNumberField);
+            this.deleteCountryNeighbourBorders(
+              this.opponentPlayer,
+              country,
+              this.opponentPlayer.selectedCountryTrapCodes,
+              this.countriesNumberField,
+            );
             this.opponentPlayer.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
               animate: false,
             });
@@ -1094,7 +1129,12 @@ export class Player {
               this.opponentPlayer.closeCountryPopup(countryPopup);
               this.opponentPlayer.playerMap.removeLayer(countryBoundary);
               delete this.opponentPlayer.countryBoundaries[countryCode];
-              this.deleteCountryNeighbourBorders(this.opponentPlayer, country, this.opponentPlayer.selectedCountryTrapCodes, this.countriesNumberField);
+              this.deleteCountryNeighbourBorders(
+                this.opponentPlayer,
+                country,
+                this.opponentPlayer.selectedCountryTrapCodes,
+                this.countriesNumberField,
+              );
             }
             this.playerAttemptToGuess = false;
             this.opponentPlayer.playerAttemptToGuess = true;
@@ -1102,7 +1142,10 @@ export class Player {
               animate: false,
             });
           }
-        } else if (this.game && this.game.bonusCountries.includes(countryCode)) {
+        } else if (
+          this.game &&
+          this.game.bonusCountries.includes(countryCode)
+        ) {
           try {
             addCountryBoundariesAndMarkers = false;
             this.playerAttemptToGuess = true;
@@ -1130,8 +1173,23 @@ export class Player {
                 className: countryCode,
               });
             }
-            this.deleteCountryNeighbourBorders(this.opponentPlayer, country, new Set([...this.opponentPlayer.selectedCountryCodes, ...this.opponentPlayer.selectedCountryTrapCodes]), this.countriesNumberField);
-            this.deleteCountryNeighbourBorders(this, country, new Set([...this.selectedCountryCodes, ...this.selectedCountryTrapCodes]));
+            this.deleteCountryNeighbourBorders(
+              this.opponentPlayer,
+              country,
+              new Set([
+                ...this.opponentPlayer.selectedCountryCodes,
+                ...this.opponentPlayer.selectedCountryTrapCodes,
+              ]),
+              this.countriesNumberField,
+            );
+            this.deleteCountryNeighbourBorders(
+              this,
+              country,
+              new Set([
+                ...this.selectedCountryCodes,
+                ...this.selectedCountryTrapCodes,
+              ]),
+            );
             this.opponentPlayer.addCountryBoundaryBlinking(countryCode);
             this.opponentPlayer.setElementStyle(countryBoundary, {
               weight: 1,
@@ -1142,7 +1200,9 @@ export class Player {
               className: countryCode,
             });
             this.score = this.score + 10;
-            const scoreElement = document.getElementById("player-two-score-field");
+            const scoreElement = document.getElementById(
+              "player-two-score-field",
+            );
             scoreElement.textContent = `🏅 ${this.score}`;
             if (this.score < 0) {
               scoreElement.style.color = "red";
@@ -1150,16 +1210,20 @@ export class Player {
               scoreElement.style.color = "green";
             }
             this.setMessageInnerHtmlField(
-              `<span style="font-size: 0.75rem;">ℹ️ ${localization[model.worldCountries.language][
-              "Computer has fallen into a bonus-country"
-              ]
-              }</span> <img src="${country.countryFlag
-              }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;font-size: 0.75rem;">${localization[model.worldCountries.language]["countries"][
-              country.countryName
-              ]
-              }.</span> <span style="margin-left:5px;font-size: 0.75rem;">${localization[model.worldCountries.language][
-              "Additional attempt to guess and"
-              ]
+              `<span style="font-size: 0.75rem;">ℹ️ ${
+                localization[model.worldCountries.language][
+                  "Computer has fallen into a bonus-country"
+                ]
+              }</span> <img src="${
+                country.countryFlag
+              }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;font-size: 0.75rem;">${
+                localization[model.worldCountries.language]["countries"][
+                  country.countryName
+                ]
+              }.</span> <span style="margin-left:5px;font-size: 0.75rem;">${
+                localization[model.worldCountries.language][
+                  "Additional attempt to guess and"
+                ]
               }</span><span style="
           font-size: 0.75rem;
                     margin-left: 3px;
@@ -1169,8 +1233,9 @@ export class Player {
                     padding-left: 2px;
                     padding-right: 2px;
                     font-weight: bolder;
-                  ">+10&nbsp;${localization[model.worldCountries.language]["Points"]
-              }</span>`,
+                  ">+10&nbsp;${
+                    localization[model.worldCountries.language]["Points"]
+                  }</span>`,
             );
             await this.sleep(1500);
             this.opponentPlayer.removeCountryBoundaryBlinking(countryCode);
@@ -1233,7 +1298,9 @@ export class Player {
               } else if (countryUnion.length === 1) {
                 this.score = this.score + 50;
               }
-              const scoreElement = document.getElementById("player-two-score-field");
+              const scoreElement = document.getElementById(
+                "player-two-score-field",
+              );
               scoreElement.textContent = `🏅 ${this.score}`;
               if (this.score < 0) {
                 scoreElement.style.color = "red";
@@ -1243,16 +1310,28 @@ export class Player {
               countryUnion.forEach((countryObject) => {
                 const countryCode = Object.keys(countryObject)[0];
                 const country = this.opponentPlayer.countries[countryCode];
-                this.deleteCountryNeighbourBorders(this.opponentPlayer, country, this.opponentPlayer.selectedCountryCodes, this.countriesNumberField);
+                this.deleteCountryNeighbourBorders(
+                  this.opponentPlayer,
+                  country,
+                  this.opponentPlayer.selectedCountryCodes,
+                  this.countriesNumberField,
+                );
               });
               const countryUnionHtml =
                 this.opponentPlayer.createCountryUnionMessageHtml(
                   countryUnionIndex,
                 );
               this.setMessageInnerHtmlField(
-                `<span style="margin-right:5px;">⚠️ ${localization[model.worldCountries.language]["Computer guessed"]
-                }</span><div style="display: inline-block;">${countryUnionHtml.outerHTML
-                }</div><span style="margin-left:5px;">${localization[model.worldCountries.language]["Country Alliance"]
+                `<span style="margin-right:5px;">⚠️ ${
+                  localization[model.worldCountries.language][
+                    "Computer guessed"
+                  ]
+                }</span><div style="display: inline-block;">${
+                  countryUnionHtml.outerHTML
+                }</div><span style="margin-left:5px;">${
+                  localization[model.worldCountries.language][
+                    "Country Alliance"
+                  ]
                 }</span>`,
               );
               await this.sleep(1500);
@@ -1279,11 +1358,16 @@ export class Player {
                 }
               });
               this.setMessageInnerHtmlField(
-                `<span>ℹ️ ${localization[model.worldCountries.language]["Computer guessed"]
-                }</span> <img src="${country.countryFlag
-                }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${localization[model.worldCountries.language]["countries"][
-                country.countryName
-                ]
+                `<span>ℹ️ ${
+                  localization[model.worldCountries.language][
+                    "Computer guessed"
+                  ]
+                }</span> <img src="${
+                  country.countryFlag
+                }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${
+                  localization[model.worldCountries.language]["countries"][
+                    country.countryName
+                  ]
                 }</span>`,
               );
               await this.sleep(1000);
@@ -1309,10 +1393,11 @@ export class Player {
               opacity: 0.8,
               className: countryCode,
             });
-            this.gameMessageField.textContent = `⛔ ${localization[model.worldCountries.language][
-              "Computer failed to guess your country!"
-            ]
-              }`;
+            this.gameMessageField.textContent = `⛔ ${
+              localization[model.worldCountries.language][
+                "Computer failed to guess your country!"
+              ]
+            }`;
             this.playerAttemptToGuess = false;
             this.opponentPlayer.playerAttemptToGuess = true;
             await this.sleep(1000);
@@ -1346,7 +1431,8 @@ export class Player {
       } catch (err) {
         this.playerAttemptToGuess = false;
         this.opponentPlayer.playerAttemptToGuess = true;
-        if (countryCode) this.opponentPlayer.removeCountryBoundaryBlinking(countryCode);
+        if (countryCode)
+          this.opponentPlayer.removeCountryBoundaryBlinking(countryCode);
       }
     } else if (this.playerType === "userPlayer") {
       try {
@@ -1373,10 +1459,11 @@ export class Player {
               animate: false,
             });
         }
-        this.gameMessageField.textContent = `⚠️ ${localization[model.worldCountries.language][
-          "Your attempt to guess opponent's country"
-        ]
-          }`;
+        this.gameMessageField.textContent = `⚠️ ${
+          localization[model.worldCountries.language][
+            "Your attempt to guess opponent's country"
+          ]
+        }`;
         this.opponentPlayer.enableMapInteraction();
         this.setHitTimeout();
       } catch (err) {
@@ -1392,10 +1479,11 @@ export class Player {
       this.playMap.setMapFiledLabel("Your Map");
       this.countriesNumberField.textContent =
         this.opponentPlayer.countryCodes.length;
-      this.gameMessageField.textContent = `ℹ️ ${localization[model.worldCountries.language][
-        "Opponent is guessing your country..."
-      ]
-        }`;
+      this.gameMessageField.textContent = `ℹ️ ${
+        localization[model.worldCountries.language][
+          "Opponent is guessing your country..."
+        ]
+      }`;
       this.game.isOpponentPlayerReady = false;
       this.game.isPlayerReady = false;
       return;
@@ -1428,7 +1516,12 @@ export class Player {
     this.hitIntervalIds.push(hitIntervalId);
     const hitTimeoutId = setTimeout(async () => {
       this.opponentPlayer.disableMapInteraction();
-      if (document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
+      if (
+        document.fullscreenElement ||
+        document.mozFullScreenElement ||
+        document.webkitFullscreenElement ||
+        document.msFullscreenElement
+      ) {
         if (document.exitFullscreen) {
           document.exitFullscreen();
         } else if (document.mozCancelFullScreen) {
@@ -1463,11 +1556,17 @@ export class Player {
   setHitTimeout(time = this.gameConfiguration.hitTime) {
     if (this.gameConfiguration.hitTime === 0) return;
     if (
-      this.gameConfiguration && this.gameConfiguration.gameMode === "user" &&
-      this.opponentPlayerStartAcknowledged && this.playerAttemptToGuess
+      this.gameConfiguration &&
+      this.gameConfiguration.gameMode === "user" &&
+      this.opponentPlayerStartAcknowledged &&
+      this.playerAttemptToGuess
     ) {
       this.hitTimeout(time);
-    } else if (this.gameConfiguration && this.gameConfiguration.gameMode === "computer" && this.playerAttemptToGuess) {
+    } else if (
+      this.gameConfiguration &&
+      this.gameConfiguration.gameMode === "computer" &&
+      this.playerAttemptToGuess
+    ) {
       this.hitTimeout(time);
     }
   }
@@ -1513,7 +1612,7 @@ export class Player {
         const countryName = document.createElement("span");
         countryName.textContent =
           localization[model.worldCountries.language]["countries"][
-          country.countryName
+            country.countryName
           ];
         countryName.style = "font-size:0.7rem;";
         container.addEventListener("click", setViewCountry.bind(this, country));
@@ -1541,7 +1640,12 @@ export class Player {
     });
   }
 
-  async addUserClickCountriesPlay(countryCode, countryBoundary, countryMarker, addCountryBoundariesAndMarkers = true) {
+  async addUserClickCountriesPlay(
+    countryCode,
+    countryBoundary,
+    countryMarker,
+    addCountryBoundariesAndMarkers = true,
+  ) {
     try {
       if (this.playerAlreadyHitting) return;
       this.playerAlreadyHitting = true;
@@ -1554,9 +1658,9 @@ export class Player {
       ) {
         alert(
           "⚠️ " +
-          localization[model.worldCountries.language][
-          "Connection with your opponent has failed. Try your attempt later."
-          ],
+            localization[model.worldCountries.language][
+              "Connection with your opponent has failed. Try your attempt later."
+            ],
         );
         this.playerAlreadyHitting = false;
         return;
@@ -1568,7 +1672,7 @@ export class Player {
         this.gameMessageField.textContent =
           "⚠️ " +
           localization[model.worldCountries.language][
-          "Opponent has not yet started game. Wait for the message to start."
+            "Opponent has not yet started game. Wait for the message to start."
           ];
         this.playerAlreadyHitting = false;
         return;
@@ -1594,16 +1698,20 @@ export class Player {
         try {
           addCountryBoundariesAndMarkers = true;
           this.setMessageInnerHtmlField(
-            `<span>⛔ ${localization[model.worldCountries.language][
-            "You have fallen into a trap-country"
-            ]
-            }</span> <img src="${country.countryFlag
-            }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${localization[model.worldCountries.language]["countries"][
-            country.countryName
-            ]
-            }.</span> <span style="margin-left:5px;">${localization[model.worldCountries.language][
-            "The opponent gets a hint"
-            ]
+            `<span>⛔ ${
+              localization[model.worldCountries.language][
+                "You have fallen into a trap-country"
+              ]
+            }</span> <img src="${
+              country.countryFlag
+            }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${
+              localization[model.worldCountries.language]["countries"][
+                country.countryName
+              ]
+            }.</span> <span style="margin-left:5px;">${
+              localization[model.worldCountries.language][
+                "The opponent gets a hint"
+              ]
             }</span>`,
           );
           if (this.gameConfiguration.gameMode === "user") {
@@ -1611,7 +1719,8 @@ export class Player {
             this.addSelectedCountryToCountryPanel(
               this.playerSelectedCountriesContainerId,
               countryCode,
-              Array.from(this.selectedCountryTrapCodes).indexOf(countryCode) + 21,
+              Array.from(this.selectedCountryTrapCodes).indexOf(countryCode) +
+                21,
               true,
             );
           } else {
@@ -1633,7 +1742,9 @@ export class Player {
             this.opponentPlayer.score = this.opponentPlayer.score - 50;
             points = 50;
           }
-          const scoreElement = document.getElementById("player-one-score-field");
+          const scoreElement = document.getElementById(
+            "player-one-score-field",
+          );
           scoreElement.textContent = `🏅 ${this.opponentPlayer.score}`;
           if (this.opponentPlayer.score < 0) {
             scoreElement.style.color = "red";
@@ -1651,15 +1762,15 @@ export class Player {
           });
           document.getElementById(
             "guessed-country-alliance-panel-content",
-          ).innerHTML =
-            `<div>⚠️<span style="
+          ).innerHTML = `<div>⚠️<span style="
                     color: white;
                     font-size: 0.75rem;
                     padding-left: 3px;
                     padding-right: 3px;
                     font-weight: bolder;
-                  ">- ${points} ${localization[model.worldCountries.language]["Points"]
-            }</span></div>`;
+                  ">- ${points} ${
+                    localization[model.worldCountries.language]["Points"]
+                  }</span></div>`;
           const guessedCountryAlliance = document.getElementById(
             "guessed-country-alliance-panel",
           );
@@ -1669,7 +1780,12 @@ export class Player {
           guessedCountryAllianceHeader.classList.add("not-displayed");
           guessedCountryAlliance.style.backgroundColor = "red";
           guessedCountryAlliance.classList.remove("not-displayed");
-          this.deleteCountryNeighbourBorders(this, country, this.selectedCountryTrapCodes, this.countriesNumberField);
+          this.deleteCountryNeighbourBorders(
+            this,
+            country,
+            this.selectedCountryTrapCodes,
+            this.countriesNumberField,
+          );
           this.playerAttemptToGuess = true;
           this.opponentPlayer.playerAttemptToGuess = false;
           await this.sleep(2500);
@@ -1690,7 +1806,8 @@ export class Player {
             guessedCountryAlliance.classList.add("not-displayed");
             guessedCountryAlliance.style.backgroundColor = "white";
           }
-          if (guessedCountryAllianceHeader) guessedCountryAllianceHeader.classList.remove("not-displayed");
+          if (guessedCountryAllianceHeader)
+            guessedCountryAllianceHeader.classList.remove("not-displayed");
           this.playerAttemptToGuess = true;
           this.opponentPlayer.playerAttemptToGuess = false;
           this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
@@ -1728,8 +1845,23 @@ export class Player {
             });
           }
           this.addCountryBoundaryBlinking(countryCode);
-          this.deleteCountryNeighbourBorders(this, country, new Set([...this.selectedCountryTrapCodes, ...this.selectedCountryCodes]), this.countriesNumberField);
-          this.deleteCountryNeighbourBorders(this.opponentPlayer, country, new Set([...this.opponentPlayer.selectedCountryTrapCodes, ...this.opponentPlayer.selectedCountryCodes]));
+          this.deleteCountryNeighbourBorders(
+            this,
+            country,
+            new Set([
+              ...this.selectedCountryTrapCodes,
+              ...this.selectedCountryCodes,
+            ]),
+            this.countriesNumberField,
+          );
+          this.deleteCountryNeighbourBorders(
+            this.opponentPlayer,
+            country,
+            new Set([
+              ...this.opponentPlayer.selectedCountryTrapCodes,
+              ...this.opponentPlayer.selectedCountryCodes,
+            ]),
+          );
           this.setElementStyle(countryBoundary, {
             weight: 1,
             color: "purple",
@@ -1739,7 +1871,9 @@ export class Player {
             className: countryCode,
           });
           this.opponentPlayer.score = this.opponentPlayer.score + 10;
-          const scoreElement = document.getElementById("player-one-score-field");
+          const scoreElement = document.getElementById(
+            "player-one-score-field",
+          );
           scoreElement.textContent = `🏅 ${this.opponentPlayer.score}`;
           if (this.opponentPlayer.score < 0) {
             scoreElement.style.color = "red";
@@ -1747,16 +1881,20 @@ export class Player {
             scoreElement.style.color = "green";
           }
           this.setMessageInnerHtmlField(
-            `<span>🎁 ${localization[model.worldCountries.language][
-            "You have fallen into a bonus-country"
-            ]
-            }</span> <img src="${country.countryFlag
-            }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${localization[model.worldCountries.language]["countries"][
-            country.countryName
-            ]
-            }.</span> <span style="margin-left:5px;">${localization[model.worldCountries.language][
-            "Additional attempt to guess and"
-            ]
+            `<span>🎁 ${
+              localization[model.worldCountries.language][
+                "You have fallen into a bonus-country"
+              ]
+            }</span> <img src="${
+              country.countryFlag
+            }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${
+              localization[model.worldCountries.language]["countries"][
+                country.countryName
+              ]
+            }.</span> <span style="margin-left:5px;">${
+              localization[model.worldCountries.language][
+                "Additional attempt to guess and"
+              ]
             }</span><span style="
                     margin-left: 3px;
                     color: white;
@@ -1765,26 +1903,33 @@ export class Player {
                     padding-left: 2px;
                     padding-right: 2px;
                     font-weight: bolder;
-                  ">+10&nbsp;${localization[model.worldCountries.language]["Points"]
-            }</span>`,
+                  ">+10&nbsp;${
+                    localization[model.worldCountries.language]["Points"]
+                  }</span>`,
           );
           if (this.playerMap && !this.playerMap._isFullscreen) {
             document.getElementById(
               "gameCountryAllianceGuessedLabel",
-            ).textContent = "👏 " +
+            ).textContent =
+              "👏 " +
               localization[model.worldCountries.language]["Congratulations!"];
             document.getElementById(
               "gameCountryAllianceGuessedCountries",
-            ).innerHTML = `<span style="color: darkblue; font-weight:bold;">🎁 ${localization[model.worldCountries.language][
-            "You have fallen into a bonus-country"
-            ]
-            }</span> <img src="${country.countryFlag
-              }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;color: darkblue;font-weight:bold;">${localization[model.worldCountries.language]["countries"][
-              country.countryName
-              ]
-              }.</span> <span style="margin-left:5px;color: darkblue;font-weight:bold;">${localization[model.worldCountries.language][
-              "Additional attempt to guess and"
-              ]
+            ).innerHTML =
+              `<span style="color: darkblue; font-weight:bold;">🎁 ${
+                localization[model.worldCountries.language][
+                  "You have fallen into a bonus-country"
+                ]
+              }</span> <img src="${
+                country.countryFlag
+              }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;color: darkblue;font-weight:bold;">${
+                localization[model.worldCountries.language]["countries"][
+                  country.countryName
+                ]
+              }.</span> <span style="margin-left:5px;color: darkblue;font-weight:bold;">${
+                localization[model.worldCountries.language][
+                  "Additional attempt to guess and"
+                ]
               }</span><span style="
                     margin-left: 3px;
                     color: white;
@@ -1793,11 +1938,13 @@ export class Player {
                     padding-left: 2px;
                     padding-right: 2px;
                     font-weight: bolder;
-                  ">+10&nbsp;${localization[model.worldCountries.language]["Points"]
-              }</span>`;
+                  ">+10&nbsp;${
+                    localization[model.worldCountries.language]["Points"]
+                  }</span>`;
             document.getElementById(
               "gameCountryAllianceGuessedCloseButton",
-            ).textContent = localization[model.worldCountries.language]["Close"];
+            ).textContent =
+              localization[model.worldCountries.language]["Close"];
             showGameCountryAllianceGuessedWindow();
             const modal = document.getElementById(
               "gameCountryAllianceGuessedModal",
@@ -1843,7 +1990,8 @@ export class Player {
           this.playerAttemptToGuess = false;
           this.opponentPlayer.playerAttemptToGuess = true;
           if (this.opponentPlayer.isHintUsed(countryCode)) {
-            this.opponentPlayer.usedHintsCount = this.opponentPlayer.usedHintsCount + 1;
+            this.opponentPlayer.usedHintsCount =
+              this.opponentPlayer.usedHintsCount + 1;
           }
           this.addCountryBoundaryBlinking(countryCode);
           this.setElementStyle(countryBoundary, {
@@ -1875,7 +2023,9 @@ export class Player {
               this.opponentPlayer.score = this.opponentPlayer.score + 50;
               points = 50;
             }
-            const scoreElement = document.getElementById("player-one-score-field");
+            const scoreElement = document.getElementById(
+              "player-one-score-field",
+            );
             scoreElement.textContent = `🏅 ${this.opponentPlayer.score}`;
             if (this.opponentPlayer.score < 0) {
               scoreElement.style.color = "red";
@@ -1886,7 +2036,7 @@ export class Player {
               .map(
                 (countryObject) =>
                   localization[model.worldCountries.language]["countries"][
-                  this.countries[Object.keys(countryObject)[0]].countryName
+                    this.countries[Object.keys(countryObject)[0]].countryName
                   ],
               )
               .join(" 🔗 ");
@@ -1911,27 +2061,39 @@ export class Player {
               );
               if (countryGuessedIndex >= 0)
                 this.lastGuessedCountryNames.splice(countryGuessedIndex, 1);
-              this.deleteCountryNeighbourBorders(this, country, this.selectedCountryCodes, this.countriesNumberField);
+              this.deleteCountryNeighbourBorders(
+                this,
+                country,
+                this.selectedCountryCodes,
+                this.countriesNumberField,
+              );
             });
             const countryUnionHtml =
               this.createCountryUnionMessageHtml(countryUnionIndex);
             this.setMessageInnerHtmlField(
-              `<span style="margin-right:5px;">⚠️ ${localization[model.worldCountries.language]["You guessed"]
-              }</span><div style="display: inline-block;">${countryUnionHtml.outerHTML
-              }</div><span style="margin-left:5px;">${localization[model.worldCountries.language]["Country Alliance"]
+              `<span style="margin-right:5px;">⚠️ ${
+                localization[model.worldCountries.language]["You guessed"]
+              }</span><div style="display: inline-block;">${
+                countryUnionHtml.outerHTML
+              }</div><span style="margin-left:5px;">${
+                localization[model.worldCountries.language]["Country Alliance"]
               }</span>`,
             );
             if (this.playerMap && !this.playerMap._isFullscreen) {
               document.getElementById(
                 "gameCountryAllianceGuessedLabel",
-              ).textContent = "👏 " +
+              ).textContent =
+                "👏 " +
                 localization[model.worldCountries.language]["Congratulations!"];
               document.getElementById(
                 "gameCountryAllianceGuessedCountries",
-              ).innerHTML = `<span style="font-weight:bold; color:darkblue;">${localization[model.worldCountries.language]["You guessed"]
-              }</span><div style="display: inline-block; margin-left:5px;">${countryUnionHtml.outerHTML
-                }</div><span style="margin-left:5px; color: darkblue; font-weight:bold;">${localization[model.worldCountries.language]["Country Alliance"]
-                }</span><div style="color: darkblue; font-weight:bold;font-size: 0.8rem;">${countryUnionString}</div><div style="margin-top:5px;"><span style="
+              ).innerHTML = `<span style="font-weight:bold; color:darkblue;">${
+                localization[model.worldCountries.language]["You guessed"]
+              }</span><div style="display: inline-block; margin-left:5px;">${
+                countryUnionHtml.outerHTML
+              }</div><span style="margin-left:5px; color: darkblue; font-weight:bold;">${
+                localization[model.worldCountries.language]["Country Alliance"]
+              }</span><div style="color: darkblue; font-weight:bold;font-size: 0.8rem;">${countryUnionString}</div><div style="margin-top:5px;"><span style="
                     color: white;
                     font-size: 1rem;
                     border-radius: 2px;
@@ -1939,8 +2101,9 @@ export class Player {
                     padding-left: 3px;
                     padding-right: 3px;
                     font-weight: bolder;
-                  ">+${points} ${localization[model.worldCountries.language]["Points"]
-                }</span></div>`;
+                  ">+${points} ${
+                    localization[model.worldCountries.language]["Points"]
+                  }</span></div>`;
               document.getElementById(
                 "gameCountryAllianceGuessedCloseButton",
               ).textContent =
@@ -1969,9 +2132,11 @@ export class Player {
             } else if (this.playerMap && this.playerMap._isFullscreen) {
               document.getElementById(
                 "guessed-country-alliance-panel-content",
-              ).innerHTML = `<span style="font-weight:bold; color:darkblue;">${localization[model.worldCountries.language]["You guessed"]
-              }</span><div style="display: inline-block; margin-left:5px;">${countryUnionHtml.outerHTML
-                }</div><div style="margin-top:5px;"><span style="
+              ).innerHTML = `<span style="font-weight:bold; color:darkblue;">${
+                localization[model.worldCountries.language]["You guessed"]
+              }</span><div style="display: inline-block; margin-left:5px;">${
+                countryUnionHtml.outerHTML
+              }</div><div style="margin-top:5px;"><span style="
                     color: white;
                     font-size: 0.75rem;
                     border-radius: 2px;
@@ -1979,8 +2144,9 @@ export class Player {
                     padding-left: 3px;
                     padding-right: 3px;
                     font-weight: bolder;
-                  ">+${points} ${localization[model.worldCountries.language]["Points"]
-                }</span></div>`;
+                  ">+${points} ${
+                    localization[model.worldCountries.language]["Points"]
+                  }</span></div>`;
               document
                 .getElementById("guessed-country-alliance-panel")
                 .classList.remove("not-displayed");
@@ -1996,11 +2162,14 @@ export class Player {
             });
           } else {
             this.setMessageInnerHtmlField(
-              `<span>ℹ️ ${localization[model.worldCountries.language]["You guessed"]
-              }</span> <img src="${country.countryFlag
-              }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${localization[model.worldCountries.language]["countries"][
-              country.countryName
-              ]
+              `<span>ℹ️ ${
+                localization[model.worldCountries.language]["You guessed"]
+              }</span> <img src="${
+                country.countryFlag
+              }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${
+                localization[model.worldCountries.language]["countries"][
+                  country.countryName
+                ]
               }</span>`,
             );
             this.lastGuessedCountryNames.push(country.countryName);
@@ -2027,10 +2196,11 @@ export class Player {
             opacity: 0.8,
             className: countryCode,
           });
-          this.gameMessageField.textContent = `⛔ ${localization[model.worldCountries.language][
-            "Failed attempt to guess country!"
-          ]
-            }`;
+          this.gameMessageField.textContent = `⛔ ${
+            localization[model.worldCountries.language][
+              "Failed attempt to guess country!"
+            ]
+          }`;
           this.playerAttemptToGuess = true;
           this.opponentPlayer.playerAttemptToGuess = false;
           await this.sleep(1000);
@@ -2232,8 +2402,9 @@ export class Player {
     this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
       animate: false,
     });
-    this.gameMessageField.textContent = `ℹ️ ${localization[model.worldCountries.language]["Press 'Play' to start game!"]
-      }`;
+    this.gameMessageField.textContent = `ℹ️ ${
+      localization[model.worldCountries.language]["Press 'Play' to start game!"]
+    }`;
     this.playerConfigured = true;
     if (this.gameConfiguration.gameMode === "user") {
       this.sendCountriesConfigurationToOpponent();
@@ -2448,10 +2619,12 @@ export class Player {
       this.gameConfiguration.countriesUnionsHtml,
     );
     this.setMessageInnerHtmlField(
-      `<span style="font-size: 0.8rem;">ℹ️ ${localization[model.worldCountries.language][
-      "Choose one alliance from four countries on map or click"
-      ] + " 🎲"
-      }</span>`);
+      `<span style="font-size: 0.8rem;">ℹ️ ${
+        localization[model.worldCountries.language][
+          "Choose one alliance from four countries on map or click"
+        ] + " 🎲"
+      }</span>`,
+    );
     this.playMap.setSelectedCountryFiledHtml("");
     if (this.gameConfiguration.gameMode === "user")
       this.sendCleanCountriesSelectionToOpponent();
@@ -2591,13 +2764,15 @@ export class Player {
       `.country${countryIndex.toString()}`,
     );
     countryElement.innerHTML = addCountryImage
-      ? `<img id="${country.cca2}" src="${country.countryFlag}" alt="${localization[model.worldCountries.language]["countries"][
-      country.countryName
-      ]
-      }" title="${localization[model.worldCountries.language]["countries"][
-      country.countryName
-      ]
-      }" style="width:10px; height:10px;border:solid 1px grey; border-radius:50%; display:inline-block;vertical-align:baseline; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f;">`
+      ? `<img id="${country.cca2}" src="${country.countryFlag}" alt="${
+          localization[model.worldCountries.language]["countries"][
+            country.countryName
+          ]
+        }" title="${
+          localization[model.worldCountries.language]["countries"][
+            country.countryName
+          ]
+        }" style="width:10px; height:10px;border:solid 1px grey; border-radius:50%; display:inline-block;vertical-align:baseline; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f;">`
       : `<span style="width:10px; height:10px;background-color:red; border: 2px grey solid;border-radius:50%; display:inline-block;vertical-align:baseline;"></span>`;
   }
 
@@ -2632,25 +2807,27 @@ export class Player {
 
   setSelectedCountryFiledHtml(country) {
     this.playMap.setSelectedCountryFiledHtml(
-      `<img src="${country.countryFlag
-      }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;color:${country.countryName !== "Russia" ? "darkblue" : "red"
-      }">${country.countryName !== "Russia"
-        ? localization[model.worldCountries.language]["countries"][
-        country.countryName
-        ]
-        : localization[model.worldCountries.language]["countries"][
-        country.countryName
-        ] +
-        " - " +
-        localization[model.worldCountries.language]["War Aggressor"]
+      `<img src="${
+        country.countryFlag
+      }" style="margin-left:2px; width:18px; height:13px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:2px;color:${
+        country.countryName !== "Russia" ? "darkblue" : "red"
+      }">${
+        country.countryName !== "Russia"
+          ? localization[model.worldCountries.language]["countries"][
+              country.countryName
+            ]
+          : localization[model.worldCountries.language]["countries"][
+              country.countryName
+            ] +
+            " - " +
+            localization[model.worldCountries.language]["War Aggressor"]
       }</span>`,
     );
   }
 
   addUserPlayerInitialCountrySelectionHandler(countryCode, countryBoundary) {
-    document.getElementById(
-      "random-user-countries-selection",
-    ).style.display = "none";
+    document.getElementById("random-user-countries-selection").style.display =
+      "none";
     const countryMarker = this.countryMarkers[countryCode];
     const country = this.countries[countryCode];
     countryMarker.off("click");
@@ -2658,10 +2835,11 @@ export class Player {
     countryMarker.off("mouseout");
     countryBoundary.off("click");
     if (this.playerConfigured) {
-      this.gameMessageField.textContent = `ℹ️ ${localization[model.worldCountries.language][
-        "Press 'Play' to start game!"
-      ]
-        }`;
+      this.gameMessageField.textContent = `ℹ️ ${
+        localization[model.worldCountries.language][
+          "Press 'Play' to start game!"
+        ]
+      }`;
       return;
     }
     countryMarker._icon.classList.add("box-shadow-marker-icon-hover");
@@ -2671,10 +2849,11 @@ export class Player {
         this.selectedCountryCodes.size >= 1 &&
         this.selectedCountryCodes.size <= 4
       ) {
-        this.gameMessageField.textContent = `ℹ️ ${localization[model.worldCountries.language][
-          "Choose one alliance from four countries"
-        ]
-          }`;
+        this.gameMessageField.textContent = `ℹ️ ${
+          localization[model.worldCountries.language][
+            "Choose one alliance from four countries"
+          ]
+        }`;
         this.setSelectedCountryFiledHtml(country);
         this.addUserPlayerInitialCountrySelection(
           countryCode,
@@ -2693,10 +2872,11 @@ export class Player {
             +this.playerCountriesNumberField.textContent + 1;
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(3);
-          this.gameMessageField.textContent = `ℹ️ ${localization[model.worldCountries.language][
-            "Choose the first alliance from three countries"
-          ]
-            }`;
+          this.gameMessageField.textContent = `ℹ️ ${
+            localization[model.worldCountries.language][
+              "Choose the first alliance from three countries"
+            ]
+          }`;
         }
       }
       if (
@@ -2721,10 +2901,11 @@ export class Player {
             +this.playerCountriesNumberField.textContent + 1;
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(3);
-          this.gameMessageField.textContent = `ℹ️ ${localization[model.worldCountries.language][
-            "Choose the second alliance from three countries"
-          ]
-            }`;
+          this.gameMessageField.textContent = `ℹ️ ${
+            localization[model.worldCountries.language][
+              "Choose the second alliance from three countries"
+            ]
+          }`;
         }
       }
       if (
@@ -2749,10 +2930,11 @@ export class Player {
             +this.playerCountriesNumberField.textContent + 1;
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(2);
-          this.gameMessageField.textContent = `ℹ️ ${localization[model.worldCountries.language][
-            "Choose the first alliance from two countries"
-          ]
-            }`;
+          this.gameMessageField.textContent = `ℹ️ ${
+            localization[model.worldCountries.language][
+              "Choose the first alliance from two countries"
+            ]
+          }`;
         }
       }
       if (
@@ -2777,10 +2959,11 @@ export class Player {
             +this.playerCountriesNumberField.textContent + 1;
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(2);
-          this.gameMessageField.textContent = `ℹ️ ${localization[model.worldCountries.language][
-            "Choose the second alliance from two countries"
-          ]
-            }`;
+          this.gameMessageField.textContent = `ℹ️ ${
+            localization[model.worldCountries.language][
+              "Choose the second alliance from two countries"
+            ]
+          }`;
         }
       }
       if (
@@ -2805,10 +2988,11 @@ export class Player {
             +this.playerCountriesNumberField.textContent + 1;
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(2);
-          this.gameMessageField.textContent = `ℹ️ ${localization[model.worldCountries.language][
-            "Choose the third alliance from two countries"
-          ]
-            }`;
+          this.gameMessageField.textContent = `ℹ️ ${
+            localization[model.worldCountries.language][
+              "Choose the third alliance from two countries"
+            ]
+          }`;
         }
       }
       if (
@@ -2833,10 +3017,11 @@ export class Player {
             +this.playerCountriesNumberField.textContent + 1;
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
-          this.gameMessageField.textContent = `ℹ️ ${localization[model.worldCountries.language][
-            "Choose the first alliance from one country"
-          ]
-            }`;
+          this.gameMessageField.textContent = `ℹ️ ${
+            localization[model.worldCountries.language][
+              "Choose the first alliance from one country"
+            ]
+          }`;
         }
       }
       if (this.selectedCountryCodes.size === 17) {
@@ -2858,10 +3043,11 @@ export class Player {
         if (this.selectedCountryCodes.size === 17) {
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
-          this.gameMessageField.textContent = `ℹ️ ${localization[model.worldCountries.language][
-            "Choose the second alliance from one country"
-          ]
-            }`;
+          this.gameMessageField.textContent = `ℹ️ ${
+            localization[model.worldCountries.language][
+              "Choose the second alliance from one country"
+            ]
+          }`;
         }
       }
       if (this.selectedCountryCodes.size === 18) {
@@ -2883,10 +3069,11 @@ export class Player {
         if (this.selectedCountryCodes.size === 18) {
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
-          this.gameMessageField.textContent = `ℹ️ ${localization[model.worldCountries.language][
-            "Choose the third alliance from one country"
-          ]
-            }`;
+          this.gameMessageField.textContent = `ℹ️ ${
+            localization[model.worldCountries.language][
+              "Choose the third alliance from one country"
+            ]
+          }`;
         }
       }
       if (this.selectedCountryCodes.size === 19) {
@@ -2908,10 +3095,11 @@ export class Player {
         if (this.selectedCountryCodes.size === 19) {
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
-          this.gameMessageField.textContent = `ℹ️ ${localization[model.worldCountries.language][
-            "Choose the fourth alliance from one country"
-          ]
-            }`;
+          this.gameMessageField.textContent = `ℹ️ ${
+            localization[model.worldCountries.language][
+              "Choose the fourth alliance from one country"
+            ]
+          }`;
         }
       }
       if (this.selectedCountryCodes.size === 20) {
@@ -2933,10 +3121,11 @@ export class Player {
         if (this.selectedCountryCodes.size === 20) {
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
-          this.gameMessageField.textContent = `ℹ️ ${localization[model.worldCountries.language][
-            "Choose the first trap country"
-          ]
-            }`;
+          this.gameMessageField.textContent = `ℹ️ ${
+            localization[model.worldCountries.language][
+              "Choose the first trap country"
+            ]
+          }`;
         }
       }
       if (this.selectedCountryCodes.size === 21) {
@@ -2951,10 +3140,11 @@ export class Player {
         if (this.selectedCountryCodes.size === 21) {
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
-          this.gameMessageField.textContent = `ℹ️ ${localization[model.worldCountries.language][
-            "Choose the second trap country"
-          ]
-            }`;
+          this.gameMessageField.textContent = `ℹ️ ${
+            localization[model.worldCountries.language][
+              "Choose the second trap country"
+            ]
+          }`;
         }
       }
       if (this.selectedCountryCodes.size === 22) {
@@ -2969,10 +3159,11 @@ export class Player {
         if (this.selectedCountryCodes.size === 22) {
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
-          this.gameMessageField.textContent = `ℹ️ ${localization[model.worldCountries.language][
-            "Choose the third trap country"
-          ]
-            }`;
+          this.gameMessageField.textContent = `ℹ️ ${
+            localization[model.worldCountries.language][
+              "Choose the third trap country"
+            ]
+          }`;
         }
       }
       if (this.selectedCountryCodes.size === 23) {
@@ -2987,10 +3178,11 @@ export class Player {
         if (this.selectedCountryCodes.size === 23) {
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
-          this.gameMessageField.textContent = `ℹ️ ${localization[model.worldCountries.language][
-            "Choose the fourth trap country"
-          ]
-            }`;
+          this.gameMessageField.textContent = `ℹ️ ${
+            localization[model.worldCountries.language][
+              "Choose the fourth trap country"
+            ]
+          }`;
         }
       }
       if (this.selectedCountryCodes.size === 24) {
@@ -3005,10 +3197,11 @@ export class Player {
         if (this.selectedCountryCodes.size === 24) {
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
-          this.gameMessageField.textContent = `ℹ️ ${localization[model.worldCountries.language][
-            "Press 'Play' to start game!"
-          ]
-            }`;
+          this.gameMessageField.textContent = `ℹ️ ${
+            localization[model.worldCountries.language][
+              "Press 'Play' to start game!"
+            ]
+          }`;
           this.selectedCountryTrapCodes.forEach((trapCountryCode) => {
             if (this.selectedCountryCodes.has(trapCountryCode)) {
               this.selectedCountryCodes.delete(trapCountryCode);
@@ -3085,7 +3278,11 @@ export class Player {
     }
   }
 
-  addMouseOverStyleEventToCountryBoundary(countryBoundary, countryMarker, styleObject) {
+  addMouseOverStyleEventToCountryBoundary(
+    countryBoundary,
+    countryMarker,
+    styleObject,
+  ) {
     countryBoundary.once("mouseover", function (event) {
       if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
         countryBoundary.fire("click");
@@ -3097,7 +3294,11 @@ export class Player {
     });
   }
 
-  addMouseOutStyleEventToCountryBoundary(countryBoundary, countryMarker, styleObject) {
+  addMouseOutStyleEventToCountryBoundary(
+    countryBoundary,
+    countryMarker,
+    styleObject,
+  ) {
     if (!("ontouchstart" in window || navigator.maxTouchPoints > 0)) {
       countryBoundary.on("mouseout", function (event) {
         L.DomEvent.stopPropagation(event);
@@ -3112,7 +3313,7 @@ export class Player {
               weight: 1,
               fillOpacity: 0.5,
               opacity: 1,
-              className: styleObject.className
+              className: styleObject.className,
             });
             countryMarker._icon.classList.add("box-shadow-marker-icon-hover");
           }
@@ -3128,7 +3329,14 @@ export class Player {
     });
   }
 
-  createCountryMarker(country, countryBoundary, countryTooltip, countryPopup, width, height) {
+  createCountryMarker(
+    country,
+    countryBoundary,
+    countryTooltip,
+    countryPopup,
+    width,
+    height,
+  ) {
     const marker = L.marker(
       country.latlng ? country.latlng : country.capitalInfo.latlng,
       {
@@ -3140,7 +3348,9 @@ export class Player {
         ],
         className: country.cca2,
       },
-    ).bindPopup(countryPopup).bindTooltip(countryTooltip);
+    )
+      .bindPopup(countryPopup)
+      .bindTooltip(countryTooltip);
     marker.dataId = country.cca2;
     marker.on("mouseover", function (event) {
       countryBoundary.setStyle({
@@ -3185,23 +3395,26 @@ export class Player {
     const countryPopup = L.popup({ closeOnClick: false, closeButton: false })
       .setLatLng(country.latlng ? country.latlng : country.capitalInfo.latlng)
       .setContent(
-        `<img src="${country.flags.png
+        `<img src="${
+          country.flags.png
         }" style="width:20px; height:15px; box-shadow: 0 2px 5px #00000080,
-                                inset 0 2px 10px #0000001f; border-radius: 2px; vertical-align: sub;"><span style="font-weight:bold; margin-left:5px;color:${country.name.common !== "Russia"
-          ? "darkblue"
-          : "red"
-        }">${country.name.common !== "Russia"
-          ? localization[
-          model.worldCountries.language
-          ]["countries"][country.name.common]
-          : localization[
-          model.worldCountries.language
-          ]["countries"][country.name.common] +
-          " - " +
-          localization[
-          model.worldCountries.language
-          ]["War Aggressor"]
-        }</span>`,
+                                inset 0 2px 10px #0000001f; border-radius: 2px; vertical-align: sub;"><span style="font-weight:bold; margin-left:5px;color:${
+                                  country.name.common !== "Russia"
+                                    ? "darkblue"
+                                    : "red"
+                                }">${
+                                  country.name.common !== "Russia"
+                                    ? localization[
+                                        model.worldCountries.language
+                                      ]["countries"][country.name.common]
+                                    : localization[
+                                        model.worldCountries.language
+                                      ]["countries"][country.name.common] +
+                                      " - " +
+                                      localization[
+                                        model.worldCountries.language
+                                      ]["War Aggressor"]
+                                }</span>`,
       );
     return countryPopup;
   }
@@ -3210,23 +3423,26 @@ export class Player {
     const countryTooltip = L.tooltip(
       country.latlng ? country.latlng : country.capitalInfo.latlng,
     ).setContent(
-      `<img src="${country.flags.png
+      `<img src="${
+        country.flags.png
       }" style="width:20px; height:15px; box-shadow: 0 2px 5px #00000080,
-                                inset 0 2px 10px #0000001f; border-radius: 2px; vertical-align: sub;"><span style="font-weight:bold; margin-left:5px;color:${country.name.common !== "Russia"
-        ? "darkblue"
-        : "red"
-      }">${country.name.common !== "Russia"
-        ? localization[
-        model.worldCountries.language
-        ]["countries"][country.name.common]
-        : localization[
-        model.worldCountries.language
-        ]["countries"][country.name.common] +
-        " - " +
-        localization[
-        model.worldCountries.language
-        ]["War Aggressor"]
-      }</span>`,
+                                inset 0 2px 10px #0000001f; border-radius: 2px; vertical-align: sub;"><span style="font-weight:bold; margin-left:5px;color:${
+                                  country.name.common !== "Russia"
+                                    ? "darkblue"
+                                    : "red"
+                                }">${
+                                  country.name.common !== "Russia"
+                                    ? localization[
+                                        model.worldCountries.language
+                                      ]["countries"][country.name.common]
+                                    : localization[
+                                        model.worldCountries.language
+                                      ]["countries"][country.name.common] +
+                                      " - " +
+                                      localization[
+                                        model.worldCountries.language
+                                      ]["War Aggressor"]
+                                }</span>`,
     );
     countryTooltip.options.sticky = true;
     return countryTooltip;
@@ -3259,12 +3475,16 @@ export class Player {
   addAllCountryBoundariesAndMarkers() {
     this.playerMap.removeLayer(this.countryBoundariesAndMarkersFeatureGroup);
     this.countryBoundariesAndMarkersFeatureGroup.clearLayers();
-    this.playerMap.removeLayer(this.opponentPlayer.countryBoundariesAndMarkersFeatureGroup);
+    this.playerMap.removeLayer(
+      this.opponentPlayer.countryBoundariesAndMarkersFeatureGroup,
+    );
     this.opponentPlayer.countryBoundariesAndMarkersFeatureGroup.clearLayers();
-    Object.values(this.countryBoundaries)
-      .forEach(layer => this.countryBoundariesAndMarkersFeatureGroup.addLayer(layer));
-    Object.values(this.countryMarkers)
-      .forEach(layer => this.countryBoundariesAndMarkersFeatureGroup.addLayer(layer));
+    Object.values(this.countryBoundaries).forEach((layer) =>
+      this.countryBoundariesAndMarkersFeatureGroup.addLayer(layer),
+    );
+    Object.values(this.countryMarkers).forEach((layer) =>
+      this.countryBoundariesAndMarkersFeatureGroup.addLayer(layer),
+    );
     this.playerMap.addLayer(this.countryBoundariesAndMarkersFeatureGroup);
   }
 
@@ -3455,15 +3675,15 @@ export class Player {
         input.value =
           "🧓: " +
           localization[model.worldCountries.language][
-          "Opponent entered the game room to read your messages"
+            "Opponent entered the game room to read your messages"
           ];
       }
     } else if (messageObject.type === "conf") {
       if (
         messageObject.countries.length ===
-        this.gameConfiguration.countriesNumber &&
+          this.gameConfiguration.countriesNumber &&
         messageObject.trapCountries.length ===
-        this.gameConfiguration.countriesTrapNumber
+          this.gameConfiguration.countriesTrapNumber
       ) {
         this.opponentPlayer.selectedCountryCodes = new Set(
           messageObject.countries,
@@ -3487,10 +3707,11 @@ export class Player {
           this.playerConfigured &&
           this.opponentPlayer.playerConfigured
         ) {
-          this.gameMessageField.textContent = `ℹ️ ${localization[model.worldCountries.language][
-            "Opponent selected countries. Press 'Play' to start game!"
-          ]
-            }`;
+          this.gameMessageField.textContent = `ℹ️ ${
+            localization[model.worldCountries.language][
+              "Opponent selected countries. Press 'Play' to start game!"
+            ]
+          }`;
         }
       }
     } else if (messageObject.type === "move") {
@@ -3519,21 +3740,22 @@ export class Player {
       if (
         this.gameMessageField.textContent.endsWith(
           localization[model.worldCountries.language][
-          "Opponent has not yet started game. Wait for the message to start."
+            "Opponent has not yet started game. Wait for the message to start."
           ],
         )
       ) {
-        this.gameMessageField.textContent = `⚠️ ${localization[model.worldCountries.language][
-          "Your attempt to guess opponent's country"
-        ]
-          }`;
+        this.gameMessageField.textContent = `⚠️ ${
+          localization[model.worldCountries.language][
+            "Your attempt to guess opponent's country"
+          ]
+        }`;
       }
     } else if (messageObject.type === "finish") {
       alert(
         "⚠️ " +
-        localization[model.worldCountries.language][
-        "Sorry... Opponent left the game."
-        ],
+          localization[model.worldCountries.language][
+            "Sorry... Opponent left the game."
+          ],
       );
       if (this.game) this.game.finishGame(false);
     } else if (messageObject.type === "end") {
@@ -3544,11 +3766,12 @@ export class Player {
     } else if (messageObject.type === "deleteGameRoom") {
       alert(
         "⚠️ " +
-        this.game.firebase.gameRoomId +
-        ` - ${localization[model.worldCountries.language][
-        "Game room does not exist. Perhaps the opponent deleted it or left the game"
-        ]
-        }`,
+          this.game.firebase.gameRoomId +
+          ` - ${
+            localization[model.worldCountries.language][
+              "Game room does not exist. Perhaps the opponent deleted it or left the game"
+            ]
+          }`,
       );
       if (this.game) this.game.finishGame(false);
     } else if (messageObject.type === "moveAck") {
@@ -3578,7 +3801,7 @@ export class Player {
         input.value =
           "🧓: " +
           localization[model.worldCountries.language][
-          "Opponent has not yet entered the game room to read your messages. Try sending a message later"
+            "Opponent has not yet entered the game room to read your messages. Try sending a message later"
           ];
       }
     }
@@ -3627,16 +3850,20 @@ export class Player {
           try {
             addCountryBoundariesAndMarkers = true;
             this.setMessageInnerHtmlField(
-              `<span>⚠️ ${localization[model.worldCountries.language][
-              "Opponent has fallen into a trap-country"
-              ]
-              }</span> <img src="${country.countryFlag
-              }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${localization[model.worldCountries.language]["countries"][
-              country.countryName
-              ]
-              }.</span> <span style="margin-left:5px;">${localization[model.worldCountries.language][
-              "The opponent gets a hint"
-              ]
+              `<span>⚠️ ${
+                localization[model.worldCountries.language][
+                  "Opponent has fallen into a trap-country"
+                ]
+              }</span> <img src="${
+                country.countryFlag
+              }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${
+                localization[model.worldCountries.language]["countries"][
+                  country.countryName
+                ]
+              }.</span> <span style="margin-left:5px;">${
+                localization[model.worldCountries.language][
+                  "The opponent gets a hint"
+                ]
               }</span>`,
             );
             this.trapCountryHitted = this.trapCountryHitted + 1;
@@ -3649,7 +3876,9 @@ export class Player {
             } else {
               this.opponentPlayer.score = this.opponentPlayer.score - 50;
             }
-            const scoreElement = document.getElementById("player-two-score-field");
+            const scoreElement = document.getElementById(
+              "player-two-score-field",
+            );
             scoreElement.textContent = `🏅 ${this.opponentPlayer.score}`;
             if (this.opponentPlayer.score < 0) {
               scoreElement.style.color = "red";
@@ -3674,7 +3903,12 @@ export class Player {
             this.closeCountryPopup(countryPopup);
             this.playerMap.removeLayer(countryBoundary);
             delete this.countryBoundaries[countryCode];
-            this.deleteCountryNeighbourBorders(this, country, this.selectedCountryTrapCodes, this.countriesNumberField);
+            this.deleteCountryNeighbourBorders(
+              this,
+              country,
+              this.selectedCountryTrapCodes,
+              this.countriesNumberField,
+            );
             this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
               animate: false,
             });
@@ -3686,20 +3920,29 @@ export class Player {
               this.closeCountryPopup(countryPopup);
               this.playerMap.removeLayer(countryBoundary);
               delete this.countryBoundaries[countryCode];
-              this.deleteCountryNeighbourBorders(this, country, this.selectedCountryTrapCodes, this.countriesNumberField);
+              this.deleteCountryNeighbourBorders(
+                this,
+                country,
+                this.selectedCountryTrapCodes,
+                this.countriesNumberField,
+              );
             }
             this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
               animate: false,
             });
           }
-        } else if (this.game && this.game.bonusCountries.includes(countryCode)) {
+        } else if (
+          this.game &&
+          this.game.bonusCountries.includes(countryCode)
+        ) {
           try {
             addCountryBoundariesAndMarkers = false;
             this.playerAttemptToGuess = false;
             this.opponentPlayer.playerAttemptToGuess = true;
             const countryBoundaryOpponent =
               this.opponentPlayer.countryBoundaries[countryCode];
-            const countryMarker = this.opponentPlayer.countryMarkers[countryCode];
+            const countryMarker =
+              this.opponentPlayer.countryMarkers[countryCode];
             const countryToDeleteIndex =
               this.opponentPlayer.countryCodes.indexOf(countryCode);
             if (countryToDeleteIndex >= 0)
@@ -3722,8 +3965,23 @@ export class Player {
               });
             }
             this.addCountryBoundaryBlinking(countryCode);
-            this.deleteCountryNeighbourBorders(this, country, new Set([...this.selectedCountryCodes, ...this.selectedCountryTrapCodes]), this.countriesNumberField);
-            this.deleteCountryNeighbourBorders(this.opponentPlayer, country, new Set([...this.opponentPlayer.selectedCountryCodes, ...this.opponentPlayer.selectedCountryTrapCodes]));
+            this.deleteCountryNeighbourBorders(
+              this,
+              country,
+              new Set([
+                ...this.selectedCountryCodes,
+                ...this.selectedCountryTrapCodes,
+              ]),
+              this.countriesNumberField,
+            );
+            this.deleteCountryNeighbourBorders(
+              this.opponentPlayer,
+              country,
+              new Set([
+                ...this.opponentPlayer.selectedCountryCodes,
+                ...this.opponentPlayer.selectedCountryTrapCodes,
+              ]),
+            );
             this.setElementStyle(countryBoundary, {
               weight: 1,
               color: "purple",
@@ -3733,7 +3991,9 @@ export class Player {
               className: countryCode,
             });
             this.opponentPlayer.score = this.opponentPlayer.score + 10;
-            const scoreElement = document.getElementById("player-two-score-field");
+            const scoreElement = document.getElementById(
+              "player-two-score-field",
+            );
             scoreElement.textContent = `🏅 ${this.opponentPlayer.score}`;
             if (this.opponentPlayer.score < 0) {
               scoreElement.style.color = "red";
@@ -3741,16 +4001,20 @@ export class Player {
               scoreElement.style.color = "green";
             }
             this.setMessageInnerHtmlField(
-              `<span style="font-size: 0.7rem;">ℹ️ ${localization[model.worldCountries.language][
-              "Opponent has fallen into a bonus-country"
-              ]
-              }</span> <img src="${country.countryFlag
-              }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;font-size: 0.7rem;">${localization[model.worldCountries.language]["countries"][
-              country.countryName
-              ]
-              }.</span> <span style="margin-left:5px; font-size: 0.7rem;">${localization[model.worldCountries.language][
-              "He gets additional attempt to guess and"
-              ]
+              `<span style="font-size: 0.7rem;">ℹ️ ${
+                localization[model.worldCountries.language][
+                  "Opponent has fallen into a bonus-country"
+                ]
+              }</span> <img src="${
+                country.countryFlag
+              }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;font-size: 0.7rem;">${
+                localization[model.worldCountries.language]["countries"][
+                  country.countryName
+                ]
+              }.</span> <span style="margin-left:5px; font-size: 0.7rem;">${
+                localization[model.worldCountries.language][
+                  "He gets additional attempt to guess and"
+                ]
               }</span><span style="
         font-size: 0.7rem;
                     margin-left: 3px;
@@ -3760,8 +4024,9 @@ export class Player {
                     padding-left: 2px;
                     padding-right: 2px;
                     font-weight: bolder;
-                  ">+10&nbsp;${localization[model.worldCountries.language]["Points"]
-              }</span>`,
+                  ">+10&nbsp;${
+                    localization[model.worldCountries.language]["Points"]
+                  }</span>`,
             );
             await this.sleep(1500);
             this.removeCountryBoundaryBlinking(countryCode);
@@ -3786,7 +4051,8 @@ export class Player {
             this.playerAttemptToGuess = false;
             this.opponentPlayer.playerAttemptToGuess = true;
             if (this.opponentPlayer.isHintUsed(countryCode)) {
-              this.opponentPlayer.usedHintsCount = this.opponentPlayer.usedHintsCount + 1;
+              this.opponentPlayer.usedHintsCount =
+                this.opponentPlayer.usedHintsCount + 1;
             }
             this.addCountryBoundaryBlinking(countryCode);
             this.setElementStyle(countryBoundary, {
@@ -3819,7 +4085,9 @@ export class Player {
               } else if (countryUnion.length === 1) {
                 this.opponentPlayer.score = this.opponentPlayer.score + 50;
               }
-              const scoreElement = document.getElementById("player-two-score-field");
+              const scoreElement = document.getElementById(
+                "player-two-score-field",
+              );
               scoreElement.textContent = `🏅 ${this.opponentPlayer.score}`;
               if (this.opponentPlayer.score < 0) {
                 scoreElement.style.color = "red";
@@ -3829,14 +4097,26 @@ export class Player {
               countryUnion.forEach((countryObject) => {
                 const countryCode = Object.keys(countryObject)[0];
                 const country = this.countries[countryCode];
-                this.deleteCountryNeighbourBorders(this, country, this.selectedCountryCodes, this.countriesNumberField);
+                this.deleteCountryNeighbourBorders(
+                  this,
+                  country,
+                  this.selectedCountryCodes,
+                  this.countriesNumberField,
+                );
               });
               const countryUnionHtml =
                 this.createCountryUnionMessageHtml(countryUnionIndex);
               this.setMessageInnerHtmlField(
-                `<span style="margin-right:5px;">⚠️ ${localization[model.worldCountries.language]["Opponent guessed"]
-                }</span><div style="display: inline-block;">${countryUnionHtml.outerHTML
-                }</div><span style="margin-left:5px;">${localization[model.worldCountries.language]["Country Alliance"]
+                `<span style="margin-right:5px;">⚠️ ${
+                  localization[model.worldCountries.language][
+                    "Opponent guessed"
+                  ]
+                }</span><div style="display: inline-block;">${
+                  countryUnionHtml.outerHTML
+                }</div><span style="margin-left:5px;">${
+                  localization[model.worldCountries.language][
+                    "Country Alliance"
+                  ]
                 }</span>`,
               );
               await this.sleep(1500);
@@ -3847,11 +4127,16 @@ export class Player {
               });
             } else {
               this.setMessageInnerHtmlField(
-                `<span>ℹ️ ${localization[model.worldCountries.language]["Opponent guessed"]
-                }</span> <img src="${country.countryFlag
-                }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${localization[model.worldCountries.language]["countries"][
-                country.countryName
-                ]
+                `<span>ℹ️ ${
+                  localization[model.worldCountries.language][
+                    "Opponent guessed"
+                  ]
+                }</span> <img src="${
+                  country.countryFlag
+                }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${
+                  localization[model.worldCountries.language]["countries"][
+                    country.countryName
+                  ]
                 }</span>`,
               );
               await this.sleep(1000);
@@ -3877,10 +4162,11 @@ export class Player {
               opacity: 0.8,
               className: countryCode,
             });
-            this.gameMessageField.textContent = `⛔ ${localization[model.worldCountries.language][
-              "Opponent failed to guess your country!"
-            ]
-              }`;
+            this.gameMessageField.textContent = `⛔ ${
+              localization[model.worldCountries.language][
+                "Opponent failed to guess your country!"
+              ]
+            }`;
             this.playerAttemptToGuess = true;
             this.opponentPlayer.playerAttemptToGuess = false;
             await this.sleep(1000);
@@ -3952,9 +4238,9 @@ export class Player {
         ) {
           alert(
             "⚠️ " +
-            localization[model.worldCountries.language][
-            "Sorry... Connection with your opponent has failed. Game is ended."
-            ],
+              localization[model.worldCountries.language][
+                "Sorry... Connection with your opponent has failed. Game is ended."
+              ],
           );
           if (this.game) this.game.finishGame(false);
         }
@@ -3972,9 +4258,9 @@ export class Player {
         ) {
           alert(
             "⚠️ " +
-            localization[model.worldCountries.language][
-            "Sorry... Connection with your opponent has failed. Game is ended."
-            ],
+              localization[model.worldCountries.language][
+                "Sorry... Connection with your opponent has failed. Game is ended."
+              ],
           );
           if (this.game) this.game.finishGame(false);
         }
@@ -3986,9 +4272,9 @@ export class Player {
         localization[model.worldCountries.language]["Connection is closed"];
       alert(
         "⚠️ " +
-        localization[model.worldCountries.language][
-        "Sorry... Opponent left the game."
-        ],
+          localization[model.worldCountries.language][
+            "Sorry... Opponent left the game."
+          ],
       );
       if (this.game) this.game.finishGame(false);
     }
