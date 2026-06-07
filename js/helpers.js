@@ -88,12 +88,42 @@ export const showGameRulesWindow = function () {
   gameRules.show();
 };
 
-export const showCountryCoatOfArmsFlagWindow = function (modalId) {
+export const showCountryCoatOfArmsFlagWindow = function (
+  modalId,
+  showTimer = false,
+) {
   const countryCoatOfArmsFlag = new bootstrap.Modal(
     document.getElementById(modalId),
     {},
   );
+  if (showTimer) {
+    addTimerToModal(modalId);
+  }
   countryCoatOfArmsFlag.show();
+};
+
+export const addTimerToModal = function (modalId) {
+  const modal = document.getElementById(modalId);
+  const timerField = document.getElementById("timer-field");
+  let timerValue = 0;
+  if (timerField) {
+    timerValue = +timerField.textContent;
+  }
+  const timerContainerElement = document.getElementById("modalTimerContainer");
+  if (timerContainerElement) timerContainerElement.remove();
+  const timerContainer = document.createElement("div");
+  timerContainer.id = "modalTimerContainer";
+  timerContainer.style.position = "absolute";
+  timerContainer.style.top = "10px";
+  timerContainer.style.right = "10px";
+  const timerIcon = document.createElement("span");
+  timerIcon.textContent = "⏱️";
+  const timerValueElement = document.createElement("span");
+  timerValueElement.textContent = `${timerValue}`;
+  timerValueElement.id = "modalTimer";
+  timerContainer.appendChild(timerIcon);
+  timerContainer.appendChild(timerValueElement);
+  modal.querySelector(".modal-header").appendChild(timerContainer);
 };
 
 export const getCountryGeo = function (countryCode) {

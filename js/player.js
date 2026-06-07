@@ -10,6 +10,7 @@ import {
   showCountryCoatOfArmsFlagWindow,
   hideModalWindow,
   getCountryPhoto,
+  addTimerToModal,
 } from "./helpers.js";
 import * as model from "./model.js";
 export class Player {
@@ -552,7 +553,10 @@ export class Player {
           "click",
           function () {
             this.playMap.exitFullScreen();
-            showCountryCoatOfArmsFlagWindow("coatOfArmsModal");
+            showCountryCoatOfArmsFlagWindow(
+              "coatOfArmsModal",
+              this.gameConfiguration.hitTime !== 0 ? true : false,
+            );
           }.bind(this),
         );
         linkContainer.appendChild(coatOfArmsLink);
@@ -585,7 +589,10 @@ export class Player {
           "click",
           function () {
             this.playMap.exitFullScreen();
-            showCountryCoatOfArmsFlagWindow("flagModal");
+            showCountryCoatOfArmsFlagWindow(
+              "flagModal",
+              this.gameConfiguration.hitTime !== 0 ? true : false,
+            );
           }.bind(this),
         );
         linkContainer.appendChild(flagLink);
@@ -624,7 +631,10 @@ export class Player {
           "click",
           function () {
             this.playMap.exitFullScreen();
-            showCountryCoatOfArmsFlagWindow("countryOutlineModal");
+            showCountryCoatOfArmsFlagWindow(
+              "countryOutlineModal",
+              this.gameConfiguration.hitTime !== 0 ? true : false,
+            );
           }.bind(this),
         );
         linkContainer.appendChild(countryOutlineLink);
@@ -670,7 +680,10 @@ export class Player {
           "click",
           function () {
             this.playMap.exitFullScreen();
-            showCountryCoatOfArmsFlagWindow("countryPhotoModal");
+            showCountryCoatOfArmsFlagWindow(
+              "countryPhotoModal",
+              this.gameConfiguration.hitTime !== 0 ? true : false,
+            );
           }.bind(this),
         );
         linkContainer.appendChild(countryPhotoLink);
@@ -759,13 +772,25 @@ export class Player {
             if (hintType && hintsLength === 1) {
               this.playMap.exitFullScreen();
               if (hintType === "CoatOfArms") {
-                showCountryCoatOfArmsFlagWindow("coatOfArmsModal");
+                showCountryCoatOfArmsFlagWindow(
+                  "coatOfArmsModal",
+                  this.gameConfiguration.hitTime !== 0 ? true : false,
+                );
               } else if (hintType === "Flag") {
-                showCountryCoatOfArmsFlagWindow("flagModal");
+                showCountryCoatOfArmsFlagWindow(
+                  "flagModal",
+                  this.gameConfiguration.hitTime !== 0 ? true : false,
+                );
               } else if (hintType === "Outline") {
-                showCountryCoatOfArmsFlagWindow("countryOutlineModal");
+                showCountryCoatOfArmsFlagWindow(
+                  "countryOutlineModal",
+                  this.gameConfiguration.hitTime !== 0 ? true : false,
+                );
               } else if (hintType === "CountryPhoto") {
-                showCountryCoatOfArmsFlagWindow("countryPhotoModal");
+                showCountryCoatOfArmsFlagWindow(
+                  "countryPhotoModal",
+                  this.gameConfiguration.hitTime !== 0 ? true : false,
+                );
               } else {
                 if (button) button.remove();
                 hintsPanel.classList.remove("not-displayed");
@@ -1502,15 +1527,25 @@ export class Player {
     if (this.hitTimeoutIds && this.hitTimeoutIds.length != 0)
       this.clearAllTimeouts(this);
     const hitIntervalId = setInterval(() => {
+      const modalTimerField = document.getElementById("modalTimer");
       let timer = +timerField.textContent;
       timer = timer - 1;
       if (timer >= 0) {
         if (timer <= 10) {
           timerField.style.color = "red";
+          if (modalTimerField) {
+            modalTimerField.style.color = "red";
+          }
         } else {
           timerField.style.color = "green";
+          if (modalTimerField) {
+            modalTimerField.style.color = "green";
+          }
         }
         timerField.textContent = timer;
+        if (modalTimerField) {
+          modalTimerField.textContent = timer;
+        }
       }
     }, 1000);
     this.hitIntervalIds.push(hitIntervalId);
