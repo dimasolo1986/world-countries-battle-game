@@ -1000,6 +1000,10 @@ export class Player {
       let countryIndex = undefined;
       let countryCode = undefined;
       try {
+        hideModalWindow("flagModal");
+        hideModalWindow("coatOfArmsModal");
+        hideModalWindow("countryOutlineModal");
+        hideModalWindow("countryPhotoModal");
         document.getElementById("timer-field-container").style.display = "none";
         this.playMap.hideMapElement("hints-link");
         this.playMap.hideMapElement("hints-panel");
