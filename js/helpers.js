@@ -119,6 +119,12 @@ export const addTimerToModal = function (modalId) {
   const timerIcon = document.createElement("span");
   timerIcon.textContent = "⏱️";
   const timerValueElement = document.createElement("span");
+  timerValueElement.style.verticalAlign = "middle";
+  if (timerValue <= 10) {
+    timerValueElement.style.color = "red";
+  } else {
+    timerValueElement.style.color = "green";
+  }
   timerValueElement.textContent = `${timerValue}`;
   timerValueElement.id = "modalTimer";
   timerContainer.appendChild(timerIcon);
