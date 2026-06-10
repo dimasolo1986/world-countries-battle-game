@@ -5,46 +5,38 @@ class aboutView {
   _parentElement = document.querySelector("#about");
   _aboutReturnToMain = document.querySelector(".return-about");
   _aboutUkraineHelpDescription = document.querySelector(
-    ".about-ukraine-help-description"
+    ".about-ukraine-help-description",
   );
   _aboutUkraineHelpLink = document.querySelector(".about-ukraine-help-link");
   _aboutProjectName = document.querySelector(".about-project-name");
   _aboutProjectDescription = document.querySelector(
-    ".about-project-description"
+    ".about-project-description",
   );
   _aboutDeveloper = document.querySelector(".about-developer");
   _aboutDeveloperLink = document.querySelector(".about-developer-link");
   _aboutDeveloperEmailDescription = document.querySelector(
-    ".about-developer-email-description"
+    ".about-developer-email-description",
   );
   _aboutDeveloperDonateDescription = document.querySelector(
-    ".about-developer-donate-author-description"
+    ".about-developer-donate-author-description",
   );
   _aboutMapLibrary = document.querySelector(".about-map-library");
   _aboutWorldCountriesQuiz = document.querySelector(
-    ".about-world-countries-quiz"
+    ".about-world-countries-quiz",
   );
   _aboutWorldCountriesQuizLink = document.querySelector(
-    ".about-world-countries-quiz-link"
+    ".about-world-countries-quiz-link",
   );
   _facebookPage = document.querySelector(
-    ".about-countries-guesser-facebook-page"
+    ".about-countries-guesser-facebook-page",
   );
   _facebookPageShare = document.querySelector(
-    ".about-countries-guesser-facebook-page-share"
+    ".about-countries-guesser-facebook-page-share",
   );
   _gameModalRulesLabel = document.getElementById("gameModalRulesLabel");
   _gameModalRulesContent = document.getElementById("gameRulesContent");
   _gameModalRulesCloseButton = document.getElementById("gameRulesCloseButton");
   _aboutGameRulesLink = document.querySelector(".about-game-rules");
-
-  _aboutVideos = document.querySelector(".about-game-videos");
-  _aboutCountryAllianceSelectionVideoTitle = document.querySelector(
-    ".about-country-alliance-selection-video-tutorial"
-  );
-  _aboutCountryAllianceGameplayVideoTitle = document.querySelector(
-    ".about-country-alliance-gameplay-video-tutorial"
-  );
 
   _returnToMainListenerAdded = false;
   _gameRulesListenerAdded = false;
@@ -64,7 +56,7 @@ class aboutView {
     this._gameModalRulesCloseButton.textContent =
       localization[model.worldCountries.language]["Close"];
     this._gameModalRulesContent.innerHTML = document.getElementById(
-      "game-rules-project-container"
+      "game-rules-project-container",
     ).innerHTML;
     document
       .getElementById("game-rules-friend-link")
@@ -76,7 +68,7 @@ class aboutView {
     if (!this._gameRulesListenerAdded) {
       this._aboutGameRulesLink.addEventListener(
         "click",
-        this.showGameRules.bind(this)
+        this.showGameRules.bind(this),
       );
       this._gameRulesListenerAdded = true;
     }
@@ -86,7 +78,7 @@ class aboutView {
     mainView,
     donateAuthorView,
     gameRulesView,
-    gameRoomView
+    gameRoomView,
   ) {
     if (!this._returnToMainListenerAdded) {
       this._aboutReturnToMain.addEventListener(
@@ -96,8 +88,8 @@ class aboutView {
           mainView,
           donateAuthorView,
           gameRulesView,
-          gameRoomView
-        )
+          gameRoomView,
+        ),
       );
       this._returnToMainListenerAdded = true;
     }
@@ -172,19 +164,6 @@ class aboutView {
     }`;
     this._aboutGameRulesLink.textContent = `${
       localization[model.worldCountries.language]["Game Rules"]
-    }`;
-    this._aboutVideos.textContent = `📼 ${
-      localization[model.worldCountries.language]["VIDEOS:"]
-    }`;
-    this._aboutCountryAllianceSelectionVideoTitle.textContent = `${
-      localization[model.worldCountries.language][
-        "Country Alliances Selection — Video Tutorial"
-      ]
-    }`;
-    this._aboutCountryAllianceGameplayVideoTitle.textContent = `${
-      localization[model.worldCountries.language][
-        "Country Alliance Guesser Gameplay"
-      ]
     }`;
   }
 }
