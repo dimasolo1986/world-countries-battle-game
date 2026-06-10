@@ -902,9 +902,10 @@ export class PlayMap {
   }
 
   setPlayerTimeout() {
-    this.playerOne.setHitTimeout(
-      +document.getElementById("timer-field").textContent,
-    );
+    const timerField = document.getElementById("timer-field");
+    if (timerField) {
+      this.playerOne.setHitTimeout(+timerField.textContent);
+    }
   }
   clearPlayerTimeout() {
     if (

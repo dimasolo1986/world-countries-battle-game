@@ -191,9 +191,9 @@ export class Player {
     }
     this.countryUnions = [
       new Array(4),
+      new Array(4),
       new Array(3),
       new Array(3),
-      new Array(2),
       new Array(2),
       new Array(2),
       new Array(1),
@@ -292,7 +292,7 @@ export class Player {
     this.setMessageInnerHtmlField(
       `<span style="font-size: 0.8rem;">ℹ️ ${
         localization[model.worldCountries.language][
-          "Choose one alliance from four countries on map or click"
+          "Choose the first alliance from four countries on map or click"
         ] + " 🎲"
       }</span>`,
     );
@@ -406,7 +406,7 @@ export class Player {
     this.addSelectedCountryToCountryPanel(
       this.playerSelectedCountriesContainerId,
       trapCountryCode,
-      Array.from(this.selectedCountryTrapCodes).indexOf(trapCountryCode) + 21,
+      Array.from(this.selectedCountryTrapCodes).indexOf(trapCountryCode) + 23,
       addCountryImage,
     );
   }
@@ -1759,7 +1759,7 @@ export class Player {
               this.playerSelectedCountriesContainerId,
               countryCode,
               Array.from(this.selectedCountryTrapCodes).indexOf(countryCode) +
-                21,
+                23,
               true,
             );
           } else {
@@ -2434,7 +2434,7 @@ export class Player {
       this.addSelectedCountryToCountryPanel(
         this.playerSelectedCountriesContainerId,
         countryCode,
-        index + 21,
+        index + 23,
       );
     });
     this.showSelectedCountries();
@@ -2468,16 +2468,28 @@ export class Player {
   selectRandomCountries() {
     const countriesCodeList = Object.values(this.countriesCodeMapping);
     if (this.gameConfiguration.type === "default") {
-      const fourCountryUnion = this.selectRandomCountryUnion(
+      const firstFourCountryUnion = this.selectRandomCountryUnion(
         countriesCodeList,
         4,
       );
       this.fillComputerPlayerSelectedCountries(
-        fourCountryUnion,
+        firstFourCountryUnion,
         countriesCodeList,
       );
       let countryUnion = this.countryUnions[0];
-      fourCountryUnion.forEach((countryCode, index) => {
+      firstFourCountryUnion.forEach((countryCode, index) => {
+        this.addCountryToCountryUnion(countryUnion, index, countryCode);
+      });
+      const secondFourCountryUnion = this.selectRandomCountryUnion(
+        countriesCodeList,
+        4,
+      );
+      this.fillComputerPlayerSelectedCountries(
+        secondFourCountryUnion,
+        countriesCodeList,
+      );
+      countryUnion = this.countryUnions[1];
+      secondFourCountryUnion.forEach((countryCode, index) => {
         this.addCountryToCountryUnion(countryUnion, index, countryCode);
       });
       const firstThreeCountryUnion = this.selectRandomCountryUnion(
@@ -2488,7 +2500,7 @@ export class Player {
         firstThreeCountryUnion,
         countriesCodeList,
       );
-      countryUnion = this.countryUnions[1];
+      countryUnion = this.countryUnions[2];
       firstThreeCountryUnion.forEach((countryCode, index) => {
         this.addCountryToCountryUnion(countryUnion, index, countryCode);
       });
@@ -2500,7 +2512,7 @@ export class Player {
         secondThreeCountryUnion,
         countriesCodeList,
       );
-      countryUnion = this.countryUnions[2];
+      countryUnion = this.countryUnions[3];
       secondThreeCountryUnion.forEach((countryCode, index) => {
         this.addCountryToCountryUnion(countryUnion, index, countryCode);
       });
@@ -2512,7 +2524,7 @@ export class Player {
         firstTwoCountryUnion,
         countriesCodeList,
       );
-      countryUnion = this.countryUnions[3];
+      countryUnion = this.countryUnions[4];
       firstTwoCountryUnion.forEach((countryCode, index) => {
         this.addCountryToCountryUnion(countryUnion, index, countryCode);
       });
@@ -2524,20 +2536,8 @@ export class Player {
         secondTwoCountryUnion,
         countriesCodeList,
       );
-      countryUnion = this.countryUnions[4];
-      secondTwoCountryUnion.forEach((countryCode, index) => {
-        this.addCountryToCountryUnion(countryUnion, index, countryCode);
-      });
-      const thirdTwoCountryUnion = this.selectRandomCountryUnion(
-        countriesCodeList,
-        2,
-      );
-      this.fillComputerPlayerSelectedCountries(
-        thirdTwoCountryUnion,
-        countriesCodeList,
-      );
       countryUnion = this.countryUnions[5];
-      thirdTwoCountryUnion.forEach((countryCode, index) => {
+      secondTwoCountryUnion.forEach((countryCode, index) => {
         this.addCountryToCountryUnion(countryUnion, index, countryCode);
       });
       const firstOneCountryUnion = this.selectRandomCountryUnion(
@@ -2660,7 +2660,7 @@ export class Player {
     this.setMessageInnerHtmlField(
       `<span style="font-size: 0.8rem;">ℹ️ ${
         localization[model.worldCountries.language][
-          "Choose one alliance from four countries on map or click"
+          "Choose the first alliance from four countries on map or click"
         ] + " 🎲"
       }</span>`,
     );
@@ -2890,7 +2890,7 @@ export class Player {
       ) {
         this.gameMessageField.textContent = `ℹ️ ${
           localization[model.worldCountries.language][
-            "Choose one alliance from four countries"
+            "Choose the first alliance from four countries"
           ]
         }`;
         this.setSelectedCountryFiledHtml(country);
@@ -2910,17 +2910,17 @@ export class Player {
           this.playerCountriesNumberField.textContent =
             +this.playerCountriesNumberField.textContent + 1;
           this.finishCountriesUnionSelection();
-          this.addCountryBoundariesAndMarkers(3);
+          this.addCountryBoundariesAndMarkers(4);
           this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
-              "Choose the first alliance from three countries"
+              "Choose the second alliance from four countries"
             ]
           }`;
         }
       }
       if (
         this.selectedCountryCodes.size >= 5 &&
-        this.selectedCountryCodes.size <= 7
+        this.selectedCountryCodes.size <= 8
       ) {
         this.setSelectedCountryFiledHtml(country);
         const countryUnion = this.countryUnions[1];
@@ -2935,7 +2935,36 @@ export class Player {
           "green",
         );
         this.addNeighbourCountriesByCountryCode(countryCode);
-        if (this.selectedCountryCodes.size === 7) {
+        if (this.selectedCountryCodes.size === 8) {
+          this.playerCountriesNumberField.textContent =
+            +this.playerCountriesNumberField.textContent + 1;
+          this.finishCountriesUnionSelection();
+          this.addCountryBoundariesAndMarkers(3);
+          this.gameMessageField.textContent = `ℹ️ ${
+            localization[model.worldCountries.language][
+              "Choose the first alliance from three countries"
+            ]
+          }`;
+        }
+      }
+      if (
+        this.selectedCountryCodes.size >= 9 &&
+        this.selectedCountryCodes.size <= 11
+      ) {
+        this.setSelectedCountryFiledHtml(country);
+        const countryUnion = this.countryUnions[2];
+        this.addCountryToCountryUnion(
+          countryUnion,
+          this.selectedCountryCodes.size - 9,
+          countryCode,
+        );
+        this.addUserPlayerInitialCountrySelection(
+          countryCode,
+          countryBoundary,
+          "green",
+        );
+        this.addNeighbourCountriesByCountryCode(countryCode);
+        if (this.selectedCountryCodes.size === 11) {
           this.playerCountriesNumberField.textContent =
             +this.playerCountriesNumberField.textContent + 1;
           this.finishCountriesUnionSelection();
@@ -2948,72 +2977,14 @@ export class Player {
         }
       }
       if (
-        this.selectedCountryCodes.size >= 8 &&
-        this.selectedCountryCodes.size <= 10
-      ) {
-        this.setSelectedCountryFiledHtml(country);
-        const countryUnion = this.countryUnions[2];
-        this.addCountryToCountryUnion(
-          countryUnion,
-          this.selectedCountryCodes.size - 8,
-          countryCode,
-        );
-        this.addUserPlayerInitialCountrySelection(
-          countryCode,
-          countryBoundary,
-          "green",
-        );
-        this.addNeighbourCountriesByCountryCode(countryCode);
-        if (this.selectedCountryCodes.size === 10) {
-          this.playerCountriesNumberField.textContent =
-            +this.playerCountriesNumberField.textContent + 1;
-          this.finishCountriesUnionSelection();
-          this.addCountryBoundariesAndMarkers(2);
-          this.gameMessageField.textContent = `ℹ️ ${
-            localization[model.worldCountries.language][
-              "Choose the first alliance from two countries"
-            ]
-          }`;
-        }
-      }
-      if (
-        this.selectedCountryCodes.size >= 11 &&
-        this.selectedCountryCodes.size <= 12
+        this.selectedCountryCodes.size >= 12 &&
+        this.selectedCountryCodes.size <= 14
       ) {
         this.setSelectedCountryFiledHtml(country);
         const countryUnion = this.countryUnions[3];
         this.addCountryToCountryUnion(
           countryUnion,
-          this.selectedCountryCodes.size - 11,
-          countryCode,
-        );
-        this.addUserPlayerInitialCountrySelection(
-          countryCode,
-          countryBoundary,
-          "green",
-        );
-        this.addNeighbourCountriesByCountryCode(countryCode);
-        if (this.selectedCountryCodes.size === 12) {
-          this.playerCountriesNumberField.textContent =
-            +this.playerCountriesNumberField.textContent + 1;
-          this.finishCountriesUnionSelection();
-          this.addCountryBoundariesAndMarkers(2);
-          this.gameMessageField.textContent = `ℹ️ ${
-            localization[model.worldCountries.language][
-              "Choose the second alliance from two countries"
-            ]
-          }`;
-        }
-      }
-      if (
-        this.selectedCountryCodes.size >= 13 &&
-        this.selectedCountryCodes.size <= 14
-      ) {
-        this.setSelectedCountryFiledHtml(country);
-        const countryUnion = this.countryUnions[4];
-        this.addCountryToCountryUnion(
-          countryUnion,
-          this.selectedCountryCodes.size - 13,
+          this.selectedCountryCodes.size - 12,
           countryCode,
         );
         this.addUserPlayerInitialCountrySelection(
@@ -3029,7 +3000,7 @@ export class Player {
           this.addCountryBoundariesAndMarkers(2);
           this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
-              "Choose the third alliance from two countries"
+              "Choose the first alliance from two countries"
             ]
           }`;
         }
@@ -3039,7 +3010,7 @@ export class Player {
         this.selectedCountryCodes.size <= 16
       ) {
         this.setSelectedCountryFiledHtml(country);
-        const countryUnion = this.countryUnions[5];
+        const countryUnion = this.countryUnions[4];
         this.addCountryToCountryUnion(
           countryUnion,
           this.selectedCountryCodes.size - 15,
@@ -3055,17 +3026,20 @@ export class Player {
           this.playerCountriesNumberField.textContent =
             +this.playerCountriesNumberField.textContent + 1;
           this.finishCountriesUnionSelection();
-          this.addCountryBoundariesAndMarkers(1);
+          this.addCountryBoundariesAndMarkers(2);
           this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
-              "Choose the first alliance from one country"
+              "Choose the second alliance from two countries"
             ]
           }`;
         }
       }
-      if (this.selectedCountryCodes.size === 17) {
+      if (
+        this.selectedCountryCodes.size >= 17 &&
+        this.selectedCountryCodes.size <= 18
+      ) {
         this.setSelectedCountryFiledHtml(country);
-        const countryUnion = this.countryUnions[6];
+        const countryUnion = this.countryUnions[5];
         this.addCountryToCountryUnion(
           countryUnion,
           this.selectedCountryCodes.size - 17,
@@ -3076,48 +3050,22 @@ export class Player {
           countryBoundary,
           "green",
         );
-        this.playerCountriesNumberField.textContent =
-          +this.playerCountriesNumberField.textContent + 1;
-        this.addNeighbourCountriesByCountryCode(countryCode);
-        if (this.selectedCountryCodes.size === 17) {
-          this.finishCountriesUnionSelection();
-          this.addCountryBoundariesAndMarkers(1);
-          this.gameMessageField.textContent = `ℹ️ ${
-            localization[model.worldCountries.language][
-              "Choose the second alliance from one country"
-            ]
-          }`;
-        }
-      }
-      if (this.selectedCountryCodes.size === 18) {
-        this.setSelectedCountryFiledHtml(country);
-        const countryUnion = this.countryUnions[7];
-        this.addCountryToCountryUnion(
-          countryUnion,
-          this.selectedCountryCodes.size - 18,
-          countryCode,
-        );
-        this.addUserPlayerInitialCountrySelection(
-          countryCode,
-          countryBoundary,
-          "green",
-        );
-        this.playerCountriesNumberField.textContent =
-          +this.playerCountriesNumberField.textContent + 1;
         this.addNeighbourCountriesByCountryCode(countryCode);
         if (this.selectedCountryCodes.size === 18) {
+          this.playerCountriesNumberField.textContent =
+            +this.playerCountriesNumberField.textContent + 1;
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
           this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
-              "Choose the third alliance from one country"
+              "Choose the first alliance from one country"
             ]
           }`;
         }
       }
       if (this.selectedCountryCodes.size === 19) {
         this.setSelectedCountryFiledHtml(country);
-        const countryUnion = this.countryUnions[8];
+        const countryUnion = this.countryUnions[6];
         this.addCountryToCountryUnion(
           countryUnion,
           this.selectedCountryCodes.size - 19,
@@ -3136,14 +3084,14 @@ export class Player {
           this.addCountryBoundariesAndMarkers(1);
           this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
-              "Choose the fourth alliance from one country"
+              "Choose the second alliance from one country"
             ]
           }`;
         }
       }
       if (this.selectedCountryCodes.size === 20) {
         this.setSelectedCountryFiledHtml(country);
-        const countryUnion = this.countryUnions[9];
+        const countryUnion = this.countryUnions[7];
         this.addCountryToCountryUnion(
           countryUnion,
           this.selectedCountryCodes.size - 20,
@@ -3162,45 +3110,59 @@ export class Player {
           this.addCountryBoundariesAndMarkers(1);
           this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
-              "Choose the first trap country"
+              "Choose the third alliance from one country"
             ]
           }`;
         }
       }
       if (this.selectedCountryCodes.size === 21) {
         this.setSelectedCountryFiledHtml(country);
-        this.selectedCountryTrapCodes.add(countryCode);
+        const countryUnion = this.countryUnions[8];
+        this.addCountryToCountryUnion(
+          countryUnion,
+          this.selectedCountryCodes.size - 21,
+          countryCode,
+        );
         this.addUserPlayerInitialCountrySelection(
           countryCode,
           countryBoundary,
-          "orange",
+          "green",
         );
+        this.playerCountriesNumberField.textContent =
+          +this.playerCountriesNumberField.textContent + 1;
         this.addNeighbourCountriesByCountryCode(countryCode);
         if (this.selectedCountryCodes.size === 21) {
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
           this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
-              "Choose the second trap country"
+              "Choose the fourth alliance from one country"
             ]
           }`;
         }
       }
       if (this.selectedCountryCodes.size === 22) {
         this.setSelectedCountryFiledHtml(country);
-        this.selectedCountryTrapCodes.add(countryCode);
+        const countryUnion = this.countryUnions[9];
+        this.addCountryToCountryUnion(
+          countryUnion,
+          this.selectedCountryCodes.size - 22,
+          countryCode,
+        );
         this.addUserPlayerInitialCountrySelection(
           countryCode,
           countryBoundary,
-          "orange",
+          "green",
         );
+        this.playerCountriesNumberField.textContent =
+          +this.playerCountriesNumberField.textContent + 1;
         this.addNeighbourCountriesByCountryCode(countryCode);
         if (this.selectedCountryCodes.size === 22) {
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
           this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
-              "Choose the third trap country"
+              "Choose the first trap country"
             ]
           }`;
         }
@@ -3219,7 +3181,7 @@ export class Player {
           this.addCountryBoundariesAndMarkers(1);
           this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
-              "Choose the fourth trap country"
+              "Choose the second trap country"
             ]
           }`;
         }
@@ -3234,6 +3196,44 @@ export class Player {
         );
         this.addNeighbourCountriesByCountryCode(countryCode);
         if (this.selectedCountryCodes.size === 24) {
+          this.finishCountriesUnionSelection();
+          this.addCountryBoundariesAndMarkers(1);
+          this.gameMessageField.textContent = `ℹ️ ${
+            localization[model.worldCountries.language][
+              "Choose the third trap country"
+            ]
+          }`;
+        }
+      }
+      if (this.selectedCountryCodes.size === 25) {
+        this.setSelectedCountryFiledHtml(country);
+        this.selectedCountryTrapCodes.add(countryCode);
+        this.addUserPlayerInitialCountrySelection(
+          countryCode,
+          countryBoundary,
+          "orange",
+        );
+        this.addNeighbourCountriesByCountryCode(countryCode);
+        if (this.selectedCountryCodes.size === 25) {
+          this.finishCountriesUnionSelection();
+          this.addCountryBoundariesAndMarkers(1);
+          this.gameMessageField.textContent = `ℹ️ ${
+            localization[model.worldCountries.language][
+              "Choose the fourth trap country"
+            ]
+          }`;
+        }
+      }
+      if (this.selectedCountryCodes.size === 26) {
+        this.setSelectedCountryFiledHtml(country);
+        this.selectedCountryTrapCodes.add(countryCode);
+        this.addUserPlayerInitialCountrySelection(
+          countryCode,
+          countryBoundary,
+          "orange",
+        );
+        this.addNeighbourCountriesByCountryCode(countryCode);
+        if (this.selectedCountryCodes.size === 26) {
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
           this.gameMessageField.textContent = `ℹ️ ${
@@ -3694,9 +3694,9 @@ export class Player {
       this.opponentPlayer.selectedCountryTrapCodes = new Set();
       this.opponentPlayer.countryUnions = [
         new Array(4),
+        new Array(4),
         new Array(3),
         new Array(3),
-        new Array(2),
         new Array(2),
         new Array(2),
         new Array(1),
