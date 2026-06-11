@@ -105,11 +105,12 @@ class gameView {
     this._gameModalCountriesSelectionRandomButtonText.textContent =
       localization[model.worldCountries.language]["Random Countries Selection"];
     this._gameCountryAllianceInitialSelectionTutorialButton.textContent =
+      "📼 " +
       localization[model.worldCountries.language][
         "Country Alliances Selection — Video Tutorial"
       ];
     this._gameCountryAllianceInitialSelectionRulesButton.textContent =
-      localization[model.worldCountries.language]["Rules"];
+      "📄 " + localization[model.worldCountries.language]["Rules"];
     const videoTutorial = document.getElementById(
       "countryAllianceSelectionVideoTutorial",
     );
