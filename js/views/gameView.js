@@ -97,7 +97,7 @@ class gameView {
       localization[model.worldCountries.language]["Countries Selection"];
     this._gameModalCountriesSelectionContent.textContent =
       localization[model.worldCountries.language][
-        "To play the game, choose ten different alliances of countries on the map and four trap-countries for your opponent. Follow the instructions at the top of the screen. To read the rules of the game, click the Rules button. We wish you a great game and a victory!"
+        "To play the game, choose eight different alliances of countries on the map and four trap-countries for your opponent. Follow the instructions at the top of the screen. To read the rules of the game, click the Rules button. We wish you a great game and a victory!"
       ] + " 🏆";
     this._gameModalCountriesSelectionUserButton.textContent =
       "🗺️ " +

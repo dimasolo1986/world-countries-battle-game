@@ -198,8 +198,6 @@ export class Player {
       new Array(2),
       new Array(1),
       new Array(1),
-      new Array(1),
-      new Array(1),
     ];
     this.countryCodes = [];
     this.countriesToGuessNext = [];
@@ -406,7 +404,7 @@ export class Player {
     this.addSelectedCountryToCountryPanel(
       this.playerSelectedCountriesContainerId,
       trapCountryCode,
-      Array.from(this.selectedCountryTrapCodes).indexOf(trapCountryCode) + 23,
+      Array.from(this.selectedCountryTrapCodes).indexOf(trapCountryCode) + 21,
       addCountryImage,
     );
   }
@@ -1759,7 +1757,7 @@ export class Player {
               this.playerSelectedCountriesContainerId,
               countryCode,
               Array.from(this.selectedCountryTrapCodes).indexOf(countryCode) +
-                23,
+                21,
               true,
             );
           } else {
@@ -2434,7 +2432,7 @@ export class Player {
       this.addSelectedCountryToCountryPanel(
         this.playerSelectedCountriesContainerId,
         countryCode,
-        index + 23,
+        index + 21,
       );
     });
     this.showSelectedCountries();
@@ -2562,30 +2560,6 @@ export class Player {
       );
       countryUnion = this.countryUnions[7];
       secondOneCountryUnion.forEach((countryCode, index) => {
-        this.addCountryToCountryUnion(countryUnion, index, countryCode);
-      });
-      const thirdOneCountryUnion = this.selectRandomCountryUnion(
-        countriesCodeList,
-        1,
-      );
-      this.fillComputerPlayerSelectedCountries(
-        thirdOneCountryUnion,
-        countriesCodeList,
-      );
-      countryUnion = this.countryUnions[8];
-      thirdOneCountryUnion.forEach((countryCode, index) => {
-        this.addCountryToCountryUnion(countryUnion, index, countryCode);
-      });
-      const fourthOneCountryUnion = this.selectRandomCountryUnion(
-        countriesCodeList,
-        1,
-      );
-      this.fillComputerPlayerSelectedCountries(
-        fourthOneCountryUnion,
-        countriesCodeList,
-      );
-      countryUnion = this.countryUnions[9];
-      fourthOneCountryUnion.forEach((countryCode, index) => {
         this.addCountryToCountryUnion(countryUnion, index, countryCode);
       });
       const firstTrapCountry = this.selectRandomCountryUnion(
@@ -3110,59 +3084,45 @@ export class Player {
           this.addCountryBoundariesAndMarkers(1);
           this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
-              "Choose the third alliance from one country"
+              "Choose the first trap country"
             ]
           }`;
         }
       }
       if (this.selectedCountryCodes.size === 21) {
         this.setSelectedCountryFiledHtml(country);
-        const countryUnion = this.countryUnions[8];
-        this.addCountryToCountryUnion(
-          countryUnion,
-          this.selectedCountryCodes.size - 21,
-          countryCode,
-        );
+        this.selectedCountryTrapCodes.add(countryCode);
         this.addUserPlayerInitialCountrySelection(
           countryCode,
           countryBoundary,
-          "green",
+          "orange",
         );
-        this.playerCountriesNumberField.textContent =
-          +this.playerCountriesNumberField.textContent + 1;
         this.addNeighbourCountriesByCountryCode(countryCode);
         if (this.selectedCountryCodes.size === 21) {
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
           this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
-              "Choose the fourth alliance from one country"
+              "Choose the second trap country"
             ]
           }`;
         }
       }
       if (this.selectedCountryCodes.size === 22) {
         this.setSelectedCountryFiledHtml(country);
-        const countryUnion = this.countryUnions[9];
-        this.addCountryToCountryUnion(
-          countryUnion,
-          this.selectedCountryCodes.size - 22,
-          countryCode,
-        );
+        this.selectedCountryTrapCodes.add(countryCode);
         this.addUserPlayerInitialCountrySelection(
           countryCode,
           countryBoundary,
-          "green",
+          "orange",
         );
-        this.playerCountriesNumberField.textContent =
-          +this.playerCountriesNumberField.textContent + 1;
         this.addNeighbourCountriesByCountryCode(countryCode);
         if (this.selectedCountryCodes.size === 22) {
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
           this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
-              "Choose the first trap country"
+              "Choose the third trap country"
             ]
           }`;
         }
@@ -3181,7 +3141,7 @@ export class Player {
           this.addCountryBoundariesAndMarkers(1);
           this.gameMessageField.textContent = `ℹ️ ${
             localization[model.worldCountries.language][
-              "Choose the second trap country"
+              "Choose the fourth trap country"
             ]
           }`;
         }
@@ -3196,44 +3156,6 @@ export class Player {
         );
         this.addNeighbourCountriesByCountryCode(countryCode);
         if (this.selectedCountryCodes.size === 24) {
-          this.finishCountriesUnionSelection();
-          this.addCountryBoundariesAndMarkers(1);
-          this.gameMessageField.textContent = `ℹ️ ${
-            localization[model.worldCountries.language][
-              "Choose the third trap country"
-            ]
-          }`;
-        }
-      }
-      if (this.selectedCountryCodes.size === 25) {
-        this.setSelectedCountryFiledHtml(country);
-        this.selectedCountryTrapCodes.add(countryCode);
-        this.addUserPlayerInitialCountrySelection(
-          countryCode,
-          countryBoundary,
-          "orange",
-        );
-        this.addNeighbourCountriesByCountryCode(countryCode);
-        if (this.selectedCountryCodes.size === 25) {
-          this.finishCountriesUnionSelection();
-          this.addCountryBoundariesAndMarkers(1);
-          this.gameMessageField.textContent = `ℹ️ ${
-            localization[model.worldCountries.language][
-              "Choose the fourth trap country"
-            ]
-          }`;
-        }
-      }
-      if (this.selectedCountryCodes.size === 26) {
-        this.setSelectedCountryFiledHtml(country);
-        this.selectedCountryTrapCodes.add(countryCode);
-        this.addUserPlayerInitialCountrySelection(
-          countryCode,
-          countryBoundary,
-          "orange",
-        );
-        this.addNeighbourCountriesByCountryCode(countryCode);
-        if (this.selectedCountryCodes.size === 26) {
           this.finishCountriesUnionSelection();
           this.addCountryBoundariesAndMarkers(1);
           this.gameMessageField.textContent = `ℹ️ ${
@@ -3699,8 +3621,6 @@ export class Player {
         new Array(3),
         new Array(2),
         new Array(2),
-        new Array(1),
-        new Array(1),
         new Array(1),
         new Array(1),
       ];

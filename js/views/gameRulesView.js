@@ -112,7 +112,7 @@ class gameRulesView {
     }`;
     this._gameRulesProjectDescription.textContent = `${
       localization[model.worldCountries.language][
-        "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose ten different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts."
+        "project that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose eight different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts."
       ]
     }`;
     this._gameRulesRandomCountriesSelectionDescription.textContent = `${
@@ -145,7 +145,7 @@ class gameRulesView {
     }`;
     this._gameRulesOneCountriesAllianceDescription.textContent = `${
       localization[model.worldCountries.language][
-        "Choose four alliances of countries that include one country on the world map."
+        "Choose two alliances of countries that include one country on the world map."
       ]
     }`;
     this._gameRulesThreeTrapCountriesDescription.textContent = `${

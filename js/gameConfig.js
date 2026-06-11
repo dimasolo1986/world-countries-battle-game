@@ -123,22 +123,22 @@ export class GameConfig {
               </tr>
             </table></div>
             </div>
-             <div style="margin-bottom: 3px;"><div style="display:inline-flex; align-items:center"> <table>
+             <div style="margin-bottom: 3px; padding-top:3px; border-top: 1px dotted black;"><div style="display:inline-flex; align-items:center"> <table>
               <tr style="margin:0px">
-                <td style="padding:2px;" class="country21">
+                <td style="padding:2px; background-color:orange;" class="country21">
                   <span style="color:grey; border:solid 1px grey; border-radius:50%; display:inline-block; height:10px; width:10px;"></span>
                 </td>
               </tr>
             </table></div>
             <div style="display:inline-flex; align-items:center"> <table>
               <tr style="margin:0px">
-                <td style="padding:2px;" class="country22">
+                <td style="padding:2px; background-color:orange;" class="country22">
                   <span style="color:grey; border:solid 1px grey; border-radius:50%; display:inline-block; height:10px; width:10px;"></span>
                 </td>
               </tr>
             </table></div>
             </div>
-             <div style="margin-bottom: 3px; padding-top:3px; border-top: 1px dotted black;"><div style="display:inline-flex; align-items:center"> <table>
+             <div style="margin-bottom: 3px;"><div style="display:inline-flex; align-items:center"> <table>
               <tr style="margin:0px">
                 <td style="padding:2px; background-color:orange;" class="country23">
                   <span style="color:grey; border:solid 1px grey; border-radius:50%; display:inline-block; height:10px; width:10px;"></span>
@@ -152,26 +152,11 @@ export class GameConfig {
                 </td>
               </tr>
             </table></div>
-            </div>
-             <div style="margin-bottom: 3px;"><div style="display:inline-flex; align-items:center"> <table>
-              <tr style="margin:0px">
-                <td style="padding:2px; background-color:orange;" class="country25">
-                  <span style="color:grey; border:solid 1px grey; border-radius:50%; display:inline-block; height:10px; width:10px;"></span>
-                </td>
-              </tr>
-            </table></div>
-            <div style="display:inline-flex; align-items:center"> <table>
-              <tr style="margin:0px">
-                <td style="padding:2px; background-color:orange;" class="country26">
-                  <span style="color:grey; border:solid 1px grey; border-radius:50%; display:inline-block; height:10px; width:10px;"></span>
-                </td>
-              </tr>
-            </table></div>
             </div></div>
             `;
       this.countriesTrapNumber = 4;
-      this.countriesNumber = 22;
-      this.countryUnionsNumber = 10;
+      this.countriesNumber = 20;
+      this.countryUnionsNumber = 8;
       this.maxCountriesNumberInUnion = 4;
       this.hintsType = document.getElementById("hint-types-select").value;
       this.onlyIndependentCountries =
