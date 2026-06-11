@@ -1965,11 +1965,11 @@ export class Player {
                 localization[model.worldCountries.language]["countries"][
                   country.countryName
                 ]
-              }.</span> <span style="margin-left:5px;color: darkblue;font-weight:bold;">${
+              }.</span> <div style="color: darkblue;font-weight:bold;">${
                 localization[model.worldCountries.language][
                   "Additional attempt to guess and"
                 ]
-              }</span><span style="
+              }<span style="
                     margin-left: 3px;
                     color: white;
                     border-radius: 2px;
@@ -1979,7 +1979,7 @@ export class Player {
                     font-weight: bolder;
                   ">+10&nbsp;${
                     localization[model.worldCountries.language]["Points"]
-                  }</span>`;
+                  }</span></div>`;
             document.getElementById(
               "gameCountryAllianceGuessedCloseButton",
             ).textContent =
