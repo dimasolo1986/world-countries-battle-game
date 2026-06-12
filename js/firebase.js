@@ -29,6 +29,7 @@ export class Firebase {
   opponentConnectionState;
   turnServers = [];
   serverTimeOffset = 0;
+  _unsubscribeFns = [];
   constructor() {
     this.firebaseConfig = {
       apiKey: String.fromCharCode(...FIREBASE_DATA),
@@ -98,9 +99,11 @@ export class Firebase {
 
   async joinGameRoom(gameRoomId) {
     if (this.peerConnection) {
-      onValue(ref(this.db, "/.info/serverTimeOffset"), (snap) => {
-        this.serverTimeOffset = snap.val() || 0;
-      });
+      this._unsubscribeFns.push(
+        onValue(ref(this.db, "/.info/serverTimeOffset"), (snap) => {
+          this.serverTimeOffset = snap.val() || 0;
+        })
+      );
       this.cleanupOldGameRooms().catch(() => { });
       const offerSnap = await get(ref(this.db, `room-${gameRoomId}/offer`));
       if (!offerSnap.exists()) {
@@ -137,34 +140,38 @@ export class Firebase {
           );
         }
       };
-      onValue(ref(this.db, `room-${gameRoomId}/offer`), async (snap) => {
-        const offer = snap.val();
-        try {
-          await this.peerConnection.setRemoteDescription(offer);
-          const answer = await this.peerConnection.createAnswer();
-          await this.peerConnection.setLocalDescription(answer);
-          await set(ref(this.db, `room-${gameRoomId}/answer`), answer);
-          this.answered = true;
-        } catch (err) {
-          if (this.game) {
-            this.game.opponentConnectionHandler("failed");
+      this._unsubscribeFns.push(
+        onValue(ref(this.db, `room-${gameRoomId}/offer`), async (snap) => {
+          const offer = snap.val();
+          try {
+            await this.peerConnection.setRemoteDescription(offer);
+            const answer = await this.peerConnection.createAnswer();
+            await this.peerConnection.setLocalDescription(answer);
+            await set(ref(this.db, `room-${gameRoomId}/answer`), answer);
+            this.answered = true;
+          } catch (err) {
+            if (this.game) {
+              this.game.opponentConnectionHandler("failed");
+            }
           }
-        }
-      });
-      onChildAdded(
-        ref(this.db, `room-${gameRoomId}/offerCandidates`),
-        (snap) => {
-          const data = snap.val();
-          if (data && data.candidate) {
-            this.peerConnection.addIceCandidate(data);
-          } else if (
-            data &&
-            data.sdpMid !== undefined &&
-            data.sdpMLineIndex !== undefined
-          ) {
-            this.peerConnection.addIceCandidate(new RTCIceCandidate(data));
+        })
+      );
+      this._unsubscribeFns.push(
+        onChildAdded(
+          ref(this.db, `room-${gameRoomId}/offerCandidates`),
+          (snap) => {
+            const data = snap.val();
+            if (data && data.candidate) {
+              this.peerConnection.addIceCandidate(data);
+            } else if (
+              data &&
+              data.sdpMid !== undefined &&
+              data.sdpMLineIndex !== undefined
+            ) {
+              this.peerConnection.addIceCandidate(new RTCIceCandidate(data));
+            }
           }
-        }
+        )
       );
       this.peerConnection.onconnectionstatechange = function () {
         this.mainPageConnectionStateHandler(
@@ -265,9 +272,11 @@ export class Firebase {
 
   async createGameRoom(gameRoomId) {
     if (this.peerConnection) {
-      onValue(ref(this.db, "/.info/serverTimeOffset"), (snap) => {
-        this.serverTimeOffset = snap.val() || 0;
-      });
+      this._unsubscribeFns.push(
+        onValue(ref(this.db, "/.info/serverTimeOffset"), (snap) => {
+          this.serverTimeOffset = snap.val() || 0;
+        })
+      );
       this.cleanupOldGameRooms().catch(() => { });
       this.peerConnection.onicecandidate = (event) => {
         if (event.candidate) {
@@ -291,36 +300,42 @@ export class Firebase {
         ref(this.db, `room-${gameRoomId}/createdAt`),
         serverTimestamp()
       );
-      onChildAdded(
-        ref(this.db, `room-${gameRoomId}/answerCandidates`),
-        (snap) => {
-          const data = snap.val();
-          if (data && data.candidate) {
-            this.peerConnection.addIceCandidate(data);
-          } else if (
-            data &&
-            data.sdpMid !== undefined &&
-            data.sdpMLineIndex !== undefined
-          ) {
-            this.peerConnection.addIceCandidate(new RTCIceCandidate(data));
+      this._unsubscribeFns.push(
+        onChildAdded(
+          ref(this.db, `room-${gameRoomId}/answerCandidates`),
+          (snap) => {
+            const data = snap.val();
+            if (data && data.candidate) {
+              this.peerConnection.addIceCandidate(data);
+            } else if (
+              data &&
+              data.sdpMid !== undefined &&
+              data.sdpMLineIndex !== undefined
+            ) {
+              this.peerConnection.addIceCandidate(new RTCIceCandidate(data));
+            }
           }
-        }
+        )
       );
-      onValue(ref(this.db, `room-${gameRoomId}/answer`), (snap) => {
-        const answer = snap.val();
-        if (answer && this.peerConnection.signalingState !== "stable") {
-          this.peerConnection
-            .setRemoteDescription(answer)
-            .then(() => { })
-            .catch(() => { });
-          this.answered = true;
-        }
-      });
-      onValue(ref(this.db, `room-${gameRoomId}`), (snap) => {
-        if (!snap.exists()) {
-          resetGameRoomContainer();
-        }
-      });
+      this._unsubscribeFns.push(
+        onValue(ref(this.db, `room-${gameRoomId}/answer`), (snap) => {
+          const answer = snap.val();
+          if (answer && this.peerConnection.signalingState !== "stable") {
+            this.peerConnection
+              .setRemoteDescription(answer)
+              .then(() => { })
+              .catch(() => { });
+            this.answered = true;
+          }
+        })
+      );
+      this._unsubscribeFns.push(
+        onValue(ref(this.db, `room-${gameRoomId}`), (snap) => {
+          if (!snap.exists()) {
+            resetGameRoomContainer();
+          }
+        })
+      );
       this.peerConnection.addEventListener("negotiationneeded", () => {
         this.peerConnection.close();
         this.peerConnection = null;
@@ -367,6 +382,8 @@ export class Firebase {
   }
 
   async cleanupResources(closeChannel = false) {
+    this._unsubscribeFns.forEach((fn) => { try { fn(); } catch {} });
+    this._unsubscribeFns = [];
     if (this.dataChannel && closeChannel) {
       try {
         this.dataChannel.close();

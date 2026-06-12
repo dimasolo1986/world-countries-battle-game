@@ -143,6 +143,7 @@ export class Player {
     this.countriesToGuessNext = null;
     this.alreadyGuessedCountryCodes = null;
     this.hintTypes = null;
+    this.outlineMapHandler = null;
     document.getElementById("countryOutlineMap").innerHTML = "";
   }
 
@@ -620,9 +621,20 @@ export class Player {
         countryOutlineLink.textContent =
           localization[model.worldCountries.language][hintHeader];
         const outlineModal = document.getElementById("countryOutlineModal");
+        if (this.outlineMapHandler) {
+          outlineModal.removeEventListener(
+            "shown.bs.modal",
+            this.outlineMapHandler,
+          );
+        }
+        this.outlineMapHandler = this.createOutlineMap.bind(
+          this,
+          hintValue,
+          countryCode,
+        );
         outlineModal.addEventListener(
           "shown.bs.modal",
-          this.createOutlineMap.bind(this, hintValue, countryCode),
+          this.outlineMapHandler,
           { once: true },
         );
         countryOutlineLink.addEventListener(
@@ -876,11 +888,14 @@ export class Player {
       },
       { once: true },
     );
-    outlineModal.addEventListener(
-      "shown.bs.modal",
-      this.createOutlineMap.bind(this, hintValue, countryCode),
-      { once: true },
+    this.outlineMapHandler = this.createOutlineMap.bind(
+      this,
+      hintValue,
+      countryCode,
     );
+    outlineModal.addEventListener("shown.bs.modal", this.outlineMapHandler, {
+      once: true,
+    });
   }
 
   isCountriesContainHint(hint) {

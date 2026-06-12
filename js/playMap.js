@@ -892,10 +892,12 @@ export class PlayMap {
       gameRulesModal.addEventListener(
         "shown.bs.modal",
         this.clearPlayerTimeout.bind(this),
+        { once: true },
       );
       gameRulesModal.addEventListener(
         "hidden.bs.modal",
         this.setPlayerTimeout.bind(this),
+        { once: true },
       );
     }
     this.game.showGameRules();
