@@ -29,7 +29,7 @@ export class Firebase {
   opponentConnectionState;
   turnServers = [];
   serverTimeOffset = 0;
-  _unsubscribeFns = [];
+  unsubscribeFns = [];
   constructor() {
     this.firebaseConfig = {
       apiKey: String.fromCharCode(...FIREBASE_DATA),
@@ -53,9 +53,9 @@ export class Firebase {
       } catch {
         alert(
           "⛔ " +
-          localization[model.worldCountries.language][
-          "Failed to create a communication channel with your opponent"
-          ]
+            localization[model.worldCountries.language][
+              "Failed to create a communication channel with your opponent"
+            ],
         );
       }
       const turnData = await this.getTurnServers();
@@ -66,7 +66,7 @@ export class Firebase {
   async getTurnServers() {
     try {
       const response = await fetch(
-        `https://country-alliance-guesser.metered.live/api/v1/turn/credentials?apiKey=${String.fromCharCode(...METERED_DATA)}`
+        `https://country-alliance-guesser.metered.live/api/v1/turn/credentials?apiKey=${String.fromCharCode(...METERED_DATA)}`,
       );
       if (!response.ok) {
         return [];
@@ -99,21 +99,22 @@ export class Firebase {
 
   async joinGameRoom(gameRoomId) {
     if (this.peerConnection) {
-      this._unsubscribeFns.push(
+      this.unsubscribeFns.push(
         onValue(ref(this.db, "/.info/serverTimeOffset"), (snap) => {
           this.serverTimeOffset = snap.val() || 0;
-        })
+        }),
       );
-      this.cleanupOldGameRooms().catch(() => { });
+      this.cleanupOldGameRooms().catch(() => {});
       const offerSnap = await get(ref(this.db, `room-${gameRoomId}/offer`));
       if (!offerSnap.exists()) {
         alert(
           "⚠️ " +
-          gameRoomId +
-          ` - ${localization[model.worldCountries.language][
-          "Game room does not exist. Perhaps the opponent deleted it or left the game"
-          ]
-          }`
+            gameRoomId +
+            ` - ${
+              localization[model.worldCountries.language][
+                "Game room does not exist. Perhaps the opponent deleted it or left the game"
+              ]
+            }`,
         );
         return false;
       }
@@ -127,7 +128,7 @@ export class Firebase {
       this.peerConnection.onicecandidate = (event) => {
         if (event.candidate) {
           const candRef = push(
-            ref(this.db, `room-${gameRoomId}/answerCandidates`)
+            ref(this.db, `room-${gameRoomId}/answerCandidates`),
           );
           set(candRef, event.candidate.toJSON());
         }
@@ -136,11 +137,11 @@ export class Firebase {
         this.opponentConnectionState = this.peerConnection.iceConnectionState;
         if (this.game) {
           this.game.opponentConnectionHandler(
-            this.peerConnection.iceConnectionState
+            this.peerConnection.iceConnectionState,
           );
         }
       };
-      this._unsubscribeFns.push(
+      this.unsubscribeFns.push(
         onValue(ref(this.db, `room-${gameRoomId}/offer`), async (snap) => {
           const offer = snap.val();
           try {
@@ -154,9 +155,9 @@ export class Firebase {
               this.game.opponentConnectionHandler("failed");
             }
           }
-        })
+        }),
       );
-      this._unsubscribeFns.push(
+      this.unsubscribeFns.push(
         onChildAdded(
           ref(this.db, `room-${gameRoomId}/offerCandidates`),
           (snap) => {
@@ -170,17 +171,17 @@ export class Firebase {
             ) {
               this.peerConnection.addIceCandidate(new RTCIceCandidate(data));
             }
-          }
-        )
+          },
+        ),
       );
       this.peerConnection.onconnectionstatechange = function () {
         this.mainPageConnectionStateHandler(
-          this.peerConnection.iceConnectionState
+          this.peerConnection.iceConnectionState,
         );
         this.opponentConnectionState = this.peerConnection.connectionState;
         if (this.game) {
           this.game.opponentConnectionHandler(
-            this.peerConnection.connectionState
+            this.peerConnection.connectionState,
           );
         }
       }.bind(this);
@@ -233,14 +234,14 @@ export class Firebase {
     if (this.gameRoomId && this.db && this.peerConnection) {
       set(
         ref(this.db, `room-${this.gameRoomId}/gameEndedAt`),
-        serverTimestamp()
+        serverTimestamp(),
       );
     }
   }
 
   mainPageConnectionStateHandler(connectionState) {
     const opponentConnectionText = document.getElementById(
-      "opponent-connection-main-page-text"
+      "opponent-connection-main-page-text",
     );
     if (connectionState === "connected") {
       opponentConnectionText.textContent =
@@ -272,16 +273,16 @@ export class Firebase {
 
   async createGameRoom(gameRoomId) {
     if (this.peerConnection) {
-      this._unsubscribeFns.push(
+      this.unsubscribeFns.push(
         onValue(ref(this.db, "/.info/serverTimeOffset"), (snap) => {
           this.serverTimeOffset = snap.val() || 0;
-        })
+        }),
       );
-      this.cleanupOldGameRooms().catch(() => { });
+      this.cleanupOldGameRooms().catch(() => {});
       this.peerConnection.onicecandidate = (event) => {
         if (event.candidate) {
           const candRef = push(
-            ref(this.db, `room-${gameRoomId}/offerCandidates`)
+            ref(this.db, `room-${gameRoomId}/offerCandidates`),
           );
           set(candRef, event.candidate.toJSON());
         }
@@ -298,9 +299,9 @@ export class Firebase {
       await set(ref(this.db, `room-${gameRoomId}/offer`), offer);
       await set(
         ref(this.db, `room-${gameRoomId}/createdAt`),
-        serverTimestamp()
+        serverTimestamp(),
       );
-      this._unsubscribeFns.push(
+      this.unsubscribeFns.push(
         onChildAdded(
           ref(this.db, `room-${gameRoomId}/answerCandidates`),
           (snap) => {
@@ -314,27 +315,27 @@ export class Firebase {
             ) {
               this.peerConnection.addIceCandidate(new RTCIceCandidate(data));
             }
-          }
-        )
+          },
+        ),
       );
-      this._unsubscribeFns.push(
+      this.unsubscribeFns.push(
         onValue(ref(this.db, `room-${gameRoomId}/answer`), (snap) => {
           const answer = snap.val();
           if (answer && this.peerConnection.signalingState !== "stable") {
             this.peerConnection
               .setRemoteDescription(answer)
-              .then(() => { })
-              .catch(() => { });
+              .then(() => {})
+              .catch(() => {});
             this.answered = true;
           }
-        })
+        }),
       );
-      this._unsubscribeFns.push(
+      this.unsubscribeFns.push(
         onValue(ref(this.db, `room-${gameRoomId}`), (snap) => {
           if (!snap.exists()) {
             resetGameRoomContainer();
           }
-        })
+        }),
       );
       this.peerConnection.addEventListener("negotiationneeded", () => {
         this.peerConnection.close();
@@ -346,12 +347,12 @@ export class Firebase {
       });
       this.peerConnection.oniceconnectionstatechange = async () => {
         this.mainPageConnectionStateHandler(
-          this.peerConnection.iceConnectionState
+          this.peerConnection.iceConnectionState,
         );
         this.opponentConnectionState = this.peerConnection.iceConnectionState;
         if (this.game) {
           this.game.opponentConnectionHandler(
-            this.peerConnection.iceConnectionState
+            this.peerConnection.iceConnectionState,
           );
         }
         if (
@@ -367,7 +368,7 @@ export class Firebase {
         this.opponentConnectionState = this.peerConnection.connectionState;
         if (this.game) {
           this.game.opponentConnectionHandler(
-            this.peerConnection.connectionState
+            this.peerConnection.connectionState,
           );
         }
       }.bind(this);
@@ -382,15 +383,19 @@ export class Firebase {
   }
 
   async cleanupResources(closeChannel = false) {
-    this._unsubscribeFns.forEach((fn) => { try { fn(); } catch {} });
-    this._unsubscribeFns = [];
+    this.unsubscribeFns.forEach((fn) => {
+      try {
+        fn();
+      } catch {}
+    });
+    this.unsubscribeFns = [];
     if (this.dataChannel && closeChannel) {
       try {
         this.dataChannel.close();
         this.dataChannel.onopen = null;
         this.dataChannel.onmessage = null;
         this.dataChannel = null;
-      } catch (err) { }
+      } catch (err) {}
     }
     if (this.peerConnection && closeChannel) {
       try {
@@ -400,12 +405,12 @@ export class Firebase {
         this.peerConnection.ondatachannel = null;
         this.peerConnection.close();
         this.peerConnection = null;
-      } catch (err) { }
+      } catch (err) {}
     }
     if (this.isHost && this.gameRoomId) {
       try {
         this.deleteGameRoom(this.gameRoomId);
-      } catch (err) { }
+      } catch (err) {}
     }
     if (this.db) {
       this.db = null;
