@@ -132,17 +132,13 @@ export const addTimerToModal = function (modalId) {
   modal.querySelector(".modal-header").appendChild(timerContainer);
 };
 
-const _geoCache = new Map();
-
 export const getCountryGeo = function (countryCode) {
-  if (_geoCache.has(countryCode)) return _geoCache.get(countryCode);
   const countryGeo = {
     type: COUNTRIES_GEO.type,
     features: COUNTRIES_GEO.features.filter(
       (feature) => feature.properties.country_a2 === countryCode,
     ),
   };
-  _geoCache.set(countryCode, countryGeo);
   return countryGeo;
 };
 

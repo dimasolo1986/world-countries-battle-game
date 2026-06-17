@@ -8,6 +8,7 @@ export class PlayMap {
   playerOne;
   playerTwo;
   countriesNumber;
+  countryBoundariesAndMarkersLayer;
   constructor(
     mapId,
     gameConfiguration,
@@ -19,6 +20,10 @@ export class PlayMap {
     latLon,
     defaultZoomLevel = 2.4,
   ) {
+    this.countryBoundariesAndMarkersLayer = {
+      boundaries: {},
+      markers: {},
+    };
     this.mapId = mapId;
     this.gameConfiguration = gameConfiguration;
     if (this.gameConfiguration.onlyIndependentCountries) {
