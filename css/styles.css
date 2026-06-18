@@ -252,6 +252,12 @@ tr td:first-child {
   overflow-wrap: break-word;
 }
 
+@media (hover: none) {
+  .leaflet-tooltip-pane {
+    display: none;
+  }
+}
+
 @media (max-width: 479px) {
   .logo-game {
     display: none;
