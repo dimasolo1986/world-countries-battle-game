@@ -159,7 +159,7 @@ main .card .card-img-top {
 /* Card body */
 main .card .card-body {
   background-color: var(--cg-surface-2) !important;
-  padding: 0.75rem !important;
+  padding: 0.5rem !important;
 }
 
 /* "Made in Ukraine" badge — keep it, just tighten */
