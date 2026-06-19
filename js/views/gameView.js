@@ -110,7 +110,7 @@ class gameView {
         "Country Alliances Selection — Video Tutorial"
       ];
     this._gameCountryAllianceInitialSelectionRulesButton.textContent =
-      "📄 " + localization[model.worldCountries.language]["Rules"];
+      "📝 " + localization[model.worldCountries.language]["Rules"];
     const videoTutorial = document.getElementById(
       "countryAllianceSelectionVideoTutorial",
     );
