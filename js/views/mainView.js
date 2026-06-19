@@ -81,7 +81,7 @@ class mainView {
     await new Promise((resolve) => setTimeout(resolve, 250));
     this.hideMain();
     this._header.classList.add("not-displayed");
-    this._footer.classList.add("not-displayed");
+    this._footer.style.display = "none";
     document
       .querySelector("#startLoaderSpinner")
       .classList.add("not-displayed");
@@ -355,7 +355,7 @@ class mainView {
     this._parentElement.classList.remove("not-displayed");
     this._parentElement.classList.add("d-grid");
     this._header.classList.remove("not-displayed");
-    this._footer.classList.remove("not-displayed");
+    this._footer.style.display = "flex";
     this._startButton.disabled = false;
   }
 

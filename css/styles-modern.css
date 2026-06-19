@@ -1,0 +1,933 @@
+/*
+ * styles-modern.css — Explorer's Atlas theme
+ * Link AFTER styles.css. Overrides visual styles only.
+ * No IDs, event handlers, or Bootstrap structure are changed.
+ *
+ * Usage: add to <head> after the existing styles.css link:
+ *   <link href="css/styles-modern.css" rel="stylesheet" />
+ */
+
+/* ─── Google Fonts ─────────────────────────────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap");
+
+/* ─── Design tokens ────────────────────────────────────────────────────────── */
+:root {
+  --cg-navy: #12213b;
+  --cg-navy-light: #1c2f50;
+  --cg-teal: #0ea5e9;
+  --cg-teal-hover: #0284c7;
+  --cg-amber: #f59e0b;
+  --cg-amber-hover: #d97706;
+  --cg-green: #10b981;
+  --cg-surface: #f8fafc;
+  --cg-surface-2: #ffffff;
+  --cg-border: rgba(14, 165, 233, 0.18);
+  --cg-text: #1e293b;
+  --cg-text-muted: #64748b;
+  --cg-radius-lg: 14px;
+  --cg-radius-xl: 20px;
+  --cg-shadow-card:
+    0 4px 24px rgba(18, 33, 59, 0.18), 0 1px 4px rgba(18, 33, 59, 0.1);
+  --cg-shadow-btn: 0 2px 8px rgba(18, 33, 59, 0.22);
+  --cg-transition: 0.18s ease;
+
+  /* retheme Bootstrap 5 CSS vars */
+  --bs-primary: #0ea5e9;
+  --bs-primary-rgb: 14, 165, 233;
+  --bs-body-font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  --bs-body-color: #1e293b;
+}
+
+/* ─── Global reset tweaks ──────────────────────────────────────────────────── */
+body {
+  font-family: var(--bs-body-font-family) !important;
+  color: var(--cg-text) !important;
+  background-color: var(--cg-navy) !important;
+}
+
+/* Override the ghostwhite/serif font on all section pages */
+#create-game-room-page,
+#donate-author-page,
+#game-rules,
+#about {
+  font-family: var(--bs-body-font-family) !important;
+  background: var(--cg-surface) !important;
+  box-shadow: inset 0 2px 40px rgba(18, 33, 59, 0.08) !important;
+  color: var(--cg-text) !important;
+}
+
+/* ─── Header ───────────────────────────────────────────────────────────────── */
+header.bg-dark {
+  background: linear-gradient(
+    90deg,
+    var(--cg-navy) 0%,
+    var(--cg-navy-light) 100%
+  ) !important;
+  border-bottom: 1px solid rgba(14, 165, 233, 0.25) !important;
+  padding-top: 0.35rem !important;
+  padding-bottom: 0.35rem !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35) !important;
+}
+
+.logo-game {
+  font-family: "Sacramento", "Garamond", cursive;
+  font-weight: 700 !important;
+  font-size: 1.25rem !important;
+  color: var(--cg-teal) !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* Header links & share icon area */
+#about-button {
+  font-family: var(--bs-body-font-family) !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
+  color: #94c7e8 !important;
+  letter-spacing: 0.01em !important;
+}
+#about-button:hover {
+  color: #ffffff !important;
+}
+
+#shareWebSite {
+  background-color: var(--cg-teal) !important;
+  border-radius: 4px !important;
+  padding: 3px !important;
+}
+
+/* Language selector */
+.language-select .form-select {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #e2e8f0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 6px !important;
+  font-size: 0.78rem !important;
+  font-weight: 500 !important;
+  transition: background-color var(--cg-transition) !important;
+}
+.language-select .form-select:hover {
+  background-color: rgba(255, 255, 255, 0.18) !important;
+}
+.language-select .form-select option {
+  background-color: var(--cg-navy) !important;
+  color: #e2e8f0 !important;
+}
+
+/* ─── Footer ───────────────────────────────────────────────────────────────── */
+footer.bg-dark {
+  background: linear-gradient(
+    90deg,
+    var(--cg-navy) 0%,
+    var(--cg-navy-light) 100%
+  ) !important;
+  border-top: 1px solid rgba(14, 165, 233, 0.2) !important;
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.3) !important;
+  padding-top: 0.3rem !important;
+  padding-bottom: 0.3rem !important;
+  display: flex;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+}
+
+footer a {
+  color: var(--cg-teal) !important;
+  font-family: var(--bs-body-font-family) !important;
+  font-size: 0.78rem !important;
+}
+
+/* Push worldcountriesquiz.com to the right edge — replaces the inline float:right */
+footer.bg-dark > a {
+  margin-left: auto !important;
+  float: none !important;
+}
+
+/* ─── Main config card ─────────────────────────────────────────────────────── */
+main .card {
+  border: none !important;
+  border-radius: var(--cg-radius-xl) !important;
+  box-shadow: var(--cg-shadow-card) !important;
+  background-color: var(--cg-surface-2) !important;
+  overflow: hidden !important;
+  width: clamp(17rem, 90vw, 22rem) !important; /* responsive, not fixed 21rem */
+}
+
+main .card .card-img-top {
+  border-bottom: 2px solid var(--cg-border) !important;
+  border-radius: 0 !important;
+}
+
+/* Card body */
+main .card .card-body {
+  background-color: var(--cg-surface-2) !important;
+  padding: 0.75rem !important;
+}
+
+/* "Made in Ukraine" badge — keep it, just tighten */
+#made-in-ukraine-banner {
+  right: 10px !important;
+}
+
+/* Game configuration heading */
+#game-configuration-header {
+  font-family: "Poppins", sans-serif !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  color: var(--cg-green) !important;
+  letter-spacing: 0.03em !important;
+  margin-top: 4px !important;
+  text-transform: uppercase !important;
+}
+
+/* ─── Config selects ───────────────────────────────────────────────────────── */
+.card-body .form-select,
+#create-game-room-page .form-select {
+  font-family: var(--bs-body-font-family) !important;
+  font-weight: 600 !important;
+  font-size: 0.75rem !important;
+  border-radius: 8px !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: var(--cg-text) !important;
+  background-color: #f1f5f9 !important;
+  transition:
+    border-color var(--cg-transition),
+    box-shadow var(--cg-transition) !important;
+  padding: 0.2rem 1.6rem 0.2rem 0.45rem !important;
+}
+.card-body .form-select:focus,
+#create-game-room-page .form-select:focus {
+  border-color: var(--cg-teal) !important;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.18) !important;
+}
+
+/* Opponent toggle text labels */
+#opponent-label {
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 0.78rem !important;
+  color: var(--cg-teal) !important;
+  letter-spacing: 0.02em !important;
+}
+#opponent-label-computer,
+#opponent-label-friend {
+  font-size: 0.78rem !important;
+  font-weight: 500 !important;
+  color: var(--cg-text-muted) !important;
+}
+
+/* Range slider — recolour thumb to teal */
+#gameMode::-webkit-slider-thumb {
+  background: var(--cg-teal) !important;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2) !important;
+}
+#gameMode::-moz-range-thumb {
+  background: var(--cg-teal) !important;
+}
+
+/* Game room ID / connection status */
+#game-room-heading-container {
+  font-size: 0.72rem !important;
+  font-weight: 500 !important;
+}
+#game-room-heading-id {
+  color: var(--cg-teal) !important;
+  font-weight: 700 !important;
+}
+
+/* ─── Buttons — main card ──────────────────────────────────────────────────── */
+
+/* Rules & Support — secondary ghost buttons */
+#game-rules-button,
+#support-project-button {
+  font-family: var(--bs-body-font-family) !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: var(--cg-text-muted) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transition: all var(--cg-transition) !important;
+  padding: 0.3rem 0.6rem !important;
+}
+#game-rules-button:hover,
+#support-project-button:hover {
+  border-color: var(--cg-teal) !important;
+  color: var(--cg-teal) !important;
+  background: rgba(14, 165, 233, 0.06) !important;
+}
+
+/* Create Game Room button */
+#create-game-room-button {
+  font-family: var(--bs-body-font-family) !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  background: linear-gradient(135deg, var(--cg-green), #059669) !important;
+  border: none !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35) !important;
+  transition: all var(--cg-transition) !important;
+  padding: 0.35rem 0.75rem !important;
+}
+#create-game-room-button:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.45) !important;
+}
+
+/* ── START button — the most important CTA ──────────────────────────────────── */
+#start-button,
+#start-button-game-room {
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 1.1rem !important;
+  letter-spacing: 0.08em !important;
+  background: linear-gradient(135deg, #ef4444, #b91c1c) !important;
+  border: none !important;
+  border-radius: 12px !important;
+  color: #ffffff !important;
+  box-shadow:
+    0 4px 16px rgba(212, 160, 23, 0.5),
+    0 1px 3px rgba(0, 0, 0, 0.2) !important;
+  transition: all var(--cg-transition) !important;
+  width: 175px !important;
+  padding: 0.45rem 1rem !important;
+  margin-top: 12px !important;
+}
+#start-button:hover,
+#start-button-game-room:hover {
+  transform: translateY(-2px) !important;
+  box-shadow:
+    0 6px 20px rgba(212, 160, 23, 0.65),
+    0 2px 6px rgba(0, 0, 0, 0.22) !important;
+}
+#start-button:active,
+#start-button-game-room:active {
+  transform: translateY(0) !important;
+}
+
+/* START spinner stays white */
+#startLoaderSpinner,
+#startLoaderSpinnerGameRoom {
+  color: #ffffff !important;
+}
+
+/* ─── Game room page buttons ──────────────────────────────────────────────── */
+.return-game-room,
+.return-donate,
+.return-game-rules,
+.return-about,
+button.btn-warning[class*="return-"] {
+  font-family: var(--bs-body-font-family) !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  border-radius: 9px !important;
+  background: linear-gradient(135deg, var(--cg-amber), #d97706) !important;
+  border: none !important;
+  color: #ffffff !important;
+  box-shadow: var(--cg-shadow-btn) !important;
+  padding: 0.4rem 1rem !important;
+  transition: all var(--cg-transition) !important;
+}
+.return-game-room:hover,
+.return-donate:hover,
+.return-game-rules:hover,
+.return-about:hover {
+  transform: translateY(-1px) !important;
+}
+
+.create-game-room,
+button.btn-success.create-game-room {
+  font-family: var(--bs-body-font-family) !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  background: linear-gradient(135deg, var(--cg-green), #059669) !important;
+  border: none !important;
+  border-radius: 9px !important;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3) !important;
+  transition: all var(--cg-transition) !important;
+}
+button.btn-danger.delete-game-room {
+  font-family: var(--bs-body-font-family) !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  border-radius: 9px !important;
+  background: linear-gradient(135deg, #ef4444, #b91c1c) !important;
+  border: none !important;
+  transition: all var(--cg-transition) !important;
+}
+
+button.btn-info.copy-to-clipboard-link {
+  font-family: var(--bs-body-font-family) !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  border-radius: 9px !important;
+  background: linear-gradient(
+    135deg,
+    var(--cg-teal),
+    var(--cg-teal-hover)
+  ) !important;
+  border: none !important;
+  color: #ffffff !important;
+  transition: all var(--cg-transition) !important;
+}
+
+button.btn-warning.share-game-room,
+button.btn-warning.share-donate {
+  font-family: var(--bs-body-font-family) !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  border-radius: 9px !important;
+  background: linear-gradient(
+    135deg,
+    var(--cg-amber),
+    var(--cg-amber-hover)
+  ) !important;
+  border: none !important;
+  color: #ffffff !important;
+  transition: all var(--cg-transition) !important;
+}
+
+/* Donate page */
+button.donate-link,
+a.donate-link {
+  font-family: var(--bs-body-font-family) !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  border-radius: 9px !important;
+  background: linear-gradient(
+    135deg,
+    var(--cg-teal),
+    var(--cg-teal-hover)
+  ) !important;
+  border: none !important;
+  color: #ffffff !important;
+  transition: all var(--cg-transition) !important;
+}
+
+/* ─── Game room link input ─────────────────────────────────────────────────── */
+.room-id-input,
+#game-rules-friend-link-input {
+  font-family: var(--bs-body-font-family) !important;
+  font-size: 0.7rem !important;
+  border-radius: 8px !important;
+  border: 1.5px solid #cbd5e1 !important;
+  background: #f1f5f9 !important;
+  color: var(--cg-text) !important;
+}
+
+/* ─── Section headings (game-room config, rules) ───────────────────────────── */
+#game-configuration-header-game-room {
+  font-family: "Poppins", sans-serif !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  color: var(--cg-green) !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+}
+
+#game-room-instruction-header,
+.game-room-important {
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 700 !important;
+  color: var(--cg-navy) !important;
+}
+.game-room-instructions-text {
+  font-size: 0.85rem !important;
+  line-height: 1.55 !important;
+  color: var(--cg-text) !important;
+}
+
+/* ─── Modals — shared overrides ────────────────────────────────────────────── */
+.modal-content {
+  font-family: var(--bs-body-font-family) !important;
+  border: none !important;
+  border-radius: var(--cg-radius-lg) !important;
+  overflow: hidden !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3) !important;
+  background-color: var(--cg-surface-2) !important;
+}
+
+.modal-header {
+  padding: 0.75rem 1rem !important;
+  justify-content: center !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  background: linear-gradient(135deg, #f0f9ff 0%, #f8fafc 100%) !important;
+}
+
+.modal-title {
+  font-family: "Poppins", sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  color: var(--cg-navy) !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* Congratulations modal — green accent */
+#gameCountryAllianceGuessedLabel {
+  color: var(--cg-green) !important;
+  font-size: 1.1rem !important;
+}
+
+/* Game Rules modal — teal accent header */
+#gameModalRulesLabel {
+  color: var(--cg-teal) !important;
+}
+
+/* Game Result modal */
+#gameModalResultLabel {
+  color: var(--cg-navy) !important;
+}
+
+.modal-body {
+  padding: 0.85rem 1rem !important;
+  font-size: 0.85rem !important;
+  line-height: 1.6 !important;
+  color: var(--cg-text) !important;
+}
+
+.modal-footer {
+  padding: 0.6rem 1rem !important;
+  border-top: 1px solid #e2e8f0 !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  background: #fafafa !important;
+}
+
+/* Modal buttons — unified */
+.modal-footer .btn {
+  font-family: var(--bs-body-font-family) !important;
+  font-weight: 600 !important;
+  font-size: 0.8rem !important;
+  border-radius: 9px !important;
+  padding: 0.35rem 1rem !important;
+  transition: all var(--cg-transition) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12) !important;
+}
+
+.modal-footer .btn-primary {
+  background: linear-gradient(
+    135deg,
+    var(--cg-teal),
+    var(--cg-teal-hover)
+  ) !important;
+  border: none !important;
+  color: #ffffff !important;
+}
+.modal-footer .btn-primary:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 10px rgba(14, 165, 233, 0.35) !important;
+}
+
+.modal-footer .btn-warning {
+  background: linear-gradient(
+    135deg,
+    var(--cg-amber),
+    var(--cg-amber-hover)
+  ) !important;
+  border: none !important;
+  color: #ffffff !important;
+}
+.modal-footer .btn-warning:hover {
+  transform: translateY(-1px) !important;
+}
+
+.modal-footer .btn-danger {
+  background: linear-gradient(135deg, #ef4444, #b91c1c) !important;
+  border: none !important;
+  color: #ffffff !important;
+}
+.modal-footer .btn-danger:hover {
+  transform: translateY(-1px) !important;
+}
+
+/* ─── Initial selection modal ──────────────────────────────────────────────── */
+#gameCountryAllianceInitialSelectionLabel {
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  color: var(--cg-navy) !important;
+}
+
+#gameCountryAllianceInitialSelectionCountries {
+  font-size: 0.85rem !important;
+  line-height: 1.6 !important;
+  color: var(--cg-text) !important;
+}
+
+/* Tutorial / rules buttons inside modal body */
+#gameCountryAllianceInitialSelectionTutorialButton,
+#gameCountryAllianceInitialSelectionRulesButton {
+  font-family: var(--bs-body-font-family) !important;
+  font-size: 0.6rem !important;
+  font-weight: 600 !important;
+  border-radius: 7px !important;
+  padding: 0.25rem 0.5rem !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: var(--cg-text-muted) !important;
+  background: #f1f5f9 !important;
+  transition: all var(--cg-transition) !important;
+}
+#gameCountryAllianceInitialSelectionTutorialButton:hover,
+#gameCountryAllianceInitialSelectionRulesButton:hover {
+  border-color: var(--cg-teal) !important;
+  color: var(--cg-teal) !important;
+  background: rgba(14, 165, 233, 0.06) !important;
+}
+
+/* Modal footer: random / choose-on-map buttons */
+#gameCountryAllianceInitialSelectionRandomButton {
+  background: linear-gradient(
+    135deg,
+    var(--cg-teal),
+    var(--cg-teal-hover)
+  ) !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-family: var(--bs-body-font-family) !important;
+  font-weight: 600 !important;
+  font-size: 0.82rem !important;
+  border-radius: 9px !important;
+  padding: 0.4rem 0.9rem !important;
+  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.3) !important;
+  transition: all var(--cg-transition) !important;
+}
+#gameCountryAllianceInitialSelectionRandomButton:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.4) !important;
+}
+
+#gameCountryAllianceInitialSelectionUserButton {
+  background: linear-gradient(
+    135deg,
+    var(--cg-amber),
+    var(--cg-amber-hover)
+  ) !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-family: var(--bs-body-font-family) !important;
+  font-weight: 600 !important;
+  font-size: 0.82rem !important;
+  border-radius: 9px !important;
+  padding: 0.4rem 0.9rem !important;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3) !important;
+  transition: all var(--cg-transition) !important;
+}
+#gameCountryAllianceInitialSelectionUserButton:hover {
+  transform: translateY(-1px) !important;
+}
+
+/* ─── Game Result modal specifics ──────────────────────────────────────────── */
+#gameResultHeading {
+  font-family: "Poppins", sans-serif !important;
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  color: var(--cg-navy) !important;
+}
+#gameResultScore {
+  font-family: "Poppins", sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  color: var(--cg-green) !important;
+}
+
+/* ─── Game rules page ──────────────────────────────────────────────────────── */
+.game-rules-heading,
+.game-rules-project-name,
+.about-project-name {
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  color: var(--cg-navy) !important;
+}
+
+.game-rules-project-description,
+.game-rules-four-countries-alliance-description,
+.game-rules-three-countries-alliance-description,
+.game-rules-two-countries-alliance-description,
+.game-rules-one-countries-alliance-description,
+.game-rules-trap-countries-rules,
+.game-rules-score-description,
+.game-rules-with-friend-description,
+.game-rules-random-country-selection-description,
+.game-rules-clear-country-selection-description,
+.game-rules-bonus-countries-rules {
+  font-size: 0.86rem !important;
+  line-height: 1.65 !important;
+  color: var(--cg-text) !important;
+}
+
+.game-rules-name-heading,
+.game-rules-score-heading,
+.game-rules-with-friend-heading,
+.game-rules-important {
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 700 !important;
+  color: var(--cg-navy) !important;
+  font-size: 0.9rem !important;
+}
+
+.game-rules-videos {
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 700 !important;
+  color: var(--cg-navy) !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* ─── About page ───────────────────────────────────────────────────────────── */
+.about-heading,
+.about-ukraine-help-description,
+.about-developer,
+.about-developer-email-description,
+.about-developer-donate-author-description,
+.about-world-countries-quiz,
+.about-countries-guesser-facebook-page,
+.about-map-library {
+  font-size: 0.86rem !important;
+  line-height: 1.65 !important;
+}
+
+.about-project-name {
+  font-family: "Poppins", sans-serif !important;
+}
+
+.about-game-rules,
+.about-ukraine-help-link,
+.about-developer-link,
+.about-developer-email-link,
+.about-developer-donate-author-link,
+.about-world-countries-quiz-link,
+.about-countries-guesser-facebook-page-link,
+.about-map-library-link {
+  color: var(--cg-teal) !important;
+  font-weight: 600 !important;
+  transition: color var(--cg-transition) !important;
+}
+.about-game-rules:hover,
+.about-developer-link:hover,
+.about-developer-email-link:hover,
+.about-world-countries-quiz-link:hover,
+.about-countries-guesser-facebook-page-link:hover {
+  color: var(--cg-teal-hover) !important;
+}
+
+/* ─── Donate page ──────────────────────────────────────────────────────────── */
+.donate-text {
+  font-size: 0.88rem !important;
+  line-height: 1.65 !important;
+  color: var(--cg-text) !important;
+}
+
+/* ─── Alliance flag tables — subtle styling ────────────────────────────────── */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: inline;
+}
+
+tr {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.main-container {
+  height: 100dvh;
+}
+
+td {
+  border: solid 1.5px darkgrey;
+  border-style: none solid solid none;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+}
+
+tr:first-child td:first-child {
+  border-top-left-radius: 3px;
+}
+tr:first-child td:last-child {
+  border-top-right-radius: 3px;
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius: 3px;
+}
+tr:last-child td:last-child {
+  border-bottom-right-radius: 3px;
+}
+
+tr:first-child td {
+  border-top-style: solid;
+}
+tr td:first-child {
+  border-left-style: solid;
+}
+
+/* Flag circle images — subtle glow instead of flat grey shadow */
+.country-union-container img[style*="border-radius: 50%"],
+.modal-content img[style*="border-radius: 50%"] {
+  box-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.6) !important;
+}
+
+/* ─── Video elements ───────────────────────────────────────────────────────── */
+video {
+  border-radius: 10px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18) !important;
+}
+
+/* ─── Scrollbars ───────────────────────────────────────────────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #94a3b8 transparent;
+}
+*::-webkit-scrollbar {
+  width: 5px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #94a3b8;
+  border-radius: 10px;
+}
+
+/* ─── Spinner (Bootstrap) ──────────────────────────────────────────────────── */
+.spinner-border {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* Range slider — keep inline and vertically centred with surrounding text */
+#gameMode {
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+
+/* Config selects — prevent "Independent Countries" from overflowing on narrow screens */
+#only-independent-countries-select {
+  max-width: 10.5rem !important; /* clips at exactly the text width */
+}
+
+/* ─── Responsive — mobile-first ─────────────────────────────────────────────── */
+
+/* All phones: tight card, wider START */
+@media (max-width: 479px) {
+  main .card {
+    width: 96vw !important;
+    border-radius: 14px !important;
+    margin: 0 auto !important;
+  }
+
+  /* START button: fill most of the card width on phones */
+  #start-button,
+  #start-button-game-room {
+    width: 90% !important;
+    font-size: 1.05rem !important;
+  }
+
+  /* Config section: let labels and selects breathe by making the wrapper wrap */
+  .card-body > div[style*="font-size: 0.8rem"] {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 4px 8px !important;
+    justify-content: center !important;
+  }
+
+  /* Selects on phones: slightly more readable */
+  .card-body .form-select {
+    font-size: 0.72rem !important;
+  }
+
+  /* Game rules button / support button: side by side, centred */
+  #game-rules-button,
+  #support-project-button {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Section pages: full-screen padding */
+  #create-game-room-page,
+  #donate-author-page,
+  #game-rules,
+  #about {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Game room link input: full width on phone */
+  .room-id-input {
+    width: 90% !important;
+  }
+
+  /* Modals: tighter on phones */
+  .modal-body {
+    padding: 0.65rem 0.75rem !important;
+  }
+  .modal-footer {
+    flex-wrap: wrap !important;
+    gap: 0.4rem !important;
+  }
+  .modal-footer .btn {
+    flex: 1 1 auto !important;
+    min-width: 5rem !important;
+  }
+
+  /* Videos: full width on phones */
+  video {
+    width: 100% !important;
+  }
+}
+
+/* Small phones (≤ 360px) — extra tight */
+@media (max-width: 360px) {
+  main .card {
+    width: 99vw !important;
+    border-radius: 10px !important;
+  }
+
+  /* Config row: two selects side by side can overflow; force centre wrap */
+  .card-body .form-select {
+    font-size: 0.68rem !important;
+    padding: 0.15rem 1.2rem 0.15rem 0.3rem !important;
+  }
+
+  /* Header game title: hide on very small screens (already handled by existing CSS but reinforce) */
+  .logo-game {
+    font-size: 1rem !important;
+  }
+}
+
+/* Tablets and up (≥ 480px): restore full card */
+@media (min-width: 480px) {
+  main .card {
+    width: clamp(19rem, 80vw, 22rem) !important;
+  }
+}
+
+/* Desktop (≥ 768px) */
+@media (min-width: 768px) {
+  main .card {
+    width: 22rem !important;
+  }
+
+  /* Hover effects only on devices that support hover (not touch) */
+  #start-button:hover,
+  #start-button-game-room:hover {
+    transform: translateY(-2px) !important;
+  }
+  .modal-footer .btn:hover {
+    transform: translateY(-1px) !important;
+  }
+}
+
+/* Prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
