@@ -365,7 +365,7 @@ class gameRoomView {
     await new Promise((resolve) => setTimeout(resolve, 500));
     this.hideGameRoomProject();
     document.querySelector("header").classList.add("not-displayed");
-    document.querySelector("footer").classList.add("not-displayed");
+    document.querySelector("footer").style.display = "none";
     document
       .querySelector("#startLoaderSpinnerGameRoom")
       .classList.add("not-displayed");

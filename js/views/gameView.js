@@ -30,6 +30,9 @@ class gameView {
   _gameCountryAllianceInitialSelectionRulesButton = document.getElementById(
     "gameCountryAllianceInitialSelectionRulesButton",
   );
+  _gameCountryAllianceInitialSelectionBackButton = document.getElementById(
+    "gameCountryAllianceInitialSelectionBack",
+  );
   _videoTutorialButtonListenerAdded = false;
   _gameRulesListenerAdded = false;
   _gameConfiguration;
@@ -109,6 +112,8 @@ class gameView {
       localization[model.worldCountries.language][
         "Country Alliances Selection — Video Tutorial"
       ];
+    this._gameCountryAllianceInitialSelectionBackButton.title =
+      localization[model.worldCountries.language]["BACK TO MAIN PAGE"];
     this._gameCountryAllianceInitialSelectionRulesButton.textContent =
       "📝 " + localization[model.worldCountries.language]["Rules"];
     const videoTutorial = document.getElementById(
@@ -125,6 +130,13 @@ class gameView {
         video.pause();
         video.currentTime = 0;
       },
+      { once: true },
+    );
+    this._gameCountryAllianceInitialSelectionBackButton.addEventListener(
+      "click",
+      function () {
+        this._game.finishGame(false);
+      }.bind(this),
       { once: true },
     );
     if (!this._gameRulesListenerAdded) {

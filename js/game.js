@@ -1,6 +1,10 @@
 import { localization } from "./localization/ua.js";
 import { loadMain } from "./controller.js";
-import { showGameResultWindow, showGameRulesWindow } from "./helpers.js";
+import {
+  showGameResultWindow,
+  showGameRulesWindow,
+  hideModalWindow,
+} from "./helpers.js";
 import * as model from "./model.js";
 export class Game {
   finished = false;
@@ -109,7 +113,7 @@ export class Game {
         localization[model.worldCountries.language][
           "Congratulations! You won the game!"
         ];
-      this.gameModalHeading.style.color = "darkgreen";
+      this.gameModalHeading.style.color = "#10b981";
       this.gameModalHeadingGuessed.textContent =
         localization[model.worldCountries.language][
           "You guessed all the opponent's countries:"
@@ -229,6 +233,11 @@ export class Game {
         this.playerOne.score +
         " " +
         localization[model.worldCountries.language]["Points"];
+      if (this.playerOne.score < 0) {
+        this.gameResultScore.style.color = "red";
+      } else {
+        this.gameResultScore.style.color = "#10b981";
+      }
       this.gameModalHeading.textContent =
         "💔 " +
         localization[model.worldCountries.language][
@@ -368,6 +377,7 @@ export class Game {
     this.playMap = null;
     this.finished = true;
     this.started = false;
+    hideModalWindow("gameCountryAllianceInitialSelectionModal");
     loadMain();
   }
 

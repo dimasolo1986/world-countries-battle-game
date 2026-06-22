@@ -458,7 +458,7 @@ a.donate-link {
   font-family: "Poppins", sans-serif !important;
   font-size: 1rem !important;
   font-weight: 700 !important;
-  color: var(--cg-navy) !important;
+  color: var(--cg-teal) !important;
   letter-spacing: -0.01em !important;
 }
 
@@ -544,7 +544,7 @@ a.donate-link {
 #gameCountryAllianceInitialSelectionLabel {
   font-family: "Poppins", sans-serif !important;
   font-weight: 700 !important;
-  font-size: 1rem !important;
+  font-size: 0.9rem !important;
   color: var(--cg-navy) !important;
 }
 
@@ -596,6 +596,15 @@ a.donate-link {
   box-shadow: 0 4px 12px rgba(14, 165, 233, 0.4) !important;
 }
 
+#gameCountryAllianceInitialSelectionBack {
+  background: var(--cg-green) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 0.2rem 0.35rem !important;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3) !important;
+  transition: all var(--cg-transition) !important;
+}
+
 #gameCountryAllianceInitialSelectionUserButton {
   background: linear-gradient(
     135deg,
@@ -615,19 +624,22 @@ a.donate-link {
 #gameCountryAllianceInitialSelectionUserButton:hover {
   transform: translateY(-1px) !important;
 }
+#gameCountryAllianceInitialSelectionBack:hover {
+  transform: translateY(-1px) !important;
+}
 
 /* ─── Game Result modal specifics ──────────────────────────────────────────── */
 #gameResultHeading {
   font-family: "Poppins", sans-serif !important;
   font-size: 1.15rem !important;
   font-weight: 700 !important;
-  color: var(--cg-navy) !important;
+  color: var(--cg-navy);
 }
 #gameResultScore {
   font-family: "Poppins", sans-serif !important;
   font-size: 1rem !important;
   font-weight: 700 !important;
-  color: var(--cg-green) !important;
+  color: var(--cg-green);
 }
 
 /* ─── Game rules page ──────────────────────────────────────────────────────── */
@@ -795,7 +807,7 @@ video {
 
 /* ─── Spinner (Bootstrap) ──────────────────────────────────────────────────── */
 .spinner-border {
-  color: rgba(255, 255, 255, 0.85) !important;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 /* Range slider — keep inline and vertically centred with surrounding text */
