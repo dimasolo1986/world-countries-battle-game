@@ -237,7 +237,8 @@ main .card .card-body {
 
 /* Rules & Support — secondary ghost buttons */
 #game-rules-button,
-#support-project-button {
+#support-project-button,
+#gameCountryAllianceInitialSelectionBack {
   font-family: var(--bs-body-font-family) !important;
   font-size: 0.75rem !important;
   font-weight: 600 !important;
@@ -247,10 +248,11 @@ main .card .card-body {
   background: transparent !important;
   box-shadow: none !important;
   transition: all var(--cg-transition) !important;
-  padding: 0.3rem 0.6rem !important;
+  padding: 0.3rem 0.4rem !important;
 }
 #game-rules-button:hover,
-#support-project-button:hover {
+#support-project-button:hover,
+#gameCountryAllianceInitialSelectionBack:hover {
   border-color: var(--cg-teal) !important;
   color: var(--cg-teal) !important;
   background: rgba(14, 165, 233, 0.06) !important;
@@ -596,15 +598,6 @@ a.donate-link {
   box-shadow: 0 4px 12px rgba(14, 165, 233, 0.4) !important;
 }
 
-#gameCountryAllianceInitialSelectionBack {
-  background: var(--cg-green) !important;
-  border: none !important;
-  border-radius: 10px !important;
-  padding: 0.2rem 0.35rem !important;
-  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3) !important;
-  transition: all var(--cg-transition) !important;
-}
-
 #gameCountryAllianceInitialSelectionUserButton {
   background: linear-gradient(
     135deg,
@@ -622,9 +615,6 @@ a.donate-link {
   transition: all var(--cg-transition) !important;
 }
 #gameCountryAllianceInitialSelectionUserButton:hover {
-  transform: translateY(-1px) !important;
-}
-#gameCountryAllianceInitialSelectionBack:hover {
   transform: translateY(-1px) !important;
 }
 
