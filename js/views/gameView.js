@@ -35,6 +35,8 @@ class gameView {
   );
   _videoTutorialButtonListenerAdded = false;
   _gameRulesListenerAdded = false;
+  _backButtonListenerAdded = false;
+  _randomButtonListenerAdded = false;
   _gameConfiguration;
   _playMap;
   _playerOne;
@@ -132,13 +134,15 @@ class gameView {
       },
       { once: true },
     );
-    this._gameCountryAllianceInitialSelectionBackButton.addEventListener(
-      "click",
-      function () {
-        this._game.finishGame(false);
-      }.bind(this),
-      { once: true },
-    );
+    if (!this._backButtonListenerAdded) {
+      this._gameCountryAllianceInitialSelectionBackButton.addEventListener(
+        "click",
+        function () {
+          this._game.finishGame(false);
+        }.bind(this),
+      );
+      this._backButtonListenerAdded = true;
+    }
     if (!this._gameRulesListenerAdded) {
       this._gameCountryAllianceInitialSelectionRulesButton.addEventListener(
         "click",
@@ -167,31 +171,41 @@ class gameView {
       this._videoTutorialButtonListenerAdded = true;
     }
 
-    this._gameModalCountriesSelectionRandomButton.addEventListener(
-      "click",
-      async function () {
-        const spinner = document.getElementById(
-          "randomCountrySelectionLoaderSpinner",
-        );
-        document
-          .getElementById("gameCountryAllianceInitialSelectionRandomEmoji")
-          .classList.add("not-displayed");
-        spinner.style.display = "inline-block";
-        this._playMap.reandomCountriesSelection();
-        await new Promise((resolve) => setTimeout(resolve, 300));
-        spinner.style.display = "none";
-        hideModalWindow("gameCountryAllianceInitialSelectionModal");
-        document
-          .getElementById("gameCountryAllianceInitialSelectionRandomEmoji")
-          .classList.remove("not-displayed");
-      }.bind(this),
-      { once: true },
-    );
+    if (!this._randomButtonListenerAdded) {
+      this._gameModalCountriesSelectionRandomButton.addEventListener(
+        "click",
+        async function () {
+          const spinner = document.getElementById(
+            "randomCountrySelectionLoaderSpinner",
+          );
+          document
+            .getElementById("gameCountryAllianceInitialSelectionRandomEmoji")
+            .classList.add("not-displayed");
+          spinner.style.display = "inline-block";
+          this._playMap.reandomCountriesSelection();
+          await new Promise((resolve) => setTimeout(resolve, 300));
+          spinner.style.display = "none";
+          hideModalWindow("gameCountryAllianceInitialSelectionModal");
+          document
+            .getElementById("gameCountryAllianceInitialSelectionRandomEmoji")
+            .classList.remove("not-displayed");
+        }.bind(this),
+      );
+      this._randomButtonListenerAdded = true;
+    }
     showModalWindow("gameCountryAllianceInitialSelectionModal");
   }
 
   hideGame() {
     this._parentElement.classList.add("not-displayed");
+  }
+
+  disposeGame() {
+    this._gameConfiguration = null;
+    this._game = null;
+    this._playMap = null;
+    this._playerOne = null;
+    this._playerTwo = null;
   }
 }
 

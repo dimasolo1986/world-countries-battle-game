@@ -237,6 +237,10 @@ export const loadMain = function () {
   gameRoomView.hideGameRoomProject();
 };
 
+export const resetFinishedGame = function () {
+  gameView.disposeGame();
+};
+
 const loadAboutProject = function () {
   mainView.hideMain();
   gameView.hideGame();

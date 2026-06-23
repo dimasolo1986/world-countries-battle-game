@@ -44,9 +44,7 @@ export class Player {
   selectedCountryNeighboursCodes = new Set();
   countries = {};
   countriesCodeMapping = {};
-  countryBoundaries = {};
   countryBoundariesStyles = {};
-  countryMarkers = {};
   countryMarkersStyles = {};
   hints = {};
   countryUnions = [];

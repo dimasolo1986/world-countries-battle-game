@@ -1,5 +1,5 @@
 import { localization } from "./localization/ua.js";
-import { loadMain } from "./controller.js";
+import { loadMain, resetFinishedGame } from "./controller.js";
 import {
   showGameResultWindow,
   showGameRulesWindow,
@@ -379,6 +379,7 @@ export class Game {
     this.started = false;
     hideModalWindow("gameCountryAllianceInitialSelectionModal");
     loadMain();
+    resetFinishedGame();
   }
 
   playHit(addCountryBoundariesAndMarkers = true) {
