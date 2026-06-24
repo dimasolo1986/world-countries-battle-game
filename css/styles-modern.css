@@ -85,7 +85,8 @@ header.bg-dark {
   color: #94c7e8 !important;
   letter-spacing: 0.01em !important;
 }
-#about-button:hover {
+#about-button:hover,
+#world-countries-quiz-site:hover {
   color: #ffffff !important;
 }
 
