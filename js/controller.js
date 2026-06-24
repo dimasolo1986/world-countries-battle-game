@@ -15,20 +15,20 @@ const init = function () {
     mainView,
     donateAuthorView,
     gameRulesView,
-    gameRoomView
+    gameRoomView,
   );
   aboutView.addGameRulesHandlerClick();
   donateAuthorView.addReturnBackHandlerClick(
     mainView,
     aboutView,
     gameRulesView,
-    gameRoomView
+    gameRoomView,
   );
   gameRoomView.addReturnBackHandlerClick(
     mainView,
     aboutView,
     gameRulesView,
-    donateAuthorView
+    donateAuthorView,
   );
   gameRoomView.addGameRoomCreateListenerHandlerClick();
   gameRoomView.addGameRoomDeleteListenerHandlerClick();
@@ -43,28 +43,28 @@ const init = function () {
     gameView,
     donateAuthorView,
     gameRulesView,
-    mainView
+    mainView,
   );
   donateAuthorView.addShareWebSiteHandlerClick();
   gameRulesView.addReturnToMainHandlerClick(
     mainView,
     donateAuthorView,
     aboutView,
-    gameRoomView
+    gameRoomView,
   );
   mainView.addAboutHandlerClick(
     aboutView,
     gameView,
     donateAuthorView,
     gameRulesView,
-    gameRoomView
+    gameRoomView,
   );
   mainView.addStartGameHandlerClick(
     aboutView,
     gameView,
     donateAuthorView,
     gameRulesView,
-    gameRoomView
+    gameRoomView,
   );
   mainView.addGameModeChangeHandler(gameRoomView);
   mainView.addOnlyIndependentCountriesListener();
@@ -76,21 +76,21 @@ const init = function () {
     gameView,
     donateAuthorView,
     gameRulesView,
-    gameRoomView
+    gameRoomView,
   );
   mainView.addSupportProjectHandlerClick(
     aboutView,
     gameView,
     donateAuthorView,
     gameRulesView,
-    gameRoomView
+    gameRoomView,
   );
   mainView.addGameRulesHandlerClick(
     aboutView,
     gameView,
     donateAuthorView,
     gameRulesView,
-    gameRoomView
+    gameRoomView,
   );
   saveCurrentLanguageHandler();
   loadWindow();
@@ -112,22 +112,25 @@ const init = function () {
       firebase.sendMessage(
         JSON.stringify({
           type: "finish",
-        })
+        }),
       );
     }
   });
   document.addEventListener("DOMContentLoaded", function () {
     function getShareWebSiteContent() {
       return {
-        title: `${localization[model.worldCountries.language][
-          "Country Alliance Guesser Game"
+        title: `${
+          localization[model.worldCountries.language][
+            "Country Alliance Guesser Game"
           ]
-          }`,
-        text: `${localization[model.worldCountries.language][
-          "World Country Alliances Guesser Game"
+        }`,
+        text: `${
+          localization[model.worldCountries.language][
+            "World Country Alliances Guesser Game"
           ]
-          } - ${document.querySelector(".about-project-description").textContent
-          }`,
+        } - ${
+          document.querySelector(".about-project-description").textContent
+        }`,
         url: "https://www.countriesguesser.com",
       };
     }
@@ -138,7 +141,7 @@ const init = function () {
     const gameMode = sessionStorage.getItem("game-mode");
     const gameModeCheckSlider = document.getElementById("gameMode");
     const gameRoomContainer = document.getElementById(
-      "create-game-room-container"
+      "create-game-room-container",
     );
     if (gameMode && gameMode === "1" && !roomId) {
       gameModeCheckSlider.value = gameMode;
@@ -150,7 +153,12 @@ const init = function () {
       gameRoomContainer.classList.add("not-displayed");
     }
     const gameLogo = document.getElementById("game-logo");
+    const gameLogoHeader = document.getElementById("game-logo-header");
     gameLogo.addEventListener("click", function () {
+      sessionStorage.setItem("currentWindow", "main");
+      loadWindow();
+    });
+    gameLogoHeader.addEventListener("click", function () {
       sessionStorage.setItem("currentWindow", "main");
       loadWindow();
     });
@@ -168,7 +176,7 @@ const init = function () {
             .then(function () {
               if (window.gtag) gtag("event", "share_website");
             })
-            .catch(function () { });
+            .catch(function () {});
         }
       });
     }
@@ -181,7 +189,7 @@ const init = function () {
             .then(function () {
               if (window.gtag) gtag("event", "share_website");
             })
-            .catch(function () { });
+            .catch(function () {});
         }
       });
     }
@@ -191,8 +199,10 @@ const init = function () {
         if (navigator.share) {
           navigator
             .share(getShareWebSiteContent())
-            .then(function () { if (window.gtag) gtag("event", "share_website"); })
-            .catch(function () { });
+            .then(function () {
+              if (window.gtag) gtag("event", "share_website");
+            })
+            .catch(function () {});
         }
       });
     }
