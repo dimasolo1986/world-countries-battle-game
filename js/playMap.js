@@ -885,13 +885,14 @@ export class PlayMap {
 
   exitFullScreen() {
     if (this.map && this.map._isFullscreen) {
-      this.map.fullscreenControl._screenfull
+      return this.map.fullscreenControl._screenfull
         .exit()
-        .then(() => this.map.invalidateSize());
+        .then(() => this.map.invalidateSize())
+        .catch(() => {});
     }
+    return Promise.resolve();
   }
   gameRulesFunction() {
-    this.exitFullScreen();
     if (this.game && this.game.started) {
       const gameRulesModal = document.getElementById("gameRulesModal");
       gameRulesModal.addEventListener(

@@ -15,7 +15,7 @@
 
   if (typeof document === "undefined") {
     console.warn(
-      '"window.document" is undefined; leaflet.fullscreen requires this object to access the DOM'
+      '"window.document" is undefined; leaflet.fullscreen requires this object to access the DOM',
     );
     return false;
   }
@@ -71,7 +71,7 @@
         }.bind(this);
 
         this.on("change", onFullScreenEntered);
-        element = element || document.documentElement;
+        element = document.documentElement;
         const returnPromise = element[nativeAPI.requestFullscreen](options);
         if (returnPromise instanceof Promise) {
           returnPromise.then(onFullScreenEntered).catch(reject);
@@ -168,7 +168,7 @@
         content,
         container,
         this.setOriginalZoom,
-        this
+        this,
       );
       if (this.options.addFullScreen) {
         this._createButton(
@@ -177,7 +177,7 @@
           content,
           container,
           this.toggleFullScreen,
-          this
+          this,
         );
       }
 
@@ -193,36 +193,36 @@
         this.link,
         "click",
         this.toggleFullScreen,
-        this
+        this,
       );
       leaflet.DomEvent.off(this.zoom, "click", leaflet.DomEvent.stop).off(
         this.zoom,
         "click",
         this.setOriginalZoom,
-        this
+        this,
       );
 
       if (this._screenfull.isEnabled) {
         leaflet.DomEvent.off(
           this._container,
           this._screenfull.nativeAPI.fullscreenchange,
-          leaflet.DomEvent.stop
+          leaflet.DomEvent.stop,
         ).off(
           this._container,
           this._screenfull.nativeAPI.fullscreenchange,
           this._handleFullscreenChange,
-          this
+          this,
         );
 
         leaflet.DomEvent.off(
           document,
           this._screenfull.nativeAPI.fullscreenchange,
-          leaflet.DomEvent.stop
+          leaflet.DomEvent.stop,
         ).off(
           document,
           this._screenfull.nativeAPI.fullscreenchange,
           this._handleFullscreenChange,
-          this
+          this,
         );
       }
     },
@@ -243,30 +243,30 @@
         this.link,
         "click",
         fn,
-        context
+        context,
       );
 
       if (this._screenfull.isEnabled) {
         leaflet.DomEvent.on(
           container,
           this._screenfull.nativeAPI.fullscreenchange,
-          leaflet.DomEvent.stop
+          leaflet.DomEvent.stop,
         ).on(
           container,
           this._screenfull.nativeAPI.fullscreenchange,
           this._handleFullscreenChange,
-          context
+          context,
         );
 
         leaflet.DomEvent.on(
           document,
           this._screenfull.nativeAPI.fullscreenchange,
-          leaflet.DomEvent.stop
+          leaflet.DomEvent.stop,
         ).on(
           document,
           this._screenfull.nativeAPI.fullscreenchange,
           this._handleFullscreenChange,
-          context
+          context,
         );
       }
 
@@ -279,7 +279,7 @@
       content,
       container,
       fn,
-      context
+      context,
     ) {
       this.zoom = leaflet.DomUtil.create("a", className, container);
       this.zoom.href = "#";
@@ -295,7 +295,7 @@
         this.zoom,
         "click",
         fn,
-        context
+        context,
       );
 
       return this.zoom;
@@ -316,7 +316,7 @@
             this.options.fullscreenElement
               ? this.options.fullscreenElement
               : map._container,
-            "leaflet-pseudo-fullscreen"
+            "leaflet-pseudo-fullscreen",
           );
           map.invalidateSize();
         }
@@ -329,7 +329,7 @@
             .request(
               this.options.fullscreenElement
                 ? this.options.fullscreenElement
-                : map._container
+                : map._container,
             )
             .then(() => map.invalidateSize());
         } else {
@@ -337,7 +337,7 @@
             this.options.fullscreenElement
               ? this.options.fullscreenElement
               : map._container,
-            "leaflet-pseudo-fullscreen"
+            "leaflet-pseudo-fullscreen",
           );
           map.invalidateSize();
         }
@@ -362,7 +362,7 @@
     _handleFullscreenChange(ev) {
       const map = this._map;
       if (
-        ev.target === map.getContainer() &&
+        ev.target === document.documentElement &&
         !this._screenfull.isFullscreen &&
         !map._exitFired
       ) {
@@ -383,7 +383,7 @@
   leaflet.Map.addInitHook(function () {
     if (this.options.fullscreenControl) {
       this.addControl(
-        leaflet.control.fullscreen(this.options.fullscreenControlOptions)
+        leaflet.control.fullscreen(this.options.fullscreenControlOptions),
       );
     }
   });

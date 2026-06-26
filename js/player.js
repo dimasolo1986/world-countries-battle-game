@@ -556,7 +556,6 @@ export class Player {
         coatOfArmsLink.addEventListener(
           "click",
           function () {
-            this.playMap.exitFullScreen();
             showCountryCoatOfArmsFlagWindow(
               "coatOfArmsModal",
               this.gameConfiguration.hitTime !== 0 ? true : false,
@@ -592,7 +591,6 @@ export class Player {
         flagLink.addEventListener(
           "click",
           function () {
-            this.playMap.exitFullScreen();
             showCountryCoatOfArmsFlagWindow(
               "flagModal",
               this.gameConfiguration.hitTime !== 0 ? true : false,
@@ -645,7 +643,6 @@ export class Player {
         countryOutlineLink.addEventListener(
           "click",
           function () {
-            this.playMap.exitFullScreen();
             showCountryCoatOfArmsFlagWindow(
               "countryOutlineModal",
               this.gameConfiguration.hitTime !== 0 ? true : false,
@@ -691,10 +688,25 @@ export class Player {
         countryPhotoLink.style.border = "1px dotted grey";
         countryPhotoLink.textContent =
           localization[model.worldCountries.language][hintHeader];
+        countryPhoto.addEventListener(
+          "click",
+          function () {
+            this.playMap.exitFullScreen().then(() => {
+              this.toggleCountryPhotoFullScreen("country-photo-container");
+            });
+          }.bind(this),
+        );
+        fullScreenButton.addEventListener(
+          "click",
+          function () {
+            this.playMap.exitFullScreen().then(() => {
+              this.toggleCountryPhotoFullScreen("country-photo-container");
+            });
+          }.bind(this),
+        );
         countryPhotoLink.addEventListener(
           "click",
           function () {
-            this.playMap.exitFullScreen();
             showCountryCoatOfArmsFlagWindow(
               "countryPhotoModal",
               this.gameConfiguration.hitTime !== 0 ? true : false,
@@ -785,7 +797,6 @@ export class Player {
           "click",
           function viewHint() {
             if (hintType && hintsLength === 1) {
-              this.playMap.exitFullScreen();
               if (hintType === "CoatOfArms") {
                 showCountryCoatOfArmsFlagWindow(
                   "coatOfArmsModal",
@@ -831,6 +842,36 @@ export class Player {
     const button = L.control
       .hintsbutton({ position: "topcenter" })
       .addTo(this.playerMap);
+  }
+
+  toggleCountryPhotoFullScreen(elementId) {
+    const countryPhotoContainer = document.getElementById(elementId);
+    const fullscreenElement =
+      document.fullscreenElement ||
+      document.mozFullScreenElement ||
+      document.webkitFullscreenElement ||
+      document.msFullscreenElement;
+    if (fullscreenElement !== countryPhotoContainer) {
+      if (countryPhotoContainer.requestFullscreen) {
+        countryPhotoContainer.requestFullscreen();
+      } else if (countryPhotoContainer.mozRequestFullScreen) {
+        countryPhotoContainer.mozRequestFullScreen();
+      } else if (countryPhotoContainer.webkitRequestFullscreen) {
+        countryPhotoContainer.webkitRequestFullscreen();
+      } else if (countryPhotoContainer.msRequestFullscreen) {
+        countryPhotoContainer.msRequestFullscreen();
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+    }
   }
 
   createOutlineMap(hintValue, countryCode) {
@@ -2098,7 +2139,7 @@ export class Player {
                     localization[model.worldCountries.language]["Points"]
                   }</span>`,
           );
-          if (this.playerMap && !this.playerMap._isFullscreen) {
+          if (this.playerMap) {
             document.getElementById(
               "gameCountryAllianceGuessedLabel",
             ).textContent =
@@ -2291,7 +2332,7 @@ export class Player {
                 localization[model.worldCountries.language]["Country Alliance"]
               }</span>`,
             );
-            if (this.playerMap && !this.playerMap._isFullscreen) {
+            if (this.playerMap) {
               document.getElementById(
                 "gameCountryAllianceGuessedLabel",
               ).textContent =
@@ -2341,33 +2382,9 @@ export class Player {
                 this.setOpponentHitTimeout.bind(this),
               );
               setTimeout(hideGameCountryAllianceGuessedWindow, 10000);
-            } else if (this.playerMap && this.playerMap._isFullscreen) {
-              document.getElementById(
-                "guessed-country-alliance-panel-content",
-              ).innerHTML = `<span style="font-weight:bold; color:darkblue;">${
-                localization[model.worldCountries.language]["You guessed"]
-              }</span><div style="display: inline-block; margin-left:5px;">${
-                countryUnionHtml.outerHTML
-              }</div><div style="margin-top:5px;"><span style="
-                    color: white;
-                    font-size: 0.75rem;
-                    border-radius: 2px;
-                    background-color: green;
-                    padding-left: 3px;
-                    padding-right: 3px;
-                    font-weight: bolder;
-                  ">+${points} ${
-                    localization[model.worldCountries.language]["Points"]
-                  }</span></div>`;
-              document
-                .getElementById("guessed-country-alliance-panel")
-                .classList.remove("not-displayed");
             }
             await this.sleep(1500);
             this.removeCountryBoundaryBlinking(countryCode);
-            document
-              .getElementById("guessed-country-alliance-panel")
-              .classList.add("not-displayed");
             this.closeCountryPopup(countryPopup);
             this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
               animate: false,
