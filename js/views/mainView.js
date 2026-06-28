@@ -380,7 +380,7 @@ class mainView {
       option.textContent =
         localization[model.worldCountries.language][option.value];
     });
-    this._gameRulesButton.textContent = `📄 ${
+    this._gameRulesButton.textContent = `📝 ${
       localization[model.worldCountries.language]["Game Rules"]
     }`;
     this._supportProjectButton.textContent = `🔗 ${
