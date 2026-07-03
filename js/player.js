@@ -2139,6 +2139,26 @@ export class Player {
                     localization[model.worldCountries.language]["Points"]
                   }</span>`,
           );
+          document.getElementById(
+            "guessed-country-alliance-panel-content",
+          ).innerHTML = `<div>🎁<span style="
+                    color: white;
+                    font-size: 0.75rem;
+                    padding-left: 3px;
+                    padding-right: 3px;
+                    font-weight: bolder;
+                  ">+ 10 ${
+                    localization[model.worldCountries.language]["Points"]
+                  }</span></div>`;
+          const guessedCountryAlliance = document.getElementById(
+            "guessed-country-alliance-panel",
+          );
+          const guessedCountryAllianceHeader = document.getElementById(
+            "guessed-country-alliance-header",
+          );
+          guessedCountryAllianceHeader.classList.add("not-displayed");
+          guessedCountryAlliance.style.backgroundColor = "green";
+          guessedCountryAlliance.classList.remove("not-displayed");
           if (this.playerMap) {
             document.getElementById(
               "gameCountryAllianceGuessedLabel",
@@ -2201,6 +2221,9 @@ export class Player {
           }
           await this.sleep(1500);
           this.removeCountryBoundaryBlinking(countryCode);
+          guessedCountryAlliance.classList.add("not-displayed");
+          guessedCountryAlliance.style.backgroundColor = "white";
+          guessedCountryAllianceHeader.classList.remove("not-displayed");
           this.closeCountryPopup(countryPopup);
           this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
             animate: false,
@@ -2332,6 +2355,26 @@ export class Player {
                 localization[model.worldCountries.language]["Country Alliance"]
               }</span>`,
             );
+            document.getElementById(
+              "guessed-country-alliance-panel-content",
+            ).innerHTML = `<div>🏅<span style="
+                    color: white;
+                    font-size: 0.75rem;
+                    padding-left: 3px;
+                    padding-right: 3px;
+                    font-weight: bolder;
+                  ">+ ${points} ${
+                    localization[model.worldCountries.language]["Points"]
+                  }</span></div>`;
+            const guessedCountryAlliance = document.getElementById(
+              "guessed-country-alliance-panel",
+            );
+            const guessedCountryAllianceHeader = document.getElementById(
+              "guessed-country-alliance-header",
+            );
+            guessedCountryAllianceHeader.classList.add("not-displayed");
+            guessedCountryAlliance.style.backgroundColor = "green";
+            guessedCountryAlliance.classList.remove("not-displayed");
             if (this.playerMap) {
               document.getElementById(
                 "gameCountryAllianceGuessedLabel",
@@ -2385,6 +2428,9 @@ export class Player {
             }
             await this.sleep(1500);
             this.removeCountryBoundaryBlinking(countryCode);
+            guessedCountryAlliance.classList.add("not-displayed");
+            guessedCountryAlliance.style.backgroundColor = "white";
+            guessedCountryAllianceHeader.classList.remove("not-displayed");
             this.closeCountryPopup(countryPopup);
             this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
               animate: false,
