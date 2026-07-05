@@ -843,7 +843,6 @@ video {
 
   /* Config section: let labels and selects breathe by making the wrapper wrap */
   .card-body > div[style*="font-size: 0.8rem"] {
-    display: flex !important;
     flex-wrap: wrap !important;
     align-items: center !important;
     gap: 4px 8px !important;
