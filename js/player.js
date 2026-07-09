@@ -3626,13 +3626,19 @@ export class Player {
   }
 
   createCountryPopup(country) {
+    const countryCoatOfArms =
+      country.coatOfArms && country.coatOfArms.png
+        ? country.coatOfArms.png
+        : null;
     const countryPopup = L.popup({ closeOnClick: false, closeButton: false })
       .setLatLng(country.latlng ? country.latlng : country.capitalInfo.latlng)
       .setContent(
         `<img src="${
           country.flags.png
-        }" style="width:20px; height:15px; box-shadow: 0 2px 5px #00000080,
-                                inset 0 2px 10px #0000001f; border-radius: 2px; vertical-align: sub;"><span style="font-weight:bold; margin-left:5px;color:${
+        }" fetchpriority="high" loading="eager" style="width:20px; height:15px; box-shadow: 0 1px 1px #00000080,
+                                inset 0 1px 1px #0000001f; border-radius: 2px; vertical-align: sub;">
+                                  ${countryCoatOfArms ? `<img src="${countryCoatOfArms}" fetchpriority="high" loading="eager" style="width:15px; height:15px; margin-left:2px; vertical-align: sub;">` : ""}
+                                <span style="font-weight:bold; margin-left:3px;color:${
                                   country.name.common !== "Russia"
                                     ? "darkblue"
                                     : "red"
@@ -3654,13 +3660,19 @@ export class Player {
   }
 
   createCountryTooltip(country) {
+    const countryCoatOfArms =
+      country.coatOfArms && country.coatOfArms.png
+        ? country.coatOfArms.png
+        : null;
     const countryTooltip = L.tooltip(
       country.latlng ? country.latlng : country.capitalInfo.latlng,
     ).setContent(
       `<img src="${
         country.flags.png
-      }" style="width:20px; height:15px; box-shadow: 0 2px 5px #00000080,
-                                inset 0 2px 10px #0000001f; border-radius: 2px; vertical-align: sub;"><span style="font-weight:bold; margin-left:5px;color:${
+      }" fetchpriority="high" loading="eager" style="width:20px; height:15px; box-shadow: 0 1px 1px #00000080,
+                                inset 0 1px 1px #0000001f; border-radius: 2px; vertical-align: sub;">
+                                ${countryCoatOfArms ? `<img src="${countryCoatOfArms}" fetchpriority="high" loading="eager" style="width:15px; height:15px; margin-left:2px; vertical-align: sub;">` : ""}
+                                <span style="font-weight:bold; margin-left:3px;color:${
                                   country.name.common !== "Russia"
                                     ? "darkblue"
                                     : "red"
