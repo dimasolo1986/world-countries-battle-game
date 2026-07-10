@@ -3635,10 +3635,10 @@ export class Player {
       .setContent(
         `<img src="${
           country.flags.png
-        }" fetchpriority="high" loading="eager" style="width:20px; height:15px; box-shadow: 0 1px 1px #00000080,
+        }" fetchpriority="high" loading="eager" style="width:21px; height:16px; box-shadow: 0 1px 1px #00000080,
                                 inset 0 1px 1px #0000001f; border-radius: 2px; vertical-align: sub;">
-                                  ${countryCoatOfArms ? `<img src="${countryCoatOfArms}" fetchpriority="high" loading="eager" style="width:15px; height:15px; margin-left:2px; vertical-align: sub;">` : ""}
-                                <span style="font-weight:bold; margin-left:3px;color:${
+                                  ${countryCoatOfArms ? `<img src="${countryCoatOfArms}" fetchpriority="high" loading="eager" style="width:16px; height:16px; margin-left:2px; vertical-align: sub;">` : ""}
+                                <span style="font-weight:bold; font-size:0.8rem; margin-left:2px;color:${
                                   country.name.common !== "Russia"
                                     ? "darkblue"
                                     : "red"
@@ -3669,10 +3669,10 @@ export class Player {
     ).setContent(
       `<img src="${
         country.flags.png
-      }" fetchpriority="high" loading="eager" style="width:20px; height:15px; box-shadow: 0 1px 1px #00000080,
+      }" fetchpriority="high" loading="eager" style="width:21px; height:16px; box-shadow: 0 1px 1px #00000080,
                                 inset 0 1px 1px #0000001f; border-radius: 2px; vertical-align: sub;">
-                                ${countryCoatOfArms ? `<img src="${countryCoatOfArms}" fetchpriority="high" loading="eager" style="width:15px; height:15px; margin-left:2px; vertical-align: sub;">` : ""}
-                                <span style="font-weight:bold; margin-left:3px;color:${
+                                ${countryCoatOfArms ? `<img src="${countryCoatOfArms}" fetchpriority="high" loading="eager" style="width:16px; height:16px; margin-left:2px; vertical-align: sub;">` : ""}
+                                <span style="font-weight:bold; font-size:0.8rem; margin-left:2px;color:${
                                   country.name.common !== "Russia"
                                     ? "darkblue"
                                     : "red"
