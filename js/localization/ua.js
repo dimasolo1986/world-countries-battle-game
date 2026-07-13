@@ -721,6 +721,7 @@ export const localization = {
     "Card number (UAH):": "Номер картки (UAH):",
     "Independent Countries": "Незалежні Країни",
     "All Hints": "Всі Підказки",
+    "No Hints": "Без Підказок",
     "Text Hints": "Текстові Підказки",
     "Visual Hints": "Візуальні Підказки",
     "Congratulations! You won the game!": "Вітаємо! Ви виграли гру!",
@@ -1533,6 +1534,7 @@ export const localization = {
     "Card number (UAH):": "Card number (UAH):",
     "Independent Countries": "Independent Countries",
     "All Hints": "All Hints",
+    "No Hints": "No Hints",
     "Text Hints": "Text Hints",
     "Visual Hints": "Visual Hints",
     "Congratulations! You won the game!": "Congratulations! You won the game!",
@@ -2354,6 +2356,7 @@ export const localization = {
     "Card number (UAH):": "Kartennummer (UAH):",
     "Independent Countries": "Unabhängige Länder",
     "All Hints": "Alle Hinweise",
+    "No Hints": "Keine Hinweise",
     "Text Hints": "Texthinweise",
     "Visual Hints": "Visuelle Hinweise",
     "Congratulations! You won the game!":
@@ -3174,6 +3177,7 @@ export const localization = {
     "Card number (UAH):": "Numéro de carte (UAH):",
     "Independent Countries": "Pays Indépendants",
     "All Hints": "Tous les Indices",
+    "No Hints": "Aucun Indice",
     "Text Hints": "Indices Textuels",
     "Visual Hints": "Indices Visuels",
     "Congratulations! You won the game!":
@@ -3995,6 +3999,7 @@ export const localization = {
     "Card number (UAH):": "Número de tarjeta (UAH):",
     "Independent Countries": "Países Independientes",
     "All Hints": "Todas las Pistas",
+    "No Hints": "Sin Pistas",
     "Text Hints": "Pistas de Texto",
     "Visual Hints": "Pistas Visuales",
     "Congratulations! You won the game!": "¡Felicidades! ¡Ganaste el juego!",
@@ -4814,6 +4819,7 @@ export const localization = {
     "Card number (UAH):": "Numero della carta (UAH):",
     "Independent Countries": "Paesi Indipendenti",
     "All Hints": "Tutti Indizi",
+    "No Hints": "Nessun Indizio",
     "Text Hints": "Indizi Testuali",
     "Visual Hints": "Indizi Visivi",
     "Congratulations! You won the game!":

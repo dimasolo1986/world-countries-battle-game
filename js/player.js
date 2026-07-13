@@ -1080,7 +1080,11 @@ export class Player {
     this.disableMapInteraction();
     if (addCountryBoundariesAndMarkers)
       this.opponentPlayer.addAllCountryBoundariesAndMarkers();
-    if (this.playerType === "userPlayer") this.addHintsToHintPanel();
+    if (
+      this.playerType === "userPlayer" &&
+      this.gameConfiguration.hintsType !== "No Hints"
+    )
+      this.addHintsToHintPanel();
     if (this.playerType === "computerPlayer") {
       let countryIndex = undefined;
       let countryCode = undefined;

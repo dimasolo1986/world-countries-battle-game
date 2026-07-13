@@ -129,17 +129,27 @@ class gameRoomView {
       urlHintType = "all";
     } else if (hintsTypeSelect.value === "Text Hints") {
       urlHintType = "text";
-    } else {
+    } else if (hintsTypeSelect.value === "Visual Hints") {
       urlHintType = "visual";
+    } else if (hintsTypeSelect.value === "No Hints") {
+      urlHintType = "none";
     }
     hitTimeSelect.disabled = true;
+    hitTimeSelect.style.pointerEvents = "none";
     onlyIndependentCountriesSelect.disabled = true;
+    onlyIndependentCountriesSelect.style.pointerEvents = "none";
     hintsTypeSelect.disabled = true;
+    hintsTypeSelect.style.pointerEvents = "none";
     bonusCountriesSelect.disabled = true;
+    bonusCountriesSelect.style.pointerEvents = "none";
     this._gameRoomOnlyIndependentCountriesSelect.disabled = true;
+    this._gameRoomOnlyIndependentCountriesSelect.style.pointerEvents = "none";
     this._gameRoomHitTimeSelect.disabled = true;
+    this._gameRoomHitTimeSelect.style.pointerEvents = "none";
     this._gameRoomHintsTypeSelect.disabled = true;
+    this._gameRoomHintsTypeSelect.style.pointerEvents = "none";
     this._gameRoomBonusCountriesSelect.disabled = true;
+    this._gameRoomBonusCountriesSelect.style.pointerEvents = "none";
     const gameUrl =
       window.location.origin +
       `?gameRoom=${gameRoomId}&allCountries=${
@@ -200,13 +210,21 @@ class gameRoomView {
     );
     const hintsTypeSelect = document.getElementById("hint-types-select");
     hintsTypeSelect.disabled = false;
+    hintsTypeSelect.style.pointerEvents = "auto";
     hitTimeSelect.disabled = false;
+    hitTimeSelect.style.pointerEvents = "auto";
     bonusCountriesSelect.disabled = false;
+    bonusCountriesSelect.style.pointerEvents = "auto";
     onlyIndependentCountriesSelect.disabled = false;
+    onlyIndependentCountriesSelect.style.pointerEvents = "auto";
     this._gameRoomOnlyIndependentCountriesSelect.disabled = false;
+    this._gameRoomOnlyIndependentCountriesSelect.style.pointerEvents = "auto";
     this._gameRoomHitTimeSelect.disabled = false;
+    this._gameRoomHitTimeSelect.style.pointerEvents = "auto";
     this._gameRoomHintsTypeSelect.disabled = false;
+    this._gameRoomHintsTypeSelect.style.pointerEvents = "auto";
     this._gameRoomBonusCountriesSelect.disabled = false;
+    this._gameRoomBonusCountriesSelect.style.pointerEvents = "auto";
     const gameRoomId = sessionStorage.getItem("game-room");
     if (gameRoomId) {
       try {

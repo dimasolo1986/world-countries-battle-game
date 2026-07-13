@@ -309,7 +309,13 @@ main .card .card-body {
   margin-top: 12px !important;
 }
 #start-button:hover,
-#start-button-game-room:hover {
+#start-button-game-room:hover,
+.share-donate:hover,
+.donate-link:hover,
+.create-game-room:hover,
+.delete-game-room:hover,
+.copy-to-clipboard-link:hover,
+.share-game-room:hover {
   transform: translateY(-2px) !important;
   box-shadow:
     0 6px 20px rgba(212, 160, 23, 0.65),

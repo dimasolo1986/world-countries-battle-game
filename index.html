@@ -230,6 +230,7 @@
     if(allCountries) {
       const onlyIndependentCountriesSelect = document.getElementById("only-independent-countries-select");
       onlyIndependentCountriesSelect.disabled = true;
+      onlyIndependentCountriesSelect.style.pointerEvents = "none";
       if (allCountries === "true") {
         onlyIndependentCountriesSelect.value = "All Countries";
       } else {
@@ -239,22 +240,27 @@
      if(hintType) {
       const hintTypeSelect = document.getElementById("hint-types-select");
       hintTypeSelect.disabled = true;
+      hintTypeSelect.style.pointerEvents = "none";
       if (hintType === "all") {
         hintTypeSelect.value = "All Hints";
       } else if (hintType === "text") {
         hintTypeSelect.value = "Text Hints";
-      } else {
+      } else if (hintType === "visual") {
         hintTypeSelect.value = "Visual Hints";
+      } else if (hintType === "none") {
+        hintTypeSelect.value = "No Hints";
       }
     }
     if(hitTime) {
       const hitTimeSelect = document.getElementById("time-select");
       hitTimeSelect.disabled = true;
+      hitTimeSelect.style.pointerEvents = "none";
       hitTimeSelect.value = hitTime;
     }
     if (bonus) {
       const bonusCountriesSelect = document.getElementById("bonus-countries-select");
       bonusCountriesSelect.disabled = true;
+      bonusCountriesSelect.style.pointerEvents = "none";
       bonusCountriesSelect.value = bonus;
     }
       });
@@ -1112,6 +1118,7 @@
   <option value="All Hints" selected>All Hints</option>
   <option value="Text Hints">Text Hints</option>
   <option value="Visual Hints">Visual Hints</option>
+  <option value="No Hints">No Hints</option>
 </select>
  <label style="margin-left: 25px;" for="bonus-countries-select">🎁 :</label>
             <select class="form-select form-select-sm" name="bonus-countries-select" id="bonus-countries-select" style="cursor: pointer; font-weight: 500; width: fit-content; display: inline-block; font-size: 0.75rem; padding: 0rem 1.6rem 0rem 0.3rem; background-size: 10px 10px; ">
@@ -1297,6 +1304,7 @@
   <option value="All Hints" selected>All Hints</option>
   <option value="Text Hints">Text Hints</option>
   <option value="Visual Hints">Visual Hints</option>
+  <option value="No Hints">No Hints</option>
 </select>
 <label style="margin-left: 15px;" for="bonus-countries-game-room-select">🎁 :</label>
             <select class="form-select form-select-sm" name="bonus-countries-game-room-select" id="bonus-countries-game-room-select" style="cursor: pointer; font-weight: 500; width: fit-content; display: inline-block; font-size: 0.75rem; padding: 0rem 1.6rem 0rem 0.3rem; background-size: 10px 10px; ">
