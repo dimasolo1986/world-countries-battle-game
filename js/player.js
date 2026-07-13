@@ -1188,11 +1188,7 @@ export class Player {
                 localization[model.worldCountries.language]["countries"][
                   country.countryName
                 ]
-              }.</span> <span style="margin-left:5px;">${
-                localization[model.worldCountries.language][
-                  "The opponent gets a hint"
-                ]
-              }</span>`,
+              }.</span> ${this.gameConfiguration.hintsType !== "No Hints" ? `<span style="margin-left:5px;">${localization[model.worldCountries.language]["The opponent gets a hint"]}</span>` : ""}`,
             );
             this.opponentPlayer.trapCountryHitted =
               this.opponentPlayer.trapCountryHitted + 1;
@@ -1214,8 +1210,10 @@ export class Player {
             } else {
               scoreElement.style.color = "green";
             }
-            const hintType = this.opponentPlayer.getRandomHintType();
-            this.opponentPlayer.addHint(countryCode, false, hintType);
+            if (this.gameConfiguration.hintsType !== "No Hints") {
+              const hintType = this.opponentPlayer.getRandomHintType();
+              this.opponentPlayer.addHint(countryCode, false, hintType);
+            }
             this.opponentPlayer.addCountryBoundaryBlinking(countryCode);
             this.opponentPlayer.setElementStyle(countryBoundary, {
               weight: 1,
@@ -1916,11 +1914,7 @@ export class Player {
               localization[model.worldCountries.language]["countries"][
                 country.countryName
               ]
-            }.</span> <span style="margin-left:5px;">${
-              localization[model.worldCountries.language][
-                "The opponent gets a hint"
-              ]
-            }</span>`,
+            }.</span> ${this.gameConfiguration.hintsType !== "No Hints" ? `<span style="margin-left:5px;">${localization[model.worldCountries.language]["The opponent gets a hint"]}</span>` : ""}`,
           );
           if (this.gameConfiguration.gameMode === "user") {
             this.trapCountryHitted = this.trapCountryHitted + 1;
@@ -1933,8 +1927,10 @@ export class Player {
             );
           } else {
             this.trapCountryHitted = this.trapCountryHitted + 1;
-            const hintType = this.getRandomHintType();
-            this.addHint(countryCode, true, hintType);
+            if (this.gameConfiguration.hintsType !== "No Hints") {
+              const hintType = this.getRandomHintType();
+              this.addHint(countryCode, true, hintType);
+            }
           }
           let points = 0;
           if (this.trapCountryHitted === 1) {
@@ -4215,11 +4211,7 @@ export class Player {
                 localization[model.worldCountries.language]["countries"][
                   country.countryName
                 ]
-              }.</span> <span style="margin-left:5px;">${
-                localization[model.worldCountries.language][
-                  "The opponent gets a hint"
-                ]
-              }</span>`,
+              }.</span> ${this.gameConfiguration.hintsType !== "No Hints" ? `<span style="margin-left:5px;">${localization[model.worldCountries.language]["The opponent gets a hint"]}</span>` : ""}`,
             );
             this.trapCountryHitted = this.trapCountryHitted + 1;
             if (this.trapCountryHitted === 1) {
@@ -4240,8 +4232,10 @@ export class Player {
             } else {
               scoreElement.style.color = "green";
             }
-            const hintType = this.getRandomHintType();
-            this.addHint(countryCode, false, hintType);
+            if (this.gameConfiguration.hintsType !== "No Hints") {
+              const hintType = this.getRandomHintType();
+              this.addHint(countryCode, false, hintType);
+            }
             this.addCountryBoundaryBlinking(countryCode);
             this.setElementStyle(countryBoundary, {
               weight: 1,
