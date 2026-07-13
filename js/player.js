@@ -1213,6 +1213,15 @@ export class Player {
             if (this.gameConfiguration.hintsType !== "No Hints") {
               const hintType = this.opponentPlayer.getRandomHintType();
               this.opponentPlayer.addHint(countryCode, false, hintType);
+            } else {
+              this.opponentPlayer.addSelectedCountryToCountryPanel(
+                this.opponentPlayer.playerSelectedCountriesContainerId,
+                countryCode,
+                Array.from(
+                  this.opponentPlayer.selectedCountryTrapCodes,
+                ).indexOf(countryCode) + 21,
+                false,
+              );
             }
             this.opponentPlayer.addCountryBoundaryBlinking(countryCode);
             this.opponentPlayer.setElementStyle(countryBoundary, {
@@ -1930,6 +1939,14 @@ export class Player {
             if (this.gameConfiguration.hintsType !== "No Hints") {
               const hintType = this.getRandomHintType();
               this.addHint(countryCode, true, hintType);
+            } else {
+              this.addSelectedCountryToCountryPanel(
+                this.playerSelectedCountriesContainerId,
+                countryCode,
+                Array.from(this.selectedCountryTrapCodes).indexOf(countryCode) +
+                  21,
+                true,
+              );
             }
           }
           let points = 0;
@@ -4235,6 +4252,14 @@ export class Player {
             if (this.gameConfiguration.hintsType !== "No Hints") {
               const hintType = this.getRandomHintType();
               this.addHint(countryCode, false, hintType);
+            } else {
+              this.addSelectedCountryToCountryPanel(
+                this.playerSelectedCountriesContainerId,
+                countryCode,
+                Array.from(this.selectedCountryTrapCodes).indexOf(countryCode) +
+                  21,
+                false,
+              );
             }
             this.addCountryBoundaryBlinking(countryCode);
             this.setElementStyle(countryBoundary, {
