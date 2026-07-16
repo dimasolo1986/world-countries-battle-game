@@ -9,6 +9,7 @@ import {
   hideGameCountryAllianceGuessedWindow,
   showCountryCoatOfArmsFlagWindow,
   hideModalWindow,
+  showModalWindow,
   getCountryPhoto,
   addTimerToModal,
 } from "./helpers.js";
@@ -52,6 +53,7 @@ export class Player {
   countriesToGuessNext = [];
   alreadyGuessedCountryCodes = [];
   hintTypes = new Set();
+  openUserHintSelectionWindow = false;
   constructor(
     playerMap,
     playerSelectedCountriesContainerId,
@@ -134,6 +136,7 @@ export class Player {
     this.score = null;
     this.trapCountryHitted = null;
     this.playerAttemptToGuess = null;
+    this.openUserHintSelectionWindow = null;
     this.opponentPlayerConfigAcknowledged = null;
     this.opponentPlayerStartAcknowledged = null;
     this.countryBoundariesAndMarkersFeatureGroup = null;
@@ -169,6 +172,7 @@ export class Player {
     } else {
       this.playerAttemptToGuess = false;
     }
+    this.openUserHintSelectionWindow = false;
     this.opponentPlayerConfigAcknowledged = false;
     this.opponentPlayerStartAcknowledged = false;
     this.playerConfigured = false;
@@ -176,7 +180,10 @@ export class Player {
     this.playerAlreadyHitting = false;
     this.lastGuessedCountryNames = [];
     this.countryBoundariesAndMarkersFeatureGroup = L.featureGroup();
-    if (this.gameConfiguration.hintsType === "All Hints") {
+    if (
+      this.gameConfiguration.hintsType === "All Hints" ||
+      this.gameConfiguration.hintsType === "Choose Hints"
+    ) {
       this.hintTypes = new Set([
         "country",
         "capital",
@@ -321,6 +328,192 @@ export class Player {
     let hintType = Array.from(this.hintTypes)[randomHintIndex];
     this.hintTypes.delete(hintType);
     return hintType;
+  }
+
+  addUserSelectedHint() {
+    const selectedCountryCodes = [];
+    Array.from(this.opponentPlayer.selectedCountryCodes).forEach(
+      (countryCode) => {
+        if (
+          !this.opponentPlayer.alreadyGuessedCountryCodes.includes(
+            countryCode,
+          ) &&
+          !(countryCode in this.hints)
+        ) {
+          selectedCountryCodes.push(countryCode);
+        }
+      },
+    );
+    if (selectedCountryCodes.length === 0) return;
+    const userHintTypeSelect = document.getElementById(
+      "user-hint-types-select",
+    );
+    const userHintPlayButton = document.getElementById(
+      "gameUserHintSelectionPlayButton",
+    );
+    const userHintHeader = document.getElementById(
+      "gameUserHintSelectionLabel",
+    );
+    userHintPlayButton.textContent =
+      localization[model.worldCountries.language]["Play"];
+    userHintHeader.textContent =
+      localization[model.worldCountries.language]["Hint Selection"];
+    const userHintTextContainer = document.getElementById(
+      "gameUserHintSelectionText",
+    );
+    userHintTextContainer.innerHTML = `${this.opponentPlayer.playerType === "computerPlayer" ? `<div>${localization[model.worldCountries.language]["Computer has fallen into a trap-country"]}</div>` : `<div>${localization[model.worldCountries.language]["Opponent has fallen into a trap-country"]}</div>`}
+    <div>${localization[model.worldCountries.language]["Choose a hint from the list below"]}:</div>`;
+    userHintTypeSelect.innerHTML = "";
+    if (this.hintTypes.has("country")) {
+      const countryNameOption = new Option(
+        localization[model.worldCountries.language]["Country Name"],
+        "country",
+      );
+      userHintTypeSelect.add(countryNameOption);
+    }
+    if (this.hintTypes.has("flag")) {
+      const countryFlagOption = new Option(
+        localization[model.worldCountries.language]["Flag"],
+        "flag",
+      );
+      userHintTypeSelect.add(countryFlagOption);
+    }
+    if (this.hintTypes.has("region")) {
+      const countryRegionOption = new Option(
+        localization[model.worldCountries.language]["Region"],
+        "region",
+      );
+      userHintTypeSelect.add(countryRegionOption);
+    }
+    if (this.hintTypes.has("boundary")) {
+      const countryBoundaryOption = new Option(
+        localization[model.worldCountries.language]["Outline"],
+        "boundary",
+      );
+      userHintTypeSelect.add(countryBoundaryOption);
+    }
+    const hasCapital = selectedCountryCodes.filter((countryCode) => {
+      return (
+        this.opponentPlayer.countries[countryCode].countryCapital !== undefined
+      );
+    });
+    if (hasCapital.length > 0 && this.hintTypes.has("capital")) {
+      const countryCapitalOption = new Option(
+        localization[model.worldCountries.language]["Capital"],
+        "capital",
+      );
+      userHintTypeSelect.add(countryCapitalOption);
+    }
+    const hasSubregion = selectedCountryCodes.filter((countryCode) => {
+      return (
+        this.opponentPlayer.countries[countryCode].countrySubregion !==
+        undefined
+      );
+    });
+    if (hasSubregion.length > 0 && this.hintTypes.has("subregion")) {
+      const countrySubregionOption = new Option(
+        localization[model.worldCountries.language]["Subregion"],
+        "subregion",
+      );
+      userHintTypeSelect.add(countrySubregionOption);
+    }
+    const hasCoatOfArms = selectedCountryCodes.filter((countryCode) => {
+      return (
+        this.opponentPlayer.countries[countryCode].countryCoatOfArms !==
+        undefined
+      );
+    });
+    if (hasCoatOfArms.length > 0 && this.hintTypes.has("emblem")) {
+      const countryCoatOfArmsOption = new Option(
+        localization[model.worldCountries.language]["CoatOfArms"],
+        "emblem",
+      );
+      userHintTypeSelect.add(countryCoatOfArmsOption);
+    }
+    const hasCountryPhoto = selectedCountryCodes.filter((countryCode) => {
+      return (
+        this.opponentPlayer.countries[countryCode]
+          .countryWikiLandscapeCategoryName !== undefined
+      );
+    });
+    if (hasCountryPhoto.length > 0 && this.hintTypes.has("photo")) {
+      const countryPhotoOption = new Option(
+        localization[model.worldCountries.language]["CountryPhoto"],
+        "photo",
+      );
+      userHintTypeSelect.add(countryPhotoOption);
+    }
+    userHintPlayButton.addEventListener(
+      "click",
+      async function () {
+        const selectedHintType = userHintTypeSelect.value;
+        let randomCountryIndex = getRandomInt(
+          0,
+          selectedCountryCodes.length - 1,
+        );
+        let countryCode = selectedCountryCodes[randomCountryIndex];
+        const country = this.opponentPlayer.countries[countryCode];
+        if (selectedHintType === "country") {
+          this.hints[countryCode] = { Country: country.countryName };
+        } else if (selectedHintType === "flag") {
+          this.hints[countryCode] = { Flag: country.countryFlag };
+        } else if (selectedHintType === "region") {
+          this.hints[countryCode] = { Region: country.countryRegion };
+        } else if (selectedHintType === "boundary") {
+          this.hints[countryCode] = { Outline: country.countryName };
+        } else if (selectedHintType === "capital") {
+          const randomCountryCapitalIndex = getRandomInt(
+            0,
+            hasCapital.length - 1,
+          );
+          const countryCapitalCode = hasCapital[randomCountryCapitalIndex];
+          const countryCapital =
+            this.opponentPlayer.countries[countryCapitalCode];
+          this.hints[countryCapitalCode] = {
+            Capital: countryCapital.countryCapital,
+          };
+        } else if (selectedHintType === "subregion") {
+          const randomCountrySubregionIndex = getRandomInt(
+            0,
+            hasSubregion.length - 1,
+          );
+          const countrySubregionCode =
+            hasSubregion[randomCountrySubregionIndex];
+          const countrySubregion =
+            this.opponentPlayer.countries[countrySubregionCode];
+          this.hints[countrySubregionCode] = {
+            Subregion: countrySubregion.countrySubregion,
+          };
+        } else if (selectedHintType === "emblem") {
+          const randomCountryCoatOfArmsIndex = getRandomInt(
+            0,
+            hasCoatOfArms.length - 1,
+          );
+          const countryCoatOfArmsCode =
+            hasCoatOfArms[randomCountryCoatOfArmsIndex];
+          const countryCoatOfArms =
+            this.opponentPlayer.countries[countryCoatOfArmsCode];
+          this.hints[countryCoatOfArmsCode] = {
+            CoatOfArms: countryCoatOfArms.countryCoatOfArms,
+          };
+        } else if (selectedHintType === "photo") {
+          const randomCountryPhotoIndex = getRandomInt(
+            0,
+            hasCountryPhoto.length - 1,
+          );
+          const countryPhotoCode = hasCountryPhoto[randomCountryPhotoIndex];
+          const countryPhoto = this.opponentPlayer.countries[countryPhotoCode];
+          const countryPhotoUrl = await getCountryPhoto(countryPhoto);
+          this.hints[countryPhotoCode] = { CountryPhoto: countryPhotoUrl };
+        }
+        this.hintTypes.delete(selectedHintType);
+        this.addHintsToHintPanel();
+        hideModalWindow("gameUserHintSelectionModal");
+        this.setHitTimeout();
+      }.bind(this),
+      { once: true },
+    );
+    showModalWindow("gameUserHintSelectionModal");
   }
 
   async addHint(trapCountryCode, addCountryImage, hintType) {
@@ -1098,6 +1291,7 @@ export class Player {
         this.playMap.hideMapElement("hints-panel");
         this.playMap.hideMapElement("available-countries-panel");
         this.playMap.setMapFiledLabel("Your Map");
+        this.opponentPlayer.openUserHintSelectionWindow = false;
         this.countriesNumberField.textContent =
           this.opponentPlayer.countryCodes.length;
         this.gameMessageField.textContent = `ℹ️ ${
@@ -1190,6 +1384,9 @@ export class Player {
                 ]
               }.</span> ${this.gameConfiguration.hintsType !== "No Hints" ? `<span style="margin-left:5px;">${localization[model.worldCountries.language]["The opponent gets a hint"]}</span>` : ""}`,
             );
+            if (this.gameConfiguration.hintsType === "Choose Hints") {
+              this.opponentPlayer.openUserHintSelectionWindow = true;
+            }
             this.opponentPlayer.trapCountryHitted =
               this.opponentPlayer.trapCountryHitted + 1;
             if (this.opponentPlayer.trapCountryHitted === 1) {
@@ -1210,7 +1407,10 @@ export class Player {
             } else {
               scoreElement.style.color = "green";
             }
-            if (this.gameConfiguration.hintsType !== "No Hints") {
+            if (
+              this.gameConfiguration.hintsType !== "No Hints" &&
+              this.gameConfiguration.hintsType !== "Choose Hints"
+            ) {
               const hintType = this.opponentPlayer.getRandomHintType();
               this.opponentPlayer.addHint(countryCode, false, hintType);
             } else {
@@ -1660,9 +1860,17 @@ export class Player {
           ]
         }`;
         this.opponentPlayer.enableMapInteraction();
-        this.setHitTimeout();
+        if (!this.openUserHintSelectionWindow) this.setHitTimeout();
+        if (
+          this.gameConfiguration.hintsType === "Choose Hints" &&
+          this.openUserHintSelectionWindow
+        ) {
+          this.addUserSelectedHint();
+          this.openUserHintSelectionWindow = false;
+        }
       } catch (err) {
         this.opponentPlayer.enableMapInteraction();
+        this.openUserHintSelectionWindow = false;
       }
       this.game.isOpponentPlayerReady = false;
       this.game.isPlayerReady = false;
@@ -1854,6 +2062,7 @@ export class Player {
     try {
       if (this.playerAlreadyHitting) return;
       this.playerAlreadyHitting = true;
+      this.openUserHintSelectionWindow = false;
       this.clearOpponentPlayerTimeout();
       if (
         this.gameConfiguration.gameMode === "user" &&
@@ -1926,6 +2135,9 @@ export class Player {
             }.</span> ${this.gameConfiguration.hintsType !== "No Hints" ? `<span style="margin-left:5px;">${localization[model.worldCountries.language]["The opponent gets a hint"]}</span>` : ""}`,
           );
           if (this.gameConfiguration.gameMode === "user") {
+            if (this.gameConfiguration.hintsType === "Choose Hints") {
+              this.openUserHintSelectionWindow = true;
+            }
             this.trapCountryHitted = this.trapCountryHitted + 1;
             this.addSelectedCountryToCountryPanel(
               this.playerSelectedCountriesContainerId,
@@ -4183,6 +4395,7 @@ export class Player {
       this.game.playHit();
     } else {
       try {
+        this.openUserHintSelectionWindow = false;
         this.alreadyGuessedCountryCodes.push(countryCode);
         const country = this.countries[countryCode];
         const countryBoundary =
@@ -4249,7 +4462,13 @@ export class Player {
             } else {
               scoreElement.style.color = "green";
             }
-            if (this.gameConfiguration.hintsType !== "No Hints") {
+            if (this.gameConfiguration.hintsType === "Choose Hints") {
+              this.openUserHintSelectionWindow = true;
+            }
+            if (
+              this.gameConfiguration.hintsType !== "No Hints" &&
+              this.gameConfiguration.hintsType !== "Choose Hints"
+            ) {
               const hintType = this.getRandomHintType();
               this.addHint(countryCode, false, hintType);
             } else {

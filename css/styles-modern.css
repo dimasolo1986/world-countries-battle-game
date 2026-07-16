@@ -189,7 +189,8 @@ main .card .card-body {
 
 /* ─── Config selects ───────────────────────────────────────────────────────── */
 .card-body .form-select,
-#create-game-room-page .form-select {
+#create-game-room-page .form-select,
+.modal-body .form-select {
   font-family: var(--bs-body-font-family) !important;
   font-weight: 600 !important;
   font-size: 0.75rem !important;
@@ -203,12 +204,15 @@ main .card .card-body {
   padding: 0.2rem 1.6rem 0.2rem 0.45rem !important;
 }
 .card-body .form-select:focus,
-#create-game-room-page .form-select:focus {
+#create-game-room-page .form-select:focus,
+.modal-body .form-select:focus {
   border-color: var(--cg-teal) !important;
   box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.18) !important;
 }
 
-.card-body .form-select:hover {
+.card-body .form-select:hover,
+#create-game-room-page .form-select:hover,
+.modal-body .form-select:hover {
   box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.18) !important;
 }
 
