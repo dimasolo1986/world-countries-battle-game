@@ -1702,9 +1702,11 @@ export class Player {
                 }</span><div style="display: inline-block;">${
                   countryUnionHtml.outerHTML
                 }</div><span style="margin-left:5px;">${
-                  localization[model.worldCountries.language][
-                    "Country Alliance"
-                  ]
+                  countryUnion.length === 1
+                    ? localization[model.worldCountries.language]["Country"]
+                    : localization[model.worldCountries.language][
+                        "Country Alliance"
+                      ]
                 }</span>`,
               );
               await this.sleep(1500);
@@ -2586,7 +2588,11 @@ export class Player {
               }</span><div style="display: inline-block;">${
                 countryUnionHtml.outerHTML
               }</div><span style="margin-left:5px;">${
-                localization[model.worldCountries.language]["Country Alliance"]
+                countryUnion.length === 1
+                  ? localization[model.worldCountries.language]["Country"]
+                  : localization[model.worldCountries.language][
+                      "Country Alliance"
+                    ]
               }</span>`,
             );
             document.getElementById(
@@ -2622,7 +2628,11 @@ export class Player {
               }</span><div style="display: inline-block; margin-left:5px;">${
                 countryUnionHtml.outerHTML
               }</div><span style="margin-left:5px; color: darkblue; font-weight:bold;">${
-                localization[model.worldCountries.language]["Country Alliance"]
+                countryUnion.length === 1
+                  ? localization[model.worldCountries.language]["Country"]
+                  : localization[model.worldCountries.language][
+                      "Country Alliance"
+                    ]
               }</span><div style="color: darkblue; font-weight:bold;font-size: 0.8rem;">${countryUnionString}</div><div style="margin-top:5px;"><span style="
                     color: white;
                     font-size: 1rem;
@@ -4753,9 +4763,11 @@ export class Player {
                 }</span><div style="display: inline-block;">${
                   countryUnionHtml.outerHTML
                 }</div><span style="margin-left:5px;">${
-                  localization[model.worldCountries.language][
-                    "Country Alliance"
-                  ]
+                  countryUnion.length === 1
+                    ? localization[model.worldCountries.language]["Country"]
+                    : localization[model.worldCountries.language][
+                        "Country Alliance"
+                      ]
                 }</span>`,
               );
               await this.sleep(1500);
