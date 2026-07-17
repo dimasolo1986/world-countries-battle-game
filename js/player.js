@@ -357,7 +357,9 @@ export class Player {
     userHintPlayButton.textContent =
       localization[model.worldCountries.language]["Play"];
     userHintHeader.textContent =
-      localization[model.worldCountries.language]["Hint Selection"];
+      "💡 " +
+      localization[model.worldCountries.language]["Hint Selection"] +
+      " 💡";
     const userHintTextContainer = document.getElementById(
       "gameUserHintSelectionText",
     );
@@ -504,7 +506,11 @@ export class Player {
           const countryPhotoCode = hasCountryPhoto[randomCountryPhotoIndex];
           const countryPhoto = this.opponentPlayer.countries[countryPhotoCode];
           const countryPhotoUrl = await getCountryPhoto(countryPhoto);
-          this.hints[countryPhotoCode] = { CountryPhoto: countryPhotoUrl };
+          if (countryPhotoUrl === null) {
+            this.hints[countryPhotoCode] = { Flag: countryPhoto.countryFlag };
+          } else {
+            this.hints[countryPhotoCode] = { CountryPhoto: countryPhotoUrl };
+          }
         }
         this.hintTypes.delete(selectedHintType);
         this.addHintsToHintPanel();
