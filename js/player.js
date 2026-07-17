@@ -684,13 +684,13 @@ export class Player {
         `<td style="border: none;">
                   <img
                     src="${country.countryFlag}"
-                    width="12px"
-                    height="12px"
+                    width="15px"
+                    height="10px"
                     style="
-                      border-radius: 50%;
+                    border-radius: 2px;
                       border: 1px solid grey;
-                      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5),
-                        0 2px 10px 0 rgba(0, 0, 0, 0.12) inset;
+                      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.5),
+                        0 2px 2px 0 rgba(0, 0, 0, 0.12) inset;
                     "
                     alt="Country Flag"
                   />
