@@ -363,7 +363,7 @@ button.btn-warning[class*="return-"] {
 .create-game-room,
 button.btn-success.create-game-room {
   font-family: var(--bs-body-font-family) !important;
-  font-size: 0.78rem !important;
+  font-size: 0.7rem !important;
   font-weight: 600 !important;
   background: linear-gradient(135deg, var(--cg-green), #059669) !important;
   border: none !important;
@@ -373,7 +373,7 @@ button.btn-success.create-game-room {
 }
 button.btn-danger.delete-game-room {
   font-family: var(--bs-body-font-family) !important;
-  font-size: 0.78rem !important;
+  font-size: 0.7rem !important;
   font-weight: 600 !important;
   border-radius: 5px !important;
   background: linear-gradient(135deg, #ef4444, #b91c1c) !important;
@@ -383,7 +383,7 @@ button.btn-danger.delete-game-room {
 
 button.btn-info.copy-to-clipboard-link {
   font-family: var(--bs-body-font-family) !important;
-  font-size: 0.78rem !important;
+  font-size: 0.7rem !important;
   font-weight: 600 !important;
   border-radius: 5px !important;
   background: linear-gradient(
@@ -399,7 +399,7 @@ button.btn-info.copy-to-clipboard-link {
 button.btn-warning.share-game-room,
 button.btn-warning.share-donate {
   font-family: var(--bs-body-font-family) !important;
-  font-size: 0.78rem !important;
+  font-size: 0.7rem !important;
   font-weight: 600 !important;
   border-radius: 5px !important;
   background: linear-gradient(
@@ -416,7 +416,7 @@ button.btn-warning.share-donate {
 button.donate-link,
 a.donate-link {
   font-family: var(--bs-body-font-family) !important;
-  font-size: 0.78rem !important;
+  font-size: 0.7rem !important;
   font-weight: 600 !important;
   border-radius: 5px !important;
   background: linear-gradient(
