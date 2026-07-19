@@ -98,6 +98,11 @@ export const showCountryCoatOfArmsFlagWindow = function (
   );
   if (showTimer) {
     addTimerToModal(modalId);
+  } else {
+    const timerContainerElement = document.getElementById(
+      "modalTimerContainer",
+    );
+    if (timerContainerElement) timerContainerElement.remove();
   }
   countryCoatOfArmsFlag.show();
 };

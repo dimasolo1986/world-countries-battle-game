@@ -802,9 +802,9 @@ export class PlayMap {
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
         const userIconContainer = L.DomUtil.create("span");
         if (this.gameConfiguration.gameMode === "computer") {
-          userIconContainer.textContent = "🖥️";
+          userIconContainer.textContent = "🤖";
         } else {
-          userIconContainer.textContent = "🧓";
+          userIconContainer.textContent = "👨🏻‍🦰";
         }
         const userCountriesNumber = L.DomUtil.create("span");
         userCountriesNumber.style.marginLeft = "5px";
