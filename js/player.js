@@ -2414,7 +2414,7 @@ export class Player {
                 localization[model.worldCountries.language]["countries"][
                   country.countryName
                 ]
-              }.</span> <div style="color: darkblue;font-weight:bold;">${
+              }</span> <div style="color: darkblue;font-weight:bold;">${
                 localization[model.worldCountries.language][
                   "Additional attempt to guess country"
                 ]
