@@ -768,7 +768,7 @@ export const localization = {
       "Проект створений програмістом з України -",
     "You can support Ukraine in the fight against Russia's military aggression:":
       "Ви можете підтримати Україну в боротьбі з військовою агресією Росії:",
-    "Dmytro Solovei": "Дмитро Соловей",
+    "Dima Solovei": "Діма Соловей",
     "You can reach me by e-mail:":
       "Ви можете зв'язатися зі мною електронною поштою:",
     "Come Back Alive": "Повернись Живим",
@@ -1582,7 +1582,7 @@ export const localization = {
       "Project was created by Software Developer from Ukraine -",
     "You can support Ukraine in the fight against Russia's military aggression:":
       "You can support Ukraine in the fight against Russia's military aggression:",
-    "Dmytro Solovei": "Dmytro Solovei",
+    "Dima Solovei": "Dima Solovei",
     "You can reach me by e-mail:": "You can reach me by e-mail:",
     "Center Map Here": "Center Map Here",
     "Zoom In": "Zoom In",
@@ -2409,7 +2409,7 @@ export const localization = {
       "Das Projekt wurde von einem Softwareentwickler aus der Ukraine erstellt -",
     "You can support Ukraine in the fight against Russia's military aggression:":
       "Sie können die Ukraine im Kampf gegen die militärische Aggression Russlands unterstützen:",
-    "Dmytro Solovei": "Dmytro Solovei",
+    "Dima Solovei": "Dima Solovei",
     "You can reach me by e-mail:": "Sie können mich per E-Mail erreichen:",
     "Center Map Here": "Karte hier zentrieren",
     "Zoom In": "Vergrößern",
@@ -3234,7 +3234,7 @@ export const localization = {
       "Le projet a été créé par un développeur de logiciels d'Ukraine -",
     "You can support Ukraine in the fight against Russia's military aggression:":
       "Vous pouvez soutenir l'Ukraine dans la lutte contre l'agression militaire de la Russie :",
-    "Dmytro Solovei": "Dmytro Solovei",
+    "Dima Solovei": "Dima Solovei",
     "You can reach me by e-mail:": "Vous pouvez me joindre par e-mail :",
     "Center Map Here": "Centrer la carte ici",
     "Zoom In": "Zoomer",
@@ -4059,7 +4059,7 @@ export const localization = {
       "El proyecto fue creado por un desarrollador de software de Ucrania -",
     "You can support Ukraine in the fight against Russia's military aggression:":
       "Puedes apoyar a Ucrania en la lucha contra la agresión militar de Rusia:",
-    "Dmytro Solovei": "Dmytro Solovei",
+    "Dima Solovei": "Dima Solovei",
     "You can reach me by e-mail:": "Puedes contactarme por correo electrónico:",
     "Center Map Here": "Centrar el Mapa Aquí",
     "Zoom In": "Acercar",
@@ -4886,7 +4886,7 @@ export const localization = {
       "Il progetto è stato creato da uno sviluppatore software ucraino -",
     "You can support Ukraine in the fight against Russia's military aggression:":
       "Puoi supportare l'Ucraina nella lotta contro l'aggressione militare della Russia:",
-    "Dmytro Solovei": "Dmytro Solovei",
+    "Dima Solovei": "Dima Solovei",
     "You can reach me by e-mail:": "Puoi contattarmi via e-mail:",
     "Center Map Here": "Centra Mappa Qui",
     "Zoom In": "Ingrandisci",

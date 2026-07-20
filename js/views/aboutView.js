@@ -135,7 +135,7 @@ class aboutView {
       ]
     }`;
     this._aboutDeveloperLink.textContent = `${
-      localization[model.worldCountries.language]["Dmytro Solovei"]
+      localization[model.worldCountries.language]["Dima Solovei"]
     }`;
     this._aboutDeveloperEmailDescription.textContent = `${
       localization[model.worldCountries.language]["You can reach me by e-mail:"]
