@@ -2420,6 +2420,7 @@ export class Player {
                 ]
               }</div><div style="margin-top:5px;"><span style="
                     color: white;
+                    font-size: 1rem;
                     border-radius: 2px;
                     background-color: green;
                     padding-left: 2px;
