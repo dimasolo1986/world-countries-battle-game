@@ -587,6 +587,7 @@ export const localization = {
     "Computer has fallen into a bonus-country":
       "Комп'ютер потрапив у країну-бонус",
     "Additional attempt to guess and": "Додаткова спроба вгадати та",
+    "Additional attempt to guess country": "Додаткова спроба вгадати країну",
     "Opponent has fallen into a bonus-country":
       "Суперник потрапив у країну-бонус",
     "He gets additional attempt to guess and":
@@ -1359,6 +1360,8 @@ export const localization = {
     "Computer has fallen into a bonus-country":
       "Computer has fallen into a bonus-country",
     "Additional attempt to guess and": "Additional attempt to guess and",
+    "Additional attempt to guess country":
+      "Additional attempt to guess country",
     "Opponent has fallen into a bonus-country":
       "Opponent has fallen into a bonus-country",
     "He gets additional attempt to guess and":
@@ -2226,6 +2229,7 @@ export const localization = {
     "Time is up! The attempt to guess the country passes to your opponent":
       "Die Zeit ist um! Der Versuch, das Land zu erraten, geht an Ihren Gegner über",
     "Additional attempt to guess and": "Zusätzlicher Versuch zu raten und",
+    "Additional attempt to guess country": "Zusätzlicher Versuch zu raten Land",
     "Opponent has fallen into a bonus-country":
       "Der Gegner ist in ein Bonusland gefallen",
     "He gets additional attempt to guess and":
@@ -3103,6 +3107,8 @@ export const localization = {
     "Computer has fallen into a bonus-country":
       "L'ordinateur est tombé dans un pays bonus",
     "Additional attempt to guess and": "Tentative supplémentaire de deviner et",
+    "Additional attempt to guess country":
+      "Tentative supplémentaire de deviner le pays",
     "Opponent has fallen into a bonus-country":
       "L'adversaire est tombé dans un pays à bonus",
     "He gets additional attempt to guess and":
@@ -3879,6 +3885,8 @@ export const localization = {
     "Computer has fallen into a bonus-country":
       "La computadora ha caído en una país de bonificación",
     "Additional attempt to guess and": "Intento adicional de adivinar y",
+    "Additional attempt to guess country":
+      "Intento adicional de adivinar el país",
     "Opponent has fallen into a bonus-country":
       "El oponente ha caído en un país de bonificación",
     "He gets additional attempt to guess and":
@@ -4728,6 +4736,8 @@ export const localization = {
     "Computer has fallen into a bonus-country":
       "Il computer è caduto in un paese bonus",
     "Additional attempt to guess and": "Ulteriore tentativo di indovinare e",
+    "Additional attempt to guess country":
+      "Ulteriore tentativo di indovinare il paese",
     "Opponent has fallen into a bonus-country":
       "L'avversario è caduto in un paese bonus",
     "He gets additional attempt to guess and":

@@ -2416,10 +2416,9 @@ export class Player {
                 ]
               }.</span> <div style="color: darkblue;font-weight:bold;">${
                 localization[model.worldCountries.language][
-                  "Additional attempt to guess and"
+                  "Additional attempt to guess country"
                 ]
-              }<span style="
-                    margin-left: 3px;
+              }</div><div style="margin-top:5px;"><span style="
                     color: white;
                     border-radius: 2px;
                     background-color: green;
