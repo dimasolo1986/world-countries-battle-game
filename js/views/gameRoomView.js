@@ -472,7 +472,7 @@ class gameRoomView {
   }
 
   translateElements() {
-    this._gameRoomReturnBack.textContent = `🚪 ${
+    this._gameRoomReturnBack.textContent = `${
       localization[model.worldCountries.language]["BACK TO MAIN PAGE"]
     }`;
     this._gameRoomCreateButton.textContent = `🎮 ${

@@ -108,7 +108,7 @@ class aboutView {
   }
 
   translateElements() {
-    this._aboutReturnToMain.textContent = `🚪 ${
+    this._aboutReturnToMain.textContent = `${
       localization[model.worldCountries.language]["BACK"]
     }`;
     this._aboutUkraineHelpDescription.textContent = `${

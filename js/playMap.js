@@ -137,7 +137,7 @@ export class PlayMap {
         "-",
         {
           text:
-            "📄 " + localization[model.worldCountries.language]["Game Rules"],
+            "📝 " + localization[model.worldCountries.language]["Game Rules"],
           callback: gameRules,
           context: this,
         },

@@ -39,6 +39,9 @@ class gameRulesView {
   _gameRulesBonusCountriesDescription = document.querySelector(
     ".game-rules-bonus-countries-rules",
   );
+  _gameRulesTipsCountriesDescription = document.querySelector(
+    ".game-rules-tips-countries-rules",
+  );
   _gameVideos = document.querySelector(".game-rules-videos");
   _gameRulesCountryAllianceSelectionVideoTitle = document.querySelector(
     ".game-rules-country-alliance-selection-video-tutorial",
@@ -102,7 +105,7 @@ class gameRulesView {
   }
 
   translateElements() {
-    this._gameRulesReturnBack.textContent = `🚪 ${
+    this._gameRulesReturnBack.textContent = `${
       localization[model.worldCountries.language]["BACK"]
     }`;
     this._gameRulesHeading.textContent = `${
@@ -125,7 +128,7 @@ class gameRulesView {
         "To clear selected country alliances, click"
       ]
     }`;
-    this._gameRulesNameHeading.textContent = `📄 ${
+    this._gameRulesNameHeading.textContent = `📝 ${
       localization[model.worldCountries.language]["Game Rules"]
     }`;
     this._gameRulesFourCountriesAllianceDescription.textContent = `${
@@ -169,6 +172,11 @@ class gameRulesView {
     this._gameRulesBonusCountriesDescription.textContent = `🎁 ${
       localization[model.worldCountries.language][
         "The computer will also randomly select five bonus countries (can be changed), when hit, players get an extra attempt to guess the opponent's country and 10 extra points."
+      ]
+    }`;
+    this._gameRulesTipsCountriesDescription.textContent = `💡 ${
+      localization[model.worldCountries.language][
+        "Tips: after guessing your opponent's country, continue guessing neighboring countries until you guess the entire alliance of countries."
       ]
     }`;
     this._gameRulesWithFriendHeader.textContent = `🧓 ${

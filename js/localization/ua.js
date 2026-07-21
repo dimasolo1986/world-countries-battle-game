@@ -594,6 +594,8 @@ export const localization = {
       "Він отримує додаткову спробу вгадати та",
     "The computer will also randomly select five bonus countries (can be changed), when hit, players get an extra attempt to guess the opponent's country and 10 extra points.":
       "Комп'ютер також випадковим чином вибере п'ять бонусних країн (можна налаштувати), при потраплянні в які гравці отримують додаткову спробу вгадати країну суперника та 10 додаткових балів.",
+    "Tips: after guessing your opponent's country, continue guessing neighboring countries until you guess the entire alliance of countries.":
+      "Поради: після вгадування країни опонента продовжуйте вгадувати сусідні країни, доки не вгадаєте увесь альянс країн.",
     "If a player guesses an alliance of countries that contains four countries, he gets 15 points, three countries - 25 points, two countries - 35 points, one country - 50 points. When falling into an opponent's trap country, the player loses 10 points the first time, 20 points the second time, 30 points the third time and 50 points the fourth time. At the end of the game, the player gets an additional 10 points for each alliance of countries that was not guessed by the opponent.":
       "Якщо гравець вгадує альянс країн, який містить чотири країни він отримує 15 балів, три країни - 25 балів, дві країни - 35 балів, одну країну - 50 балів. При потраплянні в країну-пастку суперника перший раз у гравця відіймаються 10 балів, другий раз - 20 балів, третій раз - 30 балів, четвертий раз - 50 балів. В кінці гри гравець отримує додаткові 10 балів за кожен альянс країн, який не був вгаданий суперником.",
     Score: "Рахунок",
@@ -1368,6 +1370,8 @@ export const localization = {
       "He gets additional attempt to guess and",
     "The computer will also randomly select five bonus countries (can be changed), when hit, players get an extra attempt to guess the opponent's country and 10 extra points.":
       "The computer will also randomly select five bonus countries (can be changed), when hit, players get an extra attempt to guess the opponent's country and 10 extra points.",
+    "Tips: after guessing your opponent's country, continue guessing neighboring countries until you guess the entire alliance of countries.":
+      "Tips: after guessing your opponent's country, continue guessing neighboring countries until you guess the entire alliance of countries.",
     "You have selected the game mode with a friend. First, create a game room. Click the 'Create Game Room' button.":
       "You have selected the game mode with a friend. First, create a game room. Click the 'Create Game Room' button.",
     "Opponent has not yet selected countries. Wait for the message to start the game.":
@@ -2236,6 +2240,8 @@ export const localization = {
       "Er erhält einen zusätzlichen Versuch zu raten und",
     "The computer will also randomly select five bonus countries (can be changed), when hit, players get an extra attempt to guess the opponent's country and 10 extra points.":
       "Der Computer wählt außerdem nach dem Zufallsprinzip fünf Bonusländer aus (kann geändert werden). Wird eines davon getroffen, erhalten die Spieler einen zusätzlichen Versuch, das Land des Gegners zu erraten, und 10 Zusatzpunkte.",
+    "Tips: after guessing your opponent's country, continue guessing neighboring countries until you guess the entire alliance of countries.":
+      "Tipp: Nachdem Sie das Land Ihres Gegners erraten haben, raten Sie weiter die Nachbarländer, bis Sie das gesamte Länderbündnis erraten haben.",
     "To play the game, choose eight different alliances of countries on the map and four trap-countries for your opponent. Follow the instructions at the top of the screen. To read the rules of the game, click the Rules button. We wish you a great game and a victory!":
       "Wähle zum Spielen acht verschiedene Länderallianzen auf der Karte und vier Fallenländer für deinen Gegner. Folge den Anweisungen oben auf dem Bildschirm. Um die Spielregeln zu lesen, klicke auf die Schaltfläche Regeln. Wir wünschen euch ein tolles Spiel und den Sieg!",
     "Countries Selection": "Länderauswahl",
@@ -3115,6 +3121,8 @@ export const localization = {
       "Il a droit à une tentative supplémentaire pour deviner et",
     "The computer will also randomly select five bonus countries (can be changed), when hit, players get an extra attempt to guess the opponent's country and 10 extra points.":
       "L'ordinateur sélectionnera également au hasard cinq pays bonus (peut être modifié) - lorsqu'ils sont touchés, les joueurs bénéficient d'une tentative supplémentaire pour deviner le pays de l'adversaire et de 10 points supplémentaires.",
+    "Tips: after guessing your opponent's country, continue guessing neighboring countries until you guess the entire alliance of countries.":
+      "Conseil : après avoir deviné le pays de votre adversaire, continuez à deviner les pays voisins jusqu'à ce que vous ayez deviné toute l'alliance des pays.",
     "You have selected the game mode with a friend. First, create a game room. Click the 'Create Game Room' button.":
       "Vous avez sélectionné le mode de jeu avec un ami. Commencez par créer une salle de jeu. Cliquez sur le bouton 'Créer une salle de jeux'.",
     "Opponent has not yet selected countries. Wait for the message to start the game.":
@@ -3893,6 +3901,8 @@ export const localization = {
       "El oponente tiene un intento adicional de adivinar y",
     "The computer will also randomly select five bonus countries (can be changed), when hit, players get an extra attempt to guess the opponent's country and 10 extra points.":
       "La computadora también seleccionará al azar cinco países de bonificación (se puede cambiar), cuando los acierta, los jugadores obtendrán un intento extra para adivinar el país del oponente y 10 puntos extra.",
+    "Tips: after guessing your opponent's country, continue guessing neighboring countries until you guess the entire alliance of countries.":
+      "Consejo: después de adivinar el país de tu oponente, continúa adivinando los países vecinos hasta que adivines toda la alianza de países.",
     Computer: "Computadora",
     "The opponent gets a hint": "El oponente recibe una pista",
     "Hints:": "Consejos:",
@@ -4744,6 +4754,8 @@ export const localization = {
       "Ha un ulteriore tentativo di indovinare e",
     "The computer will also randomly select five bonus countries (can be changed), when hit, players get an extra attempt to guess the opponent's country and 10 extra points.":
       "Il computer selezionerà inoltre casualmente cinque paesi bonus (può essere modificato) - quando vengono scelti, i giocatori avranno un tentativo extra per indovinare il paese dell'avversario e 10 punti extra.",
+    "Tips: after guessing your opponent's country, continue guessing neighboring countries until you guess the entire alliance of countries.":
+      "Suggerimenti: dopo aver indovinato il paese del tuo avversario, continua a indovinare i paesi vicini finché non avrai indovinato l'intera alleanza di paesi.",
     Computer: "Computer",
     "Opponent is online": "L'avversario è online",
     "Opponent Map": "Mappa dell'avversario",
