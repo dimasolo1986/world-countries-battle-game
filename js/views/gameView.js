@@ -15,6 +15,9 @@ class gameView {
   _gameModalCountriesSelectionContent = document.getElementById(
     "gameCountryAllianceInitialSelectionCountries",
   );
+  _gameModalCountriesSelectionContentTips = document.getElementById(
+    "gameCountryAllianceInitialSelectionTips",
+  );
   _gameModalCountriesSelectionRandomButton = document.getElementById(
     "gameCountryAllianceInitialSelectionRandomButton",
   );
@@ -104,6 +107,10 @@ class gameView {
       localization[model.worldCountries.language][
         "To play the game, choose eight different alliances of countries on the map and four trap-countries for your opponent. Follow the instructions at the top of the screen. To read the rules of the game, click the Rules button. We wish you a great game and a victory!"
       ] + " 🏆";
+    this._gameModalCountriesSelectionContentTips.textContent =
+      localization[model.worldCountries.language][
+        "Tips: after guessing your opponent's country, continue guessing neighboring countries until you guess the entire alliance of countries."
+      ];
     this._gameModalCountriesSelectionUserButton.textContent =
       "🗺️ " +
       localization[model.worldCountries.language]["Choose Countries On Map"];
