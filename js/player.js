@@ -3686,6 +3686,10 @@ export class Player {
       }`;
       return;
     }
+    const cleanSection = document.getElementById(
+      "clean-user-countries-selection",
+    );
+    cleanSection.style.display = "flex";
     const undoButton = document.getElementById("undo-user-countries-selection");
     undoButton.style.display = "none";
     countryMarker._icon.classList.add("box-shadow-marker-icon-hover");
@@ -3724,6 +3728,7 @@ export class Player {
             ]
           }`;
           undoButton.style.display = "flex";
+          cleanSection.style.display = "none";
         }
       }
       if (
@@ -3754,6 +3759,7 @@ export class Player {
             ]
           }`;
           undoButton.style.display = "flex";
+          cleanSection.style.display = "none";
         }
       }
       if (
@@ -3784,6 +3790,7 @@ export class Player {
             ]
           }`;
           undoButton.style.display = "flex";
+          cleanSection.style.display = "none";
         }
       }
       if (
@@ -3814,6 +3821,7 @@ export class Player {
             ]
           }`;
           undoButton.style.display = "flex";
+          cleanSection.style.display = "none";
         }
       }
       if (
@@ -3844,6 +3852,7 @@ export class Player {
             ]
           }`;
           undoButton.style.display = "flex";
+          cleanSection.style.display = "none";
         }
       }
       if (
@@ -3874,6 +3883,7 @@ export class Player {
             ]
           }`;
           undoButton.style.display = "flex";
+          cleanSection.style.display = "none";
         }
       }
       if (this.selectedCountryCodes.size === 19) {
@@ -3901,6 +3911,7 @@ export class Player {
             ]
           }`;
           undoButton.style.display = "flex";
+          cleanSection.style.display = "none";
         }
       }
       if (this.selectedCountryCodes.size === 20) {
@@ -3928,6 +3939,7 @@ export class Player {
             ]
           }`;
           undoButton.style.display = "flex";
+          cleanSection.style.display = "none";
         }
       }
       if (this.selectedCountryCodes.size === 21) {
@@ -3948,6 +3960,7 @@ export class Player {
             ]
           }`;
           undoButton.style.display = "flex";
+          cleanSection.style.display = "none";
         }
       }
       if (this.selectedCountryCodes.size === 22) {
@@ -3968,6 +3981,7 @@ export class Player {
             ]
           }`;
           undoButton.style.display = "flex";
+          cleanSection.style.display = "none";
         }
       }
       if (this.selectedCountryCodes.size === 23) {
@@ -3988,6 +4002,7 @@ export class Player {
             ]
           }`;
           undoButton.style.display = "flex";
+          cleanSection.style.display = "none";
         }
       }
       if (this.selectedCountryCodes.size === 24) {
@@ -4008,6 +4023,7 @@ export class Player {
             ]
           }`;
           undoButton.style.display = "none";
+          cleanSection.style.display = "flex";
           this.selectedCountryTrapCodes.forEach((trapCountryCode) => {
             if (this.selectedCountryCodes.has(trapCountryCode)) {
               this.selectedCountryCodes.delete(trapCountryCode);
