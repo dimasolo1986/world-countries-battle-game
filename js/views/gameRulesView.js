@@ -33,6 +33,9 @@ class gameRulesView {
   _gameRulesRandomCountriesSelectionDescription = document.querySelector(
     ".game-rules-random-country-selection-description",
   );
+  _gameRulesUndoCountriesSelectionDescription = document.querySelector(
+    ".game-rules-undo-country-selection-description",
+  );
   _gameRulesClearCountriesSelectionDescription = document.querySelector(
     ".game-rules-clear-country-selection-description",
   );
@@ -121,6 +124,11 @@ class gameRulesView {
     this._gameRulesRandomCountriesSelectionDescription.textContent = `${
       localization[model.worldCountries.language][
         "To select alliances of countries randomly, click"
+      ]
+    }`;
+    this._gameRulesUndoCountriesSelectionDescription.textContent = `${
+      localization[model.worldCountries.language][
+        "To clear the last selected country alliance, click"
       ]
     }`;
     this._gameRulesClearCountriesSelectionDescription.textContent = `${

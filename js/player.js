@@ -12,6 +12,7 @@ import {
   showModalWindow,
   getCountryPhoto,
   addTimerToModal,
+  findLastIndex,
 } from "./helpers.js";
 import * as model from "./model.js";
 export class Player {
@@ -3115,6 +3116,314 @@ export class Player {
     this.playerConfigured = true;
   }
 
+  initCountryBoundaryAndMarker(countryCode, countryBoundary, countryMarker) {
+    countryBoundary.off();
+    countryMarker.off();
+    countryBoundary.setStyle({
+      weight: 0,
+      fillOpacity: 0.1,
+      color: "#3388ff",
+      fillColor: "#3388ff",
+      className: countryCode,
+      opacity: 0.5,
+    });
+    countryMarker.on("mouseover", function (event) {
+      countryBoundary.setStyle({
+        weight: 1,
+        fillOpacity: 0.5,
+        opacity: 1,
+        className: countryCode,
+      });
+      L.DomEvent.stopPropagation(event);
+      if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
+        countryMarker.fire("click");
+      }
+    });
+    countryMarker.on("mouseout", function (event) {
+      countryBoundary.setStyle({
+        weight: 0,
+        fillOpacity: 0.1,
+        opacity: 0,
+        className: countryCode,
+      });
+      L.DomEvent.stopPropagation(event);
+    });
+    this.addMouseOverStyleEventToCountryBoundary(
+      countryBoundary,
+      countryMarker,
+      {
+        weight: 1,
+        fillOpacity: 0.5,
+        opacity: 1,
+        className: countryCode,
+      },
+    );
+    this.addMouseOutStyleEventToCountryBoundary(
+      countryBoundary,
+      countryMarker,
+      {
+        weight: 0,
+        fillOpacity: 0.1,
+        opacity: 0,
+        className: countryCode,
+      },
+    );
+    countryBoundary.once("click", (ev) => {
+      L.DomEvent.stopPropagation(ev);
+      this.addUserPlayerInitialCountrySelectionHandler(
+        countryCode,
+        countryBoundary,
+        countryMarker,
+      );
+    });
+    countryMarker.once("click", (ev) => {
+      L.DomEvent.stopPropagation(ev);
+      this.addUserPlayerInitialCountrySelectionHandler(
+        countryCode,
+        countryBoundary,
+        countryMarker,
+      );
+    });
+    if (!this.playerMap.hasLayer(countryMarker)) {
+      this.playerMap.addLayer(countryMarker);
+    }
+    countryMarker._icon.classList.remove("box-shadow-marker-icon-hover");
+  }
+
+  undoCountryUnionSelection() {
+    if (this.selectedCountryTrapCodes.size > 0) {
+      const countryCodes = [...this.selectedCountryCodes].slice(0, -1);
+      let borderCodes = [];
+      countryCodes.forEach((code) => {
+        const country = this.countries[code];
+        borderCodes.push(
+          ...country.countryBorders
+            .map((countryBorderCode) => {
+              const countryCodeCc2 =
+                this.countriesCodeMapping[countryBorderCode];
+              if (countryCodeCc2) {
+                return countryCodeCc2;
+              }
+            })
+            .filter((code) => code !== undefined),
+        );
+      });
+      const countryTrapCode = Array.from(this.selectedCountryTrapCodes).at(-1);
+      const userSelectedCountriesPanel = document.getElementById(
+        this.playerSelectedCountriesContainerId,
+      );
+      if (this.selectedCountryTrapCodes.size === 1) {
+        this.gameMessageField.textContent = `ℹ️ ${
+          localization[model.worldCountries.language][
+            "Choose the first trap country"
+          ]
+        }`;
+        const countryElement = userSelectedCountriesPanel.querySelector(
+          `.country${this.selectedCountryTrapCodes.size + 20}`,
+        );
+        countryElement.innerHTML = `<span style="color:grey; border:solid 1px grey; border-radius:50%; display:inline-block; height:10px; width:10px;"></span>`;
+      } else if (this.selectedCountryTrapCodes.size === 2) {
+        this.gameMessageField.textContent = `ℹ️ ${
+          localization[model.worldCountries.language][
+            "Choose the second trap country"
+          ]
+        }`;
+        const countryElement = userSelectedCountriesPanel.querySelector(
+          `.country${this.selectedCountryTrapCodes.size + 20}`,
+        );
+        countryElement.innerHTML = `<span style="color:grey; border:solid 1px grey; border-radius:50%; display:inline-block; height:10px; width:10px;"></span>`;
+      } else if (this.selectedCountryTrapCodes.size === 3) {
+        this.gameMessageField.textContent = `ℹ️ ${
+          localization[model.worldCountries.language][
+            "Choose the third trap country"
+          ]
+        }`;
+        const countryElement = userSelectedCountriesPanel.querySelector(
+          `.country${this.selectedCountryTrapCodes.size + 20}`,
+        );
+        countryElement.innerHTML = `<span style="color:grey; border:solid 1px grey; border-radius:50%; display:inline-block; height:10px; width:10px;"></span>`;
+      }
+      this.selectedCountryCodes.delete(countryTrapCode);
+      this.selectedCountryTrapCodes.delete(countryTrapCode);
+      const countryBoundary =
+        this.playMap.countryBoundariesAndMarkersLayer.boundaries[
+          countryTrapCode
+        ];
+      const countryMarker =
+        this.playMap.countryBoundariesAndMarkersLayer.markers[countryTrapCode];
+      const country = this.countries[countryTrapCode];
+      this.initCountryBoundaryAndMarker(
+        countryTrapCode,
+        countryBoundary,
+        countryMarker,
+      );
+      const countryBorderCodes = country.countryBorders
+        .map((countryBorderCode) => {
+          const countryCodeCc2 = this.countriesCodeMapping[countryBorderCode];
+          if (countryCodeCc2) {
+            return countryCodeCc2;
+          }
+        })
+        .filter((code) => code !== undefined);
+      countryBorderCodes.forEach((countryBorderCode) => {
+        if (!borderCodes.includes(countryBorderCode)) {
+          this.selectedCountryNeighboursCodes.delete(countryBorderCode);
+          const countryBoundary =
+            this.playMap.countryBoundariesAndMarkersLayer.boundaries[
+              countryBorderCode
+            ];
+          const countryMarker =
+            this.playMap.countryBoundariesAndMarkersLayer.markers[
+              countryBorderCode
+            ];
+          this.initCountryBoundaryAndMarker(
+            countryBorderCode,
+            countryBoundary,
+            countryMarker,
+          );
+        }
+      });
+      this.playMap.setSelectedCountryFiledHtml("");
+      return;
+    }
+    const lastSelectedCountryUnionIndex = findLastIndex(
+      this.countryUnions,
+      (array) => array.some((item) => item !== undefined),
+    );
+    if (
+      lastSelectedCountryUnionIndex === -1 ||
+      lastSelectedCountryUnionIndex === 0
+    ) {
+      this.cleanSelection();
+      return;
+    } else if (lastSelectedCountryUnionIndex === 1) {
+      this.gameMessageField.textContent = `ℹ️ ${
+        localization[model.worldCountries.language][
+          "Choose the second alliance from four countries"
+        ]
+      }`;
+    } else if (lastSelectedCountryUnionIndex === 2) {
+      this.gameMessageField.textContent = `ℹ️ ${
+        localization[model.worldCountries.language][
+          "Choose the first alliance from three countries"
+        ]
+      }`;
+    } else if (lastSelectedCountryUnionIndex === 3) {
+      this.gameMessageField.textContent = `ℹ️ ${
+        localization[model.worldCountries.language][
+          "Choose the second alliance from three countries"
+        ]
+      }`;
+    } else if (lastSelectedCountryUnionIndex === 4) {
+      this.gameMessageField.textContent = `ℹ️ ${
+        localization[model.worldCountries.language][
+          "Choose the first alliance from two countries"
+        ]
+      }`;
+    } else if (lastSelectedCountryUnionIndex === 5) {
+      this.gameMessageField.textContent = `ℹ️ ${
+        localization[model.worldCountries.language][
+          "Choose the second alliance from two countries"
+        ]
+      }`;
+    } else if (lastSelectedCountryUnionIndex === 6) {
+      this.gameMessageField.textContent = `ℹ️ ${
+        localization[model.worldCountries.language][
+          "Choose the first alliance from one country"
+        ]
+      }`;
+    } else if (lastSelectedCountryUnionIndex === 7) {
+      this.gameMessageField.textContent = `ℹ️ ${
+        localization[model.worldCountries.language][
+          "Choose the second alliance from one country"
+        ]
+      }`;
+    }
+    const userSelectedCountriesPanel = document.getElementById(
+      this.playerSelectedCountriesContainerId,
+    );
+    const lastSelectedCountryUnion =
+      lastSelectedCountryUnionIndex !== -1
+        ? this.countryUnions[lastSelectedCountryUnionIndex]
+        : undefined;
+    if (lastSelectedCountryUnion) {
+      const length = lastSelectedCountryUnion.length;
+      const countryCodes = lastSelectedCountryUnion.map((countryObject) => {
+        return Object.keys(countryObject)[0];
+      });
+      const codes = Array.from(this.selectedCountryCodes).filter(
+        (code) => !countryCodes.includes(code),
+      );
+      let borderCodes = [];
+      codes.forEach((code) => {
+        const country = this.countries[code];
+        borderCodes.push(
+          ...country.countryBorders
+            .map((countryBorderCode) => {
+              const countryCodeCc2 =
+                this.countriesCodeMapping[countryBorderCode];
+              if (countryCodeCc2) {
+                return countryCodeCc2;
+              }
+            })
+            .filter((code) => code !== undefined),
+        );
+      });
+      countryCodes.forEach((countryCode) => {
+        const countryCodeIndex = Array.from(this.selectedCountryCodes).indexOf(
+          countryCode,
+        );
+        const countryElement = userSelectedCountriesPanel.querySelector(
+          `.country${countryCodeIndex + 1}`,
+        );
+        countryElement.innerHTML = `<span style="color:grey; border:solid 1px grey; border-radius:50%; display:inline-block; height:10px; width:10px;"></span>`;
+        const countryBoundary =
+          this.playMap.countryBoundariesAndMarkersLayer.boundaries[countryCode];
+        const countryMarker =
+          this.playMap.countryBoundariesAndMarkersLayer.markers[countryCode];
+        const country = this.countries[countryCode];
+        this.initCountryBoundaryAndMarker(
+          countryCode,
+          countryBoundary,
+          countryMarker,
+        );
+        const countryBorderCodes = country.countryBorders
+          .map((countryBorderCode) => {
+            const countryCodeCc2 = this.countriesCodeMapping[countryBorderCode];
+            if (countryCodeCc2) {
+              return countryCodeCc2;
+            }
+          })
+          .filter((code) => code !== undefined);
+        countryBorderCodes.forEach((countryBorderCode) => {
+          if (!borderCodes.includes(countryBorderCode)) {
+            this.selectedCountryNeighboursCodes.delete(countryBorderCode);
+            const countryBoundary =
+              this.playMap.countryBoundariesAndMarkersLayer.boundaries[
+                countryBorderCode
+              ];
+            const countryMarker =
+              this.playMap.countryBoundariesAndMarkersLayer.markers[
+                countryBorderCode
+              ];
+            this.initCountryBoundaryAndMarker(
+              countryBorderCode,
+              countryBoundary,
+              countryMarker,
+            );
+          }
+        });
+      });
+      countryCodes.forEach((countryCode) => {
+        this.selectedCountryCodes.delete(countryCode);
+      });
+      this.playerCountriesNumberField.textContent =
+        +this.playerCountriesNumberField.textContent - 1;
+      this.playMap.setSelectedCountryFiledHtml("");
+      this.countryUnions[lastSelectedCountryUnionIndex] = new Array(length);
+    }
+  }
+
   cleanSelection() {
     Object.entries(
       this.playMap.countryBoundariesAndMarkersLayer.boundaries,
@@ -3377,6 +3686,8 @@ export class Player {
       }`;
       return;
     }
+    const undoButton = document.getElementById("undo-user-countries-selection");
+    undoButton.style.display = "none";
     countryMarker._icon.classList.add("box-shadow-marker-icon-hover");
     this.selectedCountryCodes.add(countryCode);
     if (this.gameConfiguration.type === "default") {
@@ -3412,6 +3723,7 @@ export class Player {
               "Choose the second alliance from four countries"
             ]
           }`;
+          undoButton.style.display = "flex";
         }
       }
       if (
@@ -3441,6 +3753,7 @@ export class Player {
               "Choose the first alliance from three countries"
             ]
           }`;
+          undoButton.style.display = "flex";
         }
       }
       if (
@@ -3470,6 +3783,7 @@ export class Player {
               "Choose the second alliance from three countries"
             ]
           }`;
+          undoButton.style.display = "flex";
         }
       }
       if (
@@ -3499,6 +3813,7 @@ export class Player {
               "Choose the first alliance from two countries"
             ]
           }`;
+          undoButton.style.display = "flex";
         }
       }
       if (
@@ -3528,6 +3843,7 @@ export class Player {
               "Choose the second alliance from two countries"
             ]
           }`;
+          undoButton.style.display = "flex";
         }
       }
       if (
@@ -3557,6 +3873,7 @@ export class Player {
               "Choose the first alliance from one country"
             ]
           }`;
+          undoButton.style.display = "flex";
         }
       }
       if (this.selectedCountryCodes.size === 19) {
@@ -3583,6 +3900,7 @@ export class Player {
               "Choose the second alliance from one country"
             ]
           }`;
+          undoButton.style.display = "flex";
         }
       }
       if (this.selectedCountryCodes.size === 20) {
@@ -3609,6 +3927,7 @@ export class Player {
               "Choose the first trap country"
             ]
           }`;
+          undoButton.style.display = "flex";
         }
       }
       if (this.selectedCountryCodes.size === 21) {
@@ -3628,6 +3947,7 @@ export class Player {
               "Choose the second trap country"
             ]
           }`;
+          undoButton.style.display = "flex";
         }
       }
       if (this.selectedCountryCodes.size === 22) {
@@ -3647,6 +3967,7 @@ export class Player {
               "Choose the third trap country"
             ]
           }`;
+          undoButton.style.display = "flex";
         }
       }
       if (this.selectedCountryCodes.size === 23) {
@@ -3666,6 +3987,7 @@ export class Player {
               "Choose the fourth trap country"
             ]
           }`;
+          undoButton.style.display = "flex";
         }
       }
       if (this.selectedCountryCodes.size === 24) {
@@ -3685,6 +4007,7 @@ export class Player {
               "Press 'Play' to start game!"
             ]
           }`;
+          undoButton.style.display = "none";
           this.selectedCountryTrapCodes.forEach((trapCountryCode) => {
             if (this.selectedCountryCodes.has(trapCountryCode)) {
               this.selectedCountryCodes.delete(trapCountryCode);

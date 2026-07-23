@@ -238,6 +238,12 @@ tr td:first-child {
   }
 }
 
+@media (hover: hover) {
+  #undo-user-countries-selection:hover {
+    background-color: orange;
+  }
+}
+
 #coat-of-arms-link,
 #country-outline-link,
 #country-photo-link,

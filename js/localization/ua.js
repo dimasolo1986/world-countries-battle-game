@@ -577,7 +577,11 @@ export const localization = {
       "Щоб випадковим чином вибрати альянси країн, натисніть",
     "To clear selected country alliances, click":
       "Щоб очистити вибрані альянси країн, натисніть",
+    "To clear the last selected country alliance, click":
+      "Щоб очистити останній вибраний альянс країн, натисніть",
     "Instructions.": "Інструкція.",
+    "Undo Last Country Alliance Selection":
+      "Скасувати Останній Вибір Альянсу Країн",
     "To play with your friend, you need: 1. Choose the desired game configuration, whether you want to guess countries and alliances of countries from all over the world or only independent ones, receive all or only text clues (country name, country capital, region, subregion) or visual clues (country coat of arms, country flag, country's outline on map, photo from country) or choose the hints yourself during the game, time (in seconds) to try to guess the opponent's country, number of bonus countries. You can do this on this page or on the main page (after creating a game room, you will not be able to change this setting). 2. Create a game room and a link to the game for your friend by clicking the 'Create Game Room' button. 3. Copy the game link by clicking the 'Copy Link' button and send it to your friend or share the game link by clicking the 'Share Link With Friend' button. 4. After completing a game or several games, you can delete the game room by clicking the 'Delete Game Room' button (after deleting the game room, your friend will no longer be able to use the game link to play with you).":
       "Для гри з Вашим другом Вам необхідно: 1. Обрати бажану конфігурацію гри чи бажаєте Ви відгадувати країни та альянси країн серед усіх країн Світу або тільки незалежних, отримувати всі або лише текстові підказки (назва країни, столиця країни, частина світу, регіон) або візуальні підказки (герб країни, прапор країни, контур країни на мапі, фотографія з країни) або обирати підказки самостійно під час гри, час (у секундах), щоб спробувати вгадати країну суперника, кількість бонусних країн. Ви можете це зробити на цій сторінці або на головній (після створення ігрової кімнати Ви не зможете змінити це налаштування). 2. Створити ігрову кімнату та посилання на гру для Вашого друга натиснувши кнопку 'Створити Ігрову Кімнату'. 3. Скопіювати посилання на гру натиснувши на кнопку 'Скопіювати Посилання' та відправити його Вашому другу або поділитись посиланням на гру натиснувши на кнопку 'Поділитися З Другом'. 4. Після завершення гри або декількох ігор Ви можете видалити ігрову кімнату натиснувши на кнопку 'Видалити Ігрову Кімнату' (після видалення ігрової кімнати Ваш друг вже не зможе використовувати посилання на гру для гри з Вами).",
     "To play with your friend, you need to select the game mode with a friend on the main page, create a game room and a link to the game for your friend and send it to him. Follow the connection status of your friend at the top of the screen after starting the game. There is also the possibility of communicating with your friend via chat at the bottom of the screen: you can greet him, wish him a good game or give yourself hints about your countries and alliances of countries (chat may be hidden by the bottom browser bar, so open it full screen or hide this bar).":
@@ -1411,7 +1415,11 @@ export const localization = {
       "To select alliances of countries randomly, click",
     "To clear selected country alliances, click":
       "To clear selected country alliances, click",
+    "To clear the last selected country alliance, click":
+      "To clear the last selected country alliance, click",
     "Instructions.": "Instructions.",
+    "Undo Last Country Alliance Selection":
+      "Undo Last Country Alliance Selection",
     "To play with your friend, you need: 1. Choose the desired game configuration, whether you want to guess countries and alliances of countries from all over the world or only independent ones, receive all or only text clues (country name, country capital, region, subregion) or visual clues (country coat of arms, country flag, country's outline on map, photo from country) or choose the hints yourself during the game, time (in seconds) to try to guess the opponent's country, number of bonus countries. You can do this on this page or on the main page (after creating a game room, you will not be able to change this setting). 2. Create a game room and a link to the game for your friend by clicking the 'Create Game Room' button. 3. Copy the game link by clicking the 'Copy Link' button and send it to your friend or share the game link by clicking the 'Share Link With Friend' button. 4. After completing a game or several games, you can delete the game room by clicking the 'Delete Game Room' button (after deleting the game room, your friend will no longer be able to use the game link to play with you).":
       "To play with your friend, you need: 1. Choose the desired game configuration, whether you want to guess countries and alliances of countries from all over the world or only independent ones, receive all or only text clues (country name, country capital, region, subregion) or visual clues (country coat of arms, country flag, country's outline on map, photo from country) or choose the hints yourself during the game, time (in seconds) to try to guess the opponent's country, number of bonus countries. You can do this on this page or on the main page (after creating a game room, you will not be able to change this setting). 2. Create a game room and a link to the game for your friend by clicking the 'Create Game Room' button. 3. Copy the game link by clicking the 'Copy Link' button and send it to your friend or share the game link by clicking the 'Share Link With Friend' button. 4. After completing a game or several games, you can delete the game room by clicking the 'Delete Game Room' button (after deleting the game room, your friend will no longer be able to use the game link to play with you).",
     "To play with your friend, you need to select the game mode with a friend on the main page, create a game room and a link to the game for your friend and send it to him. Follow the connection status of your friend at the top of the screen after starting the game. There is also the possibility of communicating with your friend via chat at the bottom of the screen: you can greet him, wish him a good game or give yourself hints about your countries and alliances of countries (chat may be hidden by the bottom browser bar, so open it full screen or hide this bar).":
@@ -2219,7 +2227,11 @@ export const localization = {
       "Um Länder-Allianzen zufällig auszuwählen, klicken Sie hier",
     "To clear selected country alliances, click":
       "Um die ausgewählten Länder Allianzen zu löschen, klicken Sie hier",
+    "To clear the last selected country alliance, click":
+      "Um das zuletzt ausgewählte Länderbündnis zu löschen, klicken Sie hier",
     "Instructions.": "Anweisungen.",
+    "Undo Last Country Alliance Selection":
+      "Letzte Länderallianzauswahl rückgängig machen",
     "Play With A Friend Mode": "Mit einem Freund spielen-Modus",
     "To play with your friend, you need to select the game mode with a friend on the main page, create a game room and a link to the game for your friend and send it to him. Follow the connection status of your friend at the top of the screen after starting the game. There is also the possibility of communicating with your friend via chat at the bottom of the screen: you can greet him, wish him a good game or give yourself hints about your countries and alliances of countries (chat may be hidden by the bottom browser bar, so open it full screen or hide this bar).":
       "Um mit einem Freund zu spielen, wähle auf der Startseite den Spielmodus 'Freund', erstelle einen Spielraum und sende ihm den Link zum Spiel. Nach dem Spielstart kannst du den Verbindungsstatus deines Freundes oben auf dem Bildschirm verfolgen. Außerdem kannst du unten auf dem Bildschirm mit ihm chatten: Begrüße ihn, wünsche ihm viel Spaß oder gib ihm Tipps zu deinen Ländern und Länderbündnissen (Der Chat wird möglicherweise von der unteren Browserleiste verdeckt. Öffnen Sie ihn daher im Vollbildmodus oder blenden Sie diese Leiste aus).",
@@ -3069,6 +3081,8 @@ export const localization = {
     "Delete Game Room": "Supprimer la salle de jeux",
     "Game Link For Friend": "Lien de jeu pour un ami",
     "Instructions.": "Instructions.",
+    "Undo Last Country Alliance Selection":
+      "Annuler la dernière sélection d'alliance de pays",
     "The opponent gets a hint": "L'adversaire reçoit un indice",
     "Hints:": "Conseils:",
     Hide: "Masquer",
@@ -3157,6 +3171,8 @@ export const localization = {
       "Pour sélectionner aléatoirement des alliances de pays, cliquez ici",
     "To clear selected country alliances, click":
       "Pour supprimer les alliances de pays sélectionnés, cliquez ici",
+    "To clear the last selected country alliance, click":
+      "Pour supprimer la dernière alliance de pays sélectionnée, cliquez",
     "To play with your friend, you need: 1. Choose the desired game configuration, whether you want to guess countries and alliances of countries from all over the world or only independent ones, receive all or only text clues (country name, country capital, region, subregion) or visual clues (country coat of arms, country flag, country's outline on map, photo from country) or choose the hints yourself during the game, time (in seconds) to try to guess the opponent's country, number of bonus countries. You can do this on this page or on the main page (after creating a game room, you will not be able to change this setting). 2. Create a game room and a link to the game for your friend by clicking the 'Create Game Room' button. 3. Copy the game link by clicking the 'Copy Link' button and send it to your friend or share the game link by clicking the 'Share Link With Friend' button. 4. After completing a game or several games, you can delete the game room by clicking the 'Delete Game Room' button (after deleting the game room, your friend will no longer be able to use the game link to play with you).":
       "Pour jouer avec votre ami, suivez ces étapes : 1. Choisissez la configuration de jeu souhaitée : deviner les pays et les alliances de pays du monde entier ou uniquement les pays indépendants, recevoir tous les indices ou seulement des indices textuels (nom du pays, capitale du pays, région, sous-région) ou des indices visuels (armoiries du pays, drapeau du pays, contour du pays sur une carte, photo du pays) ou choisir les indices vous-même pendant le jeu, temps (en secondes) pour essayer de deviner le pays de l'adversaire, nombre de pays bonus. Vous pouvez le faire sur cette page ou sur la page principale (une fois la salle de jeu créée, vous ne pourrez plus modifier ce paramètre). 2. Créez une salle de jeu et un lien pour votre ami en cliquant sur le bouton 'Créer une salle de jeux'. 3. Copiez le lien en cliquant sur le bouton 'Copier le Lien' et envoyez-le à votre ami, ou partagez-le en cliquant sur le bouton 'Partager le lien avec un ami'. 4. Après une ou plusieurs parties, vous pouvez supprimer la salle de jeu en cliquant sur le bouton 'Supprimer la salle de jeux' (votre ami ne pourra alors plus utiliser le lien pour jouer avec vous).",
     "Play With A Friend Mode": "Mode Jouer avec un ami",
@@ -3965,6 +3981,8 @@ export const localization = {
       "No se pudo eliminar la sala de juegos con ID:",
     "To clear selected country alliances, click":
       "Para eliminar las alianzas de los países seleccionados, haga clic",
+    "To clear the last selected country alliance, click":
+      "Para borrar la última alianza de países seleccionada, haga clic aquí",
     "Play With A Friend Mode": "Modo Jugar con un Amigo",
     "Selected Alliance Country": "País de alianza seleccionado",
     "Selected Trap Country": "País de trampa seleccionado",
@@ -4017,6 +4035,8 @@ export const localization = {
     "To select alliances of countries randomly, click":
       "Para seleccionar alianzas de países al azar, haga clic",
     "Instructions.": "Instrucciones.",
+    "Undo Last Country Alliance Selection":
+      "Deshacer la última selección de alianza de países",
     "To play with your friend, you need: 1. Choose the desired game configuration, whether you want to guess countries and alliances of countries from all over the world or only independent ones, receive all or only text clues (country name, country capital, region, subregion) or visual clues (country coat of arms, country flag, country's outline on map, photo from country) or choose the hints yourself during the game, time (in seconds) to try to guess the opponent's country, number of bonus countries. You can do this on this page or on the main page (after creating a game room, you will not be able to change this setting). 2. Create a game room and a link to the game for your friend by clicking the 'Create Game Room' button. 3. Copy the game link by clicking the 'Copy Link' button and send it to your friend or share the game link by clicking the 'Share Link With Friend' button. 4. After completing a game or several games, you can delete the game room by clicking the 'Delete Game Room' button (after deleting the game room, your friend will no longer be able to use the game link to play with you).":
       "Para jugar con tu amigo, necesitas: 1. Elegir la configuración de juego deseada: si quieres adivinar países y alianzas de todo el mundo o solo países independientes, recibir todas o solo pistas de texto (nombre del país, capital del país, región, subregión) o pistas visuales (escudo de armas del país, bandera del país, contorno del país en el mapa, foto del país) o elegir las pistas tú mismo durante el juego, tiempo (en segundos) para intentar adivinar el país del oponente, número de países de bonificación. Puedes hacerlo en esta página o en la página principal (una vez creada la sala de juego, no podrás cambiar esta configuración). 2. Crear una sala de juego y un enlace para tu amigo haciendo clic en el botón 'Crear sala de juegos'. 3. Copiar el enlace haciendo clic en el botón 'Copiar Enlace' y enviárselo a tu amigo, o compartirlo haciendo clic en el botón 'Compartir enlace con amigo'. 4. Después de completar una o varias partidas, puedes eliminar la sala de juego haciendo clic en el botón 'Eliminar sala de juegos' (tras eliminarla, tu amigo ya no podrá usar el enlace para jugar contigo).",
     "To play with your friend, you need to select the game mode with a friend on the main page, create a game room and a link to the game for your friend and send it to him. Follow the connection status of your friend at the top of the screen after starting the game. There is also the possibility of communicating with your friend via chat at the bottom of the screen: you can greet him, wish him a good game or give yourself hints about your countries and alliances of countries (chat may be hidden by the bottom browser bar, so open it full screen or hide this bar).":
@@ -4811,6 +4831,8 @@ export const localization = {
       "Per selezionare alleanze di paesi in modo casuale, clicca qui",
     "To clear selected country alliances, click":
       "Per rimuovere le alleanze dei paesi selezionati, clicca qui",
+    "To clear the last selected country alliance, click":
+      "Per cancellare l'ultima alleanza di paesi selezionata, fare clic su",
     "Hints:": "Suggerimenti:",
     Hide: "Nascondere",
     "Country Alliance": "Alleanza di Paese",
@@ -4853,6 +4875,8 @@ export const localization = {
     "Opponent guessed all your countries:":
       "L'avversario ha indovinato tutti i tuoi paesi:",
     "Instructions.": "Istruzioni.",
+    "Undo Last Country Alliance Selection":
+      "Annullare l'ultima selezione dell'alleanza dei paesi",
     Points: "Punti",
     "Your attempt to guess opponent's country":
       "Il tuo tentativo di indovinare il paese dell'avversario",

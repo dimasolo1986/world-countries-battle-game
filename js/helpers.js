@@ -187,6 +187,15 @@ export const shareQuizResults = function () {
   }
 };
 
+export const findLastIndex = function (array, predicate) {
+  for (let i = array.length - 1; i >= 0; i--) {
+    if (predicate(array[i], i, array)) {
+      return i;
+    }
+  }
+  return -1;
+};
+
 export const currentDateTime = function () {
   const d = new Date();
   const date = d.toISOString().split("T")[0];

@@ -198,6 +198,7 @@ export class PlayMap {
     L.Control.PlayerOneCountriesField = L.Control.extend({
       gameConfiguration: this.gameConfiguration,
       cleanFunction: this.cleanSelection.bind(this),
+      undoFunction: this.undoLastSelection.bind(this),
       randomFunction: this.reandomCountriesSelection.bind(this),
       onAdd: function (map) {
         const container = L.DomUtil.create("div");
@@ -233,6 +234,21 @@ export class PlayMap {
         random.style.borderTop = "1px dotted black";
         random.textContent = "🎲";
         random.addEventListener("click", this.randomFunction);
+        const undo = L.DomUtil.create("div");
+        undo.style.height = "23px";
+        undo.style.display = "flex";
+        undo.style.justifyContent = "center";
+        undo.style.alignItems = "center";
+        undo.style.cursor = "pointer";
+        undo.title =
+          localization[model.worldCountries.language][
+            "Undo Last Country Alliance Selection"
+          ];
+        undo.id = "undo-user-countries-selection";
+        undo.style.borderTop = "1px dotted black";
+        undo.textContent = "↩️";
+        undo.style.display = "none";
+        undo.addEventListener("click", this.undoFunction);
         const clean = L.DomUtil.create("div");
         clean.style.height = "23px";
         clean.style.display = "flex";
@@ -249,6 +265,7 @@ export class PlayMap {
           this.gameConfiguration.countriesUnionsHtml,
         );
         container.appendChild(random);
+        container.appendChild(undo);
         container.appendChild(clean);
         return container;
       },
@@ -874,6 +891,10 @@ export class PlayMap {
     randomSection.style.display = "flex";
   }
 
+  undoLastSelection() {
+    this.playerOne.undoCountryUnionSelection();
+  }
+
   reandomCountriesSelection() {
     this.playerOne.randomCountrySelection();
     const randomSection = document.getElementById(
@@ -1019,6 +1040,10 @@ export class PlayMap {
       "random-user-countries-selection",
     );
     randomSection.style.display = "flex";
+    const undoSelection = document.getElementById(
+      "undo-user-countries-selection",
+    );
+    undoSelection.style.display = "none";
     document.getElementById("countries-number-field").textContent =
       this.countriesNumber;
     document.getElementById("hints-panel").classList.add("not-displayed");
@@ -1040,6 +1065,10 @@ export class PlayMap {
       "random-user-countries-selection",
     );
     randomSection.style.display = "none";
+    const undoSelection = document.getElementById(
+      "undo-user-countries-selection",
+    );
+    undoSelection.style.display = "none";
     document.getElementById("countries-number-field").textContent =
       this.countriesNumber;
     document.getElementById("hints-panel").classList.add("not-displayed");
