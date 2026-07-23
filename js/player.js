@@ -4213,7 +4213,11 @@ export class Player {
       country.coatOfArms && country.coatOfArms.png
         ? country.coatOfArms.png
         : null;
-    const countryPopup = L.popup({ closeOnClick: false, closeButton: false })
+    const countryPopup = L.popup({
+      closeOnClick: false,
+      closeButton: false,
+      autoPanPadding: [50, 50],
+    })
       .setLatLng(country.latlng ? country.latlng : country.capitalInfo.latlng)
       .setContent(
         `<img src="${
