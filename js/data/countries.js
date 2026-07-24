@@ -106,7 +106,9 @@ export const COUNTRIES = [
       png: "https://flagcdn.com/w320/yt.png",
       svg: "https://flagcdn.com/yt.svg",
     },
-    coatOfArms: {},
+    coatOfArms: {
+      png: "https://upload.wikimedia.org/wikipedia/commons/b/bf/Coat_of_Arms_of_Mayotte.svg",
+    },
     startOfWeek: "monday",
     capitalInfo: {
       latlng: [-12.78, 45.22],
@@ -361,7 +363,9 @@ export const COUNTRIES = [
       png: "https://flagcdn.com/w320/vi.png",
       svg: "https://flagcdn.com/vi.svg",
     },
-    coatOfArms: {},
+    coatOfArms: {
+      png: "https://upload.wikimedia.org/wikipedia/commons/8/80/Seal_of_the_United_States_Virgin_Islands.svg",
+    },
     startOfWeek: "monday",
     capitalInfo: {
       latlng: [18.35, -64.93],
@@ -390,7 +394,9 @@ export const COUNTRIES = [
       png: "https://flagcdn.com/w320/nu.png",
       svg: "https://flagcdn.com/nu.svg",
     },
-    coatOfArms: {},
+    coatOfArms: {
+      png: "https://upload.wikimedia.org/wikipedia/commons/c/c2/Coat_of_arms_of_Niue.svg",
+    },
     startOfWeek: "monday",
     capitalInfo: {
       latlng: [-19.02, -169.92],
@@ -784,7 +790,9 @@ export const COUNTRIES = [
       png: "https://flagcdn.com/w320/eh.png",
       svg: "https://flagcdn.com/eh.svg",
     },
-    coatOfArms: {},
+    coatOfArms: {
+      png: "https://upload.wikimedia.org/wikipedia/commons/4/40/Coat_of_arms_of_the_Sahrawi_Arab_Democratic_Republic.svg",
+    },
     startOfWeek: "monday",
     capitalInfo: {
       latlng: [-13.28, 27.14],
@@ -1202,7 +1210,9 @@ export const COUNTRIES = [
       png: "https://flagcdn.com/w320/mp.png",
       svg: "https://flagcdn.com/mp.svg",
     },
-    coatOfArms: {},
+    coatOfArms: {
+      png: "https://upload.wikimedia.org/wikipedia/commons/4/4d/Seal_of_the_Northern_Mariana_Islands.svg",
+    },
     startOfWeek: "monday",
     capitalInfo: {
       latlng: [15.2, 145.75],
@@ -2088,7 +2098,9 @@ export const COUNTRIES = [
       png: "https://flagcdn.com/w320/tk.png",
       svg: "https://flagcdn.com/tk.svg",
     },
-    coatOfArms: {},
+    coatOfArms: {
+      png: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Badge_of_Tokelau.svg",
+    },
     startOfWeek: "monday",
     capitalInfo: {
       latlng: [-9.38, -171.22],
@@ -2719,7 +2731,9 @@ export const COUNTRIES = [
       png: "https://flagcdn.com/w320/bl.png",
       svg: "https://flagcdn.com/bl.svg",
     },
-    coatOfArms: {},
+    coatOfArms: {
+      png: "https://upload.wikimedia.org/wikipedia/commons/3/35/Blason_St_Barth%C3%A9l%C3%A9my_TOM_entire.svg",
+    },
     startOfWeek: "monday",
     capitalInfo: {
       latlng: [17.88, -62.85],
@@ -2857,7 +2871,9 @@ export const COUNTRIES = [
       png: "https://flagcdn.com/w320/pr.png",
       svg: "https://flagcdn.com/pr.svg",
     },
-    coatOfArms: {},
+    coatOfArms: {
+      png: "https://upload.wikimedia.org/wikipedia/commons/3/36/Coat_of_arms_of_the_Commonwealth_of_Puerto_Rico.svg",
+    },
     startOfWeek: "monday",
     capitalInfo: {
       latlng: [18.47, -66.12],
@@ -3045,7 +3061,9 @@ export const COUNTRIES = [
       png: "https://flagcdn.com/w320/gs.png",
       svg: "https://flagcdn.com/gs.svg",
     },
-    coatOfArms: {},
+    coatOfArms: {
+      png: "https://upload.wikimedia.org/wikipedia/commons/7/78/Coat_of_arms_of_South_Georgia_and_the_South_Sandwich_Islands.svg",
+    },
     startOfWeek: "monday",
     capitalInfo: {
       latlng: [-54.28, -36.5],
@@ -3110,7 +3128,9 @@ export const COUNTRIES = [
       png: "https://flagcdn.com/w320/io.png",
       svg: "https://flagcdn.com/io.svg",
     },
-    coatOfArms: {},
+    coatOfArms: {
+      png: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Coat_of_arms_of_the_British_Indian_Ocean_Territory.svg",
+    },
     startOfWeek: "monday",
     capitalInfo: {
       latlng: [-7.3, 72.4],
@@ -3356,7 +3376,9 @@ export const COUNTRIES = [
       png: "https://flagcdn.com/w320/as.png",
       svg: "https://flagcdn.com/as.svg",
     },
-    coatOfArms: {},
+    coatOfArms: {
+      png: "https://mainfacts.com/media/images/coats_of_arms/as.png",
+    },
     startOfWeek: "monday",
     capitalInfo: {
       latlng: [-14.27, -170.7],
@@ -3744,7 +3766,9 @@ export const COUNTRIES = [
       png: "https://flagcdn.com/w320/mf.png",
       svg: "https://flagcdn.com/mf.svg",
     },
-    coatOfArms: {},
+    coatOfArms: {
+      png: "https://upload.wikimedia.org/wikipedia/commons/a/a6/Coat_of_arms_of_Saint_Martin.svg",
+    },
     startOfWeek: "monday",
     capitalInfo: {
       latlng: [18.07, -63.08],
@@ -3773,7 +3797,9 @@ export const COUNTRIES = [
       png: "https://flagcdn.com/w320/pn.png",
       svg: "https://flagcdn.com/pn.svg",
     },
-    coatOfArms: {},
+    coatOfArms: {
+      png: "https://upload.wikimedia.org/wikipedia/commons/c/c2/Coat_of_arms_of_the_Pitcairn_Islands.svg",
+    },
     startOfWeek: "monday",
     capitalInfo: {
       latlng: [-25.07, -130.08],
@@ -4703,7 +4729,9 @@ export const COUNTRIES = [
       png: "https://flagcdn.com/w320/pm.png",
       svg: "https://flagcdn.com/pm.svg",
     },
-    coatOfArms: {},
+    coatOfArms: {
+      png: "https://upload.wikimedia.org/wikipedia/commons/1/1c/Coat_of_arms_of_Saint_Pierre_and_Miquelon.svg",
+    },
     startOfWeek: "monday",
     capitalInfo: {
       latlng: [46.77, -56.18],
@@ -5381,7 +5409,9 @@ export const COUNTRIES = [
       svg: "https://flagcdn.com/sz.svg",
       alt: "The flag of Eswatini is composed of three horizontal bands — a large central yellow-edged red band, and a light blue band above and beneath the red band. The red band is three times the height of the blue bands and bears a centered emblem made up of a large black and white Nguni shield covering two spears and a staff decorated with feather tassels, all placed horizontally.",
     },
-    coatOfArms: {},
+    coatOfArms: {
+      png: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Coat_of_arms_of_Eswatini.png",
+    },
     startOfWeek: "monday",
     capitalInfo: {
       latlng: [-26.32, 31.13],
@@ -5486,7 +5516,9 @@ export const COUNTRIES = [
       svg: "https://flagcdn.com/cg.svg",
       alt: "The flag of the Republic of the Congo features a yellow diagonal band that extends from the lower hoist-side corner to the upper fly-side corner of the field. Above and beneath this band are a green and red triangle respectively.",
     },
-    coatOfArms: {},
+    coatOfArms: {
+      png: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Coat_of_Arms_of_the_Republic_of_the_Congo.svg",
+    },
     startOfWeek: "monday",
     capitalInfo: {
       latlng: [-4.25, 15.28],
@@ -5869,7 +5901,9 @@ export const COUNTRIES = [
       png: "https://flagcdn.com/w320/wf.png",
       svg: "https://flagcdn.com/wf.svg",
     },
-    coatOfArms: {},
+    coatOfArms: {
+      png: "https://upload.wikimedia.org/wikipedia/commons/9/91/Coat_of_arms_of_Wallis_and_Futuna.svg",
+    },
     startOfWeek: "monday",
     capitalInfo: {
       latlng: [-13.95, -171.93],
@@ -6038,7 +6072,9 @@ export const COUNTRIES = [
       png: "https://flagcdn.com/w320/re.png",
       svg: "https://flagcdn.com/re.svg",
     },
-    coatOfArms: {},
+    coatOfArms: {
+      png: "https://upload.wikimedia.org/wikipedia/commons/6/64/Coat_of_arms_of_R%C3%A9union.jpg",
+    },
     startOfWeek: "monday",
     capitalInfo: {
       latlng: [-20.88, 55.45],
@@ -6206,7 +6242,9 @@ export const COUNTRIES = [
       png: "https://flagcdn.com/w320/tc.png",
       svg: "https://flagcdn.com/tc.svg",
     },
-    coatOfArms: {},
+    coatOfArms: {
+      png: "https://upload.wikimedia.org/wikipedia/commons/f/f6/Coat_of_arms_of_the_Turks_and_Caicos_Islands.svg",
+    },
     startOfWeek: "monday",
     capitalInfo: {
       latlng: [21.46, -71.14],
@@ -6448,7 +6486,9 @@ export const COUNTRIES = [
       png: "https://flagcdn.com/w320/nf.png",
       svg: "https://flagcdn.com/nf.svg",
     },
-    coatOfArms: {},
+    coatOfArms: {
+      png: "https://upload.wikimedia.org/wikipedia/commons/5/58/Coat_of_arms_of_Norfolk_Island.svg",
+    },
     startOfWeek: "monday",
     capitalInfo: {
       latlng: [-29.05, 167.97],
@@ -6814,7 +6854,9 @@ export const COUNTRIES = [
       png: "https://flagcdn.com/w320/sx.png",
       svg: "https://flagcdn.com/sx.svg",
     },
-    coatOfArms: {},
+    coatOfArms: {
+      png: "https://upload.wikimedia.org/wikipedia/commons/6/67/Coat_of_arms_of_Sint_Maarten.svg",
+    },
     startOfWeek: "monday",
     capitalInfo: {
       latlng: [18.02, -63.03],
@@ -7209,7 +7251,7 @@ export const COUNTRIES = [
       alt: "The flag of Seychelles is composed of five broadening oblique bands of blue, yellow, red, white and green, which extend from the hoist side of the bottom edge to the top and fly edges of the field.",
     },
     coatOfArms: {
-      png: "https://mainfacts.com/media/images/coats_of_arms/sc.png",
+      png: "https://upload.wikimedia.org/wikipedia/commons/f/f9/Coat_of_arms_of_Seychelles.svg",
       svg: "https://mainfacts.com/media/images/coats_of_arms/sc.svg",
     },
     startOfWeek: "monday",
@@ -7956,7 +7998,9 @@ export const COUNTRIES = [
       svg: "https://flagcdn.com/tl.svg",
       alt: "The flag of Timor-Leste has a red field with two isosceles triangles which share a common base on the hoist end. The smaller black triangle, which bears a five-pointed white star at its center and spans one-third the width of the field, is superimposed on the larger yellow triangle that extends to the center of the field.",
     },
-    coatOfArms: {},
+    coatOfArms: {
+      png: "https://upload.wikimedia.org/wikipedia/commons/1/14/Coat_of_arms_of_East_Timor_2.svg",
+    },
     startOfWeek: "monday",
     capitalInfo: {
       latlng: [-8.58, 125.6],
@@ -8208,7 +8252,8 @@ export const COUNTRIES = [
       common: "DR Congo",
       official: "Democratic Republic of the Congo",
     },
-    wikiLandscapeCategoryName: "Landscapes_of_the_Democratic_Republic_of_the_Congo",
+    wikiLandscapeCategoryName:
+      "Landscapes_of_the_Democratic_Republic_of_the_Congo",
     cca2: "CD",
     ccn3: "180",
     cca3: "COD",
