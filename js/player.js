@@ -2535,11 +2535,16 @@ export class Player {
             const countryUnionString = countryUnion
               .map(
                 (countryObject) =>
-                  localization[model.worldCountries.language]["countries"][
-                    this.countries[Object.keys(countryObject)[0]].countryName
-                  ],
+                  `<span>${
+                    localization[model.worldCountries.language]["countries"][
+                      this.countries[Object.keys(countryObject)[0]].countryName
+                    ]
+                  }</span>` +
+                  `${this.countries[Object.keys(countryObject)[0]].countryCoatOfArms ? `<img src="${this.countries[Object.keys(countryObject)[0]].countryCoatOfArms}" style="width:16px; height:16px; margin-left:5px; vertical-align: sub;"></img>` : '<span style="margin-left: 5px;">🛡️</span>'}`,
               )
-              .join(" 🔗 ");
+              .join(
+                '<span style="margin-left: 3px; margin-right: 3px;">&times;</span>',
+              );
             countryUnion.forEach((countryObject) => {
               const countryCode = Object.keys(countryObject)[0];
               this.setElementStyle(
