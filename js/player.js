@@ -3294,8 +3294,17 @@ export class Player {
       lastSelectedCountryUnionIndex === -1 ||
       lastSelectedCountryUnionIndex === 0
     ) {
-      this.cleanSelection();
-      return;
+      this.setMessageInnerHtmlField(
+        `<span style="font-size: 0.8rem;">ℹ️ ${
+          localization[model.worldCountries.language][
+            "Choose the first alliance from four countries on map or click"
+          ] + " 🎲"
+        }</span>`,
+      );
+      this.playMap.initSelectionCountriesMapView();
+      this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
+        animate: false,
+      });
     } else if (lastSelectedCountryUnionIndex === 1) {
       this.gameMessageField.textContent = `ℹ️ ${
         localization[model.worldCountries.language][
