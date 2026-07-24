@@ -3426,11 +3426,88 @@ export class Player {
       countryCodes.forEach((countryCode) => {
         this.selectedCountryCodes.delete(countryCode);
       });
-      this.playerCountriesNumberField.textContent =
-        +this.playerCountriesNumberField.textContent - 1;
+      if (
+        Array.from(lastSelectedCountryUnion).some(
+          (item) => item === undefined || item === null,
+        )
+      ) {
+        Object.entries(
+          this.playMap.countryBoundariesAndMarkersLayer.boundaries,
+        ).forEach(([countryCode, countryBoundary]) => {
+          const isEnoughNeighbours =
+            this.isEnoughCountryNeighboursByCountryUnionIndex(
+              lastSelectedCountryUnionIndex,
+              countryCode,
+            );
+          const countryMarker =
+            this.playMap.countryBoundariesAndMarkersLayer.markers[countryCode];
+          if (
+            !this.playerMap.hasLayer(countryMarker) &&
+            !this.selectedCountryNeighboursCodes.has(countryCode) &&
+            isEnoughNeighbours
+          ) {
+            this.playerMap.addLayer(countryMarker);
+          }
+          if (!this.playerMap.hasLayer(countryBoundary) && isEnoughNeighbours) {
+            this.playerMap.addLayer(countryBoundary);
+          }
+        });
+      } else {
+        Object.entries(
+          this.playMap.countryBoundariesAndMarkersLayer.boundaries,
+        ).forEach(([countryCode, countryBoundary]) => {
+          const isEnoughNeighbours =
+            this.isEnoughCountryNeighboursByCountryUnionIndex(
+              lastSelectedCountryUnionIndex,
+              countryCode,
+            );
+          const countryMarker =
+            this.playMap.countryBoundariesAndMarkersLayer.markers[countryCode];
+          if (
+            this.playerMap.hasLayer(countryBoundary) &&
+            !isEnoughNeighbours &&
+            !this.selectedCountryCodes.has(countryCode) &&
+            !this.selectedCountryNeighboursCodes.has(countryCode)
+          ) {
+            this.playerMap.removeLayer(countryBoundary);
+          }
+          if (
+            this.playerMap.hasLayer(countryMarker) &&
+            !isEnoughNeighbours &&
+            !this.selectedCountryCodes.has(countryCode) &&
+            !this.selectedCountryNeighboursCodes.has(countryCode)
+          ) {
+            this.playerMap.removeLayer(countryMarker);
+          }
+        });
+        this.playerCountriesNumberField.textContent =
+          +this.playerCountriesNumberField.textContent - 1;
+      }
       this.playMap.setSelectedCountryFiledHtml("");
       this.countryUnions[lastSelectedCountryUnionIndex] = new Array(length);
     }
+  }
+
+  isEnoughCountryNeighboursByCountryUnionIndex(countryUnionIndex, countryCode) {
+    let isEnoughNeighbours = false;
+    if (countryUnionIndex === 0) {
+      isEnoughNeighbours = this.isEnoughCountryNeighbours(countryCode, 4);
+    } else if (countryUnionIndex === 1) {
+      isEnoughNeighbours = this.isEnoughCountryNeighbours(countryCode, 4);
+    } else if (countryUnionIndex === 2) {
+      isEnoughNeighbours = this.isEnoughCountryNeighbours(countryCode, 3);
+    } else if (countryUnionIndex === 3) {
+      isEnoughNeighbours = this.isEnoughCountryNeighbours(countryCode, 3);
+    } else if (countryUnionIndex === 4) {
+      isEnoughNeighbours = this.isEnoughCountryNeighbours(countryCode, 2);
+    } else if (countryUnionIndex === 5) {
+      isEnoughNeighbours = this.isEnoughCountryNeighbours(countryCode, 2);
+    } else if (countryUnionIndex === 6) {
+      isEnoughNeighbours = this.isEnoughCountryNeighbours(countryCode, 1);
+    } else {
+      isEnoughNeighbours = this.isEnoughCountryNeighbours(countryCode, 1);
+    }
+    return isEnoughNeighbours;
   }
 
   cleanSelection() {
@@ -3698,9 +3775,9 @@ export class Player {
     const cleanSection = document.getElementById(
       "clean-user-countries-selection",
     );
-    cleanSection.style.display = "flex";
+    cleanSection.style.display = "none";
     const undoButton = document.getElementById("undo-user-countries-selection");
-    undoButton.style.display = "none";
+    undoButton.style.display = "flex";
     countryMarker._icon.classList.add("box-shadow-marker-icon-hover");
     this.selectedCountryCodes.add(countryCode);
     if (this.gameConfiguration.type === "default") {
@@ -3736,8 +3813,6 @@ export class Player {
               "Choose the second alliance from four countries"
             ]
           }`;
-          undoButton.style.display = "flex";
-          cleanSection.style.display = "none";
         }
       }
       if (
@@ -3767,8 +3842,6 @@ export class Player {
               "Choose the first alliance from three countries"
             ]
           }`;
-          undoButton.style.display = "flex";
-          cleanSection.style.display = "none";
         }
       }
       if (
@@ -3798,8 +3871,6 @@ export class Player {
               "Choose the second alliance from three countries"
             ]
           }`;
-          undoButton.style.display = "flex";
-          cleanSection.style.display = "none";
         }
       }
       if (
@@ -3829,8 +3900,6 @@ export class Player {
               "Choose the first alliance from two countries"
             ]
           }`;
-          undoButton.style.display = "flex";
-          cleanSection.style.display = "none";
         }
       }
       if (
@@ -3860,8 +3929,6 @@ export class Player {
               "Choose the second alliance from two countries"
             ]
           }`;
-          undoButton.style.display = "flex";
-          cleanSection.style.display = "none";
         }
       }
       if (
@@ -3891,8 +3958,6 @@ export class Player {
               "Choose the first alliance from one country"
             ]
           }`;
-          undoButton.style.display = "flex";
-          cleanSection.style.display = "none";
         }
       }
       if (this.selectedCountryCodes.size === 19) {
@@ -3919,8 +3984,6 @@ export class Player {
               "Choose the second alliance from one country"
             ]
           }`;
-          undoButton.style.display = "flex";
-          cleanSection.style.display = "none";
         }
       }
       if (this.selectedCountryCodes.size === 20) {
@@ -3947,8 +4010,6 @@ export class Player {
               "Choose the first trap country"
             ]
           }`;
-          undoButton.style.display = "flex";
-          cleanSection.style.display = "none";
         }
       }
       if (this.selectedCountryCodes.size === 21) {
@@ -3968,8 +4029,6 @@ export class Player {
               "Choose the second trap country"
             ]
           }`;
-          undoButton.style.display = "flex";
-          cleanSection.style.display = "none";
         }
       }
       if (this.selectedCountryCodes.size === 22) {
@@ -3989,8 +4048,6 @@ export class Player {
               "Choose the third trap country"
             ]
           }`;
-          undoButton.style.display = "flex";
-          cleanSection.style.display = "none";
         }
       }
       if (this.selectedCountryCodes.size === 23) {
@@ -4010,8 +4067,6 @@ export class Player {
               "Choose the fourth trap country"
             ]
           }`;
-          undoButton.style.display = "flex";
-          cleanSection.style.display = "none";
         }
       }
       if (this.selectedCountryCodes.size === 24) {
