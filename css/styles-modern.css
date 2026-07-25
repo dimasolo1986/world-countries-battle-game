@@ -278,7 +278,7 @@ main .card .card-body {
 /* Create Game Room button */
 #create-game-room-button {
   font-family: var(--bs-body-font-family) !important;
-  font-size: 0.75rem !important;
+  font-size: 0.7rem !important;
   font-weight: 600 !important;
   border-radius: 8px !important;
   background: linear-gradient(135deg, var(--cg-green), #059669) !important;
