@@ -108,7 +108,7 @@ export class GameConfig {
               </tr>
             </table></div>
             </div>
-            <div style="margin-bottom: 3px;"><div style="display:inline-flex; align-items:center"> <table>
+            <div style="margin-bottom: 2px;"><div style="display:inline-flex; align-items:center"> <table>
               <tr style="margin:0px">
                 <td style="padding:2px;" class="country19">
                   <span style="color:grey; border:solid 1px grey; border-radius:50%; display:inline-block; height:10px; width:10px;"></span>
