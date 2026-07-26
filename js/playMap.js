@@ -901,6 +901,10 @@ export class PlayMap {
       "random-user-countries-selection",
     );
     randomSection.style.display = "none";
+    const cleanSection = document.getElementById(
+      "clean-user-countries-selection",
+    );
+    cleanSection.style.display = "flex";
     if (window.gtag) gtag("event", "game_random_countries_selection");
   }
 
@@ -1035,7 +1039,7 @@ export class PlayMap {
     const cleanSection = document.getElementById(
       "clean-user-countries-selection",
     );
-    cleanSection.style.display = "flex";
+    cleanSection.style.display = "none";
     const randomSection = document.getElementById(
       "random-user-countries-selection",
     );
