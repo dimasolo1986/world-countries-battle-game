@@ -34,6 +34,7 @@ export class Player {
   lastGuessedCountryNames = [];
   usedHintsCount = 0;
   trapCountryHitted = 0;
+  trapCountryHittedCode;
   score = 0;
   opponentPlayerConfigAcknowledged = false;
   opponentPlayerStartAcknowledged = false;
@@ -136,6 +137,7 @@ export class Player {
     this.usedHintsCount = null;
     this.score = null;
     this.trapCountryHitted = null;
+    this.trapCountryHittedCode = null;
     this.playerAttemptToGuess = null;
     this.openUserHintSelectionWindow = null;
     this.opponentPlayerConfigAcknowledged = null;
@@ -168,6 +170,7 @@ export class Player {
     this.score = 0;
     this.usedHintsCount = 0;
     this.trapCountryHitted = 0;
+    this.trapCountryHittedCode = null;
     if (this.playerType === "userPlayer") {
       this.playerAttemptToGuess = true;
     } else {
@@ -364,7 +367,36 @@ export class Player {
     const userHintTextContainer = document.getElementById(
       "gameUserHintSelectionText",
     );
-    userHintTextContainer.innerHTML = `${this.opponentPlayer.playerType === "computerPlayer" ? `<div>${localization[model.worldCountries.language]["Computer has fallen into a trap-country"]}</div>` : `<div>${localization[model.worldCountries.language]["Opponent has fallen into a trap-country"]}</div>`}
+    const trapCountryHitted = this.countries[this.trapCountryHittedCode];
+    userHintTextContainer.innerHTML = `${
+      this.opponentPlayer.playerType === "computerPlayer"
+        ? `<div>${localization[model.worldCountries.language]["Computer has fallen into a trap-country"]}${`<img src="${
+            trapCountryHitted.countryFlag
+          }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 3px #00000080, inset 0 2px 3px #0000001f; vertical-align: sub;"> ${
+            trapCountryHitted.countryCoatOfArms
+              ? `<img src="${
+                  trapCountryHitted.countryCoatOfArms
+                }" style="margin-left:5px; width:15px; height:15px; vertical-align: sub;">`
+              : ""
+          } <span style="margin-left:5px;color: darkblue;font-weight:bold;">${
+            localization[model.worldCountries.language]["countries"][
+              trapCountryHitted.countryName
+            ]
+          }</span>`}</div>`
+        : `<div>${localization[model.worldCountries.language]["Opponent has fallen into a trap-country"]}${`<img src="${
+            trapCountryHitted.countryFlag
+          }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 3px #00000080, inset 0 2px 3px #0000001f; vertical-align: sub;"> ${
+            trapCountryHitted.countryCoatOfArms
+              ? `<img src="${
+                  trapCountryHitted.countryCoatOfArms
+                }" style="margin-left:5px; width:15px; height:15px; vertical-align: sub;">`
+              : ""
+          } <span style="margin-left:5px;color: darkblue;font-weight:bold;">${
+            localization[model.worldCountries.language]["countries"][
+              trapCountryHitted.countryName
+            ]
+          }</span>`}</div>`
+    }
     <div>${localization[model.worldCountries.language]["Choose a hint from the list below"]}:</div>`;
     userHintTypeSelect.innerHTML = "";
     if (this.hintTypes.has("country")) {
@@ -1392,6 +1424,7 @@ export class Player {
             );
             if (this.gameConfiguration.hintsType === "Choose Hints") {
               this.opponentPlayer.openUserHintSelectionWindow = true;
+              this.opponentPlayer.trapCountryHittedCode = countryCode;
             }
             this.opponentPlayer.trapCountryHitted =
               this.opponentPlayer.trapCountryHitted + 1;
@@ -2145,6 +2178,7 @@ export class Player {
           if (this.gameConfiguration.gameMode === "user") {
             if (this.gameConfiguration.hintsType === "Choose Hints") {
               this.openUserHintSelectionWindow = true;
+              this.trapCountryHittedCode = countryCode;
             }
             this.trapCountryHitted = this.trapCountryHitted + 1;
             this.addSelectedCountryToCountryPanel(
@@ -2411,7 +2445,7 @@ export class Player {
                 ]
               }</span> <img src="${
                 country.countryFlag
-              }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> ${
+              }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 3px #00000080, inset 0 2px 3px #0000001f; vertical-align: sub;"> ${
                 country.countryCoatOfArms
                   ? `<img src="${
                       country.countryCoatOfArms
@@ -4895,6 +4929,7 @@ export class Player {
             }
             if (this.gameConfiguration.hintsType === "Choose Hints") {
               this.openUserHintSelectionWindow = true;
+              this.trapCountryHittedCode = countryCode;
             }
             if (
               this.gameConfiguration.hintsType !== "No Hints" &&
