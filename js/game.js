@@ -148,8 +148,8 @@ export class Game {
                     selectedCountryCodesArray[countryIndex]
                   ].countryName
                 ]
-              }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 2px 5px #00000080,
-                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/>
+              }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 1px 1px #00000080,
+                              inset 0 1px 1px #0000001f; vertical-align:baseline;"/>
                               ${
                                 this.playerTwo.countries[
                                   selectedCountryCodesArray[countryIndex]
@@ -189,8 +189,8 @@ export class Game {
                                     selectedCountryCodesArray[countryIndex + 1]
                                   ].countryName
                                 ]
-                              }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 2px 5px #00000080,
-                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/>
+                              }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 1px 1px #00000080,
+                              inset 0 1px 1px #0000001f; vertical-align:baseline;"/>
                                ${
                                  this.playerTwo.countries[
                                    selectedCountryCodesArray[countryIndex + 1]
@@ -229,8 +229,8 @@ export class Game {
                     selectedCountryCodesArray[countryIndex]
                   ].countryName
                 ]
-              }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 2px 5px #00000080,
-                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/>
+              }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 1px 1px #00000080,
+                              inset 0 1px 1px #0000001f; vertical-align:baseline;"/>
                                ${
                                  this.playerTwo.countries[
                                    selectedCountryCodesArray[countryIndex]
@@ -321,8 +321,8 @@ export class Game {
                     selectedCountryCodesArray[countryIndex]
                   ].countryName
                 ]
-              }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 2px 5px #00000080,
-                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/> 
+              }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 1px 1px #00000080,
+                              inset 0 1px 1px #0000001f; vertical-align:baseline;"/> 
                                ${
                                  this.playerOne.countries[
                                    selectedCountryCodesArray[countryIndex]
@@ -362,8 +362,8 @@ export class Game {
                                     selectedCountryCodesArray[countryIndex + 1]
                                   ].countryName
                                 ]
-                              }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 2px 5px #00000080,
-                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/>
+                              }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 1px 1px #00000080,
+                              inset 0 1px 1px #0000001f; vertical-align:baseline;"/>
                                ${
                                  this.playerOne.countries[
                                    selectedCountryCodesArray[countryIndex + 1]
@@ -402,8 +402,8 @@ export class Game {
                     selectedCountryCodesArray[countryIndex]
                   ].countryName
                 ]
-              }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 2px 5px #00000080,
-                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/>
+              }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 1px 1px #00000080,
+                              inset 0 1px 1px #0000001f; vertical-align:baseline;"/>
                                ${
                                  this.playerOne.countries[
                                    selectedCountryCodesArray[countryIndex]
