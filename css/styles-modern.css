@@ -510,6 +510,10 @@ a.donate-link {
   color: var(--cg-text) !important;
 }
 
+#gameResultGuessing {
+  font-size: 0.75rem !important;
+}
+
 .modal-footer {
   padding: 0.6rem 1rem !important;
   border-top: 1px solid #e2e8f0 !important;

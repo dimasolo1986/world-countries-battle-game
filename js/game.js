@@ -149,7 +149,19 @@ export class Game {
                   ].countryName
                 ]
               }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 2px 5px #00000080,
-                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/></td> <td style="border:none;display:table-cell;"><span style="margin-right: 10px;">${
+                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/>
+                              ${
+                                this.playerTwo.countries[
+                                  selectedCountryCodesArray[countryIndex]
+                                ].countryCoatOfArms
+                                  ? `<img src="${
+                                      this.playerTwo.countries[
+                                        selectedCountryCodesArray[countryIndex]
+                                      ].countryCoatOfArms
+                                    }" style="margin-left: 2px; width:15px; height:15px; vertical-align: baseline;">`
+                                  : `<span style="vertical-align: text-bottom;">🛡️</span>`
+                              }
+                              </td> <td style="border:none;display:table-cell;"><span style="margin-right: 10px; vertical-align: text-bottom;">${
                                 localization[model.worldCountries.language][
                                   "countries"
                                 ][
@@ -178,7 +190,21 @@ export class Game {
                                   ].countryName
                                 ]
                               }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 2px 5px #00000080,
-                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/></td> <td style="border:none;display:table-cell;"><span>${
+                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/>
+                               ${
+                                 this.playerTwo.countries[
+                                   selectedCountryCodesArray[countryIndex + 1]
+                                 ].countryCoatOfArms
+                                   ? `<img src="${
+                                       this.playerTwo.countries[
+                                         selectedCountryCodesArray[
+                                           countryIndex + 1
+                                         ]
+                                       ].countryCoatOfArms
+                                     }" style="margin-left: 2px; width:15px; height:15px; vertical-align: baseline;">`
+                                   : `<span style="vertical-align: text-bottom;">🛡️</span>`
+                               }
+                              </td> <td style="border:none;display:table-cell;"><span style="vertical-align: text-bottom;">${
                                 localization[model.worldCountries.language][
                                   "countries"
                                 ][
@@ -204,7 +230,19 @@ export class Game {
                   ].countryName
                 ]
               }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 2px 5px #00000080,
-                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/></td><td style="border:none;display:table-cell;"> <span>${
+                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/>
+                               ${
+                                 this.playerTwo.countries[
+                                   selectedCountryCodesArray[countryIndex]
+                                 ].countryCoatOfArms
+                                   ? `<img src="${
+                                       this.playerTwo.countries[
+                                         selectedCountryCodesArray[countryIndex]
+                                       ].countryCoatOfArms
+                                     }" style="margin-left: 2px; width:15px; height:15px; vertical-align: baseline;">`
+                                   : `<span style="vertical-align: text-bottom;">🛡️</span>`
+                               }
+                              </td><td style="border:none;display:table-cell;"> <span style="vertical-align: text-bottom;">${
                                 localization[model.worldCountries.language][
                                   "countries"
                                 ][
@@ -284,7 +322,19 @@ export class Game {
                   ].countryName
                 ]
               }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 2px 5px #00000080,
-                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/> </td><td style="border:none;display:table-cell;"><span style="margin-right: 10px;">${
+                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/> 
+                               ${
+                                 this.playerOne.countries[
+                                   selectedCountryCodesArray[countryIndex]
+                                 ].countryCoatOfArms
+                                   ? `<img src="${
+                                       this.playerOne.countries[
+                                         selectedCountryCodesArray[countryIndex]
+                                       ].countryCoatOfArms
+                                     }" style="margin-left: 2px; width:15px; height:15px; vertical-align: baseline;">`
+                                   : `<span style="vertical-align: text-bottom;">🛡️</span>`
+                               }
+                              </td><td style="border:none;display:table-cell;"><span style="margin-right: 10px; vertical-align: text-bottom;">${
                                 localization[model.worldCountries.language][
                                   "countries"
                                 ][
@@ -313,7 +363,21 @@ export class Game {
                                   ].countryName
                                 ]
                               }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 2px 5px #00000080,
-                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/></td> <td style="border:none;display:table-cell;"><span>${
+                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/>
+                               ${
+                                 this.playerOne.countries[
+                                   selectedCountryCodesArray[countryIndex + 1]
+                                 ].countryCoatOfArms
+                                   ? `<img src="${
+                                       this.playerOne.countries[
+                                         selectedCountryCodesArray[
+                                           countryIndex + 1
+                                         ]
+                                       ].countryCoatOfArms
+                                     }" style="margin-left: 2px; width:15px; height:15px; vertical-align: baseline;">`
+                                   : `<span style="vertical-align: text-bottom;">🛡️</span>`
+                               }
+                              </td> <td style="border:none;display:table-cell;"><span style="vertical-align: text-bottom;">${
                                 localization[model.worldCountries.language][
                                   "countries"
                                 ][
@@ -339,7 +403,19 @@ export class Game {
                   ].countryName
                 ]
               }" style="height:15px; width:20px; border-radius:2px; box-shadow: 0 2px 5px #00000080,
-                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/></td> <td style="border:none;display:table-cell;"> <span>${
+                              inset 0 2px 10px #0000001f; vertical-align:baseline;"/>
+                               ${
+                                 this.playerOne.countries[
+                                   selectedCountryCodesArray[countryIndex]
+                                 ].countryCoatOfArms
+                                   ? `<img src="${
+                                       this.playerOne.countries[
+                                         selectedCountryCodesArray[countryIndex]
+                                       ].countryCoatOfArms
+                                     }" style="margin-left: 2px; width:15px; height:15px; vertical-align: baseline;">`
+                                   : `<span style="vertical-align: text-bottom;">🛡️</span>`
+                               }
+                              </td> <td style="border:none;display:table-cell;"> <span style="vertical-align: text-bottom;">${
                                 localization[model.worldCountries.language][
                                   "countries"
                                 ][
