@@ -2411,7 +2411,13 @@ export class Player {
                 ]
               }</span> <img src="${
                 country.countryFlag
-              }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;color: darkblue;font-weight:bold;">${
+              }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> ${
+                country.countryCoatOfArms
+                  ? `<img src="${
+                      country.countryCoatOfArms
+                    }" style="margin-left:5px; width:15px; height:15px; vertical-align: sub;">`
+                  : ""
+              } <span style="margin-left:5px;color: darkblue;font-weight:bold;">${
                 localization[model.worldCountries.language]["countries"][
                   country.countryName
                 ]
