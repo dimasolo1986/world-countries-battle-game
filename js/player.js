@@ -372,7 +372,7 @@ export class Player {
       this.opponentPlayer.playerType === "computerPlayer"
         ? `<div>${localization[model.worldCountries.language]["Computer has fallen into a trap-country"]}${`<img src="${
             trapCountryHitted.countryFlag
-          }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 3px #00000080, inset 0 2px 3px #0000001f; vertical-align: sub;"> ${
+          }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 1px 1px #00000080, inset 0 1px 1px #0000001f; vertical-align: sub;"> ${
             trapCountryHitted.countryCoatOfArms
               ? `<img src="${
                   trapCountryHitted.countryCoatOfArms
@@ -385,7 +385,7 @@ export class Player {
           }</span>`}</div>`
         : `<div>${localization[model.worldCountries.language]["Opponent has fallen into a trap-country"]}${`<img src="${
             trapCountryHitted.countryFlag
-          }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 3px #00000080, inset 0 2px 3px #0000001f; vertical-align: sub;"> ${
+          }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 1px 1px #00000080, inset 0 1px 1px #0000001f; vertical-align: sub;"> ${
             trapCountryHitted.countryCoatOfArms
               ? `<img src="${
                   trapCountryHitted.countryCoatOfArms
@@ -1416,7 +1416,7 @@ export class Player {
                 ]
               }</span> <img src="${
                 country.countryFlag
-              }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${
+              }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 1px 1px #00000080, inset 0 1px 1px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${
                 localization[model.worldCountries.language]["countries"][
                   country.countryName
                 ]
@@ -1615,7 +1615,7 @@ export class Player {
                 ]
               }</span> <img src="${
                 country.countryFlag
-              }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;font-size: 0.75rem;">${
+              }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 1px 1px #00000080, inset 0 1px 1px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;font-size: 0.75rem;">${
                 localization[model.worldCountries.language]["countries"][
                   country.countryName
                 ]
@@ -1773,7 +1773,7 @@ export class Player {
                   ]
                 }</span> <img src="${
                   country.countryFlag
-                }" style="margin-left:3px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 3px #00000080, inset 0 2px 3px #0000001f; vertical-align: sub;"> ${
+                }" style="margin-left:3px; width:20px; height:15px; border-radius:2px; box-shadow: 0 1px 1px #00000080, inset 0 1px 1px #0000001f; vertical-align: sub;"> ${
                   country.countryCoatOfArms
                     ? `<img src="${
                         country.countryCoatOfArms
@@ -2175,7 +2175,7 @@ export class Player {
               ]
             }</span> <img src="${
               country.countryFlag
-            }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${
+            }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 1px 1px #00000080, inset 0 1px 1px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${
               localization[model.worldCountries.language]["countries"][
                 country.countryName
               ]
@@ -2396,7 +2396,7 @@ export class Player {
               ]
             }</span> <img src="${
               country.countryFlag
-            }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${
+            }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 1px 1px #00000080, inset 0 1px 1px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${
               localization[model.worldCountries.language]["countries"][
                 country.countryName
               ]
@@ -2451,7 +2451,7 @@ export class Player {
                 ]
               }</span> <img src="${
                 country.countryFlag
-              }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 3px #00000080, inset 0 2px 3px #0000001f; vertical-align: sub;"> ${
+              }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 1px 1px #00000080, inset 0 1px 1px #0000001f; vertical-align: sub;"> ${
                 country.countryCoatOfArms
                   ? `<img src="${
                       country.countryCoatOfArms
@@ -2735,7 +2735,7 @@ export class Player {
                 localization[model.worldCountries.language]["You guessed"]
               }</span> <img src="${
                 country.countryFlag
-              }" style="margin-left:3px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 3px #00000080, inset 0 2px 3px #0000001f; vertical-align: sub;"> ${
+              }" style="margin-left:3px; width:20px; height:15px; border-radius:2px; box-shadow: 0 1px 1px #00000080, inset 0 1px 1px #0000001f; vertical-align: sub;"> ${
                 country.countryCoatOfArms
                   ? `<img src="${
                       country.countryCoatOfArms
@@ -4914,7 +4914,7 @@ export class Player {
                 ]
               }</span> <img src="${
                 country.countryFlag
-              }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${
+              }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 1px 1px #00000080, inset 0 1px 1px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${
                 localization[model.worldCountries.language]["countries"][
                   country.countryName
                 ]
@@ -5111,7 +5111,7 @@ export class Player {
                 ]
               }</span> <img src="${
                 country.countryFlag
-              }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;font-size: 0.7rem;">${
+              }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 1px 1px #00000080, inset 0 1px 1px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;font-size: 0.7rem;">${
                 localization[model.worldCountries.language]["countries"][
                   country.countryName
                 ]
@@ -5247,7 +5247,7 @@ export class Player {
                   ]
                 }</span> <img src="${
                   country.countryFlag
-                }" style="margin-left:3px; width:20px; height:15px; border-radius:2px; box-shadow: 0 2px 3px #00000080, inset 0 2px 3px #0000001f; vertical-align: sub;"> ${
+                }" style="margin-left:3px; width:20px; height:15px; border-radius:2px; box-shadow: 0 1px 1px #00000080, inset 0 1px 1px #0000001f; vertical-align: sub;"> ${
                   country.countryCoatOfArms
                     ? `<img src="${
                         country.countryCoatOfArms
