@@ -2418,7 +2418,7 @@ export class Player {
             this.game.superBonusCountry &&
             this.game.superBonusCountry === countryCode;
           this.setMessageInnerHtmlField(
-            `<span>${superBonus ? "👑" : "🎁"} ${
+            `<span>${superBonus ? "💎" : "🎁"} ${
               superBonus
                 ? localization[model.worldCountries.language][
                     "You have fallen into a super bonus-country"
@@ -2454,7 +2454,7 @@ export class Player {
           );
           document.getElementById(
             "guessed-country-alliance-panel-content",
-          ).innerHTML = `<div>${superBonus ? "👑" : "🎁"}<span style="
+          ).innerHTML = `<div>${superBonus ? "💎" : "🎁"}<span style="
                     color: white;
                     font-size: 0.75rem;
                     padding-left: 3px;
@@ -2481,7 +2481,7 @@ export class Player {
             document.getElementById(
               "gameCountryAllianceGuessedCountries",
             ).innerHTML =
-              `<span style="color: darkblue; font-weight:bold;">${superBonus ? "👑" : "🎁"} ${
+              `<span style="color: darkblue; font-weight:bold;">${superBonus ? "💎" : "🎁"} ${
                 superBonus
                   ? localization[model.worldCountries.language][
                       "You have fallen into a super bonus-country"
