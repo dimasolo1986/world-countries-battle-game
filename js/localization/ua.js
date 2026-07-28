@@ -588,16 +588,22 @@ export const localization = {
       "Для гри з Вашим другом Вам необхідно вибрати режим гри з другом на головній сторінці, створити ігрову кімнату та посилання на гру для Вашого друга та відправити йому. Слідкуйте за статусом підключення Вашого друга у верхній частині екрану після старту гри. Також є можливість спілкування з Вашим другом через чат у нижній частині екрану: Ви можете привітатись з ним, побажати гарної гри або самостійно давати підказки про Ваші країни та альянси країн (чат може бути прихований нижньою панеллю браузера, тому відкривайте на весь екран або сховайте цю панель).",
     "Play With A Friend Mode": "Режим Гри З Другом",
     "You have fallen into a bonus-country": "Ви потрапили у країну-бонус",
+    "You have fallen into a super bonus-country":
+      "Ви потрапили у супер країну-бонус",
+    "Opponent's country highlighted on map":
+      "Країна суперника виділена на мапі",
     "Computer has fallen into a bonus-country":
       "Комп'ютер потрапив у країну-бонус",
+    "Computer has fallen into a super bonus-country":
+      "Комп'ютер потрапив у супер країну-бонус",
     "Additional attempt to guess and": "Додаткова спроба вгадати та",
     "Additional attempt to guess country": "Додаткова спроба вгадати країну",
     "Opponent has fallen into a bonus-country":
       "Суперник потрапив у країну-бонус",
     "He gets additional attempt to guess and":
       "Він отримує додаткову спробу вгадати та",
-    "The computer will also randomly select five bonus countries (can be changed), when hit, players get an extra attempt to guess the opponent's country and 10 extra points.":
-      "Комп'ютер також випадковим чином вибере п'ять бонусних країн (можна налаштувати), при потраплянні в які гравці отримують додаткову спробу вгадати країну суперника та 10 додаткових балів.",
+    "The computer will also randomly select five bonus countries (can be changed), when hit, players get an extra attempt to guess the opponent's country and 10 extra points. One of these bonus countries has an extra nice secret surprise.":
+      "Комп'ютер також випадковим чином вибере п'ять бонусних країн (можна налаштувати), при потраплянні в які гравці отримують додаткову спробу вгадати країну суперника та 10 додаткових балів. Одна з цих бонусних країн має додатковий приємний таємний сюрприз.",
     "Tips: after guessing your opponent's country, continue guessing neighboring countries until you guess the entire alliance of countries.":
       "Поради: після вгадування країни опонента продовжуйте вгадувати сусідні країни, доки не вгадаєте увесь альянс країн.",
     "If a player guesses an alliance of countries that contains four countries, he gets 15 points, three countries - 25 points, two countries - 35 points, one country - 50 points. When falling into an opponent's trap country, the player loses 10 points the first time, 20 points the second time, 30 points the third time and 50 points the fourth time. At the end of the game, the player gets an additional 10 points for each alliance of countries that was not guessed by the opponent.":
@@ -1363,8 +1369,14 @@ export const localization = {
     "Sorry... Opponent left the game.": "Sorry... Opponent left the game.",
     "You have fallen into a bonus-country":
       "You have fallen into a bonus-country",
+    "You have fallen into a super bonus-country":
+      "You have fallen into a super bonus-country",
+    "Opponent's country highlighted on map":
+      "Opponent's country highlighted on map",
     "Computer has fallen into a bonus-country":
       "Computer has fallen into a bonus-country",
+    "Computer has fallen into a super bonus-country":
+      "Computer has fallen into a super bonus-country",
     "Additional attempt to guess and": "Additional attempt to guess and",
     "Additional attempt to guess country":
       "Additional attempt to guess country",
@@ -1372,8 +1384,8 @@ export const localization = {
       "Opponent has fallen into a bonus-country",
     "He gets additional attempt to guess and":
       "He gets additional attempt to guess and",
-    "The computer will also randomly select five bonus countries (can be changed), when hit, players get an extra attempt to guess the opponent's country and 10 extra points.":
-      "The computer will also randomly select five bonus countries (can be changed), when hit, players get an extra attempt to guess the opponent's country and 10 extra points.",
+    "The computer will also randomly select five bonus countries (can be changed), when hit, players get an extra attempt to guess the opponent's country and 10 extra points. One of these bonus countries has an extra nice secret surprise.":
+      "The computer will also randomly select five bonus countries (can be changed), when hit, players get an extra attempt to guess the opponent's country and 10 extra points. One of these bonus countries has an extra nice secret surprise.",
     "Tips: after guessing your opponent's country, continue guessing neighboring countries until you guess the entire alliance of countries.":
       "Tips: after guessing your opponent's country, continue guessing neighboring countries until you guess the entire alliance of countries.",
     "You have selected the game mode with a friend. First, create a game room. Click the 'Create Game Room' button.":
@@ -2240,8 +2252,14 @@ export const localization = {
     Score: "Punktestand",
     "You have fallen into a bonus-country":
       "Sie sind in ein Bonusland gefallen",
+    "You have fallen into a super bonus-country":
+      "Sie sind in ein Super-Bonusland gefallen",
+    "Opponent's country highlighted on map":
+      "Das Land des Gegners ist auf der Karte hervorgehoben",
     "Computer has fallen into a bonus-country":
       "Der Computer ist in ein Bonusland gefallen",
+    "Computer has fallen into a super bonus-country":
+      "Der Computer ist in ein Super-Bonusland gefallen",
     "Time is up! The attempt to guess the country passes to your opponent":
       "Die Zeit ist um! Der Versuch, das Land zu erraten, geht an Ihren Gegner über",
     "Additional attempt to guess and": "Zusätzlicher Versuch zu raten und",
@@ -2250,8 +2268,8 @@ export const localization = {
       "Der Gegner ist in ein Bonusland gefallen",
     "He gets additional attempt to guess and":
       "Er erhält einen zusätzlichen Versuch zu raten und",
-    "The computer will also randomly select five bonus countries (can be changed), when hit, players get an extra attempt to guess the opponent's country and 10 extra points.":
-      "Der Computer wählt außerdem nach dem Zufallsprinzip fünf Bonusländer aus (kann geändert werden). Wird eines davon getroffen, erhalten die Spieler einen zusätzlichen Versuch, das Land des Gegners zu erraten, und 10 Zusatzpunkte.",
+    "The computer will also randomly select five bonus countries (can be changed), when hit, players get an extra attempt to guess the opponent's country and 10 extra points. One of these bonus countries has an extra nice secret surprise.":
+      "Der Computer wählt außerdem nach dem Zufallsprinzip fünf Bonusländer aus (kann geändert werden). Wird eines davon getroffen, erhalten die Spieler einen zusätzlichen Versuch, das Land des Gegners zu erraten, und 10 Zusatzpunkte. Eines dieser Bonusländer hält eine besonders schöne, geheime Überraschung bereit.",
     "Tips: after guessing your opponent's country, continue guessing neighboring countries until you guess the entire alliance of countries.":
       "Tipp: Nachdem Sie das Land Ihres Gegners erraten haben, raten Sie weiter die Nachbarländer, bis Sie das gesamte Länderbündnis erraten haben.",
     "To play the game, choose eight different alliances of countries on the map and four trap-countries for your opponent. Follow the instructions at the top of the screen. To read the rules of the game, click the Rules button. We wish you a great game and a victory!":
@@ -3124,8 +3142,14 @@ export const localization = {
       "Désolé... L'adversaire a quitté le jeu.",
     "You have fallen into a bonus-country":
       "Vous êtes tombé dans un pays bonus",
+    "You have fallen into a super bonus-country":
+      "Vous êtes tombé dans un super pays bonus",
+    "Opponent's country highlighted on map":
+      "Le pays de l'adversaire est mis en évidence sur la carte",
     "Computer has fallen into a bonus-country":
       "L'ordinateur est tombé dans un pays bonus",
+    "Computer has fallen into a super bonus-country":
+      "L'ordinateur est tombé dans un super pays bonus",
     "Additional attempt to guess and": "Tentative supplémentaire de deviner et",
     "Additional attempt to guess country":
       "Tentative supplémentaire de deviner le pays",
@@ -3133,8 +3157,8 @@ export const localization = {
       "L'adversaire est tombé dans un pays à bonus",
     "He gets additional attempt to guess and":
       "Il a droit à une tentative supplémentaire pour deviner et",
-    "The computer will also randomly select five bonus countries (can be changed), when hit, players get an extra attempt to guess the opponent's country and 10 extra points.":
-      "L'ordinateur sélectionnera également au hasard cinq pays bonus (peut être modifié) - lorsqu'ils sont touchés, les joueurs bénéficient d'une tentative supplémentaire pour deviner le pays de l'adversaire et de 10 points supplémentaires.",
+    "The computer will also randomly select five bonus countries (can be changed), when hit, players get an extra attempt to guess the opponent's country and 10 extra points. One of these bonus countries has an extra nice secret surprise.":
+      "L'ordinateur sélectionnera également au hasard cinq pays bonus (peut être modifié) - lorsqu'ils sont touchés, les joueurs bénéficient d'une tentative supplémentaire pour deviner le pays de l'adversaire et de 10 points supplémentaires. L'un de ces pays bonus réserve une belle surprise secrète.",
     "Tips: after guessing your opponent's country, continue guessing neighboring countries until you guess the entire alliance of countries.":
       "Conseil : après avoir deviné le pays de votre adversaire, continuez à deviner les pays voisins jusqu'à ce que vous ayez deviné toute l'alliance des pays.",
     "You have selected the game mode with a friend. First, create a game room. Click the 'Create Game Room' button.":
@@ -3906,8 +3930,14 @@ export const localization = {
       "La computadora ha caído en una trampa país",
     "You have fallen into a bonus-country":
       "Has caído en un país de bonificación",
+    "You have fallen into a super bonus-country":
+      "Has caído en un país de superbonificación",
+    "Opponent's country highlighted on map":
+      "País del oponente resaltado en el mapa",
     "Computer has fallen into a bonus-country":
       "La computadora ha caído en una país de bonificación",
+    "Computer has fallen into a super bonus-country":
+      "La computadora ha caído en una país de superbonificación",
     "Additional attempt to guess and": "Intento adicional de adivinar y",
     "Additional attempt to guess country":
       "Intento adicional de adivinar el país",
@@ -3915,8 +3945,8 @@ export const localization = {
       "El oponente ha caído en un país de bonificación",
     "He gets additional attempt to guess and":
       "El oponente tiene un intento adicional de adivinar y",
-    "The computer will also randomly select five bonus countries (can be changed), when hit, players get an extra attempt to guess the opponent's country and 10 extra points.":
-      "La computadora también seleccionará al azar cinco países de bonificación (se puede cambiar), cuando los acierta, los jugadores obtendrán un intento extra para adivinar el país del oponente y 10 puntos extra.",
+    "The computer will also randomly select five bonus countries (can be changed), when hit, players get an extra attempt to guess the opponent's country and 10 extra points. One of these bonus countries has an extra nice secret surprise.":
+      "La computadora también seleccionará al azar cinco países de bonificación (se puede cambiar), cuando los acierta, los jugadores obtendrán un intento extra para adivinar el país del oponente y 10 puntos extra. Uno de estos países de bonificación tiene una sorpresa secreta muy agradable.",
     "Tips: after guessing your opponent's country, continue guessing neighboring countries until you guess the entire alliance of countries.":
       "Consejo: después de adivinar el país de tu oponente, continúa adivinando los países vecinos hasta que adivines toda la alianza de países.",
     Computer: "Computadora",
@@ -4763,8 +4793,14 @@ export const localization = {
     "Computer has fallen into a trap-country":
       "Il computer è caduto in un paese-trappola",
     "You have fallen into a bonus-country": "Sei caduto in un paese bonus",
+    "You have fallen into a super bonus-country":
+      "Sei caduto in un paese superbonus",
+    "Opponent's country highlighted on map":
+      "Il paese dell'avversario è evidenziato sulla mappa",
     "Computer has fallen into a bonus-country":
       "Il computer è caduto in un paese bonus",
+    "Computer has fallen into a super bonus-country":
+      "Il computer è caduto in un paese superbonus",
     "Additional attempt to guess and": "Ulteriore tentativo di indovinare e",
     "Additional attempt to guess country":
       "Ulteriore tentativo di indovinare il paese",
@@ -4772,8 +4808,8 @@ export const localization = {
       "L'avversario è caduto in un paese bonus",
     "He gets additional attempt to guess and":
       "Ha un ulteriore tentativo di indovinare e",
-    "The computer will also randomly select five bonus countries (can be changed), when hit, players get an extra attempt to guess the opponent's country and 10 extra points.":
-      "Il computer selezionerà inoltre casualmente cinque paesi bonus (può essere modificato) - quando vengono scelti, i giocatori avranno un tentativo extra per indovinare il paese dell'avversario e 10 punti extra.",
+    "The computer will also randomly select five bonus countries (can be changed), when hit, players get an extra attempt to guess the opponent's country and 10 extra points. One of these bonus countries has an extra nice secret surprise.":
+      "Il computer selezionerà inoltre casualmente cinque paesi bonus (può essere modificato) - quando vengono scelti, i giocatori avranno un tentativo extra per indovinare il paese dell'avversario e 10 punti extra. Uno di questi paesi bonus riserva una piacevole sorpresa segreta.",
     "Tips: after guessing your opponent's country, continue guessing neighboring countries until you guess the entire alliance of countries.":
       "Suggerimenti: dopo aver indovinato il paese del tuo avversario, continua a indovinare i paesi vicini finché non avrai indovinato l'intera alleanza di paesi.",
     Computer: "Computer",

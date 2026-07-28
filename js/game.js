@@ -4,6 +4,7 @@ import {
   showGameResultWindow,
   showGameRulesWindow,
   hideModalWindow,
+  getRandomInt,
 } from "./helpers.js";
 import * as model from "./model.js";
 export class Game {
@@ -12,6 +13,7 @@ export class Game {
   isOpponentPlayerReady = true;
   isPlayerReady = true;
   bonusCountries;
+  superBonusCountry;
   gameModalResultLabel = document.getElementById("gameModalResultLabel");
   gameModalRulesLabel = document.getElementById("gameModalRulesLabel");
   gameModalRulesContent = document.getElementById("gameRulesContent");
@@ -32,6 +34,7 @@ export class Game {
       "#countries-battle-game-message",
     );
     this.bonusCountries = [];
+    this.superBonusCountry = null;
     this.playerOne = playerOne;
     this.playerTwo = playerTwo;
     this.playMap = playMap;
@@ -53,6 +56,11 @@ export class Game {
     }
     bonusCountries.sort(() => Math.random() - 0.5);
     this.bonusCountries = bonusCountries.slice(0, count);
+    const superBonusCountryIndex = getRandomInt(
+      0,
+      this.bonusCountries.length - 1,
+    );
+    this.superBonusCountry = this.bonusCountries[superBonusCountryIndex];
   }
 
   showGameRules() {

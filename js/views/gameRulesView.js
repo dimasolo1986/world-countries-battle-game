@@ -179,7 +179,7 @@ class gameRulesView {
     }`;
     this._gameRulesBonusCountriesDescription.textContent = `🎁 ${
       localization[model.worldCountries.language][
-        "The computer will also randomly select five bonus countries (can be changed), when hit, players get an extra attempt to guess the opponent's country and 10 extra points."
+        "The computer will also randomly select five bonus countries (can be changed), when hit, players get an extra attempt to guess the opponent's country and 10 extra points. One of these bonus countries has an extra nice secret surprise."
       ]
     }`;
     this._gameRulesTipsCountriesDescription.textContent = `💡 ${
