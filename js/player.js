@@ -2588,7 +2588,7 @@ export class Player {
                   }</span>` +
                   `${this.countries[Object.keys(countryObject)[0]].countryCoatOfArms ? `<img src="${this.countries[Object.keys(countryObject)[0]].countryCoatOfArms}" style="width:16px; height:16px; margin-left:5px; vertical-align: sub;"></img>` : ""}`,
               )
-              .join('<span style="margin-right: 5px;">&nbsp;</span>');
+              .join('<span style="margin-right: 5px;">&middot;</span>');
             countryUnion.forEach((countryObject) => {
               const countryCode = Object.keys(countryObject)[0];
               this.setElementStyle(
