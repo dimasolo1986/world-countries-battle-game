@@ -2454,7 +2454,7 @@ export class Player {
           );
           document.getElementById(
             "guessed-country-alliance-panel-content",
-          ).innerHTML = `<div>${superBonus ? "💎" : "🎁"}<span style="
+          ).innerHTML = `<div>🎁<span style="
                     color: white;
                     font-size: 0.75rem;
                     padding-left: 3px;
