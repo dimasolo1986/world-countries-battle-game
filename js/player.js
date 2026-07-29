@@ -1616,13 +1616,9 @@ export class Player {
               this.game.superBonusCountry === countryCode;
             this.setMessageInnerHtmlField(
               `<span style="font-size: 0.75rem;">ℹ️ ${
-                superBonus
-                  ? localization[model.worldCountries.language][
-                      "Computer has fallen into a super bonus-country"
-                    ]
-                  : localization[model.worldCountries.language][
-                      "Computer has fallen into a bonus-country"
-                    ]
+                localization[model.worldCountries.language][
+                  "Computer has fallen into a bonus-country"
+                ]
               }</span> <img src="${
                 country.countryFlag
               }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 1px 1px #00000080, inset 0 1px 1px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;font-size: 0.75rem;">${
@@ -1762,7 +1758,9 @@ export class Player {
                   countryUnionHtml.outerHTML
                 }</div><span style="margin-left:5px;">${
                   countryUnion.length === 1
-                    ? localization[model.worldCountries.language]["Country"]
+                    ? localization[model.worldCountries.language]["countries"][
+                        country.countryName
+                      ]
                     : localization[model.worldCountries.language][
                         "Country Alliance"
                       ]
@@ -2454,7 +2452,7 @@ export class Player {
           );
           document.getElementById(
             "guessed-country-alliance-panel-content",
-          ).innerHTML = `<div>🎁<span style="
+          ).innerHTML = `<div>${superBonus ? "💎" : "🎁"}<span style="
                     color: white;
                     font-size: 0.75rem;
                     padding-left: 3px;
@@ -2789,7 +2787,9 @@ export class Player {
                 countryUnionHtml.outerHTML
               }</div><span style="margin-left:5px;">${
                 countryUnion.length === 1
-                  ? localization[model.worldCountries.language]["Country"]
+                  ? localization[model.worldCountries.language]["countries"][
+                      country.countryName
+                    ]
                   : localization[model.worldCountries.language][
                       "Country Alliance"
                     ]
@@ -5402,7 +5402,9 @@ export class Player {
                   countryUnionHtml.outerHTML
                 }</div><span style="margin-left:5px;">${
                   countryUnion.length === 1
-                    ? localization[model.worldCountries.language]["Country"]
+                    ? localization[model.worldCountries.language]["countries"][
+                        country.countryName
+                      ]
                     : localization[model.worldCountries.language][
                         "Country Alliance"
                       ]
