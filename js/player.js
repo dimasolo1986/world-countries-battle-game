@@ -2585,7 +2585,7 @@ export class Player {
                 countryMarker.on("mouseover", function (event) {
                   countryBoundary.setStyle({
                     weight: 1,
-                    fillOpacity: 0.7,
+                    fillOpacity: 0.75,
                     opacity: 1,
                     className: this.highlightCountryCode,
                   });
@@ -2611,7 +2611,7 @@ export class Player {
                   countryMarker,
                   {
                     weight: 1,
-                    fillOpacity: 0.7,
+                    fillOpacity: 0.75,
                     opacity: 1,
                     className: this.highlightCountryCode,
                   },
@@ -2625,7 +2625,7 @@ export class Player {
                     opacity: 1,
                     className: this.highlightCountryCode,
                   },
-                  0.7,
+                  0.75,
                 );
                 countryBoundary.unbindTooltip();
                 countryMarker.unbindTooltip();
