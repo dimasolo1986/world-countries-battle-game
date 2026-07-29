@@ -747,7 +747,7 @@ export const localization = {
     "Congratulations!": "Вітаємо!",
     "You guessed all the opponent's countries:":
       "Ви вгадали всі країни суперника:",
-    "Sorry! You lost the game!": "Вибачте! Ви програли гру!",
+    "Sorry, You lost the game...": "Вибачте, Ви програли гру...",
     "Computer guessed all your countries:": "Комп'ютер вгадав усі ваші країни:",
     "Game Result": "Результат Гри",
     "Are you sure you want to leave this game?":
@@ -1580,7 +1580,7 @@ export const localization = {
     "Congratulations!": "Congratulations!",
     "You guessed all the opponent's countries:":
       "You guessed all the opponent's countries:",
-    "Sorry! You lost the game!": "Sorry! You lost the game!",
+    "Sorry, You lost the game...": "Sorry, You lost the game...",
     "Computer guessed all your countries:":
       "Computer guessed all your countries:",
     "Game Result": "Game Result",
@@ -2423,7 +2423,8 @@ export const localization = {
     "Congratulations!": "Herzlichen Glückwunsch!",
     "You guessed all the opponent's countries:":
       "Sie haben alle Länder des Gegners erraten:",
-    "Sorry! You lost the game!": "Entschuldigung! Du hast das Spiel verloren!",
+    "Sorry, You lost the game...":
+      "Entschuldigung, Du hast das Spiel verloren...",
     "You have already chosen this country!":
       "Sie haben dieses Land bereits ausgewählt!",
     "Computer guessed all your countries:":
@@ -3265,7 +3266,7 @@ export const localization = {
     "Congratulations!": "Félicitations!",
     "You guessed all the opponent's countries:":
       "Vous avez deviné tous les pays de l'adversaire:",
-    "Sorry! You lost the game!": "Désolé! Vous avez perdu la partie!",
+    "Sorry, You lost the game...": "Désolé, Vous avez perdu la partie...",
     "Computer guessed all your countries:":
       "L'ordinateur a deviné tous vos pays:",
     "You have already chosen this country!":
@@ -4107,7 +4108,7 @@ export const localization = {
     "Congratulations!": "¡Felicidades!",
     "You guessed all the opponent's countries:":
       "Adivinaste todos los países del oponente:",
-    "Sorry! You lost the game!": "¡Lo siento! ¡Perdiste el juego!",
+    "Sorry, You lost the game...": "¡Lo siento, ¡Perdiste el juego...",
     "Computer guessed all your countries:":
       "La computadora adivinó todos tus países:",
     "Game Result": "Resultado del Juego",
@@ -4949,7 +4950,7 @@ export const localization = {
     "Congratulations!": "Congratulazioni!",
     "You guessed all the opponent's countries:":
       "Hai indovinato tutti i paesi del tuo avversario:",
-    "Sorry! You lost the game!": "Mi dispiace! Hai perso la partita!",
+    "Sorry, You lost the game...": "Mi dispiace, Hai perso la partita...",
     "Computer guessed all your countries:":
       "Il computer ha indovinato tutti i tuoi paesi:",
     "Game Result": "Risultato del Gioco",

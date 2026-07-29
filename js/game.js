@@ -270,7 +270,7 @@ export class Game {
       this.guessCountriesMessageField.textContent =
         "💔 " +
         localization[model.worldCountries.language][
-          "Sorry! You lost the game!"
+          "Sorry, You lost the game..."
         ];
       this.gameResultScore.textContent =
         "🏅 " +
@@ -287,7 +287,7 @@ export class Game {
       this.gameModalHeading.textContent =
         "💔 " +
         localization[model.worldCountries.language][
-          "Sorry! You lost the game!"
+          "Sorry, You lost the game..."
         ];
       this.gameModalHeading.style.color = "red";
       if (this.playerTwo.playerType === "friendPlayer") {
