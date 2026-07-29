@@ -590,8 +590,10 @@ export const localization = {
     "You have fallen into a bonus-country": "Ви потрапили у країну-бонус",
     "You have fallen into a super bonus-country":
       "Ви потрапили у супер країну-бонус",
-    "Opponent's country highlighted on map":
-      "Країна суперника виділена на мапі",
+    "Opponent's countries highlighted on map":
+      "Країни суперника виділені на мапі",
+    "Opponent's country alliance highlighted on map":
+      "Альянс країн суперника виділений на мапі",
     "Computer has fallen into a bonus-country":
       "Комп'ютер потрапив у країну-бонус",
     "Computer has fallen into a super bonus-country":
@@ -1371,8 +1373,10 @@ export const localization = {
       "You have fallen into a bonus-country",
     "You have fallen into a super bonus-country":
       "You have fallen into a super bonus-country",
-    "Opponent's country highlighted on map":
-      "Opponent's country highlighted on map",
+    "Opponent's countries highlighted on map":
+      "Opponent's countries highlighted on map",
+    "Opponent's country alliance highlighted on map":
+      "Opponent's country alliance highlighted on map",
     "Computer has fallen into a bonus-country":
       "Computer has fallen into a bonus-country",
     "Computer has fallen into a super bonus-country":
@@ -2254,8 +2258,10 @@ export const localization = {
       "Sie sind in ein Bonusland gefallen",
     "You have fallen into a super bonus-country":
       "Sie sind in ein Super-Bonusland gefallen",
-    "Opponent's country highlighted on map":
-      "Das Land des Gegners ist auf der Karte hervorgehoben",
+    "Opponent's countries highlighted on map":
+      "Länder des Gegners ist auf der Karte hervorgehoben",
+    "Opponent's country alliance highlighted on map":
+      "Das Länderbündnis des Gegners ist auf der Karte hervorgehoben",
     "Computer has fallen into a bonus-country":
       "Der Computer ist in ein Bonusland gefallen",
     "Computer has fallen into a super bonus-country":
@@ -3144,8 +3150,10 @@ export const localization = {
       "Vous êtes tombé dans un pays bonus",
     "You have fallen into a super bonus-country":
       "Vous êtes tombé dans un super pays bonus",
-    "Opponent's country highlighted on map":
-      "Le pays de l'adversaire est mis en évidence sur la carte",
+    "Opponent's countries highlighted on map":
+      "Les pays de l'adversaire sont mis en évidence sur la carte",
+    "Opponent's country alliance highlighted on map":
+      "L'alliance du pays adverse est mise en évidence sur la carte",
     "Computer has fallen into a bonus-country":
       "L'ordinateur est tombé dans un pays bonus",
     "Computer has fallen into a super bonus-country":
@@ -3932,8 +3940,10 @@ export const localization = {
       "Has caído en un país de bonificación",
     "You have fallen into a super bonus-country":
       "Has caído en un país de superbonificación",
-    "Opponent's country highlighted on map":
-      "País del oponente resaltado en el mapa",
+    "Opponent's countries highlighted on map":
+      "Países del oponente resaltado en el mapa",
+    "Opponent's country alliance highlighted on map":
+      "La alianza de países del oponente está resaltada en el mapa",
     "Computer has fallen into a bonus-country":
       "La computadora ha caído en una país de bonificación",
     "Computer has fallen into a super bonus-country":
@@ -4795,8 +4805,10 @@ export const localization = {
     "You have fallen into a bonus-country": "Sei caduto in un paese bonus",
     "You have fallen into a super bonus-country":
       "Sei caduto in un paese superbonus",
-    "Opponent's country highlighted on map":
-      "Il paese dell'avversario è evidenziato sulla mappa",
+    "Opponent's countries highlighted on map":
+      "Paesi avversari è evidenziato sulla mappa",
+    "Opponent's country alliance highlighted on map":
+      "L'alleanza tra i paesi avversari è evidenziata sulla mappa",
     "Computer has fallen into a bonus-country":
       "Il computer è caduto in un paese bonus",
     "Computer has fallen into a super bonus-country":

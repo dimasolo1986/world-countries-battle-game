@@ -35,7 +35,7 @@ export class Player {
   usedHintsCount = 0;
   trapCountryHitted = 0;
   trapCountryHittedCode;
-  highlightCountryCode;
+  highlightCountryCodes = [];
   score = 0;
   opponentPlayerConfigAcknowledged = false;
   opponentPlayerStartAcknowledged = false;
@@ -54,6 +54,7 @@ export class Player {
   countryUnions = [];
   countryCodes = [];
   countriesToGuessNext = [];
+  countriesToGuess = [];
   alreadyGuessedCountryCodes = [];
   hintTypes = new Set();
   openUserHintSelectionWindow = false;
@@ -139,7 +140,7 @@ export class Player {
     this.score = null;
     this.trapCountryHitted = null;
     this.trapCountryHittedCode = null;
-    this.highlightCountryCode = null;
+    this.highlightCountryCodes = [];
     this.playerAttemptToGuess = null;
     this.openUserHintSelectionWindow = null;
     this.opponentPlayerConfigAcknowledged = null;
@@ -151,6 +152,7 @@ export class Player {
     this.countryUnions = null;
     this.countryCodes = null;
     this.countriesToGuessNext = null;
+    this.countriesToGuess = null;
     this.alreadyGuessedCountryCodes = null;
     this.hintTypes = null;
     this.outlineMapHandler = null;
@@ -173,7 +175,7 @@ export class Player {
     this.usedHintsCount = 0;
     this.trapCountryHitted = 0;
     this.trapCountryHittedCode = null;
-    this.highlightCountryCode = null;
+    this.highlightCountryCodes = [];
     if (this.playerType === "userPlayer") {
       this.playerAttemptToGuess = true;
     } else {
@@ -218,6 +220,7 @@ export class Player {
     ];
     this.countryCodes = [];
     this.countriesToGuessNext = [];
+    this.countriesToGuess = [];
     this.alreadyGuessedCountryCodes = [];
     let worldCountries = [];
     if (this.gameConfiguration.onlyIndependentCountries) {
@@ -1341,7 +1344,16 @@ export class Player {
           ]
         }`;
         await this.sleep(700);
-        if (this.countriesToGuessNext.length !== 0) {
+        if (this.countriesToGuess.length !== 0) {
+          countryIndex = getRandomInt(0, this.countriesToGuess.length - 1);
+          countryCode = this.countriesToGuess[countryIndex];
+          this.countriesToGuess.splice(countryIndex, 1);
+          const countryToDeleteIndex =
+            this.opponentPlayer.countryCodes.indexOf(countryCode);
+          if (countryToDeleteIndex >= 0)
+            this.opponentPlayer.countryCodes.splice(countryToDeleteIndex, 1);
+          this.opponentPlayer.alreadyGuessedCountryCodes.push(countryCode);
+        } else if (this.countriesToGuessNext.length !== 0) {
           countryIndex = getRandomInt(0, this.countriesToGuessNext.length - 1);
           countryCode = this.countriesToGuessNext[countryIndex];
           this.countriesToGuessNext.splice(countryIndex, 1);
@@ -1650,11 +1662,11 @@ export class Player {
                   ) != undefined,
               );
               if (countryUnion) {
-                const opponentCountryCode = Object.keys(
-                  countryUnion.find((item) => !Object.values(item)[0].guessed),
-                )[0];
-                if (opponentCountryCode)
-                  this.countriesToGuessNext.push(opponentCountryCode);
+                countryUnion.forEach((item) => {
+                  const guessed = Object.values(item)[0].guessed;
+                  const countryCode = Object.keys(item)[0];
+                  if (!guessed) this.countriesToGuess.push(countryCode);
+                });
               }
             }
             await this.sleep(1500);
@@ -2433,7 +2445,7 @@ export class Player {
             }.</span> <span style="margin-left:5px;">${
               superBonus
                 ? localization[model.worldCountries.language][
-                    "Opponent's country highlighted on map"
+                    "Opponent's countries highlighted on map"
                   ]
                 : localization[model.worldCountries.language][
                     "Additional attempt to guess and"
@@ -2502,7 +2514,7 @@ export class Player {
               }</span> <div style="color: darkblue;font-weight:bold;">${
                 superBonus
                   ? localization[model.worldCountries.language][
-                      "Opponent's country highlighted on map"
+                      "Opponent's country alliance highlighted on map"
                     ]
                   : localization[model.worldCountries.language][
                       "Additional attempt to guess country"
@@ -2557,81 +2569,85 @@ export class Player {
                 undefined,
             );
             if (countryUnion) {
-              this.highlightCountryCode = Object.keys(
-                countryUnion.find((item) => !Object.values(item)[0].guessed),
-              )[0];
-              const countryBoundary =
-                this.playMap.countryBoundariesAndMarkersLayer.boundaries[
-                  this.highlightCountryCode
-                ];
-              const countryMarker =
-                this.playMap.countryBoundariesAndMarkersLayer.markers[
-                  this.highlightCountryCode
-                ];
-              if (countryBoundary) {
-                const tooltip = countryBoundary.getTooltip();
-                countryBoundary.off("mouseout");
-                countryBoundary.off("mouseover");
-                countryMarker.off("mouseout");
-                countryMarker.off("mouseover");
-                this.setElementStyle(countryBoundary, {
-                  weight: 1,
-                  fillOpacity: 0.5,
-                  color: "#3388ff",
-                  fillColor: "#3388ff",
-                  className: this.highlightCountryCode,
-                  opacity: 1,
-                });
-                countryMarker.on("mouseover", function (event) {
-                  countryBoundary.setStyle({
-                    weight: 1,
-                    fillOpacity: 0.75,
-                    opacity: 1,
-                    className: this.highlightCountryCode,
-                  });
-                  L.DomEvent.stopPropagation(event);
-                  if (
-                    "ontouchstart" in window ||
-                    navigator.maxTouchPoints > 0
-                  ) {
-                    marker.fire("click");
-                  }
-                });
-                countryMarker.on("mouseout", function (event) {
-                  countryBoundary.setStyle({
+              countryUnion.forEach((item) => {
+                const guessed = Object.values(item)[0].guessed;
+                const countryCode = Object.keys(item)[0];
+                if (!guessed) this.highlightCountryCodes.push(countryCode);
+              });
+              this.highlightCountryCodes.forEach((highlightCountryCode) => {
+                const countryBoundary =
+                  this.playMap.countryBoundariesAndMarkersLayer.boundaries[
+                    highlightCountryCode
+                  ];
+                const countryMarker =
+                  this.playMap.countryBoundariesAndMarkersLayer.markers[
+                    highlightCountryCode
+                  ];
+                if (countryBoundary) {
+                  const tooltip = countryBoundary.getTooltip();
+                  countryBoundary.off("mouseout");
+                  countryBoundary.off("mouseover");
+                  countryMarker.off("mouseout");
+                  countryMarker.off("mouseover");
+                  this.setElementStyle(countryBoundary, {
                     weight: 1,
                     fillOpacity: 0.5,
+                    color: "#3388ff",
+                    fillColor: "#3388ff",
+                    className: highlightCountryCode,
                     opacity: 1,
-                    className: this.highlightCountryCode,
                   });
-                  L.DomEvent.stopPropagation(event);
-                });
-                this.addMouseOverStyleEventToCountryBoundary(
-                  countryBoundary,
-                  countryMarker,
-                  {
-                    weight: 1,
-                    fillOpacity: 0.75,
-                    opacity: 1,
-                    className: this.highlightCountryCode,
-                  },
-                );
-                this.addMouseOutStyleEventToCountryBoundary(
-                  countryBoundary,
-                  countryMarker,
-                  {
-                    weight: 1,
-                    fillOpacity: 0.5,
-                    opacity: 1,
-                    className: this.highlightCountryCode,
-                  },
-                  0.75,
-                );
-                countryBoundary.unbindTooltip();
-                countryMarker.unbindTooltip();
-                countryBoundary.bindTooltip(tooltip);
-                countryMarker.bindTooltip(tooltip);
-              }
+                  countryMarker.on("mouseover", function (event) {
+                    countryBoundary.setStyle({
+                      weight: 1,
+                      fillOpacity: 0.75,
+                      opacity: 1,
+                      className: highlightCountryCode,
+                    });
+                    L.DomEvent.stopPropagation(event);
+                    if (
+                      "ontouchstart" in window ||
+                      navigator.maxTouchPoints > 0
+                    ) {
+                      marker.fire("click");
+                    }
+                  });
+                  countryMarker.on("mouseout", function (event) {
+                    countryBoundary.setStyle({
+                      weight: 1,
+                      fillOpacity: 0.5,
+                      opacity: 1,
+                      className: highlightCountryCode,
+                    });
+                    L.DomEvent.stopPropagation(event);
+                  });
+                  this.addMouseOverStyleEventToCountryBoundary(
+                    countryBoundary,
+                    countryMarker,
+                    {
+                      weight: 1,
+                      fillOpacity: 0.75,
+                      opacity: 1,
+                      className: highlightCountryCode,
+                    },
+                  );
+                  this.addMouseOutStyleEventToCountryBoundary(
+                    countryBoundary,
+                    countryMarker,
+                    {
+                      weight: 1,
+                      fillOpacity: 0.5,
+                      opacity: 1,
+                      className: highlightCountryCode,
+                    },
+                    0.75,
+                  );
+                  countryBoundary.unbindTooltip();
+                  countryMarker.unbindTooltip();
+                  countryBoundary.bindTooltip(tooltip);
+                  countryMarker.bindTooltip(tooltip);
+                }
+              });
             }
           }
           await this.sleep(1500);
@@ -2640,14 +2656,24 @@ export class Player {
           guessedCountryAlliance.style.backgroundColor = "white";
           guessedCountryAllianceHeader.classList.remove("not-displayed");
           this.closeCountryPopup(countryPopup);
-          if (this.highlightCountryCode) {
-            const country = this.countries[this.highlightCountryCode];
-            const countryBound = COUNTRY_BOUNDS.find(
-              (bound) => country.countryName === bound.name,
-            );
-            this.playerMap.fitBounds(countryBound.bounds, {
-              animate: false,
+          if (this.highlightCountryCodes.length > 0) {
+            const countryBounds = [];
+            this.highlightCountryCodes.forEach((highlightCountryCode) => {
+              const country = this.countries[highlightCountryCode];
+              const countryBound = COUNTRY_BOUNDS.find(
+                (bound) => country.countryName === bound.name,
+              );
+              if (countryBound) countryBounds.push(...countryBound.bounds);
             });
+            if (countryBounds.length !== 0) {
+              this.playerMap.fitBounds(countryBounds, {
+                animate: false,
+              });
+            } else {
+              this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
+                animate: false,
+              });
+            }
           } else {
             this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
               animate: false,
@@ -2667,10 +2693,11 @@ export class Player {
       } else if (this.selectedCountryCodes.has(countryCode)) {
         try {
           if (
-            this.highlightCountryCode &&
-            this.highlightCountryCode === countryCode
+            this.highlightCountryCodes &&
+            this.highlightCountryCodes.includes(countryCode)
           ) {
-            this.highlightCountryCode = null;
+            const index = this.highlightCountryCodes.indexOf(countryCode);
+            this.highlightCountryCodes.splice(index, 1);
           }
           addCountryBoundariesAndMarkers = false;
           this.playerAttemptToGuess = false;
@@ -4671,7 +4698,7 @@ export class Player {
           opacity: 0.5,
         });
       }
-      if (this.highlightCountryCode === countryCode) {
+      if (this.highlightCountryCodes.includes(countryCode)) {
         this.setElementStyle(countryBoundary, {
           weight: 1,
           fillOpacity: 0.5,
