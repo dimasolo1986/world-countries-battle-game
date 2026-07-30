@@ -5517,7 +5517,7 @@ export const COUNTRIES = [
       alt: "The flag of the Republic of the Congo features a yellow diagonal band that extends from the lower hoist-side corner to the upper fly-side corner of the field. Above and beneath this band are a green and red triangle respectively.",
     },
     coatOfArms: {
-      png: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Coat_of_Arms_of_the_Republic_of_the_Congo.svg",
+      png: "https://upload.wikimedia.org/wikipedia/commons/d/d8/Coat_of_arms_of_the_Republic_of_the_Congo.svg",
     },
     startOfWeek: "monday",
     capitalInfo: {
@@ -8276,8 +8276,8 @@ export const COUNTRIES = [
       alt: "The flag of the Democratic Republic of the Congo has a sky-blue field with a yellow-edged red diagonal band that extends from the lower hoist-side corner to the upper fly-side corner of the field. A large five-pointed yellow star is situated above the diagonal band on the upper hoist side of the field.",
     },
     coatOfArms: {
-      png: "https://mainfacts.com/media/images/coats_of_arms/cd.png",
-      svg: "https://mainfacts.com/media/images/coats_of_arms/cd.svg",
+      png: "https://upload.wikimedia.org/wikipedia/commons/9/9c/Coat_of_arms_of_the_Democratic_Republic_of_the_Congo_%28black_spear%29.svg",
+      svg: "https://upload.wikimedia.org/wikipedia/commons/9/9c/Coat_of_arms_of_the_Democratic_Republic_of_the_Congo_%28black_spear%29.svg",
     },
     startOfWeek: "monday",
     capitalInfo: {
