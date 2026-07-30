@@ -14,6 +14,7 @@ export class Game {
   isPlayerReady = true;
   bonusCountries;
   superBonusCountry;
+  secondSuperBonusCountry;
   gameModalResultLabel = document.getElementById("gameModalResultLabel");
   gameModalRulesLabel = document.getElementById("gameModalRulesLabel");
   gameModalRulesContent = document.getElementById("gameRulesContent");
@@ -35,6 +36,7 @@ export class Game {
     );
     this.bonusCountries = [];
     this.superBonusCountry = null;
+    this.secondSuperBonusCountry = null;
     this.playerOne = playerOne;
     this.playerTwo = playerTwo;
     this.playMap = playMap;
@@ -56,11 +58,8 @@ export class Game {
     }
     bonusCountries.sort(() => Math.random() - 0.5);
     this.bonusCountries = bonusCountries.slice(0, count);
-    const superBonusCountryIndex = getRandomInt(
-      0,
-      this.bonusCountries.length - 1,
-    );
-    this.superBonusCountry = this.bonusCountries[superBonusCountryIndex];
+    this.superBonusCountry = this.bonusCountries[0];
+    this.secondSuperBonusCountry = this.bonusCountries[1];
   }
 
   showGameRules() {
