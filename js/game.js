@@ -452,14 +452,19 @@ export class Game {
     } else {
       if (window.gtag) gtag("event", "game_computer_end");
     }
-    if (this.playMap) this.playMap.destroyMap();
     this.playerOne.cleanPlayerResources(deleteGameRoom);
     this.playerTwo.cleanPlayerResources(deleteGameRoom);
+    if (this.playMap) this.playMap.destroyMap();
     this.playerOne = null;
     this.playerTwo = null;
     this.playMap = null;
     this.finished = true;
     this.started = false;
+    this.firebase = null;
+    this.gameConfiguration = null;
+    this.bonusCountries = null;
+    this.superBonusCountry = null;
+    this.secondSuperBonusCountry = null;
     hideModalWindow("gameCountryAllianceInitialSelectionModal");
     loadMain();
     resetFinishedGame();

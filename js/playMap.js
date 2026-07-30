@@ -3,6 +3,7 @@ import { WORLD_MAP_BOUNDS } from "./config.js";
 import * as model from "./model.js";
 export class PlayMap {
   map;
+  mapId;
   gameConfiguration;
   game;
   playerOne;
@@ -881,6 +882,14 @@ export class PlayMap {
       this.map.off();
       this.map.remove();
     }
+    this.map = null;
+    this.mapId = null;
+    this.gameConfiguration = null;
+    this.game = null;
+    this.playerOne = null;
+    this.playerTwo = null;
+    this.countriesNumber = null;
+    this.countryBoundariesAndMarkersLayer = null;
   }
 
   cleanSelection() {
