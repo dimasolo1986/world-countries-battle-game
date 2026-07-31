@@ -45,6 +45,7 @@ class gameView {
   _playerOne;
   _playerTwo;
   _game;
+  _firebase;
 
   initGameView(firebase) {
     this._gameConfiguration = new GameConfig("default");
@@ -83,6 +84,7 @@ class gameView {
       this._gameConfiguration.gameMode === "computer" ? undefined : firebase,
       this._gameConfiguration,
     );
+    this._firebase = firebase;
     firebase.setGame(this._game);
     this._playMap.setGame(this._game);
     this._playMap.setPlayerOne(this._playerOne);
@@ -208,6 +210,8 @@ class gameView {
   }
 
   disposeGame() {
+    this._firebase.cleanGame();
+    this._firebase = null;
     this._gameConfiguration = null;
     this._game = null;
     this._playMap = null;

@@ -446,6 +446,10 @@ export class Firebase {
     this.game = game;
   }
 
+  cleanGame() {
+    this.game = null;
+  }
+
   setGameRoomId(gameRoomId) {
     this.gameRoomId = gameRoomId;
   }
