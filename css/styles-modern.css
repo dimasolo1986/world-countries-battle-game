@@ -160,9 +160,9 @@ main .card {
   width: clamp(17rem, 90vw, 22rem) !important; /* responsive, not fixed 21rem */
 }
 
-main .card .carousel-item,
 main .card .carousel-item img {
-  border-radius: var(--cg-radius-xl) !important;
+  border-top-left-radius: var(--cg-radius-xl) !important;
+  border-top-right-radius: var(--cg-radius-xl) !important;
 }
 
 main .card .card-img-top {
