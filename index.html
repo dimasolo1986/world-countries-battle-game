@@ -944,8 +944,11 @@
           font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
         "
       >
-      <div id="made-in-ukraine-banner" style="position: absolute; right: 8px;"><img alt="Made In Ukraine Image" style="width: 55px;" src="https://img.shields.io/badge/made_in-Ukraine-ffd700.svg?labelColor=0057b7"></div>
-      <picture>
+      <div id="carouselConfigAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="3000">
+            <div id="made-in-ukraine-banner" style="position: absolute; right: 8px;"><img alt="Made In Ukraine Image" style="width: 55px;" src="https://img.shields.io/badge/made_in-Ukraine-ffd700.svg?labelColor=0057b7"></div>
+             <picture>
          <source srcset="assets/img/game-configuration-img-700-310.avif" type="image/avif">
          <source srcset="assets/img/game-configuration-img-700-310.png" type="image/png">
         <img
@@ -956,6 +959,37 @@
            fetchpriority=high
         />
         </picture>
+          </div>
+           <div class="carousel-item" data-bs-interval="3000">
+            <div id="made-in-ukraine-banner" style="position: absolute; right: 8px;"><img alt="Made In Ukraine Image" style="width: 55px;" src="https://img.shields.io/badge/made_in-Ukraine-ffd700.svg?labelColor=0057b7"></div>
+               <picture>
+         <source srcset="assets/img/game-configuration-img-second.avif" type="image/avif">
+         <source srcset="assets/img/game-configuration-img-second.png" type="image/png">
+        <img
+          src="assets/img/game-configuration-img-second.png"
+          class="card-img-top"
+          alt="Game Configuration Image"
+          style="border-bottom: 1px dotted grey;"
+           fetchpriority=high
+        />
+        </picture>
+           </div>
+            <div class="carousel-item" data-bs-interval="3000">
+            <div id="made-in-ukraine-banner" style="position: absolute; right: 8px;"><img alt="Made In Ukraine Image" style="width: 55px;" src="https://img.shields.io/badge/made_in-Ukraine-ffd700.svg?labelColor=0057b7"></div>
+               <picture>
+         <source srcset="assets/img/game-configuration-img-third.avif" type="image/avif">
+         <source srcset="assets/img/game-configuration-img-third.png" type="image/png">
+        <img
+          src="assets/img/game-configuration-img-third.png"
+          class="card-img-top"
+          alt="Game Configuration Image"
+          style="border-bottom: 1px dotted grey;"
+           fetchpriority=high
+        />
+        </picture>
+           </div>
+        </div>
+      </div>
         <div class="card-body text-center" style="padding: 0.1rem; background-color: ghostwhite; border-radius: 0.375rem;">
           <h5
             id="game-configuration-header"
