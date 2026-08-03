@@ -365,9 +365,11 @@ class mainView {
   }
 
   translateElements() {
-    this._gameConfigurationHeader.textContent = `🛠️ ${
+    this._gameConfigurationHeader.textContent = `⚙️ ${
       localization[model.worldCountries.language]["Game Configuration"]
-    }`;
+    } ⚙️`;
+    this._onlyIndependentCountriesSelect.title =
+      localization[model.worldCountries.language]["Countries"];
     const onlyIndependentOptions = Array.from(
       this._onlyIndependentCountriesSelect.options,
     );
@@ -375,6 +377,12 @@ class mainView {
       option.textContent =
         localization[model.worldCountries.language][option.value];
     });
+    this._hitTimeSelect.title =
+      localization[model.worldCountries.language]["Time per Guess"];
+    this._bonusCountriesSelect.title =
+      localization[model.worldCountries.language]["Bonus Countries"];
+    this._hintsTypeSelect.title =
+      localization[model.worldCountries.language]["Hints"];
     const hintTypeOptions = Array.from(this._hintsTypeSelect.options);
     hintTypeOptions.forEach((option) => {
       option.textContent =

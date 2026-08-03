@@ -495,9 +495,11 @@ class gameRoomView {
     this._gameShareLink.textContent = `🔗 ${
       localization[model.worldCountries.language]["Share Link With Friend"]
     }`;
-    this._gameRoomGameConfigurationHeader.textContent = `🛠️ ${
+    this._gameRoomGameConfigurationHeader.textContent = `⚙️ ${
       localization[model.worldCountries.language]["Game Configuration"]
-    }`;
+    } ⚙️`;
+    this._gameRoomOnlyIndependentCountriesSelect.title =
+      localization[model.worldCountries.language]["Countries"];
     const onlyIndependentOptions = Array.from(
       this._gameRoomOnlyIndependentCountriesSelect.options,
     );
@@ -505,6 +507,12 @@ class gameRoomView {
       option.textContent =
         localization[model.worldCountries.language][option.value];
     });
+    this._gameRoomHitTimeSelect.title =
+      localization[model.worldCountries.language]["Time per Guess"];
+    this._gameRoomBonusCountriesSelect.title =
+      localization[model.worldCountries.language]["Bonus Countries"];
+    this._gameRoomHintsTypeSelect.title =
+      localization[model.worldCountries.language]["Hints"];
     const hintTypesOptions = Array.from(this._gameRoomHintsTypeSelect.options);
     hintTypesOptions.forEach((option) => {
       option.textContent =
