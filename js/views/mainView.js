@@ -378,7 +378,7 @@ class mainView {
         localization[model.worldCountries.language][option.value];
     });
     this._hitTimeSelect.title =
-      localization[model.worldCountries.language]["Time per Guess"];
+      localization[model.worldCountries.language]["Time per Guess, seconds"];
     this._bonusCountriesSelect.title =
       localization[model.worldCountries.language]["Bonus Countries"];
     this._hintsTypeSelect.title =

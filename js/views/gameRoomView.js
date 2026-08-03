@@ -508,7 +508,7 @@ class gameRoomView {
         localization[model.worldCountries.language][option.value];
     });
     this._gameRoomHitTimeSelect.title =
-      localization[model.worldCountries.language]["Time per Guess"];
+      localization[model.worldCountries.language]["Time per Guess, seconds"];
     this._gameRoomBonusCountriesSelect.title =
       localization[model.worldCountries.language]["Bonus Countries"];
     this._gameRoomHintsTypeSelect.title =
