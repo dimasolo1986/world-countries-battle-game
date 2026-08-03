@@ -161,7 +161,6 @@ main .card {
 }
 
 main .card .card-img-top {
-  border-bottom: 2px solid var(--cg-border) !important;
   border-radius: 0 !important;
   border-top-left-radius: var(--cg-radius-xl) !important;
   border-top-right-radius: var(--cg-radius-xl) !important;
