@@ -849,6 +849,11 @@ video {
     margin: 0 auto !important;
   }
 
+  main .card .card-img-top {
+    border-top-left-radius: 14px !important;
+    border-top-right-radius: 14px !important;
+  }
+
   /* START button: fill most of the card width on phones */
   #start-button,
   #start-button-game-room {
@@ -925,6 +930,11 @@ video {
   /* Header game title: hide on very small screens (already handled by existing CSS but reinforce) */
   .logo-game {
     font-size: 1rem !important;
+  }
+
+  main .card .card-img-top {
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
   }
 }
 
