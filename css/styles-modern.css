@@ -963,7 +963,7 @@ video {
 
 @media (min-width: 1024px) {
   main .card {
-    width: 25rem !important;
+    width: 23rem !important;
   }
 
   /* Hover effects only on devices that support hover (not touch) */
