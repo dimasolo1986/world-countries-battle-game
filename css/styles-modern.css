@@ -961,6 +961,21 @@ video {
   }
 }
 
+@media (min-width: 1024px) {
+  main .card {
+    width: 25rem !important;
+  }
+
+  /* Hover effects only on devices that support hover (not touch) */
+  #start-button:hover,
+  #start-button-game-room:hover {
+    transform: translateY(-2px) !important;
+  }
+  .modal-footer .btn:hover {
+    transform: translateY(-1px) !important;
+  }
+}
+
 /* Prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,
