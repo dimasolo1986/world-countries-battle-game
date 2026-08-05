@@ -152,7 +152,7 @@
         container = leaflet.DomUtil.create("div", "leaflet-bar");
       }
 
-      container.style.marginLeft = "17px";
+      container.style.marginLeft = "18px";
       container.style.marginTop = "33px";
       container.style.opacity = "0.7";
 

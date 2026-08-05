@@ -278,11 +278,15 @@ svg.leaflet-image-layer.leaflet-interactive path {
 }
 
 .leaflet-marker-icon {
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.5), 0 2px 2px 0 rgba(0, 0, 0, 0.12) inset;
+  box-shadow:
+    0 2px 2px 0 rgba(0, 0, 0, 0.5),
+    0 2px 2px 0 rgba(0, 0, 0, 0.12) inset;
 }
 
 .box-shadow-marker-icon-hover {
-  box-shadow: 0 7px 7px 0 rgba(0, 0, 0, 0.5), 0 7px 7px 0 rgba(0, 0, 0, 0.12) inset;
+  box-shadow:
+    0 7px 7px 0 rgba(0, 0, 0, 0.5),
+    0 7px 7px 0 rgba(0, 0, 0, 0.12) inset;
 }
 
 /* visual tweaks */
@@ -375,7 +379,10 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 .leaflet-control-zoom-in,
 .leaflet-control-zoom-out {
-  font: bold 18px "Lucida Console", Monaco, monospace;
+  font:
+    bold 18px "Lucida Console",
+    Monaco,
+    monospace;
   text-indent: 1px;
 }
 
@@ -390,7 +397,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
   background: #fff;
   border-radius: 5px;
-  left: 5px;
+  left: 6px;
 }
 .leaflet-control-layers-toggle {
   background-image: url(images/layers.png);
@@ -576,7 +583,10 @@ svg.leaflet-image-layer.leaflet-interactive path {
   text-align: center;
   width: 24px;
   height: 24px;
-  font: 16px/24px Tahoma, Verdana, sans-serif;
+  font:
+    16px/24px Tahoma,
+    Verdana,
+    sans-serif;
   color: #757575;
   text-decoration: none;
   background: transparent;
