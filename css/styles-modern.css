@@ -184,7 +184,6 @@ main .card .card-body {
   font-weight: 600 !important;
   color: var(--cg-green) !important;
   letter-spacing: 0.03em !important;
-  margin-top: 4px !important;
   text-transform: uppercase !important;
 }
 
