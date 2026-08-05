@@ -342,18 +342,29 @@ export class Player {
 
   addUserSelectedHint() {
     const selectedCountryCodes = [];
-    Array.from(this.opponentPlayer.selectedCountryCodes).forEach(
-      (countryCode) => {
-        if (
-          !this.opponentPlayer.alreadyGuessedCountryCodes.includes(
-            countryCode,
-          ) &&
-          !(countryCode in this.hints)
-        ) {
-          selectedCountryCodes.push(countryCode);
-        }
-      },
-    );
+    let notGuessedCountries = this.opponentPlayer.countryUnions
+      .filter((countryUnion) =>
+        countryUnion.every((item) => !Object.values(item)[0].guessed),
+      )
+      .flatMap((countryUnion) =>
+        countryUnion.map((item) => Object.keys(item)[0]),
+      )
+      .filter((countryCode) => !(countryCode in this.hints));
+    if (notGuessedCountries.length !== 0) {
+      selectedCountryCodes.push(...notGuessedCountries);
+    } else {
+      notGuessedCountries = this.opponentPlayer.countryUnions
+        .filter((countryUnion) =>
+          countryUnion.some((item) => !Object.values(item)[0].guessed),
+        )
+        .flatMap((countryUnion) =>
+          countryUnion
+            .filter((item) => !Object.values(item)[0].guessed)
+            .map((item) => Object.keys(item)[0]),
+        )
+        .filter((countryCode) => !(countryCode in this.hints));
+      selectedCountryCodes.push(...notGuessedCountries);
+    }
     if (selectedCountryCodes.length === 0) return;
     const userHintTypeSelect = document.getElementById(
       "user-hint-types-select",
@@ -563,18 +574,29 @@ export class Player {
 
   async addHint(trapCountryCode, addCountryImage, hintType) {
     const selectedCountryCodes = [];
-    Array.from(this.opponentPlayer.selectedCountryCodes).forEach(
-      (countryCode) => {
-        if (
-          !this.opponentPlayer.alreadyGuessedCountryCodes.includes(
-            countryCode,
-          ) &&
-          !(countryCode in this.hints)
-        ) {
-          selectedCountryCodes.push(countryCode);
-        }
-      },
-    );
+    let notGuessedCountries = this.opponentPlayer.countryUnions
+      .filter((countryUnion) =>
+        countryUnion.every((item) => !Object.values(item)[0].guessed),
+      )
+      .flatMap((countryUnion) =>
+        countryUnion.map((item) => Object.keys(item)[0]),
+      )
+      .filter((countryCode) => !(countryCode in this.hints));
+    if (notGuessedCountries.length !== 0) {
+      selectedCountryCodes.push(...notGuessedCountries);
+    } else {
+      notGuessedCountries = this.opponentPlayer.countryUnions
+        .filter((countryUnion) =>
+          countryUnion.some((item) => !Object.values(item)[0].guessed),
+        )
+        .flatMap((countryUnion) =>
+          countryUnion
+            .filter((item) => !Object.values(item)[0].guessed)
+            .map((item) => Object.keys(item)[0]),
+        )
+        .filter((countryCode) => !(countryCode in this.hints));
+      selectedCountryCodes.push(...notGuessedCountries);
+    }
     if (selectedCountryCodes.length === 0) return;
     let randomCountryIndex = getRandomInt(0, selectedCountryCodes.length - 1);
     let countryCode = selectedCountryCodes[randomCountryIndex];
