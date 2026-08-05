@@ -3568,7 +3568,7 @@ export class Player {
         const countryElement = userSelectedCountriesPanel.querySelector(
           `.country${this.selectedCountryTrapCodes.size + 20}`,
         );
-        countryElement.innerHTML = `<span style="color:grey; border:solid 1px grey; border-radius:50%; display:inline-block; height:10px; width:10px;"></span>`;
+        countryElement.innerHTML = `<span style="color:grey; border:solid 1px grey; border-radius:50%; display:inline-block; height:11px; width:11px;"></span>`;
       } else if (this.selectedCountryTrapCodes.size === 2) {
         this.gameMessageField.textContent = `ℹ️ ${
           localization[model.worldCountries.language][
@@ -3578,7 +3578,7 @@ export class Player {
         const countryElement = userSelectedCountriesPanel.querySelector(
           `.country${this.selectedCountryTrapCodes.size + 20}`,
         );
-        countryElement.innerHTML = `<span style="color:grey; border:solid 1px grey; border-radius:50%; display:inline-block; height:10px; width:10px;"></span>`;
+        countryElement.innerHTML = `<span style="color:grey; border:solid 1px grey; border-radius:50%; display:inline-block; height:11px; width:11px;"></span>`;
       } else if (this.selectedCountryTrapCodes.size === 3) {
         this.gameMessageField.textContent = `ℹ️ ${
           localization[model.worldCountries.language][
@@ -3588,7 +3588,7 @@ export class Player {
         const countryElement = userSelectedCountriesPanel.querySelector(
           `.country${this.selectedCountryTrapCodes.size + 20}`,
         );
-        countryElement.innerHTML = `<span style="color:grey; border:solid 1px grey; border-radius:50%; display:inline-block; height:10px; width:10px;"></span>`;
+        countryElement.innerHTML = `<span style="color:grey; border:solid 1px grey; border-radius:50%; display:inline-block; height:11px; width:11px;"></span>`;
       }
       this.selectedCountryCodes.delete(countryTrapCode);
       this.selectedCountryTrapCodes.delete(countryTrapCode);
@@ -3732,7 +3732,7 @@ export class Player {
         const countryElement = userSelectedCountriesPanel.querySelector(
           `.country${countryCodeIndex + 1}`,
         );
-        countryElement.innerHTML = `<span style="color:grey; border:solid 1px grey; border-radius:50%; display:inline-block; height:10px; width:10px;"></span>`;
+        countryElement.innerHTML = `<span style="color:grey; border:solid 1px grey; border-radius:50%; display:inline-block; height:11px; width:11px;"></span>`;
         const countryBoundary =
           this.playMap.countryBoundariesAndMarkersLayer.boundaries[countryCode];
         const countryMarker =
@@ -4054,7 +4054,7 @@ export class Player {
           localization[model.worldCountries.language]["countries"][
             country.countryName
           ]
-        }" style="width:10px; height:10px;border:solid 1px grey; border-radius:50%; display:inline-block;vertical-align:baseline; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f;">`
+        }" style="width:11px; height:11px;border:solid 1px grey; border-radius:50%; display:inline-block;vertical-align:baseline; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f;">`
       : `<span style="width:10px; height:10px;background-color:red; border: 2px grey solid;border-radius:50%; display:inline-block;vertical-align:baseline;"></span>`;
   }
 
