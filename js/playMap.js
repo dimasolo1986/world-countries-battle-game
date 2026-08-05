@@ -882,6 +882,18 @@ export class PlayMap {
       this.map.off();
       this.map.remove();
     }
+    const mapElement = document.getElementById(this.mapId);
+    if (mapElement) {
+      mapElement.innerHTML = `<div
+        id="map"
+        style="
+          background-color: #99d9f2;
+          width: 100vw;
+          height: 100vh;
+          position: fixed;
+        "
+      ></div>`;
+    }
     this.map = null;
     this.mapId = null;
     this.gameConfiguration = null;
