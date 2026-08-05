@@ -4055,7 +4055,7 @@ export class Player {
             country.countryName
           ]
         }" style="width:11px; height:11px;border:solid 1px grey; border-radius:50%; display:inline-block;vertical-align:baseline; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f;">`
-      : `<span style="width:10px; height:10px;background-color:red; border: 2px grey solid;border-radius:50%; display:inline-block;vertical-align:baseline;"></span>`;
+      : `<span style="width:11px; height:11px;background-color:red; border: 2px grey solid;border-radius:50%; display:inline-block;vertical-align:baseline;"></span>`;
   }
 
   addUserPlayerInitialCountrySelection(
