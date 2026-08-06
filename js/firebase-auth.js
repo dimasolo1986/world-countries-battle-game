@@ -20,107 +20,107 @@ const s = {
     return this.ENCODED_VALS_BASE + "-_.";
   },
   HAS_NATIVE_SUPPORT: "function" == typeof atob,
-  encodeByteArray(e, t) {
-    if (!Array.isArray(e))
+  encodeByteArray(n, e) {
+    if (!Array.isArray(n))
       throw Error("encodeByteArray takes an array as a parameter");
     this.init_();
-    const r = t ? this.byteToCharMapWebSafe_ : this.byteToCharMap_,
-      n = [];
-    for (let t = 0; t < e.length; t += 3) {
-      var i = e[t],
-        s = t + 1 < e.length,
-        a = s ? e[t + 1] : 0,
-        o = t + 2 < e.length,
-        c = o ? e[t + 2] : 0;
-      let d = ((15 & a) << 2) | (c >> 6),
-        u = 63 & c;
-      (o || ((u = 64), s || (d = 64)),
-        n.push(r[i >> 2], r[((3 & i) << 4) | (a >> 4)], r[d], r[u]));
+    const i = e ? this.byteToCharMapWebSafe_ : this.byteToCharMap_,
+      s = [];
+    for (let r = 0; r < n.length; r += 3) {
+      var a = n[r],
+        o = r + 1 < n.length,
+        c = o ? n[r + 1] : 0,
+        d = r + 2 < n.length,
+        u = d ? n[r + 2] : 0;
+      let e = ((15 & c) << 2) | (u >> 6),
+        t = 63 & u;
+      d || ((t = 64), o || (e = 64)),
+        s.push(i[a >> 2], i[((3 & a) << 4) | (c >> 4)], i[e], i[t]);
     }
-    return n.join("");
+    return s.join("");
   },
   encodeString(e, t) {
     return this.HAS_NATIVE_SUPPORT && !t
       ? btoa(e)
       : this.encodeByteArray(
-          (function (e) {
-            const t = [];
-            let r = 0;
-            for (let n = 0; n < e.length; n++) {
-              let i = e.charCodeAt(n);
-              i < 128
-                ? (t[r++] = i)
-                : (i < 2048
-                    ? (t[r++] = (i >> 6) | 192)
-                    : (55296 == (64512 & i) &&
-                      n + 1 < e.length &&
-                      56320 == (64512 & e.charCodeAt(n + 1))
-                        ? ((i =
+          (function (r) {
+            const n = [];
+            let i = 0;
+            for (let t = 0; t < r.length; t++) {
+              let e = r.charCodeAt(t);
+              e < 128
+                ? (n[i++] = e)
+                : (e < 2048
+                    ? (n[i++] = (e >> 6) | 192)
+                    : (55296 == (64512 & e) &&
+                      t + 1 < r.length &&
+                      56320 == (64512 & r.charCodeAt(t + 1))
+                        ? ((e =
                             65536 +
-                            ((1023 & i) << 10) +
-                            (1023 & e.charCodeAt(++n))),
-                          (t[r++] = (i >> 18) | 240),
-                          (t[r++] = ((i >> 12) & 63) | 128))
-                        : (t[r++] = (i >> 12) | 224),
-                      (t[r++] = ((i >> 6) & 63) | 128)),
-                  (t[r++] = (63 & i) | 128));
+                            ((1023 & e) << 10) +
+                            (1023 & r.charCodeAt(++t))),
+                          (n[i++] = (e >> 18) | 240),
+                          (n[i++] = ((e >> 12) & 63) | 128))
+                        : (n[i++] = (e >> 12) | 224),
+                      (n[i++] = ((e >> 6) & 63) | 128)),
+                  (n[i++] = (63 & e) | 128));
             }
-            return t;
+            return n;
           })(e),
-          t,
+          t
         );
   },
-  decodeString(e, t) {
-    if (this.HAS_NATIVE_SUPPORT && !t) return atob(e);
+  decodeString(r, n) {
+    if (this.HAS_NATIVE_SUPPORT && !n) return atob(r);
     {
-      var r = this.decodeStringToByteArray(e, t);
-      const o = [];
-      let c = 0,
-        d = 0;
-      for (; c < r.length; ) {
-        var n,
-          i,
-          s,
-          a = r[c++];
-        a < 128
-          ? (o[d++] = String.fromCharCode(a))
-          : 191 < a && a < 224
-            ? ((n = r[c++]),
-              (o[d++] = String.fromCharCode(((31 & a) << 6) | (63 & n))))
-            : 239 < a && a < 365
-              ? ((n =
-                  (((7 & a) << 18) |
-                    ((63 & r[c++]) << 12) |
-                    ((63 & r[c++]) << 6) |
-                    (63 & r[c++])) -
-                  65536),
-                (o[d++] = String.fromCharCode(55296 + (n >> 10))),
-                (o[d++] = String.fromCharCode(56320 + (1023 & n))))
-              : ((i = r[c++]),
-                (s = r[c++]),
-                (o[d++] = String.fromCharCode(
-                  ((15 & a) << 12) | ((63 & i) << 6) | (63 & s),
-                )));
+      var i = this.decodeStringToByteArray(r, n);
+      const d = [];
+      let e = 0,
+        t = 0;
+      for (; e < i.length; ) {
+        var s,
+          a,
+          o,
+          c = i[e++];
+        c < 128
+          ? (d[t++] = String.fromCharCode(c))
+          : 191 < c && c < 224
+          ? ((s = i[e++]),
+            (d[t++] = String.fromCharCode(((31 & c) << 6) | (63 & s))))
+          : 239 < c && c < 365
+          ? ((s =
+              (((7 & c) << 18) |
+                ((63 & i[e++]) << 12) |
+                ((63 & i[e++]) << 6) |
+                (63 & i[e++])) -
+              65536),
+            (d[t++] = String.fromCharCode(55296 + (s >> 10))),
+            (d[t++] = String.fromCharCode(56320 + (1023 & s))))
+          : ((a = i[e++]),
+            (o = i[e++]),
+            (d[t++] = String.fromCharCode(
+              ((15 & c) << 12) | ((63 & a) << 6) | (63 & o)
+            )));
       }
-      return o.join("");
+      return d.join("");
     }
   },
-  decodeStringToByteArray(e, t) {
+  decodeStringToByteArray(t, e) {
     this.init_();
-    const r = t ? this.charToByteMapWebSafe_ : this.charToByteMap_,
+    const r = e ? this.charToByteMapWebSafe_ : this.charToByteMap_,
       n = [];
-    for (let t = 0; t < e.length; ) {
-      var i = r[e.charAt(t++)],
-        s = t < e.length ? r[e.charAt(t)] : 0,
-        a = ++t < e.length ? r[e.charAt(t)] : 64,
-        o = ++t < e.length ? r[e.charAt(t)] : 64;
-      if ((++t, null == i || null == s || null == a || null == o))
+    for (let e = 0; e < t.length; ) {
+      var i = r[t.charAt(e++)],
+        s = e < t.length ? r[t.charAt(e)] : 0,
+        a = ++e < t.length ? r[t.charAt(e)] : 64,
+        o = ++e < t.length ? r[t.charAt(e)] : 64;
+      if ((++e, null == i || null == s || null == a || null == o))
         throw new DecodeBase64StringError();
       if ((n.push((i << 2) | (s >> 4)), 64 !== a)) {
-        const e = ((s << 4) & 240) | (a >> 2);
-        if ((n.push(e), 64 !== o)) {
-          const e = ((a << 6) & 192) | o;
-          n.push(e);
+        const t = ((s << 4) & 240) | (a >> 2);
+        if ((n.push(t), 64 !== o)) {
+          const t = ((a << 6) & 192) | o;
+          n.push(t);
         }
       }
     }
@@ -128,24 +128,24 @@ const s = {
   },
   init_() {
     if (!this.byteToCharMap_) {
-      ((this.byteToCharMap_ = {}),
+      (this.byteToCharMap_ = {}),
         (this.charToByteMap_ = {}),
         (this.byteToCharMapWebSafe_ = {}),
-        (this.charToByteMapWebSafe_ = {}));
+        (this.charToByteMapWebSafe_ = {});
       for (let e = 0; e < this.ENCODED_VALS.length; e++)
-        ((this.byteToCharMap_[e] = this.ENCODED_VALS.charAt(e)),
+        (this.byteToCharMap_[e] = this.ENCODED_VALS.charAt(e)),
           (this.charToByteMap_[this.byteToCharMap_[e]] = e),
           (this.byteToCharMapWebSafe_[e] = this.ENCODED_VALS_WEBSAFE.charAt(e)),
           (this.charToByteMapWebSafe_[this.byteToCharMapWebSafe_[e]] = e) >=
             this.ENCODED_VALS_BASE.length &&
             ((this.charToByteMap_[this.ENCODED_VALS_WEBSAFE.charAt(e)] = e),
-            (this.charToByteMapWebSafe_[this.ENCODED_VALS.charAt(e)] = e)));
+            (this.charToByteMapWebSafe_[this.ENCODED_VALS.charAt(e)] = e));
     }
   },
 };
 class DecodeBase64StringError extends Error {
   constructor() {
-    (super(...arguments), (this.name = "DecodeBase64StringError"));
+    super(...arguments), (this.name = "DecodeBase64StringError");
   }
 }
 const base64Decode = function (e) {
@@ -170,26 +170,27 @@ const base64Decode = function (e) {
         (() => {
           var e;
           if ("undefined" != typeof process && void 0 !== process.env)
-            return (e = process.env.__FIREBASE_DEFAULTS__)
-              ? JSON.parse(e)
-              : void 0;
+            return (
+              (e = process.env.__FIREBASE_DEFAULTS__),
+              e ? JSON.parse(e) : void 0
+            );
         })() ||
         (() => {
           if ("undefined" != typeof document) {
-            let t;
+            let e;
             try {
-              t = document.cookie.match(/__FIREBASE_DEFAULTS__=([^;]+)/);
+              e = document.cookie.match(/__FIREBASE_DEFAULTS__=([^;]+)/);
             } catch (e) {
               return;
             }
-            var e = t && base64Decode(t[1]);
-            return e && JSON.parse(e);
+            var t = e && base64Decode(e[1]);
+            return t && JSON.parse(t);
           }
         })()
       );
     } catch (e) {
       return void console.info(
-        "Unable to get __FIREBASE_DEFAULTS__ due to: " + e,
+        "Unable to get __FIREBASE_DEFAULTS__ due to: " + e
       );
     }
   },
@@ -217,18 +218,18 @@ function updateEmulatorBanner(e, t) {
     !a
   ) {
     o[e] = t;
-    const s = "__firebase__banner",
-      c =
+    const l = "__firebase__banner",
+      h =
         0 <
         (function () {
           const e = { prod: [], emulator: [] };
           for (const t of Object.keys(o)) (o[t] ? e.emulator : e.prod).push(t);
           return e;
         })().prod.length;
-    function r(e) {
+    function d(e) {
       return "__firebase__banner__" + e;
     }
-    function n() {
+    function u() {
       const e = document.createElement("span");
       return (
         (e.style.cursor = "pointer"),
@@ -238,14 +239,14 @@ function updateEmulatorBanner(e, t) {
         (e.onclick = () => {
           a = !0;
           {
-            const e = document.getElementById(s);
+            const e = document.getElementById(l);
             return void (e && e.remove());
           }
         }),
         e
       );
     }
-    function i() {
+    function r() {
       const e = (function (e) {
           let t = document.getElementById(e),
             r = !1;
@@ -255,57 +256,58 @@ function updateEmulatorBanner(e, t) {
               (r = !0)),
             { created: r, element: t }
           );
-        })(s),
-        t = r("text"),
-        i = document.getElementById(t) || document.createElement("span"),
-        a = r("learnmore"),
-        o = document.getElementById(a) || document.createElement("a"),
-        d = r("preprendIcon"),
-        u =
-          document.getElementById(d) ||
+        })(l),
+        t = d("text"),
+        r = document.getElementById(t) || document.createElement("span"),
+        n = d("learnmore"),
+        i = document.getElementById(n) || document.createElement("a"),
+        s = d("preprendIcon"),
+        a =
+          document.getElementById(s) ||
           document.createElementNS("http://www.w3.org/2000/svg", "svg");
       if (e.created) {
         const t = e.element,
-          r =
-            (((h = t).style.display = "flex"),
-            (h.style.background = "#7faaf0"),
-            (h.style.position = "fixed"),
-            (h.style.bottom = "5px"),
-            (h.style.left = "5px"),
-            (h.style.padding = ".5em"),
-            (h.style.borderRadius = "5px"),
-            (h.style.alignItems = "center"),
-            (h = o).setAttribute("id", a),
-            (h.innerText = "Learn more"),
-            (h.href =
+          l =
+            (((c = t).style.display = "flex"),
+            (c.style.background = "#7faaf0"),
+            (c.style.position = "fixed"),
+            (c.style.bottom = "5px"),
+            (c.style.left = "5px"),
+            (c.style.padding = ".5em"),
+            (c.style.borderRadius = "5px"),
+            (c.style.alignItems = "center"),
+            (c = i).setAttribute("id", n),
+            (c.innerText = "Learn more"),
+            (c.href =
               "https://firebase.google.com/docs/studio/preview-apps#preview-backend"),
-            h.setAttribute("target", "__blank"),
-            (h.style.paddingLeft = "5px"),
-            (h.style.textDecoration = "underline"),
-            n());
-        ((l = d),
-          (h = u).setAttribute("width", "24"),
-          h.setAttribute("id", l),
-          h.setAttribute("height", "24"),
-          h.setAttribute("viewBox", "0 0 24 24"),
-          h.setAttribute("fill", "none"),
-          (h.style.marginLeft = "-6px"),
-          t.append(u, i, o, r),
-          document.body.appendChild(t));
+            c.setAttribute("target", "__blank"),
+            (c.style.paddingLeft = "5px"),
+            (c.style.textDecoration = "underline"),
+            u());
+        (c = a),
+          (o = s),
+          c.setAttribute("width", "24"),
+          c.setAttribute("id", o),
+          c.setAttribute("height", "24"),
+          c.setAttribute("viewBox", "0 0 24 24"),
+          c.setAttribute("fill", "none"),
+          (c.style.marginLeft = "-6px"),
+          t.append(a, r, i, l),
+          document.body.appendChild(t);
       }
-      var l, h;
-      (c
-        ? ((i.innerText = "Preview backend disconnected."),
-          (u.innerHTML =
+      var o, c;
+      h
+        ? ((r.innerText = "Preview backend disconnected."),
+          (a.innerHTML =
             '<g clip-path="url(#clip0_6013_33858)">\n<path d="M4.8 17.6L12 5.6L19.2 17.6H4.8ZM6.91667 16.4H17.0833L12 7.93333L6.91667 16.4ZM12 15.6C12.1667 15.6 12.3056 15.5444 12.4167 15.4333C12.5389 15.3111 12.6 15.1667 12.6 15C12.6 14.8333 12.5389 14.6944 12.4167 14.5833C12.3056 14.4611 12.1667 14.4 12 14.4C11.8333 14.4 11.6889 14.4611 11.5667 14.5833C11.4556 14.6944 11.4 14.8333 11.4 15C11.4 15.1667 11.4556 15.3111 11.5667 15.4333C11.6889 15.5444 11.8333 15.6 12 15.6ZM11.4 13.6H12.6V10.4H11.4V13.6Z" fill="#212121"/>\n</g>\n<defs>\n<clipPath id="clip0_6013_33858">\n<rect width="24" height="24" fill="white"/>\n</clipPath>\n</defs>'))
-        : ((u.innerHTML =
+        : ((a.innerHTML =
             '<g clip-path="url(#clip0_6083_34804)">\n<path d="M11.4 15.2H12.6V11.2H11.4V15.2ZM12 10C12.1667 10 12.3056 9.94444 12.4167 9.83333C12.5389 9.71111 12.6 9.56667 12.6 9.4C12.6 9.23333 12.5389 9.09444 12.4167 8.98333C12.3056 8.86111 12.1667 8.8 12 8.8C11.8333 8.8 11.6889 8.86111 11.5667 8.98333C11.4556 9.09444 11.4 9.23333 11.4 9.4C11.4 9.56667 11.4556 9.71111 11.5667 9.83333C11.6889 9.94444 11.8333 10 12 10ZM12 18.4C11.1222 18.4 10.2944 18.2333 9.51667 17.9C8.73889 17.5667 8.05556 17.1111 7.46667 16.5333C6.88889 15.9444 6.43333 15.2611 6.1 14.4833C5.76667 13.7056 5.6 12.8778 5.6 12C5.6 11.1111 5.76667 10.2833 6.1 9.51667C6.43333 8.73889 6.88889 8.06111 7.46667 7.48333C8.05556 6.89444 8.73889 6.43333 9.51667 6.1C10.2944 5.76667 11.1222 5.6 12 5.6C12.8889 5.6 13.7167 5.76667 14.4833 6.1C15.2611 6.43333 15.9389 6.89444 16.5167 7.48333C17.1056 8.06111 17.5667 8.73889 17.9 9.51667C18.2333 10.2833 18.4 11.1111 18.4 12C18.4 12.8778 18.2333 13.7056 17.9 14.4833C17.5667 15.2611 17.1056 15.9444 16.5167 16.5333C15.9389 17.1111 15.2611 17.5667 14.4833 17.9C13.7167 18.2333 12.8889 18.4 12 18.4ZM12 17.2C13.4444 17.2 14.6722 16.6944 15.6833 15.6833C16.6944 14.6722 17.2 13.4444 17.2 12C17.2 10.5556 16.6944 9.32778 15.6833 8.31667C14.6722 7.30555 13.4444 6.8 12 6.8C10.5556 6.8 9.32778 7.30555 8.31667 8.31667C7.30556 9.32778 6.8 10.5556 6.8 12C6.8 13.4444 7.30556 14.6722 8.31667 15.6833C9.32778 16.6944 10.5556 17.2 12 17.2Z" fill="#212121"/>\n</g>\n<defs>\n<clipPath id="clip0_6083_34804">\n<rect width="24" height="24" fill="white"/>\n</clipPath>\n</defs>'),
-          (i.innerText = "Preview backend running in this workspace.")),
-        i.setAttribute("id", t));
+          (r.innerText = "Preview backend running in this workspace.")),
+        r.setAttribute("id", t);
     }
     "loading" === document.readyState
-      ? window.addEventListener("DOMContentLoaded", i)
-      : i();
+      ? window.addEventListener("DOMContentLoaded", r)
+      : r();
   }
 }
 function getUA() {
@@ -316,32 +318,33 @@ function getUA() {
 }
 class FirebaseError extends Error {
   constructor(e, t, r) {
-    (super(t),
+    super(t),
       (this.code = e),
       (this.customData = r),
       (this.name = "FirebaseError"),
       Object.setPrototypeOf(this, FirebaseError.prototype),
       Error.captureStackTrace &&
-        Error.captureStackTrace(this, ErrorFactory.prototype.create));
+        Error.captureStackTrace(this, ErrorFactory.prototype.create);
   }
 }
 class ErrorFactory {
   constructor(e, t, r) {
-    ((this.service = e), (this.serviceName = t), (this.errors = r));
+    (this.service = e), (this.serviceName = t), (this.errors = r);
   }
   create(e, ...t) {
-    t = t[0] || {};
-    var r,
-      n = this.service + "/" + e;
-    ((e = (e = this.errors[e])
-      ? ((r = t),
-        e.replace(c, (e, t) => {
-          var n = r[t];
-          return null != n ? String(n) : `<${t}?>`;
-        }))
-      : "Error"),
-      (e = this.serviceName + `: ${e} (${n}).`));
-    return new FirebaseError(n, e, t);
+    var n,
+      t = t[0] || {},
+      r = this.service + "/" + e,
+      e = this.errors[e],
+      e = e
+        ? ((n = t),
+          e.replace(c, (e, t) => {
+            var r = n[t];
+            return null != r ? String(r) : `<${t}?>`;
+          }))
+        : "Error",
+      e = this.serviceName + `: ${e} (${r}).`;
+    return new FirebaseError(r, e, t);
   }
 }
 const c = /\{\$([^}]+)}/g;
@@ -374,18 +377,18 @@ function querystring(e) {
   return t.length ? "&" + t.join("&") : "";
 }
 function querystringDecode(e) {
-  const t = {};
+  const r = {};
   return (
     e
       .replace(/^\?/, "")
       .split("&")
       .forEach((e) => {
-        var r;
+        var t;
         e &&
-          (([e, r] = e.split("=")),
-          (t[decodeURIComponent(e)] = decodeURIComponent(r)));
+          (([e, t] = e.split("=")),
+          (r[decodeURIComponent(e)] = decodeURIComponent(t)));
       }),
-    t
+    r
   );
 }
 function extractQuerystring(e) {
@@ -396,7 +399,7 @@ function extractQuerystring(e) {
 }
 class ObserverProxy {
   constructor(e, t) {
-    ((this.observers = []),
+    (this.observers = []),
       (this.unsubscribes = []),
       (this.observerCount = 0),
       (this.task = Promise.resolve()),
@@ -408,41 +411,40 @@ class ObserverProxy {
         })
         .catch((e) => {
           this.error(e);
-        }));
+        });
   }
-  next(e) {
-    this.forEachObserver((t) => {
-      t.next(e);
+  next(t) {
+    this.forEachObserver((e) => {
+      e.next(t);
     });
   }
-  error(e) {
-    (this.forEachObserver((t) => {
-      t.error(e);
+  error(t) {
+    this.forEachObserver((e) => {
+      e.error(t);
     }),
-      this.close(e));
+      this.close(t);
   }
   complete() {
-    (this.forEachObserver((e) => {
+    this.forEachObserver((e) => {
       e.complete();
     }),
-      this.close());
+      this.close();
   }
   subscribe(e, t, r) {
     let n;
     if (void 0 === e && void 0 === t && void 0 === r)
       throw new Error("Missing Observer.");
-    return (
-      void 0 ===
-        (n = (function (e) {
-          if ("object" == typeof e && null !== e)
-            for (const t of ["next", "error", "complete"])
-              if (t in e && "function" == typeof e[t]) return 1;
-        })(e)
-          ? e
-          : { next: e, error: t, complete: r }).next && (n.next = noop),
+    void 0 ===
+      (n = (function (e, t) {
+        if ("object" == typeof e && null !== e)
+          for (const r of t) if (r in e && "function" == typeof e[r]) return 1;
+      })(e, ["next", "error", "complete"])
+        ? e
+        : { next: e, error: t, complete: r }).next && (n.next = noop),
       void 0 === n.error && (n.error = noop),
-      void 0 === n.complete && (n.complete = noop),
-      (e = this.unsubscribeOne.bind(this, this.observers.length)),
+      void 0 === n.complete && (n.complete = noop);
+    e = this.unsubscribeOne.bind(this, this.observers.length);
+    return (
       this.finalized &&
         this.task.then(() => {
           try {
@@ -462,9 +464,9 @@ class ObserverProxy {
         void 0 !== this.onNoObservers &&
         this.onNoObservers(this));
   }
-  forEachObserver(e) {
+  forEachObserver(t) {
     if (!this.finalized)
-      for (let t = 0; t < this.observers.length; t++) this.sendOne(t, e);
+      for (let e = 0; e < this.observers.length; e++) this.sendOne(e, t);
   }
   sendOne(e, t) {
     this.task.then(() => {
@@ -481,7 +483,7 @@ class ObserverProxy {
       ((this.finalized = !0),
       void 0 !== e && (this.finalError = e),
       this.task.then(() => {
-        ((this.observers = void 0), (this.onNoObservers = void 0));
+        (this.observers = void 0), (this.onNoObservers = void 0);
       }));
   }
 }
@@ -491,12 +493,12 @@ function getModularInstance(e) {
 }
 var u;
 !(function (e) {
-  ((e[(e.DEBUG = 0)] = "DEBUG"),
+  (e[(e.DEBUG = 0)] = "DEBUG"),
     (e[(e.VERBOSE = 1)] = "VERBOSE"),
     (e[(e.INFO = 2)] = "INFO"),
     (e[(e.WARN = 3)] = "WARN"),
     (e[(e.ERROR = 4)] = "ERROR"),
-    (e[(e.SILENT = 5)] = "SILENT"));
+    (e[(e.SILENT = 5)] = "SILENT");
 })((u = u || {}));
 const d = {
     debug: u.DEBUG,
@@ -520,32 +522,32 @@ const d = {
         i = h[t];
       if (!i)
         throw new Error(
-          `Attempted to log a message with an invalid logType (value: ${t})`,
+          `Attempted to log a message with an invalid logType (value: ${t})`
         );
       console[i](`[${n}]  ${e.name}:`, ...r);
     }
   };
 class Component {
   constructor(e, t, r) {
-    ((this.name = e),
+    (this.name = e),
       (this.instanceFactory = t),
       (this.type = r),
       (this.multipleInstances = !1),
       (this.serviceProps = {}),
       (this.instantiationMode = "LAZY"),
-      (this.onInstanceCreated = null));
+      (this.onInstanceCreated = null);
   }
   setInstantiationMode(e) {
-    return ((this.instantiationMode = e), this);
+    return (this.instantiationMode = e), this;
   }
   setMultipleInstances(e) {
-    return ((this.multipleInstances = e), this);
+    return (this.multipleInstances = e), this;
   }
   setServiceProps(e) {
-    return ((this.serviceProps = e), this);
+    return (this.serviceProps = e), this;
   }
   setInstanceCreatedCallback(e) {
-    return ((this.onInstanceCreated = e), this);
+    return (this.onInstanceCreated = e), this;
   }
 }
 const p = { PHONE: "phone", TOTP: "totp" },
@@ -895,10 +897,10 @@ const I = function () {
   },
   A = new (class {
     constructor(e) {
-      ((this.name = e),
+      (this.name = e),
         (this._logLevel = l),
         (this._logHandler = defaultLogHandler),
-        (this._userLogHandler = null));
+        (this._userLogHandler = null);
     }
     get logLevel() {
       return this._logLevel;
@@ -917,7 +919,7 @@ const I = function () {
     set logHandler(e) {
       if ("function" != typeof e)
         throw new TypeError(
-          "Value assigned to `logHandler` must be a function",
+          "Value assigned to `logHandler` must be a function"
         );
       this._logHandler = e;
     }
@@ -928,24 +930,24 @@ const I = function () {
       this._userLogHandler = e;
     }
     debug(...e) {
-      (this._userLogHandler && this._userLogHandler(this, u.DEBUG, ...e),
-        this._logHandler(this, u.DEBUG, ...e));
+      this._userLogHandler && this._userLogHandler(this, u.DEBUG, ...e),
+        this._logHandler(this, u.DEBUG, ...e);
     }
     log(...e) {
-      (this._userLogHandler && this._userLogHandler(this, u.VERBOSE, ...e),
-        this._logHandler(this, u.VERBOSE, ...e));
+      this._userLogHandler && this._userLogHandler(this, u.VERBOSE, ...e),
+        this._logHandler(this, u.VERBOSE, ...e);
     }
     info(...e) {
-      (this._userLogHandler && this._userLogHandler(this, u.INFO, ...e),
-        this._logHandler(this, u.INFO, ...e));
+      this._userLogHandler && this._userLogHandler(this, u.INFO, ...e),
+        this._logHandler(this, u.INFO, ...e);
     }
     warn(...e) {
-      (this._userLogHandler && this._userLogHandler(this, u.WARN, ...e),
-        this._logHandler(this, u.WARN, ...e));
+      this._userLogHandler && this._userLogHandler(this, u.WARN, ...e),
+        this._logHandler(this, u.WARN, ...e);
     }
     error(...e) {
-      (this._userLogHandler && this._userLogHandler(this, u.ERROR, ...e),
-        this._logHandler(this, u.ERROR, ...e));
+      this._userLogHandler && this._userLogHandler(this, u.ERROR, ...e),
+        this._logHandler(this, u.ERROR, ...e);
     }
   })("@firebase/auth");
 function _logError(e, ...t) {
@@ -958,27 +960,25 @@ function _createError(e, ...t) {
   return createErrorInternal(e, ...t);
 }
 function _errorWithCustomMessage(e, t, r) {
-  return (
-    (r = { ...v(), [t]: r }),
-    new ErrorFactory("auth", "Firebase", r).create(t, { appName: e.name })
-  );
+  r = { ...v(), [t]: r };
+  return new ErrorFactory("auth", "Firebase", r).create(t, { appName: e.name });
 }
 function _serverAppCurrentUserOperationNotSupportedError(e) {
   return _errorWithCustomMessage(
     e,
     "operation-not-supported-in-this-environment",
-    "Operations that alter the current user are not supported in conjunction with FirebaseServerApp",
+    "Operations that alter the current user are not supported in conjunction with FirebaseServerApp"
   );
 }
 function _assertInstanceOf(e, t, r) {
   if (!(t instanceof r))
     throw (
-      r.name !== t.constructor.name && _fail(e, "argument-error"),
+      (r.name !== t.constructor.name && _fail(e, "argument-error"),
       _errorWithCustomMessage(
         e,
         "argument-error",
-        `Type of ${t.constructor.name} does not match expected instance.Did you pass a reference from a different Auth SDK?`,
-      )
+        `Type of ${t.constructor.name} does not match expected instance.Did you pass a reference from a different Auth SDK?`
+      ))
     );
 }
 function createErrorInternal(e, ...t) {
@@ -986,14 +986,15 @@ function createErrorInternal(e, ...t) {
   {
     const r = t[0],
       n = [...t.slice(1)];
-    return (n[0] && (n[0].appName = e.name), e._errorFactory.create(r, ...n));
+    return n[0] && (n[0].appName = e.name), e._errorFactory.create(r, ...n);
   }
 }
 function _assert(e, t, ...r) {
   if (!e) throw createErrorInternal(t, ...r);
 }
 function debugFail(e) {
-  throw (_logError((e = "INTERNAL ASSERTION FAILED: " + e)), new Error(e));
+  e = "INTERNAL ASSERTION FAILED: " + e;
+  throw (_logError(e), new Error(e));
 }
 function debugAssert(e, t) {
   e || debugFail(t);
@@ -1020,8 +1021,8 @@ function _isOnline() {
             "object" == typeof chrome
               ? chrome.runtime
               : "object" == typeof browser
-                ? browser.runtime
-                : void 0) &&
+              ? browser.runtime
+              : void 0) &&
           void 0 !== e.id) ||
         "connection" in navigator)
     ) || navigator.onLine
@@ -1030,15 +1031,15 @@ function _isOnline() {
 }
 class Delay {
   constructor(e, t) {
-    (debugAssert(
+    debugAssert(
       (this.shortDelay = e) < (this.longDelay = t),
-      "Short delay should be less than long delay!",
+      "Short delay should be less than long delay!"
     ),
       (this.isMobile =
         ("undefined" != typeof window &&
           !!(window.cordova || window.phonegap || window.PhoneGap) &&
           /ios|iphone|ipod|ipad|android|blackberry|iemobile/i.test(getUA())) ||
-        ("object" == typeof navigator && "ReactNative" === navigator.product)));
+        ("object" == typeof navigator && "ReactNative" === navigator.product));
   }
   get() {
     return _isOnline()
@@ -1049,17 +1050,15 @@ class Delay {
   }
 }
 function _emulatorUrl(e, t) {
-  return (
-    debugAssert(e.emulator, "Emulator should always be set here"),
-    (e = e.emulator.url),
-    t ? "" + e + (t.startsWith("/") ? t.slice(1) : t) : e
-  );
+  debugAssert(e.emulator, "Emulator should always be set here");
+  e = e.emulator.url;
+  return t ? "" + e + (t.startsWith("/") ? t.slice(1) : t) : e;
 }
 class FetchProvider {
   static initialize(e, t, r) {
-    ((this.fetchImpl = e),
+    (this.fetchImpl = e),
       t && (this.headersImpl = t),
-      r && (this.responseImpl = r));
+      r && (this.responseImpl = r);
   }
   static fetch() {
     return (
@@ -1067,12 +1066,12 @@ class FetchProvider {
       ("undefined" != typeof self && "fetch" in self
         ? self.fetch
         : "undefined" != typeof globalThis && globalThis.fetch
-          ? globalThis.fetch
-          : "undefined" != typeof fetch
-            ? fetch
-            : void debugFail(
-                "Could not find fetch implementation, make sure you call FetchProvider.initialize() with an appropriate polyfill",
-              ))
+        ? globalThis.fetch
+        : "undefined" != typeof fetch
+        ? fetch
+        : void debugFail(
+            "Could not find fetch implementation, make sure you call FetchProvider.initialize() with an appropriate polyfill"
+          ))
     );
   }
   static headers() {
@@ -1081,12 +1080,12 @@ class FetchProvider {
       ("undefined" != typeof self && "Headers" in self
         ? self.Headers
         : "undefined" != typeof globalThis && globalThis.Headers
-          ? globalThis.Headers
-          : "undefined" != typeof Headers
-            ? Headers
-            : void debugFail(
-                "Could not find Headers implementation, make sure you call FetchProvider.initialize() with an appropriate polyfill",
-              ))
+        ? globalThis.Headers
+        : "undefined" != typeof Headers
+        ? Headers
+        : void debugFail(
+            "Could not find Headers implementation, make sure you call FetchProvider.initialize() with an appropriate polyfill"
+          ))
     );
   }
   static response() {
@@ -1095,12 +1094,12 @@ class FetchProvider {
       ("undefined" != typeof self && "Response" in self
         ? self.Response
         : "undefined" != typeof globalThis && globalThis.Response
-          ? globalThis.Response
-          : "undefined" != typeof Response
-            ? Response
-            : void debugFail(
-                "Could not find Response implementation, make sure you call FetchProvider.initialize() with an appropriate polyfill",
-              ))
+        ? globalThis.Response
+        : "undefined" != typeof Response
+        ? Response
+        : void debugFail(
+            "Could not find Response implementation, make sure you call FetchProvider.initialize() with an appropriate polyfill"
+          ))
     );
   }
 }
@@ -1166,25 +1165,25 @@ const y = {
 function _addTidIfNecessary(e, t) {
   return e.tenantId && !t.tenantId ? { ...t, tenantId: e.tenantId } : t;
 }
-async function _performApiRequest(e, t, r, n, i = {}) {
-  return _performFetchWithErrorHandling(e, i, async () => {
-    let i = {},
-      s = {};
-    n && ("GET" === t ? (s = n) : (i = { body: JSON.stringify(n) }));
-    const a = querystring({ key: e.config.apiKey, ...s }).slice(1),
-      o = await e._getAdditionalHeaders(),
-      c =
-        ((o["Content-Type"] = "application/json"),
-        e.languageCode && (o["X-Firebase-Locale"] = e.languageCode),
-        { method: t, headers: o, ...i });
+async function _performApiRequest(s, a, o, c, e = {}) {
+  return _performFetchWithErrorHandling(s, e, async () => {
+    let e = {},
+      t = {};
+    c && ("GET" === a ? (t = c) : (e = { body: JSON.stringify(c) }));
+    const r = querystring({ key: s.config.apiKey, ...t }).slice(1),
+      n = await s._getAdditionalHeaders(),
+      i =
+        ((n["Content-Type"] = "application/json"),
+        s.languageCode && (n["X-Firebase-Locale"] = s.languageCode),
+        { method: a, headers: n, ...e });
     return (
       ("undefined" != typeof navigator &&
         "Cloudflare-Workers" === navigator.userAgent) ||
-        (c.referrerPolicy = "no-referrer"),
-      e.emulatorConfig &&
-        isCloudWorkstation(e.emulatorConfig.host) &&
-        (c.credentials = "include"),
-      FetchProvider.fetch()(await _getFinalTarget(e, e.config.apiHost, r, a), c)
+        (i.referrerPolicy = "no-referrer"),
+      s.emulatorConfig &&
+        isCloudWorkstation(s.emulatorConfig.host) &&
+        (i.credentials = "include"),
+      FetchProvider.fetch()(await _getFinalTarget(s, s.config.apiHost, o, r), i)
     );
   });
 }
@@ -1217,8 +1216,9 @@ async function _performFetchWithErrorHandling(e, t, r) {
   }
 }
 async function _performSignInRequest(e, t, r, n, i = {}) {
+  t = await _performApiRequest(e, t, r, n, i);
   return (
-    "mfaPendingCredential" in (t = await _performApiRequest(e, t, r, n, i)) &&
+    "mfaPendingCredential" in t &&
       _fail(e, "multi-factor-auth-required", { _serverResponse: t }),
     t
   );
@@ -1251,14 +1251,14 @@ class NetworkTimeout {
     clearTimeout(this.timer);
   }
   constructor(e) {
-    ((this.auth = e),
+    (this.auth = e),
       (this.timer = null),
       (this.promise = new Promise((e, t) => {
         this.timer = setTimeout(
           () => t(_createError(this.auth, "network-request-failed")),
-          S.get(),
+          S.get()
         );
-      })));
+      }));
   }
 }
 function _makeTaggedError(e, t, r) {
@@ -1267,7 +1267,7 @@ function _makeTaggedError(e, t, r) {
       (r.email && (n.email = r.email),
       r.phoneNumber && (n.phoneNumber = r.phoneNumber),
       _createError(e, t, n));
-  return ((i.customData._tokenResponse = r), i);
+  return (i.customData._tokenResponse = r), i;
 }
 function isV2(e) {
   return void 0 !== e && void 0 !== e.getResponse;
@@ -1283,8 +1283,8 @@ class RecaptchaConfig {
       void 0 === e.recaptchaKey)
     )
       throw new Error("recaptchaKey undefined");
-    ((this.siteKey = e.recaptchaKey.split("/")[3]),
-      (this.recaptchaEnforcementState = e.recaptchaEnforcementState));
+    (this.siteKey = e.recaptchaKey.split("/")[3]),
+      (this.recaptchaEnforcementState = e.recaptchaEnforcementState);
   }
   getProviderEnforcementState(e) {
     if (
@@ -1315,7 +1315,7 @@ async function getRecaptchaConfig(e, t) {
     e,
     "GET",
     "/v2/recaptchaConfig",
-    _addTidIfNecessary(e, t),
+    _addTidIfNecessary(e, t)
   );
 }
 async function getAccountInfo(e, t) {
@@ -1335,26 +1335,22 @@ async function getIdTokenResult(e, t = !1) {
   const r = getModularInstance(e),
     n = await r.getIdToken(t),
     i = _parseToken(n);
-  return (
-    _assert(i && i.exp && i.auth_time && i.iat, r.auth, "internal-error"),
-    (e = "object" == typeof i.firebase ? i.firebase : void 0),
-    (t = e?.sign_in_provider),
-    {
-      claims: i,
-      token: n,
-      authTime: utcTimestampToDateString(
-        secondsStringToMilliseconds(i.auth_time),
-      ),
-      issuedAtTime: utcTimestampToDateString(
-        secondsStringToMilliseconds(i.iat),
-      ),
-      expirationTime: utcTimestampToDateString(
-        secondsStringToMilliseconds(i.exp),
-      ),
-      signInProvider: t || null,
-      signInSecondFactor: e?.sign_in_second_factor || null,
-    }
-  );
+  _assert(i && i.exp && i.auth_time && i.iat, r.auth, "internal-error");
+  (e = "object" == typeof i.firebase ? i.firebase : void 0),
+    (t = e?.sign_in_provider);
+  return {
+    claims: i,
+    token: n,
+    authTime: utcTimestampToDateString(
+      secondsStringToMilliseconds(i.auth_time)
+    ),
+    issuedAtTime: utcTimestampToDateString(secondsStringToMilliseconds(i.iat)),
+    expirationTime: utcTimestampToDateString(
+      secondsStringToMilliseconds(i.exp)
+    ),
+    signInProvider: t || null,
+    signInSecondFactor: e?.sign_in_second_factor || null,
+  };
 }
 function secondsStringToMilliseconds(e) {
   return 1e3 * Number(e);
@@ -1362,7 +1358,7 @@ function secondsStringToMilliseconds(e) {
 function _parseToken(e) {
   var [t, r, n] = e.split(".");
   if (void 0 === t || void 0 === r || void 0 === n)
-    return (_logError("JWT malformed, contained fewer than 3 sections"), null);
+    return _logError("JWT malformed, contained fewer than 3 sections"), null;
   try {
     const e = base64Decode(r);
     return e
@@ -1370,14 +1366,14 @@ function _parseToken(e) {
       : (_logError("Failed to decode base64 JWT payload"), null);
   } catch (e) {
     return (
-      _logError("Caught error parsing JWT payload as JSON", e?.toString()),
-      null
+      _logError("Caught error parsing JWT payload as JSON", e?.toString()), null
     );
   }
 }
 function _tokenExpiresIn(e) {
+  e = _parseToken(e);
   return (
-    _assert((e = _parseToken(e)), "internal-error"),
+    _assert(e, "internal-error"),
     _assert(void 0 !== e.exp, "internal-error"),
     _assert(void 0 !== e.iat, "internal-error"),
     Number(e.exp) - Number(e.iat)
@@ -1389,21 +1385,21 @@ async function _logoutIfInvalidated(e, t, r = !1) {
     return await t;
   } catch (t) {
     throw (
-      t instanceof FirebaseError &&
-        ("auth/user-disabled" === (r = t.code) ||
-          "auth/user-token-expired" === r) &&
+      (t instanceof FirebaseError &&
+        ((r = [t["code"]][0]),
+        "auth/user-disabled" === r || "auth/user-token-expired" === r) &&
         e.auth.currentUser === e &&
         (await e.auth.signOut()),
-      t
+      t)
     );
   }
 }
 class ProactiveRefresh {
   constructor(e) {
-    ((this.user = e),
+    (this.user = e),
       (this.isRunning = !1),
       (this.timerId = null),
-      (this.errorBackoff = 3e4));
+      (this.errorBackoff = 3e4);
   }
   _start() {
     this.isRunning || ((this.isRunning = !0), this.schedule());
@@ -1416,7 +1412,7 @@ class ProactiveRefresh {
   getInterval(e) {
     if (e) {
       const e = this.errorBackoff;
-      return ((this.errorBackoff = Math.min(2 * this.errorBackoff, 96e4)), e);
+      return (this.errorBackoff = Math.min(2 * this.errorBackoff, 96e4)), e;
     }
     {
       this.errorBackoff = 3e4;
@@ -1445,62 +1441,61 @@ class ProactiveRefresh {
 }
 class UserMetadata {
   constructor(e, t) {
-    ((this.createdAt = e), (this.lastLoginAt = t), this._initializeTime());
+    (this.createdAt = e), (this.lastLoginAt = t), this._initializeTime();
   }
   _initializeTime() {
-    ((this.lastSignInTime = utcTimestampToDateString(this.lastLoginAt)),
-      (this.creationTime = utcTimestampToDateString(this.createdAt)));
+    (this.lastSignInTime = utcTimestampToDateString(this.lastLoginAt)),
+      (this.creationTime = utcTimestampToDateString(this.createdAt));
   }
   _copy(e) {
-    ((this.createdAt = e.createdAt),
+    (this.createdAt = e.createdAt),
       (this.lastLoginAt = e.lastLoginAt),
-      this._initializeTime());
+      this._initializeTime();
   }
   toJSON() {
     return { createdAt: this.createdAt, lastLoginAt: this.lastLoginAt };
   }
 }
 async function _reloadWithoutSaving(e) {
-  var t,
-    r = e.auth,
+  var r,
+    t = e.auth,
     n = await e.getIdToken(),
-    i =
-      ((n = await _logoutIfInvalidated(e, getAccountInfo(r, { idToken: n }))),
-      (r = (_assert(n?.users.length, r, "internal-error"), n.users[0])),
-      (n =
-        (e._notifyReloadListener(r),
-        r.providerUserInfo?.length
-          ? extractProviderData(r.providerUserInfo)
-          : [])),
-      (n =
-        ((i = e.providerData),
-        (t = n),
-        [
-          ...i.filter((e) => !t.some((t) => t.providerId === e.providerId)),
-          ...t,
-        ])),
-      e.isAnonymous),
-    s = !((e.email && r.passwordHash) || n.length);
-  ((i = !!i && s),
-    (s = {
-      uid: r.localId,
-      displayName: r.displayName || null,
-      photoURL: r.photoUrl || null,
-      email: r.email || null,
-      emailVerified: r.emailVerified || !1,
-      phoneNumber: r.phoneNumber || null,
-      tenantId: r.tenantId || null,
+    n = await _logoutIfInvalidated(e, getAccountInfo(t, { idToken: n })),
+    t = (_assert(n?.users.length, t, "internal-error"), n.users[0]),
+    n =
+      (e._notifyReloadListener(t),
+      t.providerUserInfo?.length
+        ? extractProviderData(t.providerUserInfo)
+        : []),
+    n =
+      ((i = e.providerData),
+      (r = n),
+      [
+        ...i.filter((t) => !r.some((e) => e.providerId === t.providerId)),
+        ...r,
+      ]),
+    i = e.isAnonymous,
+    s = !((e.email && t.passwordHash) || n.length),
+    i = !!i && s,
+    s = {
+      uid: t.localId,
+      displayName: t.displayName || null,
+      photoURL: t.photoUrl || null,
+      email: t.email || null,
+      emailVerified: t.emailVerified || !1,
+      phoneNumber: t.phoneNumber || null,
+      tenantId: t.tenantId || null,
       providerData: n,
-      metadata: new UserMetadata(r.createdAt, r.lastLoginAt),
+      metadata: new UserMetadata(t.createdAt, t.lastLoginAt),
       isAnonymous: i,
-    }));
+    };
   Object.assign(e, s);
 }
 async function reload(e) {
   const t = getModularInstance(e);
-  (await _reloadWithoutSaving(t),
+  await _reloadWithoutSaving(t),
     await t.auth._persistUserIfCurrent(t),
-    t.auth._notifyListenersIfCurrent(t));
+    t.auth._notifyListenersIfCurrent(t);
 }
 function extractProviderData(e) {
   return e.map(({ providerId: e, ...t }) => ({
@@ -1514,17 +1509,17 @@ function extractProviderData(e) {
 }
 class StsTokenManager {
   constructor() {
-    ((this.refreshToken = null),
+    (this.refreshToken = null),
       (this.accessToken = null),
-      (this.expirationTime = null));
+      (this.expirationTime = null);
   }
   get isExpired() {
     return !this.expirationTime || Date.now() > this.expirationTime - 3e4;
   }
   updateFromServerResponse(e) {
-    (_assert(e.idToken, "internal-error"),
+    _assert(e.idToken, "internal-error"),
       _assert(void 0 !== e.idToken, "internal-error"),
-      _assert(void 0 !== e.refreshToken, "internal-error"));
+      _assert(void 0 !== e.refreshToken, "internal-error");
     var t =
       "expiresIn" in e && void 0 !== e.expiresIn
         ? Number(e.expiresIn)
@@ -1548,45 +1543,45 @@ class StsTokenManager {
     this.refreshToken = null;
   }
   async refresh(e, t) {
-    n = t;
-    var r,
-      n,
+    o = t;
+    var a,
+      o,
       {
         accessToken: e,
         refreshToken: t,
-        expiresIn: i,
+        expiresIn: r,
       } = await {
         accessToken: (t = await _performFetchWithErrorHandling(
-          (r = e),
+          (a = e),
           {},
           async () => {
             const e = querystring({
                 grant_type: "refresh_token",
-                refresh_token: n,
+                refresh_token: o,
               }).slice(1),
-              { tokenApiHost: t, apiKey: i } = r.config,
-              s = await _getFinalTarget(r, t, "/v1/token", "key=" + i),
-              a = await r._getAdditionalHeaders(),
-              o =
-                ((a["Content-Type"] = "application/x-www-form-urlencoded"),
-                { method: "POST", headers: a, body: e });
+              { tokenApiHost: t, apiKey: r } = a.config,
+              n = await _getFinalTarget(a, t, "/v1/token", "key=" + r),
+              i = await a._getAdditionalHeaders(),
+              s =
+                ((i["Content-Type"] = "application/x-www-form-urlencoded"),
+                { method: "POST", headers: i, body: e });
             return (
-              r.emulatorConfig &&
-                isCloudWorkstation(r.emulatorConfig.host) &&
-                (o.credentials = "include"),
-              FetchProvider.fetch()(s, o)
+              a.emulatorConfig &&
+                isCloudWorkstation(a.emulatorConfig.host) &&
+                (s.credentials = "include"),
+              FetchProvider.fetch()(n, s)
             );
-          },
+          }
         )).access_token,
         expiresIn: t.expires_in,
         refreshToken: t.refresh_token,
       };
-    this.updateTokensAndExpiration(e, t, Number(i));
+    this.updateTokensAndExpiration(e, t, Number(r));
   }
   updateTokensAndExpiration(e, t, r) {
-    ((this.refreshToken = t || null),
+    (this.refreshToken = t || null),
       (this.accessToken = e || null),
-      (this.expirationTime = Date.now() + 1e3 * r));
+      (this.expirationTime = Date.now() + 1e3 * r);
   }
   static fromJSON(e, t) {
     const { refreshToken: r, accessToken: n, expirationTime: i } = t,
@@ -1612,9 +1607,9 @@ class StsTokenManager {
     };
   }
   _assign(e) {
-    ((this.accessToken = e.accessToken),
+    (this.accessToken = e.accessToken),
       (this.refreshToken = e.refreshToken),
-      (this.expirationTime = e.expirationTime));
+      (this.expirationTime = e.expirationTime);
   }
   _clone() {
     return Object.assign(new StsTokenManager(), this.toJSON());
@@ -1630,7 +1625,7 @@ function assertStringOrUndefined(e, t) {
 }
 class UserImpl {
   constructor({ uid: e, auth: t, stsTokenManager: r, ...n }) {
-    ((this.providerId = "firebase"),
+    (this.providerId = "firebase"),
       (this.proactiveRefresh = new ProactiveRefresh(this)),
       (this.reloadUserInfo = null),
       (this.reloadListener = null),
@@ -1648,19 +1643,16 @@ class UserImpl {
       (this.providerData = n.providerData ? [...n.providerData] : []),
       (this.metadata = new UserMetadata(
         n.createdAt || void 0,
-        n.lastLoginAt || void 0,
-      )));
+        n.lastLoginAt || void 0
+      ));
   }
   async getIdToken(e) {
+    e = await _logoutIfInvalidated(
+      this,
+      this.stsTokenManager.getToken(this.auth, e)
+    );
     return (
-      _assert(
-        (e = await _logoutIfInvalidated(
-          this,
-          this.stsTokenManager.getToken(this.auth, e),
-        )),
-        this.auth,
-        "internal-error",
-      ),
+      _assert(e, this.auth, "internal-error"),
       this.accessToken !== e &&
         ((this.accessToken = e),
         await this.auth._persistUserIfCurrent(this),
@@ -1694,14 +1686,14 @@ class UserImpl {
       auth: e,
       stsTokenManager: this.stsTokenManager._clone(),
     });
-    return (t.metadata._copy(this.metadata), t);
+    return t.metadata._copy(this.metadata), t;
   }
   _onReload(e) {
-    (_assert(!this.reloadListener, this.auth, "internal-error"),
+    _assert(!this.reloadListener, this.auth, "internal-error"),
       (this.reloadListener = e),
       this.reloadUserInfo &&
         (this._notifyReloadListener(this.reloadUserInfo),
-        (this.reloadUserInfo = null)));
+        (this.reloadUserInfo = null));
   }
   _notifyReloadListener(e) {
     this.reloadListener ? this.reloadListener(e) : (this.reloadUserInfo = e);
@@ -1714,17 +1706,17 @@ class UserImpl {
   }
   async _updateTokensIfNecessary(e, t = !1) {
     let r = !1;
-    (e.idToken &&
+    e.idToken &&
       e.idToken !== this.stsTokenManager.accessToken &&
       (this.stsTokenManager.updateFromServerResponse(e), (r = !0)),
       t && (await _reloadWithoutSaving(this)),
       await this.auth._persistUserIfCurrent(this),
-      r && this.auth._notifyListenersIfCurrent(this));
+      r && this.auth._notifyListenersIfCurrent(this);
   }
   async delete() {
     if (e(this.auth.app))
       return Promise.reject(
-        _serverAppCurrentUserOperationNotSupportedError(this.auth),
+        _serverAppCurrentUserOperationNotSupportedError(this.auth)
       );
     var t = await this.getIdToken();
     return (
@@ -1732,7 +1724,7 @@ class UserImpl {
         this,
         (async function (e, t) {
           return _performApiRequest(e, "POST", "/v1/accounts:delete", t);
-        })(this.auth, { idToken: t }),
+        })(this.auth, { idToken: t })
       ),
       this.stsTokenManager.clearRefreshToken(),
       this.auth.signOut()
@@ -1775,9 +1767,9 @@ class UserImpl {
         providerData: p,
         stsTokenManager: m,
       } = t;
-    (_assert(u && m, e, "internal-error"),
-      (t = StsTokenManager.fromJSON(this.name, m)),
-      _assert("string" == typeof u, e, "internal-error"),
+    _assert(u && m, e, "internal-error");
+    t = StsTokenManager.fromJSON(this.name, m);
+    _assert("string" == typeof u, e, "internal-error"),
       assertStringOrUndefined(r, e.name),
       assertStringOrUndefined(n, e.name),
       _assert("boolean" == typeof l, e, "internal-error"),
@@ -1787,7 +1779,7 @@ class UserImpl {
       assertStringOrUndefined(a, e.name),
       assertStringOrUndefined(o, e.name),
       assertStringOrUndefined(c, e.name),
-      assertStringOrUndefined(d, e.name));
+      assertStringOrUndefined(d, e.name);
     const f = new UserImpl({
       uid: u,
       auth: e,
@@ -1810,34 +1802,31 @@ class UserImpl {
   }
   static async _fromIdTokenResponse(e, t, r = !1) {
     const n = new StsTokenManager();
-    return (
-      n.updateFromServerResponse(t),
-      (t = new UserImpl({
-        uid: t.localId,
-        auth: e,
-        stsTokenManager: n,
-        isAnonymous: r,
-      })),
-      await _reloadWithoutSaving(t),
-      t
-    );
+    n.updateFromServerResponse(t);
+    t = new UserImpl({
+      uid: t.localId,
+      auth: e,
+      stsTokenManager: n,
+      isAnonymous: r,
+    });
+    return await _reloadWithoutSaving(t), t;
   }
   static async _fromGetAccountInfoResponse(e, t, r) {
-    _assert(void 0 !== (t = t.users[0]).localId, "internal-error");
+    t = t.users[0];
+    _assert(void 0 !== t.localId, "internal-error");
     const n =
         void 0 !== t.providerUserInfo
           ? extractProviderData(t.providerUserInfo)
           : [],
       i = !((t.email && t.passwordHash) || n?.length),
       s = new StsTokenManager();
-    return (
-      s.updateFromIdToken(r),
-      (r = new UserImpl({
-        uid: t.localId,
-        auth: e,
-        stsTokenManager: s,
-        isAnonymous: i,
-      })),
+    s.updateFromIdToken(r);
+    (r = new UserImpl({
+      uid: t.localId,
+      auth: e,
+      stsTokenManager: s,
+      isAnonymous: i,
+    })),
       (e = {
         uid: t.localId,
         displayName: t.displayName || null,
@@ -1849,10 +1838,8 @@ class UserImpl {
         providerData: n,
         metadata: new UserMetadata(t.createdAt, t.lastLoginAt),
         isAnonymous: !((t.email && t.passwordHash) || n?.length),
-      }),
-      Object.assign(r, e),
-      r
-    );
+      });
+    return Object.assign(r, e), r;
   }
 }
 const P = new Map();
@@ -1863,7 +1850,7 @@ function _getInstance(e) {
     t
       ? debugAssert(
           t instanceof e,
-          "Instance stored in cache mismatched with class",
+          "Instance stored in cache mismatched with class"
         )
       : ((t = new e()), P.set(e, t)),
     t
@@ -1871,7 +1858,7 @@ function _getInstance(e) {
 }
 class InMemoryPersistence {
   constructor() {
-    ((this.type = "NONE"), (this.storage = {}));
+    (this.type = "NONE"), (this.storage = {});
   }
   async _isAvailable() {
     return !0;
@@ -1880,7 +1867,8 @@ class InMemoryPersistence {
     this.storage[e] = t;
   }
   async _get(e) {
-    return void 0 === (e = this.storage[e]) ? null : e;
+    e = this.storage[e];
+    return void 0 === e ? null : e;
   }
   async _remove(e) {
     delete this.storage[e];
@@ -1895,16 +1883,16 @@ function _persistenceKeyName(e, t, r) {
 }
 class PersistenceUserManager {
   constructor(e, t, r) {
-    ((this.persistence = e), (this.auth = t), (this.userKey = r));
+    (this.persistence = e), (this.auth = t), (this.userKey = r);
     var { config: e, name: r } = this.auth;
-    ((this.fullUserKey = _persistenceKeyName(this.userKey, e.apiKey, r)),
+    (this.fullUserKey = _persistenceKeyName(this.userKey, e.apiKey, r)),
       (this.fullPersistenceKey = _persistenceKeyName(
         "persistence",
         e.apiKey,
-        r,
+        r
       )),
       (this.boundEventHandler = t._onStorageEvent.bind(t)),
-      this.persistence._addListener(this.fullUserKey, this.boundEventHandler));
+      this.persistence._addListener(this.fullUserKey, this.boundEventHandler);
   }
   setCurrentUser(e) {
     return this.persistence._set(this.fullUserKey, e.toJSON());
@@ -1926,7 +1914,7 @@ class PersistenceUserManager {
   savePersistenceForRedirect() {
     return this.persistence._set(
       this.fullPersistenceKey,
-      this.persistence.type,
+      this.persistence.type
     );
   }
   async setPersistence(e) {
@@ -1942,47 +1930,47 @@ class PersistenceUserManager {
   delete() {
     this.persistence._removeListener(this.fullUserKey, this.boundEventHandler);
   }
-  static async create(e, t, r = "authUser") {
-    if (!t.length) return new PersistenceUserManager(_getInstance(R), e, r);
-    const n = (
+  static async create(t, r, n = "authUser") {
+    if (!r.length) return new PersistenceUserManager(_getInstance(R), t, n);
+    const e = (
       await Promise.all(
-        t.map(async (e) => {
+        r.map(async (e) => {
           if (await e._isAvailable()) return e;
-        }),
+        })
       )
     ).filter((e) => e);
-    let i = n[0] || _getInstance(R);
-    const s = _persistenceKeyName(r, e.config.apiKey, e.name);
+    let i = e[0] || _getInstance(R);
+    const s = _persistenceKeyName(n, t.config.apiKey, t.name);
     let a = null;
-    for (const r of t)
+    for (const n of r)
       try {
-        const t = await r._get(s);
-        if (t) {
-          let n;
-          if ("string" == typeof t) {
-            const r = await getAccountInfo(e, { idToken: t }).catch(() => {});
-            if (!r) break;
-            n = await UserImpl._fromGetAccountInfoResponse(e, r, t);
-          } else n = UserImpl._fromJSON(e, t);
-          (r !== i && (a = n), (i = r));
+        const r = await n._get(s);
+        if (r) {
+          let e;
+          if ("string" == typeof r) {
+            const n = await getAccountInfo(t, { idToken: r }).catch(() => {});
+            if (!n) break;
+            e = await UserImpl._fromGetAccountInfoResponse(t, n, r);
+          } else e = UserImpl._fromJSON(t, r);
+          n !== i && (a = e), (i = n);
           break;
         }
       } catch {}
-    var o = n.filter((e) => e._shouldAllowMigration);
+    var o = e.filter((e) => e._shouldAllowMigration);
     return (
       i._shouldAllowMigration &&
         o.length &&
         ((i = o[0]),
         a && (await i._set(s, a.toJSON())),
         await Promise.all(
-          t.map(async (e) => {
+          r.map(async (e) => {
             if (e !== i)
               try {
                 await e._remove(s);
               } catch {}
-          }),
+          })
         )),
-      new PersistenceUserManager(i, e, r)
+      new PersistenceUserManager(i, t, n)
     );
   }
 }
@@ -2070,41 +2058,38 @@ function _getClientVersion(e, t = []) {
     default:
       r = e;
   }
-  return (
-    (t = t.length ? t.join(",") : "FirebaseCore-web"),
-    r + `/JsCore/${i}/` + t
-  );
+  t = t.length ? t.join(",") : "FirebaseCore-web";
+  return r + `/JsCore/${i}/` + t;
 }
 class AuthMiddlewareQueue {
   constructor(e) {
-    ((this.auth = e), (this.queue = []));
+    (this.auth = e), (this.queue = []);
   }
-  pushCallback(e, t) {
-    var r = (t) =>
-      new Promise((r, n) => {
+  pushCallback(n, e) {
+    var t = (r) =>
+      new Promise((e, t) => {
         try {
-          r(e(t));
-        } catch (r) {
-          n(r);
+          e(n(r));
+        } catch (e) {
+          t(e);
         }
       });
-    ((r.onAbort = t), this.queue.push(r));
-    const n = this.queue.length - 1;
+    (t.onAbort = e), this.queue.push(t);
+    const r = this.queue.length - 1;
     return () => {
-      this.queue[n] = () => Promise.resolve();
+      this.queue[r] = () => Promise.resolve();
     };
   }
   async runMiddleware(e) {
     if (this.auth.currentUser !== e) {
       const t = [];
       try {
-        for (const r of this.queue)
-          (await r(e), r.onAbort && t.push(r.onAbort));
+        for (const r of this.queue) await r(e), r.onAbort && t.push(r.onAbort);
       } catch (e) {
         t.reverse();
-        for (const r of t)
+        for (const e of t)
           try {
-            r();
+            e();
           } catch (e) {}
         throw this.auth._errorFactory.create("login-blocked", {
           originalMessage: e?.message,
@@ -2116,7 +2101,7 @@ class AuthMiddlewareQueue {
 class PasswordPolicyImpl {
   constructor(e) {
     var t = e.customStrengthOptions;
-    ((this.customStrengthOptions = {}),
+    (this.customStrengthOptions = {}),
       (this.customStrengthOptions.minPasswordLength = t.minPasswordLength ?? 6),
       t.maxPasswordLength &&
         (this.customStrengthOptions.maxPasswordLength = t.maxPasswordLength),
@@ -2138,7 +2123,7 @@ class PasswordPolicyImpl {
       (this.allowedNonAlphanumericCharacters =
         e.allowedNonAlphanumericCharacters?.join("") ?? ""),
       (this.forceUpgradeOnSignin = e.forceUpgradeOnSignin ?? !1),
-      (this.schemaVersion = e.schemaVersion));
+      (this.schemaVersion = e.schemaVersion);
   }
   validatePassword(e) {
     const t = { isValid: !0, passwordPolicy: this };
@@ -2157,24 +2142,24 @@ class PasswordPolicyImpl {
   validatePasswordLengthOptions(e, t) {
     var r = this.customStrengthOptions.minPasswordLength,
       n = this.customStrengthOptions.maxPasswordLength;
-    (r && (t.meetsMinPasswordLength = e.length >= r),
-      n && (t.meetsMaxPasswordLength = e.length <= n));
+    r && (t.meetsMinPasswordLength = e.length >= r),
+      n && (t.meetsMaxPasswordLength = e.length <= n);
   }
-  validatePasswordCharacterOptions(e, t) {
-    var r;
-    this.updatePasswordCharacterOptionsStatuses(t, !1, !1, !1, !1);
-    for (let n = 0; n < e.length; n++)
-      ((r = e.charAt(n)),
+  validatePasswordCharacterOptions(t, r) {
+    var n;
+    this.updatePasswordCharacterOptionsStatuses(r, !1, !1, !1, !1);
+    for (let e = 0; e < t.length; e++)
+      (n = t.charAt(e)),
         this.updatePasswordCharacterOptionsStatuses(
-          t,
-          "a" <= r && r <= "z",
-          "A" <= r && r <= "Z",
-          "0" <= r && r <= "9",
-          this.allowedNonAlphanumericCharacters.includes(r),
-        ));
+          r,
+          "a" <= n && n <= "z",
+          "A" <= n && n <= "Z",
+          "0" <= n && n <= "9",
+          this.allowedNonAlphanumericCharacters.includes(n)
+        );
   }
   updatePasswordCharacterOptionsStatuses(e, t, r, n, i) {
-    (this.customStrengthOptions.containsLowercaseLetter &&
+    this.customStrengthOptions.containsLowercaseLetter &&
       !e.containsLowercaseLetter &&
       (e.containsLowercaseLetter = t),
       this.customStrengthOptions.containsUppercaseLetter &&
@@ -2185,12 +2170,12 @@ class PasswordPolicyImpl {
         (e.containsNumericCharacter = n),
       !this.customStrengthOptions.containsNonAlphanumericCharacter ||
         e.containsNonAlphanumericCharacter ||
-        (e.containsNonAlphanumericCharacter = i));
+        (e.containsNonAlphanumericCharacter = i);
   }
 }
 class AuthImpl {
   constructor(e, t, r, n) {
-    ((this.app = e),
+    (this.app = e),
       (this.heartbeatServiceProvider = t),
       (this.appCheckServiceProvider = r),
       (this.config = n),
@@ -2222,8 +2207,8 @@ class AuthImpl {
       (this.name = e.name),
       (this.clientVersion = n.sdkClientVersion),
       (this._persistenceManagerAvailable = new Promise(
-        (e) => (this._resolvePersistenceManagerAvailable = e),
-      )));
+        (e) => (this._resolvePersistenceManagerAvailable = e)
+      ));
   }
   _initializeWithPersistence(e, t) {
     return (
@@ -2233,7 +2218,7 @@ class AuthImpl {
           !this._deleted &&
           ((this.persistenceManager = await PersistenceUserManager.create(
             this,
-            e,
+            e
           )),
           this._resolvePersistenceManagerAvailable?.(),
           !this._deleted)
@@ -2242,9 +2227,9 @@ class AuthImpl {
             try {
               await this._popupRedirectResolver._initialize(this);
             } catch (e) {}
-          (await this.initializeCurrentUser(t),
+          await this.initializeCurrentUser(t),
             (this.lastNotifiedUid = this.currentUser?.uid || null),
-            this._deleted || (this._isInitialized = !0));
+            this._deleted || (this._isInitialized = !0);
         }
       })),
       this._initializationPromise
@@ -2269,11 +2254,11 @@ class AuthImpl {
         r = await UserImpl._fromGetAccountInfoResponse(this, t, e);
       await this.directlySetCurrentUser(r);
     } catch (e) {
-      (console.warn(
+      console.warn(
         "FirebaseServerApp could not login user with provided authIdToken: ",
-        e,
+        e
       ),
-        await this.directlySetCurrentUser(null));
+        await this.directlySetCurrentUser(null);
     }
   }
   async initializeCurrentUser(t) {
@@ -2282,7 +2267,7 @@ class AuthImpl {
       return e
         ? new Promise((t) => {
             setTimeout(() =>
-              this.initializeCurrentUserFromIdToken(e).then(t, t),
+              this.initializeCurrentUserFromIdToken(e).then(t, t)
             );
           })
         : this.directlySetCurrentUser(null);
@@ -2311,10 +2296,10 @@ class AuthImpl {
       try {
         await this.beforeStateQueue.runMiddleware(n);
       } catch (e) {
-        ((n = r),
+        (n = r),
           this._popupRedirectResolver._overrideRedirectResult(this, () =>
-            Promise.reject(e),
-          ));
+            Promise.reject(e)
+          );
       }
     return n
       ? this.reloadAndSetCurrentUserOrClear(n)
@@ -2351,7 +2336,7 @@ class AuthImpl {
   async updateCurrentUser(t) {
     if (e(this.app))
       return Promise.reject(
-        _serverAppCurrentUserOperationNotSupportedError(this),
+        _serverAppCurrentUserOperationNotSupportedError(this)
       );
     const r = t ? getModularInstance(t) : null;
     return (
@@ -2359,7 +2344,7 @@ class AuthImpl {
         _assert(
           r.auth.config.apiKey === this.config.apiKey,
           this,
-          "invalid-user-token",
+          "invalid-user-token"
         ),
       this._updateCurrentUser(r && r._clone(this))
     );
@@ -2370,7 +2355,7 @@ class AuthImpl {
         e && _assert(this.tenantId === e.tenantId, this, "tenant-id-mismatch"),
         t || (await this.beforeStateQueue.runMiddleware(e)),
         this.queue(async () => {
-          (await this.directlySetCurrentUser(e), this.notifyAuthListeners());
+          await this.directlySetCurrentUser(e), this.notifyAuthListeners();
         })
       );
   }
@@ -2401,8 +2386,8 @@ class AuthImpl {
       ? Promise.reject(
           this._errorFactory.create(
             "unsupported-password-policy-schema-version",
-            {},
-          ),
+            {}
+          )
         )
       : t.validatePassword(e);
   }
@@ -2413,12 +2398,12 @@ class AuthImpl {
   }
   async _updatePasswordPolicy() {
     var e = await _performApiRequest(
-      (e = this),
-      "GET",
-      "/v2/passwordPolicy",
-      _addTidIfNecessary(e, {}),
-    );
-    e = new PasswordPolicyImpl(e);
+        (e = this),
+        "GET",
+        "/v2/passwordPolicy",
+        _addTidIfNecessary(e, {})
+      ),
+      e = new PasswordPolicyImpl(e);
     null === this.tenantId
       ? (this._projectPasswordPolicy = e)
       : (this._tenantPasswordPolicies[this.tenantId] = e);
@@ -2446,7 +2431,7 @@ class AuthImpl {
       if (this.currentUser) e();
       else {
         const r = this.onAuthStateChanged(() => {
-          (r(), e());
+          r(), e();
         }, t);
       }
     });
@@ -2459,15 +2444,15 @@ class AuthImpl {
         token: e,
         idToken: await this.currentUser.getIdToken(),
       };
-      (null != this.tenantId && (r.tenantId = this.tenantId),
+      null != this.tenantId && (r.tenantId = this.tenantId),
         (e = this),
         (t = r),
         await _performApiRequest(
           e,
           "POST",
           "/v2/accounts:revokeToken",
-          _addTidIfNecessary(e, t),
-        ));
+          _addTidIfNecessary(e, t)
+        );
     }
     var t;
   }
@@ -2489,12 +2474,12 @@ class AuthImpl {
         (_assert(
           (e = (e && _getInstance(e)) || this._popupRedirectResolver),
           this,
-          "argument-error",
+          "argument-error"
         ),
         (this.redirectPersistenceManager = await PersistenceUserManager.create(
           this,
           [_getInstance(e._redirectPersistence)],
-          "redirectUser",
+          "redirectUser"
         )),
         (this.redirectUser =
           await this.redirectPersistenceManager.getCurrentUser())),
@@ -2507,8 +2492,8 @@ class AuthImpl {
       this._currentUser?._redirectEventId === e
         ? this._currentUser
         : this.redirectUser?._redirectEventId === e
-          ? this.redirectUser
-          : null
+        ? this.redirectUser
+        : null
     );
   }
   async _persistUserIfCurrent(e) {
@@ -2522,12 +2507,12 @@ class AuthImpl {
     return `${this.config.authDomain}:${this.config.apiKey}:` + this.name;
   }
   _startProactiveRefresh() {
-    ((this.isProactiveRefreshEnabled = !0),
-      this.currentUser && this._currentUser._startProactiveRefresh());
+    (this.isProactiveRefreshEnabled = !0),
+      this.currentUser && this._currentUser._startProactiveRefresh();
   }
   _stopProactiveRefresh() {
-    ((this.isProactiveRefreshEnabled = !1),
-      this.currentUser && this._currentUser._stopProactiveRefresh());
+    (this.isProactiveRefreshEnabled = !1),
+      this.currentUser && this._currentUser._stopProactiveRefresh();
   }
   get _currentUser() {
     return this.currentUser;
@@ -2557,27 +2542,27 @@ class AuthImpl {
     ) {
       const i = e.addObserver(t, r, n);
       return () => {
-        ((s = !0), i());
+        (s = !0), i();
       };
     }
     {
       const r = e.addObserver(t);
       return () => {
-        ((s = !0), r());
+        (s = !0), r();
       };
     }
   }
   async directlySetCurrentUser(e) {
-    (this.currentUser &&
+    this.currentUser &&
       this.currentUser !== e &&
       this._currentUser._stopProactiveRefresh(),
       e && this.isProactiveRefreshEnabled && e._startProactiveRefresh(),
       (this.currentUser = e)
         ? await this.assertedPersistence.setCurrentUser(e)
-        : await this.assertedPersistence.removeCurrentUser());
+        : await this.assertedPersistence.removeCurrentUser();
   }
   queue(e) {
-    return ((this.operations = this.operations.then(e, e)), this.operations);
+    return (this.operations = this.operations.then(e, e)), this.operations;
   }
   get assertedPersistence() {
     return (
@@ -2592,7 +2577,7 @@ class AuthImpl {
       this.frameworks.sort(),
       (this.clientVersion = _getClientVersion(
         this.config.clientPlatform,
-        this._getFrameworks(),
+        this._getFrameworks()
       )));
   }
   _getFrameworks() {
@@ -2600,17 +2585,12 @@ class AuthImpl {
   }
   async _getAdditionalHeaders() {
     const e = { "X-Client-Version": this.clientVersion };
-    var t;
-    return (
-      this.app.options.appId &&
-        (e["X-Firebase-gmpid"] = this.app.options.appId),
-      (t =
-        ((t = await this.heartbeatServiceProvider
-          .getImmediate({ optional: !0 })
-          ?.getHeartbeatsHeader()) && (e["X-Firebase-Client"] = t),
-        await this._getAppCheckToken())) && (e["X-Firebase-AppCheck"] = t),
-      e
-    );
+    this.app.options.appId && (e["X-Firebase-gmpid"] = this.app.options.appId);
+    var t = await this.heartbeatServiceProvider
+        .getImmediate({ optional: !0 })
+        ?.getHeartbeatsHeader(),
+      t = (t && (e["X-Firebase-Client"] = t), await this._getAppCheckToken());
+    return t && (e["X-Firebase-AppCheck"] = t), e;
   }
   async _getAppCheckToken() {
     if (e(this.app) && this.app.settings.appCheckToken)
@@ -2634,12 +2614,12 @@ function _castAuth(e) {
 }
 class Subscription {
   constructor(e) {
-    ((this.auth = e),
+    (this.auth = e),
       (this.observer = null),
-      (this.addObserver = (function (e) {
-        const t = new ObserverProxy(e, void 0);
-        return t.subscribe.bind(t);
-      })((e) => (this.observer = e))));
+      (this.addObserver = (function (e, t) {
+        const r = new ObserverProxy(e, t);
+        return r.subscribe.bind(r);
+      })((e) => (this.observer = e)));
   }
   get next() {
     return (
@@ -2665,7 +2645,7 @@ function _generateCallbackName(e) {
 const k = 1e12;
 class MockReCaptcha {
   constructor(e) {
-    ((this.auth = e), (this.counter = k), (this._widgets = new Map()));
+    (this.auth = e), (this.counter = k), (this._widgets = new Map());
   }
   render(e, t) {
     var r = this.counter;
@@ -2676,13 +2656,16 @@ class MockReCaptcha {
     );
   }
   reset(e) {
-    ((e = e || k), this._widgets.get(e)?.delete(), this._widgets.delete(e));
+    e = e || k;
+    this._widgets.get(e)?.delete(), this._widgets.delete(e);
   }
   getResponse(e) {
-    return ((e = e || k), this._widgets.get(e)?.getResponse() || "");
+    e = e || k;
+    return this._widgets.get(e)?.getResponse() || "";
   }
   async execute(e) {
-    return ((e = e || k), this._widgets.get(e)?.execute(), "");
+    e = e || k;
+    return this._widgets.get(e)?.execute(), "";
   }
 }
 class MockGreCAPTCHATopLevel {
@@ -2712,45 +2695,42 @@ class MockGreCAPTCHA {
 }
 class MockWidget {
   constructor(e, t, r) {
-    ((this.params = r),
+    (this.params = r),
       (this.timerId = null),
       (this.deleted = !1),
       (this.responseToken = null),
       (this.clickHandler = () => {
         this.execute();
-      }),
-      _assert(
-        (r = "string" == typeof e ? document.getElementById(e) : e),
-        "argument-error",
-        { appName: t },
-      ),
+      });
+    r = "string" == typeof e ? document.getElementById(e) : e;
+    _assert(r, "argument-error", { appName: t }),
       (this.container = r),
       (this.isVisible = "invisible" !== this.params.size),
       this.isVisible
         ? this.execute()
-        : this.container.addEventListener("click", this.clickHandler));
+        : this.container.addEventListener("click", this.clickHandler);
   }
   getResponse() {
-    return (this.checkIfDeleted(), this.responseToken);
+    return this.checkIfDeleted(), this.responseToken;
   }
   delete() {
-    (this.checkIfDeleted(),
+    this.checkIfDeleted(),
       (this.deleted = !0),
       this.timerId && (clearTimeout(this.timerId), (this.timerId = null)),
-      this.container.removeEventListener("click", this.clickHandler));
+      this.container.removeEventListener("click", this.clickHandler);
   }
   execute() {
-    (this.checkIfDeleted(),
+    this.checkIfDeleted(),
       this.timerId ||
         (this.timerId = window.setTimeout(() => {
-          this.responseToken = (function () {
-            const e = [],
-              t =
+          this.responseToken = (function (t) {
+            const r = [],
+              n =
                 "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            for (let r = 0; r < 50; r++)
-              e.push(t.charAt(Math.floor(62 * Math.random())));
-            return e.join("");
-          })();
+            for (let e = 0; e < t; e++)
+              r.push(n.charAt(Math.floor(Math.random() * n.length)));
+            return r.join("");
+          })(50);
           const { callback: e, "expired-callback": t } = this.params;
           if (e)
             try {
@@ -2763,7 +2743,7 @@ class MockWidget {
               } catch (e) {}
             this.isVisible && this.execute();
           }, 6e4);
-        }, 500)));
+        }, 500));
   }
   checkIfDeleted() {
     if (this.deleted) throw new Error("reCAPTCHA mock was already deleted!");
@@ -2772,49 +2752,49 @@ class MockWidget {
 const b = "NO_RECAPTCHA";
 class RecaptchaEnterpriseVerifier {
   constructor(e) {
-    ((this.type = "recaptcha-enterprise"), (this.auth = _castAuth(e)));
+    (this.type = "recaptcha-enterprise"), (this.auth = _castAuth(e));
   }
-  async verify(e = "verify", t = !1) {
-    function r(t, r, n) {
-      const i = window.grecaptcha;
-      isEnterprise(i)
-        ? i.enterprise.ready(() => {
-            i.enterprise
-              .execute(t, { action: e })
+  async verify(i = "verify", e = !1) {
+    function s(e, t, r) {
+      const n = window.grecaptcha;
+      isEnterprise(n)
+        ? n.enterprise.ready(() => {
+            n.enterprise
+              .execute(e, { action: i })
               .then((e) => {
-                r(e);
+                t(e);
               })
               .catch(() => {
-                r(b);
+                t(b);
               });
           })
-        : n(Error("No reCAPTCHA enterprise script loaded."));
+        : r(Error("No reCAPTCHA enterprise script loaded."));
     }
     return this.auth.settings.appVerificationDisabledForTesting
       ? new MockGreCAPTCHATopLevel().execute("siteKey", { action: "verify" })
-      : new Promise((e, n) => {
-          (async function (e) {
-            if (!t) {
-              if (null == e.tenantId && null != e._agentRecaptchaConfig)
-                return e._agentRecaptchaConfig.siteKey;
+      : new Promise((r, n) => {
+          !(async function (n) {
+            if (!e) {
+              if (null == n.tenantId && null != n._agentRecaptchaConfig)
+                return n._agentRecaptchaConfig.siteKey;
               if (
-                null != e.tenantId &&
-                void 0 !== e._tenantRecaptchaConfigs[e.tenantId]
+                null != n.tenantId &&
+                void 0 !== n._tenantRecaptchaConfigs[n.tenantId]
               )
-                return e._tenantRecaptchaConfigs[e.tenantId].siteKey;
+                return n._tenantRecaptchaConfigs[n.tenantId].siteKey;
             }
             return new Promise(async (t, r) => {
-              getRecaptchaConfig(e, {
+              getRecaptchaConfig(n, {
                 clientType: "CLIENT_TYPE_WEB",
                 version: "RECAPTCHA_ENTERPRISE",
               })
-                .then((n) => {
-                  if (void 0 !== n.recaptchaKey) {
-                    const r = new RecaptchaConfig(n);
+                .then((e) => {
+                  if (void 0 !== e.recaptchaKey) {
+                    const r = new RecaptchaConfig(e);
                     return (
-                      null == e.tenantId
-                        ? (e._agentRecaptchaConfig = r)
-                        : (e._tenantRecaptchaConfigs[e.tenantId] = r),
+                      null == n.tenantId
+                        ? (n._agentRecaptchaConfig = r)
+                        : (n._tenantRecaptchaConfigs[n.tenantId] = r),
                       t(r.siteKey)
                     );
                   }
@@ -2825,20 +2805,20 @@ class RecaptchaEnterpriseVerifier {
                 });
             });
           })(this.auth)
-            .then((i) => {
-              if (!t && isEnterprise(window.grecaptcha)) r(i, e, n);
+            .then((t) => {
+              if (!e && isEnterprise(window.grecaptcha)) s(t, r, n);
               else if ("undefined" == typeof window)
                 n(new Error("RecaptchaVerifier is only supported in browser"));
               else {
-                let t = C.recaptchaEnterpriseScript;
-                (0 !== t.length && (t += i),
-                  _loadJS(t)
+                let e = C.recaptchaEnterpriseScript;
+                0 !== e.length && (e += t),
+                  _loadJS(e)
                     .then(() => {
-                      r(i, e, n);
+                      s(t, r, n);
                     })
                     .catch((e) => {
                       n(e);
-                    }));
+                    });
               }
             })
             .catch((e) => {
@@ -2857,7 +2837,8 @@ async function injectRecaptchaFields(e, t, r, n = !1, i = !1) {
     } catch (e) {
       a = await s.verify(r, !0);
     }
-  if (((i = { ...t }), "mfaSmsEnrollment" !== r && "mfaSmsSignIn" !== r))
+  i = { ...t };
+  if ("mfaSmsEnrollment" !== r && "mfaSmsSignIn" !== r)
     return (
       n
         ? Object.assign(i, { captchaResp: a })
@@ -2891,50 +2872,50 @@ async function injectRecaptchaFields(e, t, r, n = !1, i = !1) {
   }
   return i;
 }
-async function handleRecaptchaFlow(e, t, r, n, i) {
-  if ("EMAIL_PASSWORD_PROVIDER" === i) {
-    if (e._getRecaptchaConfig()?.isProviderEnabled("EMAIL_PASSWORD_PROVIDER")) {
-      const i = await injectRecaptchaFields(e, t, r, "getOobCode" === r);
-      return n(e, i);
+async function handleRecaptchaFlow(t, r, n, i, e) {
+  if ("EMAIL_PASSWORD_PROVIDER" === e) {
+    if (t._getRecaptchaConfig()?.isProviderEnabled("EMAIL_PASSWORD_PROVIDER")) {
+      const e = await injectRecaptchaFields(t, r, n, "getOobCode" === n);
+      return i(t, e);
     }
-    return n(e, t).catch(async (i) => {
-      if ("auth/missing-recaptcha-token" !== i.code) return Promise.reject(i);
+    return i(t, r).catch(async (e) => {
+      if ("auth/missing-recaptcha-token" !== e.code) return Promise.reject(e);
       {
         console.log(
-          r +
-            " is protected by reCAPTCHA Enterprise for this project. Automatically triggering the reCAPTCHA flow and restarting the flow.",
+          n +
+            " is protected by reCAPTCHA Enterprise for this project. Automatically triggering the reCAPTCHA flow and restarting the flow."
         );
-        const i = await injectRecaptchaFields(e, t, r, "getOobCode" === r);
-        return n(e, i);
+        const e = await injectRecaptchaFields(t, r, n, "getOobCode" === n);
+        return i(t, e);
       }
     });
   }
-  if ("PHONE_PROVIDER" !== i)
-    return Promise.reject(i + " provider is not supported.");
-  if (e._getRecaptchaConfig()?.isProviderEnabled("PHONE_PROVIDER")) {
-    const i = await injectRecaptchaFields(e, t, r);
-    return n(e, i).catch(async (i) => {
+  if ("PHONE_PROVIDER" !== e)
+    return Promise.reject(e + " provider is not supported.");
+  if (t._getRecaptchaConfig()?.isProviderEnabled("PHONE_PROVIDER")) {
+    const e = await injectRecaptchaFields(t, r, n);
+    return i(t, e).catch(async (e) => {
       if (
         "AUDIT" !==
-          e
+          t
             ._getRecaptchaConfig()
             ?.getProviderEnforcementState("PHONE_PROVIDER") ||
-        ("auth/missing-recaptcha-token" !== i.code &&
-          "auth/invalid-app-credential" !== i.code)
+        ("auth/missing-recaptcha-token" !== e.code &&
+          "auth/invalid-app-credential" !== e.code)
       )
-        return Promise.reject(i);
+        return Promise.reject(e);
       {
         console.log(
-          `Failed to verify with reCAPTCHA Enterprise. Automatically triggering the reCAPTCHA v2 flow to complete the ${r} flow.`,
+          `Failed to verify with reCAPTCHA Enterprise. Automatically triggering the reCAPTCHA v2 flow to complete the ${n} flow.`
         );
-        const i = await injectRecaptchaFields(e, t, r, !1, !0);
-        return n(e, i);
+        const e = await injectRecaptchaFields(t, r, n, !1, !0);
+        return i(t, e);
       }
     });
   }
   {
-    const i = await injectRecaptchaFields(e, t, r, !1, !0);
-    return n(e, i);
+    const e = await injectRecaptchaFields(t, r, n, !1, !0);
+    return i(t, e);
   }
 }
 async function _initializeRecaptchaConfig(e) {
@@ -2944,10 +2925,10 @@ async function _initializeRecaptchaConfig(e) {
       version: "RECAPTCHA_ENTERPRISE",
     }),
     n = new RecaptchaConfig(r);
-  (null == t.tenantId
+  null == t.tenantId
     ? (t._agentRecaptchaConfig = n)
     : (t._tenantRecaptchaConfigs[t.tenantId] = n),
-    n.isAnyProviderEnabled() && new RecaptchaEnterpriseVerifier(t).verify());
+    n.isAnyProviderEnabled() && new RecaptchaEnterpriseVerifier(t).verify();
 }
 function initializeAuth(e, t) {
   const r = _getProvider(e, "auth");
@@ -2992,18 +2973,18 @@ function connectAuthEmulator(e, t, r) {
       _assert(
         n.config.emulator && n.emulatorConfig,
         n,
-        "emulator-config-failed",
+        "emulator-config-failed"
       ),
       void _assert(
         deepEqual(d, n.config.emulator) && deepEqual(u, n.emulatorConfig),
         n,
-        "emulator-config-failed",
+        "emulator-config-failed"
       )
     );
   function l() {
     const e = document.createElement("p"),
       t = e.style;
-    ((e.innerText =
+    (e.innerText =
       "Running in emulator mode. Do not use with production credentials."),
       (t.position = "fixed"),
       (t.width = "100%"),
@@ -3016,38 +2997,40 @@ function connectAuthEmulator(e, t, r) {
       (t.zIndex = "10000"),
       (t.textAlign = "center"),
       e.classList.add("firebase-emulator-warning"),
-      document.body.appendChild(e));
+      document.body.appendChild(e);
   }
-  ((n.config.emulator = d),
+  (n.config.emulator = d),
     (n.emulatorConfig = u),
     (n.settings.appVerificationDisabledForTesting = !0),
     isCloudWorkstation(a)
       ? ((async function (e) {
-          (await fetch(e, { credentials: "include" })).ok;
+          return (await fetch(e, { credentials: "include" })).ok;
         })(s + "//" + a + c),
         updateEmulatorBanner("Auth", !0))
       : i ||
         ("undefined" != typeof console &&
           "function" == typeof console.info &&
           console.info(
-            "WARNING: You are using the Auth Emulator, which is intended for local testing only.  Do not use with production credentials.",
+            "WARNING: You are using the Auth Emulator, which is intended for local testing only.  Do not use with production credentials."
           ),
         "undefined" != typeof window &&
           "undefined" != typeof document &&
           ("loading" === document.readyState
             ? window.addEventListener("DOMContentLoaded", l)
-            : l())));
+            : l()));
 }
 function extractProtocol(e) {
   var t = e.indexOf(":");
   return t < 0 ? "" : e.substr(0, t + 1);
 }
 function parsePort(e) {
-  return e ? ((e = Number(e)), isNaN(e) ? null : e) : null;
+  if (!e) return null;
+  e = Number(e);
+  return isNaN(e) ? null : e;
 }
 class AuthCredential {
   constructor(e, t) {
-    ((this.providerId = e), (this.signInMethod = t));
+    (this.providerId = e), (this.signInMethod = t);
   }
   toJSON() {
     return debugFail("not implemented");
@@ -3067,7 +3050,7 @@ async function resetPassword(e, t) {
     e,
     "POST",
     "/v1/accounts:resetPassword",
-    _addTidIfNecessary(e, t),
+    _addTidIfNecessary(e, t)
   );
 }
 async function linkEmailPassword(e, t) {
@@ -3078,7 +3061,7 @@ async function signInWithPassword(e, t) {
     e,
     "POST",
     "/v1/accounts:signInWithPassword",
-    _addTidIfNecessary(e, t),
+    _addTidIfNecessary(e, t)
   );
 }
 async function sendOobCode(e, t) {
@@ -3086,7 +3069,7 @@ async function sendOobCode(e, t) {
     e,
     "POST",
     "/v1/accounts:sendOobCode",
-    _addTidIfNecessary(e, t),
+    _addTidIfNecessary(e, t)
   );
 }
 async function sendPasswordResetEmail$1(e, t) {
@@ -3097,10 +3080,10 @@ async function sendSignInLinkToEmail$1(e, t) {
 }
 class EmailAuthCredential extends AuthCredential {
   constructor(e, t, r, n = null) {
-    (super("password", r),
+    super("password", r),
       (this._email = e),
       (this._password = t),
-      (this._tenantId = n));
+      (this._tenantId = n);
   }
   static _fromEmailAndPassword(e, t) {
     return new EmailAuthCredential(e, t, "password");
@@ -3117,9 +3100,8 @@ class EmailAuthCredential extends AuthCredential {
     };
   }
   static fromJSON(e) {
-    if (
-      ((e = "string" == typeof e ? JSON.parse(e) : e), e?.email && e?.password)
-    ) {
+    e = "string" == typeof e ? JSON.parse(e) : e;
+    if (e?.email && e?.password) {
       if ("password" === e.signInMethod)
         return this._fromEmailAndPassword(e.email, e.password);
       if ("emailLink" === e.signInMethod)
@@ -3140,7 +3122,7 @@ class EmailAuthCredential extends AuthCredential {
           },
           "signInWithPassword",
           signInWithPassword,
-          "EMAIL_PASSWORD_PROVIDER",
+          "EMAIL_PASSWORD_PROVIDER"
         );
       case "emailLink":
         return (async function (e, t) {
@@ -3148,7 +3130,7 @@ class EmailAuthCredential extends AuthCredential {
             e,
             "POST",
             "/v1/accounts:signInWithEmailLink",
-            _addTidIfNecessary(e, t),
+            _addTidIfNecessary(e, t)
           );
         })(e, { email: this._email, oobCode: this._password });
       default:
@@ -3169,7 +3151,7 @@ class EmailAuthCredential extends AuthCredential {
           },
           "signUpPassword",
           linkEmailPassword,
-          "EMAIL_PASSWORD_PROVIDER",
+          "EMAIL_PASSWORD_PROVIDER"
         );
       case "emailLink":
         return (async function (e, t) {
@@ -3177,7 +3159,7 @@ class EmailAuthCredential extends AuthCredential {
             e,
             "POST",
             "/v1/accounts:signInWithEmailLink",
-            _addTidIfNecessary(e, t),
+            _addTidIfNecessary(e, t)
           );
         })(e, { idToken: t, email: this._email, oobCode: this._password });
       default:
@@ -3193,12 +3175,12 @@ async function signInWithIdp(e, t) {
     e,
     "POST",
     "/v1/accounts:signInWithIdp",
-    _addTidIfNecessary(e, t),
+    _addTidIfNecessary(e, t)
   );
 }
 class OAuthCredential extends AuthCredential {
   constructor() {
-    (super(...arguments), (this.pendingToken = null));
+    super(...arguments), (this.pendingToken = null);
   }
   static _fromParams(e) {
     const t = new OAuthCredential(e.providerId, e.signInMethod);
@@ -3209,8 +3191,8 @@ class OAuthCredential extends AuthCredential {
           e.nonce && !e.pendingToken && (t.nonce = e.nonce),
           e.pendingToken && (t.pendingToken = e.pendingToken))
         : e.oauthToken && e.oauthTokenSecret
-          ? ((t.accessToken = e.oauthToken), (t.secret = e.oauthTokenSecret))
-          : _fail("argument-error"),
+        ? ((t.accessToken = e.oauthToken), (t.secret = e.oauthTokenSecret))
+        : _fail("argument-error"),
       t
     );
   }
@@ -3244,23 +3226,23 @@ class OAuthCredential extends AuthCredential {
   }
   _linkToIdToken(e, t) {
     const r = this.buildRequest();
-    return ((r.idToken = t), signInWithIdp(e, r));
+    return (r.idToken = t), signInWithIdp(e, r);
   }
   _getReauthenticationResolver(e) {
     const t = this.buildRequest();
-    return ((t.autoCreate = !1), signInWithIdp(e, t));
+    return (t.autoCreate = !1), signInWithIdp(e, t);
   }
   buildRequest() {
     const e = { requestUri: "http://localhost", returnSecureToken: !0 };
     if (this.pendingToken) e.pendingToken = this.pendingToken;
     else {
       const t = {};
-      (this.idToken && (t.id_token = this.idToken),
+      this.idToken && (t.id_token = this.idToken),
         this.accessToken && (t.access_token = this.accessToken),
         this.secret && (t.oauth_token_secret = this.secret),
         (t.providerId = this.providerId),
         this.nonce && !this.pendingToken && (t.nonce = this.nonce),
-        (e.postBody = querystring(t)));
+        (e.postBody = querystring(t));
     }
     return e;
   }
@@ -3270,13 +3252,13 @@ async function sendPhoneVerificationCode(e, t) {
     e,
     "POST",
     "/v1/accounts:sendVerificationCode",
-    _addTidIfNecessary(e, t),
+    _addTidIfNecessary(e, t)
   );
 }
 const N = { USER_NOT_FOUND: "user-not-found" };
 class PhoneAuthCredential extends AuthCredential {
   constructor(e) {
-    (super("phone", "phone"), (this.params = e));
+    super("phone", "phone"), (this.params = e);
   }
   static _fromVerification(e, t) {
     return new PhoneAuthCredential({ verificationId: e, verificationCode: t });
@@ -3290,24 +3272,23 @@ class PhoneAuthCredential extends AuthCredential {
         e,
         "POST",
         "/v1/accounts:signInWithPhoneNumber",
-        _addTidIfNecessary(e, t),
+        _addTidIfNecessary(e, t)
       );
     })(e, this._makeVerificationRequest());
   }
   _linkToIdToken(e, t) {
     return (async function (e, t) {
-      if (
-        (t = await _performSignInRequest(
-          e,
-          "POST",
-          "/v1/accounts:signInWithPhoneNumber",
-          _addTidIfNecessary(e, t),
-        )).temporaryProof
-      )
+      t = await _performSignInRequest(
+        e,
+        "POST",
+        "/v1/accounts:signInWithPhoneNumber",
+        _addTidIfNecessary(e, t)
+      );
+      if (t.temporaryProof)
         throw _makeTaggedError(
           e,
           "account-exists-with-different-credential",
-          t,
+          t
         );
       return t;
     })(e, { idToken: t, ...this._makeVerificationRequest() });
@@ -3319,7 +3300,7 @@ class PhoneAuthCredential extends AuthCredential {
         "POST",
         "/v1/accounts:signInWithPhoneNumber",
         _addTidIfNecessary(e, { ...t, operation: "REAUTH" }),
-        N,
+        N
       );
     })(e, this._makeVerificationRequest());
   }
@@ -3366,7 +3347,8 @@ class PhoneAuthCredential extends AuthCredential {
 }
 class ActionCodeURL {
   constructor(e) {
-    var t = (e = querystringDecode(extractQuerystring(e))).apiKey ?? null,
+    var e = querystringDecode(extractQuerystring(e)),
+      t = e.apiKey ?? null,
       r = e.oobCode ?? null,
       n = (function (e) {
         switch (e) {
@@ -3386,18 +3368,17 @@ class ActionCodeURL {
             return null;
         }
       })(e.mode ?? null);
-    (_assert(t && r && n, "argument-error"),
+    _assert(t && r && n, "argument-error"),
       (this.apiKey = t),
       (this.operation = n),
       (this.code = r),
       (this.continueUrl = e.continueUrl ?? null),
       (this.languageCode = e.lang ?? null),
-      (this.tenantId = e.tenantId ?? null));
+      (this.tenantId = e.tenantId ?? null);
   }
   static parseLink(e) {
-    r = (t = querystringDecode(extractQuerystring(e)).link)
-      ? querystringDecode(extractQuerystring(t)).deep_link_id
-      : null;
+    (t = querystringDecode(extractQuerystring((e = e))).link),
+      (r = t ? querystringDecode(extractQuerystring(t)).deep_link_id : null);
     var t,
       r,
       n =
@@ -3426,26 +3407,27 @@ class EmailAuthProvider {
     return EmailAuthCredential._fromEmailAndPassword(e, t);
   }
   static credentialWithLink(e, t) {
+    t = ActionCodeURL.parseLink(t);
     return (
-      _assert((t = ActionCodeURL.parseLink(t)), "argument-error"),
+      _assert(t, "argument-error"),
       EmailAuthCredential._fromEmailAndCode(e, t.code, t.tenantId)
     );
   }
 }
-((EmailAuthProvider.PROVIDER_ID = "password"),
+(EmailAuthProvider.PROVIDER_ID = "password"),
   (EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD = "password"),
-  (EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD = "emailLink"));
+  (EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD = "emailLink");
 class FederatedAuthProvider {
   constructor(e) {
-    ((this.providerId = e),
+    (this.providerId = e),
       (this.defaultLanguageCode = null),
-      (this.customParameters = {}));
+      (this.customParameters = {});
   }
   setDefaultLanguage(e) {
     this.defaultLanguageCode = e;
   }
   setCustomParameters(e) {
-    return ((this.customParameters = e), this);
+    return (this.customParameters = e), this;
   }
   getCustomParameters() {
     return this.customParameters;
@@ -3453,10 +3435,10 @@ class FederatedAuthProvider {
 }
 class BaseOAuthProvider extends FederatedAuthProvider {
   constructor() {
-    (super(...arguments), (this.scopes = []));
+    super(...arguments), (this.scopes = []);
   }
   addScope(e) {
-    return (this.scopes.includes(e) || this.scopes.push(e), this);
+    return this.scopes.includes(e) || this.scopes.push(e), this;
   }
   getScopes() {
     return [...this.scopes];
@@ -3464,12 +3446,9 @@ class BaseOAuthProvider extends FederatedAuthProvider {
 }
 class OAuthProvider extends BaseOAuthProvider {
   static credentialFromJSON(e) {
+    e = "string" == typeof e ? JSON.parse(e) : e;
     return (
-      _assert(
-        "providerId" in (e = "string" == typeof e ? JSON.parse(e) : e) &&
-          "signInMethod" in e,
-        "argument-error",
-      ),
+      _assert("providerId" in e && "signInMethod" in e, "argument-error"),
       OAuthCredential._fromParams(e)
     );
   }
@@ -3534,7 +3513,7 @@ class FacebookAuthProvider extends BaseOAuthProvider {
     return FacebookAuthProvider.credentialFromTaggedObject(e.customData || {});
   }
   static credentialFromTaggedObject({ _tokenResponse: e }) {
-    if (!e || !("oauthAccessToken" in e)) return null;
+    if (!(e && "oauthAccessToken" in e)) return null;
     if (!e.oauthAccessToken) return null;
     try {
       return FacebookAuthProvider.credential(e.oauthAccessToken);
@@ -3543,11 +3522,11 @@ class FacebookAuthProvider extends BaseOAuthProvider {
     }
   }
 }
-((FacebookAuthProvider.FACEBOOK_SIGN_IN_METHOD = "facebook.com"),
-  (FacebookAuthProvider.PROVIDER_ID = "facebook.com"));
+(FacebookAuthProvider.FACEBOOK_SIGN_IN_METHOD = "facebook.com"),
+  (FacebookAuthProvider.PROVIDER_ID = "facebook.com");
 class GoogleAuthProvider extends BaseOAuthProvider {
   constructor() {
-    (super("google.com"), this.addScope("profile"));
+    super("google.com"), this.addScope("profile");
   }
   static credential(e, t) {
     return OAuthCredential._fromParams({
@@ -3574,8 +3553,8 @@ class GoogleAuthProvider extends BaseOAuthProvider {
     }
   }
 }
-((GoogleAuthProvider.GOOGLE_SIGN_IN_METHOD = "google.com"),
-  (GoogleAuthProvider.PROVIDER_ID = "google.com"));
+(GoogleAuthProvider.GOOGLE_SIGN_IN_METHOD = "google.com"),
+  (GoogleAuthProvider.PROVIDER_ID = "google.com");
 class GithubAuthProvider extends BaseOAuthProvider {
   constructor() {
     super("github.com");
@@ -3594,7 +3573,7 @@ class GithubAuthProvider extends BaseOAuthProvider {
     return GithubAuthProvider.credentialFromTaggedObject(e.customData || {});
   }
   static credentialFromTaggedObject({ _tokenResponse: e }) {
-    if (!e || !("oauthAccessToken" in e)) return null;
+    if (!(e && "oauthAccessToken" in e)) return null;
     if (!e.oauthAccessToken) return null;
     try {
       return GithubAuthProvider.credential(e.oauthAccessToken);
@@ -3603,22 +3582,22 @@ class GithubAuthProvider extends BaseOAuthProvider {
     }
   }
 }
-((GithubAuthProvider.GITHUB_SIGN_IN_METHOD = "github.com"),
-  (GithubAuthProvider.PROVIDER_ID = "github.com"));
+(GithubAuthProvider.GITHUB_SIGN_IN_METHOD = "github.com"),
+  (GithubAuthProvider.PROVIDER_ID = "github.com");
 class SAMLAuthCredential extends AuthCredential {
   constructor(e, t) {
-    (super(e, e), (this.pendingToken = t));
+    super(e, e), (this.pendingToken = t);
   }
   _getIdTokenResponse(e) {
     return signInWithIdp(e, this.buildRequest());
   }
   _linkToIdToken(e, t) {
     const r = this.buildRequest();
-    return ((r.idToken = t), signInWithIdp(e, r));
+    return (r.idToken = t), signInWithIdp(e, r);
   }
   _getReauthenticationResolver(e) {
     const t = this.buildRequest();
-    return ((t.autoCreate = !1), signInWithIdp(e, t));
+    return (t.autoCreate = !1), signInWithIdp(e, t);
   }
   toJSON() {
     return {
@@ -3648,7 +3627,7 @@ class SAMLAuthCredential extends AuthCredential {
 }
 class SAMLAuthProvider extends FederatedAuthProvider {
   constructor(e) {
-    (_assert(e.startsWith("saml."), "argument-error"), super(e));
+    _assert(e.startsWith("saml."), "argument-error"), super(e);
   }
   static credentialFromResult(e) {
     return SAMLAuthProvider.samlCredentialFromTaggedObject(e);
@@ -3657,7 +3636,8 @@ class SAMLAuthProvider extends FederatedAuthProvider {
     return SAMLAuthProvider.samlCredentialFromTaggedObject(e.customData || {});
   }
   static credentialFromJSON(e) {
-    return (_assert((e = SAMLAuthCredential.fromJSON(e)), "argument-error"), e);
+    e = SAMLAuthCredential.fromJSON(e);
+    return _assert(e, "argument-error"), e;
   }
   static samlCredentialFromTaggedObject({ _tokenResponse: e }) {
     if (!e) return null;
@@ -3704,29 +3684,27 @@ async function signUp(e, t) {
     e,
     "POST",
     "/v1/accounts:signUp",
-    _addTidIfNecessary(e, t),
+    _addTidIfNecessary(e, t)
   );
 }
-((TwitterAuthProvider.TWITTER_SIGN_IN_METHOD = "twitter.com"),
-  (TwitterAuthProvider.PROVIDER_ID = "twitter.com"));
+(TwitterAuthProvider.TWITTER_SIGN_IN_METHOD = "twitter.com"),
+  (TwitterAuthProvider.PROVIDER_ID = "twitter.com");
 class UserCredentialImpl {
   constructor(e) {
-    ((this.user = e.user),
+    (this.user = e.user),
       (this.providerId = e.providerId),
       (this._tokenResponse = e._tokenResponse),
-      (this.operationType = e.operationType));
+      (this.operationType = e.operationType);
   }
   static async _fromIdTokenResponse(e, t, r, n = !1) {
-    return (
-      (e = await UserImpl._fromIdTokenResponse(e, r, n)),
-      (n = providerIdForResponse(r)),
-      new UserCredentialImpl({
-        user: e,
-        providerId: n,
-        _tokenResponse: r,
-        operationType: t,
-      })
-    );
+    (e = await UserImpl._fromIdTokenResponse(e, r, n)),
+      (n = providerIdForResponse(r));
+    return new UserCredentialImpl({
+      user: e,
+      providerId: n,
+      _tokenResponse: r,
+      operationType: t,
+    });
   }
   static async _forOperation(e, t, r) {
     await e._updateTokensIfNecessary(r, !0);
@@ -3746,23 +3724,19 @@ async function signInAnonymously(t) {
   if (e(t.app))
     return Promise.reject(_serverAppCurrentUserOperationNotSupportedError(t));
   const r = _castAuth(t);
-  return (
-    await r._initializationPromise,
-    r.currentUser?.isAnonymous
-      ? new UserCredentialImpl({
-          user: r.currentUser,
-          providerId: null,
-          operationType: "signIn",
-        })
-      : ((t = await signUp(r, { returnSecureToken: !0 })),
-        (t = await UserCredentialImpl._fromIdTokenResponse(r, "signIn", t, !0)),
-        await r._updateCurrentUser(t.user),
-        t)
-  );
+  if ((await r._initializationPromise, r.currentUser?.isAnonymous))
+    return new UserCredentialImpl({
+      user: r.currentUser,
+      providerId: null,
+      operationType: "signIn",
+    });
+  (t = await signUp(r, { returnSecureToken: !0 })),
+    (t = await UserCredentialImpl._fromIdTokenResponse(r, "signIn", t, !0));
+  return await r._updateCurrentUser(t.user), t;
 }
 class MultiFactorError extends FirebaseError {
   constructor(e, t, r, n) {
-    (super(t.code, t.message),
+    super(t.code, t.message),
       (this.operationType = r),
       (this.user = n),
       Object.setPrototypeOf(this, MultiFactorError.prototype),
@@ -3771,21 +3745,21 @@ class MultiFactorError extends FirebaseError {
         tenantId: e.tenantId ?? void 0,
         _serverResponse: t.customData._serverResponse,
         operationType: r,
-      }));
+      });
   }
   static _fromErrorAndOperation(e, t, r, n) {
     return new MultiFactorError(e, t, r, n);
   }
 }
-function _processCredentialSavingMfaContextIfNecessary(e, t, r, n) {
+function _processCredentialSavingMfaContextIfNecessary(t, r, e, n) {
   return (
-    "reauthenticate" === t
-      ? r._getReauthenticationResolver(e)
-      : r._getIdTokenResponse(e)
-  ).catch((r) => {
-    if ("auth/multi-factor-auth-required" === r.code)
-      throw MultiFactorError._fromErrorAndOperation(e, r, t, n);
-    throw r;
+    "reauthenticate" === r
+      ? e._getReauthenticationResolver(t)
+      : e._getIdTokenResponse(t)
+  ).catch((e) => {
+    if ("auth/multi-factor-auth-required" === e.code)
+      throw MultiFactorError._fromErrorAndOperation(t, e, r, n);
+    throw e;
   });
 }
 function providerDataAsNames(e) {
@@ -3793,29 +3767,27 @@ function providerDataAsNames(e) {
 }
 async function unlink(e, t) {
   const r = getModularInstance(e),
-    n = providerDataAsNames(
-      (await _assertLinkedStatus(!0, r, t),
-      (e = r.auth),
-      (t = { idToken: await r.getIdToken(), deleteProvider: [t] }),
-      await _performApiRequest(e, "POST", "/v1/accounts:update", t))
-        .providerUserInfo || [],
-    );
+    n = (await _assertLinkedStatus(!0, r, t),
+    (e = r.auth),
+    (t = { idToken: await r.getIdToken(), deleteProvider: [t] }),
+    await _performApiRequest(e, "POST", "/v1/accounts:update", t))[
+      "providerUserInfo"
+    ],
+    i = providerDataAsNames(n || []);
   return (
-    (r.providerData = r.providerData.filter((e) => n.has(e.providerId))),
-    n.has("phone") || (r.phoneNumber = null),
+    (r.providerData = r.providerData.filter((e) => i.has(e.providerId))),
+    i.has("phone") || (r.phoneNumber = null),
     await r.auth._persistUserIfCurrent(r),
     r
   );
 }
 async function _link$1(e, t, r = !1) {
-  return (
-    (t = await _logoutIfInvalidated(
-      e,
-      t._linkToIdToken(e.auth, await e.getIdToken()),
-      r,
-    )),
-    UserCredentialImpl._forOperation(e, "link", t)
+  t = await _logoutIfInvalidated(
+    e,
+    t._linkToIdToken(e.auth, await e.getIdToken()),
+    r
   );
+  return UserCredentialImpl._forOperation(e, "link", t);
 }
 async function _assertLinkedStatus(e, t, r) {
   await _reloadWithoutSaving(t);
@@ -3823,7 +3795,7 @@ async function _assertLinkedStatus(e, t, r) {
   _assert(providerDataAsNames(t.providerData).has(r) === e, t.auth, n);
 }
 async function _reauthenticate(t, r, n = !1) {
-  var i = t.auth;
+  var i = t["auth"];
   if (e(i.app))
     return Promise.reject(_serverAppCurrentUserOperationNotSupportedError(i));
   var s = "reauthenticate";
@@ -3831,11 +3803,11 @@ async function _reauthenticate(t, r, n = !1) {
     const e = await _logoutIfInvalidated(
       t,
       _processCredentialSavingMfaContextIfNecessary(i, s, r, t),
-      n,
+      n
     );
     _assert(e.idToken, i, "internal-error");
     var a = _parseToken(e.idToken),
-      o = (_assert(a, i, "internal-error"), a).sub;
+      o = (_assert(a, i, "internal-error"), a)["sub"];
     return (
       _assert(t.uid === o, i, "user-mismatch"),
       UserCredentialImpl._forOperation(t, s, e)
@@ -3845,26 +3817,18 @@ async function _reauthenticate(t, r, n = !1) {
   }
 }
 async function _signInWithCredential(t, r, n = !1) {
-  return e(t.app)
-    ? Promise.reject(_serverAppCurrentUserOperationNotSupportedError(t))
-    : ((r = await _processCredentialSavingMfaContextIfNecessary(
-        t,
-        "signIn",
-        r,
-      )),
-      (r = await UserCredentialImpl._fromIdTokenResponse(t, "signIn", r)),
-      n || (await t._updateCurrentUser(r.user)),
-      r);
+  if (e(t.app))
+    return Promise.reject(_serverAppCurrentUserOperationNotSupportedError(t));
+  (r = await _processCredentialSavingMfaContextIfNecessary(t, "signIn", r)),
+    (r = await UserCredentialImpl._fromIdTokenResponse(t, "signIn", r));
+  return n || (await t._updateCurrentUser(r.user)), r;
 }
 async function signInWithCredential(e, t) {
   return _signInWithCredential(_castAuth(e), t);
 }
 async function linkWithCredential(e, t) {
-  return (
-    (e = getModularInstance(e)),
-    await _assertLinkedStatus(!1, e, t.providerId),
-    _link$1(e, t)
-  );
+  e = getModularInstance(e);
+  return await _assertLinkedStatus(!1, e, t.providerId), _link$1(e, t);
 }
 async function reauthenticateWithCredential(e, t) {
   return _reauthenticate(getModularInstance(e), t);
@@ -3877,29 +3841,29 @@ async function signInWithCustomToken(t, r) {
       n,
       "POST",
       "/v1/accounts:signInWithCustomToken",
-      _addTidIfNecessary(n, { token: r, returnSecureToken: !0 }),
+      _addTidIfNecessary(n, { token: r, returnSecureToken: !0 })
     ),
     s = await UserCredentialImpl._fromIdTokenResponse(n, "signIn", i);
-  return (await n._updateCurrentUser(s.user), s);
+  return await n._updateCurrentUser(s.user), s;
 }
 class MultiFactorInfoImpl {
   constructor(e, t) {
-    ((this.factorId = e),
+    (this.factorId = e),
       (this.uid = t.mfaEnrollmentId),
       (this.enrollmentTime = new Date(t.enrolledAt).toUTCString()),
-      (this.displayName = t.displayName));
+      (this.displayName = t.displayName);
   }
   static _fromServerResponse(e, t) {
     return "phoneInfo" in t
       ? PhoneMultiFactorInfoImpl._fromServerResponse(e, t)
       : "totpInfo" in t
-        ? TotpMultiFactorInfoImpl._fromServerResponse(e, t)
-        : _fail(e, "internal-error");
+      ? TotpMultiFactorInfoImpl._fromServerResponse(e, t)
+      : _fail(e, "internal-error");
   }
 }
 class PhoneMultiFactorInfoImpl extends MultiFactorInfoImpl {
   constructor(e) {
-    (super("phone", e), (this.phoneNumber = e.phoneInfo));
+    super("phone", e), (this.phoneNumber = e.phoneInfo);
   }
   static _fromServerResponse(e, t) {
     return new PhoneMultiFactorInfoImpl(t);
@@ -3914,16 +3878,16 @@ class TotpMultiFactorInfoImpl extends MultiFactorInfoImpl {
   }
 }
 function _setActionCodeSettingsOnRequest(e, t, r) {
-  (_assert(0 < r.url?.length, e, "invalid-continue-uri"),
+  _assert(0 < r.url?.length, e, "invalid-continue-uri"),
     _assert(
       void 0 === r.dynamicLinkDomain || 0 < r.dynamicLinkDomain.length,
       e,
-      "invalid-dynamic-link-domain",
+      "invalid-dynamic-link-domain"
     ),
     _assert(
       void 0 === r.linkDomain || 0 < r.linkDomain.length,
       e,
-      "invalid-hosting-link-domain",
+      "invalid-hosting-link-domain"
     ),
     (t.continueUrl = r.url),
     (t.dynamicLinkDomain = r.dynamicLinkDomain),
@@ -3936,37 +3900,37 @@ function _setActionCodeSettingsOnRequest(e, t, r) {
       (_assert(0 < r.android.packageName.length, e, "missing-android-pkg-name"),
       (t.androidInstallApp = r.android.installApp),
       (t.androidMinimumVersionCode = r.android.minimumVersion),
-      (t.androidPackageName = r.android.packageName)));
+      (t.androidPackageName = r.android.packageName));
 }
 async function recachePasswordPolicy(e) {
   const t = _castAuth(e);
   t._getPasswordPolicyInternal() && (await t._updatePasswordPolicy());
 }
 async function sendPasswordResetEmail(e, t, r) {
-  ((e = _castAuth(e)),
+  (e = _castAuth(e)),
     (t = {
       requestType: "PASSWORD_RESET",
       email: t,
       clientType: "CLIENT_TYPE_WEB",
-    }),
-    r && _setActionCodeSettingsOnRequest(e, t, r),
+    });
+  r && _setActionCodeSettingsOnRequest(e, t, r),
     await handleRecaptchaFlow(
       e,
       t,
       "getOobCode",
       sendPasswordResetEmail$1,
-      "EMAIL_PASSWORD_PROVIDER",
-    ));
+      "EMAIL_PASSWORD_PROVIDER"
+    );
 }
-async function confirmPasswordReset(e, t, r) {
-  await resetPassword(getModularInstance(e), {
-    oobCode: t,
+async function confirmPasswordReset(t, e, r) {
+  await resetPassword(getModularInstance(t), {
+    oobCode: e,
     newPassword: r,
-  }).catch(async (t) => {
+  }).catch(async (e) => {
     throw (
-      "auth/password-does-not-meet-requirements" === t.code &&
-        recachePasswordPolicy(e),
-      t
+      ("auth/password-does-not-meet-requirements" === e.code &&
+        recachePasswordPolicy(t),
+      e)
     );
   });
 }
@@ -3975,13 +3939,14 @@ async function applyActionCode(e, t) {
     (e = getModularInstance(e)),
     "POST",
     "/v1/accounts:update",
-    _addTidIfNecessary(e, { oobCode: t }),
+    _addTidIfNecessary(e, { oobCode: t })
   );
 }
 async function checkActionCode(e, t) {
   var r = getModularInstance(e),
-    n = await resetPassword(r, { oobCode: t });
-  switch ((_assert((e = n.requestType), r, "internal-error"), e)) {
+    n = await resetPassword(r, { oobCode: t }),
+    e = n.requestType;
+  switch ((_assert(e, r, "internal-error"), e)) {
     case "EMAIL_SIGNIN":
       break;
     case "VERIFY_AND_CHANGE_EMAIL":
@@ -4013,7 +3978,8 @@ async function checkActionCode(e, t) {
   );
 }
 async function verifyPasswordResetCode(e, t) {
-  return (e = (await checkActionCode(getModularInstance(e), t)).data).email;
+  e = (await checkActionCode(getModularInstance(e), t)).data;
+  return e.email;
 }
 async function createUserWithEmailAndPassword(t, r, n) {
   if (e(t.app))
@@ -4029,29 +3995,29 @@ async function createUserWithEmailAndPassword(t, r, n) {
       },
       "signUpPassword",
       signUp,
-      "EMAIL_PASSWORD_PROVIDER",
+      "EMAIL_PASSWORD_PROVIDER"
     ),
     a = await s.catch((e) => {
       throw (
-        "auth/password-does-not-meet-requirements" === e.code &&
+        ("auth/password-does-not-meet-requirements" === e.code &&
           recachePasswordPolicy(t),
-        e
+        e)
       );
     }),
     o = await UserCredentialImpl._fromIdTokenResponse(i, "signIn", a);
-  return (await i._updateCurrentUser(o.user), o);
+  return await i._updateCurrentUser(o.user), o;
 }
 function signInWithEmailAndPassword(t, r, n) {
   return e(t.app)
     ? Promise.reject(_serverAppCurrentUserOperationNotSupportedError(t))
     : signInWithCredential(
         getModularInstance(t),
-        EmailAuthProvider.credential(r, n),
+        EmailAuthProvider.credential(r, n)
       ).catch(async (e) => {
         throw (
-          "auth/password-does-not-meet-requirements" === e.code &&
+          ("auth/password-does-not-meet-requirements" === e.code &&
             recachePasswordPolicy(t),
-          e
+          e)
         );
       });
 }
@@ -4062,7 +4028,7 @@ async function sendSignInLinkToEmail(e, t, r) {
       email: t,
       clientType: "CLIENT_TYPE_WEB",
     };
-  ((e = i),
+  (e = i),
     _assert((t = r).handleCodeInApp, n, "argument-error"),
     t && _setActionCodeSettingsOnRequest(n, e, t),
     await handleRecaptchaFlow(
@@ -4070,55 +4036,54 @@ async function sendSignInLinkToEmail(e, t, r) {
       i,
       "getOobCode",
       sendSignInLinkToEmail$1,
-      "EMAIL_PASSWORD_PROVIDER",
-    ));
+      "EMAIL_PASSWORD_PROVIDER"
+    );
 }
 function isSignInWithEmailLink(e, t) {
   return "EMAIL_SIGNIN" === ActionCodeURL.parseLink(t)?.operation;
 }
 async function signInWithEmailLink(t, r, n) {
-  return e(t.app)
-    ? Promise.reject(_serverAppCurrentUserOperationNotSupportedError(t))
-    : ((t = getModularInstance(t)),
-      _assert(
-        (r = EmailAuthProvider.credentialWithLink(r, n || _getCurrentUrl()))
-          ._tenantId === (t.tenantId || null),
-        t,
-        "tenant-id-mismatch",
-      ),
-      signInWithCredential(t, r));
+  if (e(t.app))
+    return Promise.reject(_serverAppCurrentUserOperationNotSupportedError(t));
+  (t = getModularInstance(t)),
+    (r = EmailAuthProvider.credentialWithLink(r, n || _getCurrentUrl()));
+  return (
+    _assert(r._tenantId === (t.tenantId || null), t, "tenant-id-mismatch"),
+    signInWithCredential(t, r)
+  );
 }
 async function fetchSignInMethodsForEmail(e, t) {
-  return (
-    (t = {
-      identifier: t,
-      continueUri: _isHttpOrHttps() ? _getCurrentUrl() : "http://localhost",
-    }),
+  (t = {
+    identifier: t,
+    continueUri: _isHttpOrHttps() ? _getCurrentUrl() : "http://localhost",
+  }),
     (e = (
       await _performApiRequest(
         (e = getModularInstance(e)),
         "POST",
         "/v1/accounts:createAuthUri",
-        _addTidIfNecessary(e, t),
+        _addTidIfNecessary(e, t)
       )
-    ).signinMethods) || []
-  );
+    ).signinMethods);
+  return e || [];
 }
 async function sendEmailVerification(e, t) {
   var r = getModularInstance(e),
-    n = { requestType: "VERIFY_EMAIL", idToken: await e.getIdToken() };
-  (t = (t && _setActionCodeSettingsOnRequest(r.auth, n, t),
-  await sendOobCode(r.auth, n)).email) !== e.email && (await e.reload());
+    n = { requestType: "VERIFY_EMAIL", idToken: await e.getIdToken() },
+    t = (t && _setActionCodeSettingsOnRequest(r.auth, n, t),
+    await sendOobCode(r.auth, n))["email"];
+  t !== e.email && (await e.reload());
 }
 async function verifyBeforeUpdateEmail(e, t, r) {
-  var n = getModularInstance(e);
-  t = {
-    requestType: "VERIFY_AND_CHANGE_EMAIL",
-    idToken: await e.getIdToken(),
-    newEmail: t,
-  };
-  (r = (r && _setActionCodeSettingsOnRequest(n.auth, t, r),
-  await sendOobCode(n.auth, t)).email) !== e.email && (await e.reload());
+  var n = getModularInstance(e),
+    t = {
+      requestType: "VERIFY_AND_CHANGE_EMAIL",
+      idToken: await e.getIdToken(),
+      newEmail: t,
+    },
+    r = (r && _setActionCodeSettingsOnRequest(n.auth, t, r),
+    await sendOobCode(n.auth, t))["email"];
+  r !== e.email && (await e.reload());
 }
 async function updateProfile(e, { displayName: t, photoURL: r }) {
   if (void 0 !== t || void 0 !== r) {
@@ -4133,48 +4098,45 @@ async function updateProfile(e, { displayName: t, photoURL: r }) {
         n,
         (async function (e, t) {
           return _performApiRequest(e, "POST", "/v1/accounts:update", t);
-        })(n.auth, i),
+        })(n.auth, i)
       ),
       a =
         ((n.displayName = s.displayName || null),
         (n.photoURL = s.photoUrl || null),
         n.providerData.find(({ providerId: e }) => "password" === e));
-    (a && ((a.displayName = n.displayName), (a.photoURL = n.photoURL)),
-      await n._updateTokensIfNecessary(s));
+    a && ((a.displayName = n.displayName), (a.photoURL = n.photoURL)),
+      await n._updateTokensIfNecessary(s);
   }
 }
 function updateEmail(t, r) {
-  return (
-    (t = getModularInstance(t)),
-    e(t.auth.app)
-      ? Promise.reject(_serverAppCurrentUserOperationNotSupportedError(t.auth))
-      : updateEmailOrPassword(t, r, null)
-  );
+  t = getModularInstance(t);
+  return e(t.auth.app)
+    ? Promise.reject(_serverAppCurrentUserOperationNotSupportedError(t.auth))
+    : updateEmailOrPassword(t, r, null);
 }
 function updatePassword(e, t) {
   return updateEmailOrPassword(getModularInstance(e), null, t);
 }
 async function updateEmailOrPassword(e, t, r) {
-  const n = e.auth,
+  const n = e["auth"],
     i = { idToken: await e.getIdToken(), returnSecureToken: !0 };
-  (t && (i.email = t),
-    r && (i.password = r),
-    (t = await _logoutIfInvalidated(
-      e,
-      (async function (e, t) {
-        return _performApiRequest(e, "POST", "/v1/accounts:update", t);
-      })(n, i),
-    )),
-    await e._updateTokensIfNecessary(t, !0));
+  t && (i.email = t), r && (i.password = r);
+  t = await _logoutIfInvalidated(
+    e,
+    (async function (e, t) {
+      return _performApiRequest(e, "POST", "/v1/accounts:update", t);
+    })(n, i)
+  );
+  await e._updateTokensIfNecessary(t, !0);
 }
 class GenericAdditionalUserInfo {
   constructor(e, t, r = {}) {
-    ((this.isNewUser = e), (this.providerId = t), (this.profile = r));
+    (this.isNewUser = e), (this.providerId = t), (this.profile = r);
   }
 }
 class FederatedAdditionalUserInfoWithUsername extends GenericAdditionalUserInfo {
   constructor(e, t, r, n) {
-    (super(e, t, r), (this.username = n));
+    super(e, t, r), (this.username = n);
   }
 }
 class FacebookAdditionalUserInfo extends GenericAdditionalUserInfo {
@@ -4204,32 +4166,32 @@ function getAdditionalUserInfo(e) {
   {
     var r = t;
     if (!r) return null;
-    const e = r.providerId,
-      n = r.rawUserInfo ? JSON.parse(r.rawUserInfo) : {},
-      i = r.isNewUser || "identitytoolkit#SignupNewUserResponse" === r.kind;
-    if (!e && r?.idToken) {
-      const e = _parseToken(r.idToken)?.firebase?.sign_in_provider;
-      if (e)
+    const n = r["providerId"],
+      i = r.rawUserInfo ? JSON.parse(r.rawUserInfo) : {},
+      s = r.isNewUser || "identitytoolkit#SignupNewUserResponse" === r.kind;
+    if (!n && r?.idToken) {
+      const n = _parseToken(r.idToken)?.firebase?.sign_in_provider;
+      if (n)
         return new GenericAdditionalUserInfo(
-          i,
-          "anonymous" !== e && "custom" !== e ? e : null,
+          s,
+          "anonymous" !== n && "custom" !== n ? n : null
         );
     }
-    if (!e) return null;
-    switch (e) {
+    if (!n) return null;
+    switch (n) {
       case "facebook.com":
-        return new FacebookAdditionalUserInfo(i, n);
+        return new FacebookAdditionalUserInfo(s, i);
       case "github.com":
-        return new GithubAdditionalUserInfo(i, n);
+        return new GithubAdditionalUserInfo(s, i);
       case "google.com":
-        return new GoogleAdditionalUserInfo(i, n);
+        return new GoogleAdditionalUserInfo(s, i);
       case "twitter.com":
-        return new TwitterAdditionalUserInfo(i, n, r.screenName || null);
+        return new TwitterAdditionalUserInfo(s, i, r.screenName || null);
       case "custom":
       case "anonymous":
-        return new GenericAdditionalUserInfo(i, null);
+        return new GenericAdditionalUserInfo(s, null);
       default:
-        return new GenericAdditionalUserInfo(i, e, n);
+        return new GenericAdditionalUserInfo(s, n, i);
     }
   }
 }
@@ -4268,7 +4230,7 @@ async function deleteUser(e) {
 }
 class MultiFactorSessionImpl {
   constructor(e, t, r) {
-    ((this.type = e), (this.credential = t), (this.user = r));
+    (this.type = e), (this.credential = t), (this.user = r);
   }
   static _fromIdtoken(e, t) {
     return new MultiFactorSessionImpl("enroll", e, t);
@@ -4288,11 +4250,11 @@ class MultiFactorSessionImpl {
     if (e?.multiFactorSession) {
       if (e.multiFactorSession?.pendingCredential)
         return MultiFactorSessionImpl._fromMfaPendingCredential(
-          e.multiFactorSession.pendingCredential,
+          e.multiFactorSession.pendingCredential
         );
       if (e.multiFactorSession?.idToken)
         return MultiFactorSessionImpl._fromIdtoken(
-          e.multiFactorSession.idToken,
+          e.multiFactorSession.idToken
         );
     }
     return null;
@@ -4300,40 +4262,40 @@ class MultiFactorSessionImpl {
 }
 class MultiFactorResolverImpl {
   constructor(e, t, r) {
-    ((this.session = e), (this.hints = t), (this.signInResolver = r));
+    (this.session = e), (this.hints = t), (this.signInResolver = r);
   }
-  static _fromError(e, t) {
-    const r = _castAuth(e),
-      n = t.customData._serverResponse,
-      i = (n.mfaInfo || []).map((e) =>
-        MultiFactorInfoImpl._fromServerResponse(r, e),
+  static _fromError(e, r) {
+    const n = _castAuth(e),
+      i = r.customData._serverResponse,
+      t = (i.mfaInfo || []).map((e) =>
+        MultiFactorInfoImpl._fromServerResponse(n, e)
       ),
       s =
-        (_assert(n.mfaPendingCredential, r, "internal-error"),
+        (_assert(i.mfaPendingCredential, n, "internal-error"),
         MultiFactorSessionImpl._fromMfaPendingCredential(
-          n.mfaPendingCredential,
+          i.mfaPendingCredential
         ));
-    return new MultiFactorResolverImpl(s, i, async (e) => {
-      e = await e._process(r, s);
-      var i =
-        (delete n.mfaInfo,
-        delete n.mfaPendingCredential,
-        { ...n, idToken: e.idToken, refreshToken: e.refreshToken });
-      switch (t.operationType) {
+    return new MultiFactorResolverImpl(s, t, async (e) => {
+      var e = await e._process(n, s),
+        t =
+          (delete i.mfaInfo,
+          delete i.mfaPendingCredential,
+          { ...i, idToken: e.idToken, refreshToken: e.refreshToken });
+      switch (r.operationType) {
         case "signIn":
           const e = await UserCredentialImpl._fromIdTokenResponse(
-            r,
-            t.operationType,
-            i,
+            n,
+            r.operationType,
+            t
           );
-          return (await r._updateCurrentUser(e.user), e);
+          return await n._updateCurrentUser(e.user), e;
         case "reauthenticate":
           return (
-            _assert(t.user, r, "internal-error"),
-            UserCredentialImpl._forOperation(t.user, t.operationType, i)
+            _assert(r.user, n, "internal-error"),
+            UserCredentialImpl._forOperation(r.user, r.operationType, t)
           );
         default:
-          _fail(r, "internal-error");
+          _fail(n, "internal-error");
       }
     });
   }
@@ -4342,14 +4304,14 @@ class MultiFactorResolverImpl {
   }
 }
 function getMultiFactorResolver(e, t) {
-  e = getModularInstance(e);
-  var r = t;
+  var e = getModularInstance(e),
+    r = t;
   return (
     _assert(t.customData.operationType, e, "argument-error"),
     _assert(
       r.customData._serverResponse?.mfaPendingCredential,
       e,
-      "argument-error",
+      "argument-error"
     ),
     MultiFactorResolverImpl._fromError(e, r)
   );
@@ -4359,19 +4321,19 @@ function startEnrollPhoneMfa(e, t) {
     e,
     "POST",
     "/v2/accounts/mfaEnrollment:start",
-    _addTidIfNecessary(e, t),
+    _addTidIfNecessary(e, t)
   );
 }
 class MultiFactorUserImpl {
-  constructor(e) {
-    ((this.user = e),
+  constructor(t) {
+    (this.user = t),
       (this.enrolledFactors = []),
-      e._onReload((t) => {
-        t.mfaInfo &&
-          (this.enrolledFactors = t.mfaInfo.map((t) =>
-            MultiFactorInfoImpl._fromServerResponse(e.auth, t),
+      t._onReload((e) => {
+        e.mfaInfo &&
+          (this.enrolledFactors = e.mfaInfo.map((e) =>
+            MultiFactorInfoImpl._fromServerResponse(t.auth, e)
           ));
-      }));
+      });
   }
   static _fromUser(e) {
     return new MultiFactorUserImpl(e);
@@ -4379,7 +4341,7 @@ class MultiFactorUserImpl {
   async getSession() {
     return MultiFactorSessionImpl._fromIdtoken(
       await this.user.getIdToken(),
-      this.user,
+      this.user
     );
   }
   async enroll(e, t) {
@@ -4387,9 +4349,9 @@ class MultiFactorUserImpl {
       n = await this.getSession(),
       i = await _logoutIfInvalidated(
         this.user,
-        r._process(this.user.auth, n, t),
+        r._process(this.user.auth, n, t)
       );
-    return (await this.user._updateTokensIfNecessary(i), this.user.reload());
+    return await this.user._updateTokensIfNecessary(i), this.user.reload();
   }
   async unenroll(e) {
     const t = "string" == typeof e ? e : e.uid,
@@ -4403,14 +4365,14 @@ class MultiFactorUserImpl {
           n,
           "POST",
           "/v2/accounts/mfaEnrollment:withdraw",
-          _addTidIfNecessary(n, i),
-        )),
+          _addTidIfNecessary(n, i)
+        ))
       );
-      ((this.enrolledFactors = this.enrolledFactors.filter(
-        ({ uid: e }) => e !== t,
+      (this.enrolledFactors = this.enrolledFactors.filter(
+        ({ uid: e }) => e !== t
       )),
         await this.user._updateTokensIfNecessary(e),
-        await this.user.reload());
+        await this.user.reload();
     } catch (e) {
       throw e;
     }
@@ -4419,16 +4381,13 @@ class MultiFactorUserImpl {
 }
 const O = new WeakMap();
 function multiFactor(e) {
-  return (
-    (e = getModularInstance(e)),
-    O.has(e) || O.set(e, MultiFactorUserImpl._fromUser(e)),
-    O.get(e)
-  );
+  e = getModularInstance(e);
+  return O.has(e) || O.set(e, MultiFactorUserImpl._fromUser(e)), O.get(e);
 }
 const D = "__sak";
 class BrowserPersistenceClass {
   constructor(e, t) {
-    ((this.storageRetriever = e), (this.type = t));
+    (this.storageRetriever = e), (this.type = t);
   }
   _isAvailable() {
     try {
@@ -4442,16 +4401,14 @@ class BrowserPersistenceClass {
     }
   }
   _set(e, t) {
-    return (this.storage.setItem(e, JSON.stringify(t)), Promise.resolve());
+    return this.storage.setItem(e, JSON.stringify(t)), Promise.resolve();
   }
   _get(e) {
-    return (
-      (e = this.storage.getItem(e)),
-      Promise.resolve(e ? JSON.parse(e) : null)
-    );
+    e = this.storage.getItem(e);
+    return Promise.resolve(e ? JSON.parse(e) : null);
   }
   _remove(e) {
-    return (this.storage.removeItem(e), Promise.resolve());
+    return this.storage.removeItem(e), Promise.resolve();
   }
   get storage() {
     return this.storageRetriever();
@@ -4459,13 +4416,13 @@ class BrowserPersistenceClass {
 }
 class BrowserLocalPersistence extends BrowserPersistenceClass {
   constructor() {
-    (super(() => window.localStorage, "LOCAL"),
+    super(() => window.localStorage, "LOCAL"),
       (this.boundEventHandler = (e, t) => this.onStorageEvent(e, t)),
       (this.listeners = {}),
       (this.localCache = {}),
       (this.pollTimer = null),
       (this.fallbackToPolling = _isMobileBrowser()),
-      (this._shouldAllowMigration = !0));
+      (this._shouldAllowMigration = !0);
   }
   forAllChangedKeys(e) {
     for (const n of Object.keys(this.listeners)) {
@@ -4497,15 +4454,15 @@ class BrowserLocalPersistence extends BrowserPersistenceClass {
     if (r) for (const e of Array.from(r)) e(t && JSON.parse(t));
   }
   startPolling() {
-    (this.stopPolling(),
+    this.stopPolling(),
       (this.pollTimer = setInterval(() => {
         this.forAllChangedKeys((e, t, r) => {
           this.onStorageEvent(
             new StorageEvent("storage", { key: e, oldValue: t, newValue: r }),
-            !0,
+            !0
           );
         });
-      }, 1e3)));
+      }, 1e3));
   }
   stopPolling() {
     this.pollTimer && (clearInterval(this.pollTimer), (this.pollTimer = null));
@@ -4517,54 +4474,50 @@ class BrowserLocalPersistence extends BrowserPersistenceClass {
     window.removeEventListener("storage", this.boundEventHandler);
   }
   _addListener(e, t) {
-    (0 === Object.keys(this.listeners).length &&
+    0 === Object.keys(this.listeners).length &&
       (this.fallbackToPolling ? this.startPolling() : this.attachListener()),
       this.listeners[e] ||
         ((this.listeners[e] = new Set()),
         (this.localCache[e] = this.storage.getItem(e))),
-      this.listeners[e].add(t));
+      this.listeners[e].add(t);
   }
   _removeListener(e, t) {
-    (this.listeners[e] &&
+    this.listeners[e] &&
       (this.listeners[e].delete(t),
       0 === this.listeners[e].size && delete this.listeners[e]),
       0 === Object.keys(this.listeners).length &&
-        (this.detachListener(), this.stopPolling()));
+        (this.detachListener(), this.stopPolling());
   }
   async _set(e, t) {
-    (await super._set(e, t), (this.localCache[e] = JSON.stringify(t)));
+    await super._set(e, t), (this.localCache[e] = JSON.stringify(t));
   }
   async _get(e) {
     var t = await super._get(e);
-    return ((this.localCache[e] = JSON.stringify(t)), t);
+    return (this.localCache[e] = JSON.stringify(t)), t;
   }
   async _remove(e) {
-    (await super._remove(e), delete this.localCache[e]);
+    await super._remove(e), delete this.localCache[e];
   }
 }
 BrowserLocalPersistence.type = "LOCAL";
 const L = BrowserLocalPersistence;
 function getDocumentCookie(e) {
-  return (
-    (e = e.replace(/[\\^$.*+?()[\]{}|]/g, "\\$&")),
-    (e = RegExp(e + "=([^;]+)")),
-    document.cookie.match(e)?.[1] ?? null
-  );
+  (e = e.replace(/[\\^$.*+?()[\]{}|]/g, "\\$&")), (e = RegExp(e + "=([^;]+)"));
+  return document.cookie.match(e)?.[1] ?? null;
 }
 function getCookieName(e) {
   return (
-    ("http:" === window.location.protocol ? "__dev_" : "__HOST-") +
-    "FIREBASE_" +
+    `${"http:" === window.location.protocol ? "__dev_" : "__HOST-"}FIREBASE_` +
     e.split(":")[3]
   );
 }
 class CookiePersistence {
   constructor() {
-    ((this.type = "COOKIE"), (this.listenerUnsubscribes = new Map()));
+    (this.type = "COOKIE"), (this.listenerUnsubscribes = new Map());
   }
   _getFinalTarget(e) {
     const t = new URL(window.location.origin + "/__cookies__");
-    return (t.searchParams.set("finalTarget", e), t);
+    return t.searchParams.set("finalTarget", e), t;
   }
   async _isAvailable() {
     return (
@@ -4593,26 +4546,26 @@ class CookiePersistence {
         "=;Max-Age=34560000;Partitioned;Secure;SameSite=Strict;Path=/;Priority=High"),
       await fetch("/__cookies__", { method: "DELETE" }).catch(() => {}));
   }
-  _addListener(e, t) {
+  _addListener(e, r) {
     if (this._isAvailable()) {
-      const r = getCookieName(e);
+      const n = getCookieName(e);
       if (window.cookieStore) {
-        const e = (e) => {
-            var n = e.changed.find((e) => e.name === r);
-            (n && t(n.value), e.deleted.find((e) => e.name === r) && t(null));
+        const s = (e) => {
+            var t = e.changed.find((e) => e.name === n);
+            t && r(t.value), e.deleted.find((e) => e.name === n) && r(null);
           },
-          n = () => window.cookieStore.removeEventListener("change", e);
+          a = () => window.cookieStore.removeEventListener("change", s);
         return (
-          this.listenerUnsubscribes.set(t, n),
-          window.cookieStore.addEventListener("change", e)
+          this.listenerUnsubscribes.set(r, a),
+          window.cookieStore.addEventListener("change", s)
         );
       }
-      let n = getDocumentCookie(r);
+      let t = getDocumentCookie(n);
       const i = setInterval(() => {
-        var e = getDocumentCookie(r);
-        e !== n && (t(e), (n = e));
+        var e = getDocumentCookie(n);
+        e !== t && (r(e), (t = e));
       }, 1e3);
-      this.listenerUnsubscribes.set(t, () => clearInterval(i));
+      this.listenerUnsubscribes.set(r, () => clearInterval(i));
     }
   }
   _removeListener(e, t) {
@@ -4633,13 +4586,15 @@ BrowserSessionPersistence.type = "SESSION";
 const U = BrowserSessionPersistence;
 class Receiver {
   constructor(e) {
-    ((this.eventTarget = e),
+    (this.eventTarget = e),
       (this.handlersMap = {}),
-      (this.boundEventHandler = this.handleEvent.bind(this)));
+      (this.boundEventHandler = this.handleEvent.bind(this));
   }
-  static _getInstance(e) {
-    var t = this.receivers.find((t) => t.isListeningto(e));
-    return t || ((t = new Receiver(e)), this.receivers.push(t), t);
+  static _getInstance(t) {
+    var e = this.receivers.find((e) => e.isListeningto(t));
+    if (e) return e;
+    e = new Receiver(t);
+    return this.receivers.push(e), e;
   }
   isListeningto(e) {
     return this.eventTarget === e;
@@ -4658,7 +4613,7 @@ class Receiver {
           } catch (e) {
             return { fulfilled: !1, reason: e };
           }
-        }),
+        })
       )),
       t.ports[0].postMessage({
         status: "done",
@@ -4668,19 +4623,16 @@ class Receiver {
       }));
   }
   _subscribe(e, t) {
-    (0 === Object.keys(this.handlersMap).length &&
+    0 === Object.keys(this.handlersMap).length &&
       this.eventTarget.addEventListener("message", this.boundEventHandler),
       this.handlersMap[e] || (this.handlersMap[e] = new Set()),
-      this.handlersMap[e].add(t));
+      this.handlersMap[e].add(t);
   }
   _unsubscribe(e, t) {
-    (this.handlersMap[e] && t && this.handlersMap[e].delete(t),
+    this.handlersMap[e] && t && this.handlersMap[e].delete(t),
       (t && 0 !== this.handlersMap[e].size) || delete this.handlersMap[e],
       0 === Object.keys(this.handlersMap).length &&
-        this.eventTarget.removeEventListener(
-          "message",
-          this.boundEventHandler,
-        ));
+        this.eventTarget.removeEventListener("message", this.boundEventHandler);
   }
 }
 function _generateEventId(e = "", t = 10) {
@@ -4691,55 +4643,55 @@ function _generateEventId(e = "", t = 10) {
 Receiver.receivers = [];
 class Sender {
   constructor(e) {
-    ((this.target = e), (this.handlers = new Set()));
+    (this.target = e), (this.handlers = new Set());
   }
   removeMessageHandler(e) {
-    (e.messageChannel &&
+    e.messageChannel &&
       (e.messageChannel.port1.removeEventListener("message", e.onMessage),
       e.messageChannel.port1.close()),
-      this.handlers.delete(e));
+      this.handlers.delete(e);
   }
-  async _send(e, t, r = 50) {
-    const n =
+  async _send(e, t, a = 50) {
+    const o =
       "undefined" != typeof MessageChannel ? new MessageChannel() : null;
-    if (!n) throw new Error("connection_unavailable");
-    let i, s;
-    return new Promise((a, o) => {
-      const c = _generateEventId("", 20),
-        d =
-          (n.port1.start(),
+    if (!o) throw new Error("connection_unavailable");
+    let c, d;
+    return new Promise((r, n) => {
+      const i = _generateEventId("", 20),
+        s =
+          (o.port1.start(),
           setTimeout(() => {
-            o(new Error("unsupported_event"));
-          }, r));
-      ((s = {
-        messageChannel: n,
+            n(new Error("unsupported_event"));
+          }, a));
+      (d = {
+        messageChannel: o,
         onMessage(e) {
           var t = e;
-          if (t.data.eventId === c)
+          if (t.data.eventId === i)
             switch (t.data.status) {
               case "ack":
-                (clearTimeout(d),
-                  (i = setTimeout(() => {
-                    o(new Error("timeout"));
-                  }, 3e3)));
+                clearTimeout(s),
+                  (c = setTimeout(() => {
+                    n(new Error("timeout"));
+                  }, 3e3));
                 break;
               case "done":
-                (clearTimeout(i), a(t.data.response));
+                clearTimeout(c), r(t.data.response);
                 break;
               default:
-                (clearTimeout(d),
-                  clearTimeout(i),
-                  o(new Error("invalid_response")));
+                clearTimeout(s),
+                  clearTimeout(c),
+                  n(new Error("invalid_response"));
             }
         },
       }),
-        this.handlers.add(s),
-        n.port1.addEventListener("message", s.onMessage),
-        this.target.postMessage({ eventType: e, eventId: c, data: t }, [
-          n.port2,
-        ]));
+        this.handlers.add(d),
+        o.port1.addEventListener("message", d.onMessage),
+        this.target.postMessage({ eventType: e, eventId: i, data: t }, [
+          o.port2,
+        ]);
     }).finally(() => {
-      s && this.removeMessageHandler(s);
+      d && this.removeMessageHandler(d);
     });
   }
 }
@@ -4761,12 +4713,12 @@ class DBPromise {
   }
   toPromise() {
     return new Promise((e, t) => {
-      (this.request.addEventListener("success", () => {
+      this.request.addEventListener("success", () => {
         e(this.request.result);
       }),
         this.request.addEventListener("error", () => {
           t(this.request.error);
-        }));
+        });
     });
   }
 }
@@ -4774,43 +4726,42 @@ function getObjectStore(e, t) {
   return e.transaction([V], t ? "readwrite" : "readonly").objectStore(V);
 }
 function _openDatabase() {
-  const e = indexedDB.open(F, 1);
-  return new Promise((t, r) => {
-    (e.addEventListener("error", () => {
-      r(e.error);
+  const n = indexedDB.open(F, 1);
+  return new Promise((r, t) => {
+    n.addEventListener("error", () => {
+      t(n.error);
     }),
-      e.addEventListener("upgradeneeded", () => {
-        const t = e.result;
+      n.addEventListener("upgradeneeded", () => {
+        const e = n.result;
         try {
-          t.createObjectStore(V, { keyPath: W });
-        } catch (t) {
-          r(t);
+          e.createObjectStore(V, { keyPath: W });
+        } catch (e) {
+          t(e);
         }
       }),
-      e.addEventListener("success", async () => {
-        const r = e.result;
-        var n;
-        r.objectStoreNames.contains(V)
-          ? t(r)
-          : (r.close(),
-            (n = indexedDB.deleteDatabase(F)),
-            await new DBPromise(n).toPromise(),
-            t(await _openDatabase()));
-      }));
+      n.addEventListener("success", async () => {
+        const e = n.result;
+        var t;
+        e.objectStoreNames.contains(V)
+          ? r(e)
+          : (e.close(),
+            (t = indexedDB.deleteDatabase(F)),
+            await new DBPromise(t).toPromise(),
+            r(await _openDatabase()));
+      });
   });
 }
 async function _putObject(e, t, r) {
-  return (
-    (e = getObjectStore(e, !0).put({ [W]: t, value: r })),
-    new DBPromise(e).toPromise()
-  );
+  e = getObjectStore(e, !0).put({ [W]: t, value: r });
+  return new DBPromise(e).toPromise();
 }
 function _deleteObject(e, t) {
-  return ((e = getObjectStore(e, !0).delete(t)), new DBPromise(e).toPromise());
+  e = getObjectStore(e, !0).delete(t);
+  return new DBPromise(e).toPromise();
 }
 class IndexedDBLocalPersistence {
   constructor() {
-    ((this.type = "LOCAL"),
+    (this.type = "LOCAL"),
       (this._shouldAllowMigration = !0),
       (this.listeners = {}),
       (this.localCache = {}),
@@ -4823,11 +4774,11 @@ class IndexedDBLocalPersistence {
       (this._workerInitializationPromise =
         this.initializeServiceWorkerMessaging().then(
           () => {},
-          () => {},
-        )));
+          () => {}
+        ));
   }
   async _openDb() {
-    return (this.db || (this.db = await _openDatabase()), this.db);
+    return this.db || (this.db = await _openDatabase()), this.db;
   }
   async _withRetries(e) {
     let t = 0;
@@ -4844,11 +4795,11 @@ class IndexedDBLocalPersistence {
     return _isWorker() ? this.initializeReceiver() : this.initializeSender();
   }
   async initializeReceiver() {
-    ((this.receiver = Receiver._getInstance(_isWorker() ? self : null)),
+    (this.receiver = Receiver._getInstance(_isWorker() ? self : null)),
       this.receiver._subscribe("keyChanged", async (e, t) => ({
         keyProcessed: (await this._poll()).includes(t.key),
       })),
-      this.receiver._subscribe("ping", async (e, t) => ["keyChanged"]));
+      this.receiver._subscribe("ping", async (e, t) => ["keyChanged"]);
   }
   async initializeSender() {
     if (
@@ -4881,7 +4832,7 @@ class IndexedDBLocalPersistence {
         await this.sender._send(
           "keyChanged",
           { key: e },
-          this.serviceWorkerReceiverAvailable ? 800 : 50,
+          this.serviceWorkerReceiverAvailable ? 800 : 50
         );
       } catch {}
   }
@@ -4889,7 +4840,7 @@ class IndexedDBLocalPersistence {
     try {
       if (!indexedDB) return !1;
       var e = await _openDatabase();
-      return (await _putObject(e, D, "1"), await _deleteObject(e, D), !0);
+      return await _putObject(e, D, "1"), await _deleteObject(e, D), !0;
     } catch {}
     return !1;
   }
@@ -4901,51 +4852,48 @@ class IndexedDBLocalPersistence {
       this.pendingWrites--;
     }
   }
-  async _set(e, t) {
+  async _set(t, r) {
     return this._withPendingWrite(
       async () => (
-        await this._withRetries((r) => _putObject(r, e, t)),
-        (this.localCache[e] = t),
-        this.notifyServiceWorker(e)
-      ),
+        await this._withRetries((e) => _putObject(e, t, r)),
+        (this.localCache[t] = r),
+        this.notifyServiceWorker(t)
+      )
     );
   }
-  async _get(e) {
-    var t = await this._withRetries((t) =>
+  async _get(t) {
+    var e = await this._withRetries((e) =>
       (async function (e, t) {
-        return (
-          (e = getObjectStore(e, !1).get(t)),
-          void 0 === (t = await new DBPromise(e).toPromise()) ? null : t.value
-        );
-      })(t, e),
+        (e = getObjectStore(e, !1).get(t)),
+          (t = await new DBPromise(e).toPromise());
+        return void 0 === t ? null : t.value;
+      })(e, t)
     );
-    return (this.localCache[e] = t);
+    return (this.localCache[t] = e);
   }
-  async _remove(e) {
+  async _remove(t) {
     return this._withPendingWrite(
       async () => (
-        await this._withRetries((t) => _deleteObject(t, e)),
-        delete this.localCache[e],
-        this.notifyServiceWorker(e)
-      ),
+        await this._withRetries((e) => _deleteObject(e, t)),
+        delete this.localCache[t],
+        this.notifyServiceWorker(t)
+      )
     );
   }
   async _poll() {
-    const e = await this._withRetries(
-      (e) => (
-        (e = getObjectStore(e, !1).getAll()),
-        new DBPromise(e).toPromise()
-      ),
-    );
+    const e = await this._withRetries((e) => {
+      e = getObjectStore(e, !1).getAll();
+      return new DBPromise(e).toPromise();
+    });
     if (!e) return [];
     if (0 !== this.pendingWrites) return [];
     const t = [],
       r = new Set();
     if (0 !== e.length)
       for (var { fbase_key: n, value: i } of e)
-        (r.add(n),
+        r.add(n),
           JSON.stringify(this.localCache[n]) !== JSON.stringify(i) &&
-            (this.notifyListeners(n, i), t.push(n)));
+            (this.notifyListeners(n, i), t.push(n));
     for (const e of Object.keys(this.localCache))
       this.localCache[e] &&
         !r.has(e) &&
@@ -4958,22 +4906,22 @@ class IndexedDBLocalPersistence {
     if (r) for (const e of Array.from(r)) e(t);
   }
   startPolling() {
-    (this.stopPolling(),
-      (this.pollTimer = setInterval(async () => this._poll(), 800)));
+    this.stopPolling(),
+      (this.pollTimer = setInterval(async () => this._poll(), 800));
   }
   stopPolling() {
     this.pollTimer && (clearInterval(this.pollTimer), (this.pollTimer = null));
   }
   _addListener(e, t) {
-    (0 === Object.keys(this.listeners).length && this.startPolling(),
+    0 === Object.keys(this.listeners).length && this.startPolling(),
       this.listeners[e] || ((this.listeners[e] = new Set()), this._get(e)),
-      this.listeners[e].add(t));
+      this.listeners[e].add(t);
   }
   _removeListener(e, t) {
-    (this.listeners[e] &&
+    this.listeners[e] &&
       (this.listeners[e].delete(t),
       0 === this.listeners[e].size && delete this.listeners[e]),
-      0 === Object.keys(this.listeners).length && this.stopPolling());
+      0 === Object.keys(this.listeners).length && this.stopPolling();
   }
 }
 IndexedDBLocalPersistence.type = "LOCAL";
@@ -4983,50 +4931,53 @@ function startSignInPhoneMfa(e, t) {
     e,
     "POST",
     "/v2/accounts/mfaSignIn:start",
-    _addTidIfNecessary(e, t),
+    _addTidIfNecessary(e, t)
   );
 }
 const H = _generateCallbackName("rcb"),
   q = new Delay(3e4, 6e4);
 class ReCaptchaLoaderImpl {
   constructor() {
-    ((this.hostLanguage = ""),
+    (this.hostLanguage = ""),
       (this.counter = 0),
-      (this.librarySeparatelyLoaded = !!_window().grecaptcha?.render));
+      (this.librarySeparatelyLoaded = !!_window().grecaptcha?.render);
   }
-  load(e, t = "") {
+  load(s, a = "") {
     return (
       _assert(
-        (r = t).length <= 6 && /^\s*[a-zA-Z0-9\-]*\s*$/.test(r),
-        e,
-        "argument-error",
+        (e = a).length <= 6 && /^\s*[a-zA-Z0-9\-]*\s*$/.test(e),
+        s,
+        "argument-error"
       ),
-      this.shouldResolveImmediately(t) && isV2(_window().grecaptcha)
+      this.shouldResolveImmediately(a) && isV2(_window().grecaptcha)
         ? Promise.resolve(_window().grecaptcha)
-        : new Promise((r, n) => {
+        : new Promise((t, n) => {
             const i = _window().setTimeout(() => {
-              n(_createError(e, "network-request-failed"));
+              n(_createError(s, "network-request-failed"));
             }, q.get());
-            ((_window()[H] = () => {
-              (_window().clearTimeout(i), delete _window()[H]);
-              const s = _window().grecaptcha;
-              if (s && isV2(s)) {
-                const e = s.render;
-                ((s.render = (t, r) => ((t = e(t, r)), this.counter++, t)),
-                  (this.hostLanguage = t),
-                  r(s));
-              } else n(_createError(e, "internal-error"));
+            (_window()[H] = () => {
+              _window().clearTimeout(i), delete _window()[H];
+              const e = _window().grecaptcha;
+              if (e && isV2(e)) {
+                const r = e.render;
+                (e.render = (e, t) => {
+                  e = r(e, t);
+                  return this.counter++, e;
+                }),
+                  (this.hostLanguage = a),
+                  t(e);
+              } else n(_createError(s, "internal-error"));
             }),
               _loadJS(
                 C.recaptchaV2Script +
                   "?" +
-                  querystring({ onload: H, render: "explicit", hl: t }),
+                  querystring({ onload: H, render: "explicit", hl: a })
               ).catch(() => {
-                (clearTimeout(i), n(_createError(e, "internal-error")));
-              }));
+                clearTimeout(i), n(_createError(s, "internal-error"));
+              });
           })
     );
-    var r;
+    var e;
   }
   clearedOneInstance() {
     this.counter--;
@@ -5050,7 +5001,7 @@ const j = "recaptcha",
   B = { theme: "light", type: "image" };
 class RecaptchaVerifier {
   constructor(e, t, r = { ...B }) {
-    ((this.parameters = r),
+    (this.parameters = r),
       (this.type = j),
       (this.destroyed = !1),
       (this.widgetId = null),
@@ -5062,35 +5013,33 @@ class RecaptchaVerifier {
       _assert(
         "undefined" != typeof document,
         this.auth,
-        "operation-not-supported-in-this-environment",
-      ),
-      _assert(
-        (r = "string" == typeof t ? document.getElementById(t) : t),
-        this.auth,
-        "argument-error",
-      ),
+        "operation-not-supported-in-this-environment"
+      );
+    r = "string" == typeof t ? document.getElementById(t) : t;
+    _assert(r, this.auth, "argument-error"),
       (this.container = r),
       (this.parameters.callback = this.makeTokenCallback(
-        this.parameters.callback,
+        this.parameters.callback
       )),
       (this._recaptchaLoader = new (
         this.auth.settings.appVerificationDisabledForTesting
           ? MockReCaptchaLoaderImpl
           : ReCaptchaLoaderImpl
       )()),
-      this.validateStartingState());
+      this.validateStartingState();
   }
   async verify() {
     this.assertNotDestroyed();
     const e = await this.render(),
-      t = this.getAssertedRecaptcha();
+      n = this.getAssertedRecaptcha(),
+      t = n.getResponse(e);
     return (
-      t.getResponse(e) ||
-      new Promise((r) => {
-        const n = (e) => {
-          e && (this.tokenChangeListeners.delete(n), r(e));
+      t ||
+      new Promise((t) => {
+        const r = (e) => {
+          e && (this.tokenChangeListeners.delete(r), t(e));
         };
-        (this.tokenChangeListeners.add(n), this.isInvisible && t.execute(e));
+        this.tokenChangeListeners.add(r), this.isInvisible && n.execute(e);
       })
     );
   }
@@ -5109,41 +5058,41 @@ class RecaptchaVerifier {
     );
   }
   _reset() {
-    (this.assertNotDestroyed(),
+    this.assertNotDestroyed(),
       null !== this.widgetId &&
-        this.getAssertedRecaptcha().reset(this.widgetId));
+        this.getAssertedRecaptcha().reset(this.widgetId);
   }
   clear() {
-    (this.assertNotDestroyed(),
+    this.assertNotDestroyed(),
       (this.destroyed = !0),
       this._recaptchaLoader.clearedOneInstance(),
       this.isInvisible ||
         this.container.childNodes.forEach((e) => {
           this.container.removeChild(e);
-        }));
+        });
   }
   validateStartingState() {
-    (_assert(!this.parameters.sitekey, this.auth, "argument-error"),
+    _assert(!this.parameters.sitekey, this.auth, "argument-error"),
       _assert(
         this.isInvisible || !this.container.hasChildNodes(),
         this.auth,
-        "argument-error",
+        "argument-error"
       ),
       _assert(
         "undefined" != typeof document,
         this.auth,
-        "operation-not-supported-in-this-environment",
-      ));
+        "operation-not-supported-in-this-environment"
+      );
   }
-  makeTokenCallback(e) {
+  makeTokenCallback(r) {
     return (t) => {
       if (
-        (this.tokenChangeListeners.forEach((e) => e(t)), "function" == typeof e)
+        (this.tokenChangeListeners.forEach((e) => e(t)), "function" == typeof r)
       )
-        e(t);
-      else if ("string" == typeof e) {
-        const r = _window()[e];
-        "function" == typeof r && r(t);
+        r(t);
+      else if ("string" == typeof r) {
+        const e = _window()[r];
+        "function" == typeof e && e(t);
       }
     };
   }
@@ -5152,54 +5101,49 @@ class RecaptchaVerifier {
   }
   async makeRenderPromise() {
     if ((await this.init(), !this.widgetId)) {
-      let t = this.container;
-      var e;
-      (this.isInvisible ||
-        ((e = document.createElement("div")), t.appendChild(e), (t = e)),
+      let e = this.container;
+      var t;
+      this.isInvisible ||
+        ((t = document.createElement("div")), e.appendChild(t), (e = t)),
         (this.widgetId = this.getAssertedRecaptcha().render(
-          t,
-          this.parameters,
-        )));
+          e,
+          this.parameters
+        ));
     }
     return this.widgetId;
   }
   async init() {
-    (_assert(_isHttpOrHttps() && !_isWorker(), this.auth, "internal-error"),
+    _assert(_isHttpOrHttps() && !_isWorker(), this.auth, "internal-error"),
       await (function () {
-        let e = null;
-        return new Promise((t) => {
+        let t = null;
+        return new Promise((e) => {
           "complete" !== document.readyState
-            ? ((e = () => t()), window.addEventListener("load", e))
-            : t();
-        }).catch((t) => {
-          throw (e && window.removeEventListener("load", e), t);
+            ? ((t = () => e()), window.addEventListener("load", t))
+            : e();
+        }).catch((e) => {
+          throw (t && window.removeEventListener("load", t), e);
         });
       })(),
       (this.recaptcha = await this._recaptchaLoader.load(
         this.auth,
-        this.auth.languageCode || void 0,
-      )));
+        this.auth.languageCode || void 0
+      ));
     var e = await ((
       await _performApiRequest(this.auth, "GET", "/v1/recaptchaParams")
     ).recaptchaSiteKey || "");
-    (_assert(e, this.auth, "internal-error"), (this.parameters.sitekey = e));
+    _assert(e, this.auth, "internal-error"), (this.parameters.sitekey = e);
   }
   getAssertedRecaptcha() {
-    return (
-      _assert(this.recaptcha, this.auth, "internal-error"),
-      this.recaptcha
-    );
+    return _assert(this.recaptcha, this.auth, "internal-error"), this.recaptcha;
   }
 }
 class ConfirmationResultImpl {
   constructor(e, t) {
-    ((this.verificationId = e), (this.onConfirmation = t));
+    (this.verificationId = e), (this.onConfirmation = t);
   }
   confirm(e) {
-    return (
-      (e = PhoneAuthCredential._fromVerification(this.verificationId, e)),
-      this.onConfirmation(e)
-    );
+    e = PhoneAuthCredential._fromVerification(this.verificationId, e);
+    return this.onConfirmation(e);
   }
 }
 async function signInWithPhoneNumber(t, r, n) {
@@ -5211,18 +5155,20 @@ async function signInWithPhoneNumber(t, r, n) {
 }
 async function linkWithPhoneNumber(e, t, r) {
   const n = getModularInstance(e);
-  return (
-    await _assertLinkedStatus(!1, n, "phone"),
-    (e = await _verifyPhoneNumber(n.auth, t, getModularInstance(r))),
-    new ConfirmationResultImpl(e, (e) => linkWithCredential(n, e))
-  );
+  await _assertLinkedStatus(!1, n, "phone");
+  e = await _verifyPhoneNumber(n.auth, t, getModularInstance(r));
+  return new ConfirmationResultImpl(e, (e) => linkWithCredential(n, e));
 }
 async function reauthenticateWithPhoneNumber(t, r, n) {
   const i = getModularInstance(t);
-  return e(i.auth.app)
-    ? Promise.reject(_serverAppCurrentUserOperationNotSupportedError(i.auth))
-    : ((t = await _verifyPhoneNumber(i.auth, r, getModularInstance(n))),
-      new ConfirmationResultImpl(t, (e) => reauthenticateWithCredential(i, e)));
+  if (e(i.auth.app))
+    return Promise.reject(
+      _serverAppCurrentUserOperationNotSupportedError(i.auth)
+    );
+  t = await _verifyPhoneNumber(i.auth, r, getModularInstance(n));
+  return new ConfirmationResultImpl(t, (e) =>
+    reauthenticateWithCredential(i, e)
+  );
 }
 async function _verifyPhoneNumber(e, t, r) {
   if (!e._getRecaptchaConfig())
@@ -5230,7 +5176,7 @@ async function _verifyPhoneNumber(e, t, r) {
       await _initializeRecaptchaConfig(e);
     } catch (e) {
       console.log(
-        "Failed to initialize reCAPTCHA Enterprise config. Triggering the reCAPTCHA v2 verification.",
+        "Failed to initialize reCAPTCHA Enterprise config. Triggering the reCAPTCHA v2 verification."
       );
     }
   try {
@@ -5239,74 +5185,78 @@ async function _verifyPhoneNumber(e, t, r) {
       const t = n.session;
       if ("phoneNumber" in n) {
         _assert("enroll" === t.type, e, "internal-error");
-        const i = handleRecaptchaFlow(
-          e,
-          {
+        const s = {
             idToken: t.credential,
             phoneEnrollmentInfo: {
               phoneNumber: n.phoneNumber,
               clientType: "CLIENT_TYPE_WEB",
             },
           },
-          "mfaSmsEnrollment",
-          async (e, t) =>
-            t.phoneEnrollmentInfo.captchaResponse === b
-              ? (_assert(r?.type === j, e, "argument-error"),
-                startEnrollPhoneMfa(e, await injectRecaptchaV2Token(e, t, r)))
-              : startEnrollPhoneMfa(e, t),
-          "PHONE_PROVIDER",
-        );
-        return (await i.catch((e) => Promise.reject(e))).phoneSessionInfo
+          a = handleRecaptchaFlow(
+            e,
+            s,
+            "mfaSmsEnrollment",
+            async (e, t) =>
+              t.phoneEnrollmentInfo.captchaResponse === b
+                ? (_assert(r?.type === j, e, "argument-error"),
+                  startEnrollPhoneMfa(e, await injectRecaptchaV2Token(e, t, r)))
+                : startEnrollPhoneMfa(e, t),
+            "PHONE_PROVIDER"
+          );
+        return (await a.catch((e) => Promise.reject(e))).phoneSessionInfo
           .sessionInfo;
       }
       {
         _assert("signin" === t.type, e, "internal-error");
         var i = n.multiFactorHint?.uid || n.multiFactorUid;
         _assert(i, e, "missing-multi-factor-info");
-        const s = handleRecaptchaFlow(
-          e,
-          {
+        const o = {
             mfaPendingCredential: t.credential,
             mfaEnrollmentId: i,
             phoneSignInInfo: { clientType: "CLIENT_TYPE_WEB" },
           },
-          "mfaSmsSignIn",
-          async (e, t) =>
-            t.phoneSignInInfo.captchaResponse === b
-              ? (_assert(r?.type === j, e, "argument-error"),
-                startSignInPhoneMfa(e, await injectRecaptchaV2Token(e, t, r)))
-              : startSignInPhoneMfa(e, t),
-          "PHONE_PROVIDER",
-        );
-        return (await s.catch((e) => Promise.reject(e))).phoneResponseInfo
+          c = handleRecaptchaFlow(
+            e,
+            o,
+            "mfaSmsSignIn",
+            async (e, t) =>
+              t.phoneSignInInfo.captchaResponse === b
+                ? (_assert(r?.type === j, e, "argument-error"),
+                  startSignInPhoneMfa(e, await injectRecaptchaV2Token(e, t, r)))
+                : startSignInPhoneMfa(e, t),
+            "PHONE_PROVIDER"
+          );
+        return (await c.catch((e) => Promise.reject(e))).phoneResponseInfo
           .sessionInfo;
       }
     }
     {
-      const t = handleRecaptchaFlow(
-        e,
-        { phoneNumber: n.phoneNumber, clientType: "CLIENT_TYPE_WEB" },
-        "sendVerificationCode",
-        async (e, t) =>
-          t.captchaResponse === b
-            ? (_assert(r?.type === j, e, "argument-error"),
-              sendPhoneVerificationCode(
-                e,
-                await injectRecaptchaV2Token(e, t, r),
-              ))
-            : sendPhoneVerificationCode(e, t),
-        "PHONE_PROVIDER",
-      );
-      return (await t.catch((e) => Promise.reject(e))).sessionInfo;
+      const t = { phoneNumber: n.phoneNumber, clientType: "CLIENT_TYPE_WEB" },
+        d = handleRecaptchaFlow(
+          e,
+          t,
+          "sendVerificationCode",
+          async (e, t) =>
+            t.captchaResponse === b
+              ? (_assert(r?.type === j, e, "argument-error"),
+                sendPhoneVerificationCode(
+                  e,
+                  await injectRecaptchaV2Token(e, t, r)
+                ))
+              : sendPhoneVerificationCode(e, t),
+          "PHONE_PROVIDER"
+        );
+      return (await d.catch((e) => Promise.reject(e))).sessionInfo;
     }
   } finally {
     r?._reset();
   }
 }
 async function updatePhoneNumber(t, r) {
-  if (((t = getModularInstance(t)), e(t.auth.app)))
+  t = getModularInstance(t);
+  if (e(t.auth.app))
     return Promise.reject(
-      _serverAppCurrentUserOperationNotSupportedError(t.auth),
+      _serverAppCurrentUserOperationNotSupportedError(t.auth)
     );
   await _link$1(t, r);
 }
@@ -5348,12 +5298,12 @@ async function injectRecaptchaV2Token(e, t, r) {
       i
     );
   }
-  return (Object.assign(i, { recaptchaToken: n }), i);
+  return Object.assign(i, { recaptchaToken: n }), i;
 }
 class PhoneAuthProvider {
   constructor(e) {
-    ((this.providerId = PhoneAuthProvider.PROVIDER_ID),
-      (this.auth = _castAuth(e)));
+    (this.providerId = PhoneAuthProvider.PROVIDER_ID),
+      (this.auth = _castAuth(e));
   }
   verifyPhoneNumber(e, t) {
     return _verifyPhoneNumber(this.auth, e, getModularInstance(t));
@@ -5379,11 +5329,11 @@ function _withDefaultResolver(e, t) {
     : (_assert(e._popupRedirectResolver, e, "argument-error"),
       e._popupRedirectResolver);
 }
-((PhoneAuthProvider.PROVIDER_ID = "phone"),
-  (PhoneAuthProvider.PHONE_SIGN_IN_METHOD = "phone"));
+(PhoneAuthProvider.PROVIDER_ID = "phone"),
+  (PhoneAuthProvider.PHONE_SIGN_IN_METHOD = "phone");
 class IdpCredential extends AuthCredential {
   constructor(e) {
-    (super("custom", "custom"), (this.params = e));
+    super("custom", "custom"), (this.params = e);
   }
   _getIdTokenResponse(e) {
     return signInWithIdp(e, this._buildIdpRequest());
@@ -5404,7 +5354,7 @@ class IdpCredential extends AuthCredential {
       returnSecureToken: !0,
       returnIdpCredential: !0,
     };
-    return (e && (t.idToken = e), t);
+    return e && (t.idToken = e), t;
   }
 }
 function _signIn(e) {
@@ -5426,21 +5376,21 @@ async function _link(e) {
 }
 class AbstractPopupRedirectOperation {
   constructor(e, t, r, n, i = !1) {
-    ((this.auth = e),
+    (this.auth = e),
       (this.resolver = r),
       (this.user = n),
       (this.bypassAuthState = i),
       (this.pendingPromise = null),
       (this.eventManager = null),
-      (this.filter = Array.isArray(t) ? t : [t]));
+      (this.filter = Array.isArray(t) ? t : [t]);
   }
   execute() {
     return new Promise(async (e, t) => {
       this.pendingPromise = { resolve: e, reject: t };
       try {
-        ((this.eventManager = await this.resolver._initialize(this.auth)),
+        (this.eventManager = await this.resolver._initialize(this.auth)),
           await this.onExecution(),
-          this.eventManager.registerConsumer(this));
+          this.eventManager.registerConsumer(this);
       } catch (e) {
         this.reject(e);
       }
@@ -5492,80 +5442,74 @@ class AbstractPopupRedirectOperation {
     }
   }
   resolve(e) {
-    (debugAssert(this.pendingPromise, "Pending promise was never set"),
+    debugAssert(this.pendingPromise, "Pending promise was never set"),
       this.pendingPromise.resolve(e),
-      this.unregisterAndCleanUp());
+      this.unregisterAndCleanUp();
   }
   reject(e) {
-    (debugAssert(this.pendingPromise, "Pending promise was never set"),
+    debugAssert(this.pendingPromise, "Pending promise was never set"),
       this.pendingPromise.reject(e),
-      this.unregisterAndCleanUp());
+      this.unregisterAndCleanUp();
   }
   unregisterAndCleanUp() {
-    (this.eventManager && this.eventManager.unregisterConsumer(this),
+    this.eventManager && this.eventManager.unregisterConsumer(this),
       (this.pendingPromise = null),
-      this.cleanUp());
+      this.cleanUp();
   }
 }
 const G = new Delay(2e3, 1e4);
 async function signInWithPopup(t, r, n) {
   if (e(t.app))
     return Promise.reject(
-      _createError(t, "operation-not-supported-in-this-environment"),
+      _createError(t, "operation-not-supported-in-this-environment")
     );
-  var i = _castAuth(t);
-  (_assertInstanceOf(t, r, FederatedAuthProvider),
-    (t = _withDefaultResolver(i, n)));
+  var i = _castAuth(t),
+    t =
+      (_assertInstanceOf(t, r, FederatedAuthProvider),
+      _withDefaultResolver(i, n));
   return new PopupOperation(i, "signInViaPopup", r, t).executeNotNull();
 }
 async function reauthenticateWithPopup(t, r, n) {
-  return (
-    (t = getModularInstance(t)),
-    e(t.auth.app)
-      ? Promise.reject(
-          _createError(t.auth, "operation-not-supported-in-this-environment"),
-        )
-      : (_assertInstanceOf(t.auth, r, FederatedAuthProvider),
-        (n = _withDefaultResolver(t.auth, n)),
-        new PopupOperation(t.auth, "reauthViaPopup", r, n, t).executeNotNull())
-  );
+  t = getModularInstance(t);
+  if (e(t.auth.app))
+    return Promise.reject(
+      _createError(t.auth, "operation-not-supported-in-this-environment")
+    );
+  _assertInstanceOf(t.auth, r, FederatedAuthProvider);
+  n = _withDefaultResolver(t.auth, n);
+  return new PopupOperation(t.auth, "reauthViaPopup", r, n, t).executeNotNull();
 }
 async function linkWithPopup(e, t, r) {
-  return (
-    _assertInstanceOf(
-      (e = getModularInstance(e)).auth,
-      t,
-      FederatedAuthProvider,
-    ),
-    (r = _withDefaultResolver(e.auth, r)),
-    new PopupOperation(e.auth, "linkViaPopup", t, r, e).executeNotNull()
-  );
+  (e = getModularInstance(e)),
+    _assertInstanceOf(e.auth, t, FederatedAuthProvider),
+    (r = _withDefaultResolver(e.auth, r));
+  return new PopupOperation(e.auth, "linkViaPopup", t, r, e).executeNotNull();
 }
 class PopupOperation extends AbstractPopupRedirectOperation {
   constructor(e, t, r, n, i) {
-    (super(e, t, n, i),
+    super(e, t, n, i),
       (this.provider = r),
       (this.authWindow = null),
       (this.pollId = null),
       PopupOperation.currentPopupAction &&
         PopupOperation.currentPopupAction.cancel(),
-      (PopupOperation.currentPopupAction = this));
+      (PopupOperation.currentPopupAction = this);
   }
   async executeNotNull() {
     var e = await this.execute();
-    return (_assert(e, this.auth, "internal-error"), e);
+    return _assert(e, this.auth, "internal-error"), e;
   }
   async onExecution() {
     debugAssert(
       1 === this.filter.length,
-      "Popup operations only handle one event",
+      "Popup operations only handle one event"
     );
     var e = _generateEventId();
-    ((this.authWindow = await this.resolver._openPopup(
+    (this.authWindow = await this.resolver._openPopup(
       this.auth,
       this.provider,
       this.filter[0],
-      e,
+      e
     )),
       (this.authWindow.associatedEvent = e),
       this.resolver._originValidation(this.auth).catch((e) => {
@@ -5574,7 +5518,7 @@ class PopupOperation extends AbstractPopupRedirectOperation {
       this.resolver._isIframeWebStorageSupported(this.auth, (e) => {
         e || this.reject(_createError(this.auth, "web-storage-unsupported"));
       }),
-      this.pollUserCancellation());
+      this.pollUserCancellation();
   }
   get eventId() {
     return this.authWindow?.associatedEvent || null;
@@ -5583,18 +5527,18 @@ class PopupOperation extends AbstractPopupRedirectOperation {
     this.reject(_createError(this.auth, "cancelled-popup-request"));
   }
   cleanUp() {
-    (this.authWindow && this.authWindow.close(),
+    this.authWindow && this.authWindow.close(),
       this.pollId && window.clearTimeout(this.pollId),
       (this.authWindow = null),
       (this.pollId = null),
-      (PopupOperation.currentPopupAction = null));
+      (PopupOperation.currentPopupAction = null);
   }
   pollUserCancellation() {
     const e = () => {
       this.authWindow?.window?.closed
         ? (this.pollId = window.setTimeout(() => {
-            ((this.pollId = null),
-              this.reject(_createError(this.auth, "popup-closed-by-user")));
+            (this.pollId = null),
+              this.reject(_createError(this.auth, "popup-closed-by-user"));
           }, 8e3))
         : (this.pollId = window.setTimeout(e, G.get()));
     };
@@ -5605,39 +5549,38 @@ PopupOperation.currentPopupAction = null;
 const z = new Map();
 class RedirectAction extends AbstractPopupRedirectOperation {
   constructor(e, t, r = !1) {
-    (super(
+    super(
       e,
       ["signInViaRedirect", "linkViaRedirect", "reauthViaRedirect", "unknown"],
       t,
       void 0,
-      r,
+      r
     ),
-      (this.eventId = null));
+      (this.eventId = null);
   }
   async execute() {
-    let e = z.get(this.auth._key());
-    if (!e) {
+    let t = z.get(this.auth._key());
+    if (!t) {
       try {
-        const t = (await (async function (e, t) {
+        const e = (await (async function (e, t) {
           const r = pendingRedirectKey(t),
             n = resolverPersistence(e);
-          return (
-            !!(await n._isAvailable()) &&
-            ((t = "true" === (await n._get(r))), await n._remove(r), t)
-          );
+          if (!(await n._isAvailable())) return !1;
+          t = "true" === (await n._get(r));
+          return await n._remove(r), t;
         })(this.resolver, this.auth))
           ? await super.execute()
           : null;
-        e = () => Promise.resolve(t);
-      } catch (t) {
-        e = () => Promise.reject(t);
+        t = () => Promise.resolve(e);
+      } catch (e) {
+        t = () => Promise.reject(e);
       }
-      z.set(this.auth._key(), e);
+      z.set(this.auth._key(), t);
     }
     return (
       this.bypassAuthState ||
         z.set(this.auth._key(), () => Promise.resolve(null)),
-      e()
+      t()
     );
   }
   async onAuthEvent(e) {
@@ -5645,7 +5588,7 @@ class RedirectAction extends AbstractPopupRedirectOperation {
     if ("unknown" !== e.type) {
       if (e.eventId) {
         var t = await this.auth._redirectUserForId(e.eventId);
-        if (t) return ((this.user = t), super.onAuthEvent(e));
+        if (t) return (this.user = t), super.onAuthEvent(e);
         this.resolve(null);
       }
     } else this.resolve(null);
@@ -5670,8 +5613,8 @@ function signInWithRedirect(t, r, n) {
     if (e(t.app))
       return Promise.reject(_serverAppCurrentUserOperationNotSupportedError(t));
     var i = _castAuth(t);
-    (_assertInstanceOf(t, r, FederatedAuthProvider),
-      await i._initializationPromise);
+    _assertInstanceOf(t, r, FederatedAuthProvider),
+      await i._initializationPromise;
     const s = _withDefaultResolver(i, n);
     return (
       await _setPendingRedirectStatus(s, i),
@@ -5681,47 +5624,33 @@ function signInWithRedirect(t, r, n) {
 }
 function reauthenticateWithRedirect(t, r, n) {
   return (async function (t, r, n) {
-    if (
-      (_assertInstanceOf(
-        (t = getModularInstance(t)).auth,
-        r,
-        FederatedAuthProvider,
-      ),
-      e(t.auth.app))
-    )
+    t = getModularInstance(t);
+    if ((_assertInstanceOf(t.auth, r, FederatedAuthProvider), e(t.auth.app)))
       return Promise.reject(
-        _serverAppCurrentUserOperationNotSupportedError(t.auth),
+        _serverAppCurrentUserOperationNotSupportedError(t.auth)
       );
     await t.auth._initializationPromise;
     const i = _withDefaultResolver(t.auth, n);
-    return (
-      await _setPendingRedirectStatus(i, t.auth),
-      (n = await prepareUserForRedirect(t)),
-      i._openRedirect(t.auth, r, "reauthViaRedirect", n)
-    );
+    await _setPendingRedirectStatus(i, t.auth);
+    n = await prepareUserForRedirect(t);
+    return i._openRedirect(t.auth, r, "reauthViaRedirect", n);
   })(t, r, n);
 }
 function linkWithRedirect(e, t, r) {
   return (async function (e, t, r) {
-    (_assertInstanceOf(
-      (e = getModularInstance(e)).auth,
-      t,
-      FederatedAuthProvider,
-    ),
-      await e.auth._initializationPromise);
+    e = getModularInstance(e);
+    _assertInstanceOf(e.auth, t, FederatedAuthProvider),
+      await e.auth._initializationPromise;
     const n = _withDefaultResolver(e.auth, r);
-    return (
-      await _assertLinkedStatus(!1, e, t.providerId),
-      await _setPendingRedirectStatus(n, e.auth),
-      (r = await prepareUserForRedirect(e)),
-      n._openRedirect(e.auth, t, "linkViaRedirect", r)
-    );
+    await _assertLinkedStatus(!1, e, t.providerId),
+      await _setPendingRedirectStatus(n, e.auth);
+    r = await prepareUserForRedirect(e);
+    return n._openRedirect(e.auth, t, "linkViaRedirect", r);
   })(e, t, r);
 }
 async function getRedirectResult(e, t) {
   return (
-    await _castAuth(e)._initializationPromise,
-    _getRedirectResult(e, t, !1)
+    await _castAuth(e)._initializationPromise, _getRedirectResult(e, t, !1)
   );
 }
 async function _getRedirectResult(t, r, n = !1) {
@@ -5751,31 +5680,31 @@ async function prepareUserForRedirect(e) {
 }
 class AuthEventManager {
   constructor(e) {
-    ((this.auth = e),
+    (this.auth = e),
       (this.cachedEventUids = new Set()),
       (this.consumers = new Set()),
       (this.queuedRedirectEvent = null),
       (this.hasHandledPotentialRedirect = !1),
-      (this.lastProcessedEventTime = Date.now()));
+      (this.lastProcessedEventTime = Date.now());
   }
   registerConsumer(e) {
-    (this.consumers.add(e),
+    this.consumers.add(e),
       this.queuedRedirectEvent &&
         this.isEventForConsumer(this.queuedRedirectEvent, e) &&
         (this.sendToConsumer(this.queuedRedirectEvent, e),
         this.saveEventToCache(this.queuedRedirectEvent),
-        (this.queuedRedirectEvent = null)));
+        (this.queuedRedirectEvent = null));
   }
   unregisterConsumer(e) {
     this.consumers.delete(e);
   }
-  onEvent(e) {
-    if (this.hasEventBeenHandled(e)) return !1;
-    let t = !1;
+  onEvent(t) {
+    if (this.hasEventBeenHandled(t)) return !1;
+    let r = !1;
     return (
-      this.consumers.forEach((r) => {
-        this.isEventForConsumer(e, r) &&
-          ((t = !0), this.sendToConsumer(e, r), this.saveEventToCache(e));
+      this.consumers.forEach((e) => {
+        this.isEventForConsumer(t, e) &&
+          ((r = !0), this.sendToConsumer(t, e), this.saveEventToCache(t));
       }),
       !this.hasHandledPotentialRedirect &&
         (function (e) {
@@ -5789,10 +5718,10 @@ class AuthEventManager {
             default:
               return;
           }
-        })(e) &&
+        })(t) &&
         ((this.hasHandledPotentialRedirect = !0),
-        t || ((this.queuedRedirectEvent = e), (t = !0))),
-      t
+        r || ((this.queuedRedirectEvent = t), (r = !0))),
+      r
     );
   }
   sendToConsumer(e, t) {
@@ -5814,8 +5743,8 @@ class AuthEventManager {
     );
   }
   saveEventToCache(e) {
-    (this.cachedEventUids.add(eventUid(e)),
-      (this.lastProcessedEventTime = Date.now()));
+    this.cachedEventUids.add(eventUid(e)),
+      (this.lastProcessedEventTime = Date.now());
   }
 }
 function eventUid(e) {
@@ -5830,8 +5759,9 @@ const K = /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/,
   $ = /^https?/;
 async function _validateOrigin(e) {
   if (!e.config.emulator) {
-    var t = (await _performApiRequest(e, "GET", "/v1/projects", {}))
-      .authorizedDomains;
+    var t = (await _performApiRequest(e, "GET", "/v1/projects", {}))[
+      "authorizedDomains"
+    ];
     for (const e of t)
       try {
         if (matchDomain(e)) return;
@@ -5857,44 +5787,44 @@ function matchDomain(e) {
 }
 const J = new Delay(3e4, 6e4);
 function resetUnloadedGapiModules() {
-  const e = _window().___jsl;
-  if (e?.H)
-    for (const t of Object.keys(e.H))
+  const t = _window().___jsl;
+  if (t?.H)
+    for (const e of Object.keys(t.H))
       if (
-        ((e.H[t].r = e.H[t].r || []),
-        (e.H[t].L = e.H[t].L || []),
-        (e.H[t].r = [...e.H[t].L]),
-        e.CP)
+        ((t.H[e].r = t.H[e].r || []),
+        (t.H[e].L = t.H[e].L || []),
+        (t.H[e].r = [...t.H[e].L]),
+        t.CP)
       )
-        for (let t = 0; t < e.CP.length; t++) e.CP[t] = null;
+        for (let e = 0; e < t.CP.length; e++) t.CP[e] = null;
 }
-function loadGapi(e) {
-  return new Promise((t, r) => {
-    function n() {
-      (resetUnloadedGapiModules(),
+function loadGapi(n) {
+  return new Promise((e, t) => {
+    function r() {
+      resetUnloadedGapiModules(),
         gapi.load("gapi.iframes", {
           callback: () => {
-            t(gapi.iframes.getContext());
+            e(gapi.iframes.getContext());
           },
           ontimeout: () => {
-            (resetUnloadedGapiModules(),
-              r(_createError(e, "network-request-failed")));
+            resetUnloadedGapiModules(),
+              t(_createError(n, "network-request-failed"));
           },
           timeout: J.get(),
-        }));
+        });
     }
-    if (_window().gapi?.iframes?.Iframe) t(gapi.iframes.getContext());
+    if (_window().gapi?.iframes?.Iframe) e(gapi.iframes.getContext());
     else {
       if (!_window().gapi?.load) {
-        const t = _generateCallbackName("iframefcb");
+        const e = _generateCallbackName("iframefcb");
         return (
-          (_window()[t] = () => {
-            gapi.load ? n() : r(_createError(e, "network-request-failed"));
+          (_window()[e] = () => {
+            gapi.load ? r() : t(_createError(n, "network-request-failed"));
           }),
-          _loadJS(C.gapiScript + "?onload=" + t).catch((e) => r(e))
+          _loadJS(C.gapiScript + "?onload=" + e).catch((e) => t(e))
         );
       }
-      n();
+      r();
     }
   }).catch((e) => {
     throw ((Y = null), e);
@@ -5921,37 +5851,37 @@ function getIframeUrl(e) {
     n = { apiKey: t.apiKey, appName: e.name, v: i },
     s = Z.get(e.config.apiHost),
     a = (s && (n.eid = s), e._getFrameworks());
-  return (a.length && (n.fw = a.join(",")), r + "?" + querystring(n).slice(1));
+  return a.length && (n.fw = a.join(",")), r + "?" + querystring(n).slice(1);
 }
-async function _openIframe(e) {
-  n = e;
-  const t = await (Y = Y || loadGapi(n)),
-    r = _window().gapi;
-  var n;
+async function _openIframe(a) {
+  r = a;
+  const e = await (Y = Y || loadGapi(r)),
+    t = _window().gapi;
+  var r;
   return (
-    _assert(r, e, "internal-error"),
-    t.open(
+    _assert(t, a, "internal-error"),
+    e.open(
       {
         where: document.body,
-        url: getIframeUrl(e),
-        messageHandlersFilter: r.iframes.CROSS_ORIGIN_IFRAMES_FILTER,
+        url: getIframeUrl(a),
+        messageHandlersFilter: t.iframes.CROSS_ORIGIN_IFRAMES_FILTER,
         attributes: Q,
         dontclear: !0,
       },
-      (t) =>
-        new Promise(async (r, n) => {
-          await t.restyle({ setHideOnLeave: !1 });
-          const i = _createError(e, "network-request-failed"),
-            s = _window().setTimeout(() => {
-              n(i);
+      (s) =>
+        new Promise(async (e, t) => {
+          await s.restyle({ setHideOnLeave: !1 });
+          const r = _createError(a, "network-request-failed"),
+            n = _window().setTimeout(() => {
+              t(r);
             }, X.get());
-          function a() {
-            (_window().clearTimeout(s), r(t));
+          function i() {
+            _window().clearTimeout(n), e(s);
           }
-          t.ping(a).then(a, () => {
-            n(i);
+          s.ping(i).then(i, () => {
+            t(r);
           });
-        }),
+        })
     )
   );
 }
@@ -5963,7 +5893,7 @@ const ee = {
 };
 class AuthPopup {
   constructor(e) {
-    ((this.window = e), (this.associatedEvent = null));
+    (this.window = e), (this.associatedEvent = null);
   }
   close() {
     if (this.window)
@@ -5984,18 +5914,19 @@ function _open(e, t, r, n = 500, i = 600) {
       left: a,
     },
     d = getUA().toLowerCase();
+  r && (o = _isChromeIOS(d) ? "_blank" : r),
+    _isFirefox(d) && ((t = t || "http://localhost"), (c.scrollbars = "yes"));
+  n = Object.entries(c).reduce((e, [t, r]) => "" + e + t + `=${r},`, "");
   if (
-    (r && (o = _isChromeIOS(d) ? "_blank" : r),
-    _isFirefox(d) && ((t = t || "http://localhost"), (c.scrollbars = "yes")),
-    (n = Object.entries(c).reduce((e, [t, r]) => "" + e + t + `=${r},`, "")),
-    ([i = getUA()] = [d]),
+    (([i = getUA()] = [d]),
     _isIOS(i) && window.navigator?.standalone && "_self" !== o)
   ) {
     {
-      ((s = t || ""), (a = o));
-      const e = document.createElement("a"),
-        r = ((e.href = s), (e.target = a), document.createEvent("MouseEvent"));
-      (r.initMouseEvent(
+      s = t || "";
+      a = o;
+      const l = document.createElement("a"),
+        h = ((l.href = s), (l.target = a), document.createEvent("MouseEvent"));
+      h.initMouseEvent(
         "click",
         !0,
         !0,
@@ -6010,9 +5941,9 @@ function _open(e, t, r, n = 500, i = 600) {
         !1,
         !1,
         1,
-        null,
+        null
       ),
-        e.dispatchEvent(r));
+        l.dispatchEvent(h);
     }
     return new AuthPopup(null);
   }
@@ -6027,8 +5958,8 @@ const te = "__/auth/handler",
   re = "emulator/auth/handler",
   ne = encodeURIComponent("fac");
 async function _getRedirectUrl(e, t, r, n, s, a) {
-  (_assert(e.config.authDomain, e, "auth-domain-config-required"),
-    _assert(e.config.apiKey, e, "invalid-api-key"));
+  _assert(e.config.authDomain, e, "auth-domain-config-required"),
+    _assert(e.config.apiKey, e, "invalid-api-key");
   const o = {
     apiKey: e.config.apiKey,
     appName: e.name,
@@ -6038,14 +5969,14 @@ async function _getRedirectUrl(e, t, r, n, s, a) {
     eventId: s,
   };
   if (t instanceof FederatedAuthProvider) {
-    (t.setDefaultLanguage(e.languageCode),
+    t.setDefaultLanguage(e.languageCode),
       (o.providerId = t.providerId || ""),
       (function (e) {
         for (const t in e)
           if (Object.prototype.hasOwnProperty.call(e, t)) return;
         return 1;
       })(t.getCustomParameters()) ||
-        (o.customParameters = JSON.stringify(t.getCustomParameters())));
+        (o.customParameters = JSON.stringify(t.getCustomParameters()));
     for (const [e, t] of Object.entries(a || {})) o[e] = t;
   }
   if (t instanceof BaseOAuthProvider) {
@@ -6055,35 +5986,37 @@ async function _getRedirectUrl(e, t, r, n, s, a) {
   e.tenantId && (o.tid = e.tenantId);
   const c = o;
   for (const e of Object.keys(c)) void 0 === c[e] && delete c[e];
+  (r = await e._getAppCheckToken()),
+    (n = r ? `#${ne}=` + encodeURIComponent(r) : "");
   return (
-    (n = (r = await e._getAppCheckToken())
-      ? `#${ne}=` + encodeURIComponent(r)
-      : ""),
-    `${((s = e.config), s.emulator ? _emulatorUrl(s, re) : `https://${s.authDomain}/` + te)}?` +
-      querystring(c).slice(1) +
-      n
+    `${
+      ((s = [e["config"]][0]),
+      s.emulator ? _emulatorUrl(s, re) : `https://${s.authDomain}/` + te)
+    }?` +
+    querystring(c).slice(1) +
+    n
   );
 }
 const ie = "webStorageSupport",
   se = class {
     constructor() {
-      ((this.eventManagers = {}),
+      (this.eventManagers = {}),
         (this.iframes = {}),
         (this.originValidationPromises = {}),
         (this._redirectPersistence = U),
         (this._completeRedirectFn = _getRedirectResult),
-        (this._overrideRedirectResult = _overrideRedirectResult));
+        (this._overrideRedirectResult = _overrideRedirectResult);
     }
     async _openPopup(e, t, r, n) {
       return (
         debugAssert(
           this.eventManagers[e._key()]?.manager,
-          "_initialize() not called before _openPopup()",
+          "_initialize() not called before _openPopup()"
         ),
         _open(
           e,
           await _getRedirectUrl(e, t, r, _getCurrentUrl(), n),
-          _generateEventId(),
+          _generateEventId()
         )
       );
     }
@@ -6112,33 +6045,32 @@ const ie = "webStorageSupport",
         r
       );
     }
-    async initAndGetManager(e) {
-      const t = await _openIframe(e),
-        r = new AuthEventManager(e);
+    async initAndGetManager(t) {
+      const e = await _openIframe(t),
+        r = new AuthEventManager(t);
       return (
-        t.register(
+        e.register(
           "authEvent",
-          (t) => (
-            _assert(t?.authEvent, e, "invalid-auth-event"),
-            { status: r.onEvent(t.authEvent) ? "ACK" : "ERROR" }
+          (e) => (
+            _assert(e?.authEvent, t, "invalid-auth-event"),
+            { status: r.onEvent(e.authEvent) ? "ACK" : "ERROR" }
           ),
-          gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER,
+          gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER
         ),
-        (this.eventManagers[e._key()] = { manager: r }),
-        (this.iframes[e._key()] = t),
+        (this.eventManagers[t._key()] = { manager: r }),
+        (this.iframes[t._key()] = e),
         r
       );
     }
-    _isIframeWebStorageSupported(e, t) {
-      this.iframes[e._key()].send(
+    _isIframeWebStorageSupported(t, r) {
+      this.iframes[t._key()].send(
         ie,
         { type: ie },
-        (r) => {
-          ((r = r?.[0]?.[ie]),
-            void 0 !== r && t(!!r),
-            _fail(e, "internal-error"));
+        (e) => {
+          e = e?.[0]?.[ie];
+          void 0 !== e && r(!!e), _fail(t, "internal-error");
         },
-        gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER,
+        gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER
       );
     }
     _originValidation(e) {
@@ -6170,38 +6102,40 @@ class MultiFactorAssertionImpl {
 }
 class PhoneMultiFactorAssertionImpl extends MultiFactorAssertionImpl {
   constructor(e) {
-    (super("phone"), (this.credential = e));
+    super("phone"), (this.credential = e);
   }
   static _fromCredential(e) {
     return new PhoneMultiFactorAssertionImpl(e);
   }
   _finalizeEnroll(e, t, r) {
-    return _performApiRequest(
-      e,
-      "POST",
-      "/v2/accounts/mfaEnrollment:finalize",
-      _addTidIfNecessary(
+    return (
+      (e = e),
+      (t = {
+        idToken: t,
+        displayName: r,
+        phoneVerificationInfo: this.credential._makeVerificationRequest(),
+      }),
+      _performApiRequest(
         e,
-        (t = {
-          idToken: t,
-          displayName: r,
-          phoneVerificationInfo: this.credential._makeVerificationRequest(),
-        }),
-      ),
+        "POST",
+        "/v2/accounts/mfaEnrollment:finalize",
+        _addTidIfNecessary(e, t)
+      )
     );
   }
   _finalizeSignIn(e, t) {
-    return _performApiRequest(
-      e,
-      "POST",
-      "/v2/accounts/mfaSignIn:finalize",
-      _addTidIfNecessary(
+    return (
+      (e = e),
+      (t = {
+        mfaPendingCredential: t,
+        phoneVerificationInfo: this.credential._makeVerificationRequest(),
+      }),
+      _performApiRequest(
         e,
-        (t = {
-          mfaPendingCredential: t,
-          phoneVerificationInfo: this.credential._makeVerificationRequest(),
-        }),
-      ),
+        "POST",
+        "/v2/accounts/mfaSignIn:finalize",
+        _addTidIfNecessary(e, t)
+      )
     );
   }
 }
@@ -6220,15 +6154,15 @@ class TotpMultiFactorGenerator {
     return TotpMultiFactorAssertionImpl._fromEnrollmentId(e, t);
   }
   static async generateSecret(e) {
-    (_assert(void 0 !== e.user?.auth, "internal-error"),
+    _assert(void 0 !== e.user?.auth, "internal-error"),
       (r = e.user.auth),
-      (t = { idToken: e.credential, totpEnrollmentInfo: {} }));
+      (t = { idToken: e.credential, totpEnrollmentInfo: {} });
     var t,
       r = await _performApiRequest(
         r,
         "POST",
         "/v2/accounts/mfaEnrollment:start",
-        _addTidIfNecessary(r, t),
+        _addTidIfNecessary(r, t)
       );
     return TotpSecret._fromStartTotpMfaEnrollmentResponse(r, e.user.auth);
   }
@@ -6236,7 +6170,7 @@ class TotpMultiFactorGenerator {
 TotpMultiFactorGenerator.FACTOR_ID = "totp";
 class TotpMultiFactorAssertionImpl extends MultiFactorAssertionImpl {
   constructor(e, t, r) {
-    (super("totp"), (this.otp = e), (this.enrollmentId = t), (this.secret = r));
+    super("totp"), (this.otp = e), (this.enrollmentId = t), (this.secret = r);
   }
   static _fromSecret(e, t) {
     return new TotpMultiFactorAssertionImpl(t, void 0, e);
@@ -6247,20 +6181,17 @@ class TotpMultiFactorAssertionImpl extends MultiFactorAssertionImpl {
   async _finalizeEnroll(e, t, r) {
     return (
       _assert(void 0 !== this.secret, e, "argument-error"),
+      (e = e),
+      (t = {
+        idToken: t,
+        displayName: r,
+        totpVerificationInfo: this.secret._makeTotpVerificationInfo(this.otp),
+      }),
       _performApiRequest(
         e,
         "POST",
         "/v2/accounts/mfaEnrollment:finalize",
-        _addTidIfNecessary(
-          e,
-          (t = {
-            idToken: t,
-            displayName: r,
-            totpVerificationInfo: this.secret._makeTotpVerificationInfo(
-              this.otp,
-            ),
-          }),
-        ),
+        _addTidIfNecessary(e, t)
       )
     );
   }
@@ -6268,33 +6199,33 @@ class TotpMultiFactorAssertionImpl extends MultiFactorAssertionImpl {
     _assert(
       void 0 !== this.enrollmentId && void 0 !== this.otp,
       e,
-      "argument-error",
+      "argument-error"
     );
     var r = { verificationCode: this.otp };
-    return _performApiRequest(
-      e,
-      "POST",
-      "/v2/accounts/mfaSignIn:finalize",
-      _addTidIfNecessary(
+    return (
+      (t = {
+        mfaPendingCredential: t,
+        mfaEnrollmentId: this.enrollmentId,
+        totpVerificationInfo: r,
+      }),
+      _performApiRequest(
         e,
-        (t = {
-          mfaPendingCredential: t,
-          mfaEnrollmentId: this.enrollmentId,
-          totpVerificationInfo: r,
-        }),
-      ),
+        "POST",
+        "/v2/accounts/mfaSignIn:finalize",
+        _addTidIfNecessary(e, t)
+      )
     );
   }
 }
 class TotpSecret {
   constructor(e, t, r, n, i, s, a) {
-    ((this.sessionInfo = s),
+    (this.sessionInfo = s),
       (this.auth = a),
       (this.secretKey = e),
       (this.hashingAlgorithm = t),
       (this.codeLength = r),
       (this.codeIntervalSeconds = n),
-      (this.enrollmentCompletionDeadline = i));
+      (this.enrollmentCompletionDeadline = i);
   }
   static _fromStartTotpMfaEnrollmentResponse(e, t) {
     return new TotpSecret(
@@ -6304,7 +6235,7 @@ class TotpSecret {
       e.totpSessionInfo.periodSec,
       new Date(e.totpSessionInfo.finalizeEnrollmentTime).toUTCString(),
       e.totpSessionInfo.sessionInfo,
-      t,
+      t
     );
   }
   _makeTotpVerificationInfo(e) {
@@ -6313,7 +6244,7 @@ class TotpSecret {
   generateQrCodeUrl(e, t) {
     let r = !1;
     return (
-      (r = !(!_isEmptyString(e) && !_isEmptyString(t)) || r) &&
+      (r = _isEmptyString(e) || _isEmptyString(t) ? !0 : r) &&
         (_isEmptyString(e) &&
           (e = this.auth.currentUser?.email || "unknownuser"),
         _isEmptyString(t) && (t = this.auth.name)),
@@ -6329,10 +6260,10 @@ var oe = "@firebase/auth",
   ae = "1.11.0";
 class AuthInterop {
   constructor(e) {
-    ((this.auth = e), (this.internalListeners = new Map()));
+    (this.auth = e), (this.internalListeners = new Map());
   }
   getUid() {
-    return (this.assertAuthConfigured(), this.auth.currentUser?.uid || null);
+    return this.assertAuthConfigured(), this.auth.currentUser?.uid || null;
   }
   async getToken(e) {
     return (
@@ -6343,15 +6274,15 @@ class AuthInterop {
         : null
     );
   }
-  addAuthTokenListener(e) {
-    var t;
-    (this.assertAuthConfigured(),
-      this.internalListeners.has(e) ||
-        ((t = this.auth.onIdTokenChanged((t) => {
-          e(t?.stsTokenManager.accessToken || null);
+  addAuthTokenListener(t) {
+    var e;
+    this.assertAuthConfigured(),
+      this.internalListeners.has(t) ||
+        ((e = this.auth.onIdTokenChanged((e) => {
+          t(e?.stsTokenManager.accessToken || null);
         })),
-        this.internalListeners.set(e, t),
-        this.updateProactiveRefresh()));
+        this.internalListeners.set(t, e),
+        this.updateProactiveRefresh());
   }
   removeAuthTokenListener(e) {
     this.assertAuthConfigured();
@@ -6361,7 +6292,7 @@ class AuthInterop {
   assertAuthConfigured() {
     _assert(
       this.auth._initializationPromise,
-      "dependent-sdk-initialized-before-auth",
+      "dependent-sdk-initialized-before-auth"
     );
   }
   updateProactiveRefresh() {
@@ -6385,9 +6316,8 @@ function getAuth(e = n()) {
     if (location.origin === e.origin) {
       s = e.toString();
       const t = async (e) => {
-        var t =
-          (e = e && (await e.getIdTokenResult())) &&
-          (new Date().getTime() - Date.parse(e.issuedAtTime)) / 1e3;
+        var e = e && (await e.getIdTokenResult()),
+          t = e && (new Date().getTime() - Date.parse(e.issuedAtTime)) / 1e3;
         (t && t > ce) ||
           ((t = e?.token),
           ue !== t &&
@@ -6397,83 +6327,82 @@ function getAuth(e = n()) {
               headers: t ? { Authorization: "Bearer " + t } : {},
             })));
       };
-      (beforeAuthStateChanged(r, t, () => t(r.currentUser)),
-        onIdTokenChanged(r, (e) => t(e)));
+      beforeAuthStateChanged(r, t, () => t(r.currentUser)),
+        onIdTokenChanged(r, (e) => t(e));
     }
   }
-  var s;
-  e = getDefaults()?.emulatorHosts?.auth;
-  return (e && connectAuthEmulator(r, "http://" + e), r);
+  var s,
+    e = getDefaults()?.emulatorHosts?.auth;
+  return e && connectAuthEmulator(r, "http://" + e), r;
 }
-(!(function (e) {
+!(function (e) {
   C = e;
 })({
-  loadJS: (e) =>
-    new Promise((t, r) => {
-      const n = document.createElement("script");
-      (n.setAttribute("src", e),
-        (n.onload = t),
-        (n.onerror = (e) => {
+  loadJS: (n) =>
+    new Promise((e, r) => {
+      const t = document.createElement("script");
+      t.setAttribute("src", n),
+        (t.onload = e),
+        (t.onerror = (e) => {
           const t = _createError("internal-error");
-          ((t.customData = e), r(t));
+          (t.customData = e), r(t);
         }),
-        (n.type = "text/javascript"),
-        (n.charset = "UTF-8"),
-        (document.getElementsByTagName("head")?.[0] ?? document).appendChild(
-          n,
-        ));
+        (t.type = "text/javascript"),
+        (t.charset = "UTF-8"),
+        (document.getElementsByTagName("head")?.[0] ?? document).appendChild(t);
     }),
   gapiScript: "https://apis.google.com/js/api.js",
   recaptchaV2Script: "https://www.google.com/recaptcha/api.js",
   recaptchaEnterpriseScript:
     "https://www.google.com/recaptcha/enterprise.js?render=",
 }),
-  (function (e) {
-    (t(
+  (function (u) {
+    t(
       new Component(
         "auth",
-        (t, { options: r }) => {
-          const n = t.getProvider("app").getImmediate(),
-            i = t.getProvider("heartbeat"),
-            s = t.getProvider("app-check-internal"),
-            { apiKey: a, authDomain: o } = n.options;
-          (_assert(a && !a.includes(":"), "invalid-api-key", {
-            appName: n.name,
+        (e, { options: t }) => {
+          const r = e.getProvider("app").getImmediate(),
+            n = e.getProvider("heartbeat"),
+            i = e.getProvider("app-check-internal"),
+            { apiKey: s, authDomain: a } = r.options;
+          _assert(s && !s.includes(":"), "invalid-api-key", {
+            appName: r.name,
+          });
+          (e = {
+            apiKey: s,
+            authDomain: a,
+            clientPlatform: u,
+            apiHost: "identitytoolkit.googleapis.com",
+            tokenApiHost: "securetoken.googleapis.com",
+            apiScheme: "https",
+            sdkClientVersion: _getClientVersion(u),
           }),
-            (t = {
-              apiKey: a,
-              authDomain: o,
-              clientPlatform: e,
-              apiHost: "identitytoolkit.googleapis.com",
-              tokenApiHost: "securetoken.googleapis.com",
-              apiScheme: "https",
-              sdkClientVersion: _getClientVersion(e),
-            }));
+            (e = new AuthImpl(r, n, i, e));
           {
-            var c = (t = new AuthImpl(n, i, s, t));
-            const e = r?.persistence || [],
-              a = (Array.isArray(e) ? e : [e]).map(_getInstance);
-            (r?.errorMap && c._updateErrorMap(r.errorMap),
-              c._initializeWithPersistence(a, r?.popupRedirectResolver));
+            var o = e;
+            const c = t?.persistence || [],
+              d = (Array.isArray(c) ? c : [c]).map(_getInstance);
+            t?.errorMap && o._updateErrorMap(t.errorMap),
+              o._initializeWithPersistence(d, t?.popupRedirectResolver);
           }
-          return t;
+          return e;
         },
-        "PUBLIC",
+        "PUBLIC"
       )
         .setInstantiationMode("EXPLICIT")
         .setInstanceCreatedCallback((e, t, r) => {
           e.getProvider("auth-internal").initialize();
-        }),
+        })
     ),
       t(
         new Component(
           "auth-internal",
           (e) =>
             ((e) => new AuthInterop(e))(
-              _castAuth(e.getProvider("auth").getImmediate()),
+              _castAuth(e.getProvider("auth").getImmediate())
             ),
-          "PRIVATE",
-        ).setInstantiationMode("EXPLICIT"),
+          "PRIVATE"
+        ).setInstantiationMode("EXPLICIT")
       ),
       r(
         oe,
@@ -6493,10 +6422,10 @@ function getAuth(e = n()) {
             default:
               return;
           }
-        })(e),
+        })(u)
       ),
-      r(oe, ae, "esm2020"));
-  })("Browser"));
+      r(oe, ae, "esm2020");
+  })("Browser");
 export {
   _ as ActionCodeOperation,
   ActionCodeURL,
