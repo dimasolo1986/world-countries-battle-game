@@ -22,7 +22,7 @@ export const COUNTRIES = [
     timezones: ["UTC+02:00"],
     continents: ["Europe"],
     flags: {
-      png: "https://flagcdn.com/w320/md.png",
+      png: new URL("../../assets/flags/md.png", import.meta.url).href,
       svg: "https://flagcdn.com/md.svg",
       alt: "The flag of Moldova is composed of three equal vertical bands of blue, yellow and red, with the national coat of arms centered in the yellow band.",
     },
