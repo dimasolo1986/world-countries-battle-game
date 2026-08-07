@@ -3471,6 +3471,7 @@ export class Player {
   }
 
   initCountryBoundaryAndMarker(countryCode, countryBoundary, countryMarker) {
+    const tooltip = countryBoundary.getTooltip();
     countryBoundary.off();
     countryMarker.off();
     countryBoundary.setStyle({
@@ -3541,6 +3542,10 @@ export class Player {
     if (!this.playerMap.hasLayer(countryMarker)) {
       this.playerMap.addLayer(countryMarker);
     }
+    countryBoundary.unbindTooltip();
+    countryMarker.unbindTooltip();
+    countryBoundary.bindTooltip(tooltip);
+    countryMarker.bindTooltip(tooltip);
     countryMarker._icon.classList.remove("box-shadow-marker-icon-hover");
   }
 
