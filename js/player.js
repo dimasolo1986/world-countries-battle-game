@@ -281,8 +281,8 @@ export class Player {
         countryCapital: country.capital?.[0],
         countryRegion: country.region,
         countrySubregion: country?.subregion,
-        countryFlag: country.flags.png,
-        countryCoatOfArms: country.coatOfArms?.png,
+        countryFlag: country.flags.webp,
+        countryCoatOfArms: country.coatOfArms?.webp,
         countryIndependent: country.independent,
         cca2: country.cca2,
         cca3: country.cca3,
@@ -4557,7 +4557,7 @@ export class Player {
 
   createCountryMarkerIcon(country, width, height) {
     return L.icon({
-      iconUrl: `${country.flags.png}`,
+      iconUrl: `${country.flags.webp}`,
       iconSize: [width, height],
     });
   }
@@ -4626,8 +4626,8 @@ export class Player {
 
   createCountryPopup(country) {
     const countryCoatOfArms =
-      country.coatOfArms && country.coatOfArms.png
-        ? country.coatOfArms.png
+      country.coatOfArms && country.coatOfArms.webp
+        ? country.coatOfArms.webp
         : null;
     const countryPopup = L.popup({
       closeOnClick: false,
@@ -4637,7 +4637,7 @@ export class Player {
       .setLatLng(country.latlng ? country.latlng : country.capitalInfo.latlng)
       .setContent(
         `<img src="${
-          country.flags.png
+          country.flags.webp
         }" fetchpriority="high" loading="eager" style="width:21px; height:16px; box-shadow: 0 1px 1px #00000080,
                                 inset 0 1px 1px #0000001f; border-radius: 2px; vertical-align: sub;">
                                   ${countryCoatOfArms ? `<img src="${countryCoatOfArms}" fetchpriority="high" loading="eager" style="width:16px; height:16px; margin-left:2px; vertical-align: sub;">` : ""}
@@ -4664,14 +4664,14 @@ export class Player {
 
   createCountryTooltip(country) {
     const countryCoatOfArms =
-      country.coatOfArms && country.coatOfArms.png
-        ? country.coatOfArms.png
+      country.coatOfArms && country.coatOfArms.webp
+        ? country.coatOfArms.webp
         : null;
     const countryTooltip = L.tooltip(
       country.latlng ? country.latlng : country.capitalInfo.latlng,
     ).setContent(
       `<img src="${
-        country.flags.png
+        country.flags.webp
       }" fetchpriority="high" loading="eager" style="width:21px; height:16px; box-shadow: 0 1px 1px #00000080,
                                 inset 0 1px 1px #0000001f; border-radius: 2px; vertical-align: sub;">
                                 ${countryCoatOfArms ? `<img src="${countryCoatOfArms}" fetchpriority="high" loading="eager" style="width:16px; height:16px; margin-left:2px; vertical-align: sub;">` : ""}

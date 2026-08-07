@@ -22,12 +22,12 @@
     timezones: ["UTC+02:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/md.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/md.webp", import.meta.url).href,
       svg: "https://flagcdn.com/md.svg",
       alt: "The flag of Moldova is composed of three equal vertical bands of blue, yellow and red, with the national coat of arms centered in the yellow band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/md.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/md.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/md.svg",
     },
     startOfWeek: "monday",
@@ -70,12 +70,12 @@
     ],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/us.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/us.webp", import.meta.url).href,
       svg: "https://flagcdn.com/us.svg",
       alt: "The flag of the United States of America is composed of thirteen equal horizontal bands of red alternating with white. A blue rectangle, bearing fifty small five-pointed white stars arranged in nine rows where rows of six stars alternate with rows of five stars, is superimposed in the canton.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/us.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/us.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/us.svg",
     },
     startOfWeek: "sunday",
@@ -103,11 +103,11 @@
     timezones: ["UTC+03:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/yt.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/yt.webp", import.meta.url).href,
       svg: "https://flagcdn.com/yt.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/yt.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/yt.webp", import.meta.url).href,
     },
     startOfWeek: "monday",
     capitalInfo: {
@@ -135,12 +135,12 @@
     timezones: ["UTC+12:00"],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/nr.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/nr.webp", import.meta.url).href,
       svg: "https://flagcdn.com/nr.svg",
       alt: "The flag of Nauru has a dark blue field with a thin yellow horizontal band across the center and a large white twelve-pointed star beneath the horizontal band on the hoist side of the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/nr.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/nr.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/nr.svg",
     },
     startOfWeek: "monday",
@@ -171,12 +171,12 @@
     timezones: ["UTC+02:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/mz.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/mz.webp", import.meta.url).href,
       svg: "https://flagcdn.com/mz.svg",
       alt: "The flag of Mozambique is composed of three equal horizontal bands of teal, black with white top and bottom edges, and yellow. A red isosceles triangle spanning about two-fifth the width of the field is superimposed on the hoist side with its base on the hoist end. This triangle bears a crossed rifle and hoe in black superimposed on an open white book which is superimposed on a five-pointed yellow star.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/mz.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/mz.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/mz.svg",
     },
     startOfWeek: "monday",
@@ -218,12 +218,12 @@
     timezones: ["UTC-05:00", "UTC-04:00", "UTC-03:00", "UTC-02:00"],
     continents: ["South America"],
     flags: {
-      png: new URL("../../assets/flags/br.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/br.webp", import.meta.url).href,
       svg: "https://flagcdn.com/br.svg",
       alt: "The flag of Brazil has a green field with a large yellow rhombus in the center. Within the rhombus is a dark blue globe with twenty-seven small five-pointed white stars depicting a starry sky and a thin white convex horizontal band inscribed with the national motto 'Ordem e Progresso' across its center.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/br.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/br.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/br.svg",
     },
     startOfWeek: "monday",
@@ -253,12 +253,12 @@
     timezones: ["UTC-01:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/cv.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/cv.webp", import.meta.url).href,
       svg: "https://flagcdn.com/cv.svg",
       alt: "The flag of Cape Verde is composed of five horizontal bands of blue, white, red, white and blue in the ratio of 6:1:1:1:3. A ring of ten five-pointed yellow stars is centered at three-eighth of the height from the bottom edge and three-eighth of the width from the hoist end of the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/cv.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/cv.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/cv.svg",
     },
     startOfWeek: "monday",
@@ -289,12 +289,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/gq.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/gq.webp", import.meta.url).href,
       svg: "https://flagcdn.com/gq.svg",
       alt: "The flag of Equatorial Guinea is composed of three equal horizontal bands of green, white and red with the national coat of arms centered in the white band and an isosceles triangle superimposed on the hoist side of the field. The triangle is light blue, has its base on the hoist end and spans about one-fifth the width of the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/gq.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/gq.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/gq.svg",
     },
     startOfWeek: "monday",
@@ -325,12 +325,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/al.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/al.webp", import.meta.url).href,
       svg: "https://flagcdn.com/al.svg",
       alt: "The flag of Albania features a silhouetted double-headed black eagle at the center of a red field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/al.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/al.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/al.svg",
     },
     startOfWeek: "monday",
@@ -360,11 +360,11 @@
     timezones: ["UTC-04:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/vi.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/vi.webp", import.meta.url).href,
       svg: "https://flagcdn.com/vi.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/vi.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/vi.webp", import.meta.url).href,
     },
     startOfWeek: "monday",
     capitalInfo: {
@@ -391,11 +391,11 @@
     timezones: ["UTC-11:00"],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/nu.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/nu.webp", import.meta.url).href,
       svg: "https://flagcdn.com/nu.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/nu.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/nu.webp", import.meta.url).href,
     },
     startOfWeek: "monday",
     capitalInfo: {
@@ -423,12 +423,12 @@
     timezones: ["UTC+09:00"],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/pw.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/pw.webp", import.meta.url).href,
       svg: "https://flagcdn.com/pw.svg",
       alt: "The flag of Palau has a light blue field with a large golden-yellow circle that is offset slightly towards the hoist side of center.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/pw.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/pw.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/pw.svg",
     },
     startOfWeek: "monday",
@@ -459,12 +459,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/ng.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ng.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ng.svg",
       alt: "The flag of Nigeria is composed of three equal vertical bands of green, white and green.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ng.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ng.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ng.svg",
     },
     startOfWeek: "monday",
@@ -494,11 +494,11 @@
     timezones: ["UTC-04:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/vg.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/vg.webp", import.meta.url).href,
       svg: "https://flagcdn.com/vg.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/vg.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/vg.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/vg.svg",
     },
     startOfWeek: "monday",
@@ -529,12 +529,12 @@
     timezones: ["UTC+00:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/gm.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/gm.webp", import.meta.url).href,
       svg: "https://flagcdn.com/gm.svg",
       alt: "The flag of Gambia is composed of three equal horizontal bands of red, blue with white top and bottom edges, and green.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/gm.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/gm.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/gm.svg",
     },
     startOfWeek: "monday",
@@ -564,12 +564,12 @@
     timezones: ["UTC+03:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/so.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/so.webp", import.meta.url).href,
       svg: "https://flagcdn.com/so.svg",
       alt: "The flag of Somalia features a large five-pointed white star centered on a light blue field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/so.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/so.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/so.svg",
     },
     startOfWeek: "monday",
@@ -600,12 +600,12 @@
     timezones: ["UTC+03:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/ye.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ye.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ye.svg",
       alt: "The flag of Yemen is composed of three equal horizontal bands of red, white and black.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ye.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ye.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ye.svg",
     },
     startOfWeek: "sunday",
@@ -636,12 +636,12 @@
     timezones: ["UTC+08:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/my.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/my.webp", import.meta.url).href,
       svg: "https://flagcdn.com/my.svg",
       alt: "The flag of Malaysia is composed of fourteen equal horizontal bands of red alternating with white. A blue rectangle, bearing a fly-side facing yellow crescent and a fourteen-pointed yellow star placed just outside the crescent opening, is superimposed in the canton.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/my.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/my.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/my.svg",
     },
     startOfWeek: "sunday",
@@ -671,12 +671,12 @@
     timezones: ["UTC-04:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/dm.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/dm.webp", import.meta.url).href,
       svg: "https://flagcdn.com/dm.svg",
       alt: "The flag of Dominica has a green field with a large centered tricolor cross. The vertical and horizontal parts of the cross each comprise three bands of yellow, black and white. A red circle, bearing a hoist-side facing purple Sisserou parrot standing on a twig and encircled by ten five-pointed yellow-edged green stars, is superimposed at the center of the cross.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/dm.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/dm.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/dm.svg",
     },
     startOfWeek: "monday",
@@ -717,12 +717,12 @@
     ],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/gb.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/gb.webp", import.meta.url).href,
       svg: "https://flagcdn.com/gb.svg",
       alt: "The flag of the United Kingdom — the Union Jack — has a blue field. It features the white-edged red cross of Saint George superimposed on the diagonal red cross of Saint Patrick which is superimposed on the diagonal white cross of Saint Andrew.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/gb.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/gb.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/gb.svg",
     },
     startOfWeek: "monday",
@@ -752,12 +752,12 @@
     timezones: ["UTC+03:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/mg.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/mg.webp", import.meta.url).href,
       svg: "https://flagcdn.com/mg.svg",
       alt: "The flag of Madagascar features a white vertical band on the hoist side that takes up about one-third the width of the field, and two equal horizontal bands of red and green adjoining the vertical band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/mg.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/mg.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/mg.svg",
     },
     startOfWeek: "monday",
@@ -787,11 +787,11 @@
     timezones: ["UTC+00:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/eh.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/eh.webp", import.meta.url).href,
       svg: "https://flagcdn.com/eh.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/eh.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/eh.webp", import.meta.url).href,
     },
     startOfWeek: "monday",
     capitalInfo: {
@@ -820,12 +820,12 @@
     timezones: ["UTC+02:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/cy.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/cy.webp", import.meta.url).href,
       svg: "https://flagcdn.com/cy.svg",
       alt: "The flag of Cyprus has a white field, at the center of which is a copper-colored silhouette of the Island of Cyprus above two green olive branches crossed at the stem.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/cy.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/cy.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/cy.svg",
     },
     startOfWeek: "monday",
@@ -855,12 +855,12 @@
     timezones: ["UTC-04:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/ag.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ag.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ag.svg",
       alt: "The flag of Antigua and Barbuda has a red field with an inverted isosceles triangle based on the top edge and spanning the height of the field. This triangle has three horizontal bands of black, light blue and white, with the light blue band half the height of the two other bands. The top half of a golden-yellow sun is situated in the lower two-third of the black band to depict a rising sun.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ag.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ag.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ag.svg",
     },
     startOfWeek: "monday",
@@ -891,12 +891,12 @@
     timezones: ["UTC"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/ie.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ie.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ie.svg",
       alt: "The flag of Ireland is composed of three equal vertical bands of green, white and orange.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ie.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ie.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ie.svg",
     },
     startOfWeek: "monday",
@@ -927,12 +927,12 @@
     timezones: ["UTC-04:00"],
     continents: ["South America"],
     flags: {
-      png: new URL("../../assets/flags/py.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/py.webp", import.meta.url).href,
       svg: "https://flagcdn.com/py.svg",
       alt: "The flag of Paraguay features three equal horizontal bands of red, white and blue, with an emblem centered in the white band. On the obverse side of the flag depicted, this emblem is the national coat of arms.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/py.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/py.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/py.svg",
     },
     startOfWeek: "monday",
@@ -962,12 +962,12 @@
     timezones: ["UTC+05:30"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/lk.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/lk.webp", import.meta.url).href,
       svg: "https://flagcdn.com/lk.svg",
       alt: "The flag of Sri Lanka features two large adjacent but separate rectangular areas, centered on a golden-yellow field. The smaller hoist-side rectangle is divided into two equal vertical bands of teal and orange, and the larger fly-side rectangle is maroon with a centered golden-yellow lion holding a Kastane sword in its right fore-paw and four golden-yellow Bo leaves, one in each corner.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/lk.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/lk.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/lk.svg",
     },
     startOfWeek: "monday",
@@ -998,12 +998,12 @@
     timezones: ["UTC+02:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/za.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/za.webp", import.meta.url).href,
       svg: "https://flagcdn.com/za.svg",
       alt: "The flag of South Africa is composed of two equal horizontal bands of red and blue, with a yellow-edged black isosceles triangle superimposed on the hoist side of the field. This triangle has its base centered on the hoist end, spans about two-fifth the width and two-third the height of the field, and is enclosed on its sides by the arms of a white-edged green horizontally oriented Y-shaped band which extends along the boundary of the red and blue bands to the fly end of the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/za.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/za.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/za.svg",
     },
     startOfWeek: "monday",
@@ -1033,12 +1033,12 @@
     timezones: ["UTC+03:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/kw.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/kw.webp", import.meta.url).href,
       svg: "https://flagcdn.com/kw.svg",
       alt: "The flag of Kuwait is composed of three equal horizontal bands of green, white and red, with a black trapezium superimposed on the hoist side of the field. This trapezium has its base on the hoist end and spans about one-fourth the width of the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/kw.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/kw.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/kw.svg",
     },
     startOfWeek: "sunday",
@@ -1069,12 +1069,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/dz.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/dz.webp", import.meta.url).href,
       svg: "https://flagcdn.com/dz.svg",
       alt: "The flag of Algeria features two equal vertical bands of green and white. A five-pointed red star within a fly-side facing red crescent is centered over the two-color boundary.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/dz.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/dz.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/dz.svg",
     },
     startOfWeek: "sunday",
@@ -1105,12 +1105,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/hr.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/hr.webp", import.meta.url).href,
       svg: "https://flagcdn.com/hr.svg",
       alt: "The flag of Croatia is composed of three equal horizontal bands of red, white and blue, with coat of arms of Croatia superimposed in the center.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/hr.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/hr.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/hr.svg",
     },
     startOfWeek: "monday",
@@ -1138,11 +1138,11 @@
     timezones: ["UTC-04:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/mq.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/mq.webp", import.meta.url).href,
       svg: "https://flagcdn.com/mq.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/mq.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/mq.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/mq.svg",
     },
     startOfWeek: "monday",
@@ -1173,12 +1173,12 @@
     timezones: ["UTC"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/sl.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/sl.webp", import.meta.url).href,
       svg: "https://flagcdn.com/sl.svg",
       alt: "The flag of Sierra Leone is composed of three equal horizontal bands of green, white and blue.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/sl.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/sl.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/sl.svg",
     },
     startOfWeek: "monday",
@@ -1207,7 +1207,7 @@
     timezones: ["UTC+10:00"],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/mp.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/mp.webp", import.meta.url).href,
       svg: "https://flagcdn.com/mp.svg",
     },
     coatOfArms: {},
@@ -1239,12 +1239,12 @@
     timezones: ["UTC+02:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/rw.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/rw.webp", import.meta.url).href,
       svg: "https://flagcdn.com/rw.svg",
       alt: "The flag of Rwanda is composed of three horizontal bands of light blue, yellow and green. The light blue band is twice the height of the other two bands and bears a yellow sun with twenty-four rays on its fly side.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/rw.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/rw.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/rw.svg",
     },
     startOfWeek: "monday",
@@ -1275,12 +1275,12 @@
     timezones: ["UTC+02:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/sy.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/sy.webp", import.meta.url).href,
       svg: "https://flagcdn.com/sy.svg",
       alt: "The flag of Syria is composed of three equal horizontal bands of red, white and black. At the center of the white band are two small five-pointed green stars arranged in a horizontal line.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/sy.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/sy.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/sy.svg",
     },
     startOfWeek: "monday",
@@ -1309,12 +1309,12 @@
     timezones: ["UTC-04:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/vc.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/vc.webp", import.meta.url).href,
       svg: "https://flagcdn.com/vc.svg",
       alt: "The flag of Saint Vincent and the Grenadines is composed of three vertical bands of blue, gold and green. The gold band is twice as wide as the other two bands and bears three green diamonds arranged to form the letter V at its center.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/vc.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/vc.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/vc.svg",
     },
     startOfWeek: "monday",
@@ -1343,11 +1343,11 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/xk.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/xk.webp", import.meta.url).href,
       svg: "https://flagcdn.com/xk.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/xk.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/xk.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/xk.svg",
     },
     startOfWeek: "monday",
@@ -1376,12 +1376,12 @@
     timezones: ["UTC-04:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/lc.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/lc.webp", import.meta.url).href,
       svg: "https://flagcdn.com/lc.svg",
       alt: "The flag of Saint Lucia has a light blue field, at the center of which are two triangles which share a common base — a small golden-yellow isosceles triangle superimposed on a large white-edged black isosceles triangle.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/lc.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/lc.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/lc.svg",
     },
     startOfWeek: "monday",
@@ -1412,12 +1412,12 @@
     timezones: ["UTC-06:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/hn.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/hn.webp", import.meta.url).href,
       svg: "https://flagcdn.com/hn.svg",
       alt: "The flag of Honduras is composed of three equal horizontal bands of turquoise, white and turquoise, with five small five-pointed turquoise stars arranged in a quincuncial pattern at the center of the white band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/hn.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/hn.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/hn.svg",
     },
     startOfWeek: "monday",
@@ -1448,12 +1448,12 @@
     timezones: ["UTC+03:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/jo.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/jo.webp", import.meta.url).href,
       svg: "https://flagcdn.com/jo.svg",
       alt: "The flag of Jordan is composed of three equal horizontal bands of black, white and green, with a red isosceles triangle superimposed on the hoist side of the field. This triangle has its base on the hoist end, spans about half the width of the field and bears a small seven-pointed white star at its center.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/jo.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/jo.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/jo.svg",
     },
     startOfWeek: "sunday",
@@ -1482,12 +1482,12 @@
     timezones: ["UTC+12:00"],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/tv.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/tv.webp", import.meta.url).href,
       svg: "https://flagcdn.com/tv.svg",
       alt: "The flag of Tuvalu has a light blue field with the flag of the United Kingdom — the Union Jack — in the canton. A representation of the country's nine Islands using nine five-pointed yellow stars is situated in the fly half of the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/tv.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/tv.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/tv.svg",
     },
     startOfWeek: "monday",
@@ -1518,12 +1518,12 @@
     timezones: ["UTC+05:45"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/np.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/np.webp", import.meta.url).href,
       svg: "https://flagcdn.com/np.svg",
       alt: "The flag of Nepal is the world's only non-quadrilateral flag of a sovereign country. It takes the shape of two adjoining right-angled triangles and has a crimson red field with deep blue edges. Within the smaller upper triangle is an emblem of the upper half of a white sun resting on an upward facing white crescent. The lower triangle bears a white sun with twelve rays.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/np.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/np.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/np.svg",
     },
     startOfWeek: "sunday",
@@ -1553,12 +1553,12 @@
     timezones: ["UTC"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/lr.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/lr.webp", import.meta.url).href,
       svg: "https://flagcdn.com/lr.svg",
       alt: "The flag of Liberia is composed of eleven equal horizontal bands of red alternating with white. A blue square bearing a five-pointed white star is superimposed in the canton.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/lr.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/lr.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/lr.svg",
     },
     startOfWeek: "monday",
@@ -1584,7 +1584,7 @@
     timezones: ["UTC+05:00"],
     continents: ["Antarctica"],
     flags: {
-      png: new URL("../../assets/flags/hm.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/hm.webp", import.meta.url).href,
       svg: "https://flagcdn.com/hm.svg",
     },
     coatOfArms: {},
@@ -1614,12 +1614,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/at.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/at.webp", import.meta.url).href,
       svg: "https://flagcdn.com/at.svg",
       alt: "The flag of Austria is composed of three equal horizontal bands of red, white and red.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/at.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/at.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/at.svg",
     },
     startOfWeek: "monday",
@@ -1647,11 +1647,11 @@
     timezones: ["UTC+00:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/gg.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/gg.webp", import.meta.url).href,
       svg: "https://flagcdn.com/gg.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/gg.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/gg.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/gg.svg",
     },
     startOfWeek: "monday",
@@ -1681,12 +1681,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/cf.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/cf.webp", import.meta.url).href,
       svg: "https://flagcdn.com/cf.svg",
       alt: "The flag of Central African Republic is composed of four equal horizontal bands of blue, white, green and yellow intersected at the center by a vertical red band of equal size as the horizontal bands. A yellow five-pointed star is situated on the hoist side of the blue band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/cf.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/cf.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/cf.svg",
     },
     startOfWeek: "monday",
@@ -1717,12 +1717,12 @@
     timezones: ["UTC"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/mr.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/mr.webp", import.meta.url).href,
       svg: "https://flagcdn.com/mr.svg",
       alt: "The flag of Mauritania has a green field with a thin red horizontal band at the top and bottom of the field. At the center of the field is a five-pointed yellow star above an upward facing yellow crescent.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/mr.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/mr.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/mr.svg",
     },
     startOfWeek: "monday",
@@ -1753,12 +1753,12 @@
     timezones: ["UTC+03:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/dj.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/dj.webp", import.meta.url).href,
       svg: "https://flagcdn.com/dj.svg",
       alt: "The flag of Djibouti is composed of two equal horizontal bands of light blue and light green, with a white isosceles triangle superimposed on the hoist side of the field. The triangle has its base on the hoist end, spans about two-fifth the width of the field and bears a red five-pointed star at its center.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/dj.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/dj.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/dj.svg",
     },
     startOfWeek: "monday",
@@ -1788,12 +1788,12 @@
     timezones: ["UTC+12:00"],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/fj.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/fj.webp", import.meta.url).href,
       svg: "https://flagcdn.com/fj.svg",
       alt: "The flag of Fiji has a light blue field. It features the flag of the United Kingdom — the Union Jack — in the canton and the shield of the national coat of arms centered in the fly half.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/fj.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/fj.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/fj.svg",
     },
     startOfWeek: "monday",
@@ -1824,12 +1824,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/no.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/no.webp", import.meta.url).href,
       svg: "https://flagcdn.com/no.svg",
       alt: "The flag of Norway has a red field with a large white-edged navy blue cross that extends to the edges of the field. The vertical part of this cross is offset towards the hoist side.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/no.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/no.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/no.svg",
     },
     startOfWeek: "monday",
@@ -1860,12 +1860,12 @@
     timezones: ["UTC+02:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/lv.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/lv.webp", import.meta.url).href,
       svg: "https://flagcdn.com/lv.svg",
       alt: "The flag of Latvia has a carmine-red field with a thin white horizontal band across the middle of the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/lv.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/lv.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/lv.svg",
     },
     startOfWeek: "monday",
@@ -1893,11 +1893,11 @@
     timezones: ["UTC-04:00"],
     continents: ["South America"],
     flags: {
-      png: new URL("../../assets/flags/fk.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/fk.webp", import.meta.url).href,
       svg: "https://flagcdn.com/fk.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/fk.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/fk.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/fk.svg",
     },
     startOfWeek: "monday",
@@ -1928,12 +1928,12 @@
     timezones: ["UTC+05:00", "UTC+06:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/kz.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/kz.webp", import.meta.url).href,
       svg: "https://flagcdn.com/kz.svg",
       alt: "The flag of Kazakhstan has a turquoise field, at the center of which is a gold sun with thirty-two rays above a soaring golden steppe eagle. A thin vertical band displays a national ornamental pattern — koshkar-muiz — in gold near the hoist end.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/kz.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/kz.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/kz.svg",
     },
     startOfWeek: "monday",
@@ -1961,11 +1961,11 @@
     timezones: ["UTC+02:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/ax.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ax.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ax.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ax.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ax.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ax.svg",
     },
     startOfWeek: "monday",
@@ -1995,12 +1995,12 @@
     timezones: ["UTC+05:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/tm.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/tm.webp", import.meta.url).href,
       svg: "https://flagcdn.com/tm.svg",
       alt: "The flag of Turkmenistan has a green field. It features a red vertical band, bearing five carpet guls stacked above two crossed olive branches, near the hoist end of the field. Just to the fly side of the vertical band near the top edge of the field is a hoist-side facing white crescent and five small five-pointed white stars placed just outside the crescent opening.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/tm.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/tm.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/tm.svg",
     },
     startOfWeek: "monday",
@@ -2028,7 +2028,7 @@
     timezones: ["UTC+06:30"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/cc.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/cc.webp", import.meta.url).href,
       svg: "https://flagcdn.com/cc.svg",
     },
     coatOfArms: {},
@@ -2060,12 +2060,12 @@
     timezones: ["UTC+02:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/bg.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/bg.webp", import.meta.url).href,
       svg: "https://flagcdn.com/bg.svg",
       alt: "The flag of Bulgaria is composed of three equal horizontal bands of white, green and red.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/bg.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/bg.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/bg.svg",
     },
     startOfWeek: "monday",
@@ -2093,11 +2093,11 @@
     timezones: ["UTC+13:00"],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/tk.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/tk.webp", import.meta.url).href,
       svg: "https://flagcdn.com/tk.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/tk.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/tk.webp", import.meta.url).href,
     },
     startOfWeek: "monday",
     capitalInfo: {
@@ -2125,11 +2125,11 @@
     timezones: ["UTC+11:00"],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/nc.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/nc.webp", import.meta.url).href,
       svg: "https://flagcdn.com/nc.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/nc.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/nc.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/nc.svg",
     },
     startOfWeek: "monday",
@@ -2159,12 +2159,12 @@
     timezones: ["UTC-04:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/bb.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/bb.webp", import.meta.url).href,
       svg: "https://flagcdn.com/bb.svg",
       alt: "The flag of Barbados is composed of three equal vertical bands of ultramarine, gold and ultramarine. The head of a black trident is centered in the gold band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/bb.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/bb.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/bb.svg",
     },
     startOfWeek: "monday",
@@ -2194,12 +2194,12 @@
     timezones: ["UTC"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/st.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/st.webp", import.meta.url).href,
       svg: "https://flagcdn.com/st.svg",
       alt: "The flag of South Sudan is composed of three equal horizontal bands of black, red with white top and bottom edges, and green. A blue equilateral triangle which spans about two-fifth the width of the field is superimposed on the hoist side with its base on the hoist end of the field. At the center of this triangle is a five-pointed yellow star.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/st.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/st.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/st.svg",
     },
     startOfWeek: "monday",
@@ -2234,11 +2234,11 @@
     ],
     continents: ["Antarctica"],
     flags: {
-      png: new URL("../../assets/flags/aq.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/aq.webp", import.meta.url).href,
       svg: "https://flagcdn.com/aq.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/aq.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/aq.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/aq.svg",
     },
     startOfWeek: "monday",
@@ -2266,12 +2266,12 @@
     timezones: ["UTC+08:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/bn.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/bn.webp", import.meta.url).href,
       svg: "https://flagcdn.com/bn.svg",
       alt: "The flag of Brunei has a yellow field with two adjoining diagonal bands of white and black that extend from the upper hoist side of the field to the lower fly side. The red emblem of Brunei is centered on the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/bn.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/bn.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/bn.svg",
     },
     startOfWeek: "monday",
@@ -2302,12 +2302,12 @@
     timezones: ["UTC+06:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/bt.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/bt.webp", import.meta.url).href,
       svg: "https://flagcdn.com/bt.svg",
       alt: "The flag of Bhutan is divided diagonally, from the lower hoist-side corner to the upper fly-side corner, into an upper yellow and a lower orange triangle. A fly-side facing white dragon holding four jewels in its claws is situated along the boundary of the two triangles.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/bt.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/bt.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/bt.svg",
     },
     startOfWeek: "monday",
@@ -2338,12 +2338,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/cm.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/cm.webp", import.meta.url).href,
       svg: "https://flagcdn.com/cm.svg",
       alt: "The flag of Cameroon is composed of three equal vertical bands of green, red and yellow, with a yellow five-pointed star in the center.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/cm.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/cm.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/cm.svg",
     },
     startOfWeek: "monday",
@@ -2374,12 +2374,12 @@
     timezones: ["UTC-03:00"],
     continents: ["South America"],
     flags: {
-      png: new URL("../../assets/flags/ar.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ar.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ar.svg",
       alt: "The flag of Argentina features three equal horizontal bands of light blue, white and light blue. A brown-edged golden sun is centered in the white band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ar.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ar.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ar.svg",
     },
     startOfWeek: "monday",
@@ -2410,12 +2410,12 @@
     timezones: ["UTC+04:00"],
     continents: ["Europe", "Asia"],
     flags: {
-      png: new URL("../../assets/flags/az.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/az.webp", import.meta.url).href,
       svg: "https://flagcdn.com/az.svg",
       alt: "The flag of Azerbaijan features three equal horizontal bands of blue, red and green, with a white fly-side facing crescent and eight-pointed star centered in the red band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/az.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/az.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/az.svg",
     },
     startOfWeek: "monday",
@@ -2446,12 +2446,12 @@
     timezones: ["UTC-08:00", "UTC-07:00", "UTC-06:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/mx.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/mx.webp", import.meta.url).href,
       svg: "https://flagcdn.com/mx.svg",
       alt: "The flag of Mexico is composed of three equal vertical bands of green, white and red, with the national coat of arms centered in the white band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/mx.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/mx.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/mx.svg",
     },
     startOfWeek: "monday",
@@ -2482,12 +2482,12 @@
     timezones: ["UTC"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/ma.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ma.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ma.svg",
       alt: "The flag of Morocco features a green pentagram — a five-pointed linear star — centered on a red field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ma.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ma.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ma.svg",
     },
     startOfWeek: "monday",
@@ -2518,12 +2518,12 @@
     timezones: ["UTC-06:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/gt.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/gt.webp", import.meta.url).href,
       svg: "https://flagcdn.com/gt.svg",
       alt: "The flag of Guatemala is composed of three equal vertical bands of light blue, white and light blue, with the national coat of arms centered in the white band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/gt.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/gt.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/gt.svg",
     },
     startOfWeek: "monday",
@@ -2554,12 +2554,12 @@
     timezones: ["UTC+03:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/ke.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ke.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ke.svg",
       alt: "The flag of Kenya is composed of three equal horizontal bands of black, red with white top and bottom edges, and green. An emblem comprising a red, black and white Maasai shield covering two crossed white spears is superimposed at the center of the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ke.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ke.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ke.svg",
     },
     startOfWeek: "monday",
@@ -2589,12 +2589,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/mt.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/mt.webp", import.meta.url).href,
       svg: "https://flagcdn.com/mt.svg",
       alt: "The flag of Malta is composed of two equal vertical bands of white and red. A representation of the George cross edged in red is situated on the upper hoist-side corner of the white band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/mt.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/mt.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/mt.svg",
     },
     startOfWeek: "monday",
@@ -2625,12 +2625,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/cz.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/cz.webp", import.meta.url).href,
       svg: "https://flagcdn.com/cz.svg",
       alt: "The flag of Czechia is composed of two equal horizontal bands of white and red, with a blue isosceles triangle superimposed on the hoist side of the field. The triangle has its base on the hoist end and spans about two-fifth the width of the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/cz.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/cz.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/cz.svg",
     },
     startOfWeek: "monday",
@@ -2659,11 +2659,11 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/gi.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/gi.webp", import.meta.url).href,
       svg: "https://flagcdn.com/gi.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/gi.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/gi.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/gi.svg",
     },
     startOfWeek: "monday",
@@ -2693,11 +2693,11 @@
     timezones: ["UTC-04:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/aw.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/aw.webp", import.meta.url).href,
       svg: "https://flagcdn.com/aw.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/aw.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/aw.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/aw.svg",
     },
     startOfWeek: "monday",
@@ -2726,11 +2726,11 @@
     timezones: ["UTC-04:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/bl.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/bl.webp", import.meta.url).href,
       svg: "https://flagcdn.com/bl.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/bl.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/bl.webp", import.meta.url).href,
     },
     startOfWeek: "monday",
     capitalInfo: {
@@ -2759,12 +2759,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/mc.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/mc.webp", import.meta.url).href,
       svg: "https://flagcdn.com/mc.svg",
       alt: "The flag of Monaco is composed of two equal horizontal bands of red and white.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/mc.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/mc.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/mc.svg",
     },
     startOfWeek: "monday",
@@ -2795,12 +2795,12 @@
     timezones: ["UTC+04:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/ae.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ae.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ae.svg",
       alt: "The flag of United Arab Emirates features a red vertical band on its hoist side that takes up about one-fourth the width of the field and three equal horizontal bands of green, white and black adjoining the vertical band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ae.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ae.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ae.svg",
     },
     startOfWeek: "sunday",
@@ -2831,12 +2831,12 @@
     timezones: ["UTC+03:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/ss.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ss.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ss.svg",
       alt: "The flag of South Sudan is composed of three equal horizontal bands of black, red with white top and bottom edges, and green. A blue equilateral triangle which spans about two-fifth the width of the field is superimposed on the hoist side with its base on the hoist end of the field. At the center of this triangle is a five-pointed yellow star.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ss.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ss.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ss.svg",
     },
     startOfWeek: "sunday",
@@ -2866,11 +2866,11 @@
     timezones: ["UTC-04:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/pr.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/pr.webp", import.meta.url).href,
       svg: "https://flagcdn.com/pr.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/pr.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/pr.webp", import.meta.url).href,
     },
     startOfWeek: "monday",
     capitalInfo: {
@@ -2900,12 +2900,12 @@
     timezones: ["UTC-06:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/sv.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/sv.webp", import.meta.url).href,
       svg: "https://flagcdn.com/sv.svg",
       alt: "The flag of El Salvador is composed of three equal horizontal bands of cobalt blue, white and cobalt blue, with the national coat of arms centered in the white band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/sv.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/sv.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/sv.svg",
     },
     startOfWeek: "monday",
@@ -2951,12 +2951,12 @@
     ],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/fr.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/fr.webp", import.meta.url).href,
       svg: "https://flagcdn.com/fr.svg",
       alt: "The flag of France is composed of three equal vertical bands of blue, white and red.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/fr.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/fr.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/fr.svg",
     },
     startOfWeek: "monday",
@@ -2987,12 +2987,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/ne.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ne.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ne.svg",
       alt: "The flag of Niger features three equal horizontal bands of orange, white and green, with an orange circle centered in the white band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ne.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ne.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ne.svg",
     },
     startOfWeek: "monday",
@@ -3023,12 +3023,12 @@
     timezones: ["UTC"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/ci.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ci.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ci.svg",
       alt: "The flag of Ivory Coast is composed of three equal vertical bands of orange, white and green.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ci.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ci.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ci.svg",
     },
     startOfWeek: "monday",
@@ -3056,11 +3056,11 @@
     timezones: ["UTC-02:00"],
     continents: ["Antarctica"],
     flags: {
-      png: new URL("../../assets/flags/gs.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/gs.webp", import.meta.url).href,
       svg: "https://flagcdn.com/gs.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/gs.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/gs.webp", import.meta.url).href,
     },
     startOfWeek: "monday",
     capitalInfo: {
@@ -3090,12 +3090,12 @@
     timezones: ["UTC+02:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/bw.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/bw.webp", import.meta.url).href,
       svg: "https://flagcdn.com/bw.svg",
       alt: "The flag of Botswana has a light blue field with a white-edged black horizontal band across its center.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/bw.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/bw.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/bw.svg",
     },
     startOfWeek: "monday",
@@ -3123,11 +3123,11 @@
     timezones: ["UTC+06:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/io.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/io.webp", import.meta.url).href,
       svg: "https://flagcdn.com/io.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/io.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/io.webp", import.meta.url).href,
     },
     startOfWeek: "monday",
     capitalInfo: {
@@ -3157,12 +3157,12 @@
     timezones: ["UTC+05:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/uz.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/uz.webp", import.meta.url).href,
       svg: "https://flagcdn.com/uz.svg",
       alt: "The flag of Uzbekistan is composed of three equal horizontal bands of turquoise, white with red top and bottom edges, and green. On the hoist side of the turquoise band is a fly-side facing white crescent and twelve five-pointed white stars arranged just outside the crescent opening in three rows comprising three, four and five stars.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/uz.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/uz.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/uz.svg",
     },
     startOfWeek: "monday",
@@ -3193,12 +3193,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/tn.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/tn.webp", import.meta.url).href,
       svg: "https://flagcdn.com/tn.svg",
       alt: "The flag of Tunisia has a red field. A white circle bearing a five-pointed red star within a fly-side facing red crescent is situated at the center of the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/tn.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/tn.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/tn.svg",
     },
     startOfWeek: "monday",
@@ -3230,11 +3230,11 @@
     timezones: ["UTC+08:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/hk.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/hk.webp", import.meta.url).href,
       svg: "https://flagcdn.com/hk.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/hk.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/hk.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/hk.svg",
     },
     startOfWeek: "monday",
@@ -3265,12 +3265,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/mk.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/mk.webp", import.meta.url).href,
       svg: "https://flagcdn.com/mk.svg",
       alt: "The flag of North Macedonia has a red field, at the center of which is a golden-yellow sun with eight broadening rays that extend to the edges of the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/mk.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/mk.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/mk.svg",
     },
     startOfWeek: "monday",
@@ -3301,12 +3301,12 @@
     timezones: ["UTC-03:00"],
     continents: ["South America"],
     flags: {
-      png: new URL("../../assets/flags/sr.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/sr.webp", import.meta.url).href,
       svg: "https://flagcdn.com/sr.svg",
       alt: "The flag of Suriname is composed of five horizontal bands of green, white, red, white and green in the ratio of 2:1:4:1:2. A large five-pointed yellow star is centered in the red band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/sr.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/sr.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/sr.svg",
     },
     startOfWeek: "monday",
@@ -3337,12 +3337,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/be.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/be.webp", import.meta.url).href,
       svg: "https://flagcdn.com/be.svg",
       alt: "The flag of Belgium is composed of three equal vertical bands of black, yellow and red.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/be.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/be.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/be.svg",
     },
     startOfWeek: "monday",
@@ -3371,11 +3371,11 @@
     timezones: ["UTC-11:00"],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/as.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/as.webp", import.meta.url).href,
       svg: "https://flagcdn.com/as.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/as.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/as.webp", import.meta.url).href,
     },
     startOfWeek: "monday",
     capitalInfo: {
@@ -3403,12 +3403,12 @@
     timezones: ["UTC+11:00"],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/sb.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/sb.webp", import.meta.url).href,
       svg: "https://flagcdn.com/sb.svg",
       alt: "The flag of Solomon Islands features a thin yellow diagonal band that extends from the lower hoist-side corner to the upper fly-side corner of the field. Above and beneath this band are a blue and green triangle respectively. Five white five-pointed stars arranged in an X shape are situated on the hoist side of the upper blue triangle.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/sb.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/sb.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/sb.svg",
     },
     startOfWeek: "monday",
@@ -3439,12 +3439,12 @@
     timezones: ["UTC+02:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/ua.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ua.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ua.svg",
       alt: "The flag of Ukraine is composed of two equal horizontal bands of blue and yellow.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ua.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ua.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ua.svg",
     },
     startOfWeek: "monday",
@@ -3475,12 +3475,12 @@
     timezones: ["UTC+02:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/fi.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/fi.webp", import.meta.url).href,
       svg: "https://flagcdn.com/fi.svg",
       alt: "The flag of Finland has a white field with a large blue cross that extend to the edges of the field. The vertical part of this cross is offset towards the hoist side.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/fi.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/fi.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/fi.svg",
     },
     startOfWeek: "monday",
@@ -3511,12 +3511,12 @@
     timezones: ["UTC"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/bf.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/bf.webp", import.meta.url).href,
       svg: "https://flagcdn.com/bf.svg",
       alt: "The flag of Burkina Faso features two equal horizontal bands of red and green, with a yellow five-pointed star in the center.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/bf.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/bf.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/bf.svg",
     },
     startOfWeek: "monday",
@@ -3547,12 +3547,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/ba.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ba.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ba.svg",
       alt: "The flag of Bosnia and Herzegovina has a blue field, at the center of which is a large yellow hoist-side facing right-angled triangle that is based on the top edge and spans the height of the field. Adjacent to the hypotenuse of this triangle are nine adjoining five-pointed white stars with the top and bottom stars cut in half by the edges of the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ba.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ba.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ba.svg",
     },
     startOfWeek: "monday",
@@ -3583,12 +3583,12 @@
     timezones: ["UTC+03:30"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/ir.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ir.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ir.svg",
       alt: "The flag of Iran is composed of three equal horizontal bands of green, white and red. A red emblem of Iran is centered in the white band and Arabic inscriptions in white span the bottom edge of the green band and the top edge of the red band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ir.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ir.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ir.svg",
     },
     startOfWeek: "saturday",
@@ -3618,12 +3618,12 @@
     timezones: ["UTC-05:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/cu.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/cu.webp", import.meta.url).href,
       svg: "https://flagcdn.com/cu.svg",
       alt: "The flag of Cuba is composed of five equal horizontal bands of blue alternating with white and a red equilateral triangle superimposed on the hoist side of the field. The triangle has its base on the hoist end, spans about two-fifth the width of the field and bears a white five-pointed star at its center.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/cu.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/cu.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/cu.svg",
     },
     startOfWeek: "monday",
@@ -3654,12 +3654,12 @@
     timezones: ["UTC+03:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/er.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/er.webp", import.meta.url).href,
       svg: "https://flagcdn.com/er.svg",
       alt: "The flag of Eritrea comprises three triangles — a large red isosceles triangle with its base spanning the hoist end and its apex at the midpoint on the fly end, and a green and blue right-angled triangle above and beneath the red triangle. On the hoist side of the red triangle is a golden vertical olive branch encircled by a golden olive wreath.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/er.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/er.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/er.svg",
     },
     startOfWeek: "monday",
@@ -3690,12 +3690,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/sk.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/sk.webp", import.meta.url).href,
       svg: "https://flagcdn.com/sk.svg",
       alt: "The flag of Slovakia is composed of three equal horizontal bands of white, blue and red. The coat of arms of Slovakia is superimposed at the center of the field slightly towards the hoist side.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/sk.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/sk.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/sk.svg",
     },
     startOfWeek: "monday",
@@ -3726,12 +3726,12 @@
     timezones: ["UTC+02:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/lt.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/lt.webp", import.meta.url).href,
       svg: "https://flagcdn.com/lt.svg",
       alt: "The flag of Lithuania is composed of three equal horizontal bands of yellow, green and red.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/lt.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/lt.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/lt.svg",
     },
     startOfWeek: "monday",
@@ -3761,11 +3761,11 @@
     timezones: ["UTC-04:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/mf.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/mf.webp", import.meta.url).href,
       svg: "https://flagcdn.com/mf.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/mf.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/mf.webp", import.meta.url).href,
     },
     startOfWeek: "monday",
     capitalInfo: {
@@ -3792,11 +3792,11 @@
     timezones: ["UTC-08:00"],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/pn.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/pn.webp", import.meta.url).href,
       svg: "https://flagcdn.com/pn.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/pn.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/pn.webp", import.meta.url).href,
     },
     startOfWeek: "monday",
     capitalInfo: {
@@ -3826,12 +3826,12 @@
     timezones: ["UTC"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/gw.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/gw.webp", import.meta.url).href,
       svg: "https://flagcdn.com/gw.svg",
       alt: "The flag of Guinea-Bissau features a red vertical band on its hoist side that takes up about two-fifth the width of the field, and two equal horizontal bands of yellow and green adjoining the vertical band. A five-pointed black star is centered in the vertical band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/gw.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/gw.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/gw.svg",
     },
     startOfWeek: "monday",
@@ -3859,11 +3859,11 @@
     timezones: ["UTC-04:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/ms.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ms.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ms.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ms.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ms.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ms.svg",
     },
     startOfWeek: "monday",
@@ -3894,12 +3894,12 @@
     timezones: ["UTC+03:00"],
     continents: ["Europe", "Asia"],
     flags: {
-      png: new URL("../../assets/flags/tr.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/tr.webp", import.meta.url).href,
       svg: "https://flagcdn.com/tr.svg",
       alt: "The flag of Turkey has a red field bearing a large fly-side facing white crescent and a smaller five-pointed white star placed just outside the crescent opening. The white crescent and star are offset slightly towards the hoist side of center.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/tr.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/tr.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/tr.svg",
     },
     startOfWeek: "monday",
@@ -3929,12 +3929,12 @@
     timezones: ["UTC+08:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/ph.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ph.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ph.svg",
       alt: "The flag of Philippines is composed of two equal horizontal bands of blue and red, with a white equilateral triangle superimposed on the hoist side of the field. This triangle has its base on the hoist end, spans about two-fifth the width of the field and bears a central golden-yellow sun with eight rays and a five-pointed golden-yellow star at each vertex.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ph.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ph.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ph.svg",
     },
     startOfWeek: "monday",
@@ -3964,12 +3964,12 @@
     timezones: ["UTC+11:00"],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/vu.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/vu.webp", import.meta.url).href,
       svg: "https://flagcdn.com/vu.svg",
       alt: "The flag of Vanuatu is composed of two equal horizontal bands of red and green, with a black isosceles triangle superimposed on the hoist side of the field. This triangle has its base on the hoist end, spans about two-fifth the width of the field and is enclosed on its sides by the arms of a thin black-edged yellow horizontally oriented Y-shaped band which extends along the boundary of the red and green bands to the fly end of the field. A yellow boar's tusk encircling two yellow crossed namele leaves is centered in the triangle.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/vu.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/vu.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/vu.svg",
     },
     startOfWeek: "monday",
@@ -4000,12 +4000,12 @@
     timezones: ["UTC-04:00"],
     continents: ["South America"],
     flags: {
-      png: new URL("../../assets/flags/bo.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/bo.webp", import.meta.url).href,
       svg: "https://flagcdn.com/bo.svg",
       alt: "The flag of Bolivia is composed of three equal horizontal bands of red, yellow and green, with the national coat of arms centered in the yellow band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/bo.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/bo.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/bo.svg",
     },
     startOfWeek: "monday",
@@ -4034,12 +4034,12 @@
     timezones: ["UTC-04:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/kn.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/kn.webp", import.meta.url).href,
       svg: "https://flagcdn.com/kn.svg",
       alt: "The flag of Saint Kitts and Nevis features two large five-pointed white stars within a yellow-edged black diagonal band that extends from the lower hoist-side corner to the upper fly-side corner of the field. Above and beneath this band are a green and red triangle respectively.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/kn.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/kn.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/kn.svg",
     },
     startOfWeek: "monday",
@@ -4070,12 +4070,12 @@
     timezones: ["UTC+02:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/ro.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ro.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ro.svg",
       alt: "The flag of Romania is composed of three equal vertical bands of navy blue, yellow and red.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ro.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ro.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ro.svg",
     },
     startOfWeek: "monday",
@@ -4106,12 +4106,12 @@
     timezones: ["UTC+07:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/kh.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/kh.webp", import.meta.url).href,
       svg: "https://flagcdn.com/kh.svg",
       alt: "The flag of Cambodia features three horizontal bands of blue, red and blue, with a white depiction of the temple complex, Angkor Wat centered in the red band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/kh.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/kh.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/kh.svg",
     },
     startOfWeek: "monday",
@@ -4142,12 +4142,12 @@
     timezones: ["UTC+02:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/zw.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/zw.webp", import.meta.url).href,
       svg: "https://flagcdn.com/zw.svg",
       alt: "The flag of Zimbabwe is composed of seven equal horizontal bands of green, yellow, red, black, red, yellow and green, with a white isosceles triangle superimposed on the hoist side of the field. This triangle is edged in black, spans about one-fourth the width of the field and has its base on the hoist end. A yellow Zimbabwe bird superimposed on a five-pointed red star is centered in the triangle.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/zw.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/zw.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/zw.svg",
     },
     startOfWeek: "monday",
@@ -4175,11 +4175,11 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/je.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/je.webp", import.meta.url).href,
       svg: "https://flagcdn.com/je.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/je.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/je.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/je.svg",
     },
     startOfWeek: "monday",
@@ -4210,12 +4210,12 @@
     timezones: ["UTC+06:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/kg.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/kg.webp", import.meta.url).href,
       svg: "https://flagcdn.com/kg.svg",
       alt: "The flag of Kyrgyzstan features a yellow sun with forty rays at the center of a red field. At the center of the sun is a stylized depiction of a tunduk.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/kg.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/kg.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/kg.svg",
     },
     startOfWeek: "monday",
@@ -4244,11 +4244,11 @@
     timezones: ["UTC-04:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/bq.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/bq.webp", import.meta.url).href,
       svg: "https://flagcdn.com/bq.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/bq.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/bq.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/bq.svg",
     },
     startOfWeek: "monday",
@@ -4278,12 +4278,12 @@
     timezones: ["UTC-04:00"],
     continents: ["South America"],
     flags: {
-      png: new URL("../../assets/flags/gy.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/gy.webp", import.meta.url).href,
       svg: "https://flagcdn.com/gy.svg",
       alt: "The flag of Guyana has a green field with two isosceles triangles which share a common base on the hoist end. The smaller black-edged red triangle spanning half the width of the field is superimposed on the larger white-edged yellow triangle which spans the full width of the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/gy.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/gy.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/gy.svg",
     },
     startOfWeek: "monday",
@@ -4311,7 +4311,7 @@
     timezones: ["UTC-11:00", "UTC-10:00", "UTC+12:00"],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/um.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/um.webp", import.meta.url).href,
       svg: "https://flagcdn.com/um.svg",
     },
     coatOfArms: {},
@@ -4341,12 +4341,12 @@
     timezones: ["UTC+04:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/am.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/am.webp", import.meta.url).href,
       svg: "https://flagcdn.com/am.svg",
       alt: "The flag of Armenia is composed of three equal horizontal bands of red, blue and orange.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/am.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/am.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/am.svg",
     },
     startOfWeek: "monday",
@@ -4377,12 +4377,12 @@
     timezones: ["UTC+02:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/lb.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/lb.webp", import.meta.url).href,
       svg: "https://flagcdn.com/lb.svg",
       alt: "The flag of Lebanon is composed of three horizontal bands of red, white and red. The white band is twice the height of the red bands and bears a green Lebanese Cedar tree at its center.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/lb.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/lb.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/lb.svg",
     },
     startOfWeek: "monday",
@@ -4413,12 +4413,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/me.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/me.webp", import.meta.url).href,
       svg: "https://flagcdn.com/me.svg",
       alt: "The flag of Montenegro features a large red central rectangular area surrounded by a golden-yellow border. The coat of arms of Montenegro is centered in the red rectangle.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/me.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/me.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/me.svg",
     },
     startOfWeek: "monday",
@@ -4447,11 +4447,11 @@
     timezones: ["UTC-04:00", "UTC-03:00", "UTC-01:00", "UTC+00:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/gl.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/gl.webp", import.meta.url).href,
       svg: "https://flagcdn.com/gl.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/gl.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/gl.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/gl.svg",
     },
     startOfWeek: "monday",
@@ -4482,12 +4482,12 @@
     timezones: ["UTC+10:00"],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/pg.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/pg.webp", import.meta.url).href,
       svg: "https://flagcdn.com/pg.svg",
       alt: "The flag of Papua New Guinea is divided diagonally, from the upper hoist-side corner to the lower fly-side corner, into a lower black and an upper red triangle. On the hoist side of the lower black triangle is a representation of the Southern Cross constellation made up of one small and four larger five-pointed white stars. A golden Raggiana bird-of-paradise is situated on the fly side of the upper red triangle.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/pg.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/pg.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/pg.svg",
     },
     startOfWeek: "monday",
@@ -4517,12 +4517,12 @@
     timezones: ["UTC+02:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/zm.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/zm.webp", import.meta.url).href,
       svg: "https://flagcdn.com/zm.svg",
       alt: "The flag of Zambia has a green field, on the fly side of which is a soaring orange African fish eagle above a rectangular area divided into three equal vertical bands of red, black and orange.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/zm.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/zm.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/zm.svg",
     },
     startOfWeek: "monday",
@@ -4552,12 +4552,12 @@
     timezones: ["UTC-04:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/tt.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/tt.webp", import.meta.url).href,
       svg: "https://flagcdn.com/tt.svg",
       alt: "The flag of Trinidad and Tobago has a red field with a white-edged black diagonal band that extends from the upper hoist-side corner to the lower fly-side corner of the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/tt.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/tt.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/tt.svg",
     },
     startOfWeek: "monday",
@@ -4584,11 +4584,11 @@
     timezones: ["UTC+05:00"],
     continents: ["Antarctica"],
     flags: {
-      png: new URL("../../assets/flags/tf.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/tf.webp", import.meta.url).href,
       svg: "https://flagcdn.com/tf.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/tf.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/tf.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/tf.svg",
     },
     startOfWeek: "monday",
@@ -4619,12 +4619,12 @@
     timezones: ["UTC-05:00"],
     continents: ["South America"],
     flags: {
-      png: new URL("../../assets/flags/pe.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/pe.webp", import.meta.url).href,
       svg: "https://flagcdn.com/pe.svg",
       alt: "The flag of Peru is composed of three equal vertical bands of red, white and red, with the national emblem centered in the white band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/pe.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/pe.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/pe.svg",
     },
     startOfWeek: "monday",
@@ -4655,12 +4655,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/se.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/se.webp", import.meta.url).href,
       svg: "https://flagcdn.com/se.svg",
       alt: "The flag of Sweden has a blue field with a large golden-yellow cross that extend to the edges of the field. The vertical part of this cross is offset towards the hoist side.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/se.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/se.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/se.svg",
     },
     startOfWeek: "monday",
@@ -4691,12 +4691,12 @@
     timezones: ["UTC+03:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/sd.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/sd.webp", import.meta.url).href,
       svg: "https://flagcdn.com/sd.svg",
       alt: "The flag of Sudan is composed of three equal horizontal bands of red, white and black, with a green isosceles triangle superimposed on the hoist side. The green triangle spans about two-fifth the width of the field with its base on the hoist end.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/sd.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/sd.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/sd.svg",
     },
     startOfWeek: "monday",
@@ -4724,11 +4724,11 @@
     timezones: ["UTC-03:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/pm.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/pm.webp", import.meta.url).href,
       svg: "https://flagcdn.com/pm.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/pm.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/pm.webp", import.meta.url).href,
     },
     startOfWeek: "monday",
     capitalInfo: {
@@ -4758,12 +4758,12 @@
     timezones: ["UTC+04:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/om.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/om.webp", import.meta.url).href,
       svg: "https://flagcdn.com/om.svg",
       alt: "The flag of Oman features a red vertical band on the hoist side that takes up about one-fourth the width of the field, and three equal horizontal bands of white, red and green adjoining the vertical band. At the top of the vertical band is the white emblem of Oman.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/om.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/om.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/om.svg",
     },
     startOfWeek: "sunday",
@@ -4794,12 +4794,12 @@
     timezones: ["UTC+05:30"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/in.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/in.webp", import.meta.url).href,
       svg: "https://flagcdn.com/in.svg",
       alt: "The flag of India is composed of three equal horizontal bands of saffron, white and green. A navy blue wheel with twenty-four spokes — the Ashoka Chakra — is centered in the white band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/in.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/in.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/in.svg",
     },
     startOfWeek: "monday",
@@ -4829,11 +4829,11 @@
     timezones: ["UTC+08:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/tw.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/tw.webp", import.meta.url).href,
       svg: "https://flagcdn.com/tw.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/tw.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/tw.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/tw.svg",
     },
     startOfWeek: "monday",
@@ -4864,12 +4864,12 @@
     timezones: ["UTC+07:00", "UTC+08:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/mn.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/mn.webp", import.meta.url).href,
       svg: "https://flagcdn.com/mn.svg",
       alt: "The flag of Mongolia is composed of three equal vertical bands of red, blue and red, with the national emblem — the Soyombo — in gold centered in the hoist-side red band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/mn.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/mn.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/mn.svg",
     },
     startOfWeek: "monday",
@@ -4900,12 +4900,12 @@
     timezones: ["UTC"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/sn.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/sn.webp", import.meta.url).href,
       svg: "https://flagcdn.com/sn.svg",
       alt: "The flag of Senegal is composed of three equal vertical bands of green, golden-yellow and red, with a five-pointed green star centered in the golden-yellow band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/sn.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/sn.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/sn.svg",
     },
     startOfWeek: "monday",
@@ -4936,12 +4936,12 @@
     timezones: ["UTC+03:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/tz.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/tz.webp", import.meta.url).href,
       svg: "https://flagcdn.com/tz.svg",
       alt: "The flag of Tanzania features a yellow-edged black diagonal band that extends from the lower hoist-side corner to the upper fly-side corner of the field. Above and beneath this band are a green and light blue triangle respectively.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/tz.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/tz.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/tz.svg",
     },
     startOfWeek: "monday",
@@ -4979,12 +4979,12 @@
     ],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/ca.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ca.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ca.svg",
       alt: "The flag of Canada is composed of a red vertical band on the hoist and fly sides and a central white square that is twice the width of the vertical bands. A large eleven-pointed red maple leaf is centered in the white square.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ca.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ca.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ca.svg",
     },
     startOfWeek: "sunday",
@@ -5015,12 +5015,12 @@
     timezones: ["UTC-06:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/cr.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/cr.webp", import.meta.url).href,
       svg: "https://flagcdn.com/cr.svg",
       alt: "The flag of Costa Rica is composed of five horizontal bands of blue, white, red, white and blue. The central red band is twice the height of the other four bands.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/cr.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/cr.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/cr.svg",
     },
     startOfWeek: "monday",
@@ -5068,12 +5068,12 @@
     timezones: ["UTC+08:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/cn.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/cn.webp", import.meta.url).href,
       svg: "https://flagcdn.com/cn.svg",
       alt: "The flag of China has a red field. In the canton are five yellow five-pointed stars — a large star and four smaller stars arranged in a vertical arc on the fly side of the large star.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/cn.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/cn.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/cn.svg",
     },
     startOfWeek: "monday",
@@ -5104,12 +5104,12 @@
     timezones: ["UTC-05:00"],
     continents: ["South America"],
     flags: {
-      png: new URL("../../assets/flags/co.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/co.webp", import.meta.url).href,
       svg: "https://flagcdn.com/co.svg",
       alt: "The flag of Colombia is composed of three horizontal bands of yellow, blue and red, with the yellow band twice the height of the other two bands.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/co.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/co.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/co.svg",
     },
     startOfWeek: "monday",
@@ -5140,12 +5140,12 @@
     timezones: ["UTC+06:30"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/mm.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/mm.webp", import.meta.url).href,
       svg: "https://flagcdn.com/mm.svg",
       alt: "The flag of Myanmar is composed of three equal horizontal bands of yellow, green and red, with a large five-pointed white star superimposed at the center of the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/mm.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/mm.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/mm.svg",
     },
     startOfWeek: "monday",
@@ -5201,12 +5201,12 @@
     ],
     continents: ["Europe", "Asia"],
     flags: {
-      png: new URL("../../assets/flags/ru.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ru.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ru.svg",
       alt: "The flag of Russia is composed of three equal horizontal bands of white, blue and red.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ru.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ru.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ru.svg",
     },
     startOfWeek: "monday",
@@ -5237,12 +5237,12 @@
     timezones: ["UTC+09:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/kp.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/kp.webp", import.meta.url).href,
       svg: "https://flagcdn.com/kp.svg",
       alt: "The flag of North Korea is composed of three horizontal bands — a large central white-edged red band, and a blue band above and beneath the red band. On the hoist side of the red band is a red five-pointed star within a white circle.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/kp.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/kp.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/kp.svg",
     },
     startOfWeek: "monday",
@@ -5271,11 +5271,11 @@
     timezones: ["UTC-05:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/ky.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ky.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ky.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ky.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ky.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ky.svg",
     },
     startOfWeek: "monday",
@@ -5301,7 +5301,7 @@
     timezones: ["UTC+01:00"],
     continents: ["Antarctica"],
     flags: {
-      png: new URL("../../assets/flags/bv.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/bv.webp", import.meta.url).href,
       svg: "https://flagcdn.com/bv.svg",
     },
     coatOfArms: {},
@@ -5331,12 +5331,12 @@
     timezones: ["UTC+03:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/by.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/by.webp", import.meta.url).href,
       svg: "https://flagcdn.com/by.svg",
       alt: "The flag of Belarus features a vertical band, with a white and red ornamental pattern, spanning about one-fifth the width of the field on the hoist side. Adjoining the vertical band are two horizontal bands of red and green, with the red band twice the height of the green band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/by.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/by.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/by.svg",
     },
     startOfWeek: "monday",
@@ -5367,12 +5367,12 @@
     timezones: ["UTC-01:00", "UTC"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/pt.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/pt.webp", import.meta.url).href,
       svg: "https://flagcdn.com/pt.svg",
       alt: "The flag of Portugal is composed of two vertical bands of green and red in the ratio of 2:3, with the coat of arms of Portugal centered over the two-color boundary.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/pt.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/pt.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/pt.svg",
     },
     startOfWeek: "monday",
@@ -5403,12 +5403,12 @@
     timezones: ["UTC+02:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/sz.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/sz.webp", import.meta.url).href,
       svg: "https://flagcdn.com/sz.svg",
       alt: "The flag of Eswatini is composed of three horizontal bands — a large central yellow-edged red band, and a light blue band above and beneath the red band. The red band is three times the height of the blue bands and bears a centered emblem made up of a large black and white Nguni shield covering two spears and a staff decorated with feather tassels, all placed horizontally.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/sz.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/sz.webp", import.meta.url).href,
     },
     startOfWeek: "monday",
     capitalInfo: {
@@ -5438,12 +5438,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/pl.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/pl.webp", import.meta.url).href,
       svg: "https://flagcdn.com/pl.svg",
       alt: "The flag of Poland is composed of two equal horizontal bands of white and red.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/pl.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/pl.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/pl.svg",
     },
     startOfWeek: "monday",
@@ -5474,12 +5474,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/ch.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ch.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ch.svg",
       alt: "The flag of Switzerland is square shaped. It features a white Swiss cross centered on a red field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ch.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ch.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ch.svg",
     },
     startOfWeek: "monday",
@@ -5510,12 +5510,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/cg.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/cg.webp", import.meta.url).href,
       svg: "https://flagcdn.com/cg.svg",
       alt: "The flag of the Republic of the Congo features a yellow diagonal band that extends from the lower hoist-side corner to the upper fly-side corner of the field. Above and beneath this band are a green and red triangle respectively.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/cg.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/cg.webp", import.meta.url).href,
     },
     startOfWeek: "monday",
     capitalInfo: {
@@ -5545,12 +5545,12 @@
     timezones: ["UTC-04:00"],
     continents: ["South America"],
     flags: {
-      png: new URL("../../assets/flags/ve.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ve.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ve.svg",
       alt: "The flag of Venezuela is composed of three equal horizontal bands of yellow, blue and red. At the center of the blue band are eight five-pointed white stars arranged in a horizontal arc.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ve.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ve.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ve.svg",
     },
     startOfWeek: "monday",
@@ -5581,12 +5581,12 @@
     timezones: ["UTC-05:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/pa.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/pa.webp", import.meta.url).href,
       svg: "https://flagcdn.com/pa.svg",
       alt: "The flag of Panama is composed of four equal rectangular areas — a white rectangular area with a blue five-pointed star at its center, a red rectangular area, a white rectangular area with a red five-pointed star at its center, and a blue rectangular area — in the upper hoist side, upper fly side, lower fly side and lower hoist side respectively.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/pa.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/pa.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/pa.svg",
     },
     startOfWeek: "monday",
@@ -5617,12 +5617,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/nl.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/nl.webp", import.meta.url).href,
       svg: "https://flagcdn.com/nl.svg",
       alt: "The flag of the Netherlands is composed of three equal horizontal bands of red, white and blue.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/nl.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/nl.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/nl.svg",
     },
     startOfWeek: "monday",
@@ -5651,12 +5651,12 @@
     timezones: ["UTC+13:00"],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/ws.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ws.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ws.svg",
       alt: "The flag of Samoa has a red field. A blue rectangle, bearing a representation of the Southern Cross made up of five large and one smaller five-pointed white stars, is superimposed in the canton.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ws.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ws.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ws.svg",
     },
     startOfWeek: "monday",
@@ -5687,12 +5687,12 @@
     timezones: ["UTC-04:00", "UTC-03:00", "UTC-01:00", "UTC", "UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/dk.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/dk.webp", import.meta.url).href,
       svg: "https://flagcdn.com/dk.svg",
       alt: "The flag of Denmark has a red field with a large white cross that extend to the edges of the field. The vertical part of this cross is offset towards the hoist side.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/dk.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/dk.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/dk.svg",
     },
     startOfWeek: "monday",
@@ -5723,12 +5723,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/lu.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/lu.webp", import.meta.url).href,
       svg: "https://flagcdn.com/lu.svg",
       alt: "The flag of Luxembourg is composed of three equal horizontal bands of red, white and light blue.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/lu.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/lu.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/lu.svg",
     },
     startOfWeek: "monday",
@@ -5757,11 +5757,11 @@
     timezones: ["UTC+00:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/fo.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/fo.webp", import.meta.url).href,
       svg: "https://flagcdn.com/fo.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/fo.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/fo.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/fo.svg",
     },
     startOfWeek: "monday",
@@ -5792,12 +5792,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/si.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/si.webp", import.meta.url).href,
       svg: "https://flagcdn.com/si.svg",
       alt: "The flag of Slovenia is composed of three equal horizontal bands of white, blue and red. The national coat of arms is situated in the upper hoist side of the field centered on the boundary between the white and blue bands.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/si.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/si.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/si.svg",
     },
     startOfWeek: "monday",
@@ -5827,12 +5827,12 @@
     timezones: ["UTC"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/tg.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/tg.webp", import.meta.url).href,
       svg: "https://flagcdn.com/tg.svg",
       alt: "The flag of Togo is composed of five equal horizontal bands of green alternating with yellow. A red square bearing a five-pointed white star is superimposed in the canton.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/tg.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/tg.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/tg.svg",
     },
     startOfWeek: "monday",
@@ -5863,12 +5863,12 @@
     timezones: ["UTC+07:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/th.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/th.webp", import.meta.url).href,
       svg: "https://flagcdn.com/th.svg",
       alt: "The flag of Thailand is composed of five horizontal bands of red, white, blue, white and red, with the central blue band twice the height of the other four bands.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/th.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/th.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/th.svg",
     },
     startOfWeek: "monday",
@@ -5896,11 +5896,11 @@
     timezones: ["UTC+12:00"],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/wf.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/wf.webp", import.meta.url).href,
       svg: "https://flagcdn.com/wf.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/wf.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/wf.webp", import.meta.url).href,
     },
     startOfWeek: "monday",
     capitalInfo: {
@@ -5928,12 +5928,12 @@
     timezones: ["UTC-05:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/bs.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/bs.webp", import.meta.url).href,
       svg: "https://flagcdn.com/bs.svg",
       alt: "The flag of the Bahamas is composed of three equal horizontal bands of aquamarine, yellow and aquamarine, with a black equilateral triangle superimposed on the hoist side of the field. This triangle has its base on the hoist end and spans about one-third the width of the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/bs.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/bs.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/bs.svg",
     },
     startOfWeek: "monday",
@@ -5963,12 +5963,12 @@
     timezones: ["UTC+13:00"],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/to.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/to.webp", import.meta.url).href,
       svg: "https://flagcdn.com/to.svg",
       alt: "The flag of Tonga has a red field. A white rectangle bearing a red Greek cross is superimposed in the canton.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/to.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/to.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/to.svg",
     },
     startOfWeek: "monday",
@@ -5999,12 +5999,12 @@
     timezones: ["UTC+02:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/gr.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/gr.webp", import.meta.url).href,
       svg: "https://flagcdn.com/gr.svg",
       alt: "The flag of Greece is composed of nine equal horizontal bands of blue alternating with white. A blue square bearing a white cross is superimposed in the canton.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/gr.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/gr.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/gr.svg",
     },
     startOfWeek: "monday",
@@ -6034,12 +6034,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/sm.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/sm.webp", import.meta.url).href,
       svg: "https://flagcdn.com/sm.svg",
       alt: "The flag of San Marino is composed of two equal horizontal bands of white and light blue, with the national coat of arms superimposed in the center.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/sm.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/sm.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/sm.svg",
     },
     startOfWeek: "monday",
@@ -6067,11 +6067,11 @@
     timezones: ["UTC+04:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/re.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/re.webp", import.meta.url).href,
       svg: "https://flagcdn.com/re.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/re.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/re.webp", import.meta.url).href,
     },
     startOfWeek: "monday",
     capitalInfo: {
@@ -6100,12 +6100,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/va.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/va.webp", import.meta.url).href,
       svg: "https://flagcdn.com/va.svg",
       alt: "The flag of Vatican City is square shaped. It is composed of two equal vertical bands of yellow and white, with national coat of arms centered in the white band. The national coat of arms comprises the Papal Tiara superimposed on two crossed keys.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/va.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/va.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/va.svg",
     },
     startOfWeek: "monday",
@@ -6136,12 +6136,12 @@
     timezones: ["UTC+02:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/bi.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/bi.webp", import.meta.url).href,
       svg: "https://flagcdn.com/bi.svg",
       alt: "The flag of Burundi is divided by a white diagonal cross into four alternating triangular areas of red at the top and bottom, and green on the hoist and fly sides. A white circle, with three green-edged red six-pointed stars arranged to form a triangle, is superimposed at the center of the cross.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/bi.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/bi.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/bi.svg",
     },
     startOfWeek: "monday",
@@ -6170,12 +6170,12 @@
     timezones: ["UTC+03:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/bh.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/bh.webp", import.meta.url).href,
       svg: "https://flagcdn.com/bh.svg",
       alt: "The flag of Bahrain has a red field. On the hoist side, it features a white vertical band that spans about one-third the width of the field and is separated from the rest of the field by five adjoining fly-side pointing white isosceles triangles that serve as a serrated line.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/bh.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/bh.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/bh.svg",
     },
     startOfWeek: "monday",
@@ -6204,12 +6204,12 @@
     timezones: ["UTC+12:00"],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/mh.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/mh.webp", import.meta.url).href,
       svg: "https://flagcdn.com/mh.svg",
       alt: "The flag of Marshall Islands has a blue field with two broadening adjacent diagonal bands of orange and white that extend from the lower hoist-side corner to the upper fly-side corner of the field. A large white star with twenty-four rays — four large rays at the cardinal points and twenty smaller rays — is situated in the upper hoist-side corner above the diagonal bands.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/mh.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/mh.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/mh.svg",
     },
     startOfWeek: "monday",
@@ -6237,7 +6237,7 @@
     timezones: ["UTC-04:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/tc.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/tc.webp", import.meta.url).href,
       svg: "https://flagcdn.com/tc.svg",
     },
     coatOfArms: {},
@@ -6267,11 +6267,11 @@
     timezones: ["UTC+00:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/im.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/im.webp", import.meta.url).href,
       svg: "https://flagcdn.com/im.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/im.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/im.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/im.svg",
     },
     startOfWeek: "monday",
@@ -6302,12 +6302,12 @@
     timezones: ["UTC-05:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/ht.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ht.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ht.svg",
       alt: "The flag of Haiti is composed of two equal horizontal bands of blue and red. A white square bearing the national coat of arms is superimposed at the center of the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ht.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ht.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ht.svg",
     },
     startOfWeek: "monday",
@@ -6338,12 +6338,12 @@
     timezones: ["UTC+04:30"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/af.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/af.webp", import.meta.url).href,
       svg: "https://flagcdn.com/af.svg",
       alt: "The flag of the Islamic Emirate of Afghanistan has a white field with Arabic inscriptions — the Shahada — in black across its center.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/af.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/af.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/af.svg",
     },
     startOfWeek: "monday",
@@ -6374,12 +6374,12 @@
     timezones: ["UTC+02:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/il.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/il.webp", import.meta.url).href,
       svg: "https://flagcdn.com/il.svg",
       alt: "The flag of Israel has a white field with a blue hexagram — the Magen David — centered between two equal horizontal blue bands situated near the top and bottom edges of the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/il.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/il.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/il.svg",
     },
     startOfWeek: "sunday",
@@ -6410,12 +6410,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/ly.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ly.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ly.svg",
       alt: "The flag of Libya is composed of three horizontal bands of red, black and green, with the black band twice the height of the other two bands. At the center of the black band is a fly-side facing white crescent and a five-pointed white star placed just outside the crescent opening.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ly.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ly.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ly.svg",
     },
     startOfWeek: "sunday",
@@ -6446,12 +6446,12 @@
     timezones: ["UTC-03:00"],
     continents: ["South America"],
     flags: {
-      png: new URL("../../assets/flags/uy.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/uy.webp", import.meta.url).href,
       svg: "https://flagcdn.com/uy.svg",
       alt: "The flag of Uruguay is composed of nine equal horizontal bands of white alternating with blue, with a white square superimposed in the canton. In the white square is a yellow sun bearing a human face — the Sun of May — from which sixteen rays extend. The sun's rays alternate between triangular and wavy.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/uy.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/uy.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/uy.svg",
     },
     startOfWeek: "monday",
@@ -6479,11 +6479,11 @@
     timezones: ["UTC+11:30"],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/nf.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/nf.webp", import.meta.url).href,
       svg: "https://flagcdn.com/nf.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/nf.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/nf.webp", import.meta.url).href,
     },
     startOfWeek: "monday",
     capitalInfo: {
@@ -6513,12 +6513,12 @@
     timezones: ["UTC-06:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/ni.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ni.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ni.svg",
       alt: "The flag of Nicaragua is composed of three equal horizontal bands of blue, white and blue, with the national coat of arms centered in the white band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ni.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ni.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ni.svg",
     },
     startOfWeek: "monday",
@@ -6547,11 +6547,11 @@
     timezones: ["UTC-10:00"],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/ck.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ck.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ck.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ck.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ck.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ck.svg",
     },
     startOfWeek: "monday",
@@ -6582,12 +6582,12 @@
     timezones: ["UTC+07:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/la.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/la.webp", import.meta.url).href,
       svg: "https://flagcdn.com/la.svg",
       alt: "The flag of Laos is composed of three horizontal bands of red, blue and red. The blue band is twice the height of the red bands and bears a white circle at its center.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/la.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/la.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/la.svg",
     },
     startOfWeek: "monday",
@@ -6615,11 +6615,11 @@
     timezones: ["UTC+07:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/cx.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/cx.webp", import.meta.url).href,
       svg: "https://flagcdn.com/cx.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/cx.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/cx.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/cx.svg",
     },
     startOfWeek: "monday",
@@ -6647,7 +6647,7 @@
     timezones: ["UTC+00:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/sh.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/sh.webp", import.meta.url).href,
       svg: "https://flagcdn.com/sh.svg",
     },
     coatOfArms: {},
@@ -6676,11 +6676,11 @@
     timezones: ["UTC-04:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/ai.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ai.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ai.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ai.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ai.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ai.svg",
     },
     startOfWeek: "monday",
@@ -6709,12 +6709,12 @@
     timezones: ["UTC+10:00", "UTC+11:00"],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/fm.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/fm.webp", import.meta.url).href,
       svg: "https://flagcdn.com/fm.svg",
       alt: "The flag of Micronesia has a light blue field, at the center of which are four five-pointed white stars arranged in the shape of a diamond.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/fm.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/fm.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/fm.svg",
     },
     startOfWeek: "monday",
@@ -6745,12 +6745,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/de.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/de.webp", import.meta.url).href,
       svg: "https://flagcdn.com/de.svg",
       alt: "The flag of Germany is composed of three equal horizontal bands of black, red and gold.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/de.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/de.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/de.svg",
     },
     startOfWeek: "monday",
@@ -6780,11 +6780,11 @@
     timezones: ["UTC+10:00"],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/gu.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/gu.webp", import.meta.url).href,
       svg: "https://flagcdn.com/gu.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/gu.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/gu.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/gu.svg",
     },
     startOfWeek: "monday",
@@ -6813,12 +6813,12 @@
     timezones: ["UTC+12:00", "UTC+13:00", "UTC+14:00"],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/ki.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ki.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ki.svg",
       alt: "The flag of Kiribati is divided into two halves. While the upper half has a red field, at the center of which is a yellow frigate bird flying over the top half of a rising yellow sun with seventeen visible rays, the lower half is composed of six horizontal wavy bands of white alternating with blue to depict the ocean.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ki.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ki.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ki.svg",
     },
     startOfWeek: "monday",
@@ -6847,11 +6847,11 @@
     timezones: ["UTC-04:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/sx.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/sx.webp", import.meta.url).href,
       svg: "https://flagcdn.com/sx.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/sx.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/sx.webp", import.meta.url).href,
     },
     startOfWeek: "monday",
     capitalInfo: {
@@ -6881,12 +6881,12 @@
     timezones: ["UTC", "UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/es.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/es.webp", import.meta.url).href,
       svg: "https://flagcdn.com/es.svg",
       alt: "The flag of Spain is composed of three horizontal bands of red, yellow and red, with the yellow band twice the height of the red bands. In the yellow band is the national coat of arms offset slightly towards the hoist side of center.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/es.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/es.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/es.svg",
     },
     startOfWeek: "monday",
@@ -6916,12 +6916,12 @@
     timezones: ["UTC-05:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/jm.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/jm.webp", import.meta.url).href,
       svg: "https://flagcdn.com/jm.svg",
       alt: "The flag of Jamaica is divided by a gold diagonal cross into four alternating triangular areas of green at the top and bottom, and black on the hoist and fly sides",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/jm.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/jm.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/jm.svg",
     },
     startOfWeek: "monday",
@@ -6952,11 +6952,11 @@
     timezones: ["UTC+02:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/ps.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ps.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ps.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ps.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ps.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ps.svg",
     },
     startOfWeek: "sunday",
@@ -6986,11 +6986,11 @@
     timezones: ["UTC-03:00"],
     continents: ["South America"],
     flags: {
-      png: new URL("../../assets/flags/gf.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/gf.webp", import.meta.url).href,
       svg: "https://flagcdn.com/gf.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/gf.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/gf.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/gf.svg",
     },
     startOfWeek: "monday",
@@ -7021,12 +7021,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/ad.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ad.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ad.svg",
       alt: "The flag of Andorra features three equal vertical bands of blue, yellow and red, with the coat of arms of Andorra centered in the yellow band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ad.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ad.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ad.svg",
     },
     startOfWeek: "monday",
@@ -7057,12 +7057,12 @@
     timezones: ["UTC-06:00", "UTC-04:00"],
     continents: ["South America"],
     flags: {
-      png: new URL("../../assets/flags/cl.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/cl.webp", import.meta.url).href,
       svg: "https://flagcdn.com/cl.svg",
       alt: "The flag of Chile is composed of two equal horizontal bands of white and red, with a blue square of the same height as the white band superimposed in the canton. A white five-pointed star is centered in the blue square.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/cl.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/cl.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/cl.svg",
     },
     startOfWeek: "monday",
@@ -7093,12 +7093,12 @@
     timezones: ["UTC+02:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/ls.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ls.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ls.svg",
       alt: "The flag of Lesotho is composed of three horizontal bands of blue, white and green in the ratio of 3:4:3. A black mokorotlo — a Basotho hat — is centered in the white band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ls.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ls.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ls.svg",
     },
     startOfWeek: "monday",
@@ -7137,12 +7137,12 @@
     ],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/au.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/au.webp", import.meta.url).href,
       svg: "https://flagcdn.com/au.svg",
       alt: "The flag of Australia has a dark blue field. It features the flag of the United Kingdom — the Union Jack — in the canton, beneath which is a large white seven-pointed star. A representation of the Southern Cross constellation, made up of one small five-pointed and four larger seven-pointed white stars, is situated on the fly side of the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/au.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/au.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/au.svg",
     },
     startOfWeek: "monday",
@@ -7171,12 +7171,12 @@
     timezones: ["UTC-04:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/gd.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/gd.webp", import.meta.url).href,
       svg: "https://flagcdn.com/gd.svg",
       alt: "The flag of Grenada features a large central rectangular area surrounded by a red border, with three five-pointed yellow stars centered on the top and bottom borders. The central rectangle is divided diagonally into four alternating triangular areas of yellow at the top and bottom and green on the hoist and fly sides, and a five-pointed yellow star on a red circle is superimposed at its center. A symbolic nutmeg pod is situated on the green hoist-side triangle.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/gd.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/gd.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/gd.svg",
     },
     startOfWeek: "monday",
@@ -7207,12 +7207,12 @@
     timezones: ["UTC"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/gh.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/gh.webp", import.meta.url).href,
       svg: "https://flagcdn.com/gh.svg",
       alt: "The flag of Ghana is composed of three equal horizontal bands of red, gold and green, with a five-pointed black star centered in the gold band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/gh.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/gh.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/gh.svg",
     },
     startOfWeek: "monday",
@@ -7242,12 +7242,12 @@
     timezones: ["UTC+04:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/sc.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/sc.webp", import.meta.url).href,
       svg: "https://flagcdn.com/sc.svg",
       alt: "The flag of Seychelles is composed of five broadening oblique bands of blue, yellow, red, white and green, which extend from the hoist side of the bottom edge to the top and fly edges of the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/sc.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/sc.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/sc.svg",
     },
     startOfWeek: "monday",
@@ -7278,12 +7278,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/ao.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ao.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ao.svg",
       alt: "The flag of Angola features two equal horizontal bands of red and black, with a yellow emblem at its centre. This emblem consists of a five-pointed star within the hoist-side facing half of a cogwheel that is crossed on its lower end by a machete.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ao.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ao.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ao.svg",
     },
     startOfWeek: "monday",
@@ -7313,11 +7313,11 @@
     timezones: ["UTC-04:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/bm.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/bm.webp", import.meta.url).href,
       svg: "https://flagcdn.com/bm.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/bm.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/bm.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/bm.svg",
     },
     startOfWeek: "monday",
@@ -7348,12 +7348,12 @@
     timezones: ["UTC+05:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/pk.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/pk.webp", import.meta.url).href,
       svg: "https://flagcdn.com/pk.svg",
       alt: "The flag of Pakistan is composed of a white vertical band on its hoist side that takes up about one-fourth the width of the field and a dark green rectangular area that spans the rest of the field. A white fly-side facing crescent and five-pointed star are centered in the dark green area.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/pk.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/pk.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/pk.svg",
     },
     startOfWeek: "monday",
@@ -7384,12 +7384,12 @@
     timezones: ["UTC"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/ml.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ml.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ml.svg",
       alt: "The flag of Mali is composed of three equal vertical bands of green, yellow and red.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ml.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ml.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ml.svg",
     },
     startOfWeek: "monday",
@@ -7420,12 +7420,12 @@
     timezones: ["UTC+03:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/sa.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/sa.webp", import.meta.url).href,
       svg: "https://flagcdn.com/sa.svg",
       alt: "The flag of Saudi Arabia has a green field, at the center of which is an Arabic inscription — the Shahada — in white above a white horizontal sabre with its tip pointed to the hoist side of the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/sa.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/sa.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/sa.svg",
     },
     startOfWeek: "sunday",
@@ -7454,11 +7454,11 @@
     timezones: ["UTC-04:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/cw.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/cw.webp", import.meta.url).href,
       svg: "https://flagcdn.com/cw.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/cw.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/cw.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/cw.svg",
     },
     startOfWeek: "monday",
@@ -7489,12 +7489,12 @@
     timezones: ["UTC+09:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/kr.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/kr.webp", import.meta.url).href,
       svg: "https://flagcdn.com/kr.svg",
       alt: "The flag of South Korea has a white field, at the center of which is a red and blue Taegeuk circle surrounded by four black trigrams, one in each corner.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/kr.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/kr.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/kr.svg",
     },
     startOfWeek: "monday",
@@ -7525,12 +7525,12 @@
     timezones: ["UTC+03:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/et.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/et.webp", import.meta.url).href,
       svg: "https://flagcdn.com/et.svg",
       alt: "The flag of Ethiopia is composed of three equal horizontal bands of green, yellow and red, with the national emblem superimposed at the center of the field. The national emblem comprises a light blue circle bearing a golden-yellow pentagram with single yellow rays emanating from the angles between the points of the pentagram.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/et.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/et.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/et.svg",
     },
     startOfWeek: "monday",
@@ -7559,11 +7559,11 @@
     timezones: ["UTC-04:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/gp.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/gp.webp", import.meta.url).href,
       svg: "https://flagcdn.com/gp.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/gp.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/gp.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/gp.svg",
     },
     startOfWeek: "monday",
@@ -7594,12 +7594,12 @@
     timezones: ["UTC+06:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/bd.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/bd.webp", import.meta.url).href,
       svg: "https://flagcdn.com/bd.svg",
       alt: "The flag of Bangladesh has a dark green field bearing a large red circle that is offset slightly towards the hoist side of center.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/bd.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/bd.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/bd.svg",
     },
     startOfWeek: "sunday",
@@ -7635,12 +7635,12 @@
     ],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/nz.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/nz.webp", import.meta.url).href,
       svg: "https://flagcdn.com/nz.svg",
       alt: "The flag of New Zealand has a dark blue field with the flag of the United Kingdom — the Union Jack — in the canton and a representation of the Southern Cross constellation, made up of four five-pointed white-edged red stars, on the fly side of the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/nz.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/nz.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/nz.svg",
     },
     startOfWeek: "monday",
@@ -7669,12 +7669,12 @@
     timezones: ["UTC+03:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/km.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/km.webp", import.meta.url).href,
       svg: "https://flagcdn.com/km.svg",
       alt: "The flag of Comoros is composed of four equal horizontal bands of yellow, white, red and blue, with a green isosceles triangle superimposed on the hoist side of the field. This triangle has its base on the hoist end, spans about two-fifth the width of the field and bears a fly-side facing white crescent and four five-pointed white stars arranged in a vertical line along the opening of the crescent.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/km.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/km.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/km.svg",
     },
     startOfWeek: "monday",
@@ -7705,12 +7705,12 @@
     timezones: ["UTC-06:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/bz.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/bz.webp", import.meta.url).href,
       svg: "https://flagcdn.com/bz.svg",
       alt: "The flag of Belize has a royal blue field with a thin red horizontal band at the top and bottom of the field and the national coat of arms in the center.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/bz.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/bz.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/bz.svg",
     },
     startOfWeek: "monday",
@@ -7741,12 +7741,12 @@
     timezones: ["UTC+03:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/ug.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ug.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ug.svg",
       alt: "The flag of Uganda is composed of six equal horizontal bands of black, yellow, red, black, yellow and red. A white circle bearing a hoist-side facing grey red-crested crane is superimposed in the center of the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ug.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ug.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ug.svg",
     },
     startOfWeek: "monday",
@@ -7776,12 +7776,12 @@
     timezones: ["UTC+08:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/sg.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/sg.webp", import.meta.url).href,
       svg: "https://flagcdn.com/sg.svg",
       alt: "The flag of Singapore is composed of two equal horizontal bands of red and white. On the hoist side of the red band is a fly-side facing white crescent which partially encloses five small five-pointed white stars arranged in the shape of a pentagon.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/sg.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/sg.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/sg.svg",
     },
     startOfWeek: "monday",
@@ -7811,12 +7811,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/li.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/li.webp", import.meta.url).href,
       svg: "https://flagcdn.com/li.svg",
       alt: "The flag of Liechtenstein is composed of two equal horizontal bands of blue and red, with a golden-yellow crown on the hoist side of the blue band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/li.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/li.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/li.svg",
     },
     startOfWeek: "monday",
@@ -7847,12 +7847,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/hu.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/hu.webp", import.meta.url).href,
       svg: "https://flagcdn.com/hu.svg",
       alt: "The flag of Hungary is composed of three equal horizontal bands of red, white and green.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/hu.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/hu.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/hu.svg",
     },
     startOfWeek: "monday",
@@ -7882,12 +7882,12 @@
     timezones: ["UTC"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/is.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/is.webp", import.meta.url).href,
       svg: "https://flagcdn.com/is.svg",
       alt: "The flag of Iceland has a blue field with a large white-edged red cross that extends to the edges of the field. The vertical part of this cross is offset towards the hoist side.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/is.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/is.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/is.svg",
     },
     startOfWeek: "monday",
@@ -7918,12 +7918,12 @@
     timezones: ["UTC+05:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/tj.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/tj.webp", import.meta.url).href,
       svg: "https://flagcdn.com/tj.svg",
       alt: "The flag of Tajikistan is composed of three horizontal bands of red, white and green in the ratio of 2:3:2. A golden-yellow crown surmounted by an arc of seven five-pointed golden-yellow stars is centered in the white band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/tj.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/tj.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/tj.svg",
     },
     startOfWeek: "monday",
@@ -7954,12 +7954,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/na.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/na.webp", import.meta.url).href,
       svg: "https://flagcdn.com/na.svg",
       alt: "The flag of Namibia features a white-edged red diagonal band that extends from the lower hoist-side corner to the upper fly-side corner of the field. Above and beneath this band are a blue and green triangle respectively. A gold sun with twelve triangular rays is situated on the hoist side of the upper triangle.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/na.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/na.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/na.svg",
     },
     startOfWeek: "monday",
@@ -7990,12 +7990,12 @@
     timezones: ["UTC+09:00"],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/tl.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/tl.webp", import.meta.url).href,
       svg: "https://flagcdn.com/tl.svg",
       alt: "The flag of Timor-Leste has a red field with two isosceles triangles which share a common base on the hoist end. The smaller black triangle, which bears a five-pointed white star at its center and spans one-third the width of the field, is superimposed on the larger yellow triangle that extends to the center of the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/tl.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/tl.webp", import.meta.url).href,
     },
     startOfWeek: "monday",
     capitalInfo: {
@@ -8025,12 +8025,12 @@
     timezones: ["UTC+02:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/eg.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/eg.webp", import.meta.url).href,
       svg: "https://flagcdn.com/eg.svg",
       alt: "The flag of Egypt is composed of three equal horizontal bands of red, white and black, with Egypt's national emblem — a hoist-side facing gold eagle of Saladin — centered in the white band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/eg.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/eg.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/eg.svg",
     },
     startOfWeek: "sunday",
@@ -8061,12 +8061,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/rs.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/rs.webp", import.meta.url).href,
       svg: "https://flagcdn.com/rs.svg",
       alt: "The flag of Serbia is composed of three equal horizontal bands of red, blue and white. The coat of arms of Serbia is superimposed at the center of the field slightly towards the hoist side.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/rs.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/rs.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/rs.svg",
     },
     startOfWeek: "monday",
@@ -8096,12 +8096,12 @@
     timezones: ["UTC+04:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/mu.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/mu.webp", import.meta.url).href,
       svg: "https://flagcdn.com/mu.svg",
       alt: "The flag of Mauritius is composed of four equal horizontal bands of red, blue, yellow and green.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/mu.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/mu.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/mu.svg",
     },
     startOfWeek: "monday",
@@ -8130,11 +8130,11 @@
     timezones: ["UTC+08:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/mo.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/mo.webp", import.meta.url).href,
       svg: "https://flagcdn.com/mo.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/mo.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/mo.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/mo.svg",
     },
     startOfWeek: "monday",
@@ -8161,11 +8161,11 @@
     timezones: ["UTC-10:00", "UTC-09:30", "UTC-09:00"],
     continents: ["Oceania"],
     flags: {
-      png: new URL("../../assets/flags/pf.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/pf.webp", import.meta.url).href,
       svg: "https://flagcdn.com/pf.svg",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/pf.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/pf.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/pf.svg",
     },
     startOfWeek: "monday",
@@ -8194,12 +8194,12 @@
     timezones: ["UTC+05:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/mv.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/mv.webp", import.meta.url).href,
       svg: "https://flagcdn.com/mv.svg",
       alt: "The flag of Maldives has a red field, at the center of which is a large green rectangle bearing a fly-side facing white crescent.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/mv.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/mv.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/mv.svg",
     },
     startOfWeek: "sunday",
@@ -8230,12 +8230,12 @@
     timezones: ["UTC+07:00", "UTC+08:00", "UTC+09:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/id.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/id.webp", import.meta.url).href,
       svg: "https://flagcdn.com/id.svg",
       alt: "The flag of Indonesia is composed of two equal horizontal bands of red and white.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/id.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/id.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/id.svg",
     },
     startOfWeek: "monday",
@@ -8267,12 +8267,12 @@
     timezones: ["UTC+01:00", "UTC+02:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/cd.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/cd.webp", import.meta.url).href,
       svg: "https://flagcdn.com/cd.svg",
       alt: "The flag of the Democratic Republic of the Congo has a sky-blue field with a yellow-edged red diagonal band that extends from the lower hoist-side corner to the upper fly-side corner of the field. A large five-pointed yellow star is situated above the diagonal band on the upper hoist side of the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/cd.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/cd.webp", import.meta.url).href,
       svg: "https://upload.wikimedia.org/wikipedia/commons/9/9c/Coat_of_arms_of_the_Democratic_Republic_of_the_Congo_%28black_spear%29.svg",
     },
     startOfWeek: "monday",
@@ -8303,12 +8303,12 @@
     timezones: ["UTC+02:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/ee.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ee.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ee.svg",
       alt: "The flag of Estonia is composed of three equal horizontal bands of blue, black and white.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ee.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ee.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ee.svg",
     },
     startOfWeek: "monday",
@@ -8339,12 +8339,12 @@
     timezones: ["UTC+07:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/vn.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/vn.webp", import.meta.url).href,
       svg: "https://flagcdn.com/vn.svg",
       alt: "The flag of Vietnam features a large five-pointed yellow star on a red field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/vn.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/vn.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/vn.svg",
     },
     startOfWeek: "monday",
@@ -8375,12 +8375,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/it.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/it.webp", import.meta.url).href,
       svg: "https://flagcdn.com/it.svg",
       alt: "The flag of Italy is composed of three equal vertical bands of green, white and red.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/it.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/it.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/it.svg",
     },
     startOfWeek: "monday",
@@ -8411,12 +8411,12 @@
     timezones: ["UTC"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/gn.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/gn.webp", import.meta.url).href,
       svg: "https://flagcdn.com/gn.svg",
       alt: "The flag of Guinea is composed of three equal vertical bands of red, yellow and green.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/gn.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/gn.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/gn.svg",
     },
     startOfWeek: "monday",
@@ -8446,12 +8446,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/td.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/td.webp", import.meta.url).href,
       svg: "https://flagcdn.com/td.svg",
       alt: "The flag of Chad is composed of three equal vertical bands of blue, gold and red.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/td.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/td.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/td.svg",
     },
     startOfWeek: "monday",
@@ -8482,12 +8482,12 @@
     timezones: ["UTC-06:00", "UTC-05:00"],
     continents: ["South America"],
     flags: {
-      png: new URL("../../assets/flags/ec.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ec.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ec.svg",
       alt: "The flag of Ecuador is composed of the horizontal bands of yellow, blue and red, with the yellow band twice the height of the other two bands. The Ecuadorian coat of arms is superimposed in the center of the field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ec.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ec.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ec.svg",
     },
     startOfWeek: "monday",
@@ -8517,12 +8517,12 @@
     timezones: ["UTC+04:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/ge.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ge.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ge.svg",
       alt: "The flag of Georgia has a white field with a large centered red cross that extends to the edges and divides the field into four quarters. A small red Bolnur-Katskhuri cross is centered in each quarter.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ge.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ge.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ge.svg",
     },
     startOfWeek: "monday",
@@ -8553,12 +8553,12 @@
     timezones: ["UTC+02:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/mw.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/mw.webp", import.meta.url).href,
       svg: "https://flagcdn.com/mw.svg",
       alt: "The flag of Malawi is composed of three equal horizontal bands of black, red and green. The top half of a red sun with thirty-one visible rays is centered in the black band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/mw.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/mw.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/mw.svg",
     },
     startOfWeek: "monday",
@@ -8589,12 +8589,12 @@
     timezones: ["UTC+03:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/iq.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/iq.webp", import.meta.url).href,
       svg: "https://flagcdn.com/iq.svg",
       alt: "The flag of Iraq is composed of three equal horizontal bands of red, white and black. In the central white band are Arabic inscriptions in green.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/iq.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/iq.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/iq.svg",
     },
     startOfWeek: "sunday",
@@ -8622,7 +8622,7 @@
     timezones: ["UTC+01:00"],
     continents: ["Europe"],
     flags: {
-      png: new URL("../../assets/flags/sj.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/sj.webp", import.meta.url).href,
       svg: "https://flagcdn.com/sj.svg",
     },
     coatOfArms: {},
@@ -8654,12 +8654,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/bj.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/bj.webp", import.meta.url).href,
       svg: "https://flagcdn.com/bj.svg",
       alt: "The flag of Benin features a green vertical band on its hoist side that takes up about two-fifth the width of the field and two equal horizontal bands of yellow and red adjoining the vertical band.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/bj.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/bj.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/bj.svg",
     },
     startOfWeek: "monday",
@@ -8689,12 +8689,12 @@
     timezones: ["UTC+09:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/jp.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/jp.webp", import.meta.url).href,
       svg: "https://flagcdn.com/jp.svg",
       alt: "The flag of Japan features a crimson-red circle at the center of a white field.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/jp.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/jp.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/jp.svg",
     },
     startOfWeek: "monday",
@@ -8725,12 +8725,12 @@
     timezones: ["UTC-04:00"],
     continents: ["North America"],
     flags: {
-      png: new URL("../../assets/flags/do.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/do.webp", import.meta.url).href,
       svg: "https://flagcdn.com/do.svg",
       alt: "The flag of the Dominican Republic is divided into four rectangles by a centered white cross that extends to the edges of the field and bears the national coat of arms in its center. The upper hoist-side and lower fly-side rectangles are blue and the lower hoist-side and upper fly-side rectangles are red.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/do.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/do.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/do.svg",
     },
     startOfWeek: "monday",
@@ -8761,12 +8761,12 @@
     timezones: ["UTC+03:00"],
     continents: ["Asia"],
     flags: {
-      png: new URL("../../assets/flags/qa.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/qa.webp", import.meta.url).href,
       svg: "https://flagcdn.com/qa.svg",
       alt: "The flag of Qatar has a maroon field, on the hoist side of which is a white vertical band that spans about one-third the width of the field and is separated from the rest of the field by nine adjoining fly-side pointing white isosceles triangles that serve as a serrated line.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/qa.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/qa.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/qa.svg",
     },
     startOfWeek: "sunday",
@@ -8796,12 +8796,12 @@
     timezones: ["UTC+01:00"],
     continents: ["Africa"],
     flags: {
-      png: new URL("../../assets/flags/ga.png", import.meta.url).href,
+      webp: new URL("../../assets/flags/ga.webp", import.meta.url).href,
       svg: "https://flagcdn.com/ga.svg",
       alt: "The flag of Gabon is composed of three equal horizontal bands of green, yellow and blue.",
     },
     coatOfArms: {
-      png: new URL("../../assets/emblems/ga.png", import.meta.url).href,
+      webp: new URL("../../assets/emblems/ga.webp", import.meta.url).href,
       svg: "https://mainfacts.com/media/images/coats_of_arms/ga.svg",
     },
     startOfWeek: "monday",
