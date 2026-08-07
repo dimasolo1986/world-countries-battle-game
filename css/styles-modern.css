@@ -24,16 +24,17 @@ body::before {
   background-position-x: center;
   background-position-y: center;
   background-image: url("../assets/img/background-image.png");
-  background-image: -webkit-image-set(
-    url("../assets/img/background-image.png") 1x
-  );
-  background-image: image-set(
-    url("../assets/img/background-image.avif") type("image/avif"),
-    url("../assets/img/background-image.png") type("image/png")
-  );
   background-size: cover;
   opacity: 0.8;
   z-index: -1;
+}
+@supports (background-image: image-set(url("") type("image/png"))) {
+  body::before {
+    background-image: image-set(
+      url("../assets/img/background-image.avif") type("image/avif"),
+      url("../assets/img/background-image.png") type("image/png")
+    );
+  }
 }
 header,
 footer {
