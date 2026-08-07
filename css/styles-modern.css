@@ -263,6 +263,14 @@ tr td:first-child {
   padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
 }
 
+#country-coat-of-arms {
+  max-width: 200px;
+  max-height: 200px;
+  width: auto;
+  height: auto;
+  transition: all 0.3s ease;
+}
+
 #hints-panel {
   overflow-wrap: break-word;
 }
