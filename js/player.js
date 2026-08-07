@@ -159,6 +159,13 @@ export class Player {
     document.getElementById("countryOutlineMap").innerHTML = "";
   }
 
+  preloadImage = (src) => {
+    if (!src) return src;
+    const img = new Image();
+    img.src = src;
+    return src;
+  };
+
   initData() {
     this.hitTimeoutIds = [];
     this.hitIntervalIds = [];
@@ -281,8 +288,8 @@ export class Player {
         countryCapital: country.capital?.[0],
         countryRegion: country.region,
         countrySubregion: country?.subregion,
-        countryFlag: country.flags.webp,
-        countryCoatOfArms: country.coatOfArms?.webp,
+        countryFlag: this.preloadImage(country.flags.webp),
+        countryCoatOfArms: this.preloadImage(country.coatOfArms?.webp),
         countryIndependent: country.independent,
         cca2: country.cca2,
         cca3: country.cca3,
