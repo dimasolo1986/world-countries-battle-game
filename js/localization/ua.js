@@ -511,7 +511,7 @@ export const localization = {
     "Connection is failed": "Помилка підключення",
     "Country's Outline On Map": "Контур Країни На Мапі",
     Outline: "Відкрити Контур Країни",
-    "Landscape Of Country": "Краєвид Країни",
+    "Photo From Country": "Фото З Країни",
     CountryPhoto: "Вдкрити Фото Країни",
     Friend: "Друг",
     CHAT: "ЧАТ",
@@ -1343,7 +1343,7 @@ export const localization = {
     "Country's Outline On Map": "Country's Outline On Map",
     Outline: "View Country Outline",
     CountryPhoto: "View Country Photo",
-    "Landscape Of Country": "Landscape Of Country",
+    "Photo From Country": "Photo From Country",
     "Opponent is online": "Opponent is online",
     "Opponent is not online": "Opponent is not online",
     "Connection is failed": "Connection is failed",
@@ -2204,7 +2204,7 @@ export const localization = {
     "BACK TO MAIN PAGE": "ZURÜCK ZUR STARTSEITE",
     "Delete Game Room": "Spielzimmer löschen",
     "Play Again": "Erneut Spielen",
-    "Landscape Of Country": "Landschaft des Landes",
+    "Photo From Country": "Foto aus dem Land",
     "Click 'Create Game Room' to generate game link":
       "Klicken Sie auf 'Spielzimmer Erstellen', um einen Spiellink zu generieren",
     "Game Link For Friend": "Spiellink für Freund",
@@ -3044,7 +3044,7 @@ export const localization = {
     CountryPhoto: "Afficher la Photo du Pays",
     "Click to toggle full screen":
       "Cliquez pour activer/désactiver le mode plein écran",
-    "Landscape Of Country": "Paysage du Pays",
+    "Photo From Country": "Photo du pays",
     "geographic online strategy game that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose eight different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
       "jeu de stratégie géographique en ligne permettant d'étudier la géographie des pays du monde, de leurs voisins, de leurs drapeaux et de certaines régions du monde sous forme de jeu. Choisissez huit alliances de pays différentes sur la carte, ainsi que quatre pays pièges pour votre adversaire. L'ordinateur ou votre ami (selon le mode de jeu sélectionné) choisira également le nombre approprié d'alliances de pays et de pays pièges. Les tentatives pour deviner les pays se déroulent à tour de rôle. Celui qui devine le pays de l'adversaire obtient un essai supplémentaire. Le premier à deviner toutes les alliances des pays adverses gagne. Suivez les messages en haut de l'écran après le début de la partie.",
     "When entering an opponent's trap country, he receives one of eight clues about the location of one of your countries: 1. Name of the country; 2. Capital of the country; 3. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 4. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 5. Coat Of Arms Image; 6. Flag Image; 7. Country's Outline On Map; 8. Photo From Country. You can configure to receive only text clues (country name, country capital, region, subregion) or visual clues (country coat of arms, country flag, country's outline on map, photo from country) or choose the hints yourself during the game.":
@@ -3999,7 +3999,7 @@ export const localization = {
     "Connection is failed": "La conexión ha fallado",
     "Game Room ID:": "ID de la sala de juegos:",
     Friend: "Amigo",
-    "Landscape Of Country": "Paisaje del Campo",
+    "Photo From Country": "Foto del país",
     CountryPhoto: "Ver Foto del País",
     "Create Game Room": "Crear sala de juegos",
     "Click 'Create Game Room' to generate game link":
@@ -4772,8 +4772,7 @@ export const localization = {
       "Ti piace la geografia e i paesi del mondo? Visita",
     "Game Configuration": "Configurazione del Gioco",
     "You selected": "Hai selezionato",
-    "Landscape Of Country": "Paesaggio di Campagna",
-    CountryPhoto: "Visualizza la Foto del Paese",
+    "Photo From Country": "Foto dal Paese",
     "Choose one alliance from four countries":
       "Scegli un'alleanza tra quattro paesi",
     "Choose the first alliance from four countries":

@@ -1,6 +1,7 @@
 import { localization } from "./localization/ua.js";
 import { COUNTRIES_GEO } from "./data/countries.geo.js";
 import * as model from "./model.js";
+import { UNSPLASH_DATA } from "./config.js";
 
 export const sortData = function (data, direction = "asc") {
   data.sort((a, b) => {
@@ -235,6 +236,49 @@ export const generateRoomId = function (length = 8) {
     result += chars[array[i] % chars.length];
   }
   return result;
+};
+
+export const getCountryPhotoUnsplash = async function (country) {
+  const modifiers = [
+    "landscape",
+    "countryside",
+    "scenery",
+    "cities",
+    "cityscape",
+    "valley",
+    "street",
+    "view",
+  ];
+  const randomModifier =
+    modifiers[Math.floor(Math.random() * modifiers.length)];
+  const query = encodeURIComponent(`${country.countryName} ${randomModifier}`);
+  const randomPage = Math.floor(Math.random() * 5) + 1;
+  const url = `https://api.unsplash.com/search/photos?query=${query}&orientation=landscape&per_page=30&page=${randomPage}`;
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Client-ID ${String.fromCharCode(...UNSPLASH_DATA)}`,
+        "Accept-Version": "v1",
+      },
+    });
+    const rateRemaining = response.headers.get("X-Ratelimit-Remaining");
+    if (+rateRemaining === 0 || response.status === 429) {
+      return getCountryPhoto(country);
+    }
+    if (!response.ok) {
+      return getCountryPhoto(country);
+    }
+    const data = await response.json();
+    if (!data.results || data.results.length === 0) {
+      return getCountryPhoto(country);
+    }
+    const randomIndex = Math.floor(Math.random() * data.results.length);
+    const selectedPhoto = data.results[randomIndex];
+    return selectedPhoto.urls.regular;
+  } catch (error) {
+    return getCountryPhoto(country);
+  }
 };
 
 export const getCountryPhoto = async function (country) {

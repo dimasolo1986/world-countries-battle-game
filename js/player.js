@@ -10,7 +10,7 @@ import {
   showCountryCoatOfArmsFlagWindow,
   hideModalWindow,
   showModalWindow,
-  getCountryPhoto,
+  getCountryPhotoUnsplash,
   addTimerToModal,
   findLastIndex,
 } from "./helpers.js";
@@ -562,7 +562,7 @@ export class Player {
           );
           const countryPhotoCode = hasCountryPhoto[randomCountryPhotoIndex];
           const countryPhoto = this.opponentPlayer.countries[countryPhotoCode];
-          const countryPhotoUrl = await getCountryPhoto(countryPhoto);
+          const countryPhotoUrl = await getCountryPhotoUnsplash(countryPhoto);
           if (countryPhotoUrl === null) {
             this.hints[countryPhotoCode] = { Flag: countryPhoto.countryFlag };
           } else {
@@ -633,7 +633,7 @@ export class Player {
     } else if (hintType === "region") {
       this.hints[countryCode] = { Region: country.countryRegion };
     } else if (hintType === "photo") {
-      const countryPhotoUrl = await getCountryPhoto(country);
+      const countryPhotoUrl = await getCountryPhotoUnsplash(country);
       if (countryPhotoUrl && this.playerType !== "computerPlayer") {
         this.hints[countryCode] = { CountryPhoto: countryPhotoUrl };
       } else if (countryPhotoUrl === null) {
@@ -925,7 +925,7 @@ export class Player {
         const countryPhotoWindowHeader =
           document.getElementById("countryPhotoLabel");
         countryPhotoWindowHeader.textContent =
-          localization[model.worldCountries.language]["Landscape Of Country"];
+          localization[model.worldCountries.language]["Photo From Country"];
         const countryPhotoCloseButton = document.getElementById(
           "countryPhotoCloseButton",
         );
