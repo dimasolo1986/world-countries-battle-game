@@ -238,7 +238,11 @@ export const generateRoomId = function (length = 8) {
   return result;
 };
 
-export const getCountryPhotoUnsplash = async function (country) {
+export const getCountryPhotoUnsplash = async function (
+  country,
+  page = undefined,
+  modifier = undefined,
+) {
   const modifiers = [
     "landscape",
     "countryside",
@@ -250,9 +254,9 @@ export const getCountryPhotoUnsplash = async function (country) {
     "view",
   ];
   const randomModifier =
-    modifiers[Math.floor(Math.random() * modifiers.length)];
+    modifier || modifiers[Math.floor(Math.random() * modifiers.length)];
   const query = encodeURIComponent(`${country.countryName} ${randomModifier}`);
-  const randomPage = Math.floor(Math.random() * 5) + 1;
+  const randomPage = page || Math.floor(Math.random() * 5) + 1;
   const url = `https://api.unsplash.com/search/photos?query=${query}&orientation=landscape&per_page=30&page=${randomPage}`;
   try {
     const response = await fetch(url, {
@@ -270,8 +274,11 @@ export const getCountryPhotoUnsplash = async function (country) {
       return getCountryPhoto(country);
     }
     const data = await response.json();
-    if (!data.results || data.results.length === 0) {
+    if (data.total === 0) {
       return getCountryPhoto(country);
+    }
+    if ((!data.results || data.results.length === 0) && data.total > 0) {
+      return getCountryPhotoUnsplash(country, data.total_pages, randomModifier);
     }
     const randomIndex = Math.floor(Math.random() * data.results.length);
     const selectedPhoto = data.results[randomIndex];
