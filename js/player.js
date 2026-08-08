@@ -489,7 +489,12 @@ export class Player {
       );
       userHintTypeSelect.add(countryCoatOfArmsOption);
     }
-    const hasCountryPhoto = selectedCountryCodes.slice();
+    const hasCountryPhoto = selectedCountryCodes.filter((countryCode) => {
+      return (
+        this.opponentPlayer.countries[countryCode]
+          .countryWikiLandscapeCategoryName !== undefined
+      );
+    });
     if (hasCountryPhoto.length > 0 && this.hintTypes.has("photo")) {
       const countryPhotoOption = new Option(
         localization[model.worldCountries.language]["CountryPhoto"],
