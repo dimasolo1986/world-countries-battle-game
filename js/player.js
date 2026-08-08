@@ -489,12 +489,7 @@ export class Player {
       );
       userHintTypeSelect.add(countryCoatOfArmsOption);
     }
-    const hasCountryPhoto = selectedCountryCodes.filter((countryCode) => {
-      return (
-        this.opponentPlayer.countries[countryCode]
-          .countryWikiLandscapeCategoryName !== undefined
-      );
-    });
+    const hasCountryPhoto = selectedCountryCodes.slice();
     if (hasCountryPhoto.length > 0 && this.hintTypes.has("photo")) {
       const countryPhotoOption = new Option(
         localization[model.worldCountries.language]["CountryPhoto"],
@@ -633,11 +628,13 @@ export class Player {
     } else if (hintType === "region") {
       this.hints[countryCode] = { Region: country.countryRegion };
     } else if (hintType === "photo") {
-      const countryPhotoUrl = await getCountryPhotoUnsplash(country);
-      if (countryPhotoUrl && this.playerType !== "computerPlayer") {
-        this.hints[countryCode] = { CountryPhoto: countryPhotoUrl };
-      } else if (countryPhotoUrl === null) {
-        this.hints[countryCode] = { Flag: country.countryFlag };
+      if (this.playerType !== "computerPlayer") {
+        const countryPhotoUrl = await getCountryPhotoUnsplash(country);
+        if (countryPhotoUrl) {
+          this.hints[countryCode] = { CountryPhoto: countryPhotoUrl };
+        } else {
+          this.hints[countryCode] = { Flag: country.countryFlag };
+        }
       } else {
         this.hints[countryCode] = { Flag: country.countryFlag };
       }
