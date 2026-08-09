@@ -243,6 +243,10 @@ export const getCountryPhotoUnsplash = async function (
   page = undefined,
   modifier = undefined,
 ) {
+  const countryPhotoAttrobutionElement = document.getElementById(
+    "country-photo-attribution",
+  );
+  countryPhotoAttrobutionElement.innerHTML = "";
   const modifiers = [
     "landscape",
     "countryside",
@@ -256,8 +260,8 @@ export const getCountryPhotoUnsplash = async function (
   const randomModifier =
     modifier || modifiers[Math.floor(Math.random() * modifiers.length)];
   const query = encodeURIComponent(`${country.countryName} ${randomModifier}`);
-  const randomPage = page || Math.floor(Math.random() * 5) + 1;
-  const url = `https://api.unsplash.com/search/photos?query=${query}&orientation=landscape&per_page=30&page=${randomPage}`;
+  const randomPage = page || Math.floor(Math.random() * 3) + 1;
+  const url = `https://api.unsplash.com/search/photos?query=${query}&per_page=30&page=${randomPage}`;
   try {
     const response = await fetch(url, {
       method: "GET",
@@ -282,8 +286,10 @@ export const getCountryPhotoUnsplash = async function (
     }
     const randomIndex = Math.floor(Math.random() * data.results.length);
     const selectedPhoto = data.results[randomIndex];
+    countryPhotoAttrobutionElement.innerHTML = `Photo by <a href="${selectedPhoto.user.links.html}?utm_source=Countries_Guesser&utm_medium=referral" target="_blank">${selectedPhoto.user.name}</a> on <a href="https://unsplash.com/?utm_source=Countries_Guesser&utm_medium=referral" target="_blank">Unsplash</a>`;
     return selectedPhoto.urls.regular;
   } catch (error) {
+    countryPhotoAttrobutionElement.innerHTML = "";
     return getCountryPhoto(country);
   }
 };

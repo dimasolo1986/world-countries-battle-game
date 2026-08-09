@@ -446,6 +446,10 @@ export class Game {
 
   finishGame(deleteGameRoom) {
     if (this.playMap) this.playMap.exitFullScreen();
+    hideModalWindow("flagModal");
+    hideModalWindow("coatOfArmsModal");
+    hideModalWindow("countryOutlineModal");
+    hideModalWindow("countryPhotoModal");
     if (this.gameConfiguration.gameMode === "user") {
       this.playerOne.sendFinishGameToOpponent();
       if (window.gtag) gtag("event", "game_friend_end");
