@@ -563,6 +563,11 @@ export class Player {
           const countryPhotoCode = hasCountryPhoto[randomCountryPhotoIndex];
           const countryPhoto = this.opponentPlayer.countries[countryPhotoCode];
           const countryPhotoUrl = await getCountryPhotoUnsplash(countryPhoto);
+          if (window.gtag)
+            gtag(
+              "event",
+              `game_request_photo_hint_${countryPhoto.countryName}`,
+            );
           if (countryPhotoUrl === null) {
             this.hints[countryPhotoCode] = { Flag: countryPhoto.countryFlag };
           } else {
@@ -635,6 +640,8 @@ export class Player {
     } else if (hintType === "photo") {
       if (this.playerType !== "computerPlayer") {
         const countryPhotoUrl = await getCountryPhotoUnsplash(country);
+        if (window.gtag)
+          gtag("event", `game_request_photo_hint_${country.countryName}`);
         if (countryPhotoUrl) {
           this.hints[countryCode] = { CountryPhoto: countryPhotoUrl };
         } else {

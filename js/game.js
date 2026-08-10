@@ -450,10 +450,13 @@ export class Game {
     hideModalWindow("coatOfArmsModal");
     hideModalWindow("countryOutlineModal");
     hideModalWindow("countryPhotoModal");
-    if (this.gameConfiguration.gameMode === "user") {
+    if (this.gameConfiguration.gameMode === "user" && this.finished) {
       this.playerOne.sendFinishGameToOpponent();
       if (window.gtag) gtag("event", "game_friend_end");
-    } else {
+    } else if (
+      this.gameConfiguration.gameMode === "computer" &&
+      this.finished
+    ) {
       if (window.gtag) gtag("event", "game_computer_end");
     }
     this.playerOne.cleanPlayerResources(deleteGameRoom);
