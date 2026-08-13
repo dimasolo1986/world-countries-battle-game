@@ -575,6 +575,7 @@ export class Player {
             this.hints[countryPhotoCode] = { Flag: countryPhoto.countryFlag };
           } else {
             this.hints[countryPhotoCode] = { CountryPhoto: countryPhotoUrl };
+            this.preloadImage(countryPhotoUrl);
           }
         }
         this.hintTypes.delete(selectedHintType);
@@ -656,6 +657,7 @@ export class Player {
           gtag("event", `game_request_photo_hint_${country.countryName}`);
         if (countryPhotoUrl) {
           this.hints[countryCode] = { CountryPhoto: countryPhotoUrl };
+          this.preloadImage(countryPhotoUrl);
         } else {
           this.hints[countryCode] = { Flag: country.countryFlag };
         }
