@@ -1513,13 +1513,13 @@ export class Player {
             } else {
               scoreElement.style.color = "green";
             }
+            this.opponentPlayer.openAutoHint = true;
             if (
               this.gameConfiguration.hintsType !== "No Hints" &&
               this.gameConfiguration.hintsType !== "Choose Hints"
             ) {
               const hintType = this.opponentPlayer.getRandomHintType();
               this.opponentPlayer.addHint(countryCode, false, hintType);
-              this.opponentPlayer.openAutoHint = true;
             } else {
               this.opponentPlayer.addSelectedCountryToCountryPanel(
                 this.opponentPlayer.playerSelectedCountriesContainerId,
