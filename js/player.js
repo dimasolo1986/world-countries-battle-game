@@ -43,6 +43,7 @@ export class Player {
   playerAlreadyHitting = false;
   playerWonGame = false;
   playerConfigured = false;
+  openAutoHint = false;
   selectedCountryCodes = new Set();
   selectedCountryTrapCodes = new Set();
   selectedCountryNeighboursCodes = new Set();
@@ -143,6 +144,7 @@ export class Player {
     this.highlightCountryCodes = [];
     this.playerAttemptToGuess = null;
     this.openUserHintSelectionWindow = null;
+    this.openAutoHint = null;
     this.opponentPlayerConfigAcknowledged = null;
     this.opponentPlayerStartAcknowledged = null;
     this.countryBoundariesAndMarkersFeatureGroup = null;
@@ -194,6 +196,7 @@ export class Player {
     this.playerConfigured = false;
     this.playerWonGame = false;
     this.playerAlreadyHitting = false;
+    this.openAutoHint = false;
     this.lastGuessedCountryNames = [];
     this.countryBoundariesAndMarkersFeatureGroup = L.featureGroup();
     if (
@@ -578,6 +581,15 @@ export class Player {
         this.addHintsToHintPanel();
         hideModalWindow("gameUserHintSelectionModal");
         this.setHitTimeout();
+        const hintButton = document.getElementById("hints-link");
+        if (
+          hintButton &&
+          Object.keys(this.hints).length > 0 &&
+          this.openAutoHint
+        ) {
+          hintButton.click();
+          this.openAutoHint = false;
+        }
       }.bind(this),
       { once: true },
     );
@@ -1505,6 +1517,7 @@ export class Player {
             ) {
               const hintType = this.opponentPlayer.getRandomHintType();
               this.opponentPlayer.addHint(countryCode, false, hintType);
+              this.opponentPlayer.openAutoHint = true;
             } else {
               this.opponentPlayer.addSelectedCountryToCountryPanel(
                 this.opponentPlayer.playerSelectedCountriesContainerId,
@@ -2037,6 +2050,16 @@ export class Player {
           this.addUserSelectedHint();
           this.openUserHintSelectionWindow = false;
         }
+        const hintButton = document.getElementById("hints-link");
+        if (
+          hintButton &&
+          Object.keys(this.hints).length > 0 &&
+          this.openAutoHint &&
+          this.gameConfiguration.hintsType !== "Choose Hints"
+        ) {
+          hintButton.click();
+          this.openAutoHint = false;
+        }
       } catch (err) {
         this.opponentPlayer.enableMapInteraction();
         this.openUserHintSelectionWindow = false;
@@ -2303,6 +2326,7 @@ export class Player {
               ]
             }.</span> ${this.gameConfiguration.hintsType !== "No Hints" ? `<span style="margin-left:5px;">${localization[model.worldCountries.language]["The opponent gets a hint"]}</span>` : ""}`,
           );
+          this.openAutoHint = true;
           if (this.gameConfiguration.gameMode === "user") {
             if (this.gameConfiguration.hintsType === "Choose Hints") {
               this.openUserHintSelectionWindow = true;
@@ -5276,6 +5300,7 @@ export class Player {
             } else {
               scoreElement.style.color = "green";
             }
+            this.openAutoHint = true;
             if (this.gameConfiguration.hintsType === "Choose Hints") {
               this.openUserHintSelectionWindow = true;
               this.trapCountryHittedCode = countryCode;

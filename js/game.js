@@ -453,6 +453,8 @@ export class Game {
     if (this.gameConfiguration.gameMode === "user" && this.finished) {
       this.playerOne.sendFinishGameToOpponent();
       if (window.gtag) gtag("event", "game_friend_end");
+    } else if (this.gameConfiguration.gameMode === "user" && !this.finished) {
+      this.playerOne.sendFinishGameToOpponent();
     } else if (
       this.gameConfiguration.gameMode === "computer" &&
       this.finished
