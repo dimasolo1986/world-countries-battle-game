@@ -382,10 +382,16 @@ export class Player {
     const userHintPlayButton = document.getElementById(
       "gameUserHintSelectionPlayButton",
     );
+    const userHintPlayButtonLabel = document.getElementById(
+      "gameUserHintSelectionPlayButtonLabel",
+    );
     const userHintHeader = document.getElementById(
       "gameUserHintSelectionLabel",
     );
-    userHintPlayButton.textContent =
+    const userHintPlayButtonEmoji = document.getElementById(
+      "gameUserHintSelectionPlayButtonEmoji",
+    );
+    userHintPlayButtonLabel.textContent =
       localization[model.worldCountries.language]["Play"];
     userHintHeader.textContent =
       "💡 " +
@@ -508,6 +514,9 @@ export class Player {
     userHintPlayButton.addEventListener(
       "click",
       async function () {
+        const spinner = document.getElementById("playLoaderSpinner");
+        spinner.style.display = "inline-block";
+        userHintPlayButtonEmoji.classList.add("not-displayed");
         const selectedHintType = userHintTypeSelect.value;
         let randomCountryIndex = getRandomInt(
           0,
@@ -581,6 +590,8 @@ export class Player {
         this.hintTypes.delete(selectedHintType);
         this.addHintsToHintPanel();
         hideModalWindow("gameUserHintSelectionModal");
+        spinner.style.display = "none";
+        userHintPlayButtonEmoji.classList.remove("not-displayed");
         this.setHitTimeout();
         const hintButton = document.getElementById("hints-link");
         if (

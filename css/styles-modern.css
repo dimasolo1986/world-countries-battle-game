@@ -708,7 +708,8 @@ main .card .card-body {
 
 /* START spinner stays white */
 #startLoaderSpinner,
-#startLoaderSpinnerGameRoom {
+#startLoaderSpinnerGameRoom,
+#playLoaderSpinner {
   color: #ffffff !important;
 }
 
