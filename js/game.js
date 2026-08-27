@@ -120,6 +120,7 @@ export class Game {
         localization[model.worldCountries.language][
           "Congratulations! You won the game!"
         ];
+      this.gameResultScore.style.color = "#10b981";
       this.gameModalHeading.style.color = "#10b981";
       this.gameModalHeadingGuessed.textContent =
         localization[model.worldCountries.language][
