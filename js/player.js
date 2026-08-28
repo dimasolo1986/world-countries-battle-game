@@ -1871,7 +1871,7 @@ export class Player {
               this.opponentPlayer.removeCountryBoundaryBlinking(countryCode);
               this.opponentPlayer.closeCountryPopup(countryPopup);
               this.opponentPlayer.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
-                animate: false,
+                animate: true,
               });
             } else {
               const countriesToGuessNext = country.countryBorders
@@ -2022,7 +2022,7 @@ export class Player {
           });
           if (countryBounds.length !== 0)
             this.opponentPlayer.playerMap.fitBounds(countryBounds, {
-              animate: false,
+              animate: true,
             });
         } else if (
           this.opponentPlayer.lastGuessedCountryNames.length === 0 &&
@@ -2041,11 +2041,11 @@ export class Player {
           );
           if (countryBounds.length !== 0) {
             this.playerMap.fitBounds(countryBounds, {
-              animate: false,
+              animate: true,
             });
           } else {
             this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
-              animate: false,
+              animate: true,
             });
           }
         }
@@ -2196,13 +2196,13 @@ export class Player {
       );
       if (countryBound) {
         this.playerMap.fitBounds(countryBound.bounds, {
-          animate: false,
+          animate: true,
         });
       } else {
         this.playerMap.setView(
           country.latlng ? country.latlng : country.capitalLatLng,
           4.5,
-          { animate: false },
+          { animate: true },
         );
       }
     };
@@ -2829,7 +2829,7 @@ export class Player {
             });
             if (countryBounds.length !== 0) {
               this.playerMap.fitBounds(countryBounds, {
-                animate: false,
+                animate: true,
               });
             } else {
               this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
@@ -3345,7 +3345,7 @@ export class Player {
     });
     this.showSelectedCountries();
     this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
-      animate: false,
+      animate: true,
     });
     this.gameMessageField.textContent = `ℹ️ ${
       localization[model.worldCountries.language]["Press 'Play' to start game!"]
@@ -3708,7 +3708,7 @@ export class Player {
       );
       this.playMap.initSelectionCountriesMapView();
       this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
-        animate: false,
+        animate: true,
       });
     } else if (lastSelectedCountryUnionIndex === 1) {
       this.gameMessageField.textContent = `ℹ️ ${
@@ -3957,7 +3957,7 @@ export class Player {
       this.game.secondSuperBonusCountry = null;
     }
     this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
-      animate: false,
+      animate: true,
     });
   }
 
@@ -4542,7 +4542,7 @@ export class Player {
           this.playButton.disabled = false;
           this.playerConfigured = true;
           this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
-            animate: false,
+            animate: true,
           });
         }
       }
