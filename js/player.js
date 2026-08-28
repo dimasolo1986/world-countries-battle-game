@@ -1493,7 +1493,7 @@ export class Player {
             this.setCountryPopupContent(countryPopup, country, "💣");
             addCountryBoundariesAndMarkers = true;
             this.setMessageInnerHtmlField(
-              `<span>⚠️ ${
+              `<span>💣 ${
                 localization[model.worldCountries.language][
                   "Computer has fallen into a trap-country"
                 ]
@@ -1705,7 +1705,7 @@ export class Player {
               (this.game.superBonusCountry === countryCode ||
                 this.game.secondSuperBonusCountry === countryCode);
             this.setMessageInnerHtmlField(
-              `<span style="font-size: 0.75rem;">ℹ️ ${
+              `<span style="font-size: 0.75rem;">🎁 ${
                 localization[model.worldCountries.language][
                   "Computer has fallen into a bonus-country"
                 ]
@@ -1864,7 +1864,7 @@ export class Player {
                   countryUnionIndex,
                 );
               this.setMessageInnerHtmlField(
-                `<span style="margin-right:5px;">⚠️ ${
+                `<span style="margin-right:5px;">🎯 ${
                   localization[model.worldCountries.language][
                     "Computer guessed"
                   ]
@@ -1904,7 +1904,7 @@ export class Player {
                 }
               });
               this.setMessageInnerHtmlField(
-                `<span>ℹ️ ${
+                `<span>🎯 ${
                   localization[model.worldCountries.language][
                     "Computer guessed"
                   ]
@@ -2366,7 +2366,7 @@ export class Player {
           this.setCountryPopupContent(countryPopup, country, "💣");
           addCountryBoundariesAndMarkers = true;
           this.setMessageInnerHtmlField(
-            `<span>⛔ ${
+            `<span>💣 ${
               localization[model.worldCountries.language][
                 "You have fallen into a trap-country"
               ]
@@ -3017,7 +3017,7 @@ export class Player {
             const countryUnionHtml =
               this.createCountryUnionMessageHtml(countryUnionIndex);
             this.setMessageInnerHtmlField(
-              `<span style="margin-right:5px;">⚠️ ${
+              `<span style="margin-right:5px;">🎯 ${
                 localization[model.worldCountries.language]["You guessed"]
               }</span><div style="display: inline-block;">${
                 countryUnionHtml.outerHTML
@@ -3123,7 +3123,7 @@ export class Player {
             });
           } else {
             this.setMessageInnerHtmlField(
-              `<span>ℹ️ ${
+              `<span>🎯 ${
                 localization[model.worldCountries.language]["You guessed"]
               }</span> <img src="${
                 country.countryFlag
@@ -5330,7 +5330,7 @@ export class Player {
             this.setCountryPopupContent(countryPopup, country, "💣");
             addCountryBoundariesAndMarkers = true;
             this.setMessageInnerHtmlField(
-              `<span>⚠️ ${
+              `<span>💣 ${
                 localization[model.worldCountries.language][
                   "Opponent has fallen into a trap-country"
                 ]
@@ -5535,7 +5535,7 @@ export class Player {
               scoreElement.style.color = "green";
             }
             this.setMessageInnerHtmlField(
-              `<span style="font-size: 0.7rem;">ℹ️ ${
+              `<span style="font-size: 0.7rem;">🎁 ${
                 localization[model.worldCountries.language][
                   "Opponent has fallen into a bonus-country"
                 ]
@@ -5650,7 +5650,7 @@ export class Player {
               const countryUnionHtml =
                 this.createCountryUnionMessageHtml(countryUnionIndex);
               this.setMessageInnerHtmlField(
-                `<span style="margin-right:5px;">⚠️ ${
+                `<span style="margin-right:5px;">🎯 ${
                   localization[model.worldCountries.language][
                     "Opponent guessed"
                   ]
@@ -5674,7 +5674,7 @@ export class Player {
               });
             } else {
               this.setMessageInnerHtmlField(
-                `<span>ℹ️ ${
+                `<span>🎯 ${
                   localization[model.worldCountries.language][
                     "Opponent guessed"
                   ]
