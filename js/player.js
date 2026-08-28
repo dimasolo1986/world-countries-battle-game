@@ -407,7 +407,7 @@ export class Player {
     const trapCountryHitted = this.countries[this.trapCountryHittedCode];
     userHintTextContainer.innerHTML = `${
       this.opponentPlayer.playerType === "computerPlayer"
-        ? `<div>${localization[model.worldCountries.language]["Computer has fallen into a trap-country"]}${`<img src="${
+        ? `<div>💣 ${localization[model.worldCountries.language]["Computer has fallen into a trap-country"]}${`<img src="${
             trapCountryHitted.countryFlag
           }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 1px 1px #00000080, inset 0 1px 1px #0000001f; vertical-align: sub;"> ${
             trapCountryHitted.countryCoatOfArms
@@ -420,7 +420,7 @@ export class Player {
               trapCountryHitted.countryName
             ]
           }</span>`}</div>`
-        : `<div>${localization[model.worldCountries.language]["Opponent has fallen into a trap-country"]}${`<img src="${
+        : `<div>💣 ${localization[model.worldCountries.language]["Opponent has fallen into a trap-country"]}${`<img src="${
             trapCountryHitted.countryFlag
           }" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 1px 1px #00000080, inset 0 1px 1px #0000001f; vertical-align: sub;"> ${
             trapCountryHitted.countryCoatOfArms
