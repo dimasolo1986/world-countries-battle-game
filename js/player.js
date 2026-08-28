@@ -3070,17 +3070,18 @@ export class Player {
                 localization[model.worldCountries.language]["Congratulations!"];
               document.getElementById(
                 "gameCountryAllianceGuessedCountries",
-              ).innerHTML = `<span style="font-weight:bold; color:darkblue;">${
-                localization[model.worldCountries.language]["You guessed"]
-              }</span><div style="display: inline-block; margin-left:5px;">${
-                countryUnionHtml.outerHTML
-              }</div><span style="margin-left:5px; color: darkblue; font-weight:bold;">${
-                countryUnion.length === 1
-                  ? localization[model.worldCountries.language]["Country"]
-                  : localization[model.worldCountries.language][
-                      "Country Alliance"
-                    ]
-              }</span><div style="color: darkblue; font-weight:bold;font-size: 0.8rem;">${countryUnionString}</div><div style="margin-top:5px;"><span style="
+              ).innerHTML =
+                `<span style="font-weight:bold; color:darkblue;">🎯 ${
+                  localization[model.worldCountries.language]["You guessed"]
+                }</span><div style="display: inline-block; margin-left:5px;">${
+                  countryUnionHtml.outerHTML
+                }</div><span style="margin-left:5px; color: darkblue; font-weight:bold;">${
+                  countryUnion.length === 1
+                    ? localization[model.worldCountries.language]["Country"]
+                    : localization[model.worldCountries.language][
+                        "Country Alliance"
+                      ]
+                }</span><div style="color: darkblue; font-weight:bold;font-size: 0.8rem;">${countryUnionString}</div><div style="margin-top:5px;"><span style="
                     color: white;
                     font-size: 1rem;
                     border-radius: 2px;
