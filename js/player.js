@@ -85,6 +85,9 @@ export class Player {
     this.countriesNumberField = document.getElementById(
       "countries-number-field",
     );
+    this.bonusCountriesNumberField = document.getElementById(
+      "bonus-countries-number-field",
+    );
     this.playButton = document.querySelector(".guess-country-game-play");
   }
 
@@ -124,6 +127,7 @@ export class Player {
     this.game = null;
     this.gameMessageField = null;
     this.countriesNumberField = null;
+    this.bonusCountriesNumberField = null;
     this.playButton = null;
     this.playerCountriesNumberField = null;
     this.playerSelectedCountriesContainer = null;
@@ -1486,6 +1490,7 @@ export class Player {
         }
         if (this.opponentPlayer.selectedCountryTrapCodes.has(countryCode)) {
           try {
+            this.setCountryPopupContent(countryPopup, country, "💣");
             addCountryBoundariesAndMarkers = true;
             this.setMessageInnerHtmlField(
               `<span>⚠️ ${
@@ -1602,6 +1607,13 @@ export class Player {
           this.game.bonusCountries.includes(countryCode)
         ) {
           try {
+            this.setCountryPopupContent(countryPopup, country, "🎁");
+            const indexToRemove = this.game.bonusCountries.indexOf(countryCode);
+            if (indexToRemove > -1) {
+              this.game.bonusCountries.splice(indexToRemove, 1);
+            }
+            this.bonusCountriesNumberField.textContent =
+              this.game.bonusCountries.length;
             addCountryBoundariesAndMarkers = false;
             this.playerAttemptToGuess = true;
             this.opponentPlayer.playerAttemptToGuess = false;
@@ -1777,6 +1789,7 @@ export class Player {
           }
         } else if (this.opponentPlayer.selectedCountryCodes.has(countryCode)) {
           try {
+            this.setCountryPopupContent(countryPopup, country, "🎯");
             addCountryBoundariesAndMarkers = false;
             this.playerAttemptToGuess = true;
             this.opponentPlayer.playerAttemptToGuess = false;
@@ -2258,6 +2271,31 @@ export class Player {
     });
   }
 
+  setCountryPopupContent(countryPopup, country, emoji = "") {
+    countryPopup.setContent(`<img src="${
+      country.countryFlag
+    }" fetchpriority="high" loading="eager" style="width:21px; height:16px; box-shadow: 0 1px 1px #00000080,
+                                inset 0 1px 1px #0000001f; border-radius: 2px; vertical-align: sub;">
+                                  ${country.countryCoatOfArms ? `<img src="${country.countryCoatOfArms}" fetchpriority="high" loading="eager" style="width:16px; height:16px; margin-left:2px; vertical-align: sub;">` : ""}
+                                <span style="font-weight:bold; font-size:0.8rem; margin-left:2px;color:${
+                                  country.countryName !== "Russia"
+                                    ? "darkblue"
+                                    : "red"
+                                }">${
+                                  country.countryName !== "Russia"
+                                    ? localization[
+                                        model.worldCountries.language
+                                      ]["countries"][country.countryName]
+                                    : localization[
+                                        model.worldCountries.language
+                                      ]["countries"][country.countryName] +
+                                      " - " +
+                                      localization[
+                                        model.worldCountries.language
+                                      ]["War Aggressor"]
+                                }</span><span>&nbsp;${emoji}</span>`);
+  }
+
   async addUserClickCountriesPlay(
     countryCode,
     countryBoundary,
@@ -2325,6 +2363,7 @@ export class Player {
       this.openCountryPopup(countryPopup);
       if (this.selectedCountryTrapCodes.has(countryCode)) {
         try {
+          this.setCountryPopupContent(countryPopup, country, "💣");
           addCountryBoundariesAndMarkers = true;
           this.setMessageInnerHtmlField(
             `<span>⛔ ${
@@ -2464,6 +2503,13 @@ export class Player {
         }
       } else if (this.game && this.game.bonusCountries.includes(countryCode)) {
         try {
+          this.setCountryPopupContent(countryPopup, country, "🎁");
+          const indexToRemove = this.game.bonusCountries.indexOf(countryCode);
+          if (indexToRemove > -1) {
+            this.game.bonusCountries.splice(indexToRemove, 1);
+          }
+          this.bonusCountriesNumberField.textContent =
+            this.game.bonusCountries.length;
           addCountryBoundariesAndMarkers = false;
           this.playerAttemptToGuess = false;
           this.opponentPlayer.playerAttemptToGuess = true;
@@ -2861,6 +2907,7 @@ export class Player {
             const index = this.highlightCountryCodes.indexOf(countryCode);
             this.highlightCountryCodes.splice(index, 1);
           }
+          this.setCountryPopupContent(countryPopup, country, "🎯");
           addCountryBoundariesAndMarkers = false;
           this.playerAttemptToGuess = false;
           this.opponentPlayer.playerAttemptToGuess = true;
@@ -5280,6 +5327,7 @@ export class Player {
         }
         if (this.selectedCountryTrapCodes.has(countryCode)) {
           try {
+            this.setCountryPopupContent(countryPopup, country, "💣");
             addCountryBoundariesAndMarkers = true;
             this.setMessageInnerHtmlField(
               `<span>⚠️ ${
@@ -5394,6 +5442,13 @@ export class Player {
           this.game.bonusCountries.includes(countryCode)
         ) {
           try {
+            this.setCountryPopupContent(countryPopup, country, "🎁");
+            const indexToRemove = this.game.bonusCountries.indexOf(countryCode);
+            if (indexToRemove > -1) {
+              this.game.bonusCountries.splice(indexToRemove, 1);
+            }
+            this.bonusCountriesNumberField.textContent =
+              this.game.bonusCountries.length;
             addCountryBoundariesAndMarkers = false;
             this.playerAttemptToGuess = false;
             this.opponentPlayer.playerAttemptToGuess = true;
@@ -5526,6 +5581,7 @@ export class Player {
           }
         } else if (this.selectedCountryCodes.has(countryCode)) {
           try {
+            this.setCountryPopupContent(countryPopup, country, "🎯");
             addCountryBoundariesAndMarkers = false;
             this.playerAttemptToGuess = false;
             this.opponentPlayer.playerAttemptToGuess = true;

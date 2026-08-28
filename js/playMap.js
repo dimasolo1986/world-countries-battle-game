@@ -567,7 +567,7 @@ export class PlayMap {
         countriesField.style.borderRadius = "2px";
         countriesField.style.fontWeight = "bolder";
         countriesField.style.fontSize = "0.5rem";
-        countriesField.style.marginTop = "50px";
+        countriesField.style.marginTop = "35px";
         countriesField.textContent =
           "🌍 " +
           localization[model.worldCountries.language]["Available Countries:"] +
@@ -583,6 +583,36 @@ export class PlayMap {
       return new L.Control.CountriesField(opts);
     };
     L.control.countriesfield({ position: "topright" }).addTo(this.map);
+    L.Control.BonusCountriesField = L.Control.extend({
+      onAdd: function (map) {
+        const bonusCountriesField = L.DomUtil.create("div");
+        bonusCountriesField.id = "bonus-countries-field";
+        bonusCountriesField.style.backgroundColor = "white";
+        bonusCountriesField.style.color = "darkblue";
+        bonusCountriesField.style.boxShadow =
+          "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
+        bonusCountriesField.style.paddingRight = "3px";
+        bonusCountriesField.style.paddingLeft = "3px";
+        bonusCountriesField.style.opacity = "0.7";
+        bonusCountriesField.style.borderRadius = "2px";
+        bonusCountriesField.style.fontWeight = "bolder";
+        bonusCountriesField.style.fontSize = "0.5rem";
+        bonusCountriesField.style.marginTop = "10px";
+        bonusCountriesField.textContent =
+          "🎁 " +
+          localization[model.worldCountries.language]["Bonus Countries"] +
+          ": ";
+        const bonusCountriesNumberField = L.DomUtil.create("span");
+        bonusCountriesNumberField.id = "bonus-countries-number-field";
+        bonusCountriesField.appendChild(bonusCountriesNumberField);
+        return bonusCountriesField;
+      },
+      onRemove: function (map) {},
+    });
+    L.control.bonuscountriesfield = function (opts) {
+      return new L.Control.BonusCountriesField(opts);
+    };
+    L.control.bonuscountriesfield({ position: "topright" }).addTo(this.map);
     L.Control.PlayButton = L.Control.extend({
       playFunction: this.playGameHandler.bind(this),
       onAdd: function (map) {
@@ -792,7 +822,6 @@ export class PlayMap {
         playerTwoScoreField.style.opacity = "0.7";
         playerTwoScoreField.style.borderRadius = "2px";
         playerTwoScoreField.style.fontWeight = "bolder";
-        playerTwoScoreField.style.marginTop = "11px";
         playerTwoScoreField.style.color = "green";
         playerTwoScoreField.textContent = "🏅 0";
         playerTwoScoreField.title =
@@ -1071,6 +1100,8 @@ export class PlayMap {
     undoSelection.style.display = "none";
     document.getElementById("countries-number-field").textContent =
       this.countriesNumber;
+    document.getElementById("bonus-countries-number-field").textContent =
+      this.gameConfiguration.bonusCountries;
     document.getElementById("hints-panel").classList.add("not-displayed");
     document
       .getElementById("selected-country-field")
@@ -1096,6 +1127,8 @@ export class PlayMap {
     undoSelection.style.display = "none";
     document.getElementById("countries-number-field").textContent =
       this.countriesNumber;
+    document.getElementById("bonus-countries-number-field").textContent =
+      this.gameConfiguration.bonusCountries;
     document.getElementById("hints-panel").classList.add("not-displayed");
     document
       .getElementById("available-countries-panel")
