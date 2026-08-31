@@ -347,6 +347,20 @@ export class Player {
     }
   }
 
+  addCountryBoundaryFadeOut(countryCode) {
+    const countryBoundary = document.querySelector(`.${countryCode}`);
+    if (countryBoundary) {
+      countryBoundary.classList.add("fade-out");
+    }
+  }
+
+  removeCountryBoundaryFadeOut(countryCode) {
+    const countryBoundary = document.querySelector(`.${countryCode}`);
+    if (countryBoundary) {
+      countryBoundary.classList.remove("fade-out");
+    }
+  }
+
   getRandomHintType() {
     let randomHintIndex = getRandomInt(0, this.hintTypes.size - 1);
     let hintType = Array.from(this.hintTypes)[randomHintIndex];
@@ -1959,10 +1973,21 @@ export class Player {
             }`;
             this.playerAttemptToGuess = false;
             this.opponentPlayer.playerAttemptToGuess = true;
-            await this.sleep(1000);
+            await this.sleep(500);
+            this.opponentPlayer.addCountryBoundaryFadeOut(countryCode);
+            await this.sleep(500);
+            this.opponentPlayer.removeCountryBoundaryFadeOut(countryCode);
             this.opponentPlayer.closeCountryPopup(countryPopup);
             this.opponentPlayer.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
               animate: false,
+            });
+            this.opponentPlayer.setElementStyle(countryBoundary, {
+              weight: 0,
+              color: "grey",
+              fillColor: "grey",
+              fillOpacity: 0,
+              opacity: 0,
+              className: countryCode,
             });
             this.opponentPlayer.countryBoundariesStyles[countryCode] = {
               weight: 0,
@@ -1981,6 +2006,7 @@ export class Player {
             }
           } catch (err) {
             if (countryCode) {
+              this.opponentPlayer.removeCountryBoundaryFadeOut(countryCode);
               this.opponentPlayer.closeCountryPopup(countryPopup);
               this.opponentPlayer.countryBoundariesStyles[countryCode] = {
                 weight: 0,
@@ -3185,10 +3211,21 @@ export class Player {
           }`;
           this.playerAttemptToGuess = true;
           this.opponentPlayer.playerAttemptToGuess = false;
-          await this.sleep(1000);
+          await this.sleep(500);
+          this.addCountryBoundaryFadeOut(countryCode);
+          await this.sleep(500);
+          this.removeCountryBoundaryFadeOut(countryCode);
           this.closeCountryPopup(countryPopup);
           this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
             animate: false,
+          });
+          this.setElementStyle(countryBoundary, {
+            weight: 0,
+            color: "grey",
+            fillColor: "grey",
+            fillOpacity: 0,
+            opacity: 0,
+            className: countryCode,
           });
           this.countryBoundariesStyles[countryCode] = {
             weight: 0,
@@ -3210,6 +3247,7 @@ export class Player {
           }
         } catch (err) {
           if (countryCode) {
+            this.removeCountryBoundaryFadeOut(countryCode);
             this.closeCountryPopup(countryPopup);
             this.countryBoundariesStyles[countryCode] = {
               weight: 0,
@@ -5744,10 +5782,21 @@ export class Player {
             }`;
             this.playerAttemptToGuess = true;
             this.opponentPlayer.playerAttemptToGuess = false;
-            await this.sleep(1000);
+            await this.sleep(500);
+            this.addCountryBoundaryFadeOut(countryCode);
+            await this.sleep(500);
+            this.removeCountryBoundaryFadeOut(countryCode);
             this.closeCountryPopup(countryPopup);
             this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
               animate: false,
+            });
+            this.setElementStyle(countryBoundary, {
+              weight: 0,
+              color: "grey",
+              fillColor: "grey",
+              fillOpacity: 0,
+              opacity: 0,
+              className: countryCode,
             });
             this.countryBoundariesStyles[countryCode] = {
               weight: 0,
@@ -5769,6 +5818,7 @@ export class Player {
             }
           } catch (err) {
             if (countryCode) {
+              this.removeCountryBoundaryFadeOut(countryCode);
               this.closeCountryPopup(countryPopup);
               this.countryBoundariesStyles[countryCode] = {
                 weight: 0,

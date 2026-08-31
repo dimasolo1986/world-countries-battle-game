@@ -202,6 +202,11 @@ tr td:first-child {
   width: fit-content;
 }
 
+.fade-out {
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0 !important;
+}
+
 .blinking {
   animation: blink-animation 0.25s steps(5, start) infinite;
   -webkit-animation: blink-animation 0.25s steps(5, start) infinite;
