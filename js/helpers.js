@@ -1,5 +1,6 @@
 import { localization } from "./localization/ua.js";
 import { COUNTRIES_GEO } from "./data/countries.geo.js";
+import { COUNTRY_BOUNDS } from "./data/countriesBounds.js";
 import * as model from "./model.js";
 import { UNSPLASH_DATA } from "./config.js";
 
@@ -139,13 +140,20 @@ export const addTimerToModal = function (modalId) {
 };
 
 export const getCountryGeo = function (countryCode) {
-  const countryGeo = {
+  const feature = COUNTRIES_GEO.features.find(
+    (feature) => feature.properties.country_a2 === countryCode,
+  );
+  return {
     type: COUNTRIES_GEO.type,
-    features: COUNTRIES_GEO.features.filter(
-      (feature) => feature.properties.country_a2 === countryCode,
-    ),
+    features: feature ? [feature] : [],
   };
-  return countryGeo;
+};
+
+export const getCountryBounds = function (countryName) {
+  const countryBounds = COUNTRY_BOUNDS.find(
+    (bound) => countryName === bound.name,
+  );
+  return countryBounds;
 };
 
 export const shareQuizResults = function () {

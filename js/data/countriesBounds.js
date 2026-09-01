@@ -518,7 +518,7 @@ export const COUNTRY_BOUNDS = [
     ],
   },
   {
-    name: "Federated States of Micronesia",
+    name: "Micronesia",
     bounds: [
       [7.280729064032173, 159.06266329323813],
       [6.518624617792029, 157.64954683816],
@@ -1232,7 +1232,7 @@ export const COUNTRY_BOUNDS = [
     ],
   },
   {
-    name: "Pitcairn Island",
+    name: "Pitcairn Islands",
     bounds: [
       [-24.962255058768555, -129.83240366672013],
       [-25.168990517995645, -130.25252570239672],
@@ -1330,7 +1330,7 @@ export const COUNTRY_BOUNDS = [
     ],
   },
   {
-    name: "Saint Martin (island)",
+    name: "Saint Martin",
     bounds: [
       [18.253480475537533, -62.62552666822791],
       [17.888579923286816, -63.33208489576698],

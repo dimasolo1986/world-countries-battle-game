@@ -24,6 +24,7 @@ export class PlayMap {
     this.countryBoundariesAndMarkersLayer = {
       boundaries: {},
       markers: {},
+      bounds: {},
     };
     this.mapId = mapId;
     this.gameConfiguration = gameConfiguration;

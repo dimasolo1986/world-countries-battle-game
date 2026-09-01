@@ -1,8 +1,8 @@
 import { localization } from "./localization/ua.js";
 import { WORLD_MAP_BOUNDS } from "./config.js";
-import { COUNTRY_BOUNDS } from "./data/countriesBounds.js";
 import {
   getCountryGeo,
+  getCountryBounds,
   getRandomInt,
   resetGameRoomContainer,
   showGameCountryAllianceGuessedWindow,
@@ -119,6 +119,7 @@ export class Player {
     this.hitIntervalIds = [];
     this.playMap.countryBoundariesAndMarkersLayer.boundaries = null;
     this.playMap.countryBoundariesAndMarkersLayer.markers = null;
+    this.playMap.countryBoundariesAndMarkersLayer.bounds = null;
     this.playMap = null;
     this.playerMap = null;
     this.opponentPlayer = null;
@@ -247,6 +248,7 @@ export class Player {
     worldCountries.forEach((country) => {
       if (this.playerType === "userPlayer") {
         const countryGeo = getCountryGeo(country.cca2);
+        const countryBounds = getCountryBounds(country.name.common);
         const countryTooltip = this.createCountryTooltip(country);
         const countryBoundary = this.createCountryBoundary(
           countryGeo,
@@ -282,6 +284,9 @@ export class Player {
             className: country.cca2,
           },
         );
+        this.playMap.countryBoundariesAndMarkersLayer.bounds[
+          country.name.common
+        ] = countryBounds;
         this.playMap.countryBoundariesAndMarkersLayer.boundaries[country.cca2] =
           countryBoundary;
         this.playMap.countryBoundariesAndMarkersLayer.markers[country.cca2] =
@@ -1193,9 +1198,8 @@ export class Player {
   }
 
   createOutlineMap(hintValue, countryCode) {
-    const countryBound = COUNTRY_BOUNDS.find(
-      (bound) => hintValue === bound.name,
-    );
+    const countryBound =
+      this.playMap.countryBoundariesAndMarkersLayer.bounds[hintValue];
     const country = this.countries[countryCode];
     document.getElementById("countryOutlineMap").innerHTML = `<div
         id="outlineMap"
@@ -1486,9 +1490,10 @@ export class Player {
           opacity: 0,
         };
         countryMarker.setOpacity(0);
-        const countryBound = COUNTRY_BOUNDS.find(
-          (bound) => country.countryName === bound.name,
-        );
+        const countryBound =
+          this.playMap.countryBoundariesAndMarkersLayer.bounds[
+            country.countryName
+          ];
         this.opponentPlayer.openCountryPopup(countryPopup);
         const countryCoordinates = country.latlng
           ? country.latlng
@@ -2061,9 +2066,8 @@ export class Player {
         if (this.opponentPlayer.lastGuessedCountryNames.length !== 0) {
           const countryBounds = [];
           this.opponentPlayer.lastGuessedCountryNames.forEach((countryName) => {
-            const countryBound = COUNTRY_BOUNDS.find(
-              (bound) => countryName === bound.name,
-            );
+            const countryBound =
+              this.playMap.countryBoundariesAndMarkersLayer.bounds[countryName];
             if (countryBound) countryBounds.push(...countryBound.bounds);
           });
           if (countryBounds.length !== 0)
@@ -2079,9 +2083,10 @@ export class Player {
             (highlightCountryCode) => {
               const country =
                 this.opponentPlayer.countries[highlightCountryCode];
-              const countryBound = COUNTRY_BOUNDS.find(
-                (bound) => country.countryName === bound.name,
-              );
+              const countryBound =
+                this.playMap.countryBoundariesAndMarkersLayer.bounds[
+                  country.countryName
+                ];
               if (countryBound) countryBounds.push(...countryBound.bounds);
             },
           );
@@ -2237,9 +2242,10 @@ export class Player {
 
   addAvailableCountriesPanel() {
     const setViewCountry = function (country) {
-      const countryBound = COUNTRY_BOUNDS.find(
-        (bound) => country.countryName === bound.name,
-      );
+      const countryBound =
+        this.playMap.countryBoundariesAndMarkersLayer.bounds[
+          country.countryName
+        ];
       if (countryBound) {
         this.playerMap.fitBounds(countryBound.bounds, {
           animate: false,
@@ -2904,9 +2910,10 @@ export class Player {
             const countryBounds = [];
             this.highlightCountryCodes.forEach((highlightCountryCode) => {
               const country = this.countries[highlightCountryCode];
-              const countryBound = COUNTRY_BOUNDS.find(
-                (bound) => country.countryName === bound.name,
-              );
+              const countryBound =
+                this.playMap.countryBoundariesAndMarkersLayer.bounds[
+                  country.countryName
+                ];
               if (countryBound) countryBounds.push(...countryBound.bounds);
             });
             if (countryBounds.length !== 0) {
@@ -5362,9 +5369,10 @@ export class Player {
         if (countryToDeleteIndex >= 0)
           this.countryCodes.splice(countryToDeleteIndex, 1);
         this.countriesNumberField.textContent = this.countryCodes.length;
-        const countryBound = COUNTRY_BOUNDS.find(
-          (bound) => country.countryName === bound.name,
-        );
+        const countryBound =
+          this.playMap.countryBoundariesAndMarkersLayer.bounds[
+            country.countryName
+          ];
         this.openCountryPopup(countryPopup);
         const countryCoordinates = country.latlng
           ? country.latlng
