@@ -726,6 +726,7 @@ export const localization = {
     "Already guessed this country. Try another one!":
       "Вже вгадали цю країну. Спробуйте іншу!",
     "You guessed": "Ви вгадали",
+    "by the hint": "за підказкою",
     "Computer guessed": "Комп'ютер вгадав",
     "Computer is guessing your country...":
       "Комп'ютер прогнозує вашу країну...",
@@ -1563,6 +1564,7 @@ export const localization = {
     "Already tried this country. Try another one!":
       "Already tried this country. Try another one!",
     "You guessed": "You guessed",
+    "by the hint": "by the hint",
     "Computer guessed": "Computer guessed",
     Play: "Play",
     "Computer is guessing your country...":
@@ -2408,6 +2410,7 @@ export const localization = {
     "Failed attempt to guess country!":
       "Versuch, das Land zu erraten, fehlgeschlagen!",
     "You guessed": "Sie haben es erraten",
+    "by the hint": "durch den Hinweis",
     "Computer guessed": "Computer hat geraten",
     Play: "Spielen",
     "Already tried this country. Try another one!":
@@ -3252,6 +3255,7 @@ export const localization = {
     "Failed attempt to guess country!":
       "La tentative de deviner le pays a échoué!",
     "You guessed": "Vous l'avez deviné",
+    "by the hint": "avec l'aide d'un indice",
     "Computer guessed": "L'ordinateur a deviné",
     Play: "Jouer",
     "Already tried this country. Try another one!":
@@ -4067,6 +4071,7 @@ export const localization = {
     Country: "País",
     "Failed attempt to guess country!": "¡Intento fallido de adivinar el país!",
     "You guessed": "Lo adivinaste",
+    "by the hint": "con la ayuda de una pista",
     "Computer guessed": "La computadora lo adivinó",
     Play: "Jugar",
     Clean: "Limpia",
@@ -4938,6 +4943,7 @@ export const localization = {
     "Failed attempt to guess country!":
       "Tentativo fallito di indovinare il paese!",
     "You guessed": "Hai indovinato",
+    "by the hint": "con l'aiuto di un indizio",
     "Computer guessed": "Il computer ha indovinato",
     Play: "Gioca",
     "Already tried this country. Try another one!":
