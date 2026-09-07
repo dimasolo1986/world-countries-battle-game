@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Country Alliance Guesser Game",
   "default": "index.html",
+  "htmlnano": {
+    "removeOptionalTags": false
+  },
   "scripts": {
     "start": "set PORT=5000 && parcel index.html",
     "build": "parcel build index.html --dist-dir ./dist --public-url ./ --no-source-maps",
@@ -11,12 +14,12 @@
   "author": "Solovei Dmytro",
   "license": "ISC",
   "browserslist": [
-  "> 0.2%",
-  "not dead",
-  "ios_saf >= 10",
-  "safari >= 10",
-  "chrome >= 60"
-],
+    "> 0.2%",
+    "not dead",
+    "ios_saf >= 10",
+    "safari >= 10",
+    "chrome >= 60"
+  ],
   "devDependencies": {
     "@parcel/packager-raw-url": "^2.16.4",
     "@parcel/transformer-jsonld": "^2.16.4",
