@@ -1765,15 +1765,13 @@ export class Player {
                 this.game.thirdSuperBonusCountry === countryCode
               ) {
                 if (
-                  !this.opponentPlayer.alreadyGuessedCountryCodes.includes(
-                    Object.keys(this.opponentPlayer.countryUnions.at(-1)[0])[0],
-                  )
+                  !Object.values(this.opponentPlayer.countryUnions.at(-1)[0])[0]
+                    .guessed
                 ) {
                   countryUnion = this.opponentPlayer.countryUnions.at(-1);
                 } else if (
-                  !this.opponentPlayer.alreadyGuessedCountryCodes.includes(
-                    Object.keys(this.opponentPlayer.countryUnions.at(-2)[0])[0],
-                  )
+                  !Object.values(this.opponentPlayer.countryUnions.at(-2)[0])[0]
+                    .guessed
                 ) {
                   countryUnion = this.opponentPlayer.countryUnions.at(-2);
                 } else {
@@ -2848,16 +2846,10 @@ export class Player {
               this.game.thirdSuperBonusCountry &&
               this.game.thirdSuperBonusCountry === countryCode
             ) {
-              if (
-                !this.alreadyGuessedCountryCodes.includes(
-                  Object.keys(this.countryUnions.at(-1)[0])[0],
-                )
-              ) {
+              if (!Object.values(this.countryUnions.at(-1)[0])[0].guessed) {
                 countryUnion = this.countryUnions.at(-1);
               } else if (
-                !this.alreadyGuessedCountryCodes.includes(
-                  Object.keys(this.countryUnions.at(-2)[0])[0],
-                )
+                !Object.values(this.countryUnions.at(-2)[0])[0].guessed
               ) {
                 countryUnion = this.countryUnions.at(-2);
               } else {
