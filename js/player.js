@@ -1764,7 +1764,28 @@ export class Player {
                 this.game.thirdSuperBonusCountry &&
                 this.game.thirdSuperBonusCountry === countryCode
               ) {
-                countryUnion = this.opponentPlayer.countryUnions.at(-1);
+                if (
+                  !this.opponentPlayer.alreadyGuessedCountryCodes.includes(
+                    Object.keys(this.opponentPlayer.countryUnions.at(-1)[0])[0],
+                  )
+                ) {
+                  countryUnion = this.opponentPlayer.countryUnions.at(-1);
+                } else if (
+                  !this.opponentPlayer.alreadyGuessedCountryCodes.includes(
+                    Object.keys(this.opponentPlayer.countryUnions.at(-2)[0])[0],
+                  )
+                ) {
+                  countryUnion = this.opponentPlayer.countryUnions.at(-2);
+                } else {
+                  countryUnion = this.opponentPlayer.countryUnions.find(
+                    (countryUnion) =>
+                      countryUnion.find(
+                        (item) =>
+                          !Object.values(item)[0].guessed &&
+                          !this.countriesToGuess.includes(Object.keys(item)[0]),
+                      ) != undefined,
+                  );
+                }
               } else {
                 countryUnion = this.opponentPlayer.countryUnions.find(
                   (countryUnion) =>
@@ -2827,7 +2848,30 @@ export class Player {
               this.game.thirdSuperBonusCountry &&
               this.game.thirdSuperBonusCountry === countryCode
             ) {
-              countryUnion = this.countryUnions.at(-1);
+              if (
+                !this.alreadyGuessedCountryCodes.includes(
+                  Object.keys(this.countryUnions.at(-1)[0])[0],
+                )
+              ) {
+                countryUnion = this.countryUnions.at(-1);
+              } else if (
+                !this.alreadyGuessedCountryCodes.includes(
+                  Object.keys(this.countryUnions.at(-2)[0])[0],
+                )
+              ) {
+                countryUnion = this.countryUnions.at(-2);
+              } else {
+                countryUnion = this.countryUnions.find(
+                  (countryUnion) =>
+                    countryUnion.find(
+                      (item) =>
+                        !Object.values(item)[0].guessed &&
+                        !this.highlightCountryCodes.includes(
+                          Object.keys(item)[0],
+                        ),
+                    ) != undefined,
+                );
+              }
             } else {
               countryUnion = this.countryUnions.find(
                 (countryUnion) =>
