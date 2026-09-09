@@ -1725,9 +1725,11 @@ export class Player {
             }
             const superBonus =
               (this.game.superBonusCountry ||
-                this.game.secondSuperBonusCountry) &&
+                this.game.secondSuperBonusCountry ||
+                this.game.thirdSuperBonusCountry) &&
               (this.game.superBonusCountry === countryCode ||
-                this.game.secondSuperBonusCountry === countryCode);
+                this.game.secondSuperBonusCountry === countryCode ||
+                this.game.thirdSuperBonusCountry === countryCode);
             this.setMessageInnerHtmlField(
               `<span style="font-size: 0.75rem;">🎁 ${
                 localization[model.worldCountries.language][
@@ -1757,14 +1759,22 @@ export class Player {
                   }</span>`,
             );
             if (superBonus) {
-              const countryUnion = this.opponentPlayer.countryUnions.find(
-                (countryUnion) =>
-                  countryUnion.find(
-                    (item) =>
-                      !Object.values(item)[0].guessed &&
-                      !this.countriesToGuess.includes(Object.keys(item)[0]),
-                  ) != undefined,
-              );
+              let countryUnion = undefined;
+              if (
+                this.game.thirdSuperBonusCountry &&
+                this.game.thirdSuperBonusCountry === countryCode
+              ) {
+                countryUnion = this.opponentPlayer.countryUnions.at(-1);
+              } else {
+                countryUnion = this.opponentPlayer.countryUnions.find(
+                  (countryUnion) =>
+                    countryUnion.find(
+                      (item) =>
+                        !Object.values(item)[0].guessed &&
+                        !this.countriesToGuess.includes(Object.keys(item)[0]),
+                    ) != undefined,
+                );
+              }
               if (countryUnion) {
                 if (
                   this.game.superBonusCountry &&
@@ -1783,6 +1793,18 @@ export class Player {
                 if (
                   this.game.secondSuperBonusCountry &&
                   this.game.secondSuperBonusCountry === countryCode
+                ) {
+                  const selectedCountryCode = Object.keys(
+                    countryUnion.find(
+                      (item) => !Object.values(item)[0].guessed,
+                    ),
+                  )[0];
+                  if (!this.countriesToGuess.includes(selectedCountryCode))
+                    this.countriesToGuess.push(selectedCountryCode);
+                }
+                if (
+                  this.game.thirdSuperBonusCountry &&
+                  this.game.thirdSuperBonusCountry === countryCode
                 ) {
                   const selectedCountryCode = Object.keys(
                     countryUnion.find(
@@ -2640,15 +2662,20 @@ export class Player {
           }
           const superBonus =
             (this.game.superBonusCountry ||
-              this.game.secondSuperBonusCountry) &&
+              this.game.secondSuperBonusCountry ||
+              this.game.thirdSuperBonusCountry) &&
             (this.game.superBonusCountry === countryCode ||
-              this.game.secondSuperBonusCountry === countryCode);
+              this.game.secondSuperBonusCountry === countryCode ||
+              this.game.thirdSuperBonusCountry === countryCode);
           const superBonusFirst =
             this.game.superBonusCountry &&
             this.game.superBonusCountry === countryCode;
           const superBonusSecond =
             this.game.secondSuperBonusCountry &&
             this.game.secondSuperBonusCountry === countryCode;
+          const superBonusThird =
+            this.game.thirdSuperBonusCountry &&
+            this.game.thirdSuperBonusCountry === countryCode;
           this.setMessageInnerHtmlField(
             `<span>${superBonus ? "💎" : "🎁"} ${
               superBonus
@@ -2669,7 +2696,8 @@ export class Player {
                 ? localization[model.worldCountries.language][
                     "Opponent's countries highlighted on map"
                   ]
-                : superBonus && superBonusSecond
+                : (superBonus && superBonusSecond) ||
+                    (superBonus && superBonusThird)
                   ? localization[model.worldCountries.language][
                       "Opponent's country highlighted on map"
                     ]
@@ -2742,7 +2770,8 @@ export class Player {
                   ? localization[model.worldCountries.language][
                       "Opponent's country alliance highlighted on map"
                     ]
-                  : superBonus && superBonusSecond
+                  : (superBonus && superBonusSecond) ||
+                      (superBonus && superBonusThird)
                     ? localization[model.worldCountries.language][
                         "Opponent's country highlighted on map"
                       ]
@@ -2793,14 +2822,24 @@ export class Player {
             setTimeout(hideGameCountryAllianceGuessedWindow, 10000);
           }
           if (superBonus) {
-            const countryUnion = this.countryUnions.find(
-              (countryUnion) =>
-                countryUnion.find(
-                  (item) =>
-                    !Object.values(item)[0].guessed &&
-                    !this.highlightCountryCodes.includes(Object.keys(item)[0]),
-                ) != undefined,
-            );
+            let countryUnion = undefined;
+            if (
+              this.game.thirdSuperBonusCountry &&
+              this.game.thirdSuperBonusCountry === countryCode
+            ) {
+              countryUnion = this.countryUnions.at(-1);
+            } else {
+              countryUnion = this.countryUnions.find(
+                (countryUnion) =>
+                  countryUnion.find(
+                    (item) =>
+                      !Object.values(item)[0].guessed &&
+                      !this.highlightCountryCodes.includes(
+                        Object.keys(item)[0],
+                      ),
+                  ) != undefined,
+              );
+            }
             if (countryUnion) {
               if (
                 this.game.superBonusCountry &&
@@ -2819,6 +2858,16 @@ export class Player {
               if (
                 this.game.secondSuperBonusCountry &&
                 this.game.secondSuperBonusCountry === countryCode
+              ) {
+                const selectedCountryCode = Object.keys(
+                  countryUnion.find((item) => !Object.values(item)[0].guessed),
+                )[0];
+                if (!this.highlightCountryCodes.includes(selectedCountryCode))
+                  this.highlightCountryCodes.push(selectedCountryCode);
+              }
+              if (
+                this.game.thirdSuperBonusCountry &&
+                this.game.thirdSuperBonusCountry === countryCode
               ) {
                 const selectedCountryCode = Object.keys(
                   countryUnion.find((item) => !Object.values(item)[0].guessed),
@@ -4150,6 +4199,7 @@ export class Player {
       this.game.bonusCountries = [];
       this.game.superBonusCountry = null;
       this.game.secondSuperBonusCountry = null;
+      this.game.thirdSuperBonusCountry = null;
     }
     this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
       animate: false,
@@ -5198,6 +5248,7 @@ export class Player {
         bonusCountries: bonusCountries,
         superBonusCountry: this.game.superBonusCountry,
         secondSuperBonusCountry: this.game.secondSuperBonusCountry,
+        thirdSuperBonusCountry: this.game.thirdSuperBonusCountry,
       });
       this.game.firebase.sendMessage(startJson);
     }
@@ -5289,6 +5340,7 @@ export class Player {
       if (this.game) {
         this.game.superBonusCountry = null;
         this.game.secondSuperBonusCountry = null;
+        this.game.thirdSuperBonusCountry = null;
         this.game.bonusCountries = [];
       }
     } else if (messageObject.type === "reqCountries") {
@@ -5351,6 +5403,7 @@ export class Player {
         this.game.superBonusCountry = messageObject.superBonusCountry;
         this.game.secondSuperBonusCountry =
           messageObject.secondSuperBonusCountry;
+        this.game.thirdSuperBonusCountry = messageObject.thirdSuperBonusCountry;
       }
       if (this.playerConfigured && this.opponentPlayer.playerConfigured) {
         const cleanSection = document.getElementById(
