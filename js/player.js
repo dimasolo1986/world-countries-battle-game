@@ -1947,7 +1947,7 @@ export class Player {
                       ]
                 }</span>`,
               );
-              await this.sleep(1500);
+              await this.sleep(2000);
               this.opponentPlayer.removeCountryBoundaryBlinking(countryCode);
               this.opponentPlayer.closeCountryPopup(countryPopup);
               this.setCountryPopupContent(countryPopup, country);
@@ -3048,23 +3048,23 @@ export class Player {
             this.opponentPlayer.usedHintsCount =
               this.opponentPlayer.usedHintsCount + 1;
           }
+          if (!this.flagZoomHandlers) {
+            this.flagZoomHandlers = {};
+          }
+          if (this.flagZoomHandlers[countryCode]) {
+            this.playerMap.off(
+              "zoomend moveend",
+              this.flagZoomHandlers[countryCode],
+            );
+          }
+          this.flagZoomHandlers[countryCode] = () =>
+            this.updateCountryFlagPattern(countryCode);
+          this.updateCountryFlagPattern(countryCode);
+          this.playerMap.on(
+            "zoomend moveend",
+            this.flagZoomHandlers[countryCode],
+          );
           this.addCountryBoundaryBlinking(countryCode);
-          this.setElementStyle(countryBoundary, {
-            weight: 1,
-            color: "green",
-            fillColor: "green",
-            fillOpacity: 0.5,
-            opacity: 0.8,
-            className: countryCode,
-          });
-          this.countryBoundariesStyles[countryCode] = {
-            weight: 1,
-            color: "green",
-            fillColor: "green",
-            fillOpacity: 0.5,
-            opacity: 0.8,
-            className: countryCode,
-          };
           const countryUnionIndex = this.getCountryUnionIndex(countryCode);
           const isCountryUnionGuessed =
             this.isCountryUnionGuessed(countryUnionIndex);
@@ -3106,21 +3106,36 @@ export class Player {
                   `${this.countries[Object.keys(countryObject)[0]].countryCoatOfArms ? `<img src="${this.countries[Object.keys(countryObject)[0]].countryCoatOfArms}" style="width:16px; height:16px; margin-left:3px; margin-right:3px; vertical-align: sub;"></img>` : ""}`,
               )
               .join('<span style="margin-right: 3px;">&times;</span>');
+            await this.sleep(500);
+            const patterns = document.querySelectorAll("pattern");
+            if (patterns) {
+              patterns.forEach((el) => el.remove());
+            }
+            const defs = document.querySelector("defs");
+            if (defs) {
+              defs.innerHTML = "";
+            }
             countryUnion.forEach((countryObject) => {
               const countryCode = Object.keys(countryObject)[0];
-              this.setElementStyle(
+              if (this.flagZoomHandlers[countryCode]) {
+                this.playerMap.off(
+                  "zoomend moveend",
+                  this.flagZoomHandlers[countryCode],
+                );
+                delete this.flagZoomHandlers[countryCode];
+              }
+              const boundary =
                 this.playMap.countryBoundariesAndMarkersLayer.boundaries[
                   countryCode
-                ],
-                {
-                  weight: 1,
-                  color: "red",
-                  fillColor: "red",
-                  fillOpacity: 0.5,
-                  opacity: 0.8,
-                  className: countryCode,
-                },
-              );
+                ];
+              this.setElementStyle(boundary, {
+                weight: 1,
+                color: "red",
+                fillColor: "red",
+                fillOpacity: 0.5,
+                opacity: 0.8,
+                className: countryCode,
+              });
               this.countryBoundariesStyles[countryCode] = {
                 weight: 1,
                 color: "red",
@@ -3469,6 +3484,58 @@ export class Player {
     }
     this.playerAlreadyHitting = false;
     this.game.playHit(addCountryBoundariesAndMarkers);
+  }
+
+  updateCountryFlagPattern(countryCode) {
+    const country = this.countries[countryCode];
+    const boundaryLayer =
+      this.playMap.countryBoundariesAndMarkersLayer.boundaries[countryCode];
+    const bounds = boundaryLayer.getBounds();
+    const nw = this.playerMap.latLngToLayerPoint(bounds.getNorthWest());
+    const se = this.playerMap.latLngToLayerPoint(bounds.getSouthEast());
+
+    const width = Math.abs(se.x - nw.x);
+    const height = Math.abs(se.y - nw.y);
+    const x = Math.min(nw.x, se.x);
+    const y = Math.min(nw.y, se.y);
+
+    const mapSvg = this.playerMap.getPanes().overlayPane.querySelector("svg");
+    let defs =
+      mapSvg.querySelector("defs") ||
+      mapSvg.appendChild(
+        document.createElementNS("http://www.w3.org/2000/svg", "defs"),
+      );
+    const patternId = `${countryCode}-country-image-pattern`;
+    const existingPattern = document.getElementById(patternId);
+    if (existingPattern) existingPattern.remove();
+
+    const patternSvg = `
+    <pattern id="${patternId}" 
+             patternUnits="userSpaceOnUse" 
+             x="${x}" 
+             y="${y}" 
+             width="${width}" 
+             height="${height}">
+      <image href="${country.countryFlag}" 
+             xlink:href="${country.countryFlag}" 
+             width="${width}" 
+             height="${height}" 
+             preserveAspectRatio="none" />
+    </pattern>`;
+
+    defs.insertAdjacentHTML("beforeend", patternSvg);
+
+    const styleOptions = {
+      weight: 1,
+      color: "grey",
+      fillColor: `url(#${patternId})`,
+      fillOpacity: 0.8,
+      opacity: 0,
+      className: countryCode,
+    };
+
+    this.setElementStyle(boundaryLayer, styleOptions);
+    this.countryBoundariesStyles[countryCode] = styleOptions;
   }
 
   clearOpponentPlayerTimeout() {
@@ -5908,7 +5975,7 @@ export class Player {
                       ]
                 }</span>`,
               );
-              await this.sleep(1500);
+              await this.sleep(2000);
               this.removeCountryBoundaryBlinking(countryCode);
               this.closeCountryPopup(countryPopup);
               this.setCountryPopupContent(countryPopup, country);
