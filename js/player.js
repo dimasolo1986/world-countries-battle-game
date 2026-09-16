@@ -1892,7 +1892,6 @@ export class Player {
               this.opponentPlayer.getCountryUnionIndex(countryCode);
             const isCountryUnionGuessed =
               this.opponentPlayer.isCountryUnionGuessed(countryUnionIndex);
-            await this.sleep(1000);
             if (isCountryUnionGuessed) {
               this.opponentPlayer.playerCountriesNumberField.textContent =
                 +this.opponentPlayer.playerCountriesNumberField.textContent - 1;
@@ -3054,7 +3053,7 @@ export class Player {
           const countryUnionIndex = this.getCountryUnionIndex(countryCode);
           const isCountryUnionGuessed =
             this.isCountryUnionGuessed(countryUnionIndex);
-          await this.sleep(1000);
+          await this.sleep(700);
           const patterns = document.querySelectorAll("pattern");
           if (patterns) {
             patterns.forEach((el) => el.remove());
@@ -5919,7 +5918,7 @@ export class Player {
             const countryUnionIndex = this.getCountryUnionIndex(countryCode);
             const isCountryUnionGuessed =
               this.isCountryUnionGuessed(countryUnionIndex);
-            await this.sleep(1000);
+            await this.sleep(700);
             if (isCountryUnionGuessed) {
               this.playerCountriesNumberField.textContent =
                 +this.playerCountriesNumberField.textContent - 1;
