@@ -1892,6 +1892,7 @@ export class Player {
               this.opponentPlayer.getCountryUnionIndex(countryCode);
             const isCountryUnionGuessed =
               this.opponentPlayer.isCountryUnionGuessed(countryUnionIndex);
+            await this.sleep(1000);
             if (isCountryUnionGuessed) {
               this.opponentPlayer.playerCountriesNumberField.textContent =
                 +this.opponentPlayer.playerCountriesNumberField.textContent - 1;
@@ -1947,7 +1948,7 @@ export class Player {
                       ]
                 }</span>`,
               );
-              await this.sleep(2000);
+              await this.sleep(1500);
               this.opponentPlayer.removeCountryBoundaryBlinking(countryCode);
               this.opponentPlayer.closeCountryPopup(countryPopup);
               this.setCountryPopupContent(countryPopup, country);
@@ -3048,26 +3049,36 @@ export class Player {
             this.opponentPlayer.usedHintsCount =
               this.opponentPlayer.usedHintsCount + 1;
           }
-          if (!this.flagZoomHandlers) {
-            this.flagZoomHandlers = {};
-          }
-          if (this.flagZoomHandlers[countryCode]) {
-            this.playerMap.off(
-              "zoomend moveend",
-              this.flagZoomHandlers[countryCode],
-            );
-          }
-          this.flagZoomHandlers[countryCode] = () =>
-            this.updateCountryFlagPattern(countryCode);
           this.updateCountryFlagPattern(countryCode);
-          this.playerMap.on(
-            "zoomend moveend",
-            this.flagZoomHandlers[countryCode],
-          );
           this.addCountryBoundaryBlinking(countryCode);
           const countryUnionIndex = this.getCountryUnionIndex(countryCode);
           const isCountryUnionGuessed =
             this.isCountryUnionGuessed(countryUnionIndex);
+          await this.sleep(1000);
+          const patterns = document.querySelectorAll("pattern");
+          if (patterns) {
+            patterns.forEach((el) => el.remove());
+          }
+          const defs = document.querySelector("defs");
+          if (defs) {
+            defs.innerHTML = "";
+          }
+          this.setElementStyle(countryBoundary, {
+            weight: 1,
+            color: "red",
+            fillColor: "red",
+            fillOpacity: 0.5,
+            opacity: 0.8,
+            className: countryCode,
+          });
+          this.countryBoundariesStyles[countryCode] = {
+            weight: 1,
+            color: "red",
+            fillColor: "red",
+            fillOpacity: 0.5,
+            opacity: 0.8,
+            className: countryCode,
+          };
           if (isCountryUnionGuessed) {
             this.playerCountriesNumberField.textContent =
               +this.playerCountriesNumberField.textContent - 1;
@@ -3106,24 +3117,8 @@ export class Player {
                   `${this.countries[Object.keys(countryObject)[0]].countryCoatOfArms ? `<img src="${this.countries[Object.keys(countryObject)[0]].countryCoatOfArms}" style="width:16px; height:16px; margin-left:3px; margin-right:3px; vertical-align: sub;"></img>` : ""}`,
               )
               .join('<span style="margin-right: 3px;">&times;</span>');
-            await this.sleep(500);
-            const patterns = document.querySelectorAll("pattern");
-            if (patterns) {
-              patterns.forEach((el) => el.remove());
-            }
-            const defs = document.querySelector("defs");
-            if (defs) {
-              defs.innerHTML = "";
-            }
             countryUnion.forEach((countryObject) => {
               const countryCode = Object.keys(countryObject)[0];
-              if (this.flagZoomHandlers[countryCode]) {
-                this.playerMap.off(
-                  "zoomend moveend",
-                  this.flagZoomHandlers[countryCode],
-                );
-                delete this.flagZoomHandlers[countryCode];
-              }
               const boundary =
                 this.playMap.countryBoundariesAndMarkersLayer.boundaries[
                   countryCode
@@ -5924,6 +5919,7 @@ export class Player {
             const countryUnionIndex = this.getCountryUnionIndex(countryCode);
             const isCountryUnionGuessed =
               this.isCountryUnionGuessed(countryUnionIndex);
+            await this.sleep(1000);
             if (isCountryUnionGuessed) {
               this.playerCountriesNumberField.textContent =
                 +this.playerCountriesNumberField.textContent - 1;
@@ -5975,7 +5971,7 @@ export class Player {
                       ]
                 }</span>`,
               );
-              await this.sleep(2000);
+              await this.sleep(1500);
               this.removeCountryBoundaryBlinking(countryCode);
               this.closeCountryPopup(countryPopup);
               this.setCountryPopupContent(countryPopup, country);
