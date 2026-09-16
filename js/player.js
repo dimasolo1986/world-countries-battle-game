@@ -1863,7 +1863,17 @@ export class Player {
             if (this.isHintUsed(countryCode)) {
               this.usedHintsCount = this.usedHintsCount + 1;
             }
+            this.opponentPlayer.updateCountryFlagPattern(countryCode);
             this.opponentPlayer.addCountryBoundaryBlinking(countryCode);
+            await this.sleep(700);
+            const patterns = document.querySelectorAll("pattern");
+            if (patterns) {
+              patterns.forEach((el) => el.remove());
+            }
+            const defs = document.querySelector("defs");
+            if (defs) {
+              defs.innerHTML = "";
+            }
             this.opponentPlayer.setElementStyle(countryBoundary, {
               weight: 1,
               color: "red",
@@ -3529,7 +3539,6 @@ export class Player {
     };
 
     this.setElementStyle(boundaryLayer, styleOptions);
-    this.countryBoundariesStyles[countryCode] = styleOptions;
   }
 
   clearOpponentPlayerTimeout() {
@@ -5892,7 +5901,17 @@ export class Player {
               this.opponentPlayer.usedHintsCount =
                 this.opponentPlayer.usedHintsCount + 1;
             }
+            this.updateCountryFlagPattern(countryCode);
             this.addCountryBoundaryBlinking(countryCode);
+            await this.sleep(700);
+            const patterns = document.querySelectorAll("pattern");
+            if (patterns) {
+              patterns.forEach((el) => el.remove());
+            }
+            const defs = document.querySelector("defs");
+            if (defs) {
+              defs.innerHTML = "";
+            }
             this.setElementStyle(countryBoundary, {
               weight: 1,
               color: "red",
@@ -5918,7 +5937,6 @@ export class Player {
             const countryUnionIndex = this.getCountryUnionIndex(countryCode);
             const isCountryUnionGuessed =
               this.isCountryUnionGuessed(countryUnionIndex);
-            await this.sleep(700);
             if (isCountryUnionGuessed) {
               this.playerCountriesNumberField.textContent =
                 +this.playerCountriesNumberField.textContent - 1;

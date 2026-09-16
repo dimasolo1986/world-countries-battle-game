@@ -213,7 +213,7 @@ tr td:first-child {
 }
 @keyframes blink-animation {
   0% {
-    opacity: 0.3;
+    opacity: 0.4;
   }
   25% {
     opacity: 0.5;
@@ -222,12 +222,12 @@ tr td:first-child {
     opacity: 0.7;
   }
   100% {
-    opacity: 0.8;
+    opacity: 0.9;
   }
 }
 @-webkit-keyframes blink-animation {
   0% {
-    opacity: 0.3;
+    opacity: 0.4;
   }
   25% {
     opacity: 0.5;
@@ -236,7 +236,7 @@ tr td:first-child {
     opacity: 0.7;
   }
   100% {
-    opacity: 0.8;
+    opacity: 0.9;
   }
 }
 
