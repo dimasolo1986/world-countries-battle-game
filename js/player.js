@@ -3509,6 +3509,19 @@ export class Player {
     }
   }
 
+  removeCountryFlagPattern(countryCode) {
+    const pattern = document.getElementById(
+      `${countryCode}-country-image-pattern`,
+    );
+    if (pattern) {
+      pattern.remove();
+    }
+    if (this.flagZoomHandlers[countryCode]) {
+      this.playerMap.off("zoomend moveend", this.flagZoomHandlers[countryCode]);
+      delete this.flagZoomHandlers[countryCode];
+    }
+  }
+
   updateCountryFlagPattern(countryCode, trapCountry = false) {
     const country = this.countries[countryCode];
     const boundaryLayer =
@@ -4019,6 +4032,7 @@ export class Player {
       }
       this.selectedCountryCodes.delete(countryTrapCode);
       this.selectedCountryTrapCodes.delete(countryTrapCode);
+      this.removeCountryFlagPattern(countryTrapCode);
       const countryBoundary =
         this.playMap.countryBoundariesAndMarkersLayer.boundaries[
           countryTrapCode
@@ -4153,6 +4167,7 @@ export class Player {
         );
       });
       countryCodes.forEach((countryCode) => {
+        this.removeCountryFlagPattern(countryCode);
         const countryCodeIndex = Array.from(this.selectedCountryCodes).indexOf(
           countryCode,
         );
@@ -4499,14 +4514,22 @@ export class Player {
     countryBoundary,
     countryBoundaryFillColor,
   ) {
-    this.setElementStyle(countryBoundary, {
-      weight: 1,
-      color: countryBoundaryFillColor,
-      fillColor: countryBoundaryFillColor,
-      fillOpacity: 0.5,
-      opacity: 0.8,
-      className: countryCode,
-    });
+    if (!this.flagZoomHandlers) {
+      this.flagZoomHandlers = {};
+    }
+    if (this.flagZoomHandlers[countryCode]) {
+      this.playerMap.off("zoomend moveend", this.flagZoomHandlers[countryCode]);
+    }
+    if (countryBoundaryFillColor === "orange") {
+      this.flagZoomHandlers[countryCode] = () =>
+        this.updateCountryFlagPattern(countryCode, true);
+      this.updateCountryFlagPattern(countryCode, true);
+    } else {
+      this.flagZoomHandlers[countryCode] = () =>
+        this.updateCountryFlagPattern(countryCode, false);
+      this.updateCountryFlagPattern(countryCode, false);
+    }
+    this.playerMap.on("zoomend moveend", this.flagZoomHandlers[countryCode]);
     countryBoundary.off();
     countryBoundary.closeTooltip();
     this.addSelectedCountryToCountryPanel(
