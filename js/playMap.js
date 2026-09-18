@@ -1137,6 +1137,7 @@ export class PlayMap {
     document
       .getElementById("selected-country-field")
       .classList.add("not-displayed");
+    this.map.fitBounds(WORLD_MAP_BOUNDS, { animate: false });
   }
 
   playGameHandler() {
