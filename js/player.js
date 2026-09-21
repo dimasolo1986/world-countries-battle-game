@@ -2071,10 +2071,12 @@ export class Player {
             };
             if (this.countryBoundariesStyles[countryCode].opacity === 0) {
               this.opponentPlayer.playerMap.removeLayer(countryBoundary);
-              delete this.countryBoundariesAndMarkersLayer.boundaries[
+              delete this.playMap.countryBoundariesAndMarkersLayer.boundaries[
                 countryCode
               ];
-              delete this.countryBoundariesAndMarkersLayer.markers[countryCode];
+              delete this.playMap.countryBoundariesAndMarkersLayer.markers[
+                countryCode
+              ];
             }
           } catch (err) {
             if (countryCode) {
@@ -3447,10 +3449,12 @@ export class Player {
             0
           ) {
             this.playerMap.removeLayer(countryBoundary);
-            delete this.countryBoundariesAndMarkersLayer.boundaries[
+            delete this.playMap.countryBoundariesAndMarkersLayer.boundaries[
               countryCode
             ];
-            delete this.countryBoundariesAndMarkersLayer.markers[countryCode];
+            delete this.playMap.countryBoundariesAndMarkersLayer.markers[
+              countryCode
+            ];
           }
         } catch (err) {
           if (countryCode) {
@@ -6151,10 +6155,12 @@ export class Player {
                 .opacity === 0
             ) {
               this.playerMap.removeLayer(countryBoundary);
-              delete this.countryBoundariesAndMarkersLayer.boundaries[
+              delete this.playMap.countryBoundariesAndMarkersLayer.boundaries[
                 countryCode
               ];
-              delete this.countryBoundariesAndMarkersLayer.markers[countryCode];
+              delete this.playMap.countryBoundariesAndMarkersLayer.markers[
+                countryCode
+              ];
             }
           } catch (err) {
             if (countryCode) {
