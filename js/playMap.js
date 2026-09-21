@@ -909,7 +909,6 @@ export class PlayMap {
 
   destroyMap() {
     if (this.map) {
-      this.map.off();
       this.map.remove();
     }
     const mapElement = document.getElementById(this.mapId);

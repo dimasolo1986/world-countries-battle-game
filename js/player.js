@@ -2135,6 +2135,22 @@ export class Player {
         if (this.opponentPlayer.lastGuessedCountryNames.length !== 0) {
           const countryBounds = [];
           this.opponentPlayer.lastGuessedCountryNames.forEach((countryName) => {
+            const country = Object.values(this.countries).find(
+              (c) => c.countryName === countryName,
+            );
+            country.countryBorders.forEach((borderCountryCode) => {
+              const countryCode = this.countriesCodeMapping[borderCountryCode];
+              if (countryCode) {
+                const countryName = this.countries[countryCode].countryName;
+                const countryBound =
+                  this.playMap.countryBoundariesAndMarkersLayer.bounds[
+                    countryName
+                  ];
+                if (countryBound) {
+                  countryBounds.push(...countryBound.bounds);
+                }
+              }
+            });
             const countryBound =
               this.playMap.countryBoundariesAndMarkersLayer.bounds[countryName];
             if (countryBound) countryBounds.push(...countryBound.bounds);

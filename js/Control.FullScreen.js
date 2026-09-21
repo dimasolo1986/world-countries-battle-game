@@ -195,12 +195,14 @@
         this.toggleFullScreen,
         this,
       );
-      leaflet.DomEvent.off(this.zoom, "click", leaflet.DomEvent.stop).off(
-        this.zoom,
-        "click",
-        this.setOriginalZoom,
-        this,
-      );
+      if (this.zoom) {
+        leaflet.DomEvent.off(this.zoom, "click", leaflet.DomEvent.stop).off(
+          this.zoom,
+          "click",
+          this.setOriginalZoom,
+          this,
+        );
+      }
 
       if (this._screenfull.isEnabled) {
         leaflet.DomEvent.off(
