@@ -2146,7 +2146,7 @@ export class Player {
                   this.playMap.countryBoundariesAndMarkersLayer.bounds[
                     countryName
                   ];
-                if (countryBound) {
+                if (countryBound && countryBound.name !== "Russia") {
                   countryBounds.push(...countryBound.bounds);
                 }
               }
