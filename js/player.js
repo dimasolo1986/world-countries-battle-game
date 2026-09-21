@@ -2171,7 +2171,13 @@ export class Player {
                   this.playMap.countryBoundariesAndMarkersLayer.bounds[
                     countryName
                   ];
-                if (countryBound && countryBound.name !== "Russia") {
+                if (
+                  countryBound &&
+                  countryBound.name !== "Russia" &&
+                  !this.opponentPlayer.alreadyGuessedCountryCodes.includes(
+                    countryCode,
+                  )
+                ) {
                   countryBounds.push(...countryBound.bounds);
                 }
               }
