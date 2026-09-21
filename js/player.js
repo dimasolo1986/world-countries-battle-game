@@ -626,6 +626,31 @@ export class Player {
           this.openAutoHint
         ) {
           hintButton.click();
+          if (Object.keys(this.hints).length > 1) {
+            if (selectedHintType === "photo") {
+              const photoButton = document.getElementById("country-photo-link");
+              if (photoButton) {
+                photoButton.click();
+              }
+            } else if (selectedHintType === "emblem") {
+              const emblemButton = document.getElementById("coat-of-arms-link");
+              if (emblemButton) {
+                emblemButton.click();
+              }
+            } else if (selectedHintType === "flag") {
+              const flagButton = document.getElementById("flag-link");
+              if (flagButton) {
+                flagButton.click();
+              }
+            } else if (selectedHintType === "boundary") {
+              const outlineButton = document.getElementById(
+                "country-outline-link",
+              );
+              if (outlineButton) {
+                outlineButton.click();
+              }
+            }
+          }
           this.openAutoHint = false;
         }
       }.bind(this),
