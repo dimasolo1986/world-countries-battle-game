@@ -1044,17 +1044,25 @@ export class Player {
         countryPhoto.addEventListener(
           "click",
           function () {
-            this.playMap.exitFullScreen().then(() => {
+            if (this.playMap) {
+              this.playMap.exitFullScreen().then(() => {
+                this.toggleCountryPhotoFullScreen("country-photo-container");
+              });
+            } else {
               this.toggleCountryPhotoFullScreen("country-photo-container");
-            });
+            }
           }.bind(this),
         );
         fullScreenButton.addEventListener(
           "click",
           function () {
-            this.playMap.exitFullScreen().then(() => {
+            if (this.playMap) {
+              this.playMap.exitFullScreen().then(() => {
+                this.toggleCountryPhotoFullScreen("country-photo-container");
+              });
+            } else {
               this.toggleCountryPhotoFullScreen("country-photo-container");
-            });
+            }
           }.bind(this),
         );
         countryPhotoLink.addEventListener(
@@ -1228,8 +1236,12 @@ export class Player {
   }
 
   createOutlineMap(hintValue, countryCode) {
-    const countryBound =
-      this.playMap.countryBoundariesAndMarkersLayer.bounds[countryCode];
+    if (!countryCode) return;
+    let countryBound = undefined;
+    if (this.playMap && this.playMap.countryBoundariesAndMarkersLayer) {
+      countryBound =
+        this.playMap.countryBoundariesAndMarkersLayer.bounds[countryCode];
+    }
     const country = this.countries[countryCode];
     document.getElementById("countryOutlineMap").innerHTML = `<div
         id="outlineMap"
