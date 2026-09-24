@@ -1236,7 +1236,7 @@ export class Player {
   }
 
   createOutlineMap(hintValue, countryCode) {
-    if (!countryCode) return;
+    if (!countryCode || !this.countries) return;
     let countryBound = undefined;
     if (this.playMap && this.playMap.countryBoundariesAndMarkersLayer) {
       countryBound =
