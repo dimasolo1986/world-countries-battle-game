@@ -286,13 +286,13 @@ export class PlayMap {
         messageField.style.border = "rgba(0, 0, 0, 0.2) 0px solid";
         messageField.style.opacity = "0.9";
         messageField.style.fontWeight = "bolder";
-        messageField.style.fontSize = "0.85rem";
+        messageField.style.fontSize = "0.8rem";
         messageField.style.padding = "3px";
         messageField.style.width = "100%";
         messageField.style.marginTop = "0px";
         messageField.style.overflow = "auto";
         messageField.style.fontFamily =
-          "Cambria, Cochin, Georgia, Times,Times New Roman, serif";
+          "Helvetica Neue, Arial, Helvetica, sans-serif";
         messageField.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
         messageField.textContent =

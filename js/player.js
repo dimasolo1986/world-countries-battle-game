@@ -889,6 +889,8 @@ export class Player {
           "coatOfArmsModalLabel",
         );
         coatOfArmsWindowHeader.textContent =
+          localization[model.worldCountries.language]["Hint"] +
+          " - " +
           localization[model.worldCountries.language]["Coat Of Arms"];
         const coatOfArmsCloseButton = document.getElementById(
           "coatOfArmsModalCloseButton",
@@ -921,6 +923,8 @@ export class Player {
         const flagImage = document.getElementById("country-flag");
         const flagWindowHeader = document.getElementById("flagModalLabel");
         flagWindowHeader.textContent =
+          localization[model.worldCountries.language]["Hint"] +
+          " - " +
           localization[model.worldCountries.language]["Country Flag"];
         const flagCloseButton = document.getElementById("flagModalCloseButton");
         flagCloseButton.textContent =
@@ -957,6 +961,8 @@ export class Player {
           "countryOutlineLabel",
         );
         countryOutlineWindowHeader.textContent =
+          localization[model.worldCountries.language]["Hint"] +
+          " - " +
           localization[model.worldCountries.language][
             "Country's Outline On Map"
           ];
@@ -1012,6 +1018,8 @@ export class Player {
         const countryPhotoWindowHeader =
           document.getElementById("countryPhotoLabel");
         countryPhotoWindowHeader.textContent =
+          localization[model.worldCountries.language]["Hint"] +
+          " - " +
           localization[model.worldCountries.language]["Photo From Country"];
         const countryPhotoCloseButton = document.getElementById(
           "countryPhotoCloseButton",
