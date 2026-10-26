@@ -16,6 +16,7 @@ export class Game {
   superBonusCountry;
   secondSuperBonusCountry;
   thirdSuperBonusCountry;
+  fourthSuperBonusCountry;
   gameModalResultLabel = document.getElementById("gameModalResultLabel");
   gameModalRulesLabel = document.getElementById("gameModalRulesLabel");
   gameModalRulesContent = document.getElementById("gameRulesContent");
@@ -39,6 +40,7 @@ export class Game {
     this.superBonusCountry = null;
     this.secondSuperBonusCountry = null;
     this.thirdSuperBonusCountry = null;
+    this.fourthSuperBonusCountry = null;
     this.playerOne = playerOne;
     this.playerTwo = playerTwo;
     this.playMap = playMap;
@@ -63,6 +65,7 @@ export class Game {
     this.superBonusCountry = this.bonusCountries[0];
     this.secondSuperBonusCountry = this.bonusCountries[1];
     this.thirdSuperBonusCountry = this.bonusCountries[2];
+    this.fourthSuperBonusCountry = this.bonusCountries[3];
   }
 
   showGameRules() {
@@ -479,6 +482,7 @@ export class Game {
     this.superBonusCountry = null;
     this.secondSuperBonusCountry = null;
     this.thirdSuperBonusCountry = null;
+    this.fourthSuperBonusCountry = null;
     hideModalWindow("gameCountryAllianceInitialSelectionModal");
     loadMain();
     resetFinishedGame();
