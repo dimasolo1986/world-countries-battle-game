@@ -58,6 +58,7 @@ export class Player {
   countriesToGuessNext = [];
   countriesToGuess = [];
   alreadyGuessedCountryCodes = [];
+  neighboursByCode = null;
   hintTypes = new Set();
   openUserHintSelectionWindow = false;
   constructor(
@@ -163,6 +164,7 @@ export class Player {
     this.countriesToGuessNext = null;
     this.countriesToGuess = null;
     this.alreadyGuessedCountryCodes = null;
+    this.neighboursByCode = null;
     this.hintTypes = null;
     this.outlineMapHandler = null;
     document.getElementById("countryOutlineMap").innerHTML = "";
@@ -240,6 +242,7 @@ export class Player {
     this.countriesToGuessNext = [];
     this.countriesToGuess = [];
     this.alreadyGuessedCountryCodes = [];
+    this.neighboursByCode = null;
     let worldCountries = [];
     if (this.gameConfiguration.onlyIndependentCountries) {
       worldCountries = model.worldCountries.countries.filter(
@@ -1346,9 +1349,87 @@ export class Player {
     if (countries.length === 1) {
       return countries[0].cca2;
     } else {
-      const countryIndex = getRandomInt(0, countries.length - 1);
-      return countries[countryIndex].cca2;
+      const viableCodes = new Set(this.getViableCountryCodes());
+      const viableCountries = countries.filter((country) =>
+        viableCodes.has(country.cca2),
+      );
+      const candidates = viableCountries.length ? viableCountries : countries;
+      const countryIndex = getRandomInt(0, candidates.length - 1);
+      return candidates[countryIndex].cca2;
     }
+  }
+
+  getNeighboursByCode() {
+    if (!this.neighboursByCode) {
+      const neighboursByCode = new Map();
+      for (const code in this.countries) {
+        const neighbours = [];
+        for (const borderCode of this.countries[code].countryBorders) {
+          const neighbourCode = this.countriesCodeMapping[borderCode];
+          if (neighbourCode !== undefined) neighbours.push(neighbourCode);
+        }
+        neighboursByCode.set(code, neighbours);
+      }
+      this.neighboursByCode = neighboursByCode;
+    }
+    return this.neighboursByCode;
+  }
+
+  getViableCountryCodes() {
+    let minSize = Infinity;
+    const hitCodes = [];
+    for (const countryUnion of this.countryUnions) {
+      let isGuessed = true;
+      const unionHitCodes = [];
+      for (const item of countryUnion) {
+        if (!item) {
+          isGuessed = false;
+          continue;
+        }
+        const code = Object.keys(item)[0];
+        if (item[code].guessed) unionHitCodes.push(code);
+        else isGuessed = false;
+      }
+      if (isGuessed) continue;
+      if (countryUnion.length < minSize) minSize = countryUnion.length;
+      hitCodes.push(...unionHitCodes);
+    }
+    if (minSize <= 1 || minSize === Infinity) return this.countryCodes;
+
+    const poolCodes = new Set(this.countryCodes);
+    const nodes = new Set(poolCodes);
+    hitCodes.forEach((code) => nodes.add(code));
+    const neighboursByCode = this.getNeighboursByCode();
+    const visited = new Set();
+    const viableCodes = [];
+    for (const startCode of nodes) {
+      if (visited.has(startCode)) continue;
+      visited.add(startCode);
+      const group = [startCode];
+      for (let i = 0; i < group.length; i++) {
+        for (const neighbourCode of neighboursByCode.get(group[i]) ?? []) {
+          if (nodes.has(neighbourCode) && !visited.has(neighbourCode)) {
+            visited.add(neighbourCode);
+            group.push(neighbourCode);
+          }
+        }
+      }
+      if (group.length >= minSize) {
+        for (const code of group)
+          if (poolCodes.has(code)) viableCodes.push(code);
+      }
+    }
+    return viableCodes.length ? viableCodes : this.countryCodes;
+  }
+
+  pickComputerRandomCountryCode() {
+    const viableCodes = this.opponentPlayer.getViableCountryCodes();
+    const countryCode = viableCodes[getRandomInt(0, viableCodes.length - 1)];
+    this.opponentPlayer.alreadyGuessedCountryCodes.push(countryCode);
+    const countryIndex = this.opponentPlayer.countryCodes.indexOf(countryCode);
+    if (countryIndex >= 0)
+      this.opponentPlayer.countryCodes.splice(countryIndex, 1);
+    return countryCode;
   }
 
   enableMapInteraction() {
@@ -1511,22 +1592,10 @@ export class Player {
           } else {
             this.removeHint(countryCode);
             this.usedHintsCount = this.usedHintsCount + 1;
-            countryIndex = getRandomInt(
-              0,
-              this.opponentPlayer.countryCodes.length - 1,
-            );
-            countryCode = this.opponentPlayer.countryCodes[countryIndex];
-            this.opponentPlayer.alreadyGuessedCountryCodes.push(countryCode);
-            this.opponentPlayer.countryCodes.splice(countryIndex, 1);
+            countryCode = this.pickComputerRandomCountryCode();
           }
         } else {
-          countryIndex = getRandomInt(
-            0,
-            this.opponentPlayer.countryCodes.length - 1,
-          );
-          countryCode = this.opponentPlayer.countryCodes[countryIndex];
-          this.opponentPlayer.alreadyGuessedCountryCodes.push(countryCode);
-          this.opponentPlayer.countryCodes.splice(countryIndex, 1);
+          countryCode = this.pickComputerRandomCountryCode();
         }
         this.countriesNumberField.textContent =
           this.opponentPlayer.countryCodes.length;
