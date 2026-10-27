@@ -172,9 +172,9 @@ export class PlayMap {
       onAdd: function (map) {
         const playerOneScoreField = L.DomUtil.create("div");
         playerOneScoreField.id = "player-one-score-field";
-        playerOneScoreField.style.backgroundColor = "white";
+        playerOneScoreField.style.backgroundColor = "rgba(255, 255, 255, 0.7)";
         playerOneScoreField.style.boxShadow =
-          "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
+          "0 2px 8px rgba(15, 23, 42, 0.25), inset 0 2px 0 #5b8def";
         playerOneScoreField.style.paddingRight = "3px";
         playerOneScoreField.style.width = "50px";
         playerOneScoreField.classList.add("text-center");
@@ -182,9 +182,8 @@ export class PlayMap {
         playerOneScoreField.style.paddingTop = "2px";
         playerOneScoreField.style.paddingBottom = "2px";
         playerOneScoreField.style.fontSize = "0.7rem";
-        playerOneScoreField.style.opacity = "0.7";
-        playerOneScoreField.style.borderRadius = "2px";
-        playerOneScoreField.style.fontWeight = "bolder";
+        playerOneScoreField.style.borderRadius = "5px";
+        playerOneScoreField.style.fontWeight = "700";
         playerOneScoreField.style.marginTop = "5px";
         playerOneScoreField.style.color = "green";
         playerOneScoreField.textContent = "🏅 0";
@@ -208,21 +207,31 @@ export class PlayMap {
         container.id = playerOneSelectedCountriesContainerId;
         container.classList.add("text-center");
         container.style.width = "50px";
-        container.style.backgroundColor = "white";
-        container.style.opacity = "0.7";
-        container.style.borderRadius = "2px";
+        container.style.paddingTop = "1px";
+        container.style.backgroundColor = "rgba(255, 255, 255, 0.7)";
+        container.style.borderRadius = "5px";
+        container.style.overflow = "hidden";
         container.style.boxShadow =
-          "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
+          "0 2px 8px rgba(15, 23, 42, 0.25), inset 0 2px 0 #5b8def";
         const userIconContainer = L.DomUtil.create("span");
         userIconContainer.textContent = "🧑";
         const userCountriesNumber = L.DomUtil.create("span");
         userCountriesNumber.style.marginLeft = "5px";
         userCountriesNumber.id = playerOneSelectedCountriesNumber;
-        userCountriesNumber.style.fontWeight = "bolder";
-        userCountriesNumber.style.color = "darkblue";
+        userCountriesNumber.style.fontWeight = "700";
+        userCountriesNumber.style.color = "#1e3a8a";
         userCountriesNumber.textContent = "0";
         container.appendChild(userIconContainer);
         container.appendChild(userCountriesNumber);
+        const addHoverTint = (element) => {
+          element.style.transition = "background-color 0.2s ease";
+          element.addEventListener("mouseover", () => {
+            element.style.backgroundColor = "rgba(37, 99, 235, 0.15)";
+          });
+          element.addEventListener("mouseout", () => {
+            element.style.backgroundColor = "transparent";
+          });
+        };
         const random = L.DomUtil.create("div");
         random.style.height = "23px";
         random.style.display = "flex";
@@ -234,9 +243,10 @@ export class PlayMap {
             "Random Countries Selection"
           ];
         random.id = "random-user-countries-selection";
-        random.style.borderTop = "1px dotted black";
+        random.style.borderTop = "1px solid rgba(100, 116, 139, 0.25)";
         random.textContent = "🎲";
         random.addEventListener("click", this.randomFunction);
+        addHoverTint(random);
         const undo = L.DomUtil.create("div");
         undo.style.height = "23px";
         undo.style.display = "flex";
@@ -248,10 +258,11 @@ export class PlayMap {
             "Undo Last Country Alliance Selection"
           ];
         undo.id = "undo-user-countries-selection";
-        undo.style.borderTop = "1px dotted black";
+        undo.style.borderTop = "1px solid rgba(100, 116, 139, 0.25)";
         undo.textContent = "↩️";
         undo.style.display = "none";
         undo.addEventListener("click", this.undoFunction);
+        addHoverTint(undo);
         const clean = L.DomUtil.create("div");
         clean.style.height = "23px";
         clean.style.display = "flex";
@@ -260,9 +271,10 @@ export class PlayMap {
         clean.style.cursor = "pointer";
         clean.title = localization[model.worldCountries.language]["Clean"];
         clean.id = "clean-user-countries-selection";
-        clean.style.borderTop = "1px dotted black";
+        clean.style.borderTop = "1px solid rgba(100, 116, 139, 0.25)";
         clean.textContent = "🗑️";
         clean.addEventListener("click", this.cleanFunction);
+        addHoverTint(clean);
         container.insertAdjacentHTML(
           "beforeend",
           this.gameConfiguration.countriesUnionsHtml,
@@ -712,12 +724,16 @@ export class PlayMap {
       .guessedcountryalliancepanel({ position: "topcenter" })
       .addTo(this.map);
     L.Control.playerTwoScoreField = L.Control.extend({
+      gameConfiguration: this.gameConfiguration,
       onAdd: function (map) {
         const playerTwoScoreField = L.DomUtil.create("div");
         playerTwoScoreField.id = "player-two-score-field";
-        playerTwoScoreField.style.backgroundColor = "white";
-        playerTwoScoreField.style.boxShadow =
-          "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
+        playerTwoScoreField.style.backgroundColor = "rgba(255, 255, 255, 0.7)";
+        const opponentAccent =
+          this.gameConfiguration.gameMode === "computer"
+            ? "#64748b"
+            : "#f97316";
+        playerTwoScoreField.style.boxShadow = `0 2px 8px rgba(15, 23, 42, 0.25), inset 0 2px 0 ${opponentAccent}`;
         playerTwoScoreField.style.paddingRight = "3px";
         playerTwoScoreField.style.width = "50px";
         playerTwoScoreField.classList.add("text-center");
@@ -725,9 +741,8 @@ export class PlayMap {
         playerTwoScoreField.style.paddingTop = "2px";
         playerTwoScoreField.style.paddingBottom = "2px";
         playerTwoScoreField.style.fontSize = "0.7rem";
-        playerTwoScoreField.style.opacity = "0.7";
-        playerTwoScoreField.style.borderRadius = "2px";
-        playerTwoScoreField.style.fontWeight = "bolder";
+        playerTwoScoreField.style.borderRadius = "5px";
+        playerTwoScoreField.style.fontWeight = "700";
         playerTwoScoreField.style.color = "green";
         playerTwoScoreField.textContent = "🏅 0";
         playerTwoScoreField.title =
@@ -747,13 +762,18 @@ export class PlayMap {
         container.id = playerTwoSelectedCountriesContainerId;
         container.classList.add("text-center");
         container.style.width = "50px";
+        container.style.paddingTop = "1px";
         container.style.marginTop = "5px";
-        container.style.backgroundColor = "white";
-        container.style.opacity = "0.7";
-        container.style.borderRadius = "2px";
-        container.style.boxShadow =
-          "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
+        container.style.backgroundColor = "rgba(255, 255, 255, 0.7)";
+        container.style.borderRadius = "5px";
+        container.style.overflow = "hidden";
+        const opponentAccent =
+          this.gameConfiguration.gameMode === "computer"
+            ? "#64748b"
+            : "#f97316";
+        container.style.boxShadow = `0 2px 8px rgba(15, 23, 42, 0.25), inset 0 2px 0 ${opponentAccent}`;
         const userIconContainer = L.DomUtil.create("span");
+        userIconContainer.style.marginTop = "1px";
         if (this.gameConfiguration.gameMode === "computer") {
           userIconContainer.textContent = "🤖";
         } else {
@@ -762,8 +782,8 @@ export class PlayMap {
         const userCountriesNumber = L.DomUtil.create("span");
         userCountriesNumber.style.marginLeft = "5px";
         userCountriesNumber.id = playerTwoSelectedCountriesNumber;
-        userCountriesNumber.style.fontWeight = "bolder";
-        userCountriesNumber.style.color = "darkblue";
+        userCountriesNumber.style.fontWeight = "700";
+        userCountriesNumber.style.color = "#1e3a8a";
         userCountriesNumber.textContent = "0";
         container.appendChild(userIconContainer);
         container.appendChild(userCountriesNumber);
