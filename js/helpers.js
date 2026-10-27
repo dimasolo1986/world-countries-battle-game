@@ -205,6 +205,21 @@ export const findLastIndex = function (array, predicate) {
   return -1;
 };
 
+export const setChatArrow = function (element, up) {
+  if (!element) return;
+  element.dataset.direction = up ? "up" : "down";
+  element.style.display = "inline-block";
+  element.style.width = "0.45em";
+  element.style.height = "0.45em";
+  element.style.borderRight = "2px solid currentColor";
+  element.style.borderBottom = "2px solid currentColor";
+  element.style.position = "relative";
+  element.style.verticalAlign = "middle";
+  element.style.transition = "transform 0.2s ease";
+  element.style.transform = up ? "rotate(-135deg)" : "rotate(45deg)";
+  element.style.top = up ? "0.12em" : "-0.18em";
+};
+
 export const currentDateTime = function () {
   const d = new Date();
   const date = d.toISOString().split("T")[0];

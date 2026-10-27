@@ -3,6 +3,7 @@ import { getAuth, signInAnonymously } from "./firebase-auth.js";
 import { STUN_SERVER_LIST, FIREBASE_DATA, METERED_DATA } from "./config.js";
 import { localization } from "./localization/ua.js";
 import { resetGameRoomContainer } from "./helpers.js";
+import { hasChat, receiveChat, syncMainChatWithConnection } from "./chat.js";
 import * as model from "./model.js";
 import {
   getDatabase,
@@ -195,8 +196,8 @@ export class Firebase {
         this.dataChannel.onmessage = function (e) {
           if (this.game) {
             this.game.opponentMessagesHandler(e.data);
-          } else if (!this.game && JSON.parse(e.data).type === "chat") {
-            this.sendMessage(JSON.stringify({ type: "notReady" }));
+          } else {
+            this.handleChatWithoutGame(e.data);
           }
         }.bind(this);
       };
@@ -269,6 +270,7 @@ export class Firebase {
         localization[model.worldCountries.language]["Connection is closed"];
       opponentConnectionText.dataset.connection = "Connection is closed";
     }
+    syncMainChatWithConnection(connectionState);
   }
 
   async createGameRoom(gameRoomId) {
@@ -375,10 +377,20 @@ export class Firebase {
       this.dataChannel.onmessage = function (e) {
         if (this.game) {
           this.game.opponentMessagesHandler(e.data);
-        } else if (!this.game && JSON.parse(e.data).type === "chat") {
-          this.sendMessage(JSON.stringify({ type: "notReady" }));
+        } else {
+          this.handleChatWithoutGame(e.data);
         }
       }.bind(this);
+    }
+  }
+
+  handleChatWithoutGame(rawMessage) {
+    const message = JSON.parse(rawMessage);
+    if (message.type !== "chat") return;
+    if (hasChat()) {
+      receiveChat(message.value);
+    } else {
+      this.sendMessage(JSON.stringify({ type: "notReady" }));
     }
   }
 
@@ -424,6 +436,12 @@ export class Firebase {
     if (this.dataChannel && this.dataChannel.readyState === "open") {
       this.dataChannel.send(message);
     }
+  }
+
+  sendChat(text) {
+    if (this.opponentConnectionState !== "connected") return false;
+    this.sendChatMessage(JSON.stringify({ type: "chat", value: text }));
+    return true;
   }
 
   async sendMessage(message, retries = 2, delay = 500) {

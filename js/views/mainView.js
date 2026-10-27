@@ -1,5 +1,6 @@
 import { localization } from "../localization/ua.js";
 import * as model from "../model.js";
+import { showMainChat, destroyChat } from "../chat.js";
 class mainView {
   _parentElement = document.querySelector(".main-container");
   _aboutButton = document.querySelector("#about-button");
@@ -226,6 +227,7 @@ class mainView {
           this._createGameRoomContainer.classList.add("not-displayed");
           this._gameModeSlider.style.background = "#d0d0d0";
           gameRoomView.deleteGameRoom();
+          destroyChat();
         } else {
           this._createGameRoomContainer.classList.remove("not-displayed");
           this._gameModeSlider.style.background = "#6495ed";
@@ -355,7 +357,7 @@ class mainView {
     this._parentElement.classList.remove("not-displayed");
     this._parentElement.classList.add("d-grid");
     this._header.classList.remove("not-displayed");
-    this._footer.style.display = "flex";
+    showMainChat();
     this._startButton.disabled = false;
   }
 

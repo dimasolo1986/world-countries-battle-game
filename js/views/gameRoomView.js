@@ -2,12 +2,17 @@ import { localization } from "../localization/ua.js";
 import * as model from "../model.js";
 import { generateRoomId } from "../helpers.js";
 import { Firebase } from "../firebase.js";
+import { setChatTransport } from "../chat.js";
 class gameRoomView {
   _parentElement = document.querySelector("#create-game-room-page");
   _firebase;
 
   constructor() {
     this._firebase = new Firebase();
+    setChatTransport({
+      send: (text) => this._firebase.sendChat(text),
+      isConnected: () => this._firebase.opponentConnectionState === "connected",
+    });
   }
   _gameRoomCreateButton = document.querySelector(".create-game-room");
   _gameRoomDeleteButton = document.querySelector(".delete-game-room");

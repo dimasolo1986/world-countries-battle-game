@@ -14,6 +14,7 @@ import {
   addTimerToModal,
   findLastIndex,
 } from "./helpers.js";
+import { receiveChat } from "./chat.js";
 import * as model from "./model.js";
 export class Player {
   hitTimeoutIds = [];
@@ -5793,23 +5794,7 @@ export class Player {
       this.game.isOpponentPlayerReady = true;
       this.game.playHit();
     } else if (messageObject.type === "chat") {
-      const message = messageObject.value;
-      const input = document.getElementById("chat-message-from-opponent");
-      if (input) {
-        input.value = "🧓: " + message;
-      }
-      const chat = document.getElementById("chat-container");
-      if (chat.classList.contains("not-displayed")) {
-        chat.classList.remove("not-displayed");
-        const chatButtonLeftArrow = document.getElementById(
-          "chat-button-left-arrow",
-        );
-        chatButtonLeftArrow.textContent = "⬇";
-        const chatButtonRightArrow = document.getElementById(
-          "chat-button-right-arrow",
-        );
-        chatButtonRightArrow.textContent = "⬇";
-      }
+      receiveChat(messageObject.value);
     } else if (messageObject.type === "notReady") {
       const input = document.getElementById("chat-message-from-opponent");
       if (input) {

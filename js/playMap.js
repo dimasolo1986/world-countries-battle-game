@@ -1,6 +1,7 @@
 import { localization } from "./localization/ua.js";
 import { WORLD_MAP_BOUNDS } from "./config.js";
 import * as model from "./model.js";
+import { takeChatForMap } from "./chat.js";
 export class PlayMap {
   map;
   mapId;
@@ -282,19 +283,40 @@ export class PlayMap {
         const messageField = L.DomUtil.create("div");
         messageField.id = "countries-battle-game-message";
         messageField.classList.add("text-center");
-        messageField.style.backgroundColor = "white";
+        messageField.style.backgroundColor = "rgba(255, 255, 255, 0.88)";
+        messageField.style.backdropFilter = "blur(8px)";
+        messageField.style.webkitBackdropFilter = "blur(8px)";
         messageField.style.border = "rgba(0, 0, 0, 0.2) 0px solid";
-        messageField.style.opacity = "0.9";
-        messageField.style.fontWeight = "bolder";
+        messageField.style.color = "#1e293b";
+        messageField.style.fontWeight = "600";
+        messageField.style.letterSpacing = "0.01em";
         messageField.style.fontSize = "0.8rem";
         messageField.style.padding = "3px";
         messageField.style.width = "100%";
         messageField.style.marginTop = "0px";
         messageField.style.overflow = "auto";
+        messageField.style.borderBottomLeftRadius = "10px";
+        messageField.style.borderBottomRightRadius = "10px";
         messageField.style.fontFamily =
-          "Helvetica Neue, Arial, Helvetica, sans-serif";
-        messageField.style.boxShadow =
-          "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
+          "Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif";
+        messageField.style.transition = "box-shadow 0.25s ease";
+        const accentByEmoji = [
+          ["🎯", "#22c55e"],
+          ["⛔", "#94a3b8"],
+          ["💣", "#ef4444"],
+          ["⚠️", "#eab308"],
+        ];
+        const setAccent = () => {
+          const text = messageField.textContent.trimStart();
+          const match = accentByEmoji.find(([emoji]) => text.startsWith(emoji));
+          const color = match ? match[1] : "#5b8def";
+          messageField.style.boxShadow = `0 4px 16px rgba(15, 23, 42, 0.25), inset 0 -2px 0 ${color}`;
+        };
+        new MutationObserver(setAccent).observe(messageField, {
+          childList: true,
+          characterData: true,
+          subtree: true,
+        });
         messageField.textContent =
           localization[model.worldCountries.language][
             "Choose one alliance from four countries"
@@ -355,125 +377,8 @@ export class PlayMap {
         .opponentconnectionfield({ position: "topcenter" })
         .addTo(this.map);
       L.Control.Chat = L.Control.extend({
-        chatButtonFunction: this.chatButtonHandler.bind(this),
-        chatMessage: this.sendChatMessage.bind(this),
         onAdd: function (map) {
-          const chat = L.DomUtil.create("div");
-          chat.id = "chat";
-          chat.style.width = "100%";
-          chat.style.marginBottom = "0px";
-          chat.classList.add("text-center");
-          const chatButton = L.DomUtil.create("div");
-          chatButton.id = "chat-button";
-          chatButton.style.backgroundColor = "white";
-          chatButton.style.color = "darkblue";
-          chatButton.style.cursor = "pointer";
-          chatButton.style.boxShadow =
-            "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
-          chatButton.style.fontSize = "0.75rem";
-          chatButton.style.opacity = "0.7";
-          chatButton.style.width = "25%";
-          chatButton.style.fontWeight = "bolder";
-          chatButton.style.marginBottom = "0px";
-          chatButton.style.display = "inline-block";
-          chatButton.style.borderTopLeftRadius = "5px";
-          chatButton.style.borderTopRightRadius = "5px";
-          chatButton.classList.add("text-center");
-          const chatButtonLeftArrow = L.DomUtil.create("span");
-          chatButtonLeftArrow.id = "chat-button-left-arrow";
-          chatButtonLeftArrow.textContent = "⬆";
-          chatButtonLeftArrow.style.marginRight = "10px";
-          const chatButtonText = L.DomUtil.create("span");
-          chatButtonText.id = "chat-button-text";
-          chatButtonText.textContent =
-            localization[model.worldCountries.language]["CHAT"];
-          const chatButtonRightArrow = L.DomUtil.create("span");
-          chatButtonRightArrow.id = "chat-button-right-arrow";
-          chatButtonRightArrow.textContent = "⬆";
-          chatButtonRightArrow.style.marginLeft = "10px";
-          const chatContainer = L.DomUtil.create("div");
-          chatContainer.id = "chat-container";
-          chatContainer.classList.add("not-displayed");
-          chatContainer.style.backgroundColor = "white";
-          chatContainer.style.color = "darkblue";
-          chatContainer.style.boxShadow =
-            "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
-          chatContainer.style.fontSize = "0.7rem";
-          chatContainer.style.opacity = "0.7";
-          chatContainer.style.width = "100%";
-          chatContainer.style.fontWeight = "bolder";
-          chatContainer.style.marginBottom = "0px";
-          const chatMessageFromOpponent = L.DomUtil.create("input");
-          chatMessageFromOpponent.id = "chat-message-from-opponent";
-          chatMessageFromOpponent.readOnly = true;
-          chatMessageFromOpponent.placeholder =
-            "🧓 " +
-            localization[model.worldCountries.language][
-              "Message From Opponent"
-            ];
-          chatMessageFromOpponent.ariaReadonly = true;
-          chatMessageFromOpponent.style.width = "100%";
-          chatMessageFromOpponent.style.border = "0px";
-          chatMessageFromOpponent.style.borderTop = "1px dotted black";
-          chatMessageFromOpponent.style.overflowX = "hidden";
-          const chatMessageToOpponentContainer = L.DomUtil.create("div");
-          chatMessageToOpponentContainer.style.display = "flex";
-          const chatMessageToOpponent = L.DomUtil.create("input");
-          chatMessageToOpponent.id = "chat-message-to-opponent";
-          chatMessageToOpponent.type = "text";
-          chatMessageToOpponent.placeholder =
-            "✉️ " +
-            localization[model.worldCountries.language][
-              "Type Your Message Here... (max. length 300 characters)"
-            ];
-          chatMessageToOpponent.style.width = "90%";
-          chatMessageToOpponent.style.border = "0px";
-          chatMessageToOpponent.style.borderTop = "1px solid black";
-          chatMessageToOpponent.style.borderRight = "1px solid black";
-          chatMessageToOpponent.maxLength = 300;
-          chatMessageToOpponent.style.overflowX = "hidden";
-          const chatMessageToOpponentButton = L.DomUtil.create("input");
-
-          chatMessageToOpponentButton.type = "button";
-          chatMessageToOpponentButton.id = "chat-message-to-opponent-button";
-          chatMessageToOpponentButton.value = `📩`;
-          chatMessageToOpponentButton.style.width = "10%";
-          chatMessageToOpponentButton.style.backgroundColor = "white";
-          chatMessageToOpponentButton.style.border = "0px";
-          chatMessageToOpponentButton.style.borderTop = "1px solid black";
-          chatMessageToOpponentButton.style.boxShadow =
-            "rgba(0, 0, 0, 0.5) 0px 1px 5px, rgba(0, 0, 0, 0.12) 0px 1px 5px inset";
-          chatMessageToOpponentButton.title =
-            localization[model.worldCountries.language]["Send Message"];
-          chatMessageToOpponentButton.addEventListener(
-            "click",
-            this.chatMessage,
-          );
-          chatMessageToOpponentButton.addEventListener("mouseover", () => {
-            chatMessageToOpponentButton.style.backgroundColor = "#25cff2";
-          });
-          chatMessageToOpponentButton.addEventListener("mouseout", () => {
-            chatMessageToOpponentButton.style.backgroundColor = "white";
-          });
-          chatMessageToOpponent.addEventListener("keydown", (e) => {
-            if (e.key === "Enter") {
-              e.preventDefault();
-              this.chatMessage();
-            }
-          });
-          chatMessageToOpponentContainer.appendChild(chatMessageToOpponent);
-          chatMessageToOpponentContainer.appendChild(
-            chatMessageToOpponentButton,
-          );
-          chat.appendChild(chatButton);
-          chat.appendChild(chatContainer);
-          chatContainer.appendChild(chatMessageFromOpponent);
-          chatContainer.appendChild(chatMessageToOpponentContainer);
-          chatButton.appendChild(chatButtonLeftArrow);
-          chatButton.appendChild(chatButtonText);
-          chatButton.appendChild(chatButtonRightArrow);
-          chatButton.addEventListener("click", this.chatButtonFunction);
-          return chat;
+          return takeChatForMap();
         },
         onRemove: function (map) {},
       });
@@ -1001,46 +906,6 @@ export class PlayMap {
       this.playerOne.hitIntervalIds.length != 0
     )
       this.playerOne.clearAllIntervals(this.playerOne);
-  }
-
-  sendChatMessage() {
-    const messageInput = document.getElementById("chat-message-to-opponent");
-    let sent = false;
-    if (messageInput && messageInput.value !== "") {
-      sent = this.game.sendChatMessage(messageInput.value);
-    }
-    if (!sent && messageInput.value !== "") {
-      document.getElementById("chat-message-from-opponent").value =
-        "🧓: " +
-        localization[model.worldCountries.language][
-          "Opponent has not yet entered the game room to read your messages. Try sending a message later"
-        ];
-    }
-    messageInput.value = "";
-    messageInput.focus();
-  }
-
-  chatButtonHandler() {
-    const chat = document.getElementById("chat-container");
-    const inputField = document.getElementById("chat-message-to-opponent");
-    const chatButtonLeftArrow = document.getElementById(
-      "chat-button-left-arrow",
-    );
-    if (chatButtonLeftArrow.textContent === "⬆") {
-      chatButtonLeftArrow.textContent = "⬇";
-    } else {
-      chatButtonLeftArrow.textContent = "⬆";
-    }
-    const chatButtonRightArrow = document.getElementById(
-      "chat-button-right-arrow",
-    );
-    if (chatButtonRightArrow.textContent === "⬆") {
-      chatButtonRightArrow.textContent = "⬇";
-    } else {
-      chatButtonRightArrow.textContent = "⬆";
-    }
-    chat.classList.toggle("not-displayed");
-    inputField.focus();
   }
 
   finishGameHandler(useConfirm, deleteGameRoom) {
