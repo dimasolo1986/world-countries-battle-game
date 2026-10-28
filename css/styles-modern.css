@@ -734,6 +734,34 @@ main .card .card-body {
   border-radius: 50%;
   background: currentColor;
 }
+@supports not (color: color-mix(in srgb, red 10%, white)) {
+  .config-heading-badge,
+  #opponent-label,
+  .opponent-badge > *,
+  #opponent-connection-main-page-text {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid currentColor;
+  }
+  #countries-field,
+  #bonus-countries-field {
+    background: rgba(255, 255, 255, 0.85) !important;
+    border: 1px solid currentColor;
+  }
+  .opponent-badge-computer > * {
+    background: rgba(139, 92, 246, 0.12);
+  }
+  .opponent-badge-friend > * {
+    background: rgba(249, 115, 22, 0.12);
+  }
+  #opponent-connection-field {
+    background: rgba(255, 0, 0, 0.12) !important;
+    border: 1px solid rgba(255, 0, 0, 0.5);
+  }
+  #opponent-connection-field:has(#opponent-connection-text[style*="green"]) {
+    background: rgba(0, 128, 0, 0.12) !important;
+    border-color: rgba(0, 128, 0, 0.5);
+  }
+}
 
 /* ─── Buttons — main card ──────────────────────────────────────────────────── */
 
