@@ -1046,7 +1046,7 @@
             class="card-subtitle mb-1"
             style="color: green; font-size: 0.85rem; margin-top: 1px; font-weight: bold;"
           >
-            ⚙️ Game Configuration ⚙️
+            <span>⚙️</span><span class="config-heading-badge">Game Configuration</span><span>⚙️</span>
           </h5>
 
           <div class="country-union-container">
@@ -1272,8 +1272,8 @@
           <div class="text-center game-room-input-container" style="font-size: 0.8rem; margin-bottom: 5px;">
             <p style="margin-bottom: 7px; margin-top: 8px; font-weight: bold; color: cornflowerblue;" id="opponent-label">Opponent</p>
 
-            <div><span class="opponent-badge" style="margin-right: 10px;"><label for="gameMode" id="opponent-label-computer">Computer</label
-            ><span style="margin-left: 3px;">🤖</span></span>
+            <div><span class="opponent-badge opponent-badge-computer" style="margin-right: 10px;"><label for="gameMode" id="opponent-label-computer">Computer</label
+            ><span class="opponent-emoji">🤖</span></span>
             <input
               type="range"
               style="width: 15%; cursor: pointer"
@@ -1283,7 +1283,7 @@
               max="1"
               value="0"
             />
-            <span class="opponent-badge" style="margin-left: 10px;"><span style="margin-right: 3px;">👨🏻</span><label for="gameMode" id="opponent-label-friend">Friend</label></span></div>
+            <span class="opponent-badge opponent-badge-friend" style="margin-left: 10px;"><span class="opponent-emoji">👨🏻</span><label for="gameMode" id="opponent-label-friend">Friend</label></span></div>
           </div>
           <div id="game-room-heading-container" class="not-displayed" style="font-size: 0.7rem; margin-top: 3px;">
             <div style="padding-left: 3px; padding-right: 3px; font-size: 0.5rem; border-radius: 2px; font-weight: bolder;"><span id="opponent-connection-main-page-text" style="color: red;" data-connection="Opponent is not online">Opponent is not online</span></div>
@@ -1421,10 +1421,10 @@
         </div>
         <h6
             id="game-configuration-header-game-room"
-            class="card-subtitle mb-1"
+            class="card-subtitle mb-2"
             style="color: green; font-size: 0.85rem; font-weight: bold; margin-top: 5px;"
           >
-            ⚙️ Game Configuration ⚙️
+            <span>⚙️</span><span class="config-heading-badge">Game Configuration</span><span>⚙️</span>
           </h6>
           <div style="font-size: 0.8rem">
             <label for="only-independent-countries-game-room-select">🌍</label>

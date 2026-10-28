@@ -473,7 +473,7 @@ export class PlayMap {
         selectedCountryField.style.paddingBottom = "3px";
         selectedCountryField.style.fontSize = "0.6rem";
         selectedCountryField.style.opacity = "0.7";
-        selectedCountryField.style.borderRadius = "2px";
+        selectedCountryField.style.borderRadius = "3px";
         selectedCountryField.style.fontWeight = "bolder";
         selectedCountryField.style.marginTop = "10px";
         selectedCountryField.style.color = "darkblue";
@@ -675,7 +675,7 @@ export class PlayMap {
         hintsPanel.style.width = "fit-content";
         hintsPanel.style.maxWidth = "220px";
         hintsPanel.style.minWidth = "100px";
-        hintsPanel.style.borderRadius = "2px";
+        hintsPanel.style.borderRadius = "3px";
         hintsPanel.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
         hintsPanel.style.marginTop = "10px";
@@ -706,7 +706,7 @@ export class PlayMap {
         guessedCountryAlliancePanel.style.backgroundColor = "white";
         guessedCountryAlliancePanel.style.opacity = "0.9";
         guessedCountryAlliancePanel.style.width = "fit-content";
-        guessedCountryAlliancePanel.style.borderRadius = "2px";
+        guessedCountryAlliancePanel.style.borderRadius = "3px";
         guessedCountryAlliancePanel.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
         guessedCountryAlliancePanel.style.marginTop = "10px";

@@ -445,8 +445,8 @@ header.bg-dark {
     var(--cg-navy-light) 100%
   ) !important;
   border-bottom: 1px solid rgba(14, 165, 233, 0.25) !important;
-  padding-top: 0.35rem !important;
-  padding-bottom: 0.35rem !important;
+  padding-top: 0.3rem !important;
+  padding-bottom: 0.3rem !important;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35) !important;
 }
 
@@ -512,8 +512,8 @@ footer.bg-dark {
   ) !important;
   border-top: 1px solid rgba(14, 165, 233, 0.2) !important;
   box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.3) !important;
-  padding-top: 0.3rem !important;
-  padding-bottom: 0.3rem !important;
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
   display: flex;
   align-items: center !important;
   flex-wrap: nowrap !important;
@@ -566,6 +566,19 @@ main .card .card-body {
   color: var(--cg-green) !important;
   letter-spacing: 0.03em !important;
   text-transform: uppercase !important;
+}
+#game-configuration-header,
+#game-configuration-header-game-room {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.config-heading-badge {
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: color-mix(in srgb, currentColor 12%, white);
+  border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
 }
 
 /* ─── Config selects ───────────────────────────────────────────────────────── */
@@ -623,18 +636,40 @@ main .card .card-body {
 .opponent-badge {
   display: inline-flex;
   align-items: center;
-  gap: 3px;
+  gap: 4px;
   vertical-align: middle;
   line-height: 1;
-  padding: 3px 7px;
-  border-radius: 999px;
-  color: var(--cg-text-muted);
-  background: color-mix(in srgb, currentColor 10%, white);
-  border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
 }
 .opponent-badge > * {
   margin: 0 !important;
   line-height: 1;
+  box-sizing: border-box;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cg-text-muted);
+  background: color-mix(in srgb, currentColor 10%, white);
+  border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+}
+.opponent-badge-computer > *,
+.opponent-badge-computer > #opponent-label-computer {
+  color: #8b5cf6 !important;
+  border-color: #8b5cf6;
+}
+.opponent-badge-friend > *,
+.opponent-badge-friend > #opponent-label-friend {
+  color: #f97316 !important;
+  border-color: #f97316;
+}
+.opponent-badge > .opponent-emoji {
+  width: 22px;
+  padding: 0;
+  border-radius: 50%;
+}
+.opponent-badge > label {
+  padding: 0 9px;
+  border-radius: 999px;
 }
 
 /* Range slider — recolour thumb to teal */

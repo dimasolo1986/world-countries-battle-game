@@ -500,9 +500,9 @@ class gameRoomView {
     this._gameShareLink.textContent = `🔗 ${
       localization[model.worldCountries.language]["Share Link With Friend"]
     }`;
-    this._gameRoomGameConfigurationHeader.textContent = `⚙️ ${
+    this._gameRoomGameConfigurationHeader.innerHTML = `<span>⚙️</span><span class="config-heading-badge">${
       localization[model.worldCountries.language]["Game Configuration"]
-    } ⚙️`;
+    }</span><span>⚙️</span>`;
     this._gameRoomOnlyIndependentCountriesSelect.title =
       localization[model.worldCountries.language]["Countries"];
     const onlyIndependentOptions = Array.from(

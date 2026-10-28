@@ -367,9 +367,9 @@ class mainView {
   }
 
   translateElements() {
-    this._gameConfigurationHeader.textContent = `⚙️ ${
+    this._gameConfigurationHeader.innerHTML = `<span>⚙️</span><span class="config-heading-badge">${
       localization[model.worldCountries.language]["Game Configuration"]
-    } ⚙️`;
+    }</span><span>⚙️</span>`;
     this._onlyIndependentCountriesSelect.title =
       localization[model.worldCountries.language]["Countries"];
     const onlyIndependentOptions = Array.from(

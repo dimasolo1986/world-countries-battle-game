@@ -1144,6 +1144,7 @@ export class Player {
         hintsButton.style.marginTop = "10px";
         hintsButton.style.padding = "0.25rem";
         hintsButton.style.maxWidth = "220px";
+        hintsButton.style.borderRadius = "3px";
         hintsButton.style.boxShadow =
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
         hintsButton.dataset.hints = `${hintsLength}`;
@@ -2694,12 +2695,13 @@ export class Player {
           };
           document.getElementById(
             "guessed-country-alliance-panel-content",
-          ).innerHTML = `<div>⚠️<span style="
+          ).innerHTML = `<div style="border-radius: 3px;">⚠️<span style="
                     color: white;
                     font-size: 0.75rem;
                     padding-left: 3px;
                     padding-right: 3px;
                     font-weight: bolder;
+                    border-radius: 3px;
                   ">- ${points} ${
                     localization[model.worldCountries.language]["Points"]
                   }</span></div>`;
@@ -2910,12 +2912,14 @@ export class Player {
           );
           document.getElementById(
             "guessed-country-alliance-panel-content",
-          ).innerHTML = `<div>${superBonus ? "💎" : "🎁"}<span style="
+          ).innerHTML =
+            `<div style="border-radius: 3px;">${superBonus ? "💎" : "🎁"}<span style="
                     color: white;
                     font-size: 0.75rem;
                     padding-left: 3px;
                     padding-right: 3px;
                     font-weight: bolder;
+                    border-radius: 3px;
                   ">+ 10 ${
                     localization[model.worldCountries.language]["Points"]
                   }</span></div>`;
@@ -3331,12 +3335,13 @@ export class Player {
             );
             document.getElementById(
               "guessed-country-alliance-panel-content",
-            ).innerHTML = `<div>🏅<span style="
+            ).innerHTML = `<div style="border-radius: 3px;">🏅<span style="
                     color: white;
                     font-size: 0.75rem;
                     padding-left: 3px;
                     padding-right: 3px;
                     font-weight: bolder;
+                    border-radius: 3px;
                   ">+ ${points} ${
                     localization[model.worldCountries.language]["Points"]
                   }</span></div>`;
