@@ -2,6 +2,12 @@ import { localization } from "./localization/ua.js";
 import { WORLD_MAP_BOUNDS } from "./config.js";
 import * as model from "./model.js";
 import { takeChatForMap } from "./chat.js";
+
+function mapFieldAccent(label, gameMode) {
+  if (label === "Your Map") return "#5b8def";
+  return gameMode === "computer" ? "#8b5cf6" : "#f97316";
+}
+
 export class PlayMap {
   map;
   mapId;
@@ -317,12 +323,14 @@ export class PlayMap {
           ["⛔", "#94a3b8"],
           ["💣", "#ef4444"],
           ["⚠️", "#eab308"],
+          ["🎁", "#800080"],
+          ["💎", "#00FFFF"],
         ];
         const setAccent = () => {
           const text = messageField.textContent.trimStart();
           const match = accentByEmoji.find(([emoji]) => text.startsWith(emoji));
           const color = match ? match[1] : "#5b8def";
-          messageField.style.boxShadow = `0 4px 16px rgba(15, 23, 42, 0.25), inset 0 -2px 0 ${color}`;
+          messageField.style.boxShadow = `0 4px 16px rgba(15, 23, 42, 0.25), inset 0 -3px 0 ${color}`;
         };
         new MutationObserver(setAccent).observe(messageField, {
           childList: true,
@@ -400,38 +408,45 @@ export class PlayMap {
       L.control.chat({ position: "bottomcenter" }).addTo(this.map);
     }
     L.Control.MapField = L.Control.extend({
+      gameConfiguration: this.gameConfiguration,
       onAdd: function (map) {
         const container = L.DomUtil.create("div");
         container.style.marginTop = "15px";
         container.style.opacity = "0.7";
-        container.style.borderRadius = "2px";
-        container.style.backgroundColor = "white";
+        container.style.filter = "drop-shadow(0 2px 3px #00000080)";
         const timerFieldContainer = L.DomUtil.create("div");
         timerFieldContainer.id = "timer-field-container";
-        timerFieldContainer.style.display = "inline-block";
-        timerFieldContainer.style.borderLeft = "1px dotted grey";
         timerFieldContainer.style.display = "none";
+        timerFieldContainer.style.backgroundColor = "white";
+        timerFieldContainer.style.borderRadius = "0 0 3px 3px";
+        timerFieldContainer.style.padding = "0 6px";
         const timerFieldTimer = L.DomUtil.create("span");
         timerFieldTimer.textContent = "⏱️";
         const timerField = L.DomUtil.create("span");
         timerField.id = "timer-field";
-        timerField.style.fontSize = "0.6rem";
-        timerField.style.fontWeight = "bolder";
+        timerField.style.fontSize = "0.65rem";
+        timerField.style.fontWeight = "700";
+        timerField.style.fontVariantNumeric = "tabular-nums";
         timerField.style.color = "green";
         timerField.textContent = "60";
         timerField.style.verticalAlign = "middle";
-        timerField.style.paddingRight = "2px";
+        timerField.style.paddingLeft = "3px";
         timerFieldContainer.appendChild(timerFieldTimer);
         timerFieldContainer.appendChild(timerField);
         const mapFiled = L.DomUtil.create("div");
         mapFiled.id = "map-field";
-        mapFiled.style.display = "inline-block";
-        container.style.boxShadow =
-          "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
-        mapFiled.style.paddingRight = "2px";
-        mapFiled.style.paddingLeft = "2px";
+        mapFiled.style.display = "block";
+        container.style.textAlign = "center";
+        mapFiled.style.backgroundColor = "white";
+        mapFiled.style.borderRadius = "3px 3px 0 0";
+        mapFiled.style.borderBottom = `2px solid ${mapFieldAccent(
+          playerMapLabel,
+          this.gameConfiguration.gameMode,
+        )}`;
+        mapFiled.style.padding = "0 6px";
         mapFiled.style.fontSize = "0.6rem";
-        mapFiled.style.fontWeight = "bolder";
+        mapFiled.style.fontWeight = "700";
+        mapFiled.style.letterSpacing = "0.03em";
         mapFiled.style.color = "darkblue";
         mapFiled.textContent =
           "🗺️ " + localization[model.worldCountries.language][playerMapLabel];
@@ -454,9 +469,9 @@ export class PlayMap {
           "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
         selectedCountryField.style.paddingRight = "3px";
         selectedCountryField.style.paddingLeft = "3px";
-        selectedCountryField.style.paddingTop = "2px";
-        selectedCountryField.style.paddingBottom = "2px";
-        selectedCountryField.style.fontSize = "0.5rem";
+        selectedCountryField.style.paddingTop = "3px";
+        selectedCountryField.style.paddingBottom = "3px";
+        selectedCountryField.style.fontSize = "0.6rem";
         selectedCountryField.style.opacity = "0.7";
         selectedCountryField.style.borderRadius = "2px";
         selectedCountryField.style.fontWeight = "bolder";
@@ -596,7 +611,7 @@ export class PlayMap {
         gameRulesButton.classList.add("btn-secondary");
         gameRulesButton.classList.add("guess-country-game-rules");
         gameRulesButton.classList.add("rounded-pill");
-        gameRulesButton.style.marginTop = "9px";
+        gameRulesButton.style.marginTop = "7px";
         gameRulesButton.style.fontSize = "0.75rem";
         gameRulesButton.style.marginBottom = "7px";
         gameRulesButton.style.boxShadow =
@@ -731,7 +746,7 @@ export class PlayMap {
         playerTwoScoreField.style.backgroundColor = "rgba(255, 255, 255, 0.7)";
         const opponentAccent =
           this.gameConfiguration.gameMode === "computer"
-            ? "#64748b"
+            ? "#8b5cf6"
             : "#f97316";
         playerTwoScoreField.style.boxShadow = `0 2px 8px rgba(15, 23, 42, 0.25), inset 0 2px 0 ${opponentAccent}`;
         playerTwoScoreField.style.paddingRight = "3px";
@@ -769,7 +784,7 @@ export class PlayMap {
         container.style.overflow = "hidden";
         const opponentAccent =
           this.gameConfiguration.gameMode === "computer"
-            ? "#64748b"
+            ? "#8b5cf6"
             : "#f97316";
         container.style.boxShadow = `0 2px 8px rgba(15, 23, 42, 0.25), inset 0 2px 0 ${opponentAccent}`;
         const userIconContainer = L.DomUtil.create("span");
@@ -956,8 +971,13 @@ export class PlayMap {
   }
 
   setMapFiledLabel(label) {
-    document.getElementById("map-field").textContent =
+    const mapField = document.getElementById("map-field");
+    mapField.textContent =
       "🗺️ " + localization[model.worldCountries.language][label];
+    mapField.style.borderBottomColor = mapFieldAccent(
+      label,
+      this.gameConfiguration.gameMode,
+    );
   }
 
   showMapElement(elementId) {

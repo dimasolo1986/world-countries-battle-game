@@ -223,6 +223,10 @@ export const showMainChat = function () {
   const footer = document.querySelector("footer");
   if (slot && chatElement && transport.isConnected()) {
     applyLabels();
+    refs.container.classList.add("not-displayed");
+    setChatArrow(refs.leftArrow, true);
+    setChatArrow(refs.rightArrow, true);
+    refs.rightArrow.style.display = "none";
     chatElement.classList.remove("leaflet-control");
     slot.appendChild(chatElement);
     slot.classList.remove("not-displayed");
