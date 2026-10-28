@@ -1869,7 +1869,7 @@ export class Player {
           font-size: 0.75rem;
                     margin-left: 3px;
                     color: white;
-                    border-radius: 2px;
+                    border-radius: 3px;
                     background-color: green;
                     padding-left: 2px;
                     padding-right: 2px;
@@ -2901,7 +2901,7 @@ export class Player {
             }</span><span style="
                     margin-left: 3px;
                     color: white;
-                    border-radius: 2px;
+                    border-radius: 3px;
                     background-color: green;
                     padding-left: 2px;
                     padding-right: 2px;
@@ -2979,7 +2979,7 @@ export class Player {
               }</div><div style="margin-top:5px;"><span style="
                     color: white;
                     font-size: 1rem;
-                    border-radius: 2px;
+                    border-radius: 3px;
                     background-color: green;
                     padding-left: 2px;
                     padding-right: 2px;
@@ -3398,7 +3398,7 @@ export class Player {
                 <div style="margin-top:5px;"><span style="
                     color: white;
                     font-size: 1rem;
-                    border-radius: 2px;
+                    border-radius: 3px;
                     background-color: green;
                     padding-left: 3px;
                     padding-right: 3px;
@@ -6082,7 +6082,7 @@ export class Player {
         font-size: 0.7rem;
                     margin-left: 3px;
                     color: white;
-                    border-radius: 2px;
+                    border-radius: 3px;
                     background-color: green;
                     padding-left: 2px;
                     padding-right: 2px;
