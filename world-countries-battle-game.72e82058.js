@@ -194,7 +194,7 @@ var e="u">typeof globalThis?globalThis:"u">typeof self?self:"u">typeof window?wi
           font-size: 0.75rem;
                     margin-left: 3px;
                     color: white;
-                    border-radius: 2px;
+                    border-radius: 3px;
                     background-color: green;
                     padding-left: 2px;
                     padding-right: 2px;
@@ -212,7 +212,7 @@ var e="u">typeof globalThis?globalThis:"u">typeof self?self:"u">typeof window?wi
                   ">- ${o} ${r.localization[i.worldCountries.language].Points}</span></div>`;let l=document.getElementById("guessed-country-alliance-panel"),d=document.getElementById("guessed-country-alliance-header");d.classList.add("not-displayed"),l.style.backgroundColor="red",l.classList.remove("not-displayed"),this.deleteCountryNeighbourBorders(this,s,this.selectedCountryTrapCodes,this.countriesNumberField),this.playerAttemptToGuess=!0,this.opponentPlayer.playerAttemptToGuess=!1,await this.sleep(2500),this.removeCountryBoundaryBlinking(e),l.classList.add("not-displayed"),l.style.backgroundColor="white",d.classList.remove("not-displayed"),this.closeCountryPopup(u),this.setCountryPopupContent(u,s),this.playerMap.fitBounds(p.WORLD_MAP_BOUNDS,{animate:!1})}catch(t){e&&(this.removeCountryBoundaryBlinking(e),this.closeCountryPopup(u),this.setCountryPopupContent(u,s)),guessedCountryAlliance&&(guessedCountryAlliance.classList.add("not-displayed"),guessedCountryAlliance.style.backgroundColor="white"),guessedCountryAllianceHeader&&guessedCountryAllianceHeader.classList.remove("not-displayed"),this.playerAttemptToGuess=!0,this.opponentPlayer.playerAttemptToGuess=!1,this.playerMap.fitBounds(p.WORLD_MAP_BOUNDS,{animate:!1})}else if(this.game&&this.game.bonusCountries.includes(e))try{this.setCountryPopupContent(u,s,"🎁");let o=this.game.bonusCountries.indexOf(e);o>-1&&this.game.bonusCountries.splice(o,1),this.bonusCountriesNumberField.textContent=this.game.bonusCountries.length,n=!1,this.playerAttemptToGuess=!1,this.opponentPlayer.playerAttemptToGuess=!0;let a=this.playMap.countryBoundariesAndMarkersLayer.boundaries[e],d=this.playMap.countryBoundariesAndMarkersLayer.markers[e],c=this.opponentPlayer.countryCodes.indexOf(e);c>=0&&this.opponentPlayer.countryCodes.splice(c,1),this.opponentPlayer.alreadyGuessedCountryCodes.push(e),d&&(this.opponentPlayer.countryMarkersStyles[e]={opacity:0},d.setOpacity(0)),a&&(a.unbindTooltip(),a.off(),this.opponentPlayer.setElementStyle(a,{weight:1,color:"purple",fillColor:"purple",fillOpacity:.5,opacity:.8,className:e}),this.opponentPlayer.countryBoundariesStyles[e]={weight:1,color:"purple",fillColor:"purple",fillOpacity:.5,opacity:.8,className:e}),this.addCountryBoundaryBlinking(e),this.deleteCountryNeighbourBorders(this,s,new Set([...this.selectedCountryTrapCodes,...this.selectedCountryCodes]),this.countriesNumberField),this.deleteCountryNeighbourBorders(this.opponentPlayer,s,new Set([...this.opponentPlayer.selectedCountryTrapCodes,...this.opponentPlayer.selectedCountryCodes])),this.setElementStyle(t,{weight:1,color:"purple",fillColor:"purple",fillOpacity:.5,opacity:.8,className:e}),this.countryBoundariesStyles[e]={weight:1,color:"purple",fillColor:"purple",fillOpacity:.5,opacity:.8,className:e},this.opponentPlayer.score=this.opponentPlayer.score+10;let h=document.getElementById("player-one-score-field");h.textContent=`\u{1F3C5} ${this.opponentPlayer.score}`,this.opponentPlayer.score<0?h.style.color="red":h.style.color="green";let y=(this.game.superBonusCountry||this.game.secondSuperBonusCountry||this.game.thirdSuperBonusCountry||this.game.fourthSuperBonusCountry||this.game.fifthSuperBonusCountry)&&(this.game.superBonusCountry===e||this.game.secondSuperBonusCountry===e||this.game.thirdSuperBonusCountry===e||this.game.fourthSuperBonusCountry===e||this.game.fifthSuperBonusCountry===e),g=this.game.superBonusCountry&&this.game.superBonusCountry===e,m=this.game.secondSuperBonusCountry&&this.game.secondSuperBonusCountry===e,C=this.game.thirdSuperBonusCountry&&this.game.thirdSuperBonusCountry===e,f=this.game.fourthSuperBonusCountry&&this.game.fourthSuperBonusCountry===e,b=this.game.fifthSuperBonusCountry&&this.game.fifthSuperBonusCountry===e;this.setMessageInnerHtmlField(`<span>${y?"💎":"🎁"} ${y?r.localization[i.worldCountries.language]["You have fallen into a super bonus-country"]:r.localization[i.worldCountries.language]["You have fallen into a bonus-country"]}</span> <img src="${s.countryFlag}" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 1px 1px #00000080, inset 0 1px 1px #0000001f; vertical-align: sub;"> <span style="margin-left:5px;">${r.localization[i.worldCountries.language].countries[s.countryName]}.</span> <span style="margin-left:5px;">${y&&g||y&&b?r.localization[i.worldCountries.language]["Opponent's countries highlighted on map"]:y&&m||y&&C||y&&f?r.localization[i.worldCountries.language]["Opponent's country highlighted on map"]:r.localization[i.worldCountries.language]["Additional attempt to guess and"]}</span><span style="
                     margin-left: 3px;
                     color: white;
-                    border-radius: 2px;
+                    border-radius: 3px;
                     background-color: green;
                     padding-left: 2px;
                     padding-right: 2px;
@@ -227,7 +227,7 @@ var e="u">typeof globalThis?globalThis:"u">typeof self?self:"u">typeof window?wi
                   ">+ 10 ${r.localization[i.worldCountries.language].Points}</span></div>`;let x=document.getElementById("guessed-country-alliance-panel"),w=document.getElementById("guessed-country-alliance-header");if(w.classList.add("not-displayed"),x.style.backgroundColor="green",x.classList.remove("not-displayed"),this.playerMap){document.getElementById("gameCountryAllianceGuessedLabel").textContent="👏 "+r.localization[i.worldCountries.language]["Congratulations!"],document.getElementById("gameCountryAllianceGuessedCountries").innerHTML=`<span style="color: darkblue; font-weight:bold;">${y?"💎":"🎁"} ${y?r.localization[i.worldCountries.language]["You have fallen into a super bonus-country"]:r.localization[i.worldCountries.language]["You have fallen into a bonus-country"]}</span> <img src="${s.countryFlag}" style="margin-left:5px; width:20px; height:15px; border-radius:2px; box-shadow: 0 1px 1px #00000080, inset 0 1px 1px #0000001f; vertical-align: sub;"> ${s.countryCoatOfArms?`<img src="${s.countryCoatOfArms}" style="margin-left:5px; width:15px; height:15px; vertical-align: sub;">`:""} <span style="margin-left:5px;color: darkblue;font-weight:bold;">${r.localization[i.worldCountries.language].countries[s.countryName]}</span> <div style="color: darkblue;font-weight:bold;">${y&&g||y&&b?r.localization[i.worldCountries.language]["Opponent's country alliance highlighted on map"]:y&&m||y&&C||y&&f?r.localization[i.worldCountries.language]["Opponent's country highlighted on map"]:r.localization[i.worldCountries.language]["Additional attempt to guess country"]}</div><div style="margin-top:5px;"><span style="
                     color: white;
                     font-size: 1rem;
-                    border-radius: 2px;
+                    border-radius: 3px;
                     background-color: green;
                     padding-left: 2px;
                     padding-right: 2px;
@@ -244,7 +244,7 @@ var e="u">typeof globalThis?globalThis:"u">typeof self?self:"u">typeof window?wi
                 <div style="margin-top:5px;"><span style="
                     color: white;
                     font-size: 1rem;
-                    border-radius: 2px;
+                    border-radius: 3px;
                     background-color: green;
                     padding-left: 3px;
                     padding-right: 3px;
@@ -271,7 +271,7 @@ var e="u">typeof globalThis?globalThis:"u">typeof self?self:"u">typeof window?wi
         font-size: 0.7rem;
                     margin-left: 3px;
                     color: white;
-                    border-radius: 2px;
+                    border-radius: 3px;
                     background-color: green;
                     padding-left: 2px;
                     padding-right: 2px;
