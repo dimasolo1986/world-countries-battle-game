@@ -23,7 +23,7 @@ import {
   endAt,
 } from "./firebase-database.js";
 
-export const isoWeekKey = function (date = new Date()) {
+const isoWeekKey = function (date = new Date()) {
   const day = new Date(
     Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()),
   );
