@@ -26,9 +26,8 @@ export const getRandomInt = function (
 };
 
 export const showGameCountryAllianceGuessedWindow = function () {
-  const gameCountryAllianceGuessedWindow = new bootstrap.Modal(
+  const gameCountryAllianceGuessedWindow = bootstrap.Modal.getOrCreateInstance(
     document.getElementById("gameCountryAllianceGuessedModal"),
-    {},
   );
   gameCountryAllianceGuessedWindow.show();
 };
@@ -42,7 +41,9 @@ export const hideModalWindow = function (modalId) {
 };
 
 export const showModalWindow = function (modalId) {
-  const modalWindow = new bootstrap.Modal(document.getElementById(modalId), {});
+  const modalWindow = bootstrap.Modal.getOrCreateInstance(
+    document.getElementById(modalId),
+  );
   modalWindow.show();
 };
 
@@ -57,9 +58,8 @@ export const hideGameCountryAllianceGuessedWindow = function () {
 };
 
 export const showGameResultWindow = function () {
-  const gameResult = new bootstrap.Modal(
+  const gameResult = bootstrap.Modal.getOrCreateInstance(
     document.getElementById("gameResultModal"),
-    {},
   );
   gameResult.show();
 };
@@ -83,9 +83,8 @@ export const resetGameRoomContainer = function () {
 };
 
 export const showGameRulesWindow = function () {
-  const gameRules = new bootstrap.Modal(
+  const gameRules = bootstrap.Modal.getOrCreateInstance(
     document.getElementById("gameRulesModal"),
-    {},
   );
   gameRules.show();
 };
@@ -94,9 +93,8 @@ export const showCountryCoatOfArmsFlagWindow = function (
   modalId,
   showTimer = false,
 ) {
-  const countryCoatOfArmsFlag = new bootstrap.Modal(
+  const countryCoatOfArmsFlag = bootstrap.Modal.getOrCreateInstance(
     document.getElementById(modalId),
-    {},
   );
   if (showTimer) {
     addTimerToModal(modalId);

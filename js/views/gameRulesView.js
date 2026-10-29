@@ -58,6 +58,12 @@ class gameRulesView {
   _gameRulesWithFriendDescription = document.querySelector(
     ".game-rules-with-friend-description",
   );
+  _gameRulesLeaderboardHeader = document.querySelector(
+    ".game-rules-leaderboard-heading",
+  );
+  _gameRulesLeaderboardDescription = document.querySelector(
+    ".game-rules-leaderboard-description",
+  );
   _gameRulesScoreHeading = document.querySelector(".game-rules-score-heading");
   _gameRulesScoreDescription = document.querySelector(
     ".game-rules-score-description",
@@ -195,6 +201,14 @@ class gameRulesView {
         "To play with your friend, you need to select the game mode with a friend on the main page, create a game room and a link to the game for your friend and send it to him. Follow the connection status of your friend at the top of the screen after starting the game. There is also the possibility of communicating with your friend via chat at the bottom of the screen: you can greet him, wish him a good game or give yourself hints about your countries and alliances of countries (chat may be hidden by the bottom browser bar, so open it full screen or hide this bar)."
       ]
     }`;
+    const language = localization[model.worldCountries.language];
+    this._gameRulesLeaderboardHeader.textContent = `🏆 ${language["Leaderboard"]}`;
+    this._gameRulesLeaderboardDescription.textContent = language[
+      "The leaderboard shows the best players of the game on two boards: ‘{week}’ starts over every Monday so everyone gets a fresh chance to reach the top, and ‘{all}’ keeps the best score of every player. To post your result, finish a game and click ‘{button}’ in the Game Result window: enter a nickname, choose your country, and your flag will appear next to your score. Your best score is kept, so a weaker game never lowers it, and you can open the leaderboard at any time with the trophy button. Post your result, challenge players from all over the world and become the Countries Guesser leader!"
+    ]
+      .replace("{week}", language["This week"])
+      .replace("{all}", language["All time"])
+      .replace("{button}", language["Post Results"]);
     this._gameRulesScoreHeading.textContent = `🏅 ${
       localization[model.worldCountries.language]["Score"]
     }`;

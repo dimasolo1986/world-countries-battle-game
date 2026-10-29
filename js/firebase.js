@@ -15,7 +15,26 @@ import {
   remove,
   push,
   serverTimestamp,
+  query,
+  orderByChild,
+  orderByKey,
+  limitToLast,
+  startAt,
+  endAt,
 } from "./firebase-database.js";
+
+export const isoWeekKey = function (date = new Date()) {
+  const day = new Date(
+    Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()),
+  );
+  day.setUTCDate(day.getUTCDate() + 4 - (day.getUTCDay() || 7));
+  const yearStart = Date.UTC(day.getUTCFullYear(), 0, 1);
+  const week = Math.ceil(((day - yearStart) / 86400000 + 1) / 7);
+  return `${day.getUTCFullYear()}-W${String(week).padStart(2, "0")}`;
+};
+
+const leaderboardPath = (period) =>
+  period === "week" ? `leaderboard-weekly/${isoWeekKey()}` : "leaderboard";
 
 export class Firebase {
   firebaseConfig;
@@ -45,22 +64,27 @@ export class Firebase {
     };
     this.answered = false;
   }
-  async initializeApplication() {
+
+  async initializeApplication({ withTurn = true, silent = false } = {}) {
     if (!this.app) {
       this.app = initializeApp(this.firebaseConfig);
       const auth = getAuth(this.app);
       try {
         await signInAnonymously(auth);
       } catch {
-        alert(
-          "⛔ " +
-            localization[model.worldCountries.language][
-              "Failed to create a communication channel with your opponent"
-            ],
-        );
+        if (!silent) {
+          alert(
+            "⛔ " +
+              localization[model.worldCountries.language][
+                "Failed to create a communication channel with your opponent"
+              ],
+          );
+        }
       }
-      const turnData = await this.getTurnServers();
-      this.turnServers = turnData;
+      if (withTurn) {
+        const turnData = await this.getTurnServers();
+        this.turnServers = turnData;
+      }
     }
   }
 
@@ -215,7 +239,12 @@ export class Firebase {
   }
 
   async cleanupOldGameRooms(maxAgeMs = 24 * 60 * 60 * 1000) {
-    const roomsRef = ref(this.db);
+    const roomsRef = query(
+      ref(this.db),
+      orderByKey(),
+      startAt("room-"),
+      endAt("room-\uf8ff"),
+    );
     const snapshot = await get(roomsRef);
 
     if (!snapshot.exists()) return;
@@ -229,6 +258,70 @@ export class Firebase {
         await remove(ref(this.db, roomKey));
       }
     }
+  }
+
+  prepareLeaderboard() {
+    if (!this.leaderboardReady) {
+      this.leaderboardReady = (async () => {
+        await this.initializeApplication({ withTurn: false, silent: true });
+        this.getApplicationDatabase();
+        const auth = getAuth(this.app);
+        if (!auth.currentUser) await signInAnonymously(auth);
+        return auth.currentUser.uid;
+      })().catch((error) => {
+        this.leaderboardReady = null;
+        throw error;
+      });
+    }
+    return this.leaderboardReady;
+  }
+
+  async getOwnLeaderboardEntry(period = "all") {
+    const uid = await this.prepareLeaderboard();
+    const snapshot = await get(
+      ref(this.db, `${leaderboardPath(period)}/${uid}`),
+    );
+    return snapshot.exists() ? { uid, ...snapshot.val() } : null;
+  }
+
+  async postLeaderboardScore({ nickname, score, mode, country }) {
+    const uid = await this.prepareLeaderboard();
+    const entry = {
+      nickname,
+      score,
+      mode,
+      ...(country ? { country } : {}),
+      updatedAt: serverTimestamp(),
+    };
+    let posted = false;
+    let bestScore = score;
+    for (const period of ["all", "week"]) {
+      const entryRef = ref(this.db, `${leaderboardPath(period)}/${uid}`);
+      const existing = await get(entryRef);
+      if (existing.exists() && existing.val().score > score) {
+        bestScore = existing.val().score;
+        continue;
+      }
+      await set(entryRef, entry);
+      posted = true;
+    }
+    return { posted, bestScore: posted ? score : bestScore };
+  }
+
+  async fetchLeaderboard(limit = 100, period = "all") {
+    await this.prepareLeaderboard();
+    const snapshot = await get(
+      query(
+        ref(this.db, leaderboardPath(period)),
+        orderByChild("score"),
+        limitToLast(limit),
+      ),
+    );
+    const rows = [];
+    snapshot.forEach((child) => {
+      rows.push({ uid: child.key, ...child.val() });
+    });
+    return rows.reverse();
   }
 
   endGame() {

@@ -7,7 +7,14 @@ import gameView from "./views/gameView.js";
 import donateAuthorView from "./views/donateAuthorView.js";
 import gameRulesView from "./views/gameRulesView.js";
 import gameRoomView from "./views/gameRoomView.js";
+import {
+  initLeaderboard,
+  openPostDialog,
+  openLeaderboard,
+  openLeaderboardOver,
+} from "./leaderboard.js";
 const init = function () {
+  initLeaderboard(() => gameRoomView.getFirebase());
   languageSelectView.init();
   translateAllElements();
   languageSelectView.addHandlerSelect(languageSelectHandler);
@@ -191,16 +198,27 @@ const init = function () {
     }
     const shareGameResults = document.querySelector("#shareGameResults");
     if (shareGameResults) {
-      shareGameResults.addEventListener("click", function () {
-        if (navigator.share) {
-          navigator
-            .share(getShareWebSiteContent())
-            .then(function () {
-              if (window.gtag) gtag("event", "share_website");
-            })
-            .catch(function () {});
-        }
-      });
+      shareGameResults.addEventListener("click", openPostDialog);
+    }
+    const resultLeaderboardLink = document.getElementById(
+      "gameResultLeaderboardLink",
+    );
+    if (resultLeaderboardLink) {
+      resultLeaderboardLink.addEventListener("click", () =>
+        openLeaderboardOver("gameResultModal"),
+      );
+    }
+    const leaderboardButton = document.getElementById("leaderboard-button");
+    if (leaderboardButton) {
+      leaderboardButton.addEventListener("click", openLeaderboard);
+    }
+    const selectionLeaderboardButton = document.getElementById(
+      "gameCountryAllianceInitialSelectionLeaderboard",
+    );
+    if (selectionLeaderboardButton) {
+      selectionLeaderboardButton.addEventListener("click", () =>
+        openLeaderboardOver("gameCountryAllianceInitialSelectionModal"),
+      );
     }
   });
 };

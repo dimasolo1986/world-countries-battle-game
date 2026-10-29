@@ -7,6 +7,7 @@ import {
   getRandomInt,
 } from "./helpers.js";
 import * as model from "./model.js";
+import { setPendingResult } from "./leaderboard.js";
 export class Game {
   finished = false;
   started = false;
@@ -33,6 +34,12 @@ export class Game {
     document.getElementById("gameResultGuessing");
   gameModalResultCloseButton = document.getElementById("gameResultCloseButton");
   gameModalResultShareButton = document.getElementById("shareGameResults");
+  gameModalResultLeaderboardHint = document.getElementById(
+    "gameResultLeaderboardHint",
+  );
+  gameModalResultLeaderboardLink = document.getElementById(
+    "gameResultLeaderboardLink",
+  );
   constructor(playerOne, playerTwo, playMap, firebase, gameConfiguration) {
     this.guessCountriesMessageField = document.querySelector(
       "#countries-battle-game-message",
@@ -101,6 +108,10 @@ export class Game {
   }
 
   showGameResult(playerOneWon, deleteGameRoom = false) {
+    setPendingResult({
+      score: this.playerOne.score,
+      mode: this.gameConfiguration.gameMode === "user" ? "friend" : "computer",
+    });
     this.gameModalResultGuessedCountries.innerHTML = "";
     this.playerOne.enableMapInteraction();
     this.gameModalResultLabel.textContent =
@@ -109,8 +120,16 @@ export class Game {
       localization[model.worldCountries.language]["Close"];
     this.gameModalPlayAgainButton.textContent =
       localization[model.worldCountries.language]["Play Again"];
-    this.gameModalResultShareButton.textContent =
-      localization[model.worldCountries.language]["Share"];
+    const postResultLabel =
+      localization[model.worldCountries.language]["Post Results"];
+    this.gameModalResultShareButton.textContent = "🏆 " + postResultLabel;
+    this.gameModalResultLeaderboardHint.textContent =
+      "🏆 " +
+      localization[model.worldCountries.language][
+        "To post your game results to the leaderboard, click {button}."
+      ].replace("{button}", postResultLabel);
+    this.gameModalResultLeaderboardLink.textContent =
+      "🏆 " + localization[model.worldCountries.language]["View leaderboard"];
     if (playerOneWon) {
       this.guessCountriesMessageField.textContent =
         "👏 " +

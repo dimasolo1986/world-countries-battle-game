@@ -522,6 +522,30 @@ export const localization = {
     "View Hints": "Показати Підказки",
     "View Hint": "Показати Підказку",
     "Play Again": "Грати Знову",
+    Leaderboard: "Таблиця Лідерів",
+    "View leaderboard": "Переглянути таблицю лідерів",
+    "To post your game results to the leaderboard, click {button}.":
+      "Щоб опублікувати результат гри в таблиці лідерів, натисніть «{button}».",
+    "Post your game results to the leaderboard and become the Countries Guesser leader!":
+      "Опублікуйте результат гри в таблиці лідерів і станьте найкращим гравцем Countries Guesser!",
+    "Post Results": "Опублікувати Результат",
+    Post: "Опублікувати",
+    Nickname: "Нікнейм",
+    "This week": "Цього тижня",
+    "All time": "За весь час",
+    "Resets in": "Скидання через",
+    "day one": "день",
+    "day few": "дні",
+    "day other": "днів",
+    Rank: "Місце",
+    Player: "Гравець",
+    Mode: "Режим",
+    "Your best score is": "Ваш найкращий результат",
+    "Posted to the leaderboard!": "Опубліковано в таблиці лідерів!",
+    "Leaderboard is unavailable. Try again later.":
+      "Таблиця лідерів недоступна. Спробуйте пізніше.",
+    "No results yet": "Результатів ще немає",
+    "Loading...": "Завантаження...",
     "Send Message": "Надіслати Повідомлення",
     "Checking Connection...": "Перевірка з'єднання...",
     "Failed to create game room with ID:":
@@ -588,6 +612,8 @@ export const localization = {
     "To play with your friend, you need to select the game mode with a friend on the main page, create a game room and a link to the game for your friend and send it to him. Follow the connection status of your friend at the top of the screen after starting the game. There is also the possibility of communicating with your friend via chat at the bottom of the screen: you can greet him, wish him a good game or give yourself hints about your countries and alliances of countries (chat may be hidden by the bottom browser bar, so open it full screen or hide this bar).":
       "Для гри з Вашим другом Вам необхідно вибрати режим гри з другом на головній сторінці, створити ігрову кімнату та посилання на гру для Вашого друга та відправити йому. Слідкуйте за статусом підключення Вашого друга у верхній частині екрану після старту гри. Також є можливість спілкування з Вашим другом через чат у нижній частині екрану: Ви можете привітатись з ним, побажати гарної гри або самостійно давати підказки про Ваші країни та альянси країн (чат може бути прихований нижньою панеллю браузера, тому відкривайте на весь екран або сховайте цю панель).",
     "Play With A Friend Mode": "Режим Гри З Другом",
+    "The leaderboard shows the best players of the game on two boards: ‘{week}’ starts over every Monday so everyone gets a fresh chance to reach the top, and ‘{all}’ keeps the best score of every player. To post your result, finish a game and click ‘{button}’ in the Game Result window: enter a nickname, choose your country, and your flag will appear next to your score. Your best score is kept, so a weaker game never lowers it, and you can open the leaderboard at any time with the trophy button. Post your result, challenge players from all over the world and become the Countries Guesser leader!":
+      "Таблиця лідерів показує найкращих гравців гри на двох дошках: «{week}» починається заново щопонеділка, щоб кожен мав свіжий шанс потрапити на вершину, а «{all}» зберігає найкращий результат кожного гравця. Щоб опублікувати результат, завершіть гру та натисніть кнопку «{button}» у вікні результату гри: введіть нікнейм, оберіть свою країну — і її прапор з’явиться поруч із вашим результатом. Зберігається ваш найкращий результат, тож слабша гра його ніколи не знижує, а таблицю лідерів можна відкрити будь-коли кнопкою з кубком. Опублікуйте результат, киньте виклик гравцям з усього світу та станьте лідером Countries Guesser!",
     "You have fallen into a bonus-country": "Ви потрапили у країну-бонус",
     "You have fallen into a super bonus-country":
       "Ви потрапили у супер країну-бонус",
@@ -1453,6 +1479,8 @@ export const localization = {
     "If a player guesses an alliance of countries that contains four countries, he gets 15 points, three countries - 25 points, two countries - 35 points, one country - 50 points. When falling into an opponent's trap country, the player loses 10 points the first time, 20 points the second time, 30 points the third time and 50 points the fourth time. At the end of the game, the player gets an additional 10 points for each alliance of countries that was not guessed by the opponent.":
       "If a player guesses an alliance of countries that contains four countries, he gets 15 points, three countries - 25 points, two countries - 35 points, one country - 50 points. When falling into an opponent's trap country, the player loses 10 points the first time, 20 points the second time, 30 points the third time and 50 points the fourth time. At the end of the game, the player gets an additional 10 points for each alliance of countries that was not guessed by the opponent.",
     "Play With A Friend Mode": "Play With A Friend Mode",
+    "The leaderboard shows the best players of the game on two boards: ‘{week}’ starts over every Monday so everyone gets a fresh chance to reach the top, and ‘{all}’ keeps the best score of every player. To post your result, finish a game and click ‘{button}’ in the Game Result window: enter a nickname, choose your country, and your flag will appear next to your score. Your best score is kept, so a weaker game never lowers it, and you can open the leaderboard at any time with the trophy button. Post your result, challenge players from all over the world and become the Countries Guesser leader!":
+      "The leaderboard shows the best players of the game on two boards: ‘{week}’ starts over every Monday so everyone gets a fresh chance to reach the top, and ‘{all}’ keeps the best score of every player. To post your result, finish a game and click ‘{button}’ in the Game Result window: enter a nickname, choose your country, and your flag will appear next to your score. Your best score is kept, so a weaker game never lowers it, and you can open the leaderboard at any time with the trophy button. Post your result, challenge players from all over the world and become the Countries Guesser leader!",
     Score: "Score",
     "Checking Connection...": "Checking Connection...",
     "If your browser blocks or disables WebRTC (real-time communication for the web), you will not be able to play with your friend. Try a different browser.":
@@ -1641,6 +1669,29 @@ export const localization = {
       "Slavutych, Ukraine - birthplace of the project",
     Close: "Close",
     "Play Again": "Play Again",
+    Leaderboard: "Leaderboard",
+    "View leaderboard": "View leaderboard",
+    "To post your game results to the leaderboard, click {button}.":
+      "To post your game results to the leaderboard, click ‘{button}’.",
+    "Post your game results to the leaderboard and become the Countries Guesser leader!":
+      "Post your game results to the leaderboard and become the Countries Guesser leader!",
+    "Post Results": "Post Results",
+    Post: "Post",
+    Nickname: "Nickname",
+    "This week": "This week",
+    "All time": "All time",
+    "Resets in": "Resets in",
+    "day one": "day",
+    "day other": "days",
+    Rank: "Rank",
+    Player: "Player",
+    Mode: "Mode",
+    "Your best score is": "Your best score is",
+    "Posted to the leaderboard!": "Posted to the leaderboard!",
+    "Leaderboard is unavailable. Try again later.":
+      "Leaderboard is unavailable. Try again later.",
+    "No results yet": "No results yet",
+    "Loading...": "Loading...",
     "Full Screen": "Full Screen",
     "Exit Fullscreen Mode": "Exit Fullscreen Mode",
     START: "START",
@@ -2209,6 +2260,29 @@ export const localization = {
     "BACK TO MAIN PAGE": "ZURÜCK ZUR STARTSEITE",
     "Delete Game Room": "Spielzimmer löschen",
     "Play Again": "Erneut Spielen",
+    Leaderboard: "Bestenliste",
+    "View leaderboard": "Bestenliste ansehen",
+    "To post your game results to the leaderboard, click {button}.":
+      "Um dein Ergebnis in der Bestenliste zu veröffentlichen, klicke auf „{button}“.",
+    "Post your game results to the leaderboard and become the Countries Guesser leader!":
+      "Veröffentliche dein Spielergebnis in der Bestenliste und werde der beste Countries-Guesser-Spieler!",
+    "Post Results": "Ergebnis Veröffentlichen",
+    Post: "Veröffentlichen",
+    Nickname: "Spitzname",
+    "This week": "Diese Woche",
+    "All time": "Gesamt",
+    "Resets in": "Zurücksetzung in",
+    "day one": "Tag",
+    "day other": "Tage",
+    Rank: "Platz",
+    Player: "Spieler",
+    Mode: "Modus",
+    "Your best score is": "Dein bestes Ergebnis ist",
+    "Posted to the leaderboard!": "In der Bestenliste veröffentlicht!",
+    "Leaderboard is unavailable. Try again later.":
+      "Die Bestenliste ist nicht verfügbar. Versuche es später erneut.",
+    "No results yet": "Noch keine Ergebnisse",
+    "Loading...": "Wird geladen...",
     "Photo From Country": "Foto aus dem Land",
     "Click 'Create Game Room' to generate game link":
       "Klicken Sie auf 'Spielzimmer Erstellen', um einen Spiellink zu generieren",
@@ -2264,6 +2338,8 @@ export const localization = {
     "Undo Last Country Alliance Selection":
       "Letzte Länderallianzauswahl rückgängig machen",
     "Play With A Friend Mode": "Mit einem Freund spielen-Modus",
+    "The leaderboard shows the best players of the game on two boards: ‘{week}’ starts over every Monday so everyone gets a fresh chance to reach the top, and ‘{all}’ keeps the best score of every player. To post your result, finish a game and click ‘{button}’ in the Game Result window: enter a nickname, choose your country, and your flag will appear next to your score. Your best score is kept, so a weaker game never lowers it, and you can open the leaderboard at any time with the trophy button. Post your result, challenge players from all over the world and become the Countries Guesser leader!":
+      "Die Bestenliste zeigt die besten Spieler des Spiels auf zwei Listen: „{week}“ beginnt jeden Montag von vorn, sodass jeder eine frische Chance auf die Spitze hat, und „{all}“ speichert das beste Ergebnis jedes Spielers. Um dein Ergebnis zu veröffentlichen, beende ein Spiel und klicke im Ergebnisfenster auf „{button}“: Gib einen Spitznamen ein, wähle dein Land – und deine Flagge erscheint neben deinem Ergebnis. Dein bestes Ergebnis bleibt erhalten, ein schwächeres Spiel senkt es also nie, und die Bestenliste lässt sich jederzeit über die Pokal-Schaltfläche öffnen. Veröffentliche dein Ergebnis, fordere Spieler aus der ganzen Welt heraus und werde der Countries-Guesser-Champion!",
     "To play with your friend, you need to select the game mode with a friend on the main page, create a game room and a link to the game for your friend and send it to him. Follow the connection status of your friend at the top of the screen after starting the game. There is also the possibility of communicating with your friend via chat at the bottom of the screen: you can greet him, wish him a good game or give yourself hints about your countries and alliances of countries (chat may be hidden by the bottom browser bar, so open it full screen or hide this bar).":
       "Um mit einem Freund zu spielen, wähle auf der Startseite den Spielmodus 'Freund', erstelle einen Spielraum und sende ihm den Link zum Spiel. Nach dem Spielstart kannst du den Verbindungsstatus deines Freundes oben auf dem Bildschirm verfolgen. Außerdem kannst du unten auf dem Bildschirm mit ihm chatten: Begrüße ihn, wünsche ihm viel Spaß oder gib ihm Tipps zu deinen Ländern und Länderbündnissen (Der Chat wird möglicherweise von der unteren Browserleiste verdeckt. Öffnen Sie ihn daher im Vollbildmodus oder blenden Sie diese Leiste aus).",
     "If a player guesses an alliance of countries that contains four countries, he gets 15 points, three countries - 25 points, two countries - 35 points, one country - 50 points. When falling into an opponent's trap country, the player loses 10 points the first time, 20 points the second time, 30 points the third time and 50 points the fourth time. At the end of the game, the player gets an additional 10 points for each alliance of countries that was not guessed by the opponent.":
@@ -3123,6 +3199,29 @@ export const localization = {
       "L'ordinateur êtes tombé dans un pays-piège",
     Computer: "Ordinateur",
     "Play Again": "Rejouer",
+    Leaderboard: "Classement",
+    "View leaderboard": "Voir le classement",
+    "To post your game results to the leaderboard, click {button}.":
+      "Pour publier ton résultat dans le classement, clique sur « {button} ».",
+    "Post your game results to the leaderboard and become the Countries Guesser leader!":
+      "Publie ton résultat dans le classement et deviens le meilleur joueur de Countries Guesser !",
+    "Post Results": "Publier le Résultat",
+    Post: "Publier",
+    Nickname: "Pseudo",
+    "This week": "Cette semaine",
+    "All time": "Tous les temps",
+    "Resets in": "Réinitialisation dans",
+    "day one": "jour",
+    "day other": "jours",
+    Rank: "Rang",
+    Player: "Joueur",
+    Mode: "Mode",
+    "Your best score is": "Votre meilleur score est",
+    "Posted to the leaderboard!": "Publié dans le classement !",
+    "Leaderboard is unavailable. Try again later.":
+      "Le classement est indisponible. Réessayez plus tard.",
+    "No results yet": "Aucun résultat pour le moment",
+    "Loading...": "Chargement...",
     "Open Game Room": "Salle de jeux ouverte",
     "Delete Game Room": "Supprimer la salle de jeux",
     "Game Link For Friend": "Lien de jeu pour un ami",
@@ -3236,6 +3335,8 @@ export const localization = {
     "To play with your friend, you need: 1. Choose the desired game configuration, whether you want to guess countries and alliances of countries from all over the world or only independent ones, receive all or only text clues (country name, country capital, region, subregion) or visual clues (country coat of arms, country flag, country's outline on map, photo from country) or choose the hints yourself during the game, time (in seconds) to try to guess the opponent's country, number of bonus countries. You can do this on this page or on the main page (after creating a game room, you will not be able to change this setting). 2. Create a game room and a link to the game for your friend by clicking the 'Create Game Room' button. 3. Copy the game link by clicking the 'Copy Link' button and send it to your friend or share the game link by clicking the 'Share Link With Friend' button. 4. After completing a game or several games, you can delete the game room by clicking the 'Delete Game Room' button (after deleting the game room, your friend will no longer be able to use the game link to play with you).":
       "Pour jouer avec votre ami, suivez ces étapes : 1. Choisissez la configuration de jeu souhaitée : deviner les pays et les alliances de pays du monde entier ou uniquement les pays indépendants, recevoir tous les indices ou seulement des indices textuels (nom du pays, capitale du pays, région, sous-région) ou des indices visuels (armoiries du pays, drapeau du pays, contour du pays sur une carte, photo du pays) ou choisir les indices vous-même pendant le jeu, temps (en secondes) pour essayer de deviner le pays de l'adversaire, nombre de pays bonus. Vous pouvez le faire sur cette page ou sur la page principale (une fois la salle de jeu créée, vous ne pourrez plus modifier ce paramètre). 2. Créez une salle de jeu et un lien pour votre ami en cliquant sur le bouton 'Créer une salle de jeux'. 3. Copiez le lien en cliquant sur le bouton 'Copier le Lien' et envoyez-le à votre ami, ou partagez-le en cliquant sur le bouton 'Partager le lien avec un ami'. 4. Après une ou plusieurs parties, vous pouvez supprimer la salle de jeu en cliquant sur le bouton 'Supprimer la salle de jeux' (votre ami ne pourra alors plus utiliser le lien pour jouer avec vous).",
     "Play With A Friend Mode": "Mode Jouer avec un ami",
+    "The leaderboard shows the best players of the game on two boards: ‘{week}’ starts over every Monday so everyone gets a fresh chance to reach the top, and ‘{all}’ keeps the best score of every player. To post your result, finish a game and click ‘{button}’ in the Game Result window: enter a nickname, choose your country, and your flag will appear next to your score. Your best score is kept, so a weaker game never lowers it, and you can open the leaderboard at any time with the trophy button. Post your result, challenge players from all over the world and become the Countries Guesser leader!":
+      "Le classement présente les meilleurs joueurs du jeu sur deux tableaux : « {week} » repart de zéro chaque lundi pour que chacun ait une nouvelle chance d’atteindre le sommet, et « {all} » conserve le meilleur score de chaque joueur. Pour publier ton résultat, termine une partie et clique sur « {button} » dans la fenêtre de résultat : saisis un pseudo, choisis ton pays et ton drapeau s’affichera à côté de ton score. Ton meilleur score est conservé, une partie plus faible ne le diminue donc jamais, et tu peux ouvrir le classement à tout moment avec le bouton en forme de trophée. Publie ton résultat, défie des joueurs du monde entier et deviens le leader de Countries Guesser !",
     "To play with your friend, you need to select the game mode with a friend on the main page, create a game room and a link to the game for your friend and send it to him. Follow the connection status of your friend at the top of the screen after starting the game. There is also the possibility of communicating with your friend via chat at the bottom of the screen: you can greet him, wish him a good game or give yourself hints about your countries and alliances of countries (chat may be hidden by the bottom browser bar, so open it full screen or hide this bar).":
       "Pour jouer avec un ami, sélectionnez le mode de jeu 'Avec un ami' sur la page principale, créez une salle de jeu et envoyez-lui un lien. Une fois la partie lancée, vous pourrez suivre la connexion de votre ami en haut de l'écran. Vous pouvez également discuter avec lui via le chat en bas de l'écran : saluez-le, souhaitez-lui bonne partie ou échangez des conseils sur vos pays et alliances (La conversation peut être masquée par la barre de navigation inférieure. Ouvrez-la en plein écran ou masquez cette barre).",
     Score: "Score",
@@ -4000,6 +4101,29 @@ export const localization = {
     "Country Alliance": "Alianza de Países",
     BACK: "VOLVER",
     "Play Again": "Jugar de Nuevo",
+    Leaderboard: "Clasificación",
+    "View leaderboard": "Ver la clasificación",
+    "To post your game results to the leaderboard, click {button}.":
+      "Para publicar tu resultado en la clasificación, pulsa «{button}».",
+    "Post your game results to the leaderboard and become the Countries Guesser leader!":
+      "¡Publica tu resultado en la clasificación y conviértete en el mejor jugador de Countries Guesser!",
+    "Post Results": "Publicar Resultado",
+    Post: "Publicar",
+    Nickname: "Apodo",
+    "This week": "Esta semana",
+    "All time": "Histórico",
+    "Resets in": "Se reinicia en",
+    "day one": "día",
+    "day other": "días",
+    Rank: "Puesto",
+    Player: "Jugador",
+    Mode: "Modo",
+    "Your best score is": "Tu mejor puntuación es",
+    "Posted to the leaderboard!": "¡Publicado en la clasificación!",
+    "Leaderboard is unavailable. Try again later.":
+      "La clasificación no está disponible. Inténtalo más tarde.",
+    "No results yet": "Aún no hay resultados",
+    "Loading...": "Cargando...",
     Opponent: "Adversario",
     "Opponent Map": "Mapa del oponente",
     "Opponent is online": "El oponente está en línea",
@@ -4058,6 +4182,8 @@ export const localization = {
     "To clear the last selected country alliance, click":
       "Para borrar la última alianza de países seleccionada, haga clic aquí",
     "Play With A Friend Mode": "Modo Jugar con un Amigo",
+    "The leaderboard shows the best players of the game on two boards: ‘{week}’ starts over every Monday so everyone gets a fresh chance to reach the top, and ‘{all}’ keeps the best score of every player. To post your result, finish a game and click ‘{button}’ in the Game Result window: enter a nickname, choose your country, and your flag will appear next to your score. Your best score is kept, so a weaker game never lowers it, and you can open the leaderboard at any time with the trophy button. Post your result, challenge players from all over the world and become the Countries Guesser leader!":
+      "La clasificación muestra a los mejores jugadores del juego en dos tablas: «{week}» empieza de nuevo cada lunes para que todos tengan una nueva oportunidad de llegar a la cima, y «{all}» conserva la mejor puntuación de cada jugador. Para publicar tu resultado, termina una partida y pulsa «{button}» en la ventana de resultados: escribe un apodo, elige tu país y su bandera aparecerá junto a tu puntuación. Se conserva tu mejor puntuación, así que una partida peor nunca la reduce, y puedes abrir la clasificación en cualquier momento con el botón del trofeo. ¡Publica tu resultado, desafía a jugadores de todo el mundo y conviértete en el líder de Countries Guesser!",
     "Selected Alliance Country": "País de alianza seleccionado",
     "Selected Trap Country": "País de trampa seleccionado",
     "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!":
@@ -4768,6 +4894,29 @@ export const localization = {
       "Gameplay di indovinare l'alleanza del paese",
     "VIDEOS:": "VIDEO:",
     "Play Again": "Gioca di Nuovo",
+    Leaderboard: "Classifica",
+    "View leaderboard": "Vedi la classifica",
+    "To post your game results to the leaderboard, click {button}.":
+      "Per pubblicare il tuo risultato in classifica, clicca su «{button}».",
+    "Post your game results to the leaderboard and become the Countries Guesser leader!":
+      "Pubblica il tuo risultato in classifica e diventa il miglior giocatore di Countries Guesser!",
+    "Post Results": "Pubblica il Risultato",
+    Post: "Pubblica",
+    Nickname: "Soprannome",
+    "This week": "Questa settimana",
+    "All time": "Di sempre",
+    "Resets in": "Si azzera tra",
+    "day one": "giorno",
+    "day other": "giorni",
+    Rank: "Posizione",
+    Player: "Giocatore",
+    Mode: "Modalità",
+    "Your best score is": "Il tuo miglior punteggio è",
+    "Posted to the leaderboard!": "Pubblicato in classifica!",
+    "Leaderboard is unavailable. Try again later.":
+      "La classifica non è disponibile. Riprova più tardi.",
+    "No results yet": "Ancora nessun risultato",
+    "Loading...": "Caricamento...",
     "World Country Alliances Guesser Game":
       "Gioco delle Alleanze tra i Paesi del Mondo",
     "geographic online strategy game that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose eight different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
@@ -4943,6 +5092,8 @@ export const localization = {
     "To play with your friend, you need to select the game mode with a friend on the main page, create a game room and a link to the game for your friend and send it to him. Follow the connection status of your friend at the top of the screen after starting the game. There is also the possibility of communicating with your friend via chat at the bottom of the screen: you can greet him, wish him a good game or give yourself hints about your countries and alliances of countries (chat may be hidden by the bottom browser bar, so open it full screen or hide this bar).":
       "Per giocare con un amico, devi selezionare la modalità di gioco con un amico nella pagina principale, creare una stanza di gioco e un collegamento al gioco per il tuo amico, quindi inviarglielo. Segui lo stato di connessione del tuo amico nella parte superiore dello schermo dopo aver avviato la partita. C'è anche la possibilità di comunicare con il tuo amico tramite chat nella parte inferiore dello schermo: puoi salutarlo, augurargli una buona partita o darti suggerimenti sui tuoi paesi e sulle alleanze tra paesi (la chat potrebbe essere nascosta dalla barra inferiore del browser, quindi aprila a schermo intero o nascondi questa barra).",
     "Play With A Friend Mode": "Modalità Gioca con un amico",
+    "The leaderboard shows the best players of the game on two boards: ‘{week}’ starts over every Monday so everyone gets a fresh chance to reach the top, and ‘{all}’ keeps the best score of every player. To post your result, finish a game and click ‘{button}’ in the Game Result window: enter a nickname, choose your country, and your flag will appear next to your score. Your best score is kept, so a weaker game never lowers it, and you can open the leaderboard at any time with the trophy button. Post your result, challenge players from all over the world and become the Countries Guesser leader!":
+      "La classifica mostra i migliori giocatori del gioco su due tabelle: «{week}» riparte da zero ogni lunedì, così tutti hanno una nuova possibilità di arrivare in cima, e «{all}» conserva il miglior punteggio di ogni giocatore. Per pubblicare il tuo risultato, termina una partita e clicca su «{button}» nella finestra dei risultati: inserisci un soprannome, scegli il tuo paese e la tua bandiera apparirà accanto al tuo punteggio. Il tuo miglior punteggio viene conservato, quindi una partita più debole non lo abbassa mai, e puoi aprire la classifica in qualsiasi momento con il pulsante a forma di trofeo. Pubblica il tuo risultato, sfida giocatori da tutto il mondo e diventa il leader di Countries Guesser!",
     "If a player guesses an alliance of countries that contains four countries, he gets 15 points, three countries - 25 points, two countries - 35 points, one country - 50 points. When falling into an opponent's trap country, the player loses 10 points the first time, 20 points the second time, 30 points the third time and 50 points the fourth time. At the end of the game, the player gets an additional 10 points for each alliance of countries that was not guessed by the opponent.":
       "Se un giocatore indovina un'alleanza di paesi che contiene quattro paesi, ottiene 15 punti, tre paesi - 25 punti, due paesi - 35 punti, un paese - 50 punti. Quando cade nella trappola di un paese avversario, il giocatore perde 10 punti la prima volta, 20 punti la seconda volta, 30 punti la terza volta e 50 punti la quarta volta. Alla fine della partita, il giocatore ottiene altri 10 punti per ogni alleanza di paesi che non è stata indovinata dall'avversario.",
     Score: "Punteggio",

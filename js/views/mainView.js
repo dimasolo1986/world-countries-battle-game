@@ -28,6 +28,7 @@ class mainView {
   );
   _gameModeSlider = document.querySelector("#gameMode");
   _gameRulesButton = document.querySelector("#game-rules-button");
+  _leaderboardButton = document.querySelector("#leaderboard-button");
   _gameConfigurationHeader = document.querySelector(
     "#game-configuration-header",
   );
@@ -396,6 +397,11 @@ class mainView {
     this._supportProjectButton.textContent = `🔗 ${
       localization[model.worldCountries.language]["Support Project"]
     }`;
+    const leaderboardLabel =
+      localization[model.worldCountries.language]["Leaderboard"];
+    this._leaderboardButton.querySelector("title").textContent =
+      leaderboardLabel;
+    this._leaderboardButton.setAttribute("aria-label", leaderboardLabel);
     this._startButtonText.textContent = `${
       localization[model.worldCountries.language]["START"]
     }`;

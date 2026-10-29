@@ -36,6 +36,11 @@ class gameView {
   _gameCountryAllianceInitialSelectionBackButton = document.getElementById(
     "gameCountryAllianceInitialSelectionBack",
   );
+  _gameCountryAllianceInitialSelectionLeaderboardButton =
+    document.getElementById("gameCountryAllianceInitialSelectionLeaderboard");
+  _gameCountryAllianceInitialSelectionLeaderboardHint = document.getElementById(
+    "gameCountryAllianceInitialSelectionLeaderboardHint",
+  );
   _videoTutorialButtonListenerAdded = false;
   _gameRulesListenerAdded = false;
   _backButtonListenerAdded = false;
@@ -125,6 +130,12 @@ class gameView {
       ];
     this._gameCountryAllianceInitialSelectionBackButton.title =
       localization[model.worldCountries.language]["BACK TO MAIN PAGE"];
+    this._gameCountryAllianceInitialSelectionLeaderboardButton.title =
+      localization[model.worldCountries.language]["Leaderboard"];
+    this._gameCountryAllianceInitialSelectionLeaderboardHint.textContent =
+      localization[model.worldCountries.language][
+        "Post your game results to the leaderboard and become the Countries Guesser leader!"
+      ];
     this._gameCountryAllianceInitialSelectionRulesButton.textContent =
       "📝 " + localization[model.worldCountries.language]["Rules"];
     const videoTutorial = document.getElementById(
