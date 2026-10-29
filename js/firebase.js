@@ -261,15 +261,21 @@ export class Firebase {
   }
 
   prepareLeaderboard() {
+    if (this.leaderboardUid && (!this.app || !this.db)) {
+      this.leaderboardReady = null;
+      this.leaderboardUid = null;
+    }
     if (!this.leaderboardReady) {
       this.leaderboardReady = (async () => {
         await this.initializeApplication({ withTurn: false, silent: true });
         this.getApplicationDatabase();
         const auth = getAuth(this.app);
         if (!auth.currentUser) await signInAnonymously(auth);
-        return auth.currentUser.uid;
+        this.leaderboardUid = auth.currentUser.uid;
+        return this.leaderboardUid;
       })().catch((error) => {
         this.leaderboardReady = null;
+        this.leaderboardUid = null;
         throw error;
       });
     }
