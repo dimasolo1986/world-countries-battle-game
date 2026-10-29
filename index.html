@@ -39,7 +39,7 @@
     <link rel="preload" href="poppins-latin-700-normal.0ebdad10.woff2" as="font" type="font/woff2" crossorigin="">
     <link href="world-countries-battle-game.93ff9ca8.css" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="globe.06161c78.png">
-    <link href="world-countries-battle-game.8576a4fb.css" rel="stylesheet">
+    <link href="world-countries-battle-game.125d58ca.css" rel="stylesheet">
     <link rel="stylesheet" href="world-countries-battle-game.00adf6d6.css">
     <link rel="stylesheet" href="world-countries-battle-game.12c12642.css">
     <link rel="stylesheet" href="world-countries-battle-game.58f4f8c8.css">
@@ -207,6 +207,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" style="background-color:#f7fafd;font-family:Cambria,Cochin,Georgia,Times,Times New Roman,serif;font-size:.9rem">
           <div class="modal-header" style="justify-content:center;padding:.4rem">
+            <button id="gameCountryAllianceInitialSelectionLeaderboard" title="Leaderboard" style="position:absolute;left:5px">🏆</button>
             <button id="gameCountryAllianceInitialSelectionBack" title="BACK TO MAIN PAGE" style="position:absolute;right:5px">🏠</button>
             <div class="modal-title" style="color:#6495ed;font-size:1.1rem;font-weight:700">
               <table>
@@ -234,6 +235,7 @@
           <div class="modal-body" style="text-align:justify;padding:.5rem">
             <div><span>🕹️&nbsp;</span><span style="color:#2f4f4f" id="gameCountryAllianceInitialSelectionCountries">To play the game, choose eight different alliances of countries on the map and four trap-countries for your opponent. Follow the instructions at the top of the screen. To read the rules of the game, click the Rules button. We wish you a great game and a victory!</span></div>
             <div><span>💡</span><span style="color:#2f4f4f" id="gameCountryAllianceInitialSelectionTips">Tips: after guessing your opponent's country, continue guessing neighboring countries until you guess the entire alliance of countries.</span></div>
+            <div><span>🥇&nbsp;</span><span style="color:#2f4f4f" id="gameCountryAllianceInitialSelectionLeaderboardHint">Post your game results to the leaderboard and become the Countries Guesser leader!</span></div>
             <div class="text-center" style="margin-top:10px">
               <button id="gameCountryAllianceInitialSelectionTutorialButton" type="button" class="btn btn-sm btn-outline-primary" style="border:none;font-size:.55rem">🎓 Country Alliances Selection — Video Tutorial</button>
               <button id="gameCountryAllianceInitialSelectionRulesButton" type="button" class="btn btn-sm btn-outline-info" style="border:none;margin-left:5px;font-size:.55rem">📝 Rules</button>
@@ -275,16 +277,84 @@
             <div id="gameResultScore" style="font-size:1rem;font-weight:bolder"></div>
             <div id="gameResultHeadingGuesedCountries"></div>
             <div id="gameResultGuessing" style="overflow:auto"></div>
+            <div id="gameResultLeaderboardHint" style="color:#2f4f4f;text-align:center;margin-top:8px;font-size:.8rem"></div>
+            <div class="text-center">
+              <button id="gameResultLeaderboardLink" type="button" class="btn btn-link btn-sm" style="padding:0;font-size:.8rem;text-decoration:none">🏆 View leaderboard</button>
+            </div>
           </div>
           <div class="modal-footer" style="justify-content:center;padding:.5rem">
-            <button id="gameResultCloseButton" type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal" style="font-size:.8rem;box-shadow:0 2px 5px rgba(0,0,0,.5),inset 0 2px 10px rgba(0,0,0,.12)">
+            <button id="gameResultCloseButton" type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal" style="font-size:.7rem;box-shadow:0 2px 5px rgba(0,0,0,.5),inset 0 2px 10px rgba(0,0,0,.12)">
               Close
             </button>
-            <button id="shareGameResults" type="button" class="btn btn-sm btn-warning" style="margin-left:10px;margin-right:10px;font-size:.8rem;box-shadow:0 2px 5px rgba(0,0,0,.5),inset 0 2px 10px rgba(0,0,0,.12)">
-              Share
+            <button id="shareGameResults" type="button" class="btn btn-sm btn-success" style="margin-left:10px;margin-right:10px;font-size:.7rem;box-shadow:0 2px 5px rgba(0,0,0,.5),inset 0 2px 10px rgba(0,0,0,.12)">
+              🏆 Post Result
             </button>
-            <button id="gameResultPlayButton" type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal" style="font-size:.8rem;box-shadow:0 2px 5px rgba(0,0,0,.5),inset 0 2px 10px rgba(0,0,0,.12)">
+            <button id="gameResultPlayButton" type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal" style="font-size:.7rem;box-shadow:0 2px 5px rgba(0,0,0,.5),inset 0 2px 10px rgba(0,0,0,.12)">
               Play Again
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Leaderboard: nickname + score info before posting -->
+    <div class="modal fade" id="leaderboardPostModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="leaderboardPostTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background-color:#f7fafd;min-width:35vw;font-family:Cambria,Cochin,Georgia,Times,Times New Roman,serif;font-size:.9rem">
+          <div class="modal-header" style="justify-content:center;padding:.5rem">
+            <h2 class="modal-title fs-5" id="leaderboardPostTitle" style="color:#6495ed;font-weight:700">
+              🏆 Post Results
+            </h2>
+          </div>
+          <div class="modal-body text-center" style="padding:.5rem">
+            <div id="leaderboardPostScore" style="color:#10b981;font-size:1rem;font-weight:bolder"></div>
+            <div id="leaderboardPostMode" style="margin-bottom:8px"></div>
+            <label id="leaderboardNicknameLabel" for="leaderboardNicknameInput" style="font-weight:700">
+              Nickname
+            </label>
+            <input id="leaderboardNicknameInput" type="text" class="form-control form-control-sm" maxlength="20" autocomplete="nickname" style="max-width:220px;margin:2px auto 0">
+            <label id="leaderboardCountryLabel" for="leaderboardCountrySelect" style="margin-top:8px;font-weight:700">
+              Country
+            </label>
+            <div style="justify-content:center;align-items:center;gap:6px;margin-top:2px;display:flex">
+              <img id="leaderboardCountryFlag" alt="" style="object-fit:cover;visibility:hidden;border-radius:2px;width:24px;height:16px">
+              <select id="leaderboardCountrySelect" class="form-select form-select-sm" style="max-width:220px"></select>
+            </div>
+            <div id="leaderboardPostStatus" style="min-height:1.4em;margin-top:6px;font-size:.8rem"></div>
+          </div>
+          <div class="modal-footer" style="justify-content:center;padding:.5rem">
+            <button id="leaderboardPostCancel" type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal" style="font-size:.8rem;box-shadow:0 2px 5px rgba(0,0,0,.5),inset 0 2px 10px rgba(0,0,0,.12)">
+              Close
+            </button>
+            <button id="leaderboardPostSubmit" type="button" class="btn btn-sm btn-success" style="margin-left:10px;font-size:.8rem;box-shadow:0 2px 5px rgba(0,0,0,.5),inset 0 2px 10px rgba(0,0,0,.12)">
+              Post
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Leaderboard: the board itself -->
+    <div class="modal fade" id="leaderboardModal" tabindex="-1" aria-labelledby="leaderboardTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content" style="background-color:#f7fafd;font-family:Cambria,Cochin,Georgia,Times,Times New Roman,serif;font-size:.9rem">
+          <div class="modal-header" style="justify-content:center;padding:.5rem">
+            <h2 class="modal-title fs-5" id="leaderboardTitle" style="color:#6495ed;font-weight:700">
+              🏆 Leaderboard
+            </h2>
+          </div>
+          <div class="modal-body text-center" style="padding:0 .5rem .5rem">
+            <div id="leaderboardSticky" class="lb-sticky">
+              <div class="lb-tabs">
+                <button id="leaderboardTabWeek" type="button" class="lb-tab"></button>
+                <button id="leaderboardTabAll" type="button" class="lb-tab"></button>
+              </div>
+              <div id="leaderboardReset" class="lb-reset"></div>
+            </div>
+            <div id="leaderboardBody"></div>
+            <div id="leaderboardOwn" style="margin-top:8px;font-weight:700"></div>
+          </div>
+          <div class="modal-footer" style="justify-content:center;padding:.5rem">
+            <button id="leaderboardCloseButton" type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal" style="font-size:.8rem;box-shadow:0 2px 5px rgba(0,0,0,.5),inset 0 2px 10px rgba(0,0,0,.12)">
+              Close
             </button>
           </div>
         </div>
@@ -295,7 +365,7 @@
       <picture>
          <source srcset="icon-192.20a82114.avif" type="image/avif">
          <source srcset="icon-192.92549482.png" type="image/png">
-      <img id="game-logo" class="logo" src="icon-192.92549482.png" alt="Globe Logo" style="cursor:pointer;width:25px;height:25px;margin-left:10px">
+      <img id="game-logo" class="logo" src="icon-192.92549482.png" alt="Globe Logo" style="cursor:pointer;width:25px;height:25px;margin-left:8px">
       </picture>
       <h1 id="game-logo-header" style="color:#85c1e9;vertical-align:sub;cursor:pointer;margin-left:5px;font-family:Sacramento,Garamond,cursive;font-size:1.4rem" class="h4 mb-0 logo-game">
         Countries Guesser
@@ -305,7 +375,16 @@
           <select class="form-select form-select-sm" style="cursor:pointer;background-position:right .2rem center;background-size:12px 12px;width:-webkit-fit-content;width:fit-content;margin-right:3px;padding:0 1.2rem 0 .3rem;font-size:.8rem;font-weight:500;display:inline-block" aria-label="Language" id="language-selector"></select>
         </div>
         <a id="about-button" role="button" tabindex="0" style="color:#85c1e9;margin-right:10px;font-size:.85rem;font-weight:500;text-decoration:none">About Project</a>
-        <svg id="shareWebSite" style="cursor:pointer;background-color:#85c1e9;border-radius:1px;margin-right:10px;padding:1px" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="#212529" stroke="#212529" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="share-icon">
+        <svg id="leaderboard-button" role="button" aria-label="Leaderboard" style="cursor:pointer;vertical-align:middle;background-color:#85c1e9;border-radius:1px;margin-right:6px;padding:1px" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#212529" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <title>Leaderboard</title>
+  <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+  <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+  <path d="M4 22h16"></path>
+  <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+  <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+  <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+</svg>
+        <svg id="shareWebSite" style="cursor:pointer;background-color:#85c1e9;border-radius:1px;margin-right:8px;padding:1px" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#212529" stroke="#212529" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="share-icon">
           <title>Share</title>
   <circle cx="18" cy="5" r="3"></circle>
   <circle cx="6" cy="12" r="3"></circle>
@@ -748,6 +827,12 @@
         </p>
          <span class="game-rules-with-friend-description">To play with your friend, you need to select the game mode with a friend on the main page, create a game room and a link to the game for your friend and send it to him. Follow the connection status of your friend at the top of the screen after starting the game. There is also the possibility of communicating with your friend via chat at the bottom of the screen: you can greet him, wish him a good game or give yourself hints about your countries and alliances of countries (chat may be hidden by the bottom browser bar, so open it full screen or hide this bar).
         </span>
+        <br>
+         <p style="margin-bottom:0">
+          <span class="game-rules-leaderboard-heading" style="font-weight:700">🏆 Leaderboard</span>:
+        </p>
+         <span class="game-rules-leaderboard-description">The leaderboard shows the best players of the game on two boards: ‘This week’ starts over every Monday so everyone gets a fresh chance to reach the top, and ‘All time’ keeps the best score of every player. To post your result, finish a game and click ‘Post Result’ in the Game Result window: enter a nickname, choose your country, and your flag will appear next to your score. Your best score is kept, so a weaker game never lowers it, and you can open the leaderboard at any time with the trophy button. Post your result, challenge players from all over the world and become the Countries Guesser leader!
+        </span>
       </div>
       <figure class="text-center">
         <p class="game-rules-videos" style="margin-top:10px;margin-bottom:5px;font-size:1rem;font-weight:700">
@@ -842,9 +927,9 @@
     <div id="main-chat-slot" class="not-displayed sticky-bottom"></div>
 
     <script defer="" src="world-countries-battle-game.c7ae7326.js"></script>
-    <script src="world-countries-battle-game.a1d7d71d.js" nomodule="" defer=""></script><script type="module" src="world-countries-battle-game.bb2105e1.js"></script>
+    <script src="world-countries-battle-game.31934f3f.js" nomodule="" defer=""></script><script type="module" src="world-countries-battle-game.5ce90487.js"></script>
     <script src="world-countries-battle-game.8f10fb8d.js" nomodule="" defer=""></script><script type="module" src="world-countries-battle-game.e38837e5.js"></script>
-    <script src="world-countries-battle-game.9cec33bd.js" nomodule="" defer=""></script><script type="module" src="world-countries-battle-game.72e82058.js"></script>
+    <script src="world-countries-battle-game.cce2e13a.js" nomodule="" defer=""></script><script type="module" src="world-countries-battle-game.f9cc6c84.js"></script>
     <script src="world-countries-battle-game.fff7fc32.js" nomodule="" defer=""></script><script type="module" src="world-countries-battle-game.f9bfa05d.js"></script>
     <script src="world-countries-battle-game.a33a2ac6.js" nomodule="" defer=""></script><script type="module" src="world-countries-battle-game.3275d3a6.js"></script>
   
