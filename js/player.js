@@ -16,6 +16,16 @@ import {
 } from "./helpers.js";
 import { receiveChat } from "./chat.js";
 import * as model from "./model.js";
+const HINT_BONUS_POINTS = {
+  CountryPhoto: 50,
+  CoatOfArms: 30,
+  Outline: 20,
+  Region: 50,
+  Subregion: 30,
+  Capital: 20,
+  Flag: 10,
+  Country: 10,
+};
 export class Player {
   hitTimeoutIds = [];
   hitIntervalIds = [];
@@ -54,6 +64,9 @@ export class Player {
   countryBoundariesStyles = {};
   countryMarkersStyles = {};
   hints = {};
+  hintIssuedAt = {};
+  guessCount = 0;
+  lastHintBonus = 0;
   countryUnions = [];
   countryCodes = [];
   countriesToGuessNext = [];
@@ -146,6 +159,7 @@ export class Player {
     this.countryMarkersStyles = null;
     this.flagZoomHandlers = null;
     this.hints = null;
+    this.hintIssuedAt = null;
     this.usedHintsCount = null;
     this.score = null;
     this.trapCountryHitted = null;
@@ -191,6 +205,9 @@ export class Player {
     this.countryBoundariesStyles = {};
     this.countryMarkersStyles = {};
     this.hints = {};
+    this.hintIssuedAt = {};
+    this.guessCount = 0;
+    this.lastHintBonus = 0;
     this.score = 0;
     this.usedHintsCount = 0;
     this.trapCountryHitted = 0;
@@ -616,6 +633,11 @@ export class Player {
             this.preloadImage(countryPhotoUrl);
           }
         }
+        for (const hintCountryCode of Object.keys(this.hints)) {
+          if (!(hintCountryCode in this.hintIssuedAt)) {
+            this.hintIssuedAt[hintCountryCode] = this.guessCount;
+          }
+        }
         this.hintTypes.delete(selectedHintType);
         this.addHintsToHintPanel();
         hideModalWindow("gameUserHintSelectionModal");
@@ -691,6 +713,7 @@ export class Player {
     let randomCountryIndex = getRandomInt(0, selectedCountryCodes.length - 1);
     let countryCode = selectedCountryCodes[randomCountryIndex];
     const country = this.opponentPlayer.countries[countryCode];
+    this.hintIssuedAt[countryCode] = this.guessCount;
     if (hintType === "capital") {
       const hasCapital = selectedCountryCodes.some((countryCode) => {
         return (
@@ -772,8 +795,10 @@ export class Player {
 
   isHintUsed(countryCode) {
     let hint = undefined;
+    this.lastHintBonus = 0;
     if (countryCode in this.hints) {
       hint = this.hints[countryCode];
+      this.consumeHintBonus(countryCode, hint);
       delete this.hints[countryCode];
       return hint;
     }
@@ -785,6 +810,7 @@ export class Player {
         country.countrySubregion === hintValue
       ) {
         hint = this.hints[hintCountryCode];
+        this.consumeHintBonus(hintCountryCode, hint);
         delete this.hints[hintCountryCode];
         return hint;
       }
@@ -792,8 +818,23 @@ export class Player {
     return hint;
   }
 
+  hintBonusSuffix(hintBonus) {
+    return hintBonus > 0
+      ? ` ${localization[model.worldCountries.language]["on the first attempt after receiving a hint"]}.`
+      : "";
+  }
+
+  consumeHintBonus(hintCountryCode, hint) {
+    const issuedAt = this.hintIssuedAt[hintCountryCode];
+    delete this.hintIssuedAt[hintCountryCode];
+    if (issuedAt !== undefined && this.guessCount - issuedAt === 1) {
+      this.lastHintBonus = HINT_BONUS_POINTS[Object.keys(hint)[0]] ?? 0;
+    }
+  }
+
   removeHint(countryCode) {
     delete this.hints[countryCode];
+    delete this.hintIssuedAt[countryCode];
   }
 
   isCountryUnionGuessed(countryUnionIndex) {
@@ -1641,7 +1682,7 @@ export class Player {
                 localization[model.worldCountries.language]["countries"][
                   country.countryName
                 ]
-              }.</span> ${this.gameConfiguration.hintsType !== "No Hints" ? `<span style="margin-left:5px;">${localization[model.worldCountries.language]["The opponent gets a hint"]}</span>` : ""}`,
+              }.</span> ${this.gameConfiguration.hintsType !== "No Hints" ? `<span style="margin-left:5px;">${localization[model.worldCountries.language]["You get a hint"]}</span>` : ""}`,
             );
             if (this.gameConfiguration.hintsType === "Choose Hints") {
               this.opponentPlayer.openUserHintSelectionWindow = true;
@@ -2585,6 +2626,7 @@ export class Player {
         this.sendMoveToOpponent(countryCode);
       }
       this.alreadyGuessedCountryCodes.push(countryCode);
+      this.opponentPlayer.guessCount = this.opponentPlayer.guessCount + 1;
       const country = this.countries[countryCode];
       const countryIndexToDelete = this.countryCodes.indexOf(countryCode);
       this.countryCodes.splice(countryIndexToDelete, 1);
@@ -3228,9 +3270,16 @@ export class Player {
           this.playerAttemptToGuess = false;
           this.opponentPlayer.playerAttemptToGuess = true;
           const hintUsed = this.opponentPlayer.isHintUsed(countryCode);
+          const hintBonus = hintUsed ? this.opponentPlayer.lastHintBonus : 0;
           if (hintUsed) {
             this.opponentPlayer.usedHintsCount =
               this.opponentPlayer.usedHintsCount + 1;
+          }
+          if (hintBonus > 0) {
+            this.opponentPlayer.score = this.opponentPlayer.score + hintBonus;
+            if (this.gameConfiguration.gameMode === "user") {
+              this.sendHintBonusToOpponent(hintBonus);
+            }
           }
           this.updateCountryFlagPattern(countryCode);
           this.addCountryBoundaryBlinking(countryCode);
@@ -3342,7 +3391,7 @@ export class Player {
                     padding-right: 3px;
                     font-weight: bolder;
                     border-radius: 3px;
-                  ">+ ${points} ${
+                  ">+ ${points + hintBonus} ${
                     localization[model.worldCountries.language]["Points"]
                   }</span></div>`;
             const guessedCountryAlliance = document.getElementById(
@@ -3392,7 +3441,7 @@ export class Player {
                         localization[model.worldCountries.language][
                           Object.keys(hintUsed)[0]
                         ]
-                      }</span></div>`
+                      }${this.hintBonusSuffix(hintBonus)}</span></div>`
                     : ""
                 }
                 <div style="margin-top:5px;"><span style="
@@ -3403,7 +3452,7 @@ export class Player {
                     padding-left: 3px;
                     padding-right: 3px;
                     font-weight: bolder;
-                  ">+${points} ${
+                  ">+${points + hintBonus} ${
                     localization[model.worldCountries.language]["Points"]
                   }</span></div>`;
               const closeButton = document.getElementById(
@@ -3467,6 +3516,14 @@ export class Player {
               }</span>`,
             );
             this.lastGuessedCountryCodes.push(countryCode);
+            if (hintBonus > 0) {
+              const bonusScoreElement = document.getElementById(
+                "player-one-score-field",
+              );
+              bonusScoreElement.textContent = `🏅 ${this.opponentPlayer.score}`;
+              bonusScoreElement.style.color =
+                this.opponentPlayer.score < 0 ? "red" : "green";
+            }
             if (hintUsed) {
               document.getElementById(
                 "gameCountryAllianceGuessedLabel",
@@ -3496,7 +3553,21 @@ export class Player {
                   localization[model.worldCountries.language][
                     Object.keys(hintUsed)[0]
                   ]
-                }</span></div>`;
+                }${this.hintBonusSuffix(hintBonus)}</span></div>${
+                  hintBonus > 0
+                    ? `<div style="margin-top:5px;"><span style="
+                    color: white;
+                    font-size: 1rem;
+                    border-radius: 3px;
+                    background-color: green;
+                    padding-left: 3px;
+                    padding-right: 3px;
+                    font-weight: bolder;
+                  ">+${hintBonus} ${
+                    localization[model.worldCountries.language]["Points"]
+                  }</span></div>`
+                    : ""
+                }`;
               const closeButton = document.getElementById(
                 "gameCountryAllianceGuessedCloseButton",
               );
@@ -5646,6 +5717,17 @@ export class Player {
     }
   }
 
+  sendHintBonusToOpponent(hintBonus) {
+    if (
+      this.game.firebase &&
+      this.game.firebase.opponentConnectionState === "connected"
+    ) {
+      this.game.firebase.sendMessage(
+        JSON.stringify({ type: "hintBonus", value: hintBonus }),
+      );
+    }
+  }
+
   sendMoveAckToOpponent() {
     if (
       this.game.firebase &&
@@ -5731,6 +5813,16 @@ export class Player {
     } else if (messageObject.type === "move") {
       const countryCode = messageObject.value;
       this.handleOpponentHit(countryCode);
+    } else if (messageObject.type === "hintBonus") {
+      if (Object.values(HINT_BONUS_POINTS).includes(messageObject.value)) {
+        this.opponentPlayer.score += messageObject.value;
+        const opponentScoreElement = document.getElementById(
+          "player-two-score-field",
+        );
+        opponentScoreElement.textContent = `🏅 ${this.opponentPlayer.score}`;
+        opponentScoreElement.style.color =
+          this.opponentPlayer.score < 0 ? "red" : "green";
+      }
     } else if (messageObject.type === "ack") {
       const value = messageObject.value;
       if (value === "conf") {
@@ -5867,7 +5959,7 @@ export class Player {
                 localization[model.worldCountries.language]["countries"][
                   country.countryName
                 ]
-              }.</span> ${this.gameConfiguration.hintsType !== "No Hints" ? `<span style="margin-left:5px;">${localization[model.worldCountries.language]["The opponent gets a hint"]}</span>` : ""}`,
+              }.</span> ${this.gameConfiguration.hintsType !== "No Hints" ? `<span style="margin-left:5px;">${localization[model.worldCountries.language]["You get a hint"]}</span>` : ""}`,
             );
             this.trapCountryHitted = this.trapCountryHitted + 1;
             if (this.trapCountryHitted === 1) {

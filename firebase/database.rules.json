@@ -10,7 +10,7 @@
           ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 20"
         },
         "score": {
-          ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 480"
+          ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 660"
         },
         "mode": {
           ".validate": "newData.val() === 'computer' || newData.val() === 'friend'"
@@ -37,7 +37,7 @@
             ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 20"
           },
           "score": {
-            ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 480"
+            ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 660"
           },
           "mode": {
             ".validate": "newData.val() === 'computer' || newData.val() === 'friend'"

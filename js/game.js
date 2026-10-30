@@ -83,6 +83,8 @@ export class Game {
       localization[model.worldCountries.language]["Game Rules"];
     this.gameModalRulesCloseButton.textContent =
       localization[model.worldCountries.language]["Close"];
+    document.getElementById("gameRulesLeaderboard").title =
+      localization[model.worldCountries.language]["Leaderboard"];
     this.gameModalRulesContent.innerHTML = document.getElementById(
       "game-rules-project-container",
     ).innerHTML;
@@ -124,7 +126,7 @@ export class Game {
       localization[model.worldCountries.language]["Post Results"];
     this.gameModalResultShareButton.textContent = "🏆 " + postResultLabel;
     this.gameModalResultLeaderboardHint.textContent =
-      "🏆 " +
+      "🥇 " +
       localization[model.worldCountries.language][
         "To post your game results to the leaderboard, click {button}."
       ].replace("{button}", postResultLabel);

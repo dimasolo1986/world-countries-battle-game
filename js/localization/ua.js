@@ -655,6 +655,7 @@ export const localization = {
     "Country Alliance Guesser Gameplay":
       "Ігровий Процес Гри Вгадай Альянси Країн",
     "Support Project": "Підтримати Проект",
+    "Support": "Підтримати",
     "If your browser blocks or disables WebRTC (real-time communication for the web), you will not be able to play with your friend. Try a different browser.":
       "Якщо ваш браузер блокує або забороняє WebRTC (технологія комунікації в реальному часі), ви не зможете грати зі своїм другом. Спробуйте інший браузер.",
     "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!":
@@ -732,6 +733,7 @@ export const localization = {
       "Суперник потрапив в країну-пастку",
     Computer: "Комп'ютер",
     "The opponent gets a hint": "Суперник отримує підказку",
+    "You get a hint": "Ви отримуєте підказку",
     "Hints:": "Підказки:",
     Hints: "Підказки",
     "Bonus Countries": "Бонусні Країни",
@@ -754,6 +756,10 @@ export const localization = {
       "Вже вгадали цю країну. Спробуйте іншу!",
     "You guessed": "Ви вгадали",
     "by the hint": "за підказкою",
+    "on the first attempt after receiving a hint":
+      "з першої спроби після отримання підказки",
+    "Hint bonus rule":
+      "Бонус: якщо ви вгадали країну суперника з першої спроби після отримання підказки, ви отримуєте додаткові бали залежно від підказки: фото - 50, герб - 30, контур - 20, частина світу - 50, регіон - 30, столиця - 20, прапор - 10, назва країни - 10.",
     "Computer guessed": "Комп'ютер вгадав",
     "Computer is guessing your country...":
       "Комп'ютер прогнозує вашу країну...",
@@ -1498,6 +1504,7 @@ export const localization = {
     "Country Alliance Guesser Gameplay": "Country Alliance Guesser Gameplay",
     "VIDEOS:": "VIDEOS:",
     "Support Project": "Support Project",
+    "Support": "Support",
     "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!":
       "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!",
     "Make Donate": "Make Donate",
@@ -1577,6 +1584,7 @@ export const localization = {
     "Time per Guess, seconds": "Time per Guess, seconds",
     Hide: "Hide",
     "The opponent gets a hint": "The opponent gets a hint",
+    "You get a hint": "You get a hint",
     "You have already chosen this country!":
       "You have already chosen this country!",
     "Country Alliance": "Country Alliance",
@@ -1595,6 +1603,10 @@ export const localization = {
       "Already tried this country. Try another one!",
     "You guessed": "You guessed",
     "by the hint": "by the hint",
+    "on the first attempt after receiving a hint":
+      "on the first attempt after receiving a hint",
+    "Hint bonus rule":
+      "Bonus: if you guess your opponent's country on the very first attempt after receiving a hint, you get extra points depending on the hint: photo - 50, coat of arms - 30, outline - 20, region - 50, subregion - 30, capital - 20, flag - 10, country name - 10.",
     "Computer guessed": "Computer guessed",
     Play: "Play",
     "Computer is guessing your country...":
@@ -2238,6 +2250,7 @@ export const localization = {
       Tokyo: "Tokio",
     },
     "Support Project": "Projekt Unterstützen",
+    "Support": "Unterstützen",
     Clean: "Saubere",
     Opponent: "Gegner",
     "Opponent Map": "Gegnerkarte",
@@ -2462,6 +2475,7 @@ export const localization = {
     "Create Game Room": "Spielzimmer Erstellen",
     "Open Game Room": "Offenes Spielzimmer",
     "The opponent gets a hint": "Der Gegner bekommt einen Hinweis",
+    "You get a hint": "Du bekommst einen Hinweis",
     "Hints:": "Tipps:",
     Hints: "Tipps",
     "Bonus Countries": "Bonusländer",
@@ -2490,6 +2504,10 @@ export const localization = {
       "Versuch, das Land zu erraten, fehlgeschlagen!",
     "You guessed": "Sie haben es erraten",
     "by the hint": "durch den Hinweis",
+    "on the first attempt after receiving a hint":
+      "beim ersten Versuch nach Erhalt eines Hinweises",
+    "Hint bonus rule":
+      "Bonus: Wenn du das Land deines Gegners gleich beim ersten Versuch nach Erhalt eines Hinweises errätst, erhältst du Zusatzpunkte je nach Hinweis: Foto - 50, Wappen - 30, Umriss - 20, Region - 50, Subregion - 30, Hauptstadt - 20, Flagge - 10, Landesname - 10.",
     "Computer guessed": "Computer hat geraten",
     Play: "Spielen",
     "Already tried this country. Try another one!":
@@ -3111,6 +3129,7 @@ export const localization = {
       Tokyo: "Tokyo",
     },
     "Support Project": "Soutenir le Projet",
+    "Support": "Soutenir",
     "If your browser blocks or disables WebRTC (real-time communication for the web), you will not be able to play with your friend. Try a different browser.":
       "Si votre navigateur bloque ou désactive WebRTC (communication en temps réel pour le web), vous ne pourrez pas jouer avec votre ami. Essayez un autre navigateur.",
     "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!":
@@ -3229,6 +3248,7 @@ export const localization = {
     "Undo Last Country Alliance Selection":
       "Annuler la dernière sélection d'alliance de pays",
     "The opponent gets a hint": "L'adversaire reçoit un indice",
+    "You get a hint": "Vous recevez un indice",
     "Hints:": "Conseils:",
     Hints: "Conseils",
     "Bonus Countries": "Pays Bonus",
@@ -3361,6 +3381,10 @@ export const localization = {
       "La tentative de deviner le pays a échoué!",
     "You guessed": "Vous l'avez deviné",
     "by the hint": "avec l'aide d'un indice",
+    "on the first attempt after receiving a hint":
+      "du premier coup après avoir reçu un indice",
+    "Hint bonus rule":
+      "Bonus : si tu devines le pays de ton adversaire dès le premier essai après avoir reçu un indice, tu gagnes des points supplémentaires selon l'indice : photo - 50, blason - 30, contour - 20, région - 50, sous-région - 30, capitale - 20, drapeau - 10, nom du pays - 10.",
     "Computer guessed": "L'ordinateur a deviné",
     Play: "Jouer",
     "Already tried this country. Try another one!":
@@ -3984,6 +4008,7 @@ export const localization = {
       Tokyo: "Tokio",
     },
     "Support Project": "Apoyar el Proyecto",
+    "Support": "Apoyar",
     "If your browser blocks or disables WebRTC (real-time communication for the web), you will not be able to play with your friend. Try a different browser.":
       "Si tu navegador bloquea o deshabilita WebRTC (comunicación en tiempo real para la web), no podrás jugar con tu amigo. Prueba con otro navegador.",
     "World Country Alliances Guesser Game":
@@ -4093,6 +4118,7 @@ export const localization = {
       "Consejo: después de adivinar el país de tu oponente, continúa adivinando los países vecinos hasta que adivines toda la alianza de países.",
     Computer: "Computadora",
     "The opponent gets a hint": "El oponente recibe una pista",
+    "You get a hint": "Recibes una pista",
     "Hints:": "Consejos:",
     Hints: "Consejos",
     "Bonus Countries": "Países de bonificación",
@@ -4203,6 +4229,10 @@ export const localization = {
     "Failed attempt to guess country!": "¡Intento fallido de adivinar el país!",
     "You guessed": "Lo adivinaste",
     "by the hint": "con la ayuda de una pista",
+    "on the first attempt after receiving a hint":
+      "al primer intento tras recibir una pista",
+    "Hint bonus rule":
+      "Bono: si adivinas el país de tu oponente en el primer intento tras recibir una pista, obtienes puntos extra según la pista: foto - 50, escudo - 30, contorno - 20, región - 50, subregión - 30, capital - 20, bandera - 10, nombre del país - 10.",
     "Computer guessed": "La computadora lo adivinó",
     Play: "Jugar",
     Clean: "Limpia",
@@ -4857,6 +4887,7 @@ export const localization = {
       Tokyo: "Tokyo",
     },
     "Support Project": "Sostieni il Progetto",
+    "Support": "Sostieni",
     "If your browser blocks or disables WebRTC (real-time communication for the web), you will not be able to play with your friend. Try a different browser.":
       "Se il tuo browser blocca o disabilita WebRTC (comunicazione in tempo reale per il web), non potrai giocare con il tuo amico. Prova un altro browser.",
     "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!":
@@ -5057,6 +5088,7 @@ export const localization = {
     "Game room does not exist. Perhaps the opponent deleted it or left the game":
       "La stanza di gioco non esiste. Forse l'avversario l'ha eliminata o ha abbandonato la partita",
     "The opponent gets a hint": "L'avversario riceve un suggerimento",
+    "You get a hint": "Ricevi un suggerimento",
     "Connection with your opponent has failed. Try your attempt later.":
       "La connessione con il tuo avversario è fallita. Riprova più tardi.",
     "Failed to create a communication channel with your opponent":
@@ -5101,6 +5133,10 @@ export const localization = {
       "Tentativo fallito di indovinare il paese!",
     "You guessed": "Hai indovinato",
     "by the hint": "con l'aiuto di un indizio",
+    "on the first attempt after receiving a hint":
+      "al primo tentativo dopo aver ricevuto un indizio",
+    "Hint bonus rule":
+      "Bonus: se indovini il paese del tuo avversario al primo tentativo dopo aver ricevuto un indizio, ottieni punti extra in base all'indizio: foto - 50, stemma - 30, contorno - 20, regione - 50, sottoregione - 30, capitale - 20, bandiera - 10, nome del paese - 10.",
     "Computer guessed": "Il computer ha indovinato",
     Play: "Gioca",
     "Already tried this country. Try another one!":

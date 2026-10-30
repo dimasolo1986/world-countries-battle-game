@@ -508,6 +508,7 @@
           "
         >
           <div class="modal-header" style="padding: 0.4rem; justify-content: center;">
+            <button id="gameRulesLeaderboard" title="Leaderboard" style="position: absolute; right: 5px;">🏆</button>
             <h2
               class="modal-title"
               id="gameModalRulesLabel"
@@ -850,10 +851,10 @@
             ></div>
             <div id="gameResultHeadingGuesedCountries"></div>
             <div id="gameResultGuessing" style="overflow: auto"></div>
-            <div id="gameResultLeaderboardHint" style="margin-top: 8px; font-size: 0.8rem; color: darkslategray; text-align: center;"></div>
-            <div class="text-center">
+             <div class="text-center" style="margin-top: 5px;">
               <button id="gameResultLeaderboardLink" type="button" class="btn btn-link btn-sm" style="font-size: 0.8rem; padding: 0; text-decoration: none;">🏆 View leaderboard</button>
             </div>
+            <div id="gameResultLeaderboardHint" style="margin-top: 5px; font-size: 0.8rem; color: darkslategray; text-align: center;"></div>
           </div>
           <div class="modal-footer" style="padding: 0.5rem; justify-content: center;">
             <button
@@ -943,24 +944,25 @@
             />
             <label
               id="leaderboardCountryLabel"
-              for="leaderboardCountrySelect"
+              for="leaderboardCountryButton"
               style="font-weight: bold; margin-top: 8px"
             >
               Country
             </label>
-            <div
-              style="display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 2px"
-            >
-              <img
-                id="leaderboardCountryFlag"
-                alt=""
-                style="width: 24px; height: 16px; object-fit: cover; border-radius: 2px; visibility: hidden"
-              />
-              <select
-                id="leaderboardCountrySelect"
+            <div id="leaderboardCountryPicker" class="leaderboard-country-picker">
+              <button
+                id="leaderboardCountryButton"
+                type="button"
                 class="form-select form-select-sm"
-                style="max-width: 220px"
-              ></select>
+                aria-haspopup="listbox"
+                aria-expanded="false"
+              ></button>
+              <div
+                id="leaderboardCountryList"
+                class="leaderboard-country-list"
+                role="listbox"
+              ></div>
+              <select id="leaderboardCountrySelect" hidden></select>
             </div>
             <div id="leaderboardPostStatus" style="min-height: 1.4em; margin-top: 6px; font-size: 0.8rem"></div>
           </div>
@@ -1094,7 +1096,7 @@
           "
           >About Project</a
         >
-        <svg id="leaderboard-button" role="button" aria-label="Leaderboard" style="cursor: pointer; padding: 1px; background-color: #85c1e9; margin-right: 6px; border-radius: 1px; vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#212529" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg id="leaderboard-button" role="button" aria-label="Leaderboard" style="cursor: pointer; padding: 1px; background-color: #85c1e9; margin-right: 6px; border-radius: 1px; vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#212529" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <title>Leaderboard</title>
   <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
   <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
@@ -1103,7 +1105,7 @@
   <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
   <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
 </svg>
-        <svg  id="shareWebSite" style="cursor: pointer; padding: 1px; background-color: #85c1e9; margin-right: 8px; border-radius: 1px;" xmlns="http://www.w3.org/2000/svg"  width="14" height="14" viewBox="0 0 24 24" fill="#212529" stroke="#212529" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="share-icon">
+        <svg  id="shareWebSite" style="cursor: pointer; padding: 1px; background-color: #85c1e9; margin-right: 8px; border-radius: 1px;" xmlns="http://www.w3.org/2000/svg"  width="15" height="15" viewBox="0 0 24 24" fill="#212529" stroke="#212529" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="share-icon">
           <title>Share</title>
   <circle cx="18" cy="5" r="3"></circle>
   <circle cx="6" cy="12" r="3"></circle>
@@ -1494,18 +1496,34 @@
             📝 Game Rules
           </button>
           <button
+            id="leaderboard-main-button"
+            type="button"
+            aria-label="Leaderboard"
+            title="Leaderboard"
+            style="
+            font-size: 0.8rem;
+            margin-right: 10px;
+              margin-top: 5px;
+              --bs-btn-padding-y: 0.25rem;
+              --bs-btn-padding-x: 0.25rem;
+              border: none;
+            "
+            class="btn btn-sm btn-outline-secondary"
+          >
+            🏆
+          </button>
+          <button
             id="support-project-button"
             style="
             font-size: 0.8rem;
               margin-top: 5px;
-              margin-left: 15px;
               --bs-btn-padding-y: 0.25rem;
               --bs-btn-padding-x: 0.25rem;
               border: none;
             "
             class="btn btn-sm btn-outline-warning"
           >
-            🔗 Support Project
+            🔗 Support
           </button>
           <button
             id="start-button"

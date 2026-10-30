@@ -12,7 +12,7 @@ const PLAYER_ID_KEY = "leaderboardPlayerId";
 const COUNTRY_KEY = "leaderboardCountry";
 const MAX_NICKNAME_LENGTH = 20;
 const BOARD_SIZE = 100;
-const MAX_SCORE = 480;
+const MAX_SCORE = 660;
 const MEDALS = ["🥇", "🥈", "🥉"];
 
 const MODES = {
@@ -93,11 +93,152 @@ const guessCountry = function () {
   return "";
 };
 
+const createFlagImage = function (code) {
+  const flag = document.createElement("img");
+  flag.className = "leaderboard-country-flag";
+  flag.alt = "";
+  flag.loading = "lazy";
+  flag.src = flagSrc(code);
+  return flag;
+};
+
+const createCountryRow = function (code, name) {
+  const label = document.createElement("span");
+  label.textContent = name;
+  return code ? [createFlagImage(code), label] : [label];
+};
+
+const countryItems = () => [
+  ...getElementById("leaderboardCountryList").querySelectorAll(
+    ".leaderboard-country-item",
+  ),
+];
+
+const setActiveCountryItem = function (item) {
+  countryItems().forEach((other) =>
+    other.classList.toggle("active", other === item),
+  );
+  item?.scrollIntoView({ block: "nearest" });
+};
+
+const COUNTRY_LIST_MAX_HEIGHT = 200;
+const COUNTRY_LIST_MIN_HEIGHT = 80;
+const COUNTRY_LIST_EDGE_GAP = 8;
+
+const placeCountryList = function (list, button) {
+  const rect = button.getBoundingClientRect();
+  const below = window.innerHeight - rect.bottom - COUNTRY_LIST_EDGE_GAP;
+  const above = rect.top - COUNTRY_LIST_EDGE_GAP;
+  const openUp = below < COUNTRY_LIST_MAX_HEIGHT && above > below;
+  list.style.left = `${rect.left}px`;
+  list.style.width = `${rect.width}px`;
+  list.style.top = openUp ? "auto" : `${rect.bottom + 2}px`;
+  list.style.bottom = openUp
+    ? `${window.innerHeight - rect.top + 2}px`
+    : "auto";
+  list.style.maxHeight = `${Math.max(
+    COUNTRY_LIST_MIN_HEIGHT,
+    Math.min(COUNTRY_LIST_MAX_HEIGHT, openUp ? above : below),
+  )}px`;
+};
+
+const setCountryListOpen = function (open) {
+  const list = getElementById("leaderboardCountryList");
+  const button = getElementById("leaderboardCountryButton");
+  if (open) placeCountryList(list, button);
+  list.classList.toggle("open", open);
+  button.setAttribute("aria-expanded", open);
+  setActiveCountryItem(
+    open ? (list.querySelector(".selected") ?? countryItems()[0]) : null,
+  );
+};
+
+const chooseCountry = function (code) {
+  const select = getElementById("leaderboardCountrySelect");
+  select.value = code;
+  select.dispatchEvent(new Event("change"));
+};
+
+const TYPE_AHEAD_RESET_MS = 1000;
+let typedCountryPrefix = "";
+let typedCountryTimer;
+
+const handleCountryKeydown = function (event) {
+  const list = getElementById("leaderboardCountryList");
+  const open = list.classList.contains("open");
+  const items = countryItems();
+  const current = list.querySelector(open ? ".active" : ".selected");
+  const index = items.indexOf(current);
+  const isTyping =
+    event.key.length === 1 &&
+    !event.ctrlKey &&
+    !event.metaKey &&
+    !event.altKey &&
+    (event.key !== " " || typedCountryPrefix !== "");
+  if (isTyping) {
+    event.preventDefault();
+    typedCountryPrefix += event.key.toLocaleLowerCase();
+    clearTimeout(typedCountryTimer);
+    typedCountryTimer = setTimeout(() => {
+      typedCountryPrefix = "";
+    }, TYPE_AHEAD_RESET_MS);
+    const match = items.find(
+      (item) =>
+        item.dataset.code &&
+        item.textContent.toLocaleLowerCase().startsWith(typedCountryPrefix),
+    );
+    if (!match) return;
+    if (open) setActiveCountryItem(match);
+    else chooseCountry(match.dataset.code);
+    return;
+  }
+  switch (event.key) {
+    case "ArrowDown":
+    case "ArrowUp": {
+      event.preventDefault();
+      if (!open) return setCountryListOpen(true);
+      const step = event.key === "ArrowDown" ? 1 : -1;
+      setActiveCountryItem(
+        items[Math.min(items.length - 1, Math.max(0, index + step))],
+      );
+      break;
+    }
+    case "Home":
+    case "End":
+      if (!open) return;
+      event.preventDefault();
+      setActiveCountryItem(event.key === "Home" ? items[0] : items.at(-1));
+      break;
+    case "Enter":
+    case " ":
+      event.preventDefault();
+      if (!open) return setCountryListOpen(true);
+      if (current) chooseCountry(current.dataset.code);
+      setCountryListOpen(false);
+      break;
+    case "Escape":
+      if (!open) return;
+      event.preventDefault();
+      event.stopPropagation();
+      setCountryListOpen(false);
+      break;
+    case "Tab":
+      setCountryListOpen(false);
+      break;
+  }
+};
+
 const updateCountryFlag = function () {
-  const code = getElementById("leaderboardCountrySelect").value;
-  const flag = getElementById("leaderboardCountryFlag");
-  flag.style.visibility = code ? "visible" : "hidden";
-  if (code) flag.src = flagSrc(code);
+  const select = getElementById("leaderboardCountrySelect");
+  const code = select.value;
+  getElementById("leaderboardCountryButton").replaceChildren(
+    ...createCountryRow(code, select.selectedOptions[0]?.text ?? "—"),
+  );
+  getElementById("leaderboardCountryList")
+    .querySelectorAll(".leaderboard-country-item")
+    .forEach((item) =>
+      item.classList.toggle("selected", item.dataset.code === code),
+    );
 };
 
 const renderCountrySelect = function () {
@@ -113,6 +254,18 @@ const renderCountrySelect = function () {
   select.textContent = "";
   select.add(new Option("—", ""));
   options.forEach(({ code, name }) => select.add(new Option(name, code)));
+  const list = getElementById("leaderboardCountryList");
+  list.replaceChildren(
+    ...[{ code: "", name: "—" }, ...options].map(({ code, name }) => {
+      const item = document.createElement("div");
+      item.className = "leaderboard-country-item";
+      item.dataset.code = code;
+      item.setAttribute("role", "option");
+      item.append(...createCountryRow(code, name));
+      return item;
+    }),
+  );
+  setCountryListOpen(false);
   const saved = localStorage.getItem(COUNTRY_KEY);
   select.value = saved === null ? guessCountry() : saved;
   updateCountryFlag();
@@ -175,6 +328,7 @@ const submitResult = async function () {
       );
       nextAfterPost = openLeaderboard;
       hideModalWindow("leaderboardPostModal");
+      if (window.gtag) gtag("event", "post_leaderboard_result");
     } else {
       setStatus(
         "leaderboardPostStatus",
@@ -301,6 +455,7 @@ export const openLeaderboard = function () {
     `🏆 ${translate("Leaderboard")}`;
   getElementById("leaderboardCloseButton").textContent = translate("Close");
   showModalWindow("leaderboardModal");
+  if (window.gtag) gtag("event", "open_leaderboard");
   return loadBoard();
 };
 
@@ -350,6 +505,45 @@ export const initLeaderboard = function (firebaseGetter) {
     "change",
     updateCountryFlag,
   );
+  getElementById("leaderboardCountryButton").addEventListener("click", () =>
+    setCountryListOpen(
+      !getElementById("leaderboardCountryList").classList.contains("open"),
+    ),
+  );
+  getElementById("leaderboardCountryList").addEventListener(
+    "click",
+    (event) => {
+      const item = event.target.closest(".leaderboard-country-item");
+      if (!item) return;
+      chooseCountry(item.dataset.code);
+      setCountryListOpen(false);
+    },
+  );
+  getElementById("leaderboardCountryButton").addEventListener(
+    "keydown",
+    handleCountryKeydown,
+  );
+  getElementById("leaderboardCountryButton").addEventListener(
+    "keyup",
+    (event) => {
+      if (event.key === " ") event.preventDefault();
+    },
+  );
+  window.addEventListener("resize", () => setCountryListOpen(false));
+  document.addEventListener(
+    "scroll",
+    (event) => {
+      if (event.target !== getElementById("leaderboardCountryList")) {
+        setCountryListOpen(false);
+      }
+    },
+    true,
+  );
+  getElementById("leaderboardPostModal").addEventListener("click", (event) => {
+    if (!event.target.closest("#leaderboardCountryPicker")) {
+      setCountryListOpen(false);
+    }
+  });
   getElementById("leaderboardNicknameInput").addEventListener(
     "keydown",
     (event) => {

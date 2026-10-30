@@ -212,12 +212,26 @@ const init = function () {
     if (leaderboardButton) {
       leaderboardButton.addEventListener("click", openLeaderboard);
     }
+    const mainLeaderboardButton = document.getElementById(
+      "leaderboard-main-button",
+    );
+    if (mainLeaderboardButton) {
+      mainLeaderboardButton.addEventListener("click", openLeaderboard);
+    }
     const selectionLeaderboardButton = document.getElementById(
       "gameCountryAllianceInitialSelectionLeaderboard",
     );
     if (selectionLeaderboardButton) {
       selectionLeaderboardButton.addEventListener("click", () =>
         openLeaderboardOver("gameCountryAllianceInitialSelectionModal"),
+      );
+    }
+    const rulesLeaderboardButton = document.getElementById(
+      "gameRulesLeaderboard",
+    );
+    if (rulesLeaderboardButton) {
+      rulesLeaderboardButton.addEventListener("click", () =>
+        openLeaderboardOver("gameRulesModal"),
       );
     }
   });

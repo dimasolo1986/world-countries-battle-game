@@ -881,8 +881,10 @@ main .card .card-body {
 
 /* Rules & Support — secondary ghost buttons */
 #game-rules-button,
+#leaderboard-main-button,
 #support-project-button,
 #gameCountryAllianceInitialSelectionLeaderboard,
+#gameRulesLeaderboard,
 #gameCountryAllianceInitialSelectionBack {
   font-family: var(--bs-body-font-family) !important;
   font-size: 0.75rem !important;
@@ -896,8 +898,10 @@ main .card .card-body {
   padding: 0.3rem 0.4rem !important;
 }
 #game-rules-button:hover,
+#leaderboard-main-button:hover,
 #support-project-button:hover,
 #gameCountryAllianceInitialSelectionLeaderboard:hover,
+#gameRulesLeaderboard:hover,
 #gameCountryAllianceInitialSelectionBack:hover {
   border-color: var(--cg-teal) !important;
   color: var(--cg-teal) !important;
@@ -1506,6 +1510,7 @@ video {
 
   /* Game rules button / support button: side by side, centred */
   #game-rules-button,
+  #leaderboard-main-button,
   #support-project-button {
     margin-left: 0 !important;
     margin-right: 0 !important;
@@ -1614,4 +1619,58 @@ video {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
   }
+}
+
+/* Post Result dialog: country dropdown with flag images */
+.leaderboard-country-picker {
+  position: relative;
+  width: 220px;
+  max-width: 100%;
+  margin: 2px auto 0;
+}
+#leaderboardCountryButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.leaderboard-country-list {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px #00000040;
+  text-align: left;
+}
+.leaderboard-country-list.open {
+  display: block;
+}
+.leaderboard-country-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+.leaderboard-country-item:hover,
+.leaderboard-country-item.active {
+  background: #e9ecef;
+}
+.leaderboard-country-item.selected {
+  font-weight: bold;
+}
+.leaderboard-country-flag {
+  flex: none;
+  width: 24px;
+  height: 16px;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow: 0 1px 1px #00000080;
 }

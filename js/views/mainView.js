@@ -395,13 +395,18 @@ class mainView {
       localization[model.worldCountries.language]["Game Rules"]
     }`;
     this._supportProjectButton.textContent = `🔗 ${
-      localization[model.worldCountries.language]["Support Project"]
+      localization[model.worldCountries.language]["Support"]
     }`;
     const leaderboardLabel =
       localization[model.worldCountries.language]["Leaderboard"];
     this._leaderboardButton.querySelector("title").textContent =
       leaderboardLabel;
     this._leaderboardButton.setAttribute("aria-label", leaderboardLabel);
+    const mainLeaderboardButton = document.getElementById(
+      "leaderboard-main-button",
+    );
+    mainLeaderboardButton.setAttribute("aria-label", leaderboardLabel);
+    mainLeaderboardButton.title = leaderboardLabel;
     this._startButtonText.textContent = `${
       localization[model.worldCountries.language]["START"]
     }`;
