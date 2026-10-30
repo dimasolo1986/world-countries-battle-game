@@ -39,7 +39,7 @@
     <link rel="preload" href="poppins-latin-700-normal.0ebdad10.woff2" as="font" type="font/woff2" crossorigin="">
     <link href="world-countries-battle-game.93ff9ca8.css" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="globe.06161c78.png">
-    <link href="world-countries-battle-game.30dbdc2c.css" rel="stylesheet">
+    <link href="world-countries-battle-game.feeb8342.css" rel="stylesheet">
     <link rel="stylesheet" href="world-countries-battle-game.00adf6d6.css">
     <link rel="stylesheet" href="world-countries-battle-game.12c12642.css">
     <link rel="stylesheet" href="world-countries-battle-game.58f4f8c8.css">
@@ -136,6 +136,7 @@
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" id="modal-dialog-content">
         <div class="modal-content" style="background-color:#f7fafd;font-family:Cambria,Cochin,Georgia,Times,Times New Roman,serif;font-size:.8rem">
           <div class="modal-header" style="justify-content:center;padding:.4rem">
+            <button id="gameRulesLeaderboard" title="Leaderboard" style="position:absolute;right:5px">🏆</button>
             <h2 class="modal-title" id="gameModalRulesLabel" style="color:#6495ed;font-size:1.1rem;font-weight:700">
               Game Rules
             </h2>
@@ -277,10 +278,10 @@
             <div id="gameResultScore" style="font-size:1rem;font-weight:bolder"></div>
             <div id="gameResultHeadingGuesedCountries"></div>
             <div id="gameResultGuessing" style="overflow:auto"></div>
-            <div id="gameResultLeaderboardHint" style="color:#2f4f4f;text-align:center;margin-top:8px;font-size:.8rem"></div>
-            <div class="text-center">
+             <div class="text-center" style="margin-top:5px">
               <button id="gameResultLeaderboardLink" type="button" class="btn btn-link btn-sm" style="padding:0;font-size:.8rem;text-decoration:none">🏆 View leaderboard</button>
             </div>
+            <div id="gameResultLeaderboardHint" style="color:#2f4f4f;text-align:center;margin-top:5px;font-size:.8rem"></div>
           </div>
           <div class="modal-footer" style="justify-content:center;padding:.5rem">
             <button id="gameResultCloseButton" type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal" style="font-size:.7rem;box-shadow:0 2px 5px rgba(0,0,0,.5),inset 0 2px 10px rgba(0,0,0,.12)">
@@ -312,12 +313,13 @@
               Nickname
             </label>
             <input id="leaderboardNicknameInput" type="text" class="form-control form-control-sm" maxlength="20" autocomplete="nickname" style="max-width:220px;margin:2px auto 0">
-            <label id="leaderboardCountryLabel" for="leaderboardCountrySelect" style="margin-top:8px;font-weight:700">
+            <label id="leaderboardCountryLabel" for="leaderboardCountryButton" style="margin-top:8px;font-weight:700">
               Country
             </label>
-            <div style="justify-content:center;align-items:center;gap:6px;margin-top:2px;display:flex">
-              <img id="leaderboardCountryFlag" alt="" style="object-fit:cover;visibility:hidden;border-radius:2px;width:24px;height:16px">
-              <select id="leaderboardCountrySelect" class="form-select form-select-sm" style="max-width:220px"></select>
+            <div id="leaderboardCountryPicker" class="leaderboard-country-picker">
+              <button id="leaderboardCountryButton" type="button" class="form-select form-select-sm" aria-haspopup="listbox" aria-expanded="false"></button>
+              <div id="leaderboardCountryList" class="leaderboard-country-list" role="listbox"></div>
+              <select id="leaderboardCountrySelect" hidden=""></select>
             </div>
             <div id="leaderboardPostStatus" style="min-height:1.4em;margin-top:6px;font-size:.8rem"></div>
           </div>
@@ -375,7 +377,7 @@
           <select class="form-select form-select-sm" style="cursor:pointer;background-position:right .2rem center;background-size:12px 12px;width:-webkit-fit-content;width:fit-content;margin-right:3px;padding:0 1.2rem 0 .3rem;font-size:.8rem;font-weight:500;display:inline-block" aria-label="Language" id="language-selector"></select>
         </div>
         <a id="about-button" role="button" tabindex="0" style="color:#85c1e9;margin-right:10px;font-size:.85rem;font-weight:500;text-decoration:none">About Project</a>
-        <svg id="leaderboard-button" role="button" aria-label="Leaderboard" style="cursor:pointer;vertical-align:middle;background-color:#85c1e9;border-radius:1px;margin-right:6px;padding:1px" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#212529" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg id="leaderboard-button" role="button" aria-label="Leaderboard" style="cursor:pointer;vertical-align:middle;background-color:#85c1e9;border-radius:1px;margin-right:6px;padding:1px" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#212529" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <title>Leaderboard</title>
   <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
   <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
@@ -384,7 +386,7 @@
   <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
   <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
 </svg>
-        <svg id="shareWebSite" style="cursor:pointer;background-color:#85c1e9;border-radius:1px;margin-right:8px;padding:1px" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#212529" stroke="#212529" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="share-icon">
+        <svg id="shareWebSite" style="cursor:pointer;background-color:#85c1e9;border-radius:1px;margin-right:8px;padding:1px" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="#212529" stroke="#212529" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="share-icon">
           <title>Share</title>
   <circle cx="18" cy="5" r="3"></circle>
   <circle cx="6" cy="12" r="3"></circle>
@@ -572,8 +574,11 @@
           <button id="game-rules-button" style="--bs-btn-padding-y:.25rem;--bs-btn-padding-x:.25rem;border:none;margin-top:5px;margin-right:10px;font-size:.8rem" class="btn btn-sm btn-outline-info">
             📝 Game Rules
           </button>
-          <button id="support-project-button" style="--bs-btn-padding-y:.25rem;--bs-btn-padding-x:.25rem;border:none;margin-top:5px;margin-left:15px;font-size:.8rem" class="btn btn-sm btn-outline-warning">
-            🔗 Support Project
+          <button id="leaderboard-main-button" type="button" aria-label="Leaderboard" title="Leaderboard" style="--bs-btn-padding-y:.25rem;--bs-btn-padding-x:.25rem;border:none;margin-top:5px;margin-right:10px;font-size:.8rem" class="btn btn-sm btn-outline-secondary">
+            🏆
+          </button>
+          <button id="support-project-button" style="--bs-btn-padding-y:.25rem;--bs-btn-padding-x:.25rem;border:none;margin-top:5px;font-size:.8rem" class="btn btn-sm btn-outline-warning">
+            🔗 Support
           </button>
           <button id="start-button" style="--bs-btn-padding-y:.2rem;--bs-btn-padding-x:.2rem;width:175px;margin-top:10px;font-family:Cambria,Cochin,Georgia,Times,Times New Roman,serif;font-size:1.2rem;font-weight:700;box-shadow:0 2px 5px rgba(0,0,0,.5),inset 0 2px 10px rgba(0,0,0,.12)" class="btn btn-danger mb-1">
             <div id="startLoaderSpinner" class="text-center text-light">
@@ -927,9 +932,9 @@
     <div id="main-chat-slot" class="not-displayed sticky-bottom"></div>
 
     <script defer="" src="world-countries-battle-game.c7ae7326.js"></script>
-    <script src="world-countries-battle-game.931d27f1.js" nomodule="" defer=""></script><script type="module" src="world-countries-battle-game.2f7f2981.js"></script>
+    <script src="world-countries-battle-game.d288203b.js" nomodule="" defer=""></script><script type="module" src="world-countries-battle-game.bb15c1c1.js"></script>
     <script src="world-countries-battle-game.8f10fb8d.js" nomodule="" defer=""></script><script type="module" src="world-countries-battle-game.e38837e5.js"></script>
-    <script src="world-countries-battle-game.cce2e13a.js" nomodule="" defer=""></script><script type="module" src="world-countries-battle-game.f9cc6c84.js"></script>
+    <script src="world-countries-battle-game.aec751ff.js" nomodule="" defer=""></script><script type="module" src="world-countries-battle-game.bf72dd22.js"></script>
     <script src="world-countries-battle-game.fff7fc32.js" nomodule="" defer=""></script><script type="module" src="world-countries-battle-game.f9bfa05d.js"></script>
     <script src="world-countries-battle-game.a33a2ac6.js" nomodule="" defer=""></script><script type="module" src="world-countries-battle-game.3275d3a6.js"></script>
   
