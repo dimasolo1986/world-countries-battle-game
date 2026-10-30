@@ -2318,9 +2318,6 @@ export class Player {
                 }
               }
             });
-            const countryBound =
-              this.playMap.countryBoundariesAndMarkersLayer.bounds[countryCode];
-            if (countryBound) countryBounds.push(...countryBound.bounds);
           });
           if (countryBounds.length !== 0)
             this.opponentPlayer.playerMap.fitBounds(countryBounds, {
