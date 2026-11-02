@@ -13,8 +13,10 @@ import {
   openLeaderboard,
   openLeaderboardOver,
 } from "./leaderboard.js";
+import { initStats, openStats, openStatsOver } from "./stats.js";
 const init = function () {
   initLeaderboard(() => gameRoomView.getFirebase());
+  initStats();
   languageSelectView.init();
   translateAllElements();
   languageSelectView.addHandlerSelect(languageSelectHandler);
@@ -207,6 +209,20 @@ const init = function () {
       resultLeaderboardLink.addEventListener("click", () =>
         openLeaderboardOver("gameResultModal"),
       );
+    }
+    const resultStatsLink = document.getElementById("gameResultStatsLink");
+    if (resultStatsLink) {
+      resultStatsLink.addEventListener("click", () =>
+        openStatsOver("gameResultModal"),
+      );
+    }
+    const headerStatsButton = document.getElementById("stats-button");
+    if (headerStatsButton) {
+      headerStatsButton.addEventListener("click", openStats);
+    }
+    const mainStatsButton = document.getElementById("stats-main-button");
+    if (mainStatsButton) {
+      mainStatsButton.addEventListener("click", openStats);
     }
     const leaderboardButton = document.getElementById("leaderboard-button");
     if (leaderboardButton) {

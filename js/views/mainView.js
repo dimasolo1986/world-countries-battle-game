@@ -407,6 +407,13 @@ class mainView {
     );
     mainLeaderboardButton.setAttribute("aria-label", leaderboardLabel);
     mainLeaderboardButton.title = leaderboardLabel;
+    const statsLabel = localization[model.worldCountries.language]["Stats"];
+    const mainStatsButton = document.getElementById("stats-main-button");
+    mainStatsButton.setAttribute("aria-label", statsLabel);
+    mainStatsButton.title = statsLabel;
+    const headerStatsButton = document.getElementById("stats-button");
+    headerStatsButton.querySelector("title").textContent = statsLabel;
+    headerStatsButton.setAttribute("aria-label", statsLabel);
     this._startButtonText.textContent = `${
       localization[model.worldCountries.language]["START"]
     }`;

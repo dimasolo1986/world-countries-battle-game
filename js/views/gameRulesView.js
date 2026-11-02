@@ -64,6 +64,10 @@ class gameRulesView {
   _gameRulesLeaderboardDescription = document.querySelector(
     ".game-rules-leaderboard-description",
   );
+  _gameRulesStatsHeader = document.querySelector(".game-rules-stats-heading");
+  _gameRulesStatsDescription = document.querySelector(
+    ".game-rules-stats-description",
+  );
   _gameRulesScoreHeading = document.querySelector(".game-rules-score-heading");
   _gameRulesScoreDescription = document.querySelector(
     ".game-rules-score-description",
@@ -210,6 +214,9 @@ class gameRulesView {
       .replace("{week}", language["This week"])
       .replace("{all}", language["All time"])
       .replace("{button}", language["Post Results"]);
+    this._gameRulesStatsHeader.textContent = `📊 ${language["Stats"]}`;
+    this._gameRulesStatsDescription.textContent =
+      language["stats rules description"];
     this._gameRulesScoreHeading.textContent = `🏅 ${
       localization[model.worldCountries.language]["Score"]
     }`;

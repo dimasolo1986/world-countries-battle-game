@@ -472,13 +472,15 @@ header.bg-dark {
 }
 
 #shareWebSite,
+#stats-button,
 #leaderboard-button {
   background-color: var(--cg-teal) !important;
   border-radius: 4px !important;
   padding: 3px !important;
 }
 
-#leaderboard-button:hover {
+#leaderboard-button:hover,
+#stats-button:hover {
   background-color: #ffffff !important;
 }
 
@@ -871,6 +873,10 @@ main .card .card-body {
   object-fit: cover;
   border-radius: 2px;
   vertical-align: middle;
+  border: 1px solid grey;
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px rgba(0, 0, 0, 0.12);
 }
 .lb-table tr.lb-own td {
   background: #e0f2fe;
@@ -881,6 +887,7 @@ main .card .card-body {
 /* Rules & Support — secondary ghost buttons */
 #game-rules-button,
 #leaderboard-main-button,
+#stats-main-button,
 #support-project-button,
 #gameCountryAllianceInitialSelectionLeaderboard,
 #gameRulesLeaderboard,
@@ -898,6 +905,7 @@ main .card .card-body {
 }
 #game-rules-button:hover,
 #leaderboard-main-button:hover,
+#stats-main-button:hover,
 #support-project-button:hover,
 #gameCountryAllianceInitialSelectionLeaderboard:hover,
 #gameRulesLeaderboard:hover,
@@ -1510,6 +1518,7 @@ video {
   /* Game rules button / support button: side by side, centred */
   #game-rules-button,
   #leaderboard-main-button,
+  #stats-main-button,
   #support-project-button {
     margin-left: 0 !important;
     margin-right: 0 !important;
@@ -1672,4 +1681,45 @@ video {
   object-fit: cover;
   border-radius: 2px;
   box-shadow: 0 1px 1px #00000080;
+}
+
+/* ─── Stats modal ──────────────────────────────────────────────────────────── */
+.stats-table {
+  display: table;
+  width: 100%;
+  margin-bottom: 8px;
+}
+.stats-table tr {
+  display: table-row;
+  margin: 0;
+}
+.stats-table td {
+  display: table-cell;
+  padding: 3px 6px;
+  text-align: left;
+  border: 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+.stats-value {
+  font-weight: 700;
+  color: #16a34a;
+  text-align: right;
+}
+.stats-table td.stats-value {
+  text-align: right;
+}
+.stats-heading {
+  margin: 8px 0 4px;
+  font-weight: 700;
+  color: cornflowerblue;
+}
+.stats-missed-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 6px;
+  text-align: left;
+}
+.stats-missed-item span:nth-child(2) {
+  flex: 1;
 }

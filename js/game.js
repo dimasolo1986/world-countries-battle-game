@@ -8,6 +8,8 @@ import {
 } from "./helpers.js";
 import * as model from "./model.js";
 import { setPendingResult } from "./leaderboard.js";
+import { recordGame } from "./stats.js";
+import { pickFact } from "./funFacts.js";
 export class Game {
   finished = false;
   started = false;
@@ -40,6 +42,9 @@ export class Game {
   gameModalResultLeaderboardLink = document.getElementById(
     "gameResultLeaderboardLink",
   );
+  gameModalResultFunFact = document.getElementById("gameResultFunFact");
+  gameModalResultStatsLink = document.getElementById("gameResultStatsLink");
+  resultRecorded = false;
   constructor(playerOne, playerTwo, playMap, firebase, gameConfiguration) {
     this.guessCountriesMessageField = document.querySelector(
       "#countries-battle-game-message",
@@ -109,11 +114,36 @@ export class Game {
     showGameRulesWindow();
   }
 
+  recordResult(playerOneWon) {
+    const opponentCodes = Array.from(this.playerTwo.selectedCountryCodes);
+    const missedCodes = playerOneWon
+      ? []
+      : opponentCodes.filter(
+          (code) => !this.playerTwo.alreadyGuessedCountryCodes.includes(code),
+        );
+    if (!this.resultRecorded) {
+      this.resultRecorded = true;
+      recordGame({
+        score: this.playerOne.score,
+        mode:
+          this.gameConfiguration.gameMode === "user" ? "friend" : "computer",
+        won: playerOneWon,
+        missedCodes,
+        trapsHit: this.playerOne.trapCountryHitted,
+        hintsUsed: this.playerOne.usedHintsCount,
+      });
+    }
+    this.gameModalResultFunFact.textContent = pickFact(
+      missedCodes.length ? missedCodes : opponentCodes,
+    );
+  }
+
   showGameResult(playerOneWon, deleteGameRoom = false) {
     setPendingResult({
       score: this.playerOne.score,
       mode: this.gameConfiguration.gameMode === "user" ? "friend" : "computer",
     });
+    this.recordResult(playerOneWon);
     this.gameModalResultGuessedCountries.innerHTML = "";
     this.playerOne.enableMapInteraction();
     this.gameModalResultLabel.textContent =
@@ -132,6 +162,8 @@ export class Game {
       ].replace("{button}", postResultLabel);
     this.gameModalResultLeaderboardLink.textContent =
       "🏆 " + localization[model.worldCountries.language]["View leaderboard"];
+    this.gameModalResultStatsLink.textContent =
+      "📊 " + localization[model.worldCountries.language]["Stats"];
     if (playerOneWon) {
       this.guessCountriesMessageField.textContent =
         "👏 " +
