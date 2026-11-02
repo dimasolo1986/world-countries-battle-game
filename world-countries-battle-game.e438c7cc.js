@@ -947,7 +947,7 @@ const saveCurrentLanguageHandler = function() {
 };
 init();
 
-},{"./model.js":"6YxfE","./views/languageSelectView.js":"YFNrm","./views/aboutView.js":"6p5eU","./views/mainView.js":"1REwb","./localization/ua.js":"3eDg2","./views/gameView.js":"gRLA5","./views/donateAuthorView.js":"hEmLG","./views/gameRulesView.js":"7IcDc","./views/gameRoomView.js":"bKoNN","./leaderboard.js":"Gjp53","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","./stats.js":"85rJl"}],"YFNrm":[function(require,module,exports,__globalThis) {
+},{"./model.js":"6YxfE","./views/languageSelectView.js":"YFNrm","./views/aboutView.js":"6p5eU","./views/mainView.js":"1REwb","./localization/ua.js":"3eDg2","./views/gameView.js":"gRLA5","./views/donateAuthorView.js":"hEmLG","./views/gameRulesView.js":"7IcDc","./views/gameRoomView.js":"bKoNN","./leaderboard.js":"Gjp53","./stats.js":"85rJl","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"YFNrm":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 class languageSelectView {
@@ -1875,7 +1875,7 @@ class Game {
     }
 }
 
-},{"./localization/ua.js":"3eDg2","./controller.js":"cCMpN","./helpers.js":"j4etx","./model.js":"6YxfE","./leaderboard.js":"Gjp53","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","./stats.js":"85rJl","./funFacts.js":"6QfCL"}],"Gjp53":[function(require,module,exports,__globalThis) {
+},{"./localization/ua.js":"3eDg2","./controller.js":"cCMpN","./helpers.js":"j4etx","./model.js":"6YxfE","./leaderboard.js":"Gjp53","./stats.js":"85rJl","./funFacts.js":"6QfCL","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"Gjp53":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "openLeaderboard", ()=>openLeaderboard);
@@ -2374,6 +2374,7 @@ var _uaJs = require("./localization/ua.js");
 var _modelJs = require("./model.js");
 var _countriesJs = require("./data/countries.js");
 var _helpersJs = require("./helpers.js");
+var _funFactsJs = require("./funFacts.js");
 const STATS_KEY = "gameStats";
 const MAX_MISSED = 200;
 const TOP_MISSED = 5;
@@ -2478,6 +2479,24 @@ const renderMissed = function(stats, body) {
     });
     body.appendChild(list);
 };
+const appendFunFact = function(body) {
+    const codes = (0, _countriesJs.COUNTRIES).map((country)=>country.cca2);
+    const element = document.createElement("div");
+    element.className = "stats-fun-fact";
+    const text = document.createElement("span");
+    text.textContent = (0, _funFactsJs.pickFact)(codes);
+    const refresh = document.createElement("button");
+    refresh.type = "button";
+    refresh.className = "stats-fact-refresh";
+    refresh.textContent = "\uD83D\uDD04";
+    refresh.title = translate("Another fact");
+    refresh.setAttribute("aria-label", translate("Another fact"));
+    refresh.addEventListener("click", ()=>{
+        text.textContent = (0, _funFactsJs.pickFact)(codes);
+    });
+    element.append(text, refresh);
+    body.appendChild(element);
+};
 const renderStats = function() {
     const stats = loadStats();
     const body = getElementById("statsBody");
@@ -2489,6 +2508,7 @@ const renderStats = function() {
     resetButton.hidden = stats.games === 0;
     if (stats.games === 0) {
         body.textContent = translate("Play a game to see your stats");
+        appendFunFact(body);
         return;
     }
     const table = document.createElement("table");
@@ -2499,8 +2519,11 @@ const renderStats = function() {
     addRow(table, `${translate("Win rate")}: ${translate("vs friend")}`, percent(stats.byMode.friend.wins, stats.byMode.friend.games));
     addRow(table, translate("Average score"), Math.round(stats.totalScore / stats.games));
     addRow(table, translate("Best score"), stats.bestScore);
+    addRow(table, translate("Traps hit"), stats.trapsHit);
+    addRow(table, translate("Hints used"), stats.hintsUsed);
     body.appendChild(table);
     renderMissed(stats, body);
+    appendFunFact(body);
 };
 const openStats = function() {
     renderStats();
@@ -2536,7 +2559,7 @@ const initStats = function() {
     });
 };
 
-},{"./localization/ua.js":"3eDg2","./model.js":"6YxfE","./data/countries.js":"b3TQG","./helpers.js":"j4etx","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"6QfCL":[function(require,module,exports,__globalThis) {
+},{"./localization/ua.js":"3eDg2","./model.js":"6YxfE","./data/countries.js":"b3TQG","./helpers.js":"j4etx","./funFacts.js":"6QfCL","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"6QfCL":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "pickFact", ()=>pickFact);
@@ -2553,7 +2576,9 @@ const TEMPLATES = {
         landlocked: "\u041A\u0440\u0430\u0457\u043D\u0430 {country} \u043D\u0435 \u043C\u0430\u0454 \u0432\u0438\u0445\u043E\u0434\u0443 \u0434\u043E \u043C\u043E\u0440\u044F.",
         borders: "\u041A\u0456\u043B\u044C\u043A\u0456\u0441\u0442\u044C \u0441\u0443\u0445\u043E\u043F\u0443\u0442\u043D\u0438\u0445 \u0441\u0443\u0441\u0456\u0434\u0456\u0432 \u043A\u0440\u0430\u0457\u043D\u0438 {country}: {value}.",
         noBorders: "\u041A\u0440\u0430\u0457\u043D\u0430 {country} \u043D\u0435 \u043C\u0430\u0454 \u0441\u0443\u0445\u043E\u043F\u0443\u0442\u043D\u0438\u0445 \u043A\u043E\u0440\u0434\u043E\u043D\u0456\u0432.",
-        timezones: "\u041A\u0440\u0430\u0457\u043D\u0430 {country} \u043E\u0445\u043E\u043F\u043B\u044E\u0454 \u0447\u0430\u0441\u043E\u0432\u0438\u0445 \u043F\u043E\u044F\u0441\u0456\u0432: {value}."
+        timezones: "\u041A\u0440\u0430\u0457\u043D\u0430 {country} \u043E\u0445\u043E\u043F\u043B\u044E\u0454 \u0447\u0430\u0441\u043E\u0432\u0438\u0445 \u043F\u043E\u044F\u0441\u0456\u0432: {value}.",
+        region: "\u0427\u0430\u0441\u0442\u0438\u043D\u0430 \u0441\u0432\u0456\u0442\u0443 \u043A\u0440\u0430\u0457\u043D\u0438 {country}: {value}.",
+        subregion: "\u0420\u0435\u0433\u0456\u043E\u043D \u043A\u0440\u0430\u0457\u043D\u0438 {country}: {value}."
     },
     en: {
         title: "Did you know?",
@@ -2563,7 +2588,9 @@ const TEMPLATES = {
         landlocked: "{country} has no sea coast: it is landlocked.",
         borders: "{country} shares land borders with {value} countries.",
         noBorders: "{country} has no land borders.",
-        timezones: "{country} spans {value} time zones."
+        timezones: "{country} spans {value} time zones.",
+        region: "{country} is located in {value}.",
+        subregion: "{country} belongs to the {value} subregion."
     },
     de: {
         title: "Wusstest du schon?",
@@ -2573,7 +2600,9 @@ const TEMPLATES = {
         landlocked: "{country} hat keinen Zugang zum Meer.",
         borders: "{country} grenzt an {value} L\xe4nder.",
         noBorders: "{country} hat keine Landgrenzen.",
-        timezones: "{country} erstreckt sich \xfcber {value} Zeitzonen."
+        timezones: "{country} erstreckt sich \xfcber {value} Zeitzonen.",
+        region: "Weltteil von {country}: {value}.",
+        subregion: "Region von {country}: {value}."
     },
     fr: {
         title: "Le saviez-vous ?",
@@ -2583,7 +2612,9 @@ const TEMPLATES = {
         landlocked: "{country} n\u2019a pas d\u2019acc\xe8s \xe0 la mer.",
         borders: "{country} a des fronti\xe8res terrestres avec {value} pays.",
         noBorders: "{country} n\u2019a pas de fronti\xe8res terrestres.",
-        timezones: "{country} s\u2019\xe9tend sur {value} fuseaux horaires."
+        timezones: "{country} s\u2019\xe9tend sur {value} fuseaux horaires.",
+        region: "Partie du monde de {country} : {value}.",
+        subregion: "Sous-r\xe9gion de {country} : {value}."
     },
     es: {
         title: "\xbfSab\xedas que?",
@@ -2593,7 +2624,9 @@ const TEMPLATES = {
         landlocked: "{country} no tiene salida al mar.",
         borders: "{country} comparte fronteras terrestres con {value} pa\xedses.",
         noBorders: "{country} no tiene fronteras terrestres.",
-        timezones: "{country} abarca {value} zonas horarias."
+        timezones: "{country} abarca {value} zonas horarias.",
+        region: "Parte del mundo de {country}: {value}.",
+        subregion: "Subregi\xf3n de {country}: {value}."
     },
     it: {
         title: "Lo sapevi?",
@@ -2603,7 +2636,9 @@ const TEMPLATES = {
         landlocked: "{country} non ha sbocco sul mare.",
         borders: "{country} confina via terra con {value} paesi.",
         noBorders: "{country} non ha confini terrestri.",
-        timezones: "{country} si estende su {value} fusi orari."
+        timezones: "{country} si estende su {value} fusi orari.",
+        region: "Parte del mondo di {country}: {value}.",
+        subregion: "Sottoregione di {country}: {value}."
     }
 };
 const candidateFacts = function(country, language) {
@@ -2638,6 +2673,15 @@ const candidateFacts = function(country, language) {
     if (country.timezones?.length > 1) facts.push([
         "timezones",
         String(country.timezones.length)
+    ]);
+    const names = (0, _uaJs.localization)[language];
+    if (country.region) facts.push([
+        "region",
+        names[country.region] || country.region
+    ]);
+    if (country.subregion) facts.push([
+        "subregion",
+        names[country.subregion] || country.subregion
     ]);
     return facts;
 };

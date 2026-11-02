@@ -1524,4 +1524,26 @@ video {
 .stats-missed-item span:nth-child(2) {
   flex: 1;
 }
+
+.stats-fun-fact {
+  color: #2f4f4f;
+  border-top: 1px solid #e2e8f0;
+  margin-top: 8px;
+  padding-top: 8px;
+  font-size: .75rem;
+}
+
+.stats-fact-refresh {
+  cursor: pointer;
+  background: none;
+  border: 0;
+  margin-left: 6px;
+  padding: 0 4px;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.stats-fact-refresh:hover {
+  transform: rotate(90deg);
+}
 /*# sourceMappingURL=world-countries-battle-game.63fbfac1.css.map */
