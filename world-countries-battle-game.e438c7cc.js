@@ -735,8 +735,10 @@ var _gameRulesViewJsDefault = parcelHelpers.interopDefault(_gameRulesViewJs);
 var _gameRoomViewJs = require("./views/gameRoomView.js");
 var _gameRoomViewJsDefault = parcelHelpers.interopDefault(_gameRoomViewJs);
 var _leaderboardJs = require("./leaderboard.js");
+var _statsJs = require("./stats.js");
 const init = function() {
     (0, _leaderboardJs.initLeaderboard)(()=>(0, _gameRoomViewJsDefault.default).getFirebase());
+    (0, _statsJs.initStats)();
     (0, _languageSelectViewJsDefault.default).init();
     translateAllElements();
     (0, _languageSelectViewJsDefault.default).addHandlerSelect(languageSelectHandler);
@@ -830,6 +832,12 @@ const init = function() {
         if (shareGameResults) shareGameResults.addEventListener("click", (0, _leaderboardJs.openPostDialog));
         const resultLeaderboardLink = document.getElementById("gameResultLeaderboardLink");
         if (resultLeaderboardLink) resultLeaderboardLink.addEventListener("click", ()=>(0, _leaderboardJs.openLeaderboardOver)("gameResultModal"));
+        const resultStatsLink = document.getElementById("gameResultStatsLink");
+        if (resultStatsLink) resultStatsLink.addEventListener("click", ()=>(0, _statsJs.openStatsOver)("gameResultModal"));
+        const headerStatsButton = document.getElementById("stats-button");
+        if (headerStatsButton) headerStatsButton.addEventListener("click", (0, _statsJs.openStats));
+        const mainStatsButton = document.getElementById("stats-main-button");
+        if (mainStatsButton) mainStatsButton.addEventListener("click", (0, _statsJs.openStats));
         const leaderboardButton = document.getElementById("leaderboard-button");
         if (leaderboardButton) leaderboardButton.addEventListener("click", (0, _leaderboardJs.openLeaderboard));
         const mainLeaderboardButton = document.getElementById("leaderboard-main-button");
@@ -939,7 +947,7 @@ const saveCurrentLanguageHandler = function() {
 };
 init();
 
-},{"./model.js":"6YxfE","./views/languageSelectView.js":"YFNrm","./views/aboutView.js":"6p5eU","./views/mainView.js":"1REwb","./localization/ua.js":"3eDg2","./views/gameView.js":"gRLA5","./views/donateAuthorView.js":"hEmLG","./views/gameRulesView.js":"7IcDc","./views/gameRoomView.js":"bKoNN","./leaderboard.js":"Gjp53","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"YFNrm":[function(require,module,exports,__globalThis) {
+},{"./model.js":"6YxfE","./views/languageSelectView.js":"YFNrm","./views/aboutView.js":"6p5eU","./views/mainView.js":"1REwb","./localization/ua.js":"3eDg2","./views/gameView.js":"gRLA5","./views/donateAuthorView.js":"hEmLG","./views/gameRulesView.js":"7IcDc","./views/gameRoomView.js":"bKoNN","./leaderboard.js":"Gjp53","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","./stats.js":"85rJl"}],"YFNrm":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 class languageSelectView {
@@ -1275,6 +1283,13 @@ class mainView {
         const mainLeaderboardButton = document.getElementById("leaderboard-main-button");
         mainLeaderboardButton.setAttribute("aria-label", leaderboardLabel);
         mainLeaderboardButton.title = leaderboardLabel;
+        const statsLabel = (0, _uaJs.localization)[_modelJs.worldCountries.language]["Stats"];
+        const mainStatsButton = document.getElementById("stats-main-button");
+        mainStatsButton.setAttribute("aria-label", statsLabel);
+        mainStatsButton.title = statsLabel;
+        const headerStatsButton = document.getElementById("stats-button");
+        headerStatsButton.querySelector("title").textContent = statsLabel;
+        headerStatsButton.setAttribute("aria-label", statsLabel);
         this._startButtonText.textContent = `${(0, _uaJs.localization)[_modelJs.worldCountries.language]["START"]}`;
         this._aboutButton.textContent = `${(0, _uaJs.localization)[_modelJs.worldCountries.language]["About Project"]}`;
         this._opponentLabel.textContent = `${(0, _uaJs.localization)[_modelJs.worldCountries.language]["Opponent"]}`;
@@ -1604,6 +1619,8 @@ var _controllerJs = require("./controller.js");
 var _helpersJs = require("./helpers.js");
 var _modelJs = require("./model.js");
 var _leaderboardJs = require("./leaderboard.js");
+var _statsJs = require("./stats.js");
+var _funFactsJs = require("./funFacts.js");
 class Game {
     finished = false;
     started = false;
@@ -1629,6 +1646,9 @@ class Game {
     gameModalResultShareButton = document.getElementById("shareGameResults");
     gameModalResultLeaderboardHint = document.getElementById("gameResultLeaderboardHint");
     gameModalResultLeaderboardLink = document.getElementById("gameResultLeaderboardLink");
+    gameModalResultFunFact = document.getElementById("gameResultFunFact");
+    gameModalResultStatsLink = document.getElementById("gameResultStatsLink");
+    resultRecorded = false;
     constructor(playerOne, playerTwo, playMap, firebase, gameConfiguration){
         this.guessCountriesMessageField = document.querySelector("#countries-battle-game-message");
         this.bonusCountries = [];
@@ -1671,11 +1691,28 @@ class Game {
         } else document.getElementById("game-rules-friend-link").classList.add("not-displayed");
         (0, _helpersJs.showGameRulesWindow)();
     }
+    recordResult(playerOneWon) {
+        const opponentCodes = Array.from(this.playerTwo.selectedCountryCodes);
+        const missedCodes = playerOneWon ? [] : opponentCodes.filter((code)=>!this.playerTwo.alreadyGuessedCountryCodes.includes(code));
+        if (!this.resultRecorded) {
+            this.resultRecorded = true;
+            (0, _statsJs.recordGame)({
+                score: this.playerOne.score,
+                mode: this.gameConfiguration.gameMode === "user" ? "friend" : "computer",
+                won: playerOneWon,
+                missedCodes,
+                trapsHit: this.playerOne.trapCountryHitted,
+                hintsUsed: this.playerOne.usedHintsCount
+            });
+        }
+        this.gameModalResultFunFact.textContent = (0, _funFactsJs.pickFact)(missedCodes.length ? missedCodes : opponentCodes);
+    }
     showGameResult(playerOneWon, deleteGameRoom = false) {
         (0, _leaderboardJs.setPendingResult)({
             score: this.playerOne.score,
             mode: this.gameConfiguration.gameMode === "user" ? "friend" : "computer"
         });
+        this.recordResult(playerOneWon);
         this.gameModalResultGuessedCountries.innerHTML = "";
         this.playerOne.enableMapInteraction();
         this.gameModalResultLabel.textContent = "\uD83D\uDCDD " + (0, _uaJs.localization)[_modelJs.worldCountries.language]["Game Result"];
@@ -1685,6 +1722,7 @@ class Game {
         this.gameModalResultShareButton.textContent = "\uD83C\uDFC6 " + postResultLabel;
         this.gameModalResultLeaderboardHint.textContent = "\uD83E\uDD47 " + (0, _uaJs.localization)[_modelJs.worldCountries.language]["To post your game results to the leaderboard, click {button}."].replace("{button}", postResultLabel);
         this.gameModalResultLeaderboardLink.textContent = "\uD83C\uDFC6 " + (0, _uaJs.localization)[_modelJs.worldCountries.language]["View leaderboard"];
+        this.gameModalResultStatsLink.textContent = "\uD83D\uDCCA " + (0, _uaJs.localization)[_modelJs.worldCountries.language]["Stats"];
         if (playerOneWon) {
             this.guessCountriesMessageField.textContent = "\uD83D\uDC4F " + (0, _uaJs.localization)[_modelJs.worldCountries.language]["Congratulations! You won the game!"];
             this.gameResultScore.textContent = "\uD83C\uDFC5 " + (0, _uaJs.localization)[_modelJs.worldCountries.language]["Score"] + ": " + this.playerOne.score + " " + (0, _uaJs.localization)[_modelJs.worldCountries.language]["Points"];
@@ -1837,7 +1875,7 @@ class Game {
     }
 }
 
-},{"./localization/ua.js":"3eDg2","./controller.js":"cCMpN","./helpers.js":"j4etx","./model.js":"6YxfE","./leaderboard.js":"Gjp53","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"Gjp53":[function(require,module,exports,__globalThis) {
+},{"./localization/ua.js":"3eDg2","./controller.js":"cCMpN","./helpers.js":"j4etx","./model.js":"6YxfE","./leaderboard.js":"Gjp53","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT","./stats.js":"85rJl","./funFacts.js":"6QfCL"}],"Gjp53":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "openLeaderboard", ()=>openLeaderboard);
@@ -2196,7 +2234,7 @@ const timeUntilDayReset = function() {
     const now = new Date();
     const nextDay = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1);
     const minutes = Math.max(1, Math.ceil((nextDay - now.getTime()) / 60000));
-    return `${Math.floor(minutes / 60)}${translate("hour short")} ${minutes % 60}${translate("minute short")}`;
+    return `${Math.floor(minutes / 60)} ${translate("hour short")} ${minutes % 60} ${translate("minute short")}`;
 };
 const resetLabel = function() {
     if (boardPeriod === "day") return `${translate("Resets in")} ${timeUntilDayReset()}`;
@@ -2323,6 +2361,298 @@ const initLeaderboard = function(firebaseGetter) {
             (0, _helpersJs.showGameResultWindow)();
         }
     });
+};
+
+},{"./localization/ua.js":"3eDg2","./model.js":"6YxfE","./data/countries.js":"b3TQG","./helpers.js":"j4etx","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"85rJl":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "recordGame", ()=>recordGame);
+parcelHelpers.export(exports, "openStats", ()=>openStats);
+parcelHelpers.export(exports, "openStatsOver", ()=>openStatsOver);
+parcelHelpers.export(exports, "initStats", ()=>initStats);
+var _uaJs = require("./localization/ua.js");
+var _modelJs = require("./model.js");
+var _countriesJs = require("./data/countries.js");
+var _helpersJs = require("./helpers.js");
+const STATS_KEY = "gameStats";
+const MAX_MISSED = 200;
+const TOP_MISSED = 5;
+let returnModalId = null;
+const translate = (key)=>(0, _uaJs.localization)[_modelJs.worldCountries.language][key];
+const getElementById = (id)=>document.getElementById(id);
+const emptyStats = ()=>({
+        v: 1,
+        games: 0,
+        wins: 0,
+        totalScore: 0,
+        bestScore: 0,
+        trapsHit: 0,
+        hintsUsed: 0,
+        byMode: {
+            computer: {
+                games: 0,
+                wins: 0
+            },
+            friend: {
+                games: 0,
+                wins: 0
+            }
+        },
+        missed: {}
+    });
+const loadStats = function() {
+    try {
+        const stored = JSON.parse(localStorage.getItem(STATS_KEY));
+        if (stored && stored.v === 1) return {
+            ...emptyStats(),
+            ...stored
+        };
+    } catch  {
+    // unreadable value: start over
+    }
+    return emptyStats();
+};
+const saveStats = function(stats) {
+    try {
+        localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+    } catch  {
+    // storage full or blocked: stats are a nicety, never break the game
+    }
+};
+const recordGame = function({ score, mode, won, missedCodes = [], trapsHit = 0, hintsUsed = 0 }) {
+    const stats = loadStats();
+    const safeScore = Number.isFinite(score) ? Math.max(0, Math.round(score)) : 0;
+    const modeKey = mode === "friend" ? "friend" : "computer";
+    stats.games += 1;
+    stats.totalScore += safeScore;
+    stats.bestScore = Math.max(stats.bestScore, safeScore);
+    stats.trapsHit += trapsHit || 0;
+    stats.hintsUsed += hintsUsed || 0;
+    stats.byMode[modeKey].games += 1;
+    if (won) {
+        stats.wins += 1;
+        stats.byMode[modeKey].wins += 1;
+    }
+    missedCodes.forEach((code)=>{
+        stats.missed[code] = (stats.missed[code] || 0) + 1;
+    });
+    const entries = Object.entries(stats.missed);
+    if (entries.length > MAX_MISSED) stats.missed = Object.fromEntries(entries.sort((a, b)=>b[1] - a[1]).slice(0, MAX_MISSED));
+    saveStats(stats);
+};
+const percent = (part, total)=>total ? `${Math.round(part / total * 100)}%` : "\u2013";
+const addRow = function(table, label, value) {
+    const row = table.insertRow();
+    row.insertCell().textContent = label;
+    const valueCell = row.insertCell();
+    valueCell.textContent = value;
+    valueCell.className = "stats-value";
+};
+const renderMissed = function(stats, body) {
+    const top = Object.entries(stats.missed).sort((a, b)=>b[1] - a[1]).slice(0, TOP_MISSED);
+    if (top.length === 0) return;
+    const heading = document.createElement("div");
+    heading.className = "stats-heading";
+    heading.textContent = translate("Most missed countries");
+    body.appendChild(heading);
+    const list = document.createElement("div");
+    list.className = "stats-missed";
+    top.forEach(([code, count])=>{
+        const country = (0, _countriesJs.COUNTRIES).find((item)=>item.cca2 === code);
+        if (!country) return;
+        const item = document.createElement("div");
+        item.className = "stats-missed-item";
+        const flag = document.createElement("img");
+        flag.className = "lb-flag";
+        flag.src = country.flags.webp;
+        flag.alt = "";
+        item.appendChild(flag);
+        const name = document.createElement("span");
+        name.textContent = translate("countries")[country.name.common] || country.name.common;
+        item.appendChild(name);
+        const times = document.createElement("span");
+        times.className = "stats-value";
+        times.textContent = `\xd7${count}`;
+        item.appendChild(times);
+        list.appendChild(item);
+    });
+    body.appendChild(list);
+};
+const renderStats = function() {
+    const stats = loadStats();
+    const body = getElementById("statsBody");
+    body.textContent = "";
+    getElementById("statsTitle").textContent = `\u{1F4CA} ${translate("Stats")}`;
+    getElementById("statsCloseButton").textContent = translate("Close");
+    const resetButton = getElementById("statsResetButton");
+    resetButton.textContent = translate("Reset stats");
+    resetButton.hidden = stats.games === 0;
+    if (stats.games === 0) {
+        body.textContent = translate("Play a game to see your stats");
+        return;
+    }
+    const table = document.createElement("table");
+    table.className = "stats-table";
+    addRow(table, translate("Games played"), stats.games);
+    addRow(table, translate("Win rate"), percent(stats.wins, stats.games));
+    addRow(table, `${translate("Win rate")}: ${translate("vs computer")}`, percent(stats.byMode.computer.wins, stats.byMode.computer.games));
+    addRow(table, `${translate("Win rate")}: ${translate("vs friend")}`, percent(stats.byMode.friend.wins, stats.byMode.friend.games));
+    addRow(table, translate("Average score"), Math.round(stats.totalScore / stats.games));
+    addRow(table, translate("Best score"), stats.bestScore);
+    body.appendChild(table);
+    renderMissed(stats, body);
+};
+const openStats = function() {
+    renderStats();
+    (0, _helpersJs.showModalWindow)("statsModal");
+};
+const openStatsOver = function(modalId) {
+    const element = getElementById(modalId);
+    if (!element.classList.contains("show")) {
+        openStats();
+        return;
+    }
+    returnModalId = modalId;
+    element.addEventListener("hidden.bs.modal", openStats, {
+        once: true
+    });
+    (0, _helpersJs.hideModalWindow)(modalId);
+};
+const initStats = function() {
+    getElementById("statsResetButton").addEventListener("click", ()=>{
+        if (!window.confirm(translate("Reset stats") + "?")) return;
+        try {
+            localStorage.removeItem(STATS_KEY);
+        } catch  {
+        // nothing to clear
+        }
+        renderStats();
+    });
+    getElementById("statsModal").addEventListener("hidden.bs.modal", ()=>{
+        if (!returnModalId) return;
+        const modalId = returnModalId;
+        returnModalId = null;
+        (0, _helpersJs.showModalWindow)(modalId);
+    });
+};
+
+},{"./localization/ua.js":"3eDg2","./model.js":"6YxfE","./data/countries.js":"b3TQG","./helpers.js":"j4etx","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"6QfCL":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "pickFact", ()=>pickFact);
+var _uaJs = require("./localization/ua.js");
+var _modelJs = require("./model.js");
+var _countriesJs = require("./data/countries.js");
+var _helpersJs = require("./helpers.js");
+const TEMPLATES = {
+    ua: {
+        title: "\u0427\u0438 \u0437\u043D\u0430\u0454\u0442\u0435 \u0432\u0438?",
+        capital: "\u0421\u0442\u043E\u043B\u0438\u0446\u044F \u043A\u0440\u0430\u0457\u043D\u0438 {country} \u2014 {value}.",
+        population: "\u0423 \u043A\u0440\u0430\u0457\u043D\u0456 {country} \u043F\u0440\u043E\u0436\u0438\u0432\u0430\u0454 \u0431\u043B\u0438\u0437\u044C\u043A\u043E {value} \u043E\u0441\u0456\u0431.",
+        area: "\u041F\u043B\u043E\u0449\u0430 \u043A\u0440\u0430\u0457\u043D\u0438 {country} \u2014 \u043F\u0440\u0438\u0431\u043B\u0438\u0437\u043D\u043E {value} \u043A\u043C\xb2.",
+        landlocked: "\u041A\u0440\u0430\u0457\u043D\u0430 {country} \u043D\u0435 \u043C\u0430\u0454 \u0432\u0438\u0445\u043E\u0434\u0443 \u0434\u043E \u043C\u043E\u0440\u044F.",
+        borders: "\u041A\u0456\u043B\u044C\u043A\u0456\u0441\u0442\u044C \u0441\u0443\u0445\u043E\u043F\u0443\u0442\u043D\u0438\u0445 \u0441\u0443\u0441\u0456\u0434\u0456\u0432 \u043A\u0440\u0430\u0457\u043D\u0438 {country}: {value}.",
+        noBorders: "\u041A\u0440\u0430\u0457\u043D\u0430 {country} \u043D\u0435 \u043C\u0430\u0454 \u0441\u0443\u0445\u043E\u043F\u0443\u0442\u043D\u0438\u0445 \u043A\u043E\u0440\u0434\u043E\u043D\u0456\u0432.",
+        timezones: "\u041A\u0440\u0430\u0457\u043D\u0430 {country} \u043E\u0445\u043E\u043F\u043B\u044E\u0454 \u0447\u0430\u0441\u043E\u0432\u0438\u0445 \u043F\u043E\u044F\u0441\u0456\u0432: {value}."
+    },
+    en: {
+        title: "Did you know?",
+        capital: "The capital of {country} is {value}.",
+        population: "{country} has about {value} people.",
+        area: "{country} covers about {value} km\xb2.",
+        landlocked: "{country} has no sea coast: it is landlocked.",
+        borders: "{country} shares land borders with {value} countries.",
+        noBorders: "{country} has no land borders.",
+        timezones: "{country} spans {value} time zones."
+    },
+    de: {
+        title: "Wusstest du schon?",
+        capital: "Die Hauptstadt von {country} ist {value}.",
+        population: "In {country} leben etwa {value} Menschen.",
+        area: "{country} hat eine Fl\xe4che von etwa {value} km\xb2.",
+        landlocked: "{country} hat keinen Zugang zum Meer.",
+        borders: "{country} grenzt an {value} L\xe4nder.",
+        noBorders: "{country} hat keine Landgrenzen.",
+        timezones: "{country} erstreckt sich \xfcber {value} Zeitzonen."
+    },
+    fr: {
+        title: "Le saviez-vous ?",
+        capital: "La capitale de {country} est {value}.",
+        population: "{country} compte environ {value} habitants.",
+        area: "{country} couvre environ {value} km\xb2.",
+        landlocked: "{country} n\u2019a pas d\u2019acc\xe8s \xe0 la mer.",
+        borders: "{country} a des fronti\xe8res terrestres avec {value} pays.",
+        noBorders: "{country} n\u2019a pas de fronti\xe8res terrestres.",
+        timezones: "{country} s\u2019\xe9tend sur {value} fuseaux horaires."
+    },
+    es: {
+        title: "\xbfSab\xedas que?",
+        capital: "La capital de {country} es {value}.",
+        population: "{country} tiene unos {value} habitantes.",
+        area: "{country} abarca unos {value} km\xb2.",
+        landlocked: "{country} no tiene salida al mar.",
+        borders: "{country} comparte fronteras terrestres con {value} pa\xedses.",
+        noBorders: "{country} no tiene fronteras terrestres.",
+        timezones: "{country} abarca {value} zonas horarias."
+    },
+    it: {
+        title: "Lo sapevi?",
+        capital: "La capitale di {country} \xe8 {value}.",
+        population: "{country} ha circa {value} abitanti.",
+        area: "{country} copre circa {value} km\xb2.",
+        landlocked: "{country} non ha sbocco sul mare.",
+        borders: "{country} confina via terra con {value} paesi.",
+        noBorders: "{country} non ha confini terrestri.",
+        timezones: "{country} si estende su {value} fusi orari."
+    }
+};
+const candidateFacts = function(country, language) {
+    const capital = country.capital?.[0];
+    const localizedCapital = (0, _uaJs.localization)[language].capitals?.[capital] || capital;
+    const number = new Intl.NumberFormat(language === "ua" ? "uk" : language);
+    const facts = [];
+    if (capital) facts.push([
+        "capital",
+        localizedCapital
+    ]);
+    if (country.population) facts.push([
+        "population",
+        number.format(country.population)
+    ]);
+    if (country.area) facts.push([
+        "area",
+        number.format(Math.round(country.area))
+    ]);
+    if (country.landlocked) facts.push([
+        "landlocked",
+        ""
+    ]);
+    if (country.borders?.length) facts.push([
+        "borders",
+        String(country.borders.length)
+    ]);
+    else if (!country.landlocked) facts.push([
+        "noBorders",
+        ""
+    ]);
+    if (country.timezones?.length > 1) facts.push([
+        "timezones",
+        String(country.timezones.length)
+    ]);
+    return facts;
+};
+const pickFact = function(codes) {
+    if (!codes.length) return "";
+    const language = _modelJs.worldCountries.language;
+    const templates = TEMPLATES[language] || TEMPLATES.en;
+    const code = codes[(0, _helpersJs.getRandomInt)(0, codes.length - 1)];
+    const country = (0, _countriesJs.COUNTRIES).find((item)=>item.cca2 === code);
+    if (!country) return "";
+    const facts = candidateFacts(country, language);
+    if (facts.length === 0) return "";
+    const [kind, value] = facts[(0, _helpersJs.getRandomInt)(0, facts.length - 1)];
+    const name = (0, _uaJs.localization)[language].countries[country.name.common] || country.name.common;
+    return `\u{1F4A1} ${templates.title} ${templates[kind].replace("{country}", name).replace("{value}", value)}`;
 };
 
 },{"./localization/ua.js":"3eDg2","./model.js":"6YxfE","./data/countries.js":"b3TQG","./helpers.js":"j4etx","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"4m8EG":[function(require,module,exports,__globalThis) {
@@ -7248,6 +7578,8 @@ class gameRulesView {
     _gameRulesWithFriendDescription = document.querySelector(".game-rules-with-friend-description");
     _gameRulesLeaderboardHeader = document.querySelector(".game-rules-leaderboard-heading");
     _gameRulesLeaderboardDescription = document.querySelector(".game-rules-leaderboard-description");
+    _gameRulesStatsHeader = document.querySelector(".game-rules-stats-heading");
+    _gameRulesStatsDescription = document.querySelector(".game-rules-stats-description");
     _gameRulesScoreHeading = document.querySelector(".game-rules-score-heading");
     _gameRulesScoreDescription = document.querySelector(".game-rules-score-description");
     _returnToMainListenerAdded = false;
@@ -7297,6 +7629,8 @@ class gameRulesView {
         const language = (0, _uaJs.localization)[_modelJs.worldCountries.language];
         this._gameRulesLeaderboardHeader.textContent = `\u{1F3C6} ${language["Leaderboard"]}`;
         this._gameRulesLeaderboardDescription.textContent = language["The leaderboard shows the best players of the game on three boards: \u2018{day}\u2019 starts over every day at midnight UTC, \u2018{week}\u2019 starts over every Monday so everyone gets a fresh chance to reach the top, and \u2018{all}\u2019 keeps the best score of every player. To post your result, finish a game and click \u2018{button}\u2019 in the Game Result window: enter a nickname, choose your country, and your flag will appear next to your score. Your best score is kept, so a weaker game never lowers it, and you can open the leaderboard at any time with the trophy button. Post your result, challenge players from all over the world and become the Countries Guesser leader!"].replace("{day}", language["Today"]).replace("{week}", language["This week"]).replace("{all}", language["All time"]).replace("{button}", language["Post Results"]);
+        this._gameRulesStatsHeader.textContent = `\u{1F4CA} ${language["Stats"]}`;
+        this._gameRulesStatsDescription.textContent = language["stats rules description"];
         this._gameRulesScoreHeading.textContent = `\u{1F3C5} ${(0, _uaJs.localization)[_modelJs.worldCountries.language]["Score"]}`;
         this._gameRulesScoreDescription.textContent = `${(0, _uaJs.localization)[_modelJs.worldCountries.language]["If a player guesses an alliance of countries that contains four countries, he gets 15 points, three countries - 25 points, two countries - 35 points, one country - 50 points. When falling into an opponent's trap country, the player loses 10 points the first time, 20 points the second time, 30 points the third time and 50 points the fourth time. At the end of the game, the player gets an additional 10 points for each alliance of countries that was not guessed by the opponent."]}`;
         this._gameVideos.textContent = `\u{1F4FC} ${(0, _uaJs.localization)[_modelJs.worldCountries.language]["VIDEOS:"]}`;

@@ -39,7 +39,7 @@
     <link rel="preload" href="poppins-latin-700-normal.0ebdad10.woff2" as="font" type="font/woff2" crossorigin="">
     <link href="world-countries-battle-game.93ff9ca8.css" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="globe.06161c78.png">
-    <link href="world-countries-battle-game.50ca6425.css" rel="stylesheet">
+    <link href="world-countries-battle-game.ea68365f.css" rel="stylesheet">
     <link rel="stylesheet" href="world-countries-battle-game.00adf6d6.css">
     <link rel="stylesheet" href="world-countries-battle-game.12c12642.css">
     <link rel="stylesheet" href="world-countries-battle-game.58f4f8c8.css">
@@ -278,8 +278,10 @@
             <div id="gameResultScore" style="font-size:1rem;font-weight:bolder"></div>
             <div id="gameResultHeadingGuesedCountries"></div>
             <div id="gameResultGuessing" style="overflow:auto"></div>
+            <div id="gameResultFunFact" style="color:#2f4f4f;text-align:center;margin-top:5px;font-size:.8rem"></div>
              <div class="text-center" style="margin-top:5px">
               <button id="gameResultLeaderboardLink" type="button" class="btn btn-link btn-sm" style="padding:0;font-size:.8rem;text-decoration:none">🏆 View leaderboard</button>
+              <button id="gameResultStatsLink" type="button" class="btn btn-link btn-sm" style="margin-left:10px;padding:0;font-size:.8rem;text-decoration:none">📊 Stats</button>
             </div>
             <div id="gameResultLeaderboardHint" style="color:#2f4f4f;text-align:center;margin-top:5px;font-size:.8rem"></div>
           </div>
@@ -363,12 +365,35 @@
         </div>
       </div>
     </div>
+    <!-- Modal Stats: personal stats kept in this browser -->
+    <div class="modal fade" id="statsModal" tabindex="-1" aria-labelledby="statsTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content" style="background-color:#f7fafd;font-family:Cambria,Cochin,Georgia,Times,Times New Roman,serif;font-size:.9rem">
+          <div class="modal-header" style="justify-content:center;padding:.5rem">
+            <h2 class="modal-title fs-5" id="statsTitle" style="color:#6495ed;font-weight:700">
+              📊 Stats
+            </h2>
+          </div>
+          <div class="modal-body text-center" style="padding:.5rem">
+            <div id="statsBody"></div>
+          </div>
+          <div class="modal-footer" style="justify-content:center;padding:.5rem">
+            <button id="statsResetButton" type="button" class="btn btn-sm btn-outline-danger" style="font-size:.8rem">
+              Reset stats
+            </button>
+            <button id="statsCloseButton" type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal" style="font-size:.8rem;box-shadow:0 2px 5px rgba(0,0,0,.5),inset 0 2px 10px rgba(0,0,0,.12)">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Header -->
     <header class="bg-dark py-1 sticky-top">
       <picture>
          <source srcset="icon-192.20a82114.avif" type="image/avif">
          <source srcset="icon-192.92549482.png" type="image/png">
-      <img id="game-logo" class="logo" src="icon-192.92549482.png" alt="Globe Logo" style="cursor:pointer;width:25px;height:25px;margin-left:8px">
+      <img id="game-logo" class="logo" src="icon-192.92549482.png" alt="Globe Logo" style="cursor:pointer;width:25px;height:25px;margin-left:5px">
       </picture>
       <h1 id="game-logo-header" style="color:#85c1e9;vertical-align:sub;cursor:pointer;margin-left:5px;font-family:Sacramento,Garamond,cursive;font-size:1.4rem" class="h4 mb-0 logo-game">
         Countries Guesser
@@ -386,6 +411,12 @@
   <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
   <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
   <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+</svg>
+        <svg id="stats-button" role="button" aria-label="Stats" style="cursor:pointer;vertical-align:middle;background-color:#85c1e9;border-radius:1px;margin-right:6px;padding:1px" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#212529" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <title>Stats</title>
+  <path d="M18 20V10"></path>
+  <path d="M12 20V4"></path>
+  <path d="M6 20v-6"></path>
 </svg>
         <svg id="shareWebSite" style="cursor:pointer;background-color:#85c1e9;border-radius:1px;margin-right:8px;padding:1px" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="#212529" stroke="#212529" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="share-icon">
           <title>Share</title>
@@ -577,6 +608,9 @@
           </button>
           <button id="leaderboard-main-button" type="button" aria-label="Leaderboard" title="Leaderboard" style="--bs-btn-padding-y:.25rem;--bs-btn-padding-x:.25rem;border:none;margin-top:5px;margin-right:10px;font-size:.8rem" class="btn btn-sm btn-outline-secondary">
             🏆
+          </button>
+          <button id="stats-main-button" type="button" aria-label="Stats" title="Stats" style="--bs-btn-padding-y:.25rem;--bs-btn-padding-x:.25rem;border:none;margin-top:5px;margin-right:10px;font-size:.8rem" class="btn btn-sm btn-outline-secondary">
+            📊
           </button>
           <button id="support-project-button" style="--bs-btn-padding-y:.25rem;--bs-btn-padding-x:.25rem;border:none;margin-top:5px;font-size:.8rem" class="btn btn-sm btn-outline-warning">
             🔗 Support
@@ -839,6 +873,12 @@
         </p>
          <span class="game-rules-leaderboard-description">The leaderboard shows the best players of the game on three boards: ‘Today’ starts over every day at midnight UTC, ‘This week’ starts over every Monday so everyone gets a fresh chance to reach the top, and ‘All time’ keeps the best score of every player. To post your result, finish a game and click ‘Post Result’ in the Game Result window: enter a nickname, choose your country, and your flag will appear next to your score. Your best score is kept, so a weaker game never lowers it, and you can open the leaderboard at any time with the trophy button. Post your result, challenge players from all over the world and become the Countries Guesser leader!
         </span>
+        <br>
+         <p style="margin-bottom:0">
+          <span class="game-rules-stats-heading" style="font-weight:700">📊 Stats</span>:
+        </p>
+         <span class="game-rules-stats-description">The Stats window keeps your personal statistics on this device: games played, win rate against the computer and against a friend, average and best score, and the countries you miss most often. After every game you also get a fun fact about one of the countries. Open Stats with the 📊 button on the main page or in the header, or from the Game Result window. Statistics are stored only in this browser and can be reset at any time.
+        </span>
       </div>
       <figure class="text-center">
         <p class="game-rules-videos" style="margin-top:10px;margin-bottom:5px;font-size:1rem;font-weight:700">
@@ -926,16 +966,16 @@
 
     <!-- Footer -->
     <footer class="bg-dark text-white py-1 sticky-bottom">
-      <small style="margin-left:10px"><a href="https://dimasolo.pythonanywhere.com" target="_blank" rel="external" style="text-decoration:none"><img src="logo.2a57f259.png" style="height:1.7rem" alt="Dima Solovei Logo" loading="lazy"> </a></small>
+      <small style="margin-left:5px"><a href="https://dimasolo.pythonanywhere.com" target="_blank" rel="external" style="text-decoration:none"><img src="logo.2a57f259.png" style="height:1.7rem" alt="Dima Solovei Logo" loading="lazy"> </a></small>
       <span class="small" style="color:rgba(255,255,255,.5);font-size:.7em"><em>© 2026, Dima Solovei</em></span>
       <a id="world-countries-quiz-site" href="https://www.worldcountriesquiz.com" target="_blank" style="color:#85c1e9;float:right;cursor:pointer;margin-right:10px;text-decoration:none">worldcountriesquiz.com</a>
     </footer>
     <div id="main-chat-slot" class="not-displayed sticky-bottom"></div>
 
     <script defer="" src="world-countries-battle-game.c7ae7326.js"></script>
-    <script src="world-countries-battle-game.5d2f6647.js" nomodule="" defer=""></script><script type="module" src="world-countries-battle-game.bda5d3f6.js"></script>
+    <script src="world-countries-battle-game.1fe415e8.js" nomodule="" defer=""></script><script type="module" src="world-countries-battle-game.23239180.js"></script>
     <script src="world-countries-battle-game.8f10fb8d.js" nomodule="" defer=""></script><script type="module" src="world-countries-battle-game.e38837e5.js"></script>
-    <script src="world-countries-battle-game.71e39f50.js" nomodule="" defer=""></script><script type="module" src="world-countries-battle-game.2e3cf148.js"></script>
+    <script src="world-countries-battle-game.6797e2d6.js" nomodule="" defer=""></script><script type="module" src="world-countries-battle-game.bb727188.js"></script>
     <script src="world-countries-battle-game.fff7fc32.js" nomodule="" defer=""></script><script type="module" src="world-countries-battle-game.f9bfa05d.js"></script>
     <script src="world-countries-battle-game.a33a2ac6.js" nomodule="" defer=""></script><script type="module" src="world-countries-battle-game.3275d3a6.js"></script>
   
