@@ -13,6 +13,8 @@ const TEMPLATES = {
     borders: "Кількість сухопутних сусідів країни {country}: {value}.",
     noBorders: "Країна {country} не має сухопутних кордонів.",
     timezones: "Країна {country} охоплює часових поясів: {value}.",
+    region: "Частина світу країни {country}: {value}.",
+    subregion: "Регіон країни {country}: {value}.",
   },
   en: {
     title: "Did you know?",
@@ -23,6 +25,8 @@ const TEMPLATES = {
     borders: "{country} shares land borders with {value} countries.",
     noBorders: "{country} has no land borders.",
     timezones: "{country} spans {value} time zones.",
+    region: "{country} is located in {value}.",
+    subregion: "{country} belongs to the {value} subregion.",
   },
   de: {
     title: "Wusstest du schon?",
@@ -33,6 +37,8 @@ const TEMPLATES = {
     borders: "{country} grenzt an {value} Länder.",
     noBorders: "{country} hat keine Landgrenzen.",
     timezones: "{country} erstreckt sich über {value} Zeitzonen.",
+    region: "Weltteil von {country}: {value}.",
+    subregion: "Region von {country}: {value}.",
   },
   fr: {
     title: "Le saviez-vous ?",
@@ -43,6 +49,8 @@ const TEMPLATES = {
     borders: "{country} a des frontières terrestres avec {value} pays.",
     noBorders: "{country} n’a pas de frontières terrestres.",
     timezones: "{country} s’étend sur {value} fuseaux horaires.",
+    region: "Partie du monde de {country} : {value}.",
+    subregion: "Sous-région de {country} : {value}.",
   },
   es: {
     title: "¿Sabías que?",
@@ -53,6 +61,8 @@ const TEMPLATES = {
     borders: "{country} comparte fronteras terrestres con {value} países.",
     noBorders: "{country} no tiene fronteras terrestres.",
     timezones: "{country} abarca {value} zonas horarias.",
+    region: "Parte del mundo de {country}: {value}.",
+    subregion: "Subregión de {country}: {value}.",
   },
   it: {
     title: "Lo sapevi?",
@@ -63,6 +73,8 @@ const TEMPLATES = {
     borders: "{country} confina via terra con {value} paesi.",
     noBorders: "{country} non ha confini terrestri.",
     timezones: "{country} si estende su {value} fusi orari.",
+    region: "Parte del mondo di {country}: {value}.",
+    subregion: "Sottoregione di {country}: {value}.",
   },
 };
 
@@ -83,6 +95,11 @@ const candidateFacts = function (country, language) {
   else if (!country.landlocked) facts.push(["noBorders", ""]);
   if (country.timezones?.length > 1)
     facts.push(["timezones", String(country.timezones.length)]);
+  const names = localization[language];
+  if (country.region)
+    facts.push(["region", names[country.region] || country.region]);
+  if (country.subregion)
+    facts.push(["subregion", names[country.subregion] || country.subregion]);
   return facts;
 };
 

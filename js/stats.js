@@ -2,6 +2,7 @@ import { localization } from "./localization/ua.js";
 import * as model from "./model.js";
 import { COUNTRIES } from "./data/countries.js";
 import { showModalWindow, hideModalWindow } from "./helpers.js";
+import { pickFact } from "./funFacts.js";
 
 const STATS_KEY = "gameStats";
 const MAX_MISSED = 200;
@@ -123,6 +124,25 @@ const renderMissed = function (stats, body) {
   body.appendChild(list);
 };
 
+const appendFunFact = function (body) {
+  const codes = COUNTRIES.map((country) => country.cca2);
+  const element = document.createElement("div");
+  element.className = "stats-fun-fact";
+  const text = document.createElement("span");
+  text.textContent = pickFact(codes);
+  const refresh = document.createElement("button");
+  refresh.type = "button";
+  refresh.className = "stats-fact-refresh";
+  refresh.textContent = "🔄";
+  refresh.title = translate("Another fact");
+  refresh.setAttribute("aria-label", translate("Another fact"));
+  refresh.addEventListener("click", () => {
+    text.textContent = pickFact(codes);
+  });
+  element.append(text, refresh);
+  body.appendChild(element);
+};
+
 const renderStats = function () {
   const stats = loadStats();
   const body = getElementById("statsBody");
@@ -134,6 +154,7 @@ const renderStats = function () {
   resetButton.hidden = stats.games === 0;
   if (stats.games === 0) {
     body.textContent = translate("Play a game to see your stats");
+    appendFunFact(body);
     return;
   }
   const table = document.createElement("table");
@@ -156,8 +177,11 @@ const renderStats = function () {
     Math.round(stats.totalScore / stats.games),
   );
   addRow(table, translate("Best score"), stats.bestScore);
+  addRow(table, translate("Traps hit"), stats.trapsHit);
+  addRow(table, translate("Hints used"), stats.hintsUsed);
   body.appendChild(table);
   renderMissed(stats, body);
+  appendFunFact(body);
 };
 
 export const openStats = function () {
