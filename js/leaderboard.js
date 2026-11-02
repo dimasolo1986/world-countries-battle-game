@@ -422,7 +422,7 @@ const timeUntilDayReset = function () {
     now.getUTCDate() + 1,
   );
   const minutes = Math.max(1, Math.ceil((nextDay - now.getTime()) / 60000));
-  return `${Math.floor(minutes / 60)}${translate("hour short")} ${minutes % 60}${translate("minute short")}`;
+  return `${Math.floor(minutes / 60)} ${translate("hour short")} ${minutes % 60} ${translate("minute short")}`;
 };
 
 const resetLabel = function () {
