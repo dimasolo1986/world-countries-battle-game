@@ -22,7 +22,7 @@ const MODES = {
 
 let getFirebase = () => null;
 let pendingResult = null;
-let boardPeriod = "week";
+let boardPeriod = "day";
 let boardRequest = 0;
 
 let cameFromResult = false;
@@ -414,17 +414,38 @@ const dayWord = function (count) {
   return translate(key) || translate("day other");
 };
 
+const timeUntilDayReset = function () {
+  const now = new Date();
+  const nextDay = Date.UTC(
+    now.getUTCFullYear(),
+    now.getUTCMonth(),
+    now.getUTCDate() + 1,
+  );
+  const minutes = Math.max(1, Math.ceil((nextDay - now.getTime()) / 60000));
+  return `${Math.floor(minutes / 60)}${translate("hour short")} ${minutes % 60}${translate("minute short")}`;
+};
+
+const resetLabel = function () {
+  if (boardPeriod === "day")
+    return `${translate("Resets in")} ${timeUntilDayReset()}`;
+  if (boardPeriod === "week")
+    return `${translate("Resets in")} ${daysUntilWeekReset()} ${dayWord(daysUntilWeekReset())}`;
+  return "";
+};
+
 const renderTabs = function () {
-  const tabs = { week: "leaderboardTabWeek", all: "leaderboardTabAll" };
+  const tabs = {
+    day: "leaderboardTabDay",
+    week: "leaderboardTabWeek",
+    all: "leaderboardTabAll",
+  };
+  getElementById(tabs.day).textContent = translate("Today");
   getElementById(tabs.week).textContent = translate("This week");
   getElementById(tabs.all).textContent = translate("All time");
   Object.entries(tabs).forEach(([period, id]) =>
     getElementById(id).classList.toggle("active", period === boardPeriod),
   );
-  getElementById("leaderboardReset").textContent =
-    boardPeriod === "week"
-      ? `${translate("Resets in")} ${daysUntilWeekReset()} ${dayWord(daysUntilWeekReset())}`
-      : "";
+  getElementById("leaderboardReset").textContent = resetLabel();
 };
 
 const loadBoard = async function () {
@@ -492,6 +513,7 @@ export const initLeaderboard = function (firebaseGetter) {
     submitResult,
   );
   [
+    ["leaderboardTabDay", "day"],
     ["leaderboardTabWeek", "week"],
     ["leaderboardTabAll", "all"],
   ].forEach(([id, period]) =>

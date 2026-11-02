@@ -33,8 +33,15 @@ const isoWeekKey = function (date = new Date()) {
   return `${day.getUTCFullYear()}-W${String(week).padStart(2, "0")}`;
 };
 
-const leaderboardPath = (period) =>
-  period === "week" ? `leaderboard-weekly/${isoWeekKey()}` : "leaderboard";
+const utcDayKey = function (date = new Date()) {
+  return date.toISOString().slice(0, 10);
+};
+
+const leaderboardPath = (period) => {
+  if (period === "day") return `leaderboard-daily/${utcDayKey()}`;
+  if (period === "week") return `leaderboard-weekly/${isoWeekKey()}`;
+  return "leaderboard";
+};
 
 export class Firebase {
   firebaseConfig;
@@ -301,7 +308,7 @@ export class Firebase {
     };
     let posted = false;
     let bestScore = score;
-    for (const period of ["all", "week"]) {
+    for (const period of ["all", "week", "day"]) {
       const entryRef = ref(this.db, `${leaderboardPath(period)}/${uid}`);
       const existing = await get(entryRef);
       if (existing.exists() && existing.val().score > score) {

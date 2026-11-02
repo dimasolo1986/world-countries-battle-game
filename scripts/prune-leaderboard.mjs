@@ -66,4 +66,23 @@ if (Object.keys(oldWeeks).length === 0) {
   console.log(`deleted weekly boards: ${Object.keys(oldWeeks).join(", ")}`);
 }
 
+// Keep today and yesterday of leaderboard-daily/, drop the rest.
+// Same UTC day key as utcDayKey in js/firebase.js.
+const KEEP_DAYS = 1;
+const oldestDay = new Date(Date.now() - KEEP_DAYS * 86400000)
+  .toISOString()
+  .slice(0, 10);
+const daily = admin.database().ref("leaderboard-daily");
+const days = await daily.orderByKey().endBefore(oldestDay).once("value");
+const oldDays = {};
+days.forEach((child) => {
+  oldDays[child.key] = null;
+});
+if (Object.keys(oldDays).length === 0) {
+  console.log("no old daily boards");
+} else {
+  await daily.update(oldDays);
+  console.log(`deleted daily boards: ${Object.keys(oldDays).join(", ")}`);
+}
+
 process.exit(0);

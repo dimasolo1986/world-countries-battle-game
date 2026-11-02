@@ -204,8 +204,9 @@ class gameRulesView {
     const language = localization[model.worldCountries.language];
     this._gameRulesLeaderboardHeader.textContent = `🏆 ${language["Leaderboard"]}`;
     this._gameRulesLeaderboardDescription.textContent = language[
-      "The leaderboard shows the best players of the game on two boards: ‘{week}’ starts over every Monday so everyone gets a fresh chance to reach the top, and ‘{all}’ keeps the best score of every player. To post your result, finish a game and click ‘{button}’ in the Game Result window: enter a nickname, choose your country, and your flag will appear next to your score. Your best score is kept, so a weaker game never lowers it, and you can open the leaderboard at any time with the trophy button. Post your result, challenge players from all over the world and become the Countries Guesser leader!"
+      "The leaderboard shows the best players of the game on three boards: ‘{day}’ starts over every day at midnight UTC, ‘{week}’ starts over every Monday so everyone gets a fresh chance to reach the top, and ‘{all}’ keeps the best score of every player. To post your result, finish a game and click ‘{button}’ in the Game Result window: enter a nickname, choose your country, and your flag will appear next to your score. Your best score is kept, so a weaker game never lowers it, and you can open the leaderboard at any time with the trophy button. Post your result, challenge players from all over the world and become the Countries Guesser leader!"
     ]
+      .replace("{day}", language["Today"])
       .replace("{week}", language["This week"])
       .replace("{all}", language["All time"])
       .replace("{button}", language["Post Results"]);

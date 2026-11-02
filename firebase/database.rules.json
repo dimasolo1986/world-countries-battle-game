@@ -54,6 +54,34 @@
         }
       }
     },
+    "leaderboard-daily": {
+      "$day": {
+        ".validate": "$day.matches(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/)",
+        ".indexOn": ["score"],
+        "$uid": {
+          ".write": "auth != null && auth.uid === $uid && (!data.exists() || newData.child('score').val() >= data.child('score').val())",
+          ".validate": "newData.hasChildren(['nickname', 'score', 'mode', 'updatedAt'])",
+          "nickname": {
+            ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 20"
+          },
+          "score": {
+            ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 660"
+          },
+          "mode": {
+            ".validate": "newData.val() === 'computer' || newData.val() === 'friend'"
+          },
+          "country": {
+            ".validate": "newData.isString() && newData.val().matches(/^[a-z]{2}$/)"
+          },
+          "updatedAt": {
+            ".validate": "newData.val() === now"
+          },
+          "$other": {
+            ".validate": false
+          }
+        }
+      }
+    },
     "$room": {
       ".write": "$room.beginsWith('room-') && auth != null"
     }
