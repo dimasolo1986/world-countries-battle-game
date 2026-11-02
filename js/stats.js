@@ -186,6 +186,7 @@ const renderStats = function () {
 
 export const openStats = function () {
   renderStats();
+  if (window.gtag) gtag("event", "open_stats");
   showModalWindow("statsModal");
 };
 
