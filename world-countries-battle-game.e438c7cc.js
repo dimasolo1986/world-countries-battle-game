@@ -2489,9 +2489,7 @@ const appendFunFact = function(body) {
     const refresh = document.createElement("button");
     refresh.type = "button";
     refresh.className = "stats-fact-refresh";
-    refresh.textContent = "\uD83D\uDD04";
-    refresh.title = translate("Another fact");
-    refresh.setAttribute("aria-label", translate("Another fact"));
+    refresh.textContent = translate("Another fact");
     refresh.addEventListener("click", ()=>{
         text.textContent = (0, _funFactsJs.pickFact)(codes);
     });
@@ -4099,7 +4097,7 @@ class Player {
                             }
                         }
                     }
-                    await this.sleep(1500);
+                    await this.sleep(2500);
                     this.opponentPlayer.removeCountryBoundaryBlinking(countryCode);
                     this.opponentPlayer.closeCountryPopup(countryPopup);
                     this.setCountryPopupContent(countryPopup, country);
@@ -4813,7 +4811,7 @@ class Player {
                         });
                     }
                 }
-                await this.sleep(1500);
+                await this.sleep(2500);
                 this.removeCountryBoundaryBlinking(countryCode);
                 guessedCountryAlliance1.classList.add("not-displayed");
                 guessedCountryAlliance1.style.backgroundColor = "white";
@@ -6515,7 +6513,7 @@ class Player {
                     padding-right: 2px;
                     font-weight: bolder;
                   ">+10&nbsp;${(0, _uaJs.localization)[_modelJs.worldCountries.language]["Points"]}</span>`);
-                    await this.sleep(1500);
+                    await this.sleep(2500);
                     this.removeCountryBoundaryBlinking(countryCode);
                     this.closeCountryPopup(countryPopup);
                     this.setCountryPopupContent(countryPopup, country);
@@ -7275,6 +7273,7 @@ class PlayMap {
                 selectedCountryField.style.paddingLeft = "3px";
                 selectedCountryField.style.paddingTop = "3px";
                 selectedCountryField.style.paddingBottom = "3px";
+                selectedCountryField.style.maxWidth = "220px";
                 selectedCountryField.style.fontSize = "0.6rem";
                 selectedCountryField.style.opacity = "0.7";
                 selectedCountryField.style.borderRadius = "3px";

@@ -1010,9 +1010,9 @@ button.donate-link, a.donate-link {
 
 .modal-body {
   color: var(--cg-text) !important;
-  padding: .85rem 1rem !important;
+  padding: .5rem .75rem !important;
   font-size: .85rem !important;
-  line-height: 1.6 !important;
+  line-height: 1.5 !important;
 }
 
 #gameResultGuessing {
@@ -1534,16 +1534,18 @@ video {
 }
 
 .stats-fact-refresh {
+  color: inherit;
   cursor: pointer;
-  background: none;
-  border: 0;
-  margin-left: 6px;
-  padding: 0 4px;
-  font-size: 1rem;
-  line-height: 1;
+  background: #9acd32;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  margin: 6px auto 0;
+  padding: 2px 8px;
+  font-size: .7rem;
+  display: block;
 }
 
 .stats-fact-refresh:hover {
-  transform: rotate(90deg);
+  background: #f1f5f9;
 }
 /*# sourceMappingURL=world-countries-battle-game.63fbfac1.css.map */
