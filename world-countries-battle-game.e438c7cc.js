@@ -1713,6 +1713,7 @@ class Game {
             mode: this.gameConfiguration.gameMode === "user" ? "friend" : "computer"
         });
         this.recordResult(playerOneWon);
+        this.playerOne.hideHotColdHint();
         this.gameModalResultGuessedCountries.innerHTML = "";
         this.playerOne.enableMapInteraction();
         this.gameModalResultLabel.textContent = "\uD83D\uDCDD " + (0, _uaJs.localization)[_modelJs.worldCountries.language]["Game Result"];
@@ -2709,6 +2710,15 @@ var _configJs = require("./config.js");
 var _helpersJs = require("./helpers.js");
 var _chatJs = require("./chat.js");
 var _modelJs = require("./model.js");
+var _hotColdJs = require("./hotCold.js");
+const HOT_COLD_COMPUTER_MISTAKE_CHANCE = 0.5;
+const HOT_COLD_COLORS = {
+    burning: "#d32f2f",
+    hot: "#f57c00",
+    warm: "#fbc02d",
+    cool: "#29b6f6",
+    cold: "#5c6bc0"
+};
 const HINT_BONUS_POINTS = {
     CountryPhoto: 50,
     CoatOfArms: 30,
@@ -2761,6 +2771,8 @@ class Player {
     guessCount = 0;
     lastHintBonus = 0;
     countryUnions = [];
+    hotColdHints = [];
+    pendingHotColdHint = null;
     countryCodes = [];
     countriesToGuessNext = [];
     countriesToGuess = [];
@@ -2836,6 +2848,8 @@ class Player {
         this.trapCountryHitted = null;
         this.trapCountryHittedCode = null;
         this.highlightCountryCodes = [];
+        this.hotColdHints = null;
+        this.pendingHotColdHint = null;
         this.playerAttemptToGuess = null;
         this.openUserHintSelectionWindow = null;
         this.openAutoHint = null;
@@ -2926,6 +2940,8 @@ class Player {
             new Array(1)
         ];
         this.countryCodes = [];
+        this.hotColdHints = [];
+        this.pendingHotColdHint = null;
         this.countriesToGuessNext = [];
         this.countriesToGuess = [];
         this.alreadyGuessedCountryCodes = [];
@@ -3327,6 +3343,62 @@ class Player {
         this.gameMessageField.innerHTML = "";
         this.gameMessageField.innerHTML = message;
     }
+    getLastRemainingCountryCode() {
+        const remaining = [];
+        this.countryUnions.forEach((countryUnion)=>{
+            (countryUnion || []).forEach((countryObject)=>{
+                const [code, state] = Object.entries(countryObject)[0];
+                if (!state.guessed) remaining.push(code);
+            });
+        });
+        return remaining.length === 1 ? remaining[0] : null;
+    }
+    getHotColdHint(guessCode) {
+        const targetCode = this.getLastRemainingCountryCode();
+        if (!targetCode || targetCode === guessCode) return null;
+        const guess = this.countries[guessCode];
+        const target = this.countries[targetCode];
+        if (!guess || !target) return null;
+        return {
+            temperature: (0, _hotColdJs.getTemperature)(guess, target),
+            direction: (0, _hotColdJs.getDirection)(guess, target)
+        };
+    }
+    showHotColdHint(hint) {
+        const field = document.getElementById("selected-country-field");
+        if (!field || !hint) return;
+        const translate = (key)=>{
+            const lang = (0, _uaJs.localization)[_modelJs.worldCountries.language];
+            return lang?.[key] ?? (0, _uaJs.localization).en[key];
+        };
+        const segments = (0, _hotColdJs.TEMPERATURES).map((temperature)=>{
+            const active = temperature === hint.temperature;
+            return `<span style="display:inline-block; width:${active ? 14 : 8}px; height:8px; margin-right:2px; border-radius:999px; background:${HOT_COLD_COLORS[temperature]}; opacity:${active ? 1 : 0.35};"></span>`;
+        }).join("");
+        const color = HOT_COLD_COLORS[hint.temperature];
+        const guessName = this.countries[hint.guessCode]?.countryName;
+        const guessLabel = (0, _uaJs.localization)[_modelJs.worldCountries.language]?.countries?.[guessName] ?? guessName ?? "";
+        this.playMap.setSelectedCountryFiledHtml(`<div style="font-size: 0.55rem;">${guessLabel}</div>` + `<div style="margin:2px 0;">${segments}</div>` + `<div style="color:${color};">${translate(`hotcold.${hint.temperature}`)}${hint.direction ? ` ${hint.direction.arrow}` : ""}</div>`);
+        field.style.opacity = "0.85";
+        field.style.textAlign = "center";
+        field.style.boxShadow = "none";
+        field.style.padding = "2px 5px";
+        field.style.letterSpacing = "0.03em";
+        field.style.borderBottom = `2px solid ${color}`;
+        this.playMap.showMapElement("selected-country-field");
+    }
+    hideHotColdHint() {
+        const field = document.getElementById("selected-country-field");
+        if (!field) return;
+        this.playMap.hideMapElement("selected-country-field");
+        field.style.opacity = "0.7";
+        field.style.textAlign = "";
+        field.style.boxShadow = "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
+        field.style.padding = "3px";
+        field.style.letterSpacing = "";
+        field.style.borderBottom = "";
+        field.innerHTML = "";
+    }
     addHintsToHintPanel() {
         const hintsPanel = document.getElementById("hints-panel");
         const hintBtn = document.getElementById("hints-link");
@@ -3700,8 +3772,14 @@ class Player {
         }
         return viableCodes.length ? viableCodes : this.countryCodes;
     }
-    pickComputerRandomCountryCode() {
-        const viableCodes = this.opponentPlayer.getViableCountryCodes();
+    shouldComputerUseHotColdHints() {
+        if (this.hotColdHints.length === 0) return false;
+        if (!this.opponentPlayer.getLastRemainingCountryCode()) return false;
+        return Math.random() >= HOT_COLD_COMPUTER_MISTAKE_CHANCE;
+    }
+    pickComputerRandomCountryCode(useHotColdHints = false) {
+        let viableCodes = this.opponentPlayer.getViableCountryCodes();
+        if (useHotColdHints) viableCodes = this.hotColdHints.reduce((codes, hint)=>(0, _hotColdJs.candidatesMatching)(codes, this.opponentPlayer.countries, hint.guessCode, hint.temperature, hint.direction), viableCodes);
         const countryCode = viableCodes[(0, _helpersJs.getRandomInt)(0, viableCodes.length - 1)];
         this.opponentPlayer.alreadyGuessedCountryCodes.push(countryCode);
         const countryIndex = this.opponentPlayer.countryCodes.indexOf(countryCode);
@@ -3794,12 +3872,14 @@ class Player {
                 this.playMap.hideMapElement("hints-link");
                 this.playMap.hideMapElement("hints-panel");
                 this.playMap.hideMapElement("available-countries-panel");
+                this.hideHotColdHint();
                 this.playMap.setMapFiledLabel("Your Map");
                 this.opponentPlayer.openUserHintSelectionWindow = false;
                 this.countriesNumberField.textContent = this.opponentPlayer.countryCodes.length;
                 this.gameMessageField.textContent = `\u{2139}\u{FE0F} ${(0, _uaJs.localization)[_modelJs.worldCountries.language]["Computer is guessing your country..."]}`;
                 await this.sleep(700);
-                if (this.countriesToGuess.length !== 0) {
+                if (this.shouldComputerUseHotColdHints()) countryCode = this.pickComputerRandomCountryCode(true);
+                else if (this.countriesToGuess.length !== 0) {
                     countryIndex = (0, _helpersJs.getRandomInt)(0, this.countriesToGuess.length - 1);
                     countryCode = this.countriesToGuess[countryIndex];
                     this.countriesToGuess.splice(countryIndex, 1);
@@ -4145,6 +4225,11 @@ class Player {
                     this.gameMessageField.textContent = `\u{26D4} ${(0, _uaJs.localization)[_modelJs.worldCountries.language]["Computer failed to guess your country!"]}`;
                     this.playerAttemptToGuess = false;
                     this.opponentPlayer.playerAttemptToGuess = true;
+                    const hotColdHint = this.opponentPlayer.getHotColdHint(countryCode);
+                    if (hotColdHint) this.hotColdHints.push({
+                        guessCode: countryCode,
+                        ...hotColdHint
+                    });
                     await this.sleep(500);
                     this.opponentPlayer.addCountryBoundaryFadeOut(countryCode);
                     await this.sleep(500);
@@ -4248,6 +4333,7 @@ class Player {
                 }
                 this.gameMessageField.textContent = `\u{26A0}\u{FE0F} ${(0, _uaJs.localization)[_modelJs.worldCountries.language]["Your attempt to guess opponent's country"]}`;
                 this.opponentPlayer.enableMapInteraction();
+                this.showHotColdHint(this.pendingHotColdHint);
                 if (!this.openUserHintSelectionWindow) this.setHitTimeout();
                 if (this.gameConfiguration.hintsType === "Choose Hints" && this.openUserHintSelectionWindow) {
                     this.addUserSelectedHint();
@@ -4268,6 +4354,7 @@ class Player {
         } else {
             this.playMap.hideMapElement("hints-link");
             this.playMap.hideMapElement("hints-panel");
+            this.hideHotColdHint();
             document.getElementById("timer-field-container").style.display = "none";
             this.playMap.setMapFiledLabel("Your Map");
             this.countriesNumberField.textContent = this.opponentPlayer.countryCodes.length;
@@ -4360,7 +4447,7 @@ class Player {
                 locationIcon.style.marginRight = "5px";
                 const countryImg = document.createElement("img");
                 countryImg.src = country.countryFlag;
-                countryImg.style = "width:9px; height:9px; border-radius:50%; border:1px solid black; box-shadow: 0 2px 5px #00000080, inset 0 2px 10px #0000001f; margin-right:5px;display:inline-block;";
+                countryImg.style = "width:9px; height:9px; border-radius:50%; border:1px solid black; box-shadow: 0 2px 2px #00000080, inset 0 2px 2px #0000001f; margin-right:5px;display:inline-block; vertical-align:baseline;";
                 const countryName = document.createElement("span");
                 countryName.textContent = (0, _uaJs.localization)[_modelJs.worldCountries.language]["countries"][country.countryName];
                 countryName.style = "font-size:0.7rem;";
@@ -4957,6 +5044,13 @@ class Player {
                 this.gameMessageField.textContent = `\u{26D4} ${(0, _uaJs.localization)[_modelJs.worldCountries.language]["Failed attempt to guess country!"]}`;
                 this.playerAttemptToGuess = true;
                 this.opponentPlayer.playerAttemptToGuess = false;
+                const hotColdHint = this.getHotColdHint(countryCode);
+                this.opponentPlayer.pendingHotColdHint = hotColdHint ? {
+                    guessCode: countryCode,
+                    ...hotColdHint
+                } : null;
+                if (this.opponentPlayer.pendingHotColdHint) this.showHotColdHint(this.opponentPlayer.pendingHotColdHint);
+                else this.hideHotColdHint();
                 await this.sleep(500);
                 this.addCountryBoundaryFadeOut(countryCode);
                 await this.sleep(500);
@@ -6646,7 +6740,108 @@ class Player {
     }
 }
 
-},{"./localization/ua.js":"3eDg2","./config.js":"kBqbe","./helpers.js":"j4etx","./chat.js":"eqjXa","./model.js":"6YxfE","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jEXSO":[function(require,module,exports,__globalThis) {
+},{"./localization/ua.js":"3eDg2","./config.js":"kBqbe","./helpers.js":"j4etx","./chat.js":"eqjXa","./model.js":"6YxfE","./hotCold.js":"77C4h","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"77C4h":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "TEMPERATURES", ()=>TEMPERATURES);
+parcelHelpers.export(exports, "distanceKm", ()=>distanceKm);
+parcelHelpers.export(exports, "getTemperature", ()=>getTemperature);
+parcelHelpers.export(exports, "getDirection", ()=>getDirection);
+parcelHelpers.export(exports, "candidatesMatching", ()=>candidatesMatching);
+const TEMPERATURES = [
+    "burning",
+    "hot",
+    "warm",
+    "cool",
+    "cold"
+];
+const ADJACENT_REGIONS = {
+    Europe: [
+        "Asia",
+        "Africa"
+    ],
+    Asia: [
+        "Europe",
+        "Africa",
+        "Oceania"
+    ],
+    Africa: [
+        "Europe",
+        "Asia"
+    ],
+    Oceania: [
+        "Asia"
+    ],
+    Americas: [],
+    Antarctic: []
+};
+const ISLAND_BURNING_KM = 1000;
+const ARROWS = [
+    "\u2B06\uFE0F",
+    "\u2197\uFE0F",
+    "\u27A1\uFE0F",
+    "\u2198\uFE0F",
+    "\u2B07\uFE0F",
+    "\u2199\uFE0F",
+    "\u2B05\uFE0F",
+    "\u2196\uFE0F"
+];
+const DIRECTIONS = [
+    "North",
+    "North-East",
+    "East",
+    "South-East",
+    "South",
+    "South-West",
+    "West",
+    "North-West"
+];
+const toRad = (deg)=>deg * Math.PI / 180;
+const distanceKm = function(from, to) {
+    const dLat = toRad(to[0] - from[0]);
+    const dLng = toRad(to[1] - from[1]);
+    const a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(from[0])) * Math.cos(toRad(to[0])) * Math.sin(dLng / 2) ** 2;
+    return 12742 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+};
+const hasLatLng = (country)=>Array.isArray(country?.latlng) && country.latlng.length === 2;
+const getTemperature = function(guess, target) {
+    const bordersEachOther = guess.countryBorders?.includes(target.cca3) || target.countryBorders?.includes(guess.cca3);
+    if (bordersEachOther) return "burning";
+    const isIsland = !guess.countryBorders?.length || !target.countryBorders?.length;
+    if (isIsland && hasLatLng(guess) && hasLatLng(target) && distanceKm(guess.latlng, target.latlng) <= ISLAND_BURNING_KM) return "burning";
+    if (guess.countrySubregion && guess.countrySubregion === target.countrySubregion) return "hot";
+    if (guess.countryRegion && guess.countryRegion === target.countryRegion) return "warm";
+    if (ADJACENT_REGIONS[guess.countryRegion]?.includes(target.countryRegion)) return "cool";
+    return "cold";
+};
+const getDirection = function(guess, target) {
+    if (!hasLatLng(guess) || !hasLatLng(target)) return null;
+    const lat1 = toRad(guess.latlng[0]);
+    const lat2 = toRad(target.latlng[0]);
+    const dLng = toRad(target.latlng[1] - guess.latlng[1]);
+    const y = Math.sin(dLng) * Math.cos(lat2);
+    const x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLng);
+    const bearing = (Math.atan2(y, x) * (180 / Math.PI) + 360) % 360;
+    const index = Math.round(bearing / 45) % 8;
+    return {
+        arrow: ARROWS[index],
+        label: DIRECTIONS[index]
+    };
+};
+const candidatesMatching = function(candidateCodes, countries, guessCode, temperature, direction) {
+    const guess = countries[guessCode];
+    if (!guess) return candidateCodes;
+    const matching = candidateCodes.filter((code)=>{
+        const candidate = countries[code];
+        if (!candidate || code === guessCode) return false;
+        if (getTemperature(guess, candidate) !== temperature) return false;
+        if (!direction) return true;
+        return getDirection(guess, candidate)?.arrow === direction.arrow;
+    });
+    return matching.length ? matching : candidateCodes;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jEXSO":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "PlayMap", ()=>PlayMap);
@@ -7236,20 +7431,22 @@ class PlayMap {
             position: "topright"
         }).addTo(this.map);
         L.Control.AvailableCountriesPanel = L.Control.extend({
+            gameConfiguration: this.gameConfiguration,
             onAdd: function(map) {
                 const availableCountriesPanel = L.DomUtil.create("div");
                 availableCountriesPanel.id = "available-countries-panel";
                 availableCountriesPanel.classList.add("not-displayed");
                 availableCountriesPanel.style.backgroundColor = "white";
-                availableCountriesPanel.style.opacity = "0.7";
-                availableCountriesPanel.style.borderRadius = "2px";
-                availableCountriesPanel.style.boxShadow = "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
-                availableCountriesPanel.style.marginTop = "5px";
-                availableCountriesPanel.style.padding = "3px";
+                availableCountriesPanel.style.opacity = "0.85";
+                availableCountriesPanel.style.borderRadius = "3px";
+                availableCountriesPanel.style.padding = "2px 5px";
                 availableCountriesPanel.style.width = "fit-content";
                 availableCountriesPanel.style.overflow = "hidden";
                 availableCountriesPanel.style.marginTop = "10px";
-                const availableCountriesHeader = `<div class="text-center"><span style="font-size:0.7rem; font-weight:bold;">\u{1F30D} ${(0, _uaJs.localization)[_modelJs.worldCountries.language]["Available Countries:"]}</span></div>`;
+                availableCountriesPanel.style.letterSpacing = "0.03em";
+                availableCountriesPanel.style.color = "darkblue";
+                const accent = mapFieldAccent("Opponent Map", this.gameConfiguration.gameMode);
+                const availableCountriesHeader = `<div class="text-center" style="border-bottom:2px solid ${accent}; margin-bottom:2px;"><span style="font-size:0.7rem; font-weight:bold;">\u{1F30D} ${(0, _uaJs.localization)[_modelJs.worldCountries.language]["Available Countries:"]}</span></div>`;
                 availableCountriesPanel.insertAdjacentHTML("beforeend", availableCountriesHeader);
                 const availableCountriesPanelContent = L.DomUtil.create("div");
                 availableCountriesPanelContent.id = "available-countries-panel-content";
@@ -7507,7 +7704,9 @@ class PlayMap {
         document.getElementById("countries-number-field").textContent = this.countriesNumber;
         document.getElementById("bonus-countries-number-field").textContent = this.gameConfiguration.bonusCountries;
         document.getElementById("hints-panel").classList.add("not-displayed");
-        document.getElementById("selected-country-field").classList.remove("not-displayed");
+        const selectedCountryField = document.getElementById("selected-country-field");
+        selectedCountryField.classList.remove("not-displayed");
+        selectedCountryField.style.opacity = "0.7";
         document.getElementById("available-countries-panel").classList.add("not-displayed");
     }
     initStartPlayMapView() {
