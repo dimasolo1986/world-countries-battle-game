@@ -471,6 +471,7 @@ export class PlayMap {
         selectedCountryField.style.paddingLeft = "3px";
         selectedCountryField.style.paddingTop = "3px";
         selectedCountryField.style.paddingBottom = "3px";
+        selectedCountryField.style.maxWidth = "220px";
         selectedCountryField.style.fontSize = "0.6rem";
         selectedCountryField.style.opacity = "0.7";
         selectedCountryField.style.borderRadius = "3px";

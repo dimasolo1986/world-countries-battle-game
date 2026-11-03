@@ -133,9 +133,7 @@ const appendFunFact = function (body) {
   const refresh = document.createElement("button");
   refresh.type = "button";
   refresh.className = "stats-fact-refresh";
-  refresh.textContent = "🔄";
-  refresh.title = translate("Another fact");
-  refresh.setAttribute("aria-label", translate("Another fact"));
+  refresh.textContent = translate("Another fact");
   refresh.addEventListener("click", () => {
     text.textContent = pickFact(codes);
   });
