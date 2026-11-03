@@ -1034,7 +1034,7 @@ class aboutView {
         this._aboutUkraineHelpDescription.textContent = `${(0, _uaJs.localization)[_modelJs.worldCountries.language]["You can support Ukraine in the fight against Russia's military aggression:"]}`;
         this._aboutUkraineHelpLink.textContent = `${(0, _uaJs.localization)[_modelJs.worldCountries.language]["Come Back Alive"]}`;
         this._aboutProjectName.textContent = `${(0, _uaJs.localization)[_modelJs.worldCountries.language]["World Country Alliances Guesser Game"]}`;
-        this._aboutProjectDescription.textContent = `${(0, _uaJs.localization)[_modelJs.worldCountries.language]["geographic online strategy game that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose eight different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts."]}`;
+        this._aboutProjectDescription.textContent = `${(0, _uaJs.localization)[_modelJs.worldCountries.language]["geographic online strategy game (Geographic Battleship) that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose eight different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts."]}`;
         this._aboutDeveloper.textContent = `${(0, _uaJs.localization)[_modelJs.worldCountries.language]["Project was created by Software Developer from Ukraine -"]}`;
         this._aboutDeveloperLink.textContent = `${(0, _uaJs.localization)[_modelJs.worldCountries.language]["Dima Solovei"]}`;
         this._aboutDeveloperEmailDescription.textContent = `${(0, _uaJs.localization)[_modelJs.worldCountries.language]["You can reach me by e-mail:"]}`;
@@ -1944,7 +1944,7 @@ const defaultNickname = function() {
     }
     return `Player-${id}`;
 };
-const COUNTRY_NAMES = new Map((0, _countriesJs.COUNTRIES).map((country)=>[
+const COUNTRY_NAMES = new Map((0, _countriesJs.COUNTRIES).filter((country)=>country.name.common !== "Russia").map((country)=>[
         country.cca2.toLowerCase(),
         country.name.common
     ]));
@@ -1952,7 +1952,7 @@ const countryName = function(code) {
     const common = COUNTRY_NAMES.get(code);
     return (0, _uaJs.localization)[_modelJs.worldCountries.language].countries?.[common] || common;
 };
-const COUNTRY_FLAGS = new Map((0, _countriesJs.COUNTRIES).map((country)=>[
+const COUNTRY_FLAGS = new Map((0, _countriesJs.COUNTRIES).filter((country)=>country.name.common !== "Russia").map((country)=>[
         country.cca2.toLowerCase(),
         country.flags.webp
     ]));
@@ -2454,13 +2454,13 @@ const renderMissed = function(stats, body) {
     if (top.length === 0) return;
     const heading = document.createElement("div");
     heading.className = "stats-heading";
-    heading.textContent = translate("Most missed countries");
+    heading.textContent = translate("Most not guessed opponent's countries");
     body.appendChild(heading);
     const list = document.createElement("div");
     list.className = "stats-missed";
     top.forEach(([code, count])=>{
         const country = (0, _countriesJs.COUNTRIES).find((item)=>item.cca2 === code);
-        if (!country) return;
+        if (!country || country.name.common === "Russia") return;
         const item = document.createElement("div");
         item.className = "stats-missed-item";
         const flag = document.createElement("img");
@@ -2527,6 +2527,7 @@ const renderStats = function() {
 };
 const openStats = function() {
     renderStats();
+    if (window.gtag) gtag("event", "open_stats");
     (0, _helpersJs.showModalWindow)("statsModal");
 };
 const openStatsOver = function(modalId) {
@@ -2691,7 +2692,7 @@ const pickFact = function(codes) {
     const templates = TEMPLATES[language] || TEMPLATES.en;
     const code = codes[(0, _helpersJs.getRandomInt)(0, codes.length - 1)];
     const country = (0, _countriesJs.COUNTRIES).find((item)=>item.cca2 === code);
-    if (!country) return "";
+    if (!country || country.name.common === "Russia") return "";
     const facts = candidateFacts(country, language);
     if (facts.length === 0) return "";
     const [kind, value] = facts[(0, _helpersJs.getRandomInt)(0, facts.length - 1)];
@@ -7653,7 +7654,7 @@ class gameRulesView {
     translateElements() {
         this._gameRulesReturnBack.textContent = `${(0, _uaJs.localization)[_modelJs.worldCountries.language]["BACK"]}`;
         this._gameRulesHeading.textContent = `${(0, _uaJs.localization)[_modelJs.worldCountries.language]["World Country Alliances Guesser Game"]}`;
-        this._gameRulesProjectDescription.textContent = `${(0, _uaJs.localization)[_modelJs.worldCountries.language]["geographic online strategy game that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose eight different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts."]}`;
+        this._gameRulesProjectDescription.textContent = `${(0, _uaJs.localization)[_modelJs.worldCountries.language]["geographic online strategy game (Geographic Battleship) that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose eight different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts."]}`;
         this._gameRulesRandomCountriesSelectionDescription.textContent = `${(0, _uaJs.localization)[_modelJs.worldCountries.language]["To select alliances of countries randomly, click"]}`;
         this._gameRulesUndoCountriesSelectionDescription.textContent = `${(0, _uaJs.localization)[_modelJs.worldCountries.language]["To clear the last selected country alliance, click"]}`;
         this._gameRulesClearCountriesSelectionDescription.textContent = `${(0, _uaJs.localization)[_modelJs.worldCountries.language]["To clear selected country alliances, click"]}`;
