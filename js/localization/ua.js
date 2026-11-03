@@ -535,13 +535,15 @@ export const localization = {
     "Traps hit": "Потрапляння в пастки",
     "Hints used": "Використано підказок",
     "Another fact": "Інший факт",
-    "stats rules description": "Вікно «Статистика» зберігає вашу особисту статистику на цьому пристрої: кількість зіграних ігор, відсоток перемог проти комп’ютера та проти друга, середній і найкращий результат, а також країни, які ви пропускаєте найчастіше. Після кожної гри ви також дізнаєтеся цікавий факт про одну з країн. Відкрийте статистику кнопкою 📊 на головній сторінці чи в шапці або у вікні результату гри. Статистика зберігається лише в цьому браузері, і її можна скинути будь-коли.",
-    "Stats": "Статистика",
+    "stats rules description":
+      "Вікно «Статистика» зберігає вашу особисту статистику на цьому пристрої: кількість зіграних ігор, відсоток перемог проти комп’ютера та проти друга, середній і найкращий результат, а також країни, які ви пропускаєте найчастіше. Після кожної гри ви також дізнаєтеся цікавий факт про одну з країн. Відкрийте статистику кнопкою 📊 на головній сторінці чи в шапці або у вікні результату гри. Статистика зберігається лише в цьому браузері, і її можна скинути будь-коли.",
+    Stats: "Статистика",
     "Games played": "Зіграно ігор",
     "Win rate": "Відсоток перемог",
     "Average score": "Середній результат",
     "Best score": "Найкращий результат",
-    "Most missed countries": "Найчастіше пропущені країни",
+    "Most not guessed opponent's countries":
+      "Найчастіше не вгадані країни суперника",
     "vs computer": "проти комп’ютера",
     "vs friend": "проти друга",
     "Reset stats": "Скинути статистику",
@@ -672,14 +674,14 @@ export const localization = {
     "Country Alliance Guesser Gameplay":
       "Ігровий Процес Гри Вгадай Альянси Країн",
     "Support Project": "Підтримати Проект",
-    "Support": "Підтримати",
+    Support: "Підтримати",
     "If your browser blocks or disables WebRTC (real-time communication for the web), you will not be able to play with your friend. Try a different browser.":
       "Якщо ваш браузер блокує або забороняє WebRTC (технологія комунікації в реальному часі), ви не зможете грати зі своїм другом. Спробуйте інший браузер.",
     "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!":
       "Якщо Вам подобається цей проект, Ви можете поділитись ним з друзями або підтримати фінансово (гроші витрачаються на розвиток освітніх проектів та підтримку права України існувати на мапі світу). Дякую Вам!",
     "World Country Alliances Guesser Game": "Гра Вгадай Союзи Країн Світу",
-    "geographic online strategy game that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose eight different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
-      "географічна онлайн гра-стратегія, яка допомагає вивчати географію країн світу, сусідніх країн, прапорів та частин світу в ігровому форматі. Виберіть вісім різних союзів країн на карті, а також чотири країни-пастки для вашого суперника. Комп'ютер або ваш друг (залежно від обраного режиму гри) також вибере відповідну кількість союзів країн та країн-пасток. Спроби вгадати країни відбуваються по черзі. Той, хто вгадає країну суперника, отримує додаткову спробу. Перемагає той, хто першим вгадає всі союзи країн суперника. Слідкуйте за повідомленнями у верхній частині екрана після початку гри.",
+    "geographic online strategy game (Geographic Battleship) that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose eight different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
+      "географічна онлайн гра-стратегія (Географічний Морський Бій), яка допомагає вивчати географію країн світу, сусідніх країн, прапорів та частин світу в ігровому форматі. Виберіть вісім різних союзів країн на карті, а також чотири країни-пастки для вашого суперника. Комп'ютер або ваш друг (залежно від обраного режиму гри) також вибере відповідну кількість союзів країн та країн-пасток. Спроби вгадати країни відбуваються по черзі. Той, хто вгадає країну суперника, отримує додаткову спробу. Перемагає той, хто першим вгадає всі союзи країн суперника. Слідкуйте за повідомленнями у верхній частині екрана після початку гри.",
     "When entering an opponent's trap country, he receives one of eight clues about the location of one of your countries: 1. Name of the country; 2. Capital of the country; 3. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 4. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 5. Coat Of Arms Image; 6. Flag Image; 7. Country's Outline On Map; 8. Photo From Country. You can configure to receive only text clues (country name, country capital, region, subregion) or visual clues (country coat of arms, country flag, country's outline on map, photo from country) or choose the hints yourself during the game.":
       "При потраплянні в країну-пастку суперника, він отримує одну з восьми підказок щодо розташування однієї з ваших країн: 1. Назва Країни; 2. Столиця країни; 3. Частина світу (Європа, Америка, Азія, Африка, Океанія), в якому розташована одна з ваших країн; 4. Регіон (Центральна Європа, Північна Америка, тощо), в якому розташована одна з ваших країн; 5. Зображення Герба Країни; 6. Зображення Прапора Країни; 7. Контур Країни На Мапі; 8. Фото З Країни. Ви можете налаштувати отримання лише текстових підказок (назва країни, столиця країни, частина світу, регіон) або візуальних підказок (герб країни, прапор країни, контур країни на мапі, фотографія з країни) або обирати підказки самостійно під час гри.",
     "Important!": "Важливо!",
@@ -1521,14 +1523,14 @@ export const localization = {
     "Country Alliance Guesser Gameplay": "Country Alliance Guesser Gameplay",
     "VIDEOS:": "VIDEOS:",
     "Support Project": "Support Project",
-    "Support": "Support",
+    Support: "Support",
     "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!":
       "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!",
     "Make Donate": "Make Donate",
     "World Country Alliances Guesser Game":
       "World Country Alliances Guesser Game",
-    "geographic online strategy game that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose eight different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
-      "geographic online strategy game that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose eight different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.",
+    "geographic online strategy game (Geographic Battleship) that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose eight different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
+      "geographic online strategy game (Geographic Battleship) that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose eight different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.",
     "When entering an opponent's trap country, he receives one of eight clues about the location of one of your countries: 1. Name of the country; 2. Capital of the country; 3. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 4. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 5. Coat Of Arms Image; 6. Flag Image; 7. Country's Outline On Map; 8. Photo From Country. You can configure to receive only text clues (country name, country capital, region, subregion) or visual clues (country coat of arms, country flag, country's outline on map, photo from country) or choose the hints yourself during the game.":
       "When entering an opponent's trap country, he receives one of eight clues about the location of one of your countries: 1. Name of the country; 2. Capital of the country; 3. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 4. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 5. Coat Of Arms Image; 6. Flag Image; 7. Country's Outline On Map; 8. Photo From Country. You can configure to receive only text clues (country name, country capital, region, subregion) or visual clues (country coat of arms, country flag, country's outline on map, photo from country) or choose the hints yourself during the game.",
     "Important!": "Important!",
@@ -1711,13 +1713,15 @@ export const localization = {
     "Traps hit": "Traps hit",
     "Hints used": "Hints used",
     "Another fact": "Another fact",
-    "stats rules description": "The Stats window keeps your personal statistics on this device: games played, win rate against the computer and against a friend, average and best score, and the countries you miss most often. After every game you also get a fun fact about one of the countries. Open Stats with the 📊 button on the main page or in the header, or from the Game Result window. Statistics are stored only in this browser and can be reset at any time.",
-    "Stats": "Stats",
+    "stats rules description":
+      "The Stats window keeps your personal statistics on this device: games played, win rate against the computer and against a friend, average and best score, and the countries you miss most often. After every game you also get a fun fact about one of the countries. Open Stats with the 📊 button on the main page or in the header, or from the Game Result window. Statistics are stored only in this browser and can be reset at any time.",
+    Stats: "Stats",
     "Games played": "Games played",
     "Win rate": "Win rate",
     "Average score": "Average score",
     "Best score": "Best score",
-    "Most missed countries": "Most missed countries",
+    "Most not guessed opponent's countries":
+      "Most not guessed opponent's countries",
     "vs computer": "vs computer",
     "vs friend": "vs friend",
     "Reset stats": "Reset stats",
@@ -2284,7 +2288,7 @@ export const localization = {
       Tokyo: "Tokio",
     },
     "Support Project": "Projekt Unterstützen",
-    "Support": "Unterstützen",
+    Support: "Unterstützen",
     Clean: "Saubere",
     Opponent: "Gegner",
     "Opponent Map": "Gegnerkarte",
@@ -2320,17 +2324,20 @@ export const localization = {
     "Traps hit": "Getroffene Fallen",
     "Hints used": "Verwendete Hinweise",
     "Another fact": "Anderer Fakt",
-    "stats rules description": "Das Statistikfenster speichert deine persönliche Statistik auf diesem Gerät: gespielte Spiele, Siegquote gegen den Computer und gegen einen Freund, durchschnittliches und bestes Ergebnis sowie die Länder, die du am häufigsten verpasst. Nach jedem Spiel erfährst du außerdem etwas Interessantes über eines der Länder. Öffne die Statistik über die 📊-Schaltfläche auf der Startseite oder in der Kopfzeile oder im Ergebnisfenster. Die Statistik wird nur in diesem Browser gespeichert und kann jederzeit zurückgesetzt werden.",
-    "Stats": "Statistik",
+    "stats rules description":
+      "Das Statistikfenster speichert deine persönliche Statistik auf diesem Gerät: gespielte Spiele, Siegquote gegen den Computer und gegen einen Freund, durchschnittliches und bestes Ergebnis sowie die Länder, die du am häufigsten verpasst. Nach jedem Spiel erfährst du außerdem etwas Interessantes über eines der Länder. Öffne die Statistik über die 📊-Schaltfläche auf der Startseite oder in der Kopfzeile oder im Ergebnisfenster. Die Statistik wird nur in diesem Browser gespeichert und kann jederzeit zurückgesetzt werden.",
+    Stats: "Statistik",
     "Games played": "Gespielte Spiele",
     "Win rate": "Siegquote",
     "Average score": "Durchschnittsergebnis",
     "Best score": "Bestes Ergebnis",
-    "Most missed countries": "Am häufigsten verpasste Länder",
+    "Most not guessed opponent's countries":
+      "Am häufigsten nicht erratene Länder des Gegners",
     "vs computer": "gegen den Computer",
     "vs friend": "gegen einen Freund",
     "Reset stats": "Statistik zurücksetzen",
-    "Play a game to see your stats": "Spiele ein Spiel, um deine Statistik zu sehen",
+    "Play a game to see your stats":
+      "Spiele ein Spiel, um deine Statistik zu sehen",
     "hour short": "Std",
     "minute short": "Min",
     "This week": "Diese Woche",
@@ -2455,8 +2462,8 @@ export const localization = {
     "If your browser blocks or disables WebRTC (real-time communication for the web), you will not be able to play with your friend. Try a different browser.":
       "Wenn Ihr Browser WebRTC (Echtzeitkommunikation im Web) blockiert oder deaktiviert, können Sie nicht mit Ihrem Freund spielen. Versuchen Sie es mit einem anderen Browser.",
     "World Country Alliances Guesser Game": "Spiel der Weltländerallianzen",
-    "geographic online strategy game that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose eight different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
-      "geografisches Online-Strategiespiel, das hilft, die Geographie der Länder der Welt, Nachbarländer, Flaggen und Teile der Welt in einem Spielformat zu studieren. Wählen Sie acht verschiedene Länderbündnisse auf der Karte sowie vier Fallenländer für Ihren Gegner. Der Computer oder dein Freund (abhängig vom ausgewählten Spielmodus) wählt auch die entsprechende Anzahl von Länderbündnissen und Fallenländern aus. Die Versuche, die Länder zu erraten, finden reihum statt. Wer das Land des Gegners errät, erhält einen zusätzlichen Versuch. Wer zuerst alle Allianzen der gegnerischen Länder errät, hat gewonnen. Folgen Sie den Nachrichten oben auf dem Bildschirm, nachdem das Spiel begonnen hat.",
+    "geographic online strategy game (Geographic Battleship) that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose eight different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
+      "geografisches Online-Strategiespiel (Geografisches Schiffeversenken), das hilft, die Geographie der Länder der Welt, Nachbarländer, Flaggen und Teile der Welt in einem Spielformat zu studieren. Wählen Sie acht verschiedene Länderbündnisse auf der Karte sowie vier Fallenländer für Ihren Gegner. Der Computer oder dein Freund (abhängig vom ausgewählten Spielmodus) wählt auch die entsprechende Anzahl von Länderbündnissen und Fallenländern aus. Die Versuche, die Länder zu erraten, finden reihum statt. Wer das Land des Gegners errät, erhält einen zusätzlichen Versuch. Wer zuerst alle Allianzen der gegnerischen Länder errät, hat gewonnen. Folgen Sie den Nachrichten oben auf dem Bildschirm, nachdem das Spiel begonnen hat.",
     "When entering an opponent's trap country, he receives one of eight clues about the location of one of your countries: 1. Name of the country; 2. Capital of the country; 3. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 4. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 5. Coat Of Arms Image; 6. Flag Image; 7. Country's Outline On Map; 8. Photo From Country. You can configure to receive only text clues (country name, country capital, region, subregion) or visual clues (country coat of arms, country flag, country's outline on map, photo from country) or choose the hints yourself during the game.":
       "Beim Betreten des Fallenlandes eines Gegners erhält dieser einen von acht Hinweisen auf die Lage eines Ihrer Länder: 1. Name des Landes; 2. Hauptstadt des Landes; 3. Region (Europa, Amerika, Asien, Afrika, Ozeanien), in der sich eines Ihrer Länder befindet; 4. Subregion (Mitteleuropa, Nordamerika usw.), in der sich eines Ihrer Länder befindet; 5. Wappenbild; 6. Flagge; 7. Umriss des Landes auf der Karte; 8. Foto aus dem Land. Sie können einstellen, dass Sie nur Texthinweise (Landesname, Landeshauptstadt, Region, Subregion) oder visuelle Hinweise (Landeswappen, Landesflagge, Umriss des Landes auf der Karte, Foto aus dem Land) erhalten oder wähle die Hinweise während des Spiels selbst aus.",
     "Important!": "Wichtig!",
@@ -3180,7 +3187,7 @@ export const localization = {
       Tokyo: "Tokyo",
     },
     "Support Project": "Soutenir le Projet",
-    "Support": "Soutenir",
+    Support: "Soutenir",
     "If your browser blocks or disables WebRTC (real-time communication for the web), you will not be able to play with your friend. Try a different browser.":
       "Si votre navigateur bloque ou désactive WebRTC (communication en temps réel pour le web), vous ne pourrez pas jouer avec votre ami. Essayez un autre navigateur.",
     "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!":
@@ -3197,8 +3204,8 @@ export const localization = {
     "Click to toggle full screen":
       "Cliquez pour activer/désactiver le mode plein écran",
     "Photo From Country": "Photo du pays",
-    "geographic online strategy game that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose eight different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
-      "jeu de stratégie géographique en ligne permettant d'étudier la géographie des pays du monde, de leurs voisins, de leurs drapeaux et de certaines régions du monde sous forme de jeu. Choisissez huit alliances de pays différentes sur la carte, ainsi que quatre pays pièges pour votre adversaire. L'ordinateur ou votre ami (selon le mode de jeu sélectionné) choisira également le nombre approprié d'alliances de pays et de pays pièges. Les tentatives pour deviner les pays se déroulent à tour de rôle. Celui qui devine le pays de l'adversaire obtient un essai supplémentaire. Le premier à deviner toutes les alliances des pays adverses gagne. Suivez les messages en haut de l'écran après le début de la partie.",
+    "geographic online strategy game (Geographic Battleship) that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose eight different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
+      "jeu de stratégie géographique (Bataille navale géographique) en ligne permettant d'étudier la géographie des pays du monde, de leurs voisins, de leurs drapeaux et de certaines régions du monde sous forme de jeu. Choisissez huit alliances de pays différentes sur la carte, ainsi que quatre pays pièges pour votre adversaire. L'ordinateur ou votre ami (selon le mode de jeu sélectionné) choisira également le nombre approprié d'alliances de pays et de pays pièges. Les tentatives pour deviner les pays se déroulent à tour de rôle. Celui qui devine le pays de l'adversaire obtient un essai supplémentaire. Le premier à deviner toutes les alliances des pays adverses gagne. Suivez les messages en haut de l'écran après le début de la partie.",
     "When entering an opponent's trap country, he receives one of eight clues about the location of one of your countries: 1. Name of the country; 2. Capital of the country; 3. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 4. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 5. Coat Of Arms Image; 6. Flag Image; 7. Country's Outline On Map; 8. Photo From Country. You can configure to receive only text clues (country name, country capital, region, subregion) or visual clues (country coat of arms, country flag, country's outline on map, photo from country) or choose the hints yourself during the game.":
       "Lorsqu'il entre dans le pays piège d'un adversaire, il reçoit l'un des huit indices sur l'emplacement de l'un de vos pays : 1. Nom du pays ; 2. Capitale du pays ; 3. Région (Europe, Amérique, Asie, Afrique, Océanie) dans laquelle se trouve l'un de vos pays ; 4. Sous-région (Europe centrale, Amérique du Nord, etc.) dans laquelle se trouve l'un de vos pays; 4. Image Des Armoiries; 6. Image du Drapeau; 7. Contour du pays sur la carte; 8. Photo du Pays. Vous pouvez configurer le système pour ne recevoir que des indices textuels (nom du pays, capitale du pays, région, sous-région) ou des indices visuels (armoiries du pays, drapeau du pays, contour du pays sur une carte, photo du pays) ou choisir les indices vous-même pendant le jeu.",
     "Important!": "Important!",
@@ -3282,17 +3289,20 @@ export const localization = {
     "Traps hit": "Pièges déclenchés",
     "Hints used": "Indices utilisés",
     "Another fact": "Un autre fait",
-    "stats rules description": "La fenêtre Statistiques conserve tes statistiques personnelles sur cet appareil : parties jouées, taux de victoire contre l’ordinateur et contre un ami, score moyen et meilleur score, ainsi que les pays que tu manques le plus souvent. Après chaque partie, tu découvres aussi une anecdote sur l’un des pays. Ouvre les statistiques avec le bouton 📊 de la page principale ou de l’en-tête, ou depuis la fenêtre de résultat. Les statistiques sont stockées uniquement dans ce navigateur et peuvent être réinitialisées à tout moment.",
-    "Stats": "Statistiques",
+    "stats rules description":
+      "La fenêtre Statistiques conserve tes statistiques personnelles sur cet appareil : parties jouées, taux de victoire contre l’ordinateur et contre un ami, score moyen et meilleur score, ainsi que les pays que tu manques le plus souvent. Après chaque partie, tu découvres aussi une anecdote sur l’un des pays. Ouvre les statistiques avec le bouton 📊 de la page principale ou de l’en-tête, ou depuis la fenêtre de résultat. Les statistiques sont stockées uniquement dans ce navigateur et peuvent être réinitialisées à tout moment.",
+    Stats: "Statistiques",
     "Games played": "Parties jouées",
     "Win rate": "Taux de victoire",
     "Average score": "Score moyen",
     "Best score": "Meilleur score",
-    "Most missed countries": "Pays les plus manqués",
+    "Most not guessed opponent's countries":
+      "Pays des adversaires les moins souvent devinés",
     "vs computer": "contre l’ordinateur",
     "vs friend": "contre un ami",
     "Reset stats": "Réinitialiser les statistiques",
-    "Play a game to see your stats": "Joue une partie pour voir tes statistiques",
+    "Play a game to see your stats":
+      "Joue une partie pour voir tes statistiques",
     "hour short": "h",
     "minute short": "min",
     "This week": "Cette semaine",
@@ -4076,7 +4086,7 @@ export const localization = {
       Tokyo: "Tokio",
     },
     "Support Project": "Apoyar el Proyecto",
-    "Support": "Apoyar",
+    Support: "Apoyar",
     "If your browser blocks or disables WebRTC (real-time communication for the web), you will not be able to play with your friend. Try a different browser.":
       "Si tu navegador bloquea o deshabilita WebRTC (comunicación en tiempo real para la web), no podrás jugar con tu amigo. Prueba con otro navegador.",
     "World Country Alliances Guesser Game":
@@ -4084,8 +4094,8 @@ export const localization = {
     "Full Screen": "Pantalla Completa",
     "Time is up! The attempt to guess the country passes to your opponent":
       "¡Se acabó el tiempo! El intento de adivinar el país pasa a tu oponente",
-    "geographic online strategy game that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose eight different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
-      "juego de estrategia geográfica en línea que te ayuda a estudiar la geografía de los países del mundo, sus vecinos, sus banderas y partes del mundo en formato de juego. Elige ocho alianzas diferentes de países en el mapa, además de cuatro países trampa para tu oponente. El ordenador o tu amigo (depende del modo de juego seleccionado) también elegirá el número adecuado de alianzas y países trampa. Los intentos para adivinar los países se realizan por turnos. Quien adivine el país del oponente tiene un intento extra. Quien primero adivine todas las alianzas de países del oponente gana. Sigue los mensajes en la parte superior de la pantalla después de que comience el juego.",
+    "geographic online strategy game (Geographic Battleship) that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose eight different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
+      "juego de estrategia geográfica (Batalla naval geográfica) en línea que te ayuda a estudiar la geografía de los países del mundo, sus vecinos, sus banderas y partes del mundo en formato de juego. Elige ocho alianzas diferentes de países en el mapa, además de cuatro países trampa para tu oponente. El ordenador o tu amigo (depende del modo de juego seleccionado) también elegirá el número adecuado de alianzas y países trampa. Los intentos para adivinar los países se realizan por turnos. Quien adivine el país del oponente tiene un intento extra. Quien primero adivine todas las alianzas de países del oponente gana. Sigue los mensajes en la parte superior de la pantalla después de que comience el juego.",
     "When entering an opponent's trap country, he receives one of eight clues about the location of one of your countries: 1. Name of the country; 2. Capital of the country; 3. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 4. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 5. Coat Of Arms Image; 6. Flag Image; 7. Country's Outline On Map; 8. Photo From Country. You can configure to receive only text clues (country name, country capital, region, subregion) or visual clues (country coat of arms, country flag, country's outline on map, photo from country) or choose the hints yourself during the game.":
       "Al entrar al país trampa de un oponente, este recibe una de ocho pistas sobre la ubicación de uno de sus países: 1. Nombre del País; 2. La capital del país; 3. La región (Europa, América, Asia, África, Oceanía) en la que se encuentra uno de sus países; 4. La subregión (Europa Central, América del Norte, etc.) en la que se encuentra uno de sus países; 5. Imagen Del Escudo De Armas; 6. Imagen de la Bandera; 7. Contorno del país en el mapa; 8. Foto del País. Puedes configurar la recepción de pistas de texto (nombre del país, capital del país, región, subregión) o de pistas visuales (escudo de armas del país, bandera del país, contorno del país en el mapa, foto del país) o elegir las pistas tú mismo durante el juego.",
     "Important!": "¡Importante!",
@@ -4208,17 +4218,20 @@ export const localization = {
     "Traps hit": "Trampas activadas",
     "Hints used": "Pistas usadas",
     "Another fact": "Otro dato",
-    "stats rules description": "La ventana de estadísticas guarda tus estadísticas personales en este dispositivo: partidas jugadas, porcentaje de victorias contra el ordenador y contra un amigo, puntuación media y mejor puntuación, y los países que fallas con más frecuencia. Después de cada partida también descubres un dato curioso sobre uno de los países. Abre las estadísticas con el botón 📊 de la página principal o de la cabecera, o desde la ventana de resultados. Las estadísticas se guardan solo en este navegador y puedes restablecerlas en cualquier momento.",
-    "Stats": "Estadísticas",
+    "stats rules description":
+      "La ventana de estadísticas guarda tus estadísticas personales en este dispositivo: partidas jugadas, porcentaje de victorias contra el ordenador y contra un amigo, puntuación media y mejor puntuación, y los países que fallas con más frecuencia. Después de cada partida también descubres un dato curioso sobre uno de los países. Abre las estadísticas con el botón 📊 de la página principal o de la cabecera, o desde la ventana de resultados. Las estadísticas se guardan solo en este navegador y puedes restablecerlas en cualquier momento.",
+    Stats: "Estadísticas",
     "Games played": "Partidas jugadas",
     "Win rate": "Porcentaje de victorias",
     "Average score": "Puntuación media",
     "Best score": "Mejor puntuación",
-    "Most missed countries": "Países más fallados",
+    "Most not guessed opponent's countries":
+      "Países más no adivinados del oponente",
     "vs computer": "contra el ordenador",
     "vs friend": "contra un amigo",
     "Reset stats": "Restablecer estadísticas",
-    "Play a game to see your stats": "Juega una partida para ver tus estadísticas",
+    "Play a game to see your stats":
+      "Juega una partida para ver tus estadísticas",
     "hour short": "h",
     "minute short": "min",
     "This week": "Esta semana",
@@ -4972,7 +4985,7 @@ export const localization = {
       Tokyo: "Tokyo",
     },
     "Support Project": "Sostieni il Progetto",
-    "Support": "Sostieni",
+    Support: "Sostieni",
     "If your browser blocks or disables WebRTC (real-time communication for the web), you will not be able to play with your friend. Try a different browser.":
       "Se il tuo browser blocca o disabilita WebRTC (comunicazione in tempo reale per il web), non potrai giocare con il tuo amico. Prova un altro browser.",
     "If you like this project, you can share it with your friends or support it financially (money is spent on the development of educational projects and support for Ukraine's right to exist on the world map). Thank you!":
@@ -5023,17 +5036,20 @@ export const localization = {
     "Traps hit": "Trappole colpite",
     "Hints used": "Indizi usati",
     "Another fact": "Un’altra curiosità",
-    "stats rules description": "La finestra delle statistiche conserva le tue statistiche personali su questo dispositivo: partite giocate, percentuale di vittorie contro il computer e contro un amico, punteggio medio e migliore, e i paesi che sbagli più spesso. Dopo ogni partita scopri anche una curiosità su uno dei paesi. Apri le statistiche con il pulsante 📊 nella pagina principale o nell’intestazione, oppure dalla finestra dei risultati. Le statistiche sono salvate solo in questo browser e puoi azzerarle in qualsiasi momento.",
-    "Stats": "Statistiche",
+    "stats rules description":
+      "La finestra delle statistiche conserva le tue statistiche personali su questo dispositivo: partite giocate, percentuale di vittorie contro il computer e contro un amico, punteggio medio e migliore, e i paesi che sbagli più spesso. Dopo ogni partita scopri anche una curiosità su uno dei paesi. Apri le statistiche con il pulsante 📊 nella pagina principale o nell’intestazione, oppure dalla finestra dei risultati. Le statistiche sono salvate solo in questo browser e puoi azzerarle in qualsiasi momento.",
+    Stats: "Statistiche",
     "Games played": "Partite giocate",
     "Win rate": "Percentuale di vittorie",
     "Average score": "Punteggio medio",
     "Best score": "Miglior punteggio",
-    "Most missed countries": "Paesi più mancati",
+    "Most not guessed opponent's countries":
+      "Paesi più non indovinati dell'avversario",
     "vs computer": "contro il computer",
     "vs friend": "contro un amico",
     "Reset stats": "Azzera statistiche",
-    "Play a game to see your stats": "Gioca una partita per vedere le tue statistiche",
+    "Play a game to see your stats":
+      "Gioca una partita per vedere le tue statistiche",
     "hour short": "h",
     "minute short": "min",
     "This week": "Questa settimana",
@@ -5052,8 +5068,8 @@ export const localization = {
     "Loading...": "Caricamento...",
     "World Country Alliances Guesser Game":
       "Gioco delle Alleanze tra i Paesi del Mondo",
-    "geographic online strategy game that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose eight different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
-      "gioco di strategia online geografico che aiuta a studiare la geografia dei paesi del mondo, dei paesi confinanti, delle bandiere e di altre parti del mondo in un formato di gioco. Scegli otto diverse alleanze di paesi sulla mappa, oltre a quattro paesi-trappola per il tuo avversario. Il computer o il tuo amico (a seconda della modalità di gioco selezionata) sceglierà anche il numero appropriato di alleanze di paesi e paesi-trappola. I tentativi di indovinare i paesi avvengono a turno. Chi indovina il paese dell'avversario ha un tentativo extra. Vince chi indovina per primo tutte le alleanze dei paesi dell'avversario. Segui i messaggi nella parte superiore dello schermo dopo l'inizio del gioco.",
+    "geographic online strategy game (Geographic Battleship) that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose eight different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts.":
+      "gioco di strategia online geografico (Battaglia navale geografica) che aiuta a studiare la geografia dei paesi del mondo, dei paesi confinanti, delle bandiere e di altre parti del mondo in un formato di gioco. Scegli otto diverse alleanze di paesi sulla mappa, oltre a quattro paesi-trappola per il tuo avversario. Il computer o il tuo amico (a seconda della modalità di gioco selezionata) sceglierà anche il numero appropriato di alleanze di paesi e paesi-trappola. I tentativi di indovinare i paesi avvengono a turno. Chi indovina il paese dell'avversario ha un tentativo extra. Vince chi indovina per primo tutte le alleanze dei paesi dell'avversario. Segui i messaggi nella parte superiore dello schermo dopo l'inizio del gioco.",
     "When entering an opponent's trap country, he receives one of eight clues about the location of one of your countries: 1. Name of the country; 2. Capital of the country; 3. Region (Europe, America, Asia, Africa, Oceania) in which one of your countries is located; 4. Subregion (Central Europe, North America, etc.) in which one of your countries is located; 5. Coat Of Arms Image; 6. Flag Image; 7. Country's Outline On Map; 8. Photo From Country. You can configure to receive only text clues (country name, country capital, region, subregion) or visual clues (country coat of arms, country flag, country's outline on map, photo from country) or choose the hints yourself during the game.":
       "Quando entri nel paese trappola di un avversario, il tuo avversario riceve uno dei otto indizi sulla posizione di uno dei tuoi paesi: 1. Nome del Paese; 2. La capitale del paese; 3. La regione (Europa, America, Asia, Africa, Oceania) in cui si trova uno dei tuoi paesi; 4. La sottoregione (Europa centrale, Nord America, ecc.) in cui si trova uno dei tuoi paesi; 5. Immagine Dello Stemma; 6. Immagine Della Bandiera; 7. Contorno del Paese sulla mappa; 8. Foto dal Paese. È possibile configurare la ricezione di soli indizi testuali (nome del paese, capitale, regione, sottoregione) o indizi visivi (stemma del paese, bandiera del paese, contorno del paese sulla mappa, foto del paese) o scegliere gli indizi da soli durante il gioco.",
     "Important!": "Importante!",

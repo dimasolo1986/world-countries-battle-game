@@ -97,13 +97,13 @@ const renderMissed = function (stats, body) {
   if (top.length === 0) return;
   const heading = document.createElement("div");
   heading.className = "stats-heading";
-  heading.textContent = translate("Most missed countries");
+  heading.textContent = translate("Most not guessed opponent's countries");
   body.appendChild(heading);
   const list = document.createElement("div");
   list.className = "stats-missed";
   top.forEach(([code, count]) => {
     const country = COUNTRIES.find((item) => item.cca2 === code);
-    if (!country) return;
+    if (!country || country.name.common === "Russia") return;
     const item = document.createElement("div");
     item.className = "stats-missed-item";
     const flag = document.createElement("img");

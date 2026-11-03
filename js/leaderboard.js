@@ -66,7 +66,9 @@ const defaultNickname = function () {
 };
 
 const COUNTRY_NAMES = new Map(
-  COUNTRIES.map((country) => [country.cca2.toLowerCase(), country.name.common]),
+  COUNTRIES.filter((country) => country.name.common !== "Russia").map(
+    (country) => [country.cca2.toLowerCase(), country.name.common],
+  ),
 );
 
 const countryName = function (code) {
@@ -77,7 +79,9 @@ const countryName = function (code) {
 };
 
 const COUNTRY_FLAGS = new Map(
-  COUNTRIES.map((country) => [country.cca2.toLowerCase(), country.flags.webp]),
+  COUNTRIES.filter((country) => country.name.common !== "Russia").map(
+    (country) => [country.cca2.toLowerCase(), country.flags.webp],
+  ),
 );
 const flagSrc = (code) => COUNTRY_FLAGS.get(code);
 

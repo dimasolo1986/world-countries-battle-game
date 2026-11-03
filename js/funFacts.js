@@ -109,7 +109,7 @@ export const pickFact = function (codes) {
   const templates = TEMPLATES[language] || TEMPLATES.en;
   const code = codes[getRandomInt(0, codes.length - 1)];
   const country = COUNTRIES.find((item) => item.cca2 === code);
-  if (!country) return "";
+  if (!country || country.name.common === "Russia") return "";
   const facts = candidateFacts(country, language);
   if (facts.length === 0) return "";
   const [kind, value] = facts[getRandomInt(0, facts.length - 1)];
