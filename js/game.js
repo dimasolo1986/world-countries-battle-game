@@ -144,6 +144,7 @@ export class Game {
       mode: this.gameConfiguration.gameMode === "user" ? "friend" : "computer",
     });
     this.recordResult(playerOneWon);
+    this.playerOne.hideHotColdHint();
     this.gameModalResultGuessedCountries.innerHTML = "";
     this.playerOne.enableMapInteraction();
     this.gameModalResultLabel.textContent =

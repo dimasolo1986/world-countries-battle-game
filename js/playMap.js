@@ -630,21 +630,25 @@ export class PlayMap {
     };
     L.control.gamerulesbutton({ position: "topright" }).addTo(this.map);
     L.Control.AvailableCountriesPanel = L.Control.extend({
+      gameConfiguration: this.gameConfiguration,
       onAdd: function (map) {
         const availableCountriesPanel = L.DomUtil.create("div");
         availableCountriesPanel.id = "available-countries-panel";
         availableCountriesPanel.classList.add("not-displayed");
         availableCountriesPanel.style.backgroundColor = "white";
-        availableCountriesPanel.style.opacity = "0.7";
-        availableCountriesPanel.style.borderRadius = "2px";
-        availableCountriesPanel.style.boxShadow =
-          "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
-        availableCountriesPanel.style.marginTop = "5px";
-        availableCountriesPanel.style.padding = "3px";
+        availableCountriesPanel.style.opacity = "0.85";
+        availableCountriesPanel.style.borderRadius = "3px";
+        availableCountriesPanel.style.padding = "2px 5px";
         availableCountriesPanel.style.width = "fit-content";
         availableCountriesPanel.style.overflow = "hidden";
         availableCountriesPanel.style.marginTop = "10px";
-        const availableCountriesHeader = `<div class="text-center"><span style="font-size:0.7rem; font-weight:bold;">🌍 ${
+        availableCountriesPanel.style.letterSpacing = "0.03em";
+        availableCountriesPanel.style.color = "darkblue";
+        const accent = mapFieldAccent(
+          "Opponent Map",
+          this.gameConfiguration.gameMode,
+        );
+        const availableCountriesHeader = `<div class="text-center" style="border-bottom:2px solid ${accent}; margin-bottom:2px;"><span style="font-size:0.7rem; font-weight:bold;">🌍 ${
           localization[model.worldCountries.language]["Available Countries:"]
         }</span></div>`;
         availableCountriesPanel.insertAdjacentHTML(
@@ -1008,9 +1012,11 @@ export class PlayMap {
     document.getElementById("bonus-countries-number-field").textContent =
       this.gameConfiguration.bonusCountries;
     document.getElementById("hints-panel").classList.add("not-displayed");
-    document
-      .getElementById("selected-country-field")
-      .classList.remove("not-displayed");
+    const selectedCountryField = document.getElementById(
+      "selected-country-field",
+    );
+    selectedCountryField.classList.remove("not-displayed");
+    selectedCountryField.style.opacity = "0.7";
     document
       .getElementById("available-countries-panel")
       .classList.add("not-displayed");

@@ -765,6 +765,11 @@ export const localization = {
     "Selected Trap Country": "Вибрана Країна-Пастка",
     "Make Donate": "Зробити Донат",
     "QR Code": "QR Код",
+    "hotcold.burning": "Палає",
+    "hotcold.hot": "Гаряче",
+    "hotcold.warm": "Тепло",
+    "hotcold.cool": "Прохолодно",
+    "hotcold.cold": "Холодно",
     "Failed attempt to guess country!": "Невдала спроба вгадати країну!",
     "Press 'Play' to start game!": "Натисніть 'Грати', щоб розпочати гру!",
     "Opponent selected countries. Press 'Play' to start game!":
@@ -1615,6 +1620,11 @@ export const localization = {
     "Opponent selected countries. Press 'Play' to start game!":
       "Opponent selected countries. Press 'Play' to start game!",
     Points: "Points",
+    "hotcold.burning": "Burning",
+    "hotcold.hot": "Hot",
+    "hotcold.warm": "Warm",
+    "hotcold.cool": "Cool",
+    "hotcold.cold": "Cold",
     "Failed attempt to guess country!": "Failed attempt to guess country!",
     "Already guessed this country. Try another one!":
       "Already guessed this country. Try another one!",
@@ -2558,6 +2568,11 @@ export const localization = {
       "Um mit deinem Freund zu spielen, benötigst du Folgendes: 1. Wähle die gewünschte Spielkonfiguration: Möchtest du Länder und Länderbündnisse aus aller Welt oder nur unabhängige Länder erraten, um alle oder nur Texthinweise (Landesname, Landeshauptstadt, Region, Unterregion) oder visuelle Hinweise (Landeswappen, Landesflagge, Landesumriss auf der Karte, Foto aus dem Land) zu erhalten oder wähle die Hinweise während des Spiels selbst aus, zeit (in sekunden), um zu versuchen, das Land des Gegners zu erraten, Anzahl der Bonusländer. Diese Einstellung kannst du auf dieser Seite oder auf der Startseite vornehmen (nachdem du einen Spielraum erstellt hast, kann diese Einstellung nicht mehr geändert werden). 2. Erstelle einen Spielraum und einen Link zum Spiel für deinen Freund, indem du auf 'Spielzimmer Erstellen' klickst. 3. Kopiere den Spiellink, indem du auf 'Link Kopieren' klickst, und sende ihn an deinen Freund oder teile ihn mit ihm, indem du auf 'Link mit Freund teilen' klickst. 4. Nach einem oder mehreren Spielen kannst du den Spielraum löschen, indem du auf 'Spielzimmer löschen' klickst (nach dem Löschen kann dein Freund den Spiellink nicht mehr verwenden, um mit dir zu spielen).",
     "Already guessed this country. Try another one!":
       "Dieses Land wurde bereits erraten. Versuche ein anderes!",
+    "hotcold.burning": "Brennend heiß",
+    "hotcold.hot": "Heiß",
+    "hotcold.warm": "Warm",
+    "hotcold.cool": "Kühl",
+    "hotcold.cold": "Kalt",
     "Failed attempt to guess country!":
       "Versuch, das Land zu erraten, fehlgeschlagen!",
     "You guessed": "Sie haben es erraten",
@@ -3455,6 +3470,11 @@ export const localization = {
       "Votre adversaire a deviné tous vos pays:",
     "Copy Error": "Erreur de copie",
     CHAT: "CHAT",
+    "hotcold.burning": "Brûlant",
+    "hotcold.hot": "Chaud",
+    "hotcold.warm": "Tiède",
+    "hotcold.cool": "Frais",
+    "hotcold.cold": "Froid",
     "Failed attempt to guess country!":
       "La tentative de deviner le pays a échoué!",
     "You guessed": "Vous l'avez deviné",
@@ -4324,6 +4344,11 @@ export const localization = {
     Hint: "Pista",
     "Country Flag": "Bandera del País",
     Country: "País",
+    "hotcold.burning": "Ardiente",
+    "hotcold.hot": "Caliente",
+    "hotcold.warm": "Templado",
+    "hotcold.cool": "Fresco",
+    "hotcold.cold": "Frío",
     "Failed attempt to guess country!": "¡Intento fallido de adivinar el país!",
     "You guessed": "Lo adivinaste",
     "by the hint": "con la ayuda de una pista",
@@ -5247,6 +5272,11 @@ export const localization = {
     "If a player guesses an alliance of countries that contains four countries, he gets 15 points, three countries - 25 points, two countries - 35 points, one country - 50 points. When falling into an opponent's trap country, the player loses 10 points the first time, 20 points the second time, 30 points the third time and 50 points the fourth time. At the end of the game, the player gets an additional 10 points for each alliance of countries that was not guessed by the opponent.":
       "Se un giocatore indovina un'alleanza di paesi che contiene quattro paesi, ottiene 15 punti, tre paesi - 25 punti, due paesi - 35 punti, un paese - 50 punti. Quando cade nella trappola di un paese avversario, il giocatore perde 10 punti la prima volta, 20 punti la seconda volta, 30 punti la terza volta e 50 punti la quarta volta. Alla fine della partita, il giocatore ottiene altri 10 punti per ogni alleanza di paesi che non è stata indovinata dall'avversario.",
     Score: "Punteggio",
+    "hotcold.burning": "Rovente",
+    "hotcold.hot": "Caldo",
+    "hotcold.warm": "Tiepido",
+    "hotcold.cool": "Fresco",
+    "hotcold.cold": "Freddo",
     "Failed attempt to guess country!":
       "Tentativo fallito di indovinare il paese!",
     "You guessed": "Hai indovinato",
