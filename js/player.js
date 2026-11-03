@@ -929,12 +929,22 @@ export class Player {
 
   getLastRemainingCountryCode() {
     const remaining = [];
-    this.countryUnions.forEach((countryUnion) => {
-      (countryUnion || []).forEach((countryObject) => {
-        const [code, state] = Object.entries(countryObject)[0];
-        if (!state.guessed) remaining.push(code);
-      });
-    });
+    for (const countryUnion of this.countryUnions) {
+      if (countryUnion.length !== 1) {
+        const hasUnguessed = countryUnion.some((countryObject) => {
+          const [code, state] = Object.entries(countryObject)[0];
+          return !state.guessed;
+        });
+        if (hasUnguessed) {
+          return null;
+        }
+      } else {
+        const [code, state] = Object.entries(countryUnion[0])[0];
+        if (!state.guessed) {
+          remaining.push(code);
+        }
+      }
+    }
     return remaining.length === 1 ? remaining[0] : null;
   }
 
