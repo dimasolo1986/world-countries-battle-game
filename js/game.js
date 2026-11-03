@@ -79,8 +79,10 @@ export class Game {
     this.superBonusCountry = this.bonusCountries[0];
     this.secondSuperBonusCountry = this.bonusCountries[1];
     this.thirdSuperBonusCountry = this.bonusCountries[2];
-    if (count > 5) this.fourthSuperBonusCountry = this.bonusCountries[3];
-    if (count > 10) this.fifthSuperBonusCountry = this.bonusCountries[4];
+    if (count > 5 && !this.gameConfiguration.onlyIndependentCountries)
+      this.fourthSuperBonusCountry = this.bonusCountries[3];
+    if (count > 10 && !this.gameConfiguration.onlyIndependentCountries)
+      this.fifthSuperBonusCountry = this.bonusCountries[4];
   }
 
   showGameRules() {
