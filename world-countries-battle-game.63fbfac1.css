@@ -787,7 +787,6 @@ main .card .card-body {
 .lb-flag {
   object-fit: cover;
   vertical-align: middle;
-  border: 1px solid gray;
   border-radius: 2px;
   width: 22px;
   height: 14px;
@@ -1536,7 +1535,7 @@ video {
 .stats-fact-refresh {
   color: inherit;
   cursor: pointer;
-  background: #9acd32;
+  background-color: #9acd32;
   border: 1px solid #cbd5e1;
   border-radius: 6px;
   margin: 6px auto 0;
@@ -1546,6 +1545,6 @@ video {
 }
 
 .stats-fact-refresh:hover {
-  background: #f1f5f9;
+  background-color: #f1f5f9;
 }
 /*# sourceMappingURL=world-countries-battle-game.63fbfac1.css.map */

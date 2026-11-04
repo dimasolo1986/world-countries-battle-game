@@ -1672,8 +1672,8 @@ class Game {
         this.superBonusCountry = this.bonusCountries[0];
         this.secondSuperBonusCountry = this.bonusCountries[1];
         this.thirdSuperBonusCountry = this.bonusCountries[2];
-        if (count > 5) this.fourthSuperBonusCountry = this.bonusCountries[3];
-        if (count > 10) this.fifthSuperBonusCountry = this.bonusCountries[4];
+        if (count > 5 && !this.gameConfiguration.onlyIndependentCountries) this.fourthSuperBonusCountry = this.bonusCountries[3];
+        if (count > 10 && !this.gameConfiguration.onlyIndependentCountries) this.fifthSuperBonusCountry = this.bonusCountries[4];
     }
     showGameRules() {
         this.gameModalRulesLabel.textContent = (0, _uaJs.localization)[_modelJs.worldCountries.language]["Game Rules"];
@@ -1701,7 +1701,7 @@ class Game {
                 mode: this.gameConfiguration.gameMode === "user" ? "friend" : "computer",
                 won: playerOneWon,
                 missedCodes,
-                trapsHit: this.playerOne.trapCountryHitted,
+                trapsHit: this.playerTwo.trapCountryHitted,
                 hintsUsed: this.playerOne.usedHintsCount
             });
         }
@@ -3343,12 +3343,16 @@ class Player {
     }
     getLastRemainingCountryCode() {
         const remaining = [];
-        this.countryUnions.forEach((countryUnion)=>{
-            (countryUnion || []).forEach((countryObject)=>{
+        for (const countryUnion of this.countryUnions)if (countryUnion.length !== 1) {
+            const hasUnguessed = countryUnion.some((countryObject)=>{
                 const [code, state] = Object.entries(countryObject)[0];
-                if (!state.guessed) remaining.push(code);
+                return !state.guessed;
             });
-        });
+            if (hasUnguessed) return null;
+        } else {
+            const [code, state] = Object.entries(countryUnion[0])[0];
+            if (!state.guessed) remaining.push(code);
+        }
         return remaining.length === 1 ? remaining[0] : null;
     }
     getHotColdHint(guessCode) {
@@ -3376,10 +3380,9 @@ class Player {
         const color = HOT_COLD_COLORS[hint.temperature];
         const guessName = this.countries[hint.guessCode]?.countryName;
         const guessLabel = (0, _uaJs.localization)[_modelJs.worldCountries.language]?.countries?.[guessName] ?? guessName ?? "";
-        this.playMap.setSelectedCountryFiledHtml(`<div style="font-size: 0.55rem;">${guessLabel}</div>` + `<div style="margin:2px 0;">${segments}</div>` + `<div style="color:${color};">${translate(`hotcold.${hint.temperature}`)}${hint.direction ? ` ${hint.direction.arrow}` : ""}</div>`);
+        this.playMap.setSelectedCountryFiledHtml(`<div>${guessLabel}</div>` + `<div style="margin:2px 0;">${segments}</div>` + `<div style="color:${color};">${translate(`hotcold.${hint.temperature}`)}${hint.direction ? ` ${hint.direction.arrow}` : ""}</div>`);
         field.style.opacity = "0.85";
         field.style.textAlign = "center";
-        field.style.boxShadow = "none";
         field.style.padding = "2px 5px";
         field.style.letterSpacing = "0.03em";
         field.style.borderBottom = `2px solid ${color}`;
@@ -3876,8 +3879,7 @@ class Player {
                 this.countriesNumberField.textContent = this.opponentPlayer.countryCodes.length;
                 this.gameMessageField.textContent = `\u{2139}\u{FE0F} ${(0, _uaJs.localization)[_modelJs.worldCountries.language]["Computer is guessing your country..."]}`;
                 await this.sleep(700);
-                if (this.shouldComputerUseHotColdHints()) countryCode = this.pickComputerRandomCountryCode(true);
-                else if (this.countriesToGuess.length !== 0) {
+                if (this.countriesToGuess.length !== 0) {
                     countryIndex = (0, _helpersJs.getRandomInt)(0, this.countriesToGuess.length - 1);
                     countryCode = this.countriesToGuess[countryIndex];
                     this.countriesToGuess.splice(countryIndex, 1);
@@ -3905,7 +3907,8 @@ class Player {
                         this.usedHintsCount = this.usedHintsCount + 1;
                         countryCode = this.pickComputerRandomCountryCode();
                     }
-                } else countryCode = this.pickComputerRandomCountryCode();
+                } else if (this.shouldComputerUseHotColdHints()) countryCode = this.pickComputerRandomCountryCode(true);
+                else countryCode = this.pickComputerRandomCountryCode();
                 this.countriesNumberField.textContent = this.opponentPlayer.countryCodes.length;
                 const country = this.countries[countryCode];
                 const countryBoundary = this.playMap.countryBoundariesAndMarkersLayer.boundaries[countryCode];
@@ -7273,8 +7276,8 @@ class PlayMap {
                 selectedCountryField.style.paddingLeft = "3px";
                 selectedCountryField.style.paddingTop = "3px";
                 selectedCountryField.style.paddingBottom = "3px";
-                selectedCountryField.style.maxWidth = "220px";
-                selectedCountryField.style.fontSize = "0.6rem";
+                selectedCountryField.style.maxWidth = "200px";
+                selectedCountryField.style.fontSize = "0.7rem";
                 selectedCountryField.style.opacity = "0.7";
                 selectedCountryField.style.borderRadius = "3px";
                 selectedCountryField.style.fontWeight = "bolder";
