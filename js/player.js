@@ -986,7 +986,6 @@ export class Player {
     );
     field.style.opacity = "0.85";
     field.style.textAlign = "center";
-    field.style.boxShadow = "none";
     field.style.padding = "2px 5px";
     field.style.letterSpacing = "0.03em";
     field.style.borderBottom = `2px solid ${color}`;
