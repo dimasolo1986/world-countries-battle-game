@@ -978,7 +978,7 @@ export class Player {
       guessName ??
       "";
     this.playMap.setSelectedCountryFiledHtml(
-      `<div style="font-size: 0.55rem;">${guessLabel}</div>` +
+      `<div>${guessLabel}</div>` +
         `<div style="margin:2px 0;">${segments}</div>` +
         `<div style="color:${color};">${translate(`hotcold.${hint.temperature}`)}${
           hint.direction ? ` ${hint.direction.arrow}` : ""
@@ -1725,9 +1725,7 @@ export class Player {
           ]
         }`;
         await this.sleep(700);
-        if (this.shouldComputerUseHotColdHints()) {
-          countryCode = this.pickComputerRandomCountryCode(true);
-        } else if (this.countriesToGuess.length !== 0) {
+        if (this.countriesToGuess.length !== 0) {
           countryIndex = getRandomInt(0, this.countriesToGuess.length - 1);
           countryCode = this.countriesToGuess[countryIndex];
           this.countriesToGuess.splice(countryIndex, 1);
@@ -1761,6 +1759,8 @@ export class Player {
             this.usedHintsCount = this.usedHintsCount + 1;
             countryCode = this.pickComputerRandomCountryCode();
           }
+        } else if (this.shouldComputerUseHotColdHints()) {
+          countryCode = this.pickComputerRandomCountryCode(true);
         } else {
           countryCode = this.pickComputerRandomCountryCode();
         }

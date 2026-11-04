@@ -131,7 +131,7 @@ export class Game {
           this.gameConfiguration.gameMode === "user" ? "friend" : "computer",
         won: playerOneWon,
         missedCodes,
-        trapsHit: this.playerOne.trapCountryHitted,
+        trapsHit: this.playerTwo.trapCountryHitted,
         hintsUsed: this.playerOne.usedHintsCount,
       });
     }
