@@ -945,7 +945,9 @@ export class Player {
         }
       }
     }
-    return remaining.length === 1 ? remaining[0] : null;
+    return remaining.length === 2 || remaining.length === 1
+      ? remaining[0]
+      : null;
   }
 
   getHotColdHint(guessCode) {
@@ -3625,6 +3627,8 @@ export class Player {
               );
               setTimeout(hideGameCountryAllianceGuessedWindow, 10000);
             }
+            this.opponentPlayer.pendingHotColdHint = null;
+            this.hideHotColdHint();
             await this.sleep(1000);
             this.removeCountryBoundaryBlinking(countryCode);
             guessedCountryAlliance.classList.add("not-displayed");
@@ -3738,6 +3742,8 @@ export class Player {
               );
               setTimeout(hideGameCountryAllianceGuessedWindow, 10000);
             }
+            this.opponentPlayer.pendingHotColdHint = null;
+            this.hideHotColdHint();
             await this.sleep(1000);
             this.removeCountryBoundaryBlinking(countryCode);
             this.removeCountryFlagPatterns();
@@ -3764,6 +3770,8 @@ export class Player {
           this.playerAttemptToGuess = false;
           this.opponentPlayer.playerAttemptToGuess = true;
           if (countryCode) {
+            this.opponentPlayer.pendingHotColdHint = null;
+            this.hideHotColdHint();
             this.removeCountryBoundaryBlinking(countryCode);
             this.removeCountryFlagPatterns();
             this.closeCountryPopup(countryPopup);

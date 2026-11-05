@@ -186,6 +186,60 @@ const buildChat = function () {
 
 export const hasChat = () => chatElement !== null;
 
+let chatHome = null;
+let overlayBar = null;
+let overlayObserver = null;
+const stopFocusTrap = (event) => event.stopPropagation();
+const resultModal = document.getElementById("gameResultModal");
+if (resultModal) {
+  resultModal.addEventListener("show.bs.modal", () => {
+    if (!chatElement) return;
+    chatHome = {
+      parent: chatElement.parentNode,
+      next: chatElement.nextSibling,
+      leaflet: chatElement.classList.contains("leaflet-control"),
+    };
+    overlayBar = document.createElement("div");
+    overlayBar.style.cssText =
+      "position:fixed;left:0;right:0;bottom:0;z-index:1060;";
+    chatElement.classList.remove("leaflet-control");
+    overlayBar.appendChild(chatElement);
+    document.body.appendChild(overlayBar);
+    chatElement.addEventListener("focusin", stopFocusTrap);
+    overlayObserver = new MutationObserver(() => {
+      if (overlayBar && chatElement && !chatElement.parentNode) {
+        overlayBar.appendChild(chatElement);
+      }
+    });
+    overlayObserver.observe(overlayBar, { childList: true });
+  });
+  resultModal.addEventListener("hidden.bs.modal", () => {
+    if (!chatHome) return;
+    const home = chatHome;
+    chatHome = null;
+    const bar = overlayBar;
+    overlayBar = null;
+    if (overlayObserver) overlayObserver.disconnect();
+    overlayObserver = null;
+    if (chatElement) {
+      chatElement.removeEventListener("focusin", stopFocusTrap);
+      if (chatElement.parentNode === bar) {
+        const slot = document.getElementById("main-chat-slot");
+        if (home.parent && home.parent.isConnected) {
+          if (home.leaflet) chatElement.classList.add("leaflet-control");
+          home.parent.insertBefore(chatElement, home.next);
+        } else if (slot) {
+          slot.appendChild(chatElement);
+          slot.classList.remove("not-displayed");
+        } else {
+          chatElement.remove();
+        }
+      }
+    }
+    if (bar) bar.remove();
+  });
+}
+
 export const destroyChat = function () {
   if (!chatElement) return;
   chatElement.remove();
@@ -228,7 +282,11 @@ export const showMainChat = function () {
     setChatArrow(refs.rightArrow, true);
     refs.rightArrow.style.display = "none";
     chatElement.classList.remove("leaflet-control");
-    slot.appendChild(chatElement);
+    if (overlayBar && chatHome) {
+      chatHome = { parent: slot, next: null, leaflet: false };
+    } else {
+      slot.appendChild(chatElement);
+    }
     slot.classList.remove("not-displayed");
     if (footer) footer.style.display = "none";
     mainChatWanted = true;
