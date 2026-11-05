@@ -890,6 +890,7 @@ main .card .card-body {
 #support-project-button,
 #gameCountryAllianceInitialSelectionLeaderboard,
 #gameRulesLeaderboard,
+#gameRulesStats,
 #gameCountryAllianceInitialSelectionBack {
   font-family: var(--bs-body-font-family) !important;
   font-size: 0.75rem !important;
@@ -908,6 +909,7 @@ main .card .card-body {
 #support-project-button:hover,
 #gameCountryAllianceInitialSelectionLeaderboard:hover,
 #gameRulesLeaderboard:hover,
+#gameRulesStats:hover,
 #gameCountryAllianceInitialSelectionBack:hover {
   border-color: var(--cg-teal) !important;
   color: var(--cg-teal) !important;
@@ -1345,6 +1347,7 @@ a.donate-link {
 
 /* ─── About page ───────────────────────────────────────────────────────────── */
 .about-heading,
+.about-ai-description,
 .about-ukraine-help-description,
 .about-developer,
 .about-developer-email-description,
@@ -1361,6 +1364,7 @@ a.donate-link {
 }
 
 .about-game-rules,
+.about-ai-download,
 .about-ukraine-help-link,
 .about-developer-link,
 .about-developer-email-link,
@@ -1373,6 +1377,7 @@ a.donate-link {
   transition: color var(--cg-transition) !important;
 }
 .about-game-rules:hover,
+.about-ai-download:hover,
 .about-developer-link:hover,
 .about-developer-email-link:hover,
 .about-world-countries-quiz-link:hover,

@@ -92,6 +92,8 @@ export class Game {
       localization[model.worldCountries.language]["Close"];
     document.getElementById("gameRulesLeaderboard").title =
       localization[model.worldCountries.language]["Leaderboard"];
+    document.getElementById("gameRulesStats").title =
+      localization[model.worldCountries.language]["Stats"];
     this.gameModalRulesContent.innerHTML = document.getElementById(
       "game-rules-project-container",
     ).innerHTML;

@@ -250,6 +250,12 @@ const init = function () {
         openLeaderboardOver("gameRulesModal"),
       );
     }
+    const rulesStatsButton = document.getElementById("gameRulesStats");
+    if (rulesStatsButton) {
+      rulesStatsButton.addEventListener("click", () =>
+        openStatsOver("gameRulesModal"),
+      );
+    }
   });
 };
 

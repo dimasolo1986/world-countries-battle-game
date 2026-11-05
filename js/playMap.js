@@ -1018,6 +1018,7 @@ export class PlayMap {
     );
     selectedCountryField.classList.remove("not-displayed");
     selectedCountryField.style.opacity = "0.7";
+    selectedCountryField.style.minWidth = "";
     document
       .getElementById("available-countries-panel")
       .classList.add("not-displayed");

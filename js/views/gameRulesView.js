@@ -73,6 +73,12 @@ class gameRulesView {
     ".game-rules-score-description",
   );
 
+  _gameRulesAiHeader = document.querySelector(".game-rules-ai-heading");
+  _gameRulesAiDescription = document.querySelector(
+    ".game-rules-ai-description",
+  );
+  _gameRulesAiDownload = document.querySelector(".game-rules-ai-download");
+
   _returnToMainListenerAdded = false;
 
   returnToMain(mainView, donateAuthorView, aboutView, gameRoomView) {
@@ -217,6 +223,10 @@ class gameRulesView {
     this._gameRulesStatsHeader.textContent = `📊 ${language["Stats"]}`;
     this._gameRulesStatsDescription.textContent =
       language["stats rules description"];
+    this._gameRulesAiHeader.textContent = `🧠 ${language["Play With An AI"]}`;
+    this._gameRulesAiDescription.textContent =
+      language["ai skills description"];
+    this._gameRulesAiDownload.textContent = language["Download AI skills"];
     this._gameRulesScoreHeading.textContent = `🏅 ${
       localization[model.worldCountries.language]["Score"]
     }`;

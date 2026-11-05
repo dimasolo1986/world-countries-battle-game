@@ -38,6 +38,9 @@ class aboutView {
   _gameModalRulesCloseButton = document.getElementById("gameRulesCloseButton");
   _aboutGameRulesLink = document.querySelector(".about-game-rules");
 
+  _aboutAiDescription = document.querySelector(".about-ai-description");
+  _aboutAiDownload = document.querySelector(".about-ai-download");
+
   _returnToMainListenerAdded = false;
   _gameRulesListenerAdded = false;
 
@@ -165,6 +168,9 @@ class aboutView {
     this._aboutGameRulesLink.textContent = `${
       localization[model.worldCountries.language]["Game Rules"]
     }`;
+    const language = localization[model.worldCountries.language];
+    this._aboutAiDescription.textContent = `🧠 ${language["Play With An AI"]}: ${language["ai skills description"]}`;
+    this._aboutAiDownload.textContent = language["Download AI skills"];
   }
 }
 

@@ -967,11 +967,15 @@ export class Player {
       const lang = localization[model.worldCountries.language];
       return lang?.[key] ?? localization.en[key];
     };
-    const segments = TEMPERATURES.map((temperature) => {
-      const active = temperature === hint.temperature;
-      return `<span style="display:inline-block; width:${active ? 14 : 8}px; height:8px; margin-right:2px; border-radius:999px; background:${HOT_COLD_COLORS[temperature]}; opacity:${active ? 1 : 0.35};"></span>`;
-    }).join("");
     const color = HOT_COLD_COLORS[hint.temperature];
+    const fillPercent =
+      ((TEMPERATURES.length - TEMPERATURES.indexOf(hint.temperature)) /
+        TEMPERATURES.length) *
+      100;
+    const segments =
+      `<span style="display:inline-block; vertical-align:middle; width:90px; height:8px; border-radius:999px; background-color:${color}33; overflow:hidden;">` +
+      `<span class="hotcold-fill" style="display:block; width:0; height:100%; border-radius:999px; background-color:${color}; transition:width 0.6s ease-out;"></span>` +
+      `</span>`;
     const guessName = this.countries[hint.guessCode]?.countryName;
     const guessLabel =
       localization[model.worldCountries.language]?.countries?.[guessName] ??
@@ -986,10 +990,16 @@ export class Player {
     );
     field.style.opacity = "0.85";
     field.style.textAlign = "center";
+    field.style.minWidth = "100px";
     field.style.padding = "2px 5px";
     field.style.letterSpacing = "0.03em";
     field.style.borderBottom = `2px solid ${color}`;
     this.playMap.showMapElement("selected-country-field");
+    const fill = field.querySelector(".hotcold-fill");
+    if (fill) {
+      void fill.offsetWidth;
+      fill.style.width = `${fillPercent}%`;
+    }
   }
 
   hideHotColdHint() {
@@ -6040,6 +6050,7 @@ export class Player {
   }
 
   async handleOpponentHit(countryCode, addCountryBoundariesAndMarkers = true) {
+    if (!this.opponentPlayer) return;
     if (countryCode === "timeout") {
       this.playerAttemptToGuess = true;
       this.opponentPlayer.playerAttemptToGuess = false;
@@ -6540,6 +6551,7 @@ export class Player {
               ];
             }
           } catch (err) {
+            if (!this.opponentPlayer) return;
             if (countryCode) {
               this.removeCountryBoundaryFadeOut(countryCode);
               this.closeCountryPopup(countryPopup);
@@ -6559,6 +6571,7 @@ export class Player {
             });
           }
         }
+        if (!this.opponentPlayer) return;
         if (+this.playerCountriesNumberField.textContent === 0) {
           this.opponentPlayer.score +=
             +this.opponentPlayer.playerCountriesNumberField.textContent * 10;
@@ -6568,6 +6581,7 @@ export class Player {
           return;
         }
       } catch (err) {
+        if (!this.opponentPlayer) return;
         this.playerAttemptToGuess = true;
         this.opponentPlayer.playerAttemptToGuess = false;
         if (countryCode) this.removeCountryBoundaryBlinking(countryCode);

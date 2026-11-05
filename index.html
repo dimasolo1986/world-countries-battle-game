@@ -42,7 +42,8 @@
           "Random fun facts about countries",
           "Choose eight alliances of countries and four trap-countries",
           "Clues: country name, capital, region, subregion, coat of arms, flag, outline and photo",
-          "Available in six languages"
+          "Available in six languages",
+          "AI skills for playing against an AI opponent"
         ],
         "educationalUse": "Geography learning",
         "learningResourceType": "Game",
@@ -510,7 +511,8 @@
           "
         >
           <div class="modal-header" style="padding: 0.4rem; justify-content: center;">
-            <button id="gameRulesLeaderboard" title="Leaderboard" style="position: absolute; right: 5px;">🏆</button>
+            <button id="gameRulesLeaderboard" title="Leaderboard" style="position: absolute; left: 5px;">🏆</button>
+            <button id="gameRulesStats" title="Stats" style="position: absolute; right: 5px;">📊</button>
             <h2
               class="modal-title"
               id="gameModalRulesLabel"
@@ -2288,6 +2290,22 @@
          <span class="game-rules-stats-description"
           >The Stats window keeps your personal statistics on this device: games played, win rate against the computer and against a friend, average and best score, and the countries you miss most often. After every game you also get a fun fact about one of the countries. Open Stats with the 📊 button on the main page or in the header, or from the Game Result window. Statistics are stored only in this browser and can be reset at any time.
         </span>
+        <br />
+         <p style="margin-bottom: 0px">
+          <span class="game-rules-ai-heading" style="font-weight: bold"
+            >🧠 Play With An AI</span
+          >:
+        </p>
+         <span class="game-rules-ai-description"
+          >Download the AI skills folder and add it to an AI tool that supports skills and Playwright MCP (for example Claude Code or Cursor). Create a game room in friend mode, send the room link to the AI and play against it.
+        </span>
+        <a
+          class="btn btn-sm btn-success game-rules-ai-download"
+          href="assets/ai/countries-guesser-player.zip"
+          download="countries-guesser-player.zip"
+          style="display: block; width: fit-content; margin: 5px auto 0"
+          >Download AI skills</a
+        >
       </div>
       <figure class="text-center">
         <p
@@ -2442,6 +2460,18 @@
         >
           Game Rules
         </a>
+      </p>
+      <p style="margin-bottom: 0.3rem">
+        <span class="about-ai-description"
+          >🧠 Play against an AI: download the AI skills folder and add it to an AI tool that supports skills and Playwright MCP (for example Claude Code or Cursor). Create a game room in friend mode, send the room link to the AI and play against it.</span
+        >
+        <a
+          class="about-ai-download"
+          href="assets/ai/countries-guesser-player.zip"
+          download="countries-guesser-player.zip"
+          style="text-decoration: none"
+          >Download AI skills</a
+        >
       </p>
       <img
         src="assets/img/Dmytro_Solovei.jpg"

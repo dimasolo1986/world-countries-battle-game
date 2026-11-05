@@ -529,6 +529,10 @@ export const localization = {
     "Post your game results to the leaderboard and become the Countries Guesser leader!":
       "Опублікуйте результат гри в таблиці лідерів і станьте найкращим гравцем Countries Guesser!",
     "Post Results": "Опублікувати Результат",
+    "Play With An AI": "Грати з Штучним Інтелектом",
+    "Download AI skills": "Завантажити ШІ-навички",
+    "ai skills description":
+      "Завантажте папку з ШІ-навичками та додайте її до ШІ-інструмента, що підтримує навички та Playwright MCP (наприклад, Claude Code або Cursor). Створіть ігрову кімнату в режимі гри з другом, надішліть посилання на кімнату ШІ та грайте проти нього.",
     Post: "Опублікувати",
     Nickname: "Нікнейм",
     Today: "Сьогодні",
@@ -1717,6 +1721,10 @@ export const localization = {
     "Post your game results to the leaderboard and become the Countries Guesser leader!":
       "Post your game results to the leaderboard and become the Countries Guesser leader!",
     "Post Results": "Post Results",
+    "Play With An AI": "Play With An AI",
+    "Download AI skills": "Download AI skills",
+    "ai skills description":
+      "Download the AI skills folder and add it to an AI tool that supports skills and Playwright MCP (for example Claude Code or Cursor). Create a game room in friend mode, send the room link to the AI and play against it.",
     Post: "Post",
     Nickname: "Nickname",
     Today: "Today",
@@ -2328,6 +2336,10 @@ export const localization = {
     "Post your game results to the leaderboard and become the Countries Guesser leader!":
       "Veröffentliche dein Spielergebnis in der Bestenliste und werde der beste Countries-Guesser-Spieler!",
     "Post Results": "Ergebnis Veröffentlichen",
+    "Play With An AI": "Gegen eine KI spielen",
+    "Download AI skills": "KI-Skills herunterladen",
+    "ai skills description":
+      "Laden Sie den Ordner mit den KI-Skills herunter und fügen Sie ihn einem KI-Tool hinzu, das Skills und Playwright MCP unterstützt (z. B. Claude Code oder Cursor). Erstellen Sie einen Spielraum im Freundesmodus, senden Sie den Raumlink an die KI und spielen Sie gegen sie.",
     Post: "Veröffentlichen",
     Nickname: "Spitzname",
     Today: "Heute",
@@ -3298,6 +3310,10 @@ export const localization = {
     "Post your game results to the leaderboard and become the Countries Guesser leader!":
       "Publie ton résultat dans le classement et deviens le meilleur joueur de Countries Guesser !",
     "Post Results": "Publier le Résultat",
+    "Play With An AI": "Jouer contre une IA",
+    "Download AI skills": "Télécharger les compétences IA",
+    "ai skills description":
+      "Téléchargez le dossier de compétences IA et ajoutez-le à un outil d'IA compatible avec les compétences et Playwright MCP (par exemple Claude Code ou Cursor). Créez une salle de jeu en mode ami, envoyez le lien de la salle à l'IA et jouez contre elle.",
     Post: "Publier",
     Nickname: "Pseudo",
     Today: "Aujourd'hui",
@@ -4232,6 +4248,10 @@ export const localization = {
     "Post your game results to the leaderboard and become the Countries Guesser leader!":
       "¡Publica tu resultado en la clasificación y conviértete en el mejor jugador de Countries Guesser!",
     "Post Results": "Publicar Resultado",
+    "Play With An AI": "Jugar contra una IA",
+    "Download AI skills": "Descargar habilidades de IA",
+    "ai skills description":
+      "Descarga la carpeta de habilidades de IA y añádela a una herramienta de IA compatible con habilidades y Playwright MCP (por ejemplo, Claude Code o Cursor). Crea una sala de juego en modo amigo, envía el enlace de la sala a la IA y juega contra ella.",
     Post: "Publicar",
     Nickname: "Apodo",
     Today: "Hoy",
@@ -5055,6 +5075,10 @@ export const localization = {
     "Post your game results to the leaderboard and become the Countries Guesser leader!":
       "Pubblica il tuo risultato in classifica e diventa il miglior giocatore di Countries Guesser!",
     "Post Results": "Pubblica il Risultato",
+    "Play With An AI": "Gioca contro un'IA",
+    "Download AI skills": "Scarica le competenze IA",
+    "ai skills description":
+      "Scarica la cartella delle competenze IA e aggiungila a uno strumento di IA che supporta le competenze e Playwright MCP (ad esempio Claude Code o Cursor). Crea una stanza di gioco in modalità amico, invia il link della stanza all'IA e gioca contro di essa.",
     Post: "Pubblica",
     Nickname: "Soprannome",
     Today: "Oggi",
