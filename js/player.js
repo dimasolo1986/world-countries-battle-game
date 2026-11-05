@@ -23,7 +23,7 @@ import {
   candidatesMatching,
 } from "./hotCold.js";
 
-const HOT_COLD_COMPUTER_MISTAKE_CHANCE = 0.5;
+const HOT_COLD_COMPUTER_MISTAKE_CHANCE = 0.3;
 
 const HOT_COLD_COLORS = {
   burning: "#d32f2f",
