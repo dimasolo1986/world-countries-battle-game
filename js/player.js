@@ -995,7 +995,7 @@ export class Player {
     field.style.minWidth = "100px";
     field.style.padding = "2px 5px";
     field.style.letterSpacing = "0.03em";
-    field.style.borderBottom = `2px solid ${color}`;
+    field.style.borderBottom = `3px solid ${color}`;
     this.playMap.showMapElement("selected-country-field");
     const fill = field.querySelector(".hotcold-fill");
     if (fill) {
