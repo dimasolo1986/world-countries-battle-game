@@ -1532,7 +1532,7 @@ export class Player {
   }
 
   getViableCountryCodes() {
-    let minSize = Infinity;
+    const unfinishedSizes = new Set();
     const hitCodes = [];
     for (const countryUnion of this.countryUnions) {
       let isGuessed = true;
@@ -1547,17 +1547,17 @@ export class Player {
         else isGuessed = false;
       }
       if (isGuessed) continue;
-      if (countryUnion.length < minSize) minSize = countryUnion.length;
+      unfinishedSizes.add(countryUnion.length);
       hitCodes.push(...unionHitCodes);
     }
-    if (minSize <= 1 || minSize === Infinity) return this.countryCodes;
+    if (unfinishedSizes.size === 0) return this.countryCodes;
 
     const poolCodes = new Set(this.countryCodes);
     const nodes = new Set(poolCodes);
     hitCodes.forEach((code) => nodes.add(code));
     const neighboursByCode = this.getNeighboursByCode();
     const visited = new Set();
-    const viableCodes = [];
+    const groups = [];
     for (const startCode of nodes) {
       if (visited.has(startCode)) continue;
       visited.add(startCode);
@@ -1570,12 +1570,19 @@ export class Player {
           }
         }
       }
-      if (group.length >= minSize) {
+      groups.push(group);
+    }
+    const sizes = [...unfinishedSizes].sort((a, b) => b - a);
+    for (const size of sizes) {
+      const viableCodes = [];
+      for (const group of groups) {
+        if (group.length < size) continue;
         for (const code of group)
           if (poolCodes.has(code)) viableCodes.push(code);
       }
+      if (viableCodes.length) return viableCodes;
     }
-    return viableCodes.length ? viableCodes : this.countryCodes;
+    return this.countryCodes;
   }
 
   shouldComputerUseHotColdHints() {
