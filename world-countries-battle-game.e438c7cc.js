@@ -1390,6 +1390,24 @@ class gameView {
         }, {
             once: true
         });
+        const difficultyContainer = document.getElementById("gameCountryAllianceInitialSelectionDifficultyContainer");
+        const difficultySelect = document.getElementById("gameCountryAllianceInitialSelectionDifficulty");
+        difficultyContainer.classList.toggle("not-displayed", this._gameConfiguration.gameMode !== "computer");
+        const dictionary = (0, _uaJs.localization)[_modelJs.worldCountries.language];
+        difficultySelect.title = dictionary["Difficulty"];
+        difficultySelect.setAttribute("aria-label", dictionary["Difficulty"]);
+        for (const option of difficultySelect.options)option.textContent = `${dictionary["Difficulty"]}: ${dictionary[option.dataset.label]}`;
+        const savedDifficulty = localStorage.getItem("difficulty");
+        if ([
+            "easy",
+            "normal",
+            "hard"
+        ].includes(savedDifficulty)) this._gameConfiguration.difficulty = savedDifficulty;
+        difficultySelect.value = this._gameConfiguration.difficulty ?? "normal";
+        difficultySelect.onchange = ()=>{
+            this._gameConfiguration.difficulty = difficultySelect.value;
+            localStorage.setItem("difficulty", difficultySelect.value);
+        };
         if (!this._backButtonListenerAdded) {
             this._gameCountryAllianceInitialSelectionBackButton.addEventListener("click", (function() {
                 this._game.finishGame(false);
@@ -1613,6 +1631,7 @@ class GameConfig {
             this.hitTime = +document.getElementById("time-select").value;
             this.bonusCountries = +document.getElementById("bonus-countries-select").value;
             this.gameMode = document.getElementById("gameMode").value === "0" ? "computer" : "user";
+            this.difficulty = "normal";
         }
     }
 }
@@ -2717,7 +2736,16 @@ var _helpersJs = require("./helpers.js");
 var _chatJs = require("./chat.js");
 var _modelJs = require("./model.js");
 var _hotColdJs = require("./hotCold.js");
-const HOT_COLD_CHANCE = 0.5;
+const USER_HOT_COLD_CHANCE_BY_DIFFICULTY = {
+    easy: 0,
+    normal: 0.3,
+    hard: 0.5
+};
+const COMPUTER_HOT_COLD_CHANCE_BY_DIFFICULTY = {
+    easy: 0,
+    normal: 0.3,
+    hard: 0.5
+};
 const HOT_COLD_COLORS = {
     burning: "#d32f2f",
     hot: "#f57c00",
@@ -3392,7 +3420,7 @@ class Player {
         field.style.minWidth = "100px";
         field.style.padding = "2px 5px";
         field.style.letterSpacing = "0.03em";
-        field.style.borderBottom = `2px solid ${color}`;
+        field.style.borderBottom = `3px solid ${color}`;
         this.playMap.showMapElement("selected-country-field");
         const fill = field.querySelector(".hotcold-fill");
         if (fill) {
@@ -3742,7 +3770,9 @@ class Player {
         return this.neighboursByCode;
     }
     getViableCountryCodes() {
-        let minSize = Infinity;
+        const difficulty = this.gameConfiguration?.difficulty ?? "normal";
+        if (difficulty === "easy") return this.countryCodes;
+        const unfinishedSizes = new Set();
         const hitCodes = [];
         for (const countryUnion of this.countryUnions){
             let isGuessed = true;
@@ -3757,16 +3787,16 @@ class Player {
                 else isGuessed = false;
             }
             if (isGuessed) continue;
-            if (countryUnion.length < minSize) minSize = countryUnion.length;
+            unfinishedSizes.add(countryUnion.length);
             hitCodes.push(...unionHitCodes);
         }
-        if (minSize <= 1 || minSize === Infinity) return this.countryCodes;
+        if (unfinishedSizes.size === 0) return this.countryCodes;
         const poolCodes = new Set(this.countryCodes);
         const nodes = new Set(poolCodes);
         hitCodes.forEach((code)=>nodes.add(code));
         const neighboursByCode = this.getNeighboursByCode();
         const visited = new Set();
-        const viableCodes = [];
+        const groups = [];
         for (const startCode of nodes){
             if (visited.has(startCode)) continue;
             visited.add(startCode);
@@ -3779,16 +3809,30 @@ class Player {
                     group.push(neighbourCode);
                 }
             }
-            if (group.length >= minSize) {
+            groups.push(group);
+        }
+        const sizes = difficulty === "hard" ? [
+            ...unfinishedSizes
+        ].sort((a, b)=>b - a) : [
+            Math.min(...unfinishedSizes)
+        ];
+        if (difficulty !== "hard" && sizes[0] <= 1) return this.countryCodes;
+        for (const size of sizes){
+            const viableCodes = [];
+            for (const group of groups){
+                if (group.length < size) continue;
                 for (const code of group)if (poolCodes.has(code)) viableCodes.push(code);
             }
+            if (viableCodes.length) return viableCodes;
         }
-        return viableCodes.length ? viableCodes : this.countryCodes;
+        return this.countryCodes;
     }
     shouldComputerUseHotColdHints() {
         if (this.hotColdHints.length === 0) return false;
         if (!this.opponentPlayer.getLastRemainingCountryCode()) return false;
-        return Math.random() >= HOT_COLD_CHANCE;
+        const difficulty = this.gameConfiguration?.difficulty ?? "normal";
+        const chance = COMPUTER_HOT_COLD_CHANCE_BY_DIFFICULTY[difficulty] ?? COMPUTER_HOT_COLD_CHANCE_BY_DIFFICULTY.normal;
+        return Math.random() <= chance;
     }
     pickComputerRandomCountryCode(useHotColdHints = false) {
         let viableCodes = this.opponentPlayer.getViableCountryCodes();
@@ -4346,7 +4390,9 @@ class Player {
                 }
                 this.gameMessageField.textContent = `\u{26A0}\u{FE0F} ${(0, _uaJs.localization)[_modelJs.worldCountries.language]["Your attempt to guess opponent's country"]}`;
                 this.opponentPlayer.enableMapInteraction();
-                if (this.pendingHotColdHint && this.pendingHotColdHint.chance >= HOT_COLD_CHANCE) this.showHotColdHint(this.pendingHotColdHint);
+                const difficulty = this.gameConfiguration?.difficulty ?? "normal";
+                const chance = USER_HOT_COLD_CHANCE_BY_DIFFICULTY[difficulty] ?? USER_HOT_COLD_CHANCE_BY_DIFFICULTY.normal;
+                if (this.pendingHotColdHint && this.pendingHotColdHint.chance >= chance) this.showHotColdHint(this.pendingHotColdHint);
                 if (!this.openUserHintSelectionWindow) this.setHitTimeout();
                 if (this.gameConfiguration.hintsType === "Choose Hints" && this.openUserHintSelectionWindow) {
                     this.addUserSelectedHint();
@@ -5064,13 +5110,15 @@ class Player {
                 this.playerAttemptToGuess = true;
                 this.opponentPlayer.playerAttemptToGuess = false;
                 const hotColdChance = Math.random();
+                const difficulty = this.gameConfiguration?.difficulty ?? "normal";
+                const chance = USER_HOT_COLD_CHANCE_BY_DIFFICULTY[difficulty] ?? USER_HOT_COLD_CHANCE_BY_DIFFICULTY.normal;
                 const hotColdHint = this.getHotColdHint(countryCode);
                 this.opponentPlayer.pendingHotColdHint = hotColdHint ? {
                     guessCode: countryCode,
                     chance: hotColdChance,
                     ...hotColdHint
                 } : null;
-                if (this.opponentPlayer.pendingHotColdHint && hotColdChance >= HOT_COLD_CHANCE) this.showHotColdHint(this.opponentPlayer.pendingHotColdHint);
+                if (this.opponentPlayer.pendingHotColdHint && hotColdChance >= chance) this.showHotColdHint(this.opponentPlayer.pendingHotColdHint);
                 else this.hideHotColdHint();
                 await this.sleep(500);
                 this.addCountryBoundaryFadeOut(countryCode);
