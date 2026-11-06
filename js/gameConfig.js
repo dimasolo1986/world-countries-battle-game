@@ -169,6 +169,7 @@ export class GameConfig {
         .value;
       this.gameMode =
         document.getElementById("gameMode").value === "0" ? "computer" : "user";
+      this.difficulty = "normal";
     }
   }
 }

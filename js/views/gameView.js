@@ -154,6 +154,29 @@ class gameView {
       },
       { once: true },
     );
+    const difficultyContainer = document.getElementById(
+      "gameCountryAllianceInitialSelectionDifficultyContainer",
+    );
+    const difficultySelect = document.getElementById(
+      "gameCountryAllianceInitialSelectionDifficulty",
+    );
+    difficultyContainer.classList.toggle(
+      "not-displayed",
+      this._gameConfiguration.gameMode !== "computer",
+    );
+    const dictionary = localization[model.worldCountries.language];
+    difficultySelect.title = dictionary["Difficulty"];
+    difficultySelect.setAttribute("aria-label", dictionary["Difficulty"]);
+    for (const option of difficultySelect.options)
+      option.textContent = `${dictionary["Difficulty"]}: ${dictionary[option.dataset.label]}`;
+    const savedDifficulty = localStorage.getItem("difficulty");
+    if (["easy", "normal", "hard"].includes(savedDifficulty))
+      this._gameConfiguration.difficulty = savedDifficulty;
+    difficultySelect.value = this._gameConfiguration.difficulty ?? "normal";
+    difficultySelect.onchange = () => {
+      this._gameConfiguration.difficulty = difficultySelect.value;
+      localStorage.setItem("difficulty", difficultySelect.value);
+    };
     if (!this._backButtonListenerAdded) {
       this._gameCountryAllianceInitialSelectionBackButton.addEventListener(
         "click",
