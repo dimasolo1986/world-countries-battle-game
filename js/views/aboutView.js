@@ -114,7 +114,7 @@ class aboutView {
     this._aboutReturnToMain.textContent = `${
       localization[model.worldCountries.language]["BACK"]
     }`;
-    this._aboutUkraineHelpDescription.textContent = `${
+    this._aboutUkraineHelpDescription.textContent = `🪙 ${
       localization[model.worldCountries.language][
         "You can support Ukraine in the fight against Russia's military aggression:"
       ]
@@ -132,7 +132,7 @@ class aboutView {
         "geographic online strategy game (Geographic Battleship) that helps to study the geography of the countries of the world, neighboring countries, flags and parts of the world in a game format. Choose eight different alliances of countries on the map, as    well as four trap-countries for your opponent. The computer or your friend (depends on the selected game mode) will also choose the appropriate number of alliances of countries and trap-countries. The attempts to guess the countries take place in turn. The one who guesses the opponent's country gets an extra try. The one who guesses all the alliances of the opponent's countries first wins. Follow the messages at the top of the screen after the game starts."
       ]
     }`;
-    this._aboutDeveloper.textContent = `${
+    this._aboutDeveloper.textContent = `👨‍💻 ${
       localization[model.worldCountries.language][
         "Project was created by Software Developer from Ukraine -"
       ]
@@ -140,13 +140,13 @@ class aboutView {
     this._aboutDeveloperLink.textContent = `${
       localization[model.worldCountries.language]["Dima Solovei"]
     }`;
-    this._aboutDeveloperEmailDescription.textContent = `${
+    this._aboutDeveloperEmailDescription.textContent = `📩 ${
       localization[model.worldCountries.language]["You can reach me by e-mail:"]
     }`;
-    this._aboutDeveloperDonateDescription.textContent = `${
+    this._aboutDeveloperDonateDescription.textContent = `💳 ${
       localization[model.worldCountries.language]["Support Project"]
     }`;
-    this._facebookPage.textContent = `${
+    this._facebookPage.textContent = `📑 ${
       localization[model.worldCountries.language]["Facebook Page"]
     }`;
     this._facebookPageShare.textContent = `${
@@ -154,10 +154,10 @@ class aboutView {
         "On Facebook Page you can share your impressions about the game or the results of your games"
       ]
     }`;
-    this._aboutMapLibrary.textContent = `${
+    this._aboutMapLibrary.textContent = `🗺️ ${
       localization[model.worldCountries.language]["Used Map Library:"]
     }`;
-    this._aboutWorldCountriesQuiz.textContent = `${
+    this._aboutWorldCountriesQuiz.textContent = `🌍 ${
       localization[model.worldCountries.language][
         "Do you like Geography and Countries of the World? Visit"
       ]

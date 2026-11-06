@@ -23,7 +23,7 @@ import {
   candidatesMatching,
 } from "./hotCold.js";
 
-const HOT_COLD_COMPUTER_MISTAKE_CHANCE = 0.3;
+const HOT_COLD_CHANCE = 0.5;
 
 const HOT_COLD_COLORS = {
   burning: "#d32f2f",
@@ -1581,7 +1581,7 @@ export class Player {
   shouldComputerUseHotColdHints() {
     if (this.hotColdHints.length === 0) return false;
     if (!this.opponentPlayer.getLastRemainingCountryCode()) return false;
-    return Math.random() >= HOT_COLD_COMPUTER_MISTAKE_CHANCE;
+    return Math.random() >= HOT_COLD_CHANCE;
   }
 
   pickComputerRandomCountryCode(useHotColdHints = false) {
@@ -2494,7 +2494,11 @@ export class Player {
           ]
         }`;
         this.opponentPlayer.enableMapInteraction();
-        this.showHotColdHint(this.pendingHotColdHint);
+        if (
+          this.pendingHotColdHint &&
+          this.pendingHotColdHint.chance >= HOT_COLD_CHANCE
+        )
+          this.showHotColdHint(this.pendingHotColdHint);
         if (!this.openUserHintSelectionWindow) this.setHitTimeout();
         if (
           this.gameConfiguration.hintsType === "Choose Hints" &&
@@ -3796,11 +3800,15 @@ export class Player {
           }`;
           this.playerAttemptToGuess = true;
           this.opponentPlayer.playerAttemptToGuess = false;
+          const hotColdChance = Math.random();
           const hotColdHint = this.getHotColdHint(countryCode);
           this.opponentPlayer.pendingHotColdHint = hotColdHint
-            ? { guessCode: countryCode, ...hotColdHint }
+            ? { guessCode: countryCode, chance: hotColdChance, ...hotColdHint }
             : null;
-          if (this.opponentPlayer.pendingHotColdHint)
+          if (
+            this.opponentPlayer.pendingHotColdHint &&
+            hotColdChance >= HOT_COLD_CHANCE
+          )
             this.showHotColdHint(this.opponentPlayer.pendingHotColdHint);
           else this.hideHotColdHint();
           await this.sleep(500);
