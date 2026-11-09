@@ -2162,7 +2162,7 @@ const renderPostDialog = function() {
     getElementById("leaderboardPostScore").textContent = `\u{1F3C5} ${translate("Score")}: ${pendingResult.score} ${translate("Points")}`;
     const modeLine = getElementById("leaderboardPostMode");
     const modeTitle = document.createElement("strong");
-    modeTitle.textContent = `${translate("Mode")}: `;
+    modeTitle.textContent = `${translate("Opponent")}: `;
     modeLine.replaceChildren(modeTitle, createOpponentBadge(pendingResult.mode));
     getElementById("leaderboardNicknameLabel").textContent = translate("Nickname");
     const input = getElementById("leaderboardNicknameInput");
@@ -2216,7 +2216,7 @@ const renderBoard = function(rows, own) {
         translate("Country"),
         translate("Player"),
         translate("Score"),
-        translate("Mode")
+        translate("Opponent")
     ].forEach((title)=>{
         const cell = document.createElement("th");
         cell.textContent = title;
@@ -2736,6 +2736,7 @@ var _helpersJs = require("./helpers.js");
 var _chatJs = require("./chat.js");
 var _modelJs = require("./model.js");
 var _hotColdJs = require("./hotCold.js");
+const USER_HOT_COLD_CHANCE = 0.3;
 const USER_HOT_COLD_CHANCE_BY_DIFFICULTY = {
     easy: 0,
     normal: 0.3,
@@ -4391,7 +4392,7 @@ class Player {
                 this.gameMessageField.textContent = `\u{26A0}\u{FE0F} ${(0, _uaJs.localization)[_modelJs.worldCountries.language]["Your attempt to guess opponent's country"]}`;
                 this.opponentPlayer.enableMapInteraction();
                 const difficulty = this.gameConfiguration?.difficulty ?? "normal";
-                const chance = USER_HOT_COLD_CHANCE_BY_DIFFICULTY[difficulty] ?? USER_HOT_COLD_CHANCE_BY_DIFFICULTY.normal;
+                const chance = this.gameConfiguration.gameMode === "user" ? USER_HOT_COLD_CHANCE : USER_HOT_COLD_CHANCE_BY_DIFFICULTY[difficulty];
                 if (this.pendingHotColdHint && this.pendingHotColdHint.chance >= chance) this.showHotColdHint(this.pendingHotColdHint);
                 if (!this.openUserHintSelectionWindow) this.setHitTimeout();
                 if (this.gameConfiguration.hintsType === "Choose Hints" && this.openUserHintSelectionWindow) {
@@ -5110,9 +5111,9 @@ class Player {
                 this.playerAttemptToGuess = true;
                 this.opponentPlayer.playerAttemptToGuess = false;
                 const hotColdChance = Math.random();
-                const difficulty = this.gameConfiguration?.difficulty ?? "normal";
-                const chance = USER_HOT_COLD_CHANCE_BY_DIFFICULTY[difficulty] ?? USER_HOT_COLD_CHANCE_BY_DIFFICULTY.normal;
                 const hotColdHint = this.getHotColdHint(countryCode);
+                const difficulty = this.gameConfiguration?.difficulty ?? "normal";
+                const chance = this.gameConfiguration.gameMode === "user" ? USER_HOT_COLD_CHANCE : USER_HOT_COLD_CHANCE_BY_DIFFICULTY[difficulty];
                 this.opponentPlayer.pendingHotColdHint = hotColdHint ? {
                     guessCode: countryCode,
                     chance: hotColdChance,
