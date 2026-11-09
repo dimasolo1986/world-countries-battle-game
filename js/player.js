@@ -24,6 +24,11 @@ import {
 } from "./hotCold.js";
 
 const USER_HOT_COLD_CHANCE = 0.3;
+const USER_HOT_COLD_CHANCE_BY_DIFFICULTY = {
+  easy: 0,
+  normal: 0.3,
+  hard: 0.5,
+};
 const COMPUTER_HOT_COLD_CHANCE_BY_DIFFICULTY = {
   easy: 0,
   normal: 0.3,
@@ -2516,10 +2521,12 @@ export class Player {
           ]
         }`;
         this.opponentPlayer.enableMapInteraction();
-        if (
-          this.pendingHotColdHint &&
-          this.pendingHotColdHint.chance >= USER_HOT_COLD_CHANCE
-        )
+        const difficulty = this.gameConfiguration?.difficulty ?? "normal";
+        const chance =
+          this.gameConfiguration.gameMode === "user"
+            ? USER_HOT_COLD_CHANCE
+            : USER_HOT_COLD_CHANCE_BY_DIFFICULTY[difficulty];
+        if (this.pendingHotColdHint && this.pendingHotColdHint.chance >= chance)
           this.showHotColdHint(this.pendingHotColdHint);
         if (!this.openUserHintSelectionWindow) this.setHitTimeout();
         if (
@@ -3824,13 +3831,15 @@ export class Player {
           this.opponentPlayer.playerAttemptToGuess = false;
           const hotColdChance = Math.random();
           const hotColdHint = this.getHotColdHint(countryCode);
+          const difficulty = this.gameConfiguration?.difficulty ?? "normal";
+          const chance =
+            this.gameConfiguration.gameMode === "user"
+              ? USER_HOT_COLD_CHANCE
+              : USER_HOT_COLD_CHANCE_BY_DIFFICULTY[difficulty];
           this.opponentPlayer.pendingHotColdHint = hotColdHint
             ? { guessCode: countryCode, chance: hotColdChance, ...hotColdHint }
             : null;
-          if (
-            this.opponentPlayer.pendingHotColdHint &&
-            hotColdChance >= USER_HOT_COLD_CHANCE
-          )
+          if (this.opponentPlayer.pendingHotColdHint && hotColdChance >= chance)
             this.showHotColdHint(this.opponentPlayer.pendingHotColdHint);
           else this.hideHotColdHint();
           await this.sleep(500);

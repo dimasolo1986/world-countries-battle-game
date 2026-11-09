@@ -294,7 +294,7 @@ const renderPostDialog = function () {
     `🏅 ${translate("Score")}: ${pendingResult.score} ${translate("Points")}`;
   const modeLine = getElementById("leaderboardPostMode");
   const modeTitle = document.createElement("strong");
-  modeTitle.textContent = `${translate("Mode")}: `;
+  modeTitle.textContent = `${translate("Opponent")}: `;
   modeLine.replaceChildren(modeTitle, createOpponentBadge(pendingResult.mode));
   getElementById("leaderboardNicknameLabel").textContent =
     translate("Nickname");
@@ -366,7 +366,7 @@ const renderBoard = function (rows, own) {
     translate("Country"),
     translate("Player"),
     translate("Score"),
-    translate("Mode"),
+    translate("Opponent"),
   ].forEach((title) => {
     const cell = document.createElement("th");
     cell.textContent = title;
