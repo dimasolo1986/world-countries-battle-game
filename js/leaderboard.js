@@ -283,6 +283,7 @@ const createOpponentBadge = function (mode) {
   emoji.textContent = MODES[mode].emoji;
   const label = document.createElement("label");
   label.textContent = translate(MODES[mode].label);
+  label.style.height = "20px";
   badge.append(emoji, label);
   return badge;
 };
