@@ -337,6 +337,23 @@ export class PlayMap {
           characterData: true,
           subtree: true,
         });
+        const shiftSideCorners = () => {
+          if (!messageField.isConnected) return;
+          const probe = messageField.cloneNode(false);
+          probe.textContent = "A";
+          probe.style.visibility = "hidden";
+          probe.style.position = "absolute";
+          messageField.parentNode.appendChild(probe);
+          const oneLine = probe.offsetHeight;
+          probe.remove();
+          const extra = Math.max(0, messageField.offsetHeight - oneLine);
+          ["topleft", "topright"].forEach((corner) => {
+            const el = map._controlCorners[corner];
+            el.style.transition = "transform 0.2s ease";
+            el.style.transform = extra ? `translateY(${extra}px)` : "";
+          });
+        };
+        new ResizeObserver(shiftSideCorners).observe(messageField);
         messageField.textContent =
           localization[model.worldCountries.language][
             "Choose one alliance from four countries"
