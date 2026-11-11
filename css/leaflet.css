@@ -628,6 +628,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 /* Base styles for the element that has a tooltip */
 .leaflet-tooltip {
   position: absolute;
+  text-align: center;
   padding: 6px;
   background-color: #fff;
   border: 1px solid #fff;
