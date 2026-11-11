@@ -1019,7 +1019,7 @@ export class Player {
     if (!field) return;
     this.playMap.hideMapElement("selected-country-field");
     field.style.opacity = "0.7";
-    field.style.textAlign = "";
+    field.style.textAlign = "center";
     field.style.boxShadow = "0 2px 5px #00000080, inset 0 2px 10px #0000001f";
     field.style.padding = "3px";
     field.style.letterSpacing = "";

@@ -487,6 +487,7 @@ export class PlayMap {
         selectedCountryField.style.paddingRight = "3px";
         selectedCountryField.style.paddingLeft = "3px";
         selectedCountryField.style.paddingTop = "3px";
+        selectedCountryField.style.textAlign = "center";
         selectedCountryField.style.paddingBottom = "3px";
         selectedCountryField.style.maxWidth = "200px";
         selectedCountryField.style.fontSize = "0.7rem";
