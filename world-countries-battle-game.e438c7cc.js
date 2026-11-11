@@ -2154,6 +2154,7 @@ const createOpponentBadge = function(mode) {
     emoji.textContent = MODES[mode].emoji;
     const label = document.createElement("label");
     label.textContent = translate(MODES[mode].label);
+    label.style.height = "20px";
     badge.append(emoji, label);
     return badge;
 };
@@ -3412,7 +3413,7 @@ class Player {
         };
         const color = HOT_COLD_COLORS[hint.temperature];
         const fillPercent = ((0, _hotColdJs.TEMPERATURES).length - (0, _hotColdJs.TEMPERATURES).indexOf(hint.temperature)) / (0, _hotColdJs.TEMPERATURES).length * 100;
-        const segments = `<span style="display:inline-block; vertical-align:middle; width:90px; height:8px; border-radius:999px; background-color:${color}33; overflow:hidden;">` + `<span class="hotcold-fill" style="display:block; width:0; height:100%; border-radius:999px; background-color:${color}; transition:width 0.6s ease-out;"></span>` + `</span>`;
+        const segments = `<span style="display:inline-block; vertical-align:middle; width:90%; height:8px; border-radius:999px; background-color:${color}33; overflow:hidden;">` + `<span class="hotcold-fill" style="display:block; width:0; height:100%; border-radius:999px; background-color:${color}; transition:width 0.6s ease-out;"></span>` + `</span>`;
         const guessName = this.countries[hint.guessCode]?.countryName;
         const guessLabel = (0, _uaJs.localization)[_modelJs.worldCountries.language]?.countries?.[guessName] ?? guessName ?? "";
         this.playMap.setSelectedCountryFiledHtml(`<div>${guessLabel}</div>` + `<div style="margin:2px 0;">${segments}</div>` + `<div style="color:${color};">${translate(`hotcold.${hint.temperature}`)}${hint.direction ? ` ${hint.direction.arrow}` : ""}</div>`);
@@ -7223,6 +7224,26 @@ class PlayMap {
                     characterData: true,
                     subtree: true
                 });
+                const shiftSideCorners = ()=>{
+                    if (!messageField.isConnected) return;
+                    const probe = messageField.cloneNode(false);
+                    probe.textContent = "A";
+                    probe.style.visibility = "hidden";
+                    probe.style.position = "absolute";
+                    messageField.parentNode.appendChild(probe);
+                    const oneLine = probe.offsetHeight;
+                    probe.remove();
+                    const extra = Math.max(0, messageField.offsetHeight - oneLine);
+                    [
+                        "topleft",
+                        "topright"
+                    ].forEach((corner)=>{
+                        const el = map._controlCorners[corner];
+                        el.style.transition = "transform 0.2s ease";
+                        el.style.transform = extra ? `translateY(${extra}px)` : "";
+                    });
+                };
+                new ResizeObserver(shiftSideCorners).observe(messageField);
                 messageField.textContent = (0, _uaJs.localization)[_modelJs.worldCountries.language]["Choose one alliance from four countries"];
                 return messageField;
             },
