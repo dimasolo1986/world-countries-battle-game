@@ -985,7 +985,7 @@ export class Player {
         TEMPERATURES.length) *
       100;
     const segments =
-      `<span style="display:inline-block; vertical-align:middle; width:90px; height:8px; border-radius:999px; background-color:${color}33; overflow:hidden;">` +
+      `<span style="display:inline-block; vertical-align:middle; width:90%; height:8px; border-radius:999px; background-color:${color}33; overflow:hidden;">` +
       `<span class="hotcold-fill" style="display:block; width:0; height:100%; border-radius:999px; background-color:${color}; transition:width 0.6s ease-out;"></span>` +
       `</span>`;
     const guessName = this.countries[hint.guessCode]?.countryName;
