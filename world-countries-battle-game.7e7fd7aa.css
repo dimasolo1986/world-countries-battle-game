@@ -603,6 +603,7 @@ svg.leaflet-zoom-animated {
 }
 
 .leaflet-tooltip {
+  text-align: center;
   color: #222;
   white-space: nowrap;
   -webkit-user-select: none;

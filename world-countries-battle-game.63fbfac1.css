@@ -1,6 +1,6 @@
 body {
   flex-direction: column;
-  height: 100vh;
+  height: 100dvh;
   margin: 0;
   display: flex;
   position: relative;
@@ -152,7 +152,7 @@ main {
 }
 
 .fade-out {
-  transition: opacity .5s ease-in-out;
+  transition: opacity .7s ease-in;
   opacity: 0 !important;
 }
 
