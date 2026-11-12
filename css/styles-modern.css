@@ -204,7 +204,7 @@ tr td:first-child {
 }
 
 .fade-out {
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.7s ease-in;
   opacity: 0 !important;
 }
 

@@ -23,6 +23,8 @@ import {
   candidatesMatching,
 } from "./hotCold.js";
 
+const FOG_DURATION_MS = 700;
+
 const USER_HOT_COLD_CHANCE = 0.3;
 const USER_HOT_COLD_CHANCE_BY_DIFFICULTY = {
   easy: 0,
@@ -394,10 +396,12 @@ export class Player {
     );
   }
 
-  addCountryBoundaryBlinking(countryCode) {
+  addCountryBoundaryBlinking(countryCode, effect) {
     const countryBoundary = document.querySelector(`.${countryCode}`);
     if (countryBoundary) {
       countryBoundary.classList.add("blinking");
+      if (effect === "trap") this.spawnTrapShockwave(countryBoundary);
+      else if (effect === "bonus") this.spawnBonusSparkles(countryBoundary);
     }
   }
 
@@ -412,7 +416,222 @@ export class Player {
     const countryBoundary = document.querySelector(`.${countryCode}`);
     if (countryBoundary) {
       countryBoundary.classList.add("fade-out");
+      this.spawnFogPuffs(countryBoundary);
     }
+  }
+
+  getCountryEffectGeometry(countryBoundary) {
+    if (
+      typeof countryBoundary.animate !== "function" ||
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
+    )
+      return null;
+    const container = this.playerMap.getContainer();
+    const containerRect = container.getBoundingClientRect();
+    const box = countryBoundary.getBBox();
+    const matrix = countryBoundary.getScreenCTM();
+    const svg = countryBoundary.ownerSVGElement;
+    if (!matrix || !svg || !box.width || !box.height) return null;
+
+    const toScreen = (x, y) => {
+      const point = svg.createSVGPoint();
+      point.x = x;
+      point.y = y;
+      return { point, screen: point.matrixTransform(matrix) };
+    };
+    const insidePoint = (x, y) =>
+      !countryBoundary.isPointInFill ||
+      countryBoundary.isPointInFill(toScreen(x, y).point);
+    const randomInsidePoint = () => {
+      for (let i = 0; i < 25; i++) {
+        const x = box.x + Math.random() * box.width;
+        const y = box.y + Math.random() * box.height;
+        if (insidePoint(x, y)) return toScreen(x, y).screen;
+      }
+      return toScreen(box.x + box.width / 2, box.y + box.height / 2).screen;
+    };
+    const centerPoint = () => {
+      const x = box.x + box.width / 2;
+      const y = box.y + box.height / 2;
+      return insidePoint(x, y) ? toScreen(x, y).screen : randomInsidePoint();
+    };
+    return {
+      container,
+      containerRect,
+      randomInsidePoint,
+      centerPoint,
+      screenSize: Math.min(box.width * matrix.a, box.height * matrix.d),
+      screenArea: box.width * box.height * matrix.a * matrix.d,
+    };
+  }
+
+  playEffectElement(geometry, cssText, keyframes, options) {
+    const element = document.createElement("div");
+    element.style.cssText = `position:absolute; pointer-events:none; z-index:650; opacity:0; ${cssText}`;
+    geometry.container.appendChild(element);
+    const animation = element.animate(keyframes, { fill: "both", ...options });
+    animation.onfinish = () => element.remove();
+    animation.oncancel = () => element.remove();
+  }
+
+  spawnTrapShockwave(countryBoundary) {
+    try {
+      const geometry = this.getCountryEffectGeometry(countryBoundary);
+      if (!geometry) return;
+      const { containerRect } = geometry;
+      const center = geometry.centerPoint();
+      const cx = center.x - containerRect.left;
+      const cy = center.y - containerRect.top;
+      const reach = Math.max(90, Math.min(320, geometry.screenSize * 1.2));
+
+      [0, 140].forEach((delay) => {
+        this.playEffectElement(
+          geometry,
+          `left:${cx - reach / 2}px; top:${cy - reach / 2}px; width:${reach}px; height:${reach}px; ` +
+            "border-radius:50%; background:radial-gradient(circle, rgba(255,120,30,0) 52%, " +
+            "rgba(255,110,20,0.85) 60%, rgba(255,60,0,0.35) 68%, rgba(255,60,0,0) 74%);",
+          [
+            { opacity: 0.95, transform: "scale(0.1)" },
+            { opacity: 0, transform: "scale(1)" },
+          ],
+          { duration: 1500, delay, easing: "ease-out" },
+        );
+      });
+
+      const flash = Math.max(40, reach * 0.45);
+      this.playEffectElement(
+        geometry,
+        `left:${cx - flash / 2}px; top:${cy - flash / 2}px; width:${flash}px; height:${flash}px; ` +
+          "border-radius:50%; background:radial-gradient(circle, rgba(255,250,220,0.95) 0%, " +
+          "rgba(255,150,40,0.7) 40%, rgba(255,80,0,0) 70%);",
+        [
+          { opacity: 0.95, transform: "scale(0.3)" },
+          { opacity: 0, transform: "scale(1.6)" },
+        ],
+        { duration: 700, easing: "ease-out" },
+      );
+
+      for (let i = 0; i < 12; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const distance = reach * (0.3 + Math.random() * 0.35);
+        const size = 4 + Math.random() * 4;
+        const x = Math.cos(angle) * distance;
+        const y = Math.sin(angle) * distance + distance * 0.25;
+        this.playEffectElement(
+          geometry,
+          `left:${cx - size / 2}px; top:${cy - size / 2}px; width:${size}px; height:${size}px; ` +
+            "border-radius:50%; background:#ffb020; box-shadow:0 0 6px 2px rgba(255,100,0,0.8);",
+          [
+            { opacity: 1, transform: "translate(0,0) scale(1)" },
+            { opacity: 0, transform: `translate(${x}px,${y}px) scale(0.3)` },
+          ],
+          { duration: 500 + Math.random() * 300, easing: "ease-out" },
+        );
+      }
+    } catch (err) {}
+  }
+
+  spawnBonusSparkles(countryBoundary) {
+    try {
+      const geometry = this.getCountryEffectGeometry(countryBoundary);
+      if (!geometry) return;
+      const { containerRect } = geometry;
+      const center = geometry.centerPoint();
+      const glow = Math.max(60, Math.min(220, geometry.screenSize * 0.9));
+      this.playEffectElement(
+        geometry,
+        `left:${center.x - containerRect.left - glow / 2}px; top:${center.y - containerRect.top - glow / 2}px; ` +
+          `width:${glow}px; height:${glow}px; border-radius:50%; ` +
+          "background:radial-gradient(circle, rgba(255,236,140,0.8) 0%, rgba(255,200,40,0.4) 45%, rgba(255,200,40,0) 70%);",
+        [
+          { opacity: 0, transform: "scale(0.5)" },
+          { opacity: 0.8, transform: "scale(1)", offset: 0.35 },
+          { opacity: 0, transform: "scale(1.6)" },
+        ],
+        { duration: 1500, easing: "ease-out" },
+      );
+
+      const star =
+        "polygon(50% 0%,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0% 50%,39% 39%)";
+      const count = Math.max(
+        10,
+        Math.min(16, Math.round(geometry.screenArea / 7000)),
+      );
+      const base = Math.max(10, Math.min(20, geometry.screenSize * 0.18));
+      for (let i = 0; i < count; i++) {
+        const p = geometry.randomInsidePoint();
+        const size = base * (0.6 + Math.random() * 0.8);
+        const rise = 20 + Math.random() * 40;
+        const spin = (Math.random() < 0.5 ? -1 : 1) * (60 + Math.random() * 60);
+        this.playEffectElement(
+          geometry,
+          `left:${p.x - containerRect.left - size / 2}px; top:${p.y - containerRect.top - size / 2}px; ` +
+            `width:${size}px; height:${size}px; -webkit-clip-path:${star}; clip-path:${star}; ` +
+            "background:radial-gradient(circle, #fffbe0 0%, #ffd93d 55%, #ffb300 100%);",
+          [
+            { opacity: 0, transform: "translateY(0) scale(0) rotate(0deg)" },
+            {
+              opacity: 1,
+              transform: `translateY(${-rise * 0.4}px) scale(1) rotate(${spin * 0.4}deg)`,
+              offset: 0.35,
+            },
+            {
+              opacity: 0,
+              transform: `translateY(${-rise}px) scale(0.2) rotate(${spin}deg)`,
+            },
+          ],
+          {
+            duration: 1000 + Math.random() * 400,
+            delay: Math.random() * 350,
+            easing: "ease-out",
+          },
+        );
+      }
+    } catch (err) {}
+  }
+
+  spawnFogPuffs(countryBoundary) {
+    try {
+      const geometry = this.getCountryEffectGeometry(countryBoundary);
+      if (!geometry) return;
+      const { container, containerRect, randomInsidePoint } = geometry;
+      const puffSize = Math.max(28, Math.min(150, geometry.screenSize * 0.7));
+      const count = Math.max(
+        6,
+        Math.min(14, Math.round(geometry.screenArea / 9000)),
+      );
+
+      for (let i = 0; i < count; i++) {
+        const p = randomInsidePoint();
+        const size = puffSize * (0.7 + Math.random() * 0.6);
+        const puff = document.createElement("div");
+        puff.style.cssText =
+          `position:absolute; left:${p.x - containerRect.left - size / 2}px; ` +
+          `top:${p.y - containerRect.top - size / 2}px; width:${size}px; height:${size}px; ` +
+          "border-radius:50%; pointer-events:none; z-index:650; opacity:0; " +
+          "background:radial-gradient(circle, rgba(240,242,246,0.9) 0%, " +
+          "rgba(205,210,218,0.55) 45%, rgba(205,210,218,0) 70%);";
+        container.appendChild(puff);
+        const dx = (Math.random() - 0.5) * size * 0.8;
+        const dy = -size * (0.5 + Math.random() * 0.6);
+        const duration = FOG_DURATION_MS * (0.55 + Math.random() * 0.2);
+        const delay = Math.random() * FOG_DURATION_MS * 0.3;
+        const animation = puff.animate(
+          [
+            { opacity: 0, transform: "translate(0,0) scale(0.4)" },
+            {
+              opacity: 0.9,
+              transform: `translate(${dx * 0.3}px,${dy * 0.3}px) scale(1)`,
+              offset: 0.3,
+            },
+            { opacity: 0, transform: `translate(${dx}px,${dy}px) scale(1.9)` },
+          ],
+          { duration, delay, easing: "ease-out", fill: "both" },
+        );
+        animation.onfinish = () => puff.remove();
+        animation.oncancel = () => puff.remove();
+      }
+    } catch (err) {}
   }
 
   removeCountryBoundaryFadeOut(countryCode) {
@@ -1887,7 +2106,7 @@ export class Player {
                 false,
               );
             }
-            this.opponentPlayer.addCountryBoundaryBlinking(countryCode);
+            this.opponentPlayer.addCountryBoundaryBlinking(countryCode, "trap");
             this.opponentPlayer.setElementStyle(countryBoundary, {
               weight: 1,
               color: "orange",
@@ -2015,7 +2234,10 @@ export class Player {
                 ...this.selectedCountryTrapCodes,
               ]),
             );
-            this.opponentPlayer.addCountryBoundaryBlinking(countryCode);
+            this.opponentPlayer.addCountryBoundaryBlinking(
+              countryCode,
+              "bonus",
+            );
             this.opponentPlayer.setElementStyle(countryBoundary, {
               weight: 1,
               color: "purple",
@@ -2379,7 +2601,7 @@ export class Player {
               });
             await this.sleep(500);
             this.opponentPlayer.addCountryBoundaryFadeOut(countryCode);
-            await this.sleep(500);
+            await this.sleep(FOG_DURATION_MS);
             this.opponentPlayer.removeCountryBoundaryFadeOut(countryCode);
             this.opponentPlayer.closeCountryPopup(countryPopup);
             this.opponentPlayer.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
@@ -2891,7 +3113,7 @@ export class Player {
           } else {
             scoreElement.style.color = "green";
           }
-          this.addCountryBoundaryBlinking(countryCode);
+          this.addCountryBoundaryBlinking(countryCode, "trap");
           this.setElementStyle(countryBoundary, {
             weight: 1,
             color: "orange",
@@ -3014,7 +3236,7 @@ export class Player {
               className: countryCode,
             };
           }
-          this.addCountryBoundaryBlinking(countryCode);
+          this.addCountryBoundaryBlinking(countryCode, "bonus");
           this.deleteCountryNeighbourBorders(
             this,
             country,
@@ -3844,7 +4066,7 @@ export class Player {
           else this.hideHotColdHint();
           await this.sleep(500);
           this.addCountryBoundaryFadeOut(countryCode);
-          await this.sleep(500);
+          await this.sleep(FOG_DURATION_MS);
           this.removeCountryBoundaryFadeOut(countryCode);
           this.closeCountryPopup(countryPopup);
           this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
@@ -6193,7 +6415,7 @@ export class Player {
                 false,
               );
             }
-            this.addCountryBoundaryBlinking(countryCode);
+            this.addCountryBoundaryBlinking(countryCode, "trap");
             this.setElementStyle(countryBoundary, {
               weight: 1,
               color: "orange",
@@ -6304,7 +6526,7 @@ export class Player {
                 className: countryCode,
               };
             }
-            this.addCountryBoundaryBlinking(countryCode);
+            this.addCountryBoundaryBlinking(countryCode, "bonus");
             this.deleteCountryNeighbourBorders(
               this,
               country,
@@ -6563,7 +6785,7 @@ export class Player {
             this.opponentPlayer.playerAttemptToGuess = false;
             await this.sleep(500);
             this.addCountryBoundaryFadeOut(countryCode);
-            await this.sleep(500);
+            await this.sleep(FOG_DURATION_MS);
             this.removeCountryBoundaryFadeOut(countryCode);
             this.closeCountryPopup(countryPopup);
             this.playerMap.fitBounds(WORLD_MAP_BOUNDS, {
