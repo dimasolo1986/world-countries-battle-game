@@ -3042,6 +3042,7 @@ class Player {
             countryBoundary.classList.add("blinking");
             if (effect === "trap") this.spawnTrapShockwave(countryBoundary);
             else if (effect === "bonus") this.spawnBonusSparkles(countryBoundary);
+            else if (effect === "hit") this.spawnLightningStrike(countryBoundary);
         }
     }
     removeCountryBoundaryBlinking(countryCode) {
@@ -3165,6 +3166,116 @@ class Player {
                     }
                 ], {
                     duration: 500 + Math.random() * 300,
+                    easing: "ease-out"
+                });
+            }
+        } catch (err) {}
+    }
+    spawnLightningStrike(countryBoundary) {
+        try {
+            const geometry = this.getCountryEffectGeometry(countryBoundary);
+            if (!geometry) return;
+            const { containerRect } = geometry;
+            const center = geometry.centerPoint();
+            const cx = center.x - containerRect.left;
+            const cy = center.y - containerRect.top;
+            const reach = Math.max(80, Math.min(260, geometry.screenSize * 1.1));
+            const boxWidth = 60;
+            const boltPolygon = (length, segments, jitter, xs)=>(width)=>{
+                    const left = [];
+                    const right = [];
+                    xs.forEach((x, i)=>{
+                        const y = i / segments * length;
+                        const w = width * (1 - i / segments * 0.6);
+                        left.push(`${boxWidth / 2 + x - w}px ${y}px`);
+                        right.unshift(`${boxWidth / 2 + x + w}px ${y}px`);
+                    });
+                    return `polygon(${left.concat(right).join(",")})`;
+                };
+            const boltHeight = Math.max(110, Math.min(cy + 20, 340));
+            const segments = 9;
+            const jitter = 14;
+            const xs = Array.from({
+                length: segments + 1
+            }, (_, i)=>i === segments ? 0 : (Math.random() - 0.5) * 2 * jitter);
+            const clipFor = boltPolygon(boltHeight, segments, jitter, xs);
+            const mainTop = cy - boltHeight;
+            const mainLeft = cx - boxWidth / 2;
+            const flicker = [
+                {
+                    opacity: 0
+                },
+                {
+                    opacity: 1,
+                    offset: 0.08
+                },
+                {
+                    opacity: 0.25,
+                    offset: 0.22
+                },
+                {
+                    opacity: 1,
+                    offset: 0.34
+                },
+                {
+                    opacity: 0.6,
+                    offset: 0.55
+                },
+                {
+                    opacity: 0
+                }
+            ];
+            [
+                {
+                    width: 7,
+                    color: "rgba(120,170,255,0.45)"
+                },
+                {
+                    width: 2.5,
+                    color: "#ffffff"
+                }
+            ].forEach(({ width, color })=>{
+                const clip = clipFor(width);
+                this.playEffectElement(geometry, `left:${mainLeft}px; top:${mainTop}px; width:${boxWidth}px; height:${boltHeight}px; ` + `-webkit-clip-path:${clip}; clip-path:${clip}; background:${color};`, flicker, {
+                    duration: 1000,
+                    easing: "linear"
+                });
+            });
+            const flash = reach;
+            this.playEffectElement(geometry, `left:${cx - flash / 2}px; top:${cy - flash / 2}px; width:${flash}px; height:${flash}px; ` + "border-radius:50%; background:radial-gradient(circle, rgba(255,255,255,0.95) 0%, " + "rgba(150,190,255,0.55) 35%, rgba(100,150,255,0) 70%);", [
+                {
+                    opacity: 0,
+                    transform: "scale(0.3)"
+                },
+                {
+                    opacity: 1,
+                    transform: "scale(0.8)",
+                    offset: 0.15
+                },
+                {
+                    opacity: 0,
+                    transform: "scale(1.5)"
+                }
+            ], {
+                duration: 900,
+                easing: "ease-out"
+            });
+            for(let i = 0; i < 10; i++){
+                const angle = Math.random() * Math.PI * 2;
+                const distance = reach * (0.25 + Math.random() * 0.3);
+                const size = 3 + Math.random() * 3;
+                this.playEffectElement(geometry, `left:${cx - size / 2}px; top:${cy - size / 2}px; width:${size}px; height:${size}px; ` + "border-radius:50%; background:#eaf3ff; box-shadow:0 0 6px 2px rgba(120,170,255,0.9);", [
+                    {
+                        opacity: 1,
+                        transform: "translate(0,0) scale(1)"
+                    },
+                    {
+                        opacity: 0,
+                        transform: `translate(${Math.cos(angle) * distance}px,${Math.sin(angle) * distance}px) scale(0.3)`
+                    }
+                ], {
+                    duration: 400 + Math.random() * 300,
+                    delay: 120,
                     easing: "ease-out"
                 });
             }
@@ -4404,7 +4515,7 @@ class Player {
                     this.opponentPlayer.playerAttemptToGuess = false;
                     if (this.isHintUsed(countryCode)) this.usedHintsCount = this.usedHintsCount + 1;
                     this.opponentPlayer.updateCountryFlagPattern(countryCode);
-                    this.opponentPlayer.addCountryBoundaryBlinking(countryCode);
+                    this.opponentPlayer.addCountryBoundaryBlinking(countryCode, "hit");
                     this.opponentPlayer.addSelectedCountryToCountryPanel(this.opponentPlayer.playerSelectedCountriesContainerId, countryCode, Array.from(this.opponentPlayer.selectedCountryCodes).indexOf(countryCode) + 1, false);
                     const countryUnionIndex = this.opponentPlayer.getCountryUnionIndex(countryCode);
                     const isCountryUnionGuessed = this.opponentPlayer.isCountryUnionGuessed(countryUnionIndex);
@@ -5145,7 +5256,7 @@ class Player {
                     if (this.gameConfiguration.gameMode === "user") this.sendHintBonusToOpponent(hintBonus);
                 }
                 this.updateCountryFlagPattern(countryCode);
-                this.addCountryBoundaryBlinking(countryCode);
+                this.addCountryBoundaryBlinking(countryCode, "hit");
                 const countryUnionIndex = this.getCountryUnionIndex(countryCode);
                 const isCountryUnionGuessed = this.isCountryUnionGuessed(countryUnionIndex);
                 if (isCountryUnionGuessed) {
@@ -6833,7 +6944,7 @@ class Player {
                     this.opponentPlayer.playerAttemptToGuess = true;
                     if (this.opponentPlayer.isHintUsed(countryCode)) this.opponentPlayer.usedHintsCount = this.opponentPlayer.usedHintsCount + 1;
                     this.updateCountryFlagPattern(countryCode);
-                    this.addCountryBoundaryBlinking(countryCode);
+                    this.addCountryBoundaryBlinking(countryCode, "hit");
                     this.addSelectedCountryToCountryPanel(this.playerSelectedCountriesContainerId, countryCode, Array.from(this.selectedCountryCodes).indexOf(countryCode) + 1, false);
                     const countryUnionIndex = this.getCountryUnionIndex(countryCode);
                     const isCountryUnionGuessed = this.isCountryUnionGuessed(countryUnionIndex);
