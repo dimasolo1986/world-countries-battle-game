@@ -2691,7 +2691,7 @@ export class Player {
                 guessCode: countryCode,
                 ...hotColdHint,
               });
-            await this.sleep(500);
+            await this.sleep(300);
             this.opponentPlayer.addCountryBoundaryFadeOut(countryCode);
             await this.sleep(FOG_DURATION_MS);
             this.opponentPlayer.removeCountryBoundaryFadeOut(countryCode);
@@ -4156,7 +4156,7 @@ export class Player {
           if (this.opponentPlayer.pendingHotColdHint && hotColdChance >= chance)
             this.showHotColdHint(this.opponentPlayer.pendingHotColdHint);
           else this.hideHotColdHint();
-          await this.sleep(500);
+          await this.sleep(300);
           this.addCountryBoundaryFadeOut(countryCode);
           await this.sleep(FOG_DURATION_MS);
           this.removeCountryBoundaryFadeOut(countryCode);
@@ -6875,7 +6875,7 @@ export class Player {
             }`;
             this.playerAttemptToGuess = true;
             this.opponentPlayer.playerAttemptToGuess = false;
-            await this.sleep(500);
+            await this.sleep(300);
             this.addCountryBoundaryFadeOut(countryCode);
             await this.sleep(FOG_DURATION_MS);
             this.removeCountryBoundaryFadeOut(countryCode);
