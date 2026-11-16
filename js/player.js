@@ -2922,22 +2922,6 @@ export class Player {
     this.hitIntervalIds.push(hitIntervalId);
     const hitTimeoutId = setTimeout(async () => {
       this.opponentPlayer.disableMapInteraction();
-      if (
-        document.fullscreenElement ||
-        document.mozFullScreenElement ||
-        document.webkitFullscreenElement ||
-        document.msFullscreenElement
-      ) {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        } else if (document.mozCancelFullScreen) {
-          document.mozCancelFullScreen();
-        } else if (document.webkitExitFullscreen) {
-          document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) {
-          document.msExitFullscreen();
-        }
-      }
       hideModalWindow("flagModal");
       hideModalWindow("coatOfArmsModal");
       hideModalWindow("countryOutlineModal");
