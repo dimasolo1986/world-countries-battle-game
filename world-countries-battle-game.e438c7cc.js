@@ -4620,7 +4620,7 @@ class Player {
                         guessCode: countryCode,
                         ...hotColdHint
                     });
-                    await this.sleep(500);
+                    await this.sleep(300);
                     this.opponentPlayer.addCountryBoundaryFadeOut(countryCode);
                     await this.sleep(FOG_DURATION_MS);
                     this.opponentPlayer.removeCountryBoundaryFadeOut(countryCode);
@@ -4783,12 +4783,6 @@ class Player {
         this.hitIntervalIds.push(hitIntervalId);
         const hitTimeoutId = setTimeout(async ()=>{
             this.opponentPlayer.disableMapInteraction();
-            if (document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
-                if (document.exitFullscreen) document.exitFullscreen();
-                else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
-                else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-                else if (document.msExitFullscreen) document.msExitFullscreen();
-            }
             (0, _helpersJs.hideModalWindow)("flagModal");
             (0, _helpersJs.hideModalWindow)("coatOfArmsModal");
             (0, _helpersJs.hideModalWindow)("countryOutlineModal");
@@ -5453,7 +5447,7 @@ class Player {
                 } : null;
                 if (this.opponentPlayer.pendingHotColdHint && hotColdChance >= chance) this.showHotColdHint(this.opponentPlayer.pendingHotColdHint);
                 else this.hideHotColdHint();
-                await this.sleep(500);
+                await this.sleep(300);
                 this.addCountryBoundaryFadeOut(countryCode);
                 await this.sleep(FOG_DURATION_MS);
                 this.removeCountryBoundaryFadeOut(countryCode);
@@ -7037,7 +7031,7 @@ class Player {
                     this.gameMessageField.textContent = `\u{26D4} ${(0, _uaJs.localization)[_modelJs.worldCountries.language]["Opponent failed to guess your country!"]}`;
                     this.playerAttemptToGuess = true;
                     this.opponentPlayer.playerAttemptToGuess = false;
-                    await this.sleep(500);
+                    await this.sleep(300);
                     this.addCountryBoundaryFadeOut(countryCode);
                     await this.sleep(FOG_DURATION_MS);
                     this.removeCountryBoundaryFadeOut(countryCode);
