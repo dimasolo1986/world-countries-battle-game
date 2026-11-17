@@ -752,7 +752,7 @@ main .card .card-body {
   font-size: .7rem;
   font-weight: 700;
   position: sticky;
-  box-shadow: 0 3px #fff;
+  box-shadow: 0 -1px #fff;
 }
 
 .lb-table td {
