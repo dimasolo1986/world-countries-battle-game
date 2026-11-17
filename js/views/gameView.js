@@ -167,8 +167,21 @@ class gameView {
     const dictionary = localization[model.worldCountries.language];
     difficultySelect.title = dictionary["Difficulty"];
     difficultySelect.setAttribute("aria-label", dictionary["Difficulty"]);
-    for (const option of difficultySelect.options)
-      option.textContent = `${dictionary["Difficulty"]}: ${dictionary[option.dataset.label]}`;
+    for (const option of difficultySelect.options) {
+      let emoji = "";
+      switch (option.dataset.label) {
+        case "Easy":
+          emoji = "🟢";
+          break;
+        case "Normal":
+          emoji = "🟡";
+          break;
+        case "Hard":
+          emoji = "🔴";
+          break;
+      }
+      option.textContent = `${emoji} ${dictionary["Difficulty"]}: ${dictionary[option.dataset.label]}`;
+    }
     const savedDifficulty = localStorage.getItem("difficulty");
     if (["easy", "normal", "hard"].includes(savedDifficulty))
       this._gameConfiguration.difficulty = savedDifficulty;
