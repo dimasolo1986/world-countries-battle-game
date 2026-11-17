@@ -835,7 +835,7 @@ main .card .card-body {
   top: var(--lb-sticky-height, 0);
   z-index: 1;
   background: #fff;
-  box-shadow: 0 3px 0 #fff;
+  box-shadow: 0 -1px 0 #fff;
   font-size: 0.7rem;
   font-weight: 700;
   color: #64748b;
