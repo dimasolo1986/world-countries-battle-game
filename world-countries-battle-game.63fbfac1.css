@@ -22,7 +22,7 @@ body:before {
   animation: 10s ease-in-out infinite alternate bg-drift;
   position: fixed;
   inset: 0;
-  transform: scale(1);
+  transform: scale(1.1);
 }
 
 body:after {
@@ -36,11 +36,11 @@ body:after {
 
 @keyframes bg-drift {
   from {
-    transform: scale(1) translate(-2%, -1.5%);
+    transform: scale(1.1) translate(-4%, -3.5%);
   }
 
   to {
-    transform: scale(1.18) translate(2%, 1.5%);
+    transform: scale(1.3) translate(4%, 3.5%);
   }
 }
 
