@@ -29,7 +29,7 @@ body::before {
   opacity: 0.8;
   z-index: -1;
   /* Slow "satellite flyover" drift. Scale stays >= 1.1 so edges never show. */
-  transform: scale(1);
+  transform: scale(1.1);
   animation: bg-drift 10s ease-in-out infinite alternate;
   will-change: transform;
 }
@@ -48,7 +48,7 @@ body::after {
 }
 @keyframes bg-drift {
   from {
-    transform: scale(1) translate(-2%, -1.5%);
+    transform: scale(1.1) translate(-2%, -1.5%);
   }
   to {
     transform: scale(1.18) translate(2%, 1.5%);
