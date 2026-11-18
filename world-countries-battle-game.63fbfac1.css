@@ -14,12 +14,41 @@ body:before {
   content: "";
   opacity: .8;
   z-index: -1;
+  will-change: transform;
   background-image: url("background-image.6b369780.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  animation: 10s ease-in-out infinite alternate bg-drift;
   position: fixed;
   inset: 0;
+  transform: scale(1);
+}
+
+body:after {
+  content: "";
+  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(#0000 55%, #00000059 100%);
+  position: fixed;
+  inset: 0;
+}
+
+@keyframes bg-drift {
+  from {
+    transform: scale(1) translate(-2%, -1.5%);
+  }
+
+  to {
+    transform: scale(1.18) translate(2%, 1.5%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body:before {
+    animation: none;
+    transform: none;
+  }
 }
 
 @supports (background-image: image-set(url("") type("image/png"))) {
