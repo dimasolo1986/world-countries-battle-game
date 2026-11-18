@@ -28,6 +28,37 @@ body::before {
   background-size: cover;
   opacity: 0.8;
   z-index: -1;
+  /* Slow "satellite flyover" drift. Scale stays >= 1.1 so edges never show. */
+  transform: scale(1);
+  animation: bg-drift 10s ease-in-out infinite alternate;
+  will-change: transform;
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  /* Vignette: darker edges, clear centre. */
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0) 55%,
+    rgba(0, 0, 0, 0.35) 100%
+  );
+}
+@keyframes bg-drift {
+  from {
+    transform: scale(1) translate(-2%, -1.5%);
+  }
+  to {
+    transform: scale(1.18) translate(2%, 1.5%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none;
+    transform: none;
+  }
 }
 @supports (background-image: image-set(url("") type("image/png"))) {
   body::before {
