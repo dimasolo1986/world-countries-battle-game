@@ -1,0 +1,14 @@
+# Country Alliance Guesser Game
+
+> A free browser game for learning world geography: pick alliances of neighboring countries and trap countries on a map, then take turns guessing your opponent's countries. Play against the computer or a friend.
+
+The game helps players study countries, borders, capitals, flags and world regions. Each player secretly chooses eight alliances of bordering countries and four trap countries. Players alternate guesses; a correct guess earns an extra try, a trap country gives the guesser a clue about the opponent's countries. The first player to find all of the opponent's alliances wins.
+
+## Play
+
+- [Play the game](https://www.countriesguesser.com/): single-player against the computer, or with a friend through a shared game room link.
+
+## Source and related
+
+- [Source code and rules](https://github.com/dimasolo/world-countries-battle-game): README with full rules and scoring.
+- [World Countries And Quizzes](https://www.worldcountriesquiz.com): related geography quizzes.
