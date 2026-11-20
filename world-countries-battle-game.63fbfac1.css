@@ -1576,4 +1576,48 @@ video {
 .stats-fact-refresh:hover {
   background-color: #f1f5f9;
 }
+
+.flag-fog-layer {
+  pointer-events: none;
+  z-index: -1;
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+.flag-fog {
+  opacity: 0;
+  height: auto;
+  animation: flag-fog var(--fog-life, 5s) ease-in-out forwards;
+  will-change: opacity, filter, transform;
+  border-radius: 6px;
+  position: absolute;
+  mask-image: radial-gradient(#000 55%, #0000 100%);
+}
+
+@keyframes flag-fog {
+  0% {
+    opacity: 0;
+    filter: blur(14px);
+    transform: rotate(var(--fog-tilt, 0deg)) scale(.9);
+  }
+
+  25%, 70% {
+    opacity: .7;
+    filter: blur(1.5px);
+    transform: rotate(var(--fog-tilt, 0deg)) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    filter: blur(16px);
+    transform: rotate(var(--fog-tilt, 0deg)) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flag-fog-layer {
+    display: none;
+  }
+}
 /*# sourceMappingURL=world-countries-battle-game.63fbfac1.css.map */
