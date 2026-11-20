@@ -14,6 +14,7 @@ import {
   openLeaderboardOver,
 } from "./leaderboard.js";
 import { initStats, openStats, openStatsOver } from "./stats.js";
+import { initFlagFog } from "./flagFog.js";
 const init = function () {
   initLeaderboard(() => gameRoomView.getFirebase());
   initStats();
@@ -372,3 +373,4 @@ const saveCurrentLanguageHandler = function () {
 };
 
 init();
+initFlagFog();

@@ -1780,3 +1780,50 @@ video {
 .stats-fact-refresh:hover {
   background-color: #f1f5f9;
 }
+
+/* ─── Main page: country flags drifting out of the fog ─────────────────────── */
+.flag-fog-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+.flag-fog {
+  position: absolute;
+  height: auto;
+  border-radius: 6px;
+  opacity: 0;
+  /* Soft edges so the flag dissolves into the background like mist. */
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    #000 55%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(ellipse at center, #000 55%, transparent 100%);
+  animation: flag-fog var(--fog-life, 5000ms) ease-in-out forwards;
+  will-change: opacity, filter, transform;
+}
+@keyframes flag-fog {
+  0% {
+    opacity: 0;
+    filter: blur(14px);
+    transform: rotate(var(--fog-tilt, 0deg)) scale(0.9);
+  }
+  25%,
+  70% {
+    opacity: 0.7;
+    filter: blur(1.5px);
+    transform: rotate(var(--fog-tilt, 0deg)) scale(1);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(16px);
+    transform: rotate(var(--fog-tilt, 0deg)) scale(1.08);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flag-fog-layer {
+    display: none;
+  }
+}
