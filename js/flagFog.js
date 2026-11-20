@@ -1,6 +1,6 @@
 import { COUNTRIES } from "./data/countries.js";
 
-const MAX_FLAGS = 3;
+const MAX_FLAGS = 5;
 const SPAWN_MIN_MS = 1800;
 const SPAWN_MAX_MS = 3800;
 const LIFE_MS = 5000;
