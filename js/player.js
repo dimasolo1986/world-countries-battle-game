@@ -1305,7 +1305,8 @@ export class Player {
       guessName ??
       "";
     this.playMap.setSelectedCountryFiledHtml(
-      `<div>${guessLabel}</div>` +
+      `<div style="font-size:0.75rem; color:green;">${"🧭 " + localization[model.worldCountries.language]["Compass"] + " 🧭"}</div>` +
+        `<div>${guessLabel}</div>` +
         `<div style="margin:2px 0;">${segments}</div>` +
         `<div style="color:${color};">${translate(`hotcold.${hint.temperature}`)}${
           hint.direction ? ` ${hint.direction.arrow}` : ""
