@@ -3763,7 +3763,7 @@ class Player {
         const segments = `<span style="display:inline-block; vertical-align:middle; width:90%; height:8px; border-radius:999px; background-color:${color}33; overflow:hidden;">` + `<span class="hotcold-fill" style="display:block; width:0; height:100%; border-radius:999px; background-color:${color}; transition:width 0.6s ease-out;"></span>` + `</span>`;
         const guessName = this.countries[hint.guessCode]?.countryName;
         const guessLabel = (0, _uaJs.localization)[_modelJs.worldCountries.language]?.countries?.[guessName] ?? guessName ?? "";
-        this.playMap.setSelectedCountryFiledHtml(`<div>${guessLabel}</div>` + `<div style="margin:2px 0;">${segments}</div>` + `<div style="color:${color};">${translate(`hotcold.${hint.temperature}`)}${hint.direction ? ` ${hint.direction.arrow}` : ""}</div>`);
+        this.playMap.setSelectedCountryFiledHtml(`<div style="font-size:0.75rem; color:green;">${"\uD83E\uDDED " + (0, _uaJs.localization)[_modelJs.worldCountries.language]["Compass"] + " \uD83E\uDDED"}</div>` + `<div>${guessLabel}</div>` + `<div style="margin:2px 0;">${segments}</div>` + `<div style="color:${color};">${translate(`hotcold.${hint.temperature}`)}${hint.direction ? ` ${hint.direction.arrow}` : ""}</div>`);
         field.style.opacity = "0.85";
         field.style.textAlign = "center";
         field.style.minWidth = "100px";
@@ -8670,7 +8670,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "initFlagFog", ()=>initFlagFog);
 var _countriesJs = require("./data/countries.js");
-const MAX_FLAGS = 3;
+const MAX_FLAGS = 5;
 const SPAWN_MIN_MS = 1800;
 const SPAWN_MAX_MS = 3800;
 const LIFE_MS = 5000;
