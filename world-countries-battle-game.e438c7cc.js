@@ -8674,6 +8674,10 @@ const MAX_FLAGS = 5;
 const SPAWN_MIN_MS = 1800;
 const SPAWN_MAX_MS = 3800;
 const LIFE_MS = 5000;
+const CREST_CHANCE = 0.25;
+const CREST_OPACITY = 0.9;
+const CREST_MIN_W = 70;
+const CREST_MAX_W = 120;
 const PLACE_ATTEMPTS = 25;
 const PAD = 12;
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -8722,8 +8726,9 @@ function spawnFlag() {
     const pool = (0, _countriesJs.COUNTRIES).filter((c)=>c.flags?.webp && c.name.common !== "Russia" && c.cca2 !== lastCode);
     if (!pool.length) return;
     const country = pool[Math.floor(Math.random() * pool.length)];
-    const w = Math.round(rand(90, 170));
-    const h = Math.round(w * 0.75);
+    const useCrest = Math.random() < CREST_CHANCE && !!country.coatOfArms?.webp;
+    const w = useCrest ? Math.round(rand(CREST_MIN_W, CREST_MAX_W)) : Math.round(rand(90, 170));
+    const h = useCrest ? w : Math.round(w * 0.75);
     const spot = findSpot(w, h);
     if (!spot) return;
     lastCode = country.cca2;
@@ -8733,6 +8738,11 @@ function spawnFlag() {
     img.setAttribute("aria-hidden", "true");
     img.decoding = "async";
     img.style.width = `${w}px`;
+    if (useCrest) {
+        img.style.setProperty("--fog-peak", CREST_OPACITY);
+        img.style.height = `${h}px`;
+        img.style.objectFit = "contain";
+    }
     img.style.left = `${spot.left}px`;
     img.style.top = `${spot.top}px`;
     img.style.setProperty("--fog-life", `${LIFE_MS}ms`);
@@ -8740,7 +8750,7 @@ function spawnFlag() {
     img.onload = ()=>layer && layer.appendChild(img);
     img.onanimationend = ()=>img.remove();
     img.onerror = ()=>img.remove();
-    img.src = country.flags.webp;
+    img.src = useCrest ? country.coatOfArms.webp : country.flags.webp;
 }
 function tick() {
     timer = setTimeout(tick, rand(SPAWN_MIN_MS, SPAWN_MAX_MS));
