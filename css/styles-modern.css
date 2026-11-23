@@ -1812,7 +1812,7 @@ video {
   }
   25%,
   70% {
-    opacity: 0.7;
+    opacity: var(--fog-peak, 0.7);
     filter: blur(1.5px);
     transform: rotate(var(--fog-tilt, 0deg)) scale(1);
   }
