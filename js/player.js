@@ -2033,6 +2033,7 @@ export class Player {
           opacity: 0,
         };
         countryMarker.setOpacity(0);
+        player.alreadyGuessedCountryCodes.push(countryBorderCode);
         const countryIndexToDelete =
           player.countryCodes.indexOf(countryBorderCode);
         if (countryIndexToDelete >= 0)
