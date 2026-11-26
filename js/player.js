@@ -1,5 +1,6 @@
 import { localization } from "./localization/ua.js";
 import { WORLD_MAP_BOUNDS } from "./config.js";
+import { playSfx } from "./sfx.js";
 import {
   getCountryGeo,
   getCountryBounds,
@@ -400,6 +401,7 @@ export class Player {
     const countryBoundary = document.querySelector(`.${countryCode}`);
     if (countryBoundary) {
       countryBoundary.classList.add("blinking");
+      playSfx(effect);
       if (effect === "trap") this.spawnTrapShockwave(countryBoundary);
       else if (effect === "bonus") this.spawnBonusSparkles(countryBoundary);
       else if (effect === "hit") this.spawnLightningStrike(countryBoundary);
@@ -2523,6 +2525,7 @@ export class Player {
             const isCountryUnionGuessed =
               this.opponentPlayer.isCountryUnionGuessed(countryUnionIndex);
             if (isCountryUnionGuessed) {
+              playSfx("alliance", 0.25);
               this.opponentPlayer.playerCountriesNumberField.textContent =
                 +this.opponentPlayer.playerCountriesNumberField.textContent - 1;
               this.countriesToGuessNext = [];
@@ -2685,6 +2688,7 @@ export class Player {
                 "Computer failed to guess your country!"
               ]
             }`;
+            playSfx("fail");
             this.playerAttemptToGuess = false;
             this.opponentPlayer.playerAttemptToGuess = true;
             const hotColdHint = this.opponentPlayer.getHotColdHint(countryCode);
@@ -3760,6 +3764,7 @@ export class Player {
           const isCountryUnionGuessed =
             this.isCountryUnionGuessed(countryUnionIndex);
           if (isCountryUnionGuessed) {
+            playSfx("alliance", 0.25);
             await this.sleep(500);
             this.removeCountryFlagPatterns();
             this.playerCountriesNumberField.textContent =
@@ -4127,6 +4132,7 @@ export class Player {
               "Failed attempt to guess country!"
             ]
           }`;
+          playSfx("fail");
           this.playerAttemptToGuess = true;
           this.opponentPlayer.playerAttemptToGuess = false;
           const hotColdChance = Math.random();
@@ -6717,6 +6723,7 @@ export class Player {
             const isCountryUnionGuessed =
               this.isCountryUnionGuessed(countryUnionIndex);
             if (isCountryUnionGuessed) {
+              playSfx("alliance", 0.25);
               await this.sleep(500);
               this.removeCountryFlagPatterns();
               this.playerCountriesNumberField.textContent =
@@ -6859,6 +6866,7 @@ export class Player {
                 "Opponent failed to guess your country!"
               ]
             }`;
+            playSfx("fail");
             this.playerAttemptToGuess = true;
             this.opponentPlayer.playerAttemptToGuess = false;
             await this.sleep(300);

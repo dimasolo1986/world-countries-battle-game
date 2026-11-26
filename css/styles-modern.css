@@ -93,7 +93,7 @@ main {
 }
 .language-select {
   font-size: 0.8rem;
-  margin-left: 8px;
+  margin-left: 3px;
   margin-right: 4px;
   display: inline;
 }
@@ -505,14 +505,16 @@ header.bg-dark {
 
 #shareWebSite,
 #stats-button,
-#leaderboard-button {
+#leaderboard-button,
+#sound-button {
   background-color: var(--cg-teal) !important;
   border-radius: 4px !important;
   padding: 3px !important;
 }
 
 #leaderboard-button:hover,
-#stats-button:hover {
+#stats-button:hover,
+#sound-button:hover {
   background-color: #ffffff !important;
 }
 

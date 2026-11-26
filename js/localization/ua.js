@@ -543,6 +543,8 @@ export const localization = {
     "stats rules description":
       "Вікно «Статистика» зберігає вашу особисту статистику на цьому пристрої: кількість зіграних ігор, відсоток перемог проти комп’ютера та проти друга, середній і найкращий результат, а також країни, які ви пропускаєте найчастіше. Після кожної гри ви також дізнаєтеся цікавий факт про одну з країн. Відкрийте статистику кнопкою 📊 на головній сторінці чи в шапці або у вікні результату гри. Статистика зберігається лише в цьому браузері, і її можна скинути будь-коли.",
     Stats: "Статистика",
+    "Sound on": "Звук увімкнено",
+    "Sound off": "Звук вимкнено",
     "Games played": "Зіграно ігор",
     "Win rate": "Відсоток перемог",
     "Average score": "Середній результат",
@@ -1744,6 +1746,8 @@ export const localization = {
     "stats rules description":
       "The Stats window keeps your personal statistics on this device: games played, win rate against the computer and against a friend, average and best score, and the countries you miss most often. After every game you also get a fun fact about one of the countries. Open Stats with the 📊 button on the main page or in the header, or from the Game Result window. Statistics are stored only in this browser and can be reset at any time.",
     Stats: "Stats",
+    "Sound on": "Sound on",
+    "Sound off": "Sound off",
     "Games played": "Games played",
     "Win rate": "Win rate",
     "Average score": "Average score",
@@ -2360,6 +2364,8 @@ export const localization = {
     "stats rules description":
       "Das Statistikfenster speichert deine persönliche Statistik auf diesem Gerät: gespielte Spiele, Siegquote gegen den Computer und gegen einen Freund, durchschnittliches und bestes Ergebnis sowie die Länder, die du am häufigsten verpasst. Nach jedem Spiel erfährst du außerdem etwas Interessantes über eines der Länder. Öffne die Statistik über die 📊-Schaltfläche auf der Startseite oder in der Kopfzeile oder im Ergebnisfenster. Die Statistik wird nur in diesem Browser gespeichert und kann jederzeit zurückgesetzt werden.",
     Stats: "Statistik",
+    "Sound on": "Ton an",
+    "Sound off": "Ton aus",
     "Games played": "Gespielte Spiele",
     "Win rate": "Siegquote",
     "Average score": "Durchschnittsergebnis",
@@ -3338,6 +3344,8 @@ export const localization = {
     "stats rules description":
       "La fenêtre Statistiques conserve tes statistiques personnelles sur cet appareil : parties jouées, taux de victoire contre l’ordinateur et contre un ami, score moyen et meilleur score, ainsi que les pays que tu manques le plus souvent. Après chaque partie, tu découvres aussi une anecdote sur l’un des pays. Ouvre les statistiques avec le bouton 📊 de la page principale ou de l’en-tête, ou depuis la fenêtre de résultat. Les statistiques sont stockées uniquement dans ce navigateur et peuvent être réinitialisées à tout moment.",
     Stats: "Statistiques",
+    "Sound on": "Son activé",
+    "Sound off": "Son désactivé",
     "Games played": "Parties jouées",
     "Win rate": "Taux de victoire",
     "Average score": "Score moyen",
@@ -4281,6 +4289,8 @@ export const localization = {
     "stats rules description":
       "La ventana de estadísticas guarda tus estadísticas personales en este dispositivo: partidas jugadas, porcentaje de victorias contra el ordenador y contra un amigo, puntuación media y mejor puntuación, y los países que fallas con más frecuencia. Después de cada partida también descubres un dato curioso sobre uno de los países. Abre las estadísticas con el botón 📊 de la página principal o de la cabecera, o desde la ventana de resultados. Las estadísticas se guardan solo en este navegador y puedes restablecerlas en cualquier momento.",
     Stats: "Estadísticas",
+    "Sound on": "Sonido activado",
+    "Sound off": "Sonido desactivado",
     "Games played": "Partidas jugadas",
     "Win rate": "Porcentaje de victorias",
     "Average score": "Puntuación media",
@@ -5117,6 +5127,8 @@ export const localization = {
     "stats rules description":
       "La finestra delle statistiche conserva le tue statistiche personali su questo dispositivo: partite giocate, percentuale di vittorie contro il computer e contro un amico, punteggio medio e migliore, e i paesi che sbagli più spesso. Dopo ogni partita scopri anche una curiosità su uno dei paesi. Apri le statistiche con il pulsante 📊 nella pagina principale o nell’intestazione, oppure dalla finestra dei risultati. Le statistiche sono salvate solo in questo browser e puoi azzerarle in qualsiasi momento.",
     Stats: "Statistiche",
+    "Sound on": "Audio attivo",
+    "Sound off": "Audio disattivato",
     "Games played": "Partite giocate",
     "Win rate": "Percentuale di vittorie",
     "Average score": "Punteggio medio",

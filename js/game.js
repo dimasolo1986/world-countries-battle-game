@@ -1,4 +1,5 @@
 import { localization } from "./localization/ua.js";
+import { playSfx } from "./sfx.js";
 import { loadMain, resetFinishedGame } from "./controller.js";
 import {
   showGameResultWindow,
@@ -148,6 +149,7 @@ export class Game {
       mode: this.gameConfiguration.gameMode === "user" ? "friend" : "computer",
     });
     this.recordResult(playerOneWon);
+    playSfx(playerOneWon ? "win" : "lose", 0.4);
     this.playerOne.hideHotColdHint();
     this.gameModalResultGuessedCountries.innerHTML = "";
     this.playerOne.enableMapInteraction();

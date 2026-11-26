@@ -15,7 +15,37 @@ import {
 } from "./leaderboard.js";
 import { initStats, openStats, openStatsOver } from "./stats.js";
 import { initFlagFog } from "./flagFog.js";
+import { initSfx, isSoundEnabled, setSoundEnabled } from "./sfx.js";
+const renderSoundToggle = function () {
+  const on = isSoundEnabled();
+  const label =
+    localization[model.worldCountries.language][on ? "Sound on" : "Sound off"];
+  const button = document.getElementById("sound-button");
+  if (button) {
+    button.setAttribute("aria-pressed", String(on));
+    button.setAttribute("aria-label", label);
+    button.querySelector("title").textContent = label;
+    document.getElementById("sound-on-waves").style.display = on ? "" : "none";
+    document.getElementById("sound-off-cross").style.display = on ? "none" : "";
+  }
+  const mapButton = document.getElementById("sound-map-button");
+  if (mapButton) {
+    mapButton.textContent = on ? "🔊" : "🔇";
+    mapButton.title = label;
+    mapButton.setAttribute("aria-label", label);
+  }
+};
+const initSoundToggle = function () {
+  initSfx();
+  document.addEventListener("soundchange", renderSoundToggle);
+  const button = document.getElementById("sound-button");
+  if (!button) return;
+  button.addEventListener("click", () => {
+    setSoundEnabled(!isSoundEnabled());
+  });
+};
 const init = function () {
+  initSoundToggle();
   initLeaderboard(() => gameRoomView.getFirebase());
   initStats();
   languageSelectView.init();
@@ -318,6 +348,7 @@ const translateAllElements = function () {
   donateAuthorView.translateElements();
   gameRulesView.translateElements();
   gameRoomView.translateElements();
+  renderSoundToggle();
 };
 
 const loadGameRoom = function () {

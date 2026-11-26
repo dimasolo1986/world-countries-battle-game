@@ -1,4 +1,5 @@
 import { localization } from "./localization/ua.js";
+import { isSoundEnabled, setSoundEnabled } from "./sfx.js";
 import { WORLD_MAP_BOUNDS } from "./config.js";
 import * as model from "./model.js";
 import { takeChatForMap } from "./chat.js";
@@ -288,6 +289,22 @@ export class PlayMap {
         container.appendChild(random);
         container.appendChild(undo);
         container.appendChild(clean);
+        const sound = L.DomUtil.create("div");
+        sound.id = "sound-map-button";
+        sound.setAttribute("role", "button");
+        sound.style.height = "23px";
+        sound.style.display = "none";
+        sound.style.justifyContent = "center";
+        sound.style.alignItems = "center";
+        sound.style.cursor = "pointer";
+        sound.style.borderTop = "1px solid rgba(100, 116, 139, 0.25)";
+        sound.addEventListener("click", (e) => {
+          e.stopPropagation();
+          setSoundEnabled(!isSoundEnabled());
+        });
+        addHoverTint(sound);
+        container.appendChild(sound);
+        queueMicrotask(() => document.dispatchEvent(new Event("soundchange")));
         return container;
       },
       onRemove: function (map) {},
@@ -1057,6 +1074,7 @@ export class PlayMap {
       "undo-user-countries-selection",
     );
     undoSelection.style.display = "none";
+    document.getElementById("sound-map-button").style.display = "flex";
     document.getElementById("countries-number-field").textContent =
       this.countriesNumber;
     document.getElementById("bonus-countries-number-field").textContent =
