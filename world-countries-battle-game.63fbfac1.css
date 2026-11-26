@@ -84,7 +84,7 @@ main {
 }
 
 .language-select {
-  margin-left: 8px;
+  margin-left: 3px;
   margin-right: 4px;
   font-size: .8rem;
   display: inline;
@@ -413,13 +413,13 @@ header.bg-dark {
   color: #fff !important;
 }
 
-#shareWebSite, #stats-button, #leaderboard-button {
+#shareWebSite, #stats-button, #leaderboard-button, #sound-button {
   background-color: var(--cg-teal) !important;
   border-radius: 4px !important;
   padding: 3px !important;
 }
 
-#leaderboard-button:hover, #stats-button:hover, #shareWebSite:hover {
+#leaderboard-button:hover, #stats-button:hover, #sound-button:hover, #shareWebSite:hover {
   background-color: #fff !important;
 }
 
