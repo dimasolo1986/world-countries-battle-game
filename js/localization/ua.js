@@ -5415,7 +5415,7 @@ export const localization = {
     Borders: "Confini",
     "War Aggressor": "Aggressore di Guerra",
     "Aggressor Supporter": "Sostenitore dell'Aggressore",
-    "About Project": "Informazioni sul Progetto",
+    "About Project": "Informazioni sul Gioco",
     "World Countries And Quizzes": "Paesi del Mondo e Quiz",
     "project which is developed for learning Geography and World Countries.":
       "progetto sviluppato per l'apprendimento della Geografia e dei Paesi del Mondo.",
