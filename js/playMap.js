@@ -778,6 +778,7 @@ export class PlayMap {
         playerTwoScoreField.style.paddingLeft = "3px";
         playerTwoScoreField.style.paddingTop = "2px";
         playerTwoScoreField.style.paddingBottom = "2px";
+        playerTwoScoreField.style.marginTop = "4px";
         playerTwoScoreField.style.fontSize = "0.7rem";
         playerTwoScoreField.style.borderRadius = "5px";
         playerTwoScoreField.style.fontWeight = "700";
