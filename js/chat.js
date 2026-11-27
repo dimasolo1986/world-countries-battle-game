@@ -1,6 +1,7 @@
 import { localization } from "./localization/ua.js";
 import * as model from "./model.js";
 import { setChatArrow } from "./helpers.js";
+import { playSfx } from "./sfx.js";
 
 let chatElement = null;
 const refs = {};
@@ -254,6 +255,7 @@ export const destroyChat = function () {
 
 export const receiveChat = function (message) {
   if (!chatElement) return;
+  playSfx("message");
   refs.fromOpponent.value = "🧓: " + message;
   if (refs.container.classList.contains("not-displayed")) {
     refs.container.classList.remove("not-displayed");
